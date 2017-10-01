@@ -1,11 +1,11 @@
-package pcb.units.concrete.si;
+package pcb.units.concrete.fundamental.si;
 
 import pcb.units.amount.Amount;
 import pcb.units.dimensions.fundamental.SpaceUnit;
 
 import java.util.function.Function;
 
-public class MeterUnit<N extends Number> implements SpaceUnit<N> {
+public class MeterUnit implements SpaceUnit {
 	@Override
 	public String getSymbol() {
 		return "m";
@@ -22,12 +22,12 @@ public class MeterUnit<N extends Number> implements SpaceUnit<N> {
 	}
 
 	@Override
-	public Function<Amount<N>, Amount<N>> translationToCanonical() {
+	public Function<Amount, Amount> translationToCanonical() {
 		return Function.identity();
 	}
 
 	@Override
-	public Function<Amount<N>, Amount<N>> translationFromCanonical() {
+	public Function<Amount, Amount> translationFromCanonical() {
 		return Function.identity();
 	}
 }

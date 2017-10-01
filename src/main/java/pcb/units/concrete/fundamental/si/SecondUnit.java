@@ -1,11 +1,11 @@
-package pcb.units.concrete.si;
+package pcb.units.concrete.fundamental.si;
 
 import pcb.units.amount.Amount;
 import pcb.units.dimensions.fundamental.TimeUnit;
 
 import java.util.function.Function;
 
-public class SecondUnit<N extends Number> implements TimeUnit<N> {
+public class SecondUnit implements TimeUnit {
 	@Override
 	public String getSymbol() {
 		return "s";
@@ -22,12 +22,12 @@ public class SecondUnit<N extends Number> implements TimeUnit<N> {
 	}
 
 	@Override
-	public Function<Amount<N>, Amount<N>> translationToCanonical() {
+	public Function<Amount, Amount> translationToCanonical() {
 		return Function.identity();
 	}
 
 	@Override
-	public Function<Amount<N>, Amount<N>> translationFromCanonical() {
+	public Function<Amount, Amount> translationFromCanonical() {
 		return Function.identity();
 	}
 }

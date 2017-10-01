@@ -4,21 +4,21 @@ import pcb.units.amount.Amount;
 
 import java.util.function.Function;
 
-public class BaseUnit<N extends Number, U extends Unit<N, U>>
-		implements Unit<N, U> {
+public class BaseUnit<U extends Unit>
+		implements Unit {
 
 	private final String symbol;
 	private final String singularName;
 	private final String pluralName;
-	private final Function<Amount<N>, Amount<N>> translationToCanonical;
-	private final Function<Amount<N>, Amount<N>> translationFromCanonical;
+	private final Function<Amount, Amount> translationToCanonical;
+	private final Function<Amount, Amount> translationFromCanonical;
 
 	public BaseUnit(
 			String symbol,
 			String singularName,
 			String pluralName,
-			Function<Amount<N>, Amount<N>> translationToCanonical,
-			Function<Amount<N>, Amount<N>> translationFromCanonical) {
+			Function<Amount, Amount> translationToCanonical,
+			Function<Amount, Amount> translationFromCanonical) {
 
 		this.symbol = symbol;
 		this.singularName = singularName;
@@ -43,12 +43,12 @@ public class BaseUnit<N extends Number, U extends Unit<N, U>>
 	}
 
 	@Override
-	public Function<Amount<N>, Amount<N>> translationToCanonical() {
+	public Function<Amount, Amount> translationToCanonical() {
 		return translationToCanonical;
 	}
 
 	@Override
-	public Function<Amount<N>, Amount<N>> translationFromCanonical() {
+	public Function<Amount, Amount> translationFromCanonical() {
 		return translationFromCanonical;
 	}
 }

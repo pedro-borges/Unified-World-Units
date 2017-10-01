@@ -4,14 +4,14 @@ import pcb.units.amount.Amount;
 
 import java.math.MathContext;
 
-public interface UnitAmount<N extends Number, U extends Unit<N, U>> {
-	Amount<N> getAmount();
+public interface UnitAmount<U extends Unit> {
+	Amount getAmount();
 	U getUnit();
 
-	UnitAmount<N, U> plus(UnitAmount<N, U> other, MathContext mathContext);
-	UnitAmount<N, U> minus(UnitAmount<N, U> other, MathContext mathContext);
-	UnitAmount<N, U> multipliedBy(Amount<N> other, MathContext mathContext);
-	UnitAmount<N, U> dividedBy(Amount<N> other, MathContext mathContext);
-	Amount<N> dividedBy(UnitAmount<N, U> other, MathContext mathContext);
-	Amount<N> getAmountIn(U unit);
+	UnitAmount<U> plus(UnitAmount<U> other, MathContext mathContext);
+	UnitAmount<U> minus(UnitAmount<U> other, MathContext mathContext);
+	UnitAmount<U> multipliedBy(Amount other, MathContext mathContext);
+	UnitAmount<U> dividedBy(Amount other, MathContext mathContext);
+	Amount dividedBy(UnitAmount<U> other, MathContext mathContext);
+	Amount getAmountIn(U unit);
 }
