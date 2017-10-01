@@ -4,15 +4,15 @@ import pcb.units.amount.Amount;
 
 import java.util.function.Function;
 
-public abstract class AbstractUnitAmount<U extends Unit<U>, N extends Number>
-		implements UnitAmount<U, N> {
+public abstract class AbstractUnitAmount<N extends Number, U extends Unit<N, U>, UA extends UnitAmount<N, U, UA>>
+		implements UnitAmount<N, U, UA> {
 
 	// region private fields
 
 	private final Amount<N> amount;
-	private final Unit<U> unit;
-	private final Function<UnitAmount<U, N>, UnitAmount<U, N>> translationToCanonical;
-	private final Function<UnitAmount<U, N>, UnitAmount<U, N>> translationFromCanonical;
+	private final Unit<N, U> unit;
+	private final Function<UA, UA> translationToCanonical;
+	private final Function<UA, UA> translationFromCanonical;
 
 	// endregion
 
@@ -20,9 +20,9 @@ public abstract class AbstractUnitAmount<U extends Unit<U>, N extends Number>
 
 	public AbstractUnitAmount(
 			Amount<N> amount,
-			Unit<U> unit,
-			Function<UnitAmount<U, N>, UnitAmount<U, N>> translationToCanonical,
-			Function<UnitAmount<U, N>, UnitAmount<U, N>> translationFromCanonical) {
+			Unit<N, U> unit,
+			Function<UA, UA> translationToCanonical,
+			Function<UA, UA> translationFromCanonical) {
 
 		this.amount = amount;
 		this.unit = unit;
@@ -40,16 +40,16 @@ public abstract class AbstractUnitAmount<U extends Unit<U>, N extends Number>
 	}
 
 	@Override
-	public Function<UnitAmount<U, N>, UnitAmount<U, N>> translationToCanonical() {
+	public Function<UA, UA> translationToCanonical() {
 		return translationToCanonical;
 	}
 
 	@Override
-	public Function<UnitAmount<U, N>, UnitAmount<U, N>> translationFromCanonical() {
+	public Function<UA, UA> translationFromCanonical() {
 		return translationFromCanonical;
 	}
 
-	protected UnitAmount<U, N> convertToSelfScale(UnitAmount<U, N> other) {
+	protected UA convertToSelfScale(UA other) {
 		return other.translationToCanonical().andThen(translationFromCanonical()).apply(other);
 	}
 

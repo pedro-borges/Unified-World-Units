@@ -73,9 +73,9 @@ public class BigDecimalAmountTest {
 
 	@Test
 	public void withAutoMagnitudeNormal() {
-		BigDecimalAmount amount = new BigDecimalAmount(1234567);
+		BigDecimalAmount amount = new BigDecimalAmount(123);
 
-		assertEquals("1.234567M", amount.withAutoMagnitude().toString());
+		assertEquals("1.23H", amount.withAutoMagnitude().toString());
 	}
 
 	@Test

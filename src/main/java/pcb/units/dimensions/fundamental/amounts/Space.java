@@ -9,12 +9,12 @@ import pcb.units.dimensions.fundamental.SpaceUnit;
 import java.math.BigDecimal;
 import java.util.function.Function;
 
-public abstract class Space extends AbstractUnitAmount<SpaceUnit, BigDecimal> {
+public abstract class Space extends AbstractUnitAmount<BigDecimal, SpaceUnit, Space> {
 	public Space(
 			Amount<BigDecimal> amount,
-		 	Unit<SpaceUnit> unit,
-		 	Function<UnitAmount<SpaceUnit, BigDecimal>, UnitAmount<SpaceUnit, BigDecimal>> translationToCanonical,
-			Function<UnitAmount<SpaceUnit, BigDecimal>, UnitAmount<SpaceUnit, BigDecimal>> translationFromCanonical) {
+		 	Unit<BigDecimal, SpaceUnit> unit,
+		 	Function<Space, Space> translationToCanonical,
+			Function<Space, Space> translationFromCanonical) {
 
 		super(amount, unit, translationToCanonical, translationFromCanonical);
 	}

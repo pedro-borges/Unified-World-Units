@@ -2,6 +2,8 @@ package pcb.units.dimensions.fundamental;
 
 import pcb.units.base.Unit;
 
-public interface SpaceUnit extends Unit<SpaceUnit> {
+import java.math.BigDecimal;
+
+public interface SpaceUnit extends Unit<BigDecimal, SpaceUnit> {
 
 }

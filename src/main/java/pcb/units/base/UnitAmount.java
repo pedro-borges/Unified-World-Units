@@ -5,16 +5,14 @@ import pcb.units.amount.Amount;
 import java.math.MathContext;
 import java.util.function.Function;
 
-public interface UnitAmount<U extends Unit<U>, N extends Number> {
+public interface UnitAmount<N extends Number, U extends Unit<N, U>, UA extends UnitAmount<N, U, UA>> {
 	Amount<N> getAmount();
-	Function<UnitAmount<U, N>, UnitAmount<U, N>> translationToCanonical();
-	Function<UnitAmount<U, N>, UnitAmount<U, N>> translationFromCanonical();
+	Function<UA, UA> translationToCanonical();
+	Function<UA, UA> translationFromCanonical();
 
-//	<U extends SpaceUnit> U convertTo(U unit);
-
-	UnitAmount<U, N> plus(UnitAmount<U, N> other, MathContext mathContext);
-	UnitAmount<U, N> minus(UnitAmount<U, N> other, MathContext mathContext);
-	UnitAmount<U, N> multipliedBy(N other, MathContext mathContext);
-	UnitAmount<U, N> dividedBy(N other, MathContext mathContext);
-	N dividedBy(UnitAmount<U, N> other, MathContext mathContext);
+	UA plus(UA other, MathContext mathContext);
+	UA minus(UA other, MathContext mathContext);
+	UA multipliedBy(N other, MathContext mathContext);
+	UA dividedBy(N other, MathContext mathContext);
+	N dividedBy(UA other, MathContext mathContext);
 }

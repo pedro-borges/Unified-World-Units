@@ -13,7 +13,7 @@ import java.math.MathContext;
 import java.util.function.Function;
 
 public class Meters extends Space {
-	public static final Unit<SpaceUnit> METER = new BaseUnit<>("m", "meter", "meters");
+	public static final Unit<BigDecimal, SpaceUnit> METER = new BaseUnit<>("m", "meter", "meters");
 
 	// region constructors
 
@@ -32,14 +32,14 @@ public class Meters extends Space {
 	// region implement UnitAmount
 
 	@Override
-	public Meters plus(UnitAmount<SpaceUnit, BigDecimal> other, MathContext mathContext) {
-		UnitAmount<SpaceUnit, BigDecimal> meters = convertToSelfScale(other);
+	public Meters plus(Space other, MathContext mathContext) {
+		Space meters = convertToSelfScale(other);
 		return new Meters(getAmount().plus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Meters minus(UnitAmount<SpaceUnit, BigDecimal> other, MathContext mathContext) {
-		UnitAmount<SpaceUnit, BigDecimal> meters = convertToSelfScale(other);
+	public Meters minus(Space other, MathContext mathContext) {
+		Space meters = convertToSelfScale(other);
 		return new Meters(getAmount().minus(meters.getAmount(), mathContext));
 	}
 
@@ -54,8 +54,8 @@ public class Meters extends Space {
 	}
 
 	@Override
-	public BigDecimal dividedBy(UnitAmount<SpaceUnit, BigDecimal> other, MathContext mathContext) {
-		UnitAmount<SpaceUnit, BigDecimal> meters = convertToSelfScale(other);
+	public BigDecimal dividedBy(Space other, MathContext mathContext) {
+		Space meters = convertToSelfScale(other);
 		return getAmount().dividedBy(meters.getAmount(), mathContext);
 	}
 

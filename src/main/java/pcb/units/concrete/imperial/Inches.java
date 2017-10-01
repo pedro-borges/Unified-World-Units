@@ -14,7 +14,7 @@ import java.math.MathContext;
 import static java.math.MathContext.DECIMAL64;
 
 public class Inches extends Space {
-	public static final Unit<SpaceUnit> INCH = new BaseUnit<>("in", "inch", "inches");
+	public static final Unit<BigDecimal, SpaceUnit> INCH = new BaseUnit<>("in", "inch", "inches");
 
 	private static final BigDecimal METERS_PER_INCH = new BigDecimal("0.0254");
 
@@ -35,14 +35,14 @@ public class Inches extends Space {
 	// region implement UnitAmount
 
 	@Override
-	public Inches plus(UnitAmount<SpaceUnit, BigDecimal> other, MathContext mathContext) {
-		UnitAmount<SpaceUnit, BigDecimal> inches = convertToSelfScale(other);
+	public Inches plus(Space other, MathContext mathContext) {
+		Space inches = convertToSelfScale(other);
 		return new Inches(getAmount().plus(inches.getAmount(), mathContext));
 	}
 
 	@Override
-	public Inches minus(UnitAmount<SpaceUnit, BigDecimal> other, MathContext mathContext) {
-		UnitAmount<SpaceUnit, BigDecimal> inches = convertToSelfScale(other);
+	public Inches minus(Space other, MathContext mathContext) {
+		Space inches = convertToSelfScale(other);
 		return new Inches(getAmount().minus(inches.getAmount(), mathContext));
 	}
 
@@ -57,8 +57,8 @@ public class Inches extends Space {
 	}
 
 	@Override
-	public BigDecimal dividedBy(UnitAmount<SpaceUnit, BigDecimal> other, MathContext mathContext) {
-		UnitAmount<SpaceUnit, BigDecimal> inches = convertToSelfScale(other);
+	public BigDecimal dividedBy(Space other, MathContext mathContext) {
+		Space inches = convertToSelfScale(other);
 		return getAmount().dividedBy(inches.getAmount(), mathContext);
 	}
 
