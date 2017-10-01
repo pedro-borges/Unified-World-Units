@@ -1,14 +1,14 @@
 package pcb.units.concrete.finance;
 
 import pcb.units.base.BaseUnit;
-import pcb.units.base.Unit;
+import pcb.units.dimensions.finance.CurrencyUnit;
 
 import java.util.Currency;
 import java.util.Objects;
 
 public class MoneyUnit
 		extends BaseUnit<MoneyUnit>
-		implements Unit {
+		implements CurrencyUnit {
 
 	// region private fields
 
@@ -32,8 +32,9 @@ public class MoneyUnit
 
 	// endregion
 
-	// region properties
+	// region implement CurrencyUnit
 
+	@Override
 	public Currency getCurrency() {
 		return currency;
 	}

@@ -5,36 +5,37 @@ import pcb.units.base.AbstractUnitAmount;
 import pcb.units.base.UnitAmount;
 import pcb.units.concrete.finance.CurrencyMismatchException;
 import pcb.units.concrete.finance.MoneyUnit;
+import pcb.units.dimensions.finance.CurrencyUnit;
+import pcb.units.dimensions.finance.amounts.Currency;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.Currency;
 
 import static java.math.RoundingMode.HALF_EVEN;
 
 public class Money
-		extends AbstractUnitAmount<MoneyUnit>
-		implements UnitAmount<MoneyUnit> {
+		extends AbstractUnitAmount<CurrencyUnit>
+		implements Currency {
 
 	// region constructors
 
-	public Money(Number value, Currency currency) {
+	public Money(Number value, java.util.Currency currency) {
 		this(value.toString(), currency);
 	}
 
-	public Money(String value, Currency currency) {
+	public Money(String value, java.util.Currency currency) {
 		this(new BigDecimal(value), currency);
 	}
 
-	public Money(BigDecimal value, Currency currency) {
+	public Money(BigDecimal value, java.util.Currency currency) {
 		this(new Amount(value), currency);
 	}
 	
-	public Money(Amount amount, Currency currency) {
+	public Money(Amount amount, java.util.Currency currency) {
 		this(amount, new MoneyUnit(currency));
 	}
 
-	public Money(Amount amount, MoneyUnit unit) {
+	public Money(Amount amount, CurrencyUnit unit) {
 		super(amount.withScale(unit.getCurrency().getDefaultFractionDigits(), HALF_EVEN), unit);
 	}
 
@@ -43,14 +44,14 @@ public class Money
 	//region implement UnitAmount
 
 	@Override
-	public Money plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
+	public Money plus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
 		throwIfDistinctCurrency(other);
 
 		return new Money(getAmount().plus(other.getAmount(), mathContext), getUnit());
 	}
 
 	@Override
-	public Money minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
+	public Money minus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
 		throwIfDistinctCurrency(other);
 
 		return new Money(getAmount().minus(other.getAmount(), mathContext), getUnit());
@@ -67,14 +68,14 @@ public class Money
 	}
 
 	@Override
-	public Amount dividedBy(UnitAmount<MoneyUnit> other, MathContext mathContext) {
+	public Amount dividedBy(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
 		throwIfDistinctCurrency(other);
 
 		return getAmount().dividedBy(other.getAmount(), mathContext);
 	}
 
 	@Override
-	public Amount getAmountIn(MoneyUnit newUnit) {
+	public Amount getAmountIn(CurrencyUnit newUnit) {
 		if (getUnit().getCurrency().equals(newUnit.getCurrency())) {
 			return getAmount();
 		}
@@ -86,7 +87,7 @@ public class Money
 
 	// region private methods
 
-	private void throwIfDistinctCurrency(UnitAmount<MoneyUnit> other) {
+	private void throwIfDistinctCurrency(UnitAmount<CurrencyUnit> other) {
 		if (!getUnit().getCurrency().equals(other.getUnit().getCurrency())) {
 			throw new CurrencyMismatchException("Cant add {} to {}", other.getUnit().getPluralName(), getUnit().getPluralName());
 		}
