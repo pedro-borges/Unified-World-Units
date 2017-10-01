@@ -1,8 +1,10 @@
 package pcb.units.amount;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
-import static java.math.BigDecimal.TEN;
+import static java.math.BigDecimal.ONE;
 
 public enum Magnitude {
 	PICO(-12, "p"),
@@ -20,6 +22,11 @@ public enum Magnitude {
 	TERA(12, "T"),
 	;
 
+	public static final List<Magnitude> ALL_MAGNITUDES = Arrays
+			.asList(PICO, NANO, MICRO, MILI, CENTI, DECI, NATURAL, DECA, HECTA, KILO, MEGA, GIGA, TERA);
+	public static final List<Magnitude> MAJOR_MAGNITUDES = Arrays
+			.asList(PICO, NANO, MICRO, MILI, NATURAL, KILO, MEGA, GIGA, TERA);
+
 	private final int order;
 	private final String symbol;
 	private final BigDecimal value;
@@ -27,7 +34,7 @@ public enum Magnitude {
 	Magnitude(int order, String symbol) {
 		this.order = order;
 		this.symbol = symbol;
-		this.value = TEN.scaleByPowerOfTen(order);
+		this.value = ONE.movePointRight(order);
 	}
 
 	public int order() {

@@ -2,27 +2,15 @@ package pcb.units.amount;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
+import java.util.List;
 
-import static pcb.units.amount.Magnitude.NATURAL;
+import static java.math.BigDecimal.ONE;
+import static java.math.BigDecimal.ZERO;
 
 public class BigDecimalAmount extends Amount<BigDecimal> {
 	// region private fields
 
 	private BigDecimal value;
-	private Magnitude magnitude;
-
-	// endregion
-
-	// region private helpers
-//
-//	private static BigDecimal toBigDecimal(Number number) {
-//		if (number instanceof BigDecimal) {
-//			return (BigDecimal) number;
-//		} else {
-//			return new BigDecimal(number.toString());
-//		}
-//	}
 
 	// endregion
 
@@ -37,16 +25,7 @@ public class BigDecimalAmount extends Amount<BigDecimal> {
 	}
 
 	public BigDecimalAmount(BigDecimal value) {
-		this(value, NATURAL);
-	}
-
-	public BigDecimalAmount(Number value, Magnitude magnitude) {
-		this(new BigDecimal(value.toString()), magnitude);
-	}
-
-	public BigDecimalAmount(BigDecimal value, Magnitude magnitude) {
 		this.value = value;
-		this.magnitude = magnitude;
 	}
 
 	// endregion
@@ -59,64 +38,76 @@ public class BigDecimalAmount extends Amount<BigDecimal> {
 	}
 
 	@Override
-	public int getScale() {
-		return value.scale();
+	public boolean isPositive() {
+		return value.compareTo(ZERO) > 0;
 	}
 
 	@Override
-	public BigDecimalAmount withScale(int scale, RoundingMode roundingMode) {
-		return new BigDecimalAmount(value.setScale(scale, roundingMode));
+	public boolean isZero() {
+		return value.compareTo(ZERO) == 0;
 	}
 
 	@Override
-	public Magnitude getMagnitude() {
-		return magnitude;
-	}
-
-	@Override
-	public BigDecimalAmount withMagnitude(Magnitude magnitude) {
-		int shift = this.magnitude.order() - magnitude.order();
-		return new BigDecimalAmount(value.scaleByPowerOfTen(shift).stripTrailingZeros(), magnitude);
-	}
-
-	@Override
-	public BigDecimalAmount withAutoMagnitude() {
-		Magnitude last = Magnitude.values()[0];
-
-		for (Magnitude magnitude : Magnitude.values()) {
-			last = magnitude;
-			if (value.compareTo(magnitude.getValue()) < 0) break;
-		}
-
-		return this.withMagnitude(last);
+	public boolean isNegative() {
+		return value.compareTo(ZERO) < 0;
 	}
 
 	@Override
 	public Amount<BigDecimal> plus(Amount<BigDecimal> other, MathContext mathContext) {
-		BigDecimal otherInThisMagnitude = other.withMagnitude(this.magnitude).getValue();
-		return new BigDecimalAmount(this.value.add(otherInThisMagnitude, mathContext), this.magnitude);
+		return new BigDecimalAmount(this.value.add(other.getValue(), mathContext));
 	}
 
 	@Override
 	public Amount<BigDecimal> minus(Amount<BigDecimal> other, MathContext mathContext) {
-		BigDecimal otherInThisMagnitude = other.withMagnitude(this.magnitude).getValue();
-		return new BigDecimalAmount(value.subtract(otherInThisMagnitude, mathContext), this.magnitude);
+		return new BigDecimalAmount(value.subtract(other.getValue(), mathContext));
 	}
 
 	@Override
 	public Amount<BigDecimal> multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new BigDecimalAmount(value.multiply(other, mathContext), this.magnitude);
+		return new BigDecimalAmount(value.multiply(other, mathContext));
 	}
 
 	@Override
 	public Amount<BigDecimal> dividedBy(BigDecimal other, MathContext mathContext) {
-		BigDecimal quotient = value.divide(other, mathContext);
-		return new BigDecimalAmount(quotient, this.magnitude);
+		return new BigDecimalAmount(value.divide(other, mathContext));
 	}
 
 	@Override
 	public Amount<BigDecimal> dividedBy(Amount<BigDecimal> other, MathContext mathContext) {
 		return new BigDecimalAmount(value.divide(other.getValue(), mathContext));
+	}
+
+	@Override
+	public String toDecimalPrefixedString(List<Magnitude> magnitudes) {
+		if (isZero() || magnitudes.isEmpty())
+		{
+			return value.toPlainString();
+		}
+
+		Magnitude last;
+		BigDecimal absolute = value.abs();
+
+		if (absolute.compareTo(ONE) == 0) {
+			return value.toPlainString();
+		} else if (absolute.compareTo(ONE) > 0) {
+			last = magnitudes.get(0);
+			for (int i = 0; i < magnitudes.size(); i++) {
+				if (absolute.compareTo(magnitudes.get(i).getValue()) < 0) break;
+				last = magnitudes.get(i);
+			}
+		} else {
+			last = magnitudes.get(magnitudes.size() - 1);
+			for (int i = magnitudes.size() - 1; i >= 0; i--) {
+				last = magnitudes.get(i);
+				if (absolute.compareTo(magnitudes.get(i).getValue()) > 0) break;
+			}
+		}
+
+		BigDecimalAmount scaled = new BigDecimalAmount(value
+				.movePointLeft(last.order())
+				.stripTrailingZeros());
+
+		return scaled.getValue().toPlainString() + last.symbol();
 	}
 
 	// endregion
@@ -125,38 +116,42 @@ public class BigDecimalAmount extends Amount<BigDecimal> {
 
 	@Override
 	public int intValue() {
-		return withMagnitude(NATURAL).value.intValue();
+		return value.intValue();
 	}
 
 	@Override
 	public long longValue() {
-		return withMagnitude(NATURAL).value.longValue();
+		return value.longValue();
 	}
 
 	@Override
 	public float floatValue() {
-		return withMagnitude(NATURAL).value.floatValue();
+		return value.floatValue();
 	}
 
 	@Override
 	public double doubleValue() {
-		return withMagnitude(NATURAL).value.doubleValue();
+		return value.doubleValue();
 	}
 
 	@Override
 	public byte byteValue() {
-		return withMagnitude(NATURAL).value.byteValue();
+		return value.byteValue();
 	}
 
 	@Override
 	public short shortValue() {
-		return withMagnitude(NATURAL).value.shortValue();
+		return value.shortValue();
 	}
 
 	// endregion
 
+	// override Object
+
 	@Override
 	public String toString() {
-		return value.toPlainString() + magnitude.symbol();
+		return value.toString();
 	}
+
+	// endregion
 }
