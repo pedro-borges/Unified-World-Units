@@ -10,7 +10,7 @@ import java.math.MathContext;
 import java.util.function.Function;
 
 public class Meters extends Space {
-	public static final SpaceUnit METER = new SpaceUnit() {
+	public static final SpaceUnit METERS = new SpaceUnit() {
 		@Override
 		public String getSymbol() {
 			return "m";
@@ -44,7 +44,7 @@ public class Meters extends Space {
 	}
 
 	public Meters(Amount<BigDecimal> amount) {
-		super(amount, METER);
+		super(amount, METERS);
 	}
 
 	// endregion
@@ -53,13 +53,13 @@ public class Meters extends Space {
 
 	@Override
 	public Meters plus(Space other, MathContext mathContext) {
-		Meters meters = new Meters(convertedToSelfScale(other));
+		Meters meters = new Meters(other.getValueIn(METERS));
 		return new Meters(getAmount().plus(meters.getAmount(), mathContext));
 	}
 
 	@Override
 	public Meters minus(Space other, MathContext mathContext) {
-		Meters meters = new Meters(convertedToSelfScale(other));
+		Meters meters = new Meters(other.getValueIn(METERS));
 		return new Meters(getAmount().minus(meters.getAmount(), mathContext));
 	}
 
@@ -75,7 +75,7 @@ public class Meters extends Space {
 
 	@Override
 	public BigDecimal dividedBy(Space other, MathContext mathContext) {
-		Meters meters = new Meters(convertedToSelfScale(other));
+		Meters meters = new Meters(other.getValueIn(METERS));
 		return getAmount().dividedBy(meters.getAmount(), mathContext);
 	}
 

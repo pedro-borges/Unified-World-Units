@@ -13,4 +13,5 @@ public interface UnitAmount<N extends Number, U extends Unit<N, U>, UA extends U
 	UA multipliedBy(N other, MathContext mathContext);
 	UA dividedBy(N other, MathContext mathContext);
 	N dividedBy(UA other, MathContext mathContext);
+	N getValueIn(U unit);
 }

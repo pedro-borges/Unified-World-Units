@@ -38,8 +38,9 @@ public abstract class AbstractUnitAmount<N extends Number, U extends Unit<N, U>,
 		return unit;
 	}
 
-	protected N convertedToSelfScale(UA other) {
-		return other.getUnit().translationToCanonical().andThen(getUnit().translationFromCanonical()).apply(other.getAmount().getValue());
+	@Override
+	public N getValueIn(U unit) {
+		return getUnit().translationToCanonical().andThen(unit.translationFromCanonical()).apply(amount.getValue());
 	}
 
 	// endregion

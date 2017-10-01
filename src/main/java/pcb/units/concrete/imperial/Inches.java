@@ -12,7 +12,7 @@ import java.util.function.Function;
 import static java.math.MathContext.DECIMAL64;
 
 public class Inches extends Space {
-	public static final SpaceUnit INCH = new SpaceUnit() {
+	public static final SpaceUnit INCHES = new SpaceUnit() {
 		@Override
 		public String getSymbol() {
 			return "in";
@@ -48,7 +48,7 @@ public class Inches extends Space {
 	}
 
 	public Inches(Amount<BigDecimal> amount) {
-		super(amount, INCH);
+		super(amount, INCHES);
 	}
 
 	// endregion
@@ -57,13 +57,13 @@ public class Inches extends Space {
 
 	@Override
 	public Inches plus(Space other, MathContext mathContext) {
-		Inches inches = new Inches(convertedToSelfScale(other));
+		Inches inches = new Inches(other.getValueIn(INCHES));
 		return new Inches(getAmount().plus(inches.getAmount(), mathContext));
 	}
 
 	@Override
 	public Inches minus(Space other, MathContext mathContext) {
-		Inches inches = new Inches(convertedToSelfScale(other));
+		Inches inches = new Inches(other.getValueIn(INCHES));
 		return new Inches(getAmount().minus(inches.getAmount(), mathContext));
 	}
 
@@ -79,7 +79,7 @@ public class Inches extends Space {
 
 	@Override
 	public BigDecimal dividedBy(Space other, MathContext mathContext) {
-		Inches inches = new Inches(convertedToSelfScale(other));
+		Inches inches = new Inches(other.getValueIn(INCHES));
 		return getAmount().dividedBy(inches.getAmount(), mathContext);
 	}
 
