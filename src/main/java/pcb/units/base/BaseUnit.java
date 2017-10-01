@@ -1,5 +1,7 @@
 package pcb.units.base;
 
+import pcb.units.amount.Amount;
+
 import java.util.function.Function;
 
 public class BaseUnit<N extends Number, U extends Unit<N, U>>
@@ -8,15 +10,15 @@ public class BaseUnit<N extends Number, U extends Unit<N, U>>
 	private final String symbol;
 	private final String singularName;
 	private final String pluralName;
-	private final Function<N, N> translationToCanonical;
-	private final Function<N, N> translationFromCanonical;
+	private final Function<Amount<N>, Amount<N>> translationToCanonical;
+	private final Function<Amount<N>, Amount<N>> translationFromCanonical;
 
 	public BaseUnit(
 			String symbol,
 			String singularName,
 			String pluralName,
-			Function<N, N> translationToCanonical,
-			Function<N, N> translationFromCanonical) {
+			Function<Amount<N>, Amount<N>> translationToCanonical,
+			Function<Amount<N>, Amount<N>> translationFromCanonical) {
 
 		this.symbol = symbol;
 		this.singularName = singularName;
@@ -41,12 +43,12 @@ public class BaseUnit<N extends Number, U extends Unit<N, U>>
 	}
 
 	@Override
-	public Function<N, N> translationToCanonical() {
+	public Function<Amount<N>, Amount<N>> translationToCanonical() {
 		return translationToCanonical;
 	}
 
 	@Override
-	public Function<N, N> translationFromCanonical() {
+	public Function<Amount<N>, Amount<N>> translationFromCanonical() {
 		return translationFromCanonical;
 	}
 }

@@ -2,8 +2,8 @@ package pcb.units.base;
 
 import pcb.units.amount.Amount;
 
-public abstract class AbstractUnitAmount<N extends Number, U extends Unit<N, U>, UA extends UnitAmount<N, U, UA>>
-		implements UnitAmount<N, U, UA> {
+public abstract class AbstractUnitAmount<N extends Number, U extends Unit<N, U>>
+		implements UnitAmount<N, U> {
 
 	// region private fields
 
@@ -37,8 +37,8 @@ public abstract class AbstractUnitAmount<N extends Number, U extends Unit<N, U>,
 	}
 
 	@Override
-	public N getValueIn(U unit) {
-		return getUnit().translationToCanonical().andThen(unit.translationFromCanonical()).apply(amount.getValue());
+	public Amount<N> getAmountIn(U newUnit) {
+		return getUnit().translationToCanonical().andThen(newUnit.translationFromCanonical()).apply(amount);
 	}
 
 	// endregion
