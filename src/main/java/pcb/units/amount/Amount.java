@@ -17,5 +17,5 @@ public abstract class Amount<N extends Number> extends Number {
 	public abstract Amount<N> minus(Amount<N> other, MathContext mathContext);
 	public abstract Amount<N> multipliedBy(N other, MathContext mathContext);
 	public abstract Amount<N> dividedBy(N other, MathContext mathContext);
-	public abstract N dividedBy(Amount<N> other, MathContext mathContext);
+	public abstract Amount<N> dividedBy(Amount<N> other, MathContext mathContext);
 }

@@ -2,6 +2,7 @@ package pcb.units.concrete.imperial;
 
 import pcb.units.amount.Amount;
 import pcb.units.amount.BigDecimalAmount;
+import pcb.units.base.AbstractUnitAmount;
 import pcb.units.dimensions.fundamental.SpaceUnit;
 import pcb.units.dimensions.fundamental.amounts.Space;
 
@@ -11,7 +12,9 @@ import java.util.function.Function;
 
 import static java.math.MathContext.DECIMAL64;
 
-public class Inches extends Space {
+public class Inches
+		extends AbstractUnitAmount<BigDecimal, BigDecimalAmount, SpaceUnit, Space>
+		implements Space {
 	public static final SpaceUnit INCHES = new SpaceUnit() {
 		@Override
 		public String getSymbol() {
@@ -47,7 +50,7 @@ public class Inches extends Space {
 		this(new BigDecimalAmount(amount));
 	}
 
-	public Inches(Amount<BigDecimal> amount) {
+	public Inches(BigDecimalAmount amount) {
 		super(amount, INCHES);
 	}
 
@@ -68,17 +71,17 @@ public class Inches extends Space {
 	}
 
 	@Override
-	public Inches multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Inches(getAmount().multipliedBy(other, mathContext));
+	public Inches multipliedBy(BigDecimalAmount other, MathContext mathContext) {
+		return new Inches(getAmount().multipliedBy(other.getValue(), mathContext));
 	}
 
 	@Override
-	public Inches dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Inches(getAmount().dividedBy(other, mathContext));
+	public Inches dividedBy(BigDecimalAmount other, MathContext mathContext) {
+		return new Inches(getAmount().dividedBy(other.getValue(), mathContext));
 	}
 
 	@Override
-	public BigDecimal dividedBy(Space other, MathContext mathContext) {
+	public Amount<BigDecimal> dividedBy(Space other, MathContext mathContext) {
 		Inches inches = new Inches(other.getValueIn(INCHES));
 		return getAmount().dividedBy(inches.getAmount(), mathContext);
 	}

@@ -4,6 +4,7 @@ import pcb.units.base.Unit;
 
 import java.math.BigDecimal;
 
-public interface SpaceUnit extends Unit<BigDecimal, SpaceUnit> {
+public interface SpaceUnit
+		extends Unit<BigDecimal, SpaceUnit> {
 
 }

@@ -115,8 +115,8 @@ public class BigDecimalAmount extends Amount<BigDecimal> {
 	}
 
 	@Override
-	public BigDecimal dividedBy(Amount<BigDecimal> other, MathContext mathContext) {
-		return value.divide(other.getValue(), mathContext);
+	public Amount<BigDecimal> dividedBy(Amount<BigDecimal> other, MathContext mathContext) {
+		return new BigDecimalAmount(value.divide(other.getValue(), mathContext));
 	}
 
 	// endregion

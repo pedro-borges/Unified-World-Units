@@ -2,6 +2,7 @@ package pcb.units.concrete.si;
 
 import pcb.units.amount.Amount;
 import pcb.units.amount.BigDecimalAmount;
+import pcb.units.base.AbstractUnitAmount;
 import pcb.units.dimensions.fundamental.SpaceUnit;
 import pcb.units.dimensions.fundamental.amounts.Space;
 
@@ -9,7 +10,9 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.function.Function;
 
-public class Meters extends Space {
+public class Meters
+		extends AbstractUnitAmount<BigDecimal, BigDecimalAmount, SpaceUnit, Space>
+		implements Space {
 	public static final SpaceUnit METERS = new SpaceUnit() {
 		@Override
 		public String getSymbol() {
@@ -43,7 +46,7 @@ public class Meters extends Space {
 		this(new BigDecimalAmount(amount));
 	}
 
-	public Meters(Amount<BigDecimal> amount) {
+	public Meters(BigDecimalAmount amount) {
 		super(amount, METERS);
 	}
 
@@ -64,17 +67,17 @@ public class Meters extends Space {
 	}
 
 	@Override
-	public Meters multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Meters(getAmount().multipliedBy(other, mathContext));
+	public Meters multipliedBy(BigDecimalAmount other, MathContext mathContext) {
+		return new Meters(getAmount().multipliedBy(other.getValue(), mathContext));
 	}
 
 	@Override
-	public Meters dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Meters(getAmount().dividedBy(other, mathContext));
+	public Meters dividedBy(BigDecimalAmount other, MathContext mathContext) {
+		return new Meters(getAmount().dividedBy(other.getValue(), mathContext));
 	}
 
 	@Override
-	public BigDecimal dividedBy(Space other, MathContext mathContext) {
+	public Amount<BigDecimal> dividedBy(Space other, MathContext mathContext) {
 		Meters meters = new Meters(other.getValueIn(METERS));
 		return getAmount().dividedBy(meters.getAmount(), mathContext);
 	}
