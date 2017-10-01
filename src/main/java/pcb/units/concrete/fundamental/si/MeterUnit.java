@@ -1,33 +1,17 @@
 package pcb.units.concrete.fundamental.si;
 
-import pcb.units.amount.Amount;
+import pcb.units.base.BaseUnit;
 import pcb.units.dimensions.fundamental.SpaceUnit;
 
 import java.util.function.Function;
 
-public class MeterUnit implements SpaceUnit {
-	@Override
-	public String getSymbol() {
-		return "m";
-	}
+public class MeterUnit
+		extends BaseUnit<SpaceUnit>
+		implements SpaceUnit {
 
-	@Override
-	public String getSingularName() {
-		return "meter";
-	}
-
-	@Override
-	public String getPluralName() {
-		return "meters";
-	}
-
-	@Override
-	public Function<Amount, Amount> getTranslationToCanonical() {
-		return Function.identity();
-	}
-
-	@Override
-	public Function<Amount, Amount> getTranslationFromCanonical() {
-		return Function.identity();
+	public MeterUnit() {
+		super("m", "meter", "meters",
+				Function.identity(),
+				Function.identity());
 	}
 }
