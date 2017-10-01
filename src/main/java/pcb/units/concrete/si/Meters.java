@@ -13,7 +13,22 @@ import java.math.MathContext;
 import java.util.function.Function;
 
 public class Meters extends Space {
-	public static final Unit<BigDecimal, SpaceUnit> METER = new BaseUnit<>("m", "meter", "meters");
+	public static final SpaceUnit METER = new SpaceUnit() {
+		@Override
+		public String getSymbol() {
+			return "m";
+		}
+
+		@Override
+		public String getSingularName() {
+			return "meter";
+		}
+
+		@Override
+		public String getPluralName() {
+			return "meters";
+		}
+	};
 
 	// region constructors
 

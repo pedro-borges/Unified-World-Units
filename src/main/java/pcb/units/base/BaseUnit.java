@@ -1,6 +1,8 @@
 package pcb.units.base;
 
-public class BaseUnit<N extends Number, T extends Unit<N, T>> implements Unit<N, T> {
+public class BaseUnit<N extends Number, U extends Unit<N, U>>
+		implements Unit<N, U> {
+
 	private final String symbol;
 	private final String singularName;
 	private final String pluralName;

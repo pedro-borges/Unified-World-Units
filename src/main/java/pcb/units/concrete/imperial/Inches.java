@@ -14,7 +14,22 @@ import java.math.MathContext;
 import static java.math.MathContext.DECIMAL64;
 
 public class Inches extends Space {
-	public static final Unit<BigDecimal, SpaceUnit> INCH = new BaseUnit<>("in", "inch", "inches");
+	public static final SpaceUnit INCH = new SpaceUnit() {
+		@Override
+		public String getSymbol() {
+			return "in";
+		}
+
+		@Override
+		public String getSingularName() {
+			return "inch";
+		}
+
+		@Override
+		public String getPluralName() {
+			return "inches";
+		}
+	};
 
 	private static final BigDecimal METERS_PER_INCH = new BigDecimal("0.0254");
 
