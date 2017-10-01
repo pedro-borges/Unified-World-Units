@@ -1,7 +1,6 @@
 package pcb.units.base;
 
 import org.junit.Test;
-import pcb.units.amount.BigDecimalAmount;
 import pcb.units.concrete.imperial.Inches;
 import pcb.units.concrete.si.Meters;
 import pcb.units.dimensions.fundamental.SpaceUnit;
@@ -15,8 +14,8 @@ import static pcb.units.concrete.imperial.Inches.INCHES;
 import static pcb.units.concrete.si.Meters.METERS;
 
 public class AbstractUnitAmountTest {
-	private static final AbstractUnitAmount<BigDecimal, BigDecimalAmount, SpaceUnit, Space> METER = new Meters(1);
-	private static final AbstractUnitAmount<BigDecimal, BigDecimalAmount, SpaceUnit, Space> INCH = new Inches(1);
+	private static final AbstractUnitAmount<BigDecimal, SpaceUnit, Space> METER = new Meters(1);
+	private static final AbstractUnitAmount<BigDecimal, SpaceUnit, Space> INCH = new Inches(1);
 
 	@Test
 	public void getValueIn() {

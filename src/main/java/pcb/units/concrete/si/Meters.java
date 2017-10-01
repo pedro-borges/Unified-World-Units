@@ -11,7 +11,7 @@ import java.math.MathContext;
 import java.util.function.Function;
 
 public class Meters
-		extends AbstractUnitAmount<BigDecimal, BigDecimalAmount, SpaceUnit, Space>
+		extends AbstractUnitAmount<BigDecimal, SpaceUnit, Space>
 		implements Space {
 	public static final SpaceUnit METERS = new SpaceUnit() {
 		@Override
@@ -67,12 +67,12 @@ public class Meters
 	}
 
 	@Override
-	public Meters multipliedBy(BigDecimalAmount other, MathContext mathContext) {
+	public Meters multipliedBy(Amount<BigDecimal> other, MathContext mathContext) {
 		return new Meters(getAmount().multipliedBy(other.getValue(), mathContext));
 	}
 
 	@Override
-	public Meters dividedBy(BigDecimalAmount other, MathContext mathContext) {
+	public Meters dividedBy(Amount<BigDecimal> other, MathContext mathContext) {
 		return new Meters(getAmount().dividedBy(other.getValue(), mathContext));
 	}
 

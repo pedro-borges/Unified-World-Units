@@ -2,12 +2,12 @@ package pcb.units.base;
 
 import pcb.units.amount.Amount;
 
-public abstract class AbstractUnitAmount<N extends Number, A extends Amount<N>, U extends Unit<N, U>, UA extends UnitAmount<N, A, U, UA>>
-		implements UnitAmount<N, A, U, UA> {
+public abstract class AbstractUnitAmount<N extends Number, U extends Unit<N, U>, UA extends UnitAmount<N, U, UA>>
+		implements UnitAmount<N, U, UA> {
 
 	// region private fields
 
-	private final A amount;
+	private final Amount<N> amount;
 	private final U unit;
 
 	// endregion
@@ -15,7 +15,7 @@ public abstract class AbstractUnitAmount<N extends Number, A extends Amount<N>, 
 	// region constructors
 
 	public AbstractUnitAmount(
-			A amount,
+			Amount<N> amount,
 			U unit) {
 
 		this.amount = amount;
@@ -27,7 +27,7 @@ public abstract class AbstractUnitAmount<N extends Number, A extends Amount<N>, 
 	// region implement UnitAmount
 
 	@Override
-	public A getAmount() {
+	public Amount<N> getAmount() {
 		return amount;
 	}
 

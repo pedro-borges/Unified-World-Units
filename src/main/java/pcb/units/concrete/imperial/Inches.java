@@ -13,7 +13,7 @@ import java.util.function.Function;
 import static java.math.MathContext.DECIMAL64;
 
 public class Inches
-		extends AbstractUnitAmount<BigDecimal, BigDecimalAmount, SpaceUnit, Space>
+		extends AbstractUnitAmount<BigDecimal, SpaceUnit, Space>
 		implements Space {
 	public static final SpaceUnit INCHES = new SpaceUnit() {
 		@Override
@@ -71,12 +71,12 @@ public class Inches
 	}
 
 	@Override
-	public Inches multipliedBy(BigDecimalAmount other, MathContext mathContext) {
+	public Inches multipliedBy(Amount<BigDecimal> other, MathContext mathContext) {
 		return new Inches(getAmount().multipliedBy(other.getValue(), mathContext));
 	}
 
 	@Override
-	public Inches dividedBy(BigDecimalAmount other, MathContext mathContext) {
+	public Inches dividedBy(Amount<BigDecimal> other, MathContext mathContext) {
 		return new Inches(getAmount().dividedBy(other.getValue(), mathContext));
 	}
 
