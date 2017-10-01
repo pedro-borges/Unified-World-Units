@@ -22,12 +22,12 @@ public class MeterUnit implements SpaceUnit {
 	}
 
 	@Override
-	public Function<Amount, Amount> translationToCanonical() {
+	public Function<Amount, Amount> getTranslationToCanonical() {
 		return Function.identity();
 	}
 
 	@Override
-	public Function<Amount, Amount> translationFromCanonical() {
+	public Function<Amount, Amount> getTranslationFromCanonical() {
 		return Function.identity();
 	}
 }

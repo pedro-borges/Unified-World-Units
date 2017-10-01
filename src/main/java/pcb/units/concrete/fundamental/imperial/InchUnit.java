@@ -27,12 +27,12 @@ public class InchUnit implements SpaceUnit {
 	}
 
 	@Override
-	public Function<Amount, Amount> translationToCanonical() {
+	public Function<Amount, Amount> getTranslationToCanonical() {
 		return value -> value.dividedBy(METERS_PER_INCH, DECIMAL64);
 	}
 
 	@Override
-	public Function<Amount, Amount> translationFromCanonical() {
+	public Function<Amount, Amount> getTranslationFromCanonical() {
 		return value -> value.multipliedBy(METERS_PER_INCH, DECIMAL64);
 	}
 }

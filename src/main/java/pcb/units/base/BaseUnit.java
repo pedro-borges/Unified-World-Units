@@ -2,16 +2,23 @@ package pcb.units.base;
 
 import pcb.units.amount.Amount;
 
+import java.util.Objects;
 import java.util.function.Function;
 
 public class BaseUnit<U extends Unit>
 		implements Unit {
+
+	// region private fields
 
 	private final String symbol;
 	private final String singularName;
 	private final String pluralName;
 	private final Function<Amount, Amount> translationToCanonical;
 	private final Function<Amount, Amount> translationFromCanonical;
+
+	// endregion
+
+	// region constructors
 
 	public BaseUnit(
 			String symbol,
@@ -26,6 +33,10 @@ public class BaseUnit<U extends Unit>
 		this.translationToCanonical = translationToCanonical;
 		this.translationFromCanonical = translationFromCanonical;
 	}
+
+	// endregion
+
+	// region implement Unit
 
 	@Override
 	public String getSymbol() {
@@ -43,12 +54,38 @@ public class BaseUnit<U extends Unit>
 	}
 
 	@Override
-	public Function<Amount, Amount> translationToCanonical() {
+	public Function<Amount, Amount> getTranslationToCanonical() {
 		return translationToCanonical;
 	}
 
 	@Override
-	public Function<Amount, Amount> translationFromCanonical() {
+	public Function<Amount, Amount> getTranslationFromCanonical() {
 		return translationFromCanonical;
 	}
+
+	// endregion
+
+	// region overload Object
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Unit) {
+			BaseUnit<?> other = (BaseUnit<?>) obj;
+
+			return Objects.equals(this.symbol, other.symbol) &&
+					Objects.equals(this.singularName, other.singularName) &&
+					Objects.equals(this.pluralName, other.pluralName) &&
+					Objects.equals(this.translationToCanonical, other.translationToCanonical) &&
+					Objects.equals(this.translationFromCanonical, other.translationFromCanonical);
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
+	}
+
+	// endregion
 }

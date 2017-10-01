@@ -8,6 +8,6 @@ public interface Unit {
 	String getSymbol();
 	String getSingularName();
 	String getPluralName();
-	Function<Amount, Amount> translationToCanonical();
-	Function<Amount, Amount> translationFromCanonical();
+	Function<Amount, Amount> getTranslationToCanonical();
+	Function<Amount, Amount> getTranslationFromCanonical();
 }

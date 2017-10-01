@@ -44,7 +44,7 @@ public abstract class AbstractUnitAmount<U extends Unit>
 			return amount;
 		}
 
-		return getUnit().translationToCanonical().andThen(newUnit.translationFromCanonical()).apply(amount);
+		return getUnit().getTranslationToCanonical().andThen(newUnit.getTranslationFromCanonical()).apply(amount);
 	}
 
 	// endregion
@@ -54,10 +54,10 @@ public abstract class AbstractUnitAmount<U extends Unit>
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof UnitAmount) {
-			UnitAmount other = (UnitAmount) obj;
+			AbstractUnitAmount<?> other = (AbstractUnitAmount<?>) obj;
 
-			return Objects.equals(this.getAmount(), other.getAmount()) &&
-					Objects.equals(this.getUnit(), other.getUnit());
+			return Objects.equals(this.amount, other.amount) &&
+					Objects.equals(this.unit, other.unit);
 		}
 
 		return false;

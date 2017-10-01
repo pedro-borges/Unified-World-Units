@@ -18,6 +18,14 @@ public class Money
 
 	// region constructors
 
+	public Money(Number value, Currency currency) {
+		this(value.toString(), currency);
+	}
+
+	public Money(String value, Currency currency) {
+		this(new BigDecimal(value), currency);
+	}
+
 	public Money(BigDecimal value, Currency currency) {
 		this(new Amount(value), currency);
 	}
