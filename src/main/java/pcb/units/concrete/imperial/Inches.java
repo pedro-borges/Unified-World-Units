@@ -5,16 +5,13 @@ import pcb.units.amount.BigDecimalAmount;
 import pcb.units.base.BaseUnit;
 import pcb.units.base.Unit;
 import pcb.units.base.UnitAmount;
-import pcb.units.dimensions.fundamental.ScalarUnit;
 import pcb.units.dimensions.fundamental.SpaceUnit;
 import pcb.units.dimensions.fundamental.amounts.Space;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static java.math.MathContext.DECIMAL32;
 import static java.math.MathContext.DECIMAL64;
-import static java.math.MathContext.UNLIMITED;
 
 public class Inches extends Space {
 	public static final Unit<SpaceUnit> INCH = new BaseUnit<>("in", "inch", "inches");

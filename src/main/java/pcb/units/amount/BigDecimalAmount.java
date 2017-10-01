@@ -1,7 +1,5 @@
 package pcb.units.amount;
 
-import pcb.units.dimensions.fundamental.ScalarUnit;
-
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -31,7 +29,11 @@ public class BigDecimalAmount extends Amount<BigDecimal> {
 	// region constructors
 
 	public BigDecimalAmount(Number value) {
-		this(new BigDecimal(value.toString()));
+		this(value.toString());
+	}
+
+	public BigDecimalAmount(String value) {
+		this(new BigDecimal(value));
 	}
 
 	public BigDecimalAmount(BigDecimal value) {
@@ -78,7 +80,7 @@ public class BigDecimalAmount extends Amount<BigDecimal> {
 	}
 
 	@Override
-	public Amount withAutoMagnitude() {
+	public BigDecimalAmount withAutoMagnitude() {
 		Magnitude last = Magnitude.values()[0];
 
 		for (Magnitude magnitude : Magnitude.values()) {

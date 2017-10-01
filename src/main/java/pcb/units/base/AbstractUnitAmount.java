@@ -2,7 +2,6 @@ package pcb.units.base;
 
 import pcb.units.amount.Amount;
 
-import java.math.MathContext;
 import java.util.function.Function;
 
 public abstract class AbstractUnitAmount<U extends Unit<U>, N extends Number>
