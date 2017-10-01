@@ -2,9 +2,6 @@ package pcb.units.concrete.si;
 
 import pcb.units.amount.Amount;
 import pcb.units.amount.BigDecimalAmount;
-import pcb.units.base.BaseUnit;
-import pcb.units.base.Unit;
-import pcb.units.base.UnitAmount;
 import pcb.units.dimensions.fundamental.SpaceUnit;
 import pcb.units.dimensions.fundamental.amounts.Space;
 
@@ -28,6 +25,16 @@ public class Meters extends Space {
 		public String getPluralName() {
 			return "meters";
 		}
+
+		@Override
+		public Function<BigDecimal, BigDecimal> translationToCanonical() {
+			return Function.identity();
+		}
+
+		@Override
+		public Function<BigDecimal, BigDecimal> translationFromCanonical() {
+			return Function.identity();
+		}
 	};
 
 	// region constructors
@@ -37,9 +44,7 @@ public class Meters extends Space {
 	}
 
 	public Meters(Amount<BigDecimal> amount) {
-		super(amount, METER,
-				Function.identity(),
-				Function.identity());
+		super(amount, METER);
 	}
 
 	// endregion
@@ -48,13 +53,13 @@ public class Meters extends Space {
 
 	@Override
 	public Meters plus(Space other, MathContext mathContext) {
-		Space meters = convertToSelfScale(other);
+		Meters meters = new Meters(convertedToSelfScale(other));
 		return new Meters(getAmount().plus(meters.getAmount(), mathContext));
 	}
 
 	@Override
 	public Meters minus(Space other, MathContext mathContext) {
-		Space meters = convertToSelfScale(other);
+		Meters meters = new Meters(convertedToSelfScale(other));
 		return new Meters(getAmount().minus(meters.getAmount(), mathContext));
 	}
 
@@ -70,7 +75,7 @@ public class Meters extends Space {
 
 	@Override
 	public BigDecimal dividedBy(Space other, MathContext mathContext) {
-		Space meters = convertToSelfScale(other);
+		Meters meters = new Meters(convertedToSelfScale(other));
 		return getAmount().dividedBy(meters.getAmount(), mathContext);
 	}
 

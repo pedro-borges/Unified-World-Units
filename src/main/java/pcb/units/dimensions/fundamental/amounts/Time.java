@@ -12,10 +12,8 @@ import java.util.function.Function;
 public abstract class Time extends AbstractUnitAmount<BigDecimal, TimeUnit, Time> {
 	public Time(
 			Amount<BigDecimal> amount,
-			TimeUnit unit,
-			Function<Time, Time> translationToCanonical,
-			Function<Time, Time> translationFromCanonical) {
+			TimeUnit unit) {
 
-		super(amount, unit, translationToCanonical, translationFromCanonical);
+		super(amount, unit);
 	}
 }

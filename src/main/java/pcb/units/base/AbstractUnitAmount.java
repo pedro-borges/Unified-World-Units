@@ -10,9 +10,7 @@ public abstract class AbstractUnitAmount<N extends Number, U extends Unit<N, U>,
 	// region private fields
 
 	private final Amount<N> amount;
-	private final Unit<N, U> unit;
-	private final Function<UA, UA> translationToCanonical;
-	private final Function<UA, UA> translationFromCanonical;
+	private final U unit;
 
 	// endregion
 
@@ -20,14 +18,10 @@ public abstract class AbstractUnitAmount<N extends Number, U extends Unit<N, U>,
 
 	public AbstractUnitAmount(
 			Amount<N> amount,
-			Unit<N, U> unit,
-			Function<UA, UA> translationToCanonical,
-			Function<UA, UA> translationFromCanonical) {
+			U unit) {
 
 		this.amount = amount;
 		this.unit = unit;
-		this.translationToCanonical = translationToCanonical;
-		this.translationFromCanonical = translationFromCanonical;
 	}
 
 	// endregion
@@ -40,17 +34,12 @@ public abstract class AbstractUnitAmount<N extends Number, U extends Unit<N, U>,
 	}
 
 	@Override
-	public Function<UA, UA> translationToCanonical() {
-		return translationToCanonical;
+	public U getUnit() {
+		return unit;
 	}
 
-	@Override
-	public Function<UA, UA> translationFromCanonical() {
-		return translationFromCanonical;
-	}
-
-	protected UA convertToSelfScale(UA other) {
-		return other.translationToCanonical().andThen(translationFromCanonical()).apply(other);
+	protected N convertedToSelfScale(UA other) {
+		return other.getUnit().translationToCanonical().andThen(getUnit().translationFromCanonical()).apply(other.getAmount().getValue());
 	}
 
 	// endregion

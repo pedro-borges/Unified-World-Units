@@ -10,10 +10,8 @@ import java.util.function.Function;
 public abstract class Space extends AbstractUnitAmount<BigDecimal, SpaceUnit, Space> {
 	public Space(
 			Amount<BigDecimal> amount,
-		 	SpaceUnit unit,
-		 	Function<Space, Space> translationToCanonical,
-			Function<Space, Space> translationFromCanonical) {
+		 	SpaceUnit unit) {
 
-		super(amount, unit, translationToCanonical, translationFromCanonical);
+		super(amount, unit);
 	}
 }

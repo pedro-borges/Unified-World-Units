@@ -2,14 +2,12 @@ package pcb.units.concrete.imperial;
 
 import pcb.units.amount.Amount;
 import pcb.units.amount.BigDecimalAmount;
-import pcb.units.base.BaseUnit;
-import pcb.units.base.Unit;
-import pcb.units.base.UnitAmount;
 import pcb.units.dimensions.fundamental.SpaceUnit;
 import pcb.units.dimensions.fundamental.amounts.Space;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.function.Function;
 
 import static java.math.MathContext.DECIMAL64;
 
@@ -29,6 +27,16 @@ public class Inches extends Space {
 		public String getPluralName() {
 			return "inches";
 		}
+
+		@Override
+		public Function<BigDecimal, BigDecimal> translationToCanonical() {
+			return value -> value.divide(METERS_PER_INCH, DECIMAL64);
+		}
+
+		@Override
+		public Function<BigDecimal, BigDecimal> translationFromCanonical() {
+			return value -> value.multiply(METERS_PER_INCH, DECIMAL64);
+		}
 	};
 
 	private static final BigDecimal METERS_PER_INCH = new BigDecimal("0.0254");
@@ -40,9 +48,7 @@ public class Inches extends Space {
 	}
 
 	public Inches(Amount<BigDecimal> amount) {
-		super(amount, INCH,
-				value -> value.dividedBy(METERS_PER_INCH, DECIMAL64),
-				value -> value.multipliedBy(METERS_PER_INCH, DECIMAL64));
+		super(amount, INCH);
 	}
 
 	// endregion
@@ -51,13 +57,13 @@ public class Inches extends Space {
 
 	@Override
 	public Inches plus(Space other, MathContext mathContext) {
-		Space inches = convertToSelfScale(other);
+		Inches inches = new Inches(convertedToSelfScale(other));
 		return new Inches(getAmount().plus(inches.getAmount(), mathContext));
 	}
 
 	@Override
 	public Inches minus(Space other, MathContext mathContext) {
-		Space inches = convertToSelfScale(other);
+		Inches inches = new Inches(convertedToSelfScale(other));
 		return new Inches(getAmount().minus(inches.getAmount(), mathContext));
 	}
 
@@ -73,7 +79,7 @@ public class Inches extends Space {
 
 	@Override
 	public BigDecimal dividedBy(Space other, MathContext mathContext) {
-		Space inches = convertToSelfScale(other);
+		Inches inches = new Inches(convertedToSelfScale(other));
 		return getAmount().dividedBy(inches.getAmount(), mathContext);
 	}
 
