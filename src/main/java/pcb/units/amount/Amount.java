@@ -2,7 +2,9 @@ package pcb.units.amount;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.List;
+import java.util.Objects;
 
 import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
@@ -34,6 +36,14 @@ public class Amount extends Number {
 
 	public BigDecimal getValue() {
 		return value;
+	}
+
+	public int getScale() {
+		return value.scale();
+	}
+
+	public Amount withScale(int newScale, RoundingMode roundingMode) {
+		return new Amount(value.setScale(newScale, roundingMode));
 	}
 
 	public boolean isPositive() {
@@ -137,6 +147,22 @@ public class Amount extends Number {
 	// endregion
 
 	// override Object
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Amount) {
+			Amount other = (Amount) obj;
+
+			return Objects.equals(this.getValue(), other.getValue());
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return value.hashCode();
+	}
 
 	@Override
 	public String toString() {
