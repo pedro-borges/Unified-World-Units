@@ -1,10 +1,9 @@
 package pcb.units.utils;
 
-import java.util.Comparator;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ObjectCounter<T> {
 	private final Map<T, Integer> superior, inferior;
@@ -54,16 +53,12 @@ public class ObjectCounter<T> {
 		return 0;
 	}
 
-	public List<T> getNegativeKeys(List<T> order) {
-		return inferior.keySet().stream()
-				.sorted(Comparator.comparingInt(order::indexOf))
-				.collect(Collectors.toList());
+	public List<T> getNegativeKeys() {
+		return new ArrayList<>(inferior.keySet());
 	}
 
-	public List<T> getPositiveKeys(List<T> order) {
-		return superior.keySet().stream()
-				.sorted(Comparator.comparingInt(order::indexOf))
-				.collect(Collectors.toList());
+	public List<T> getPositiveKeys() {
+		return new ArrayList<>(superior.keySet());
 	}
 
 	// region private methods
