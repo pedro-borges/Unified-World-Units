@@ -3,6 +3,7 @@ package pcb.units.concrete.finance.amounts;
 import org.junit.Test;
 import pcb.units.amount.BigDecimalAmount;
 import pcb.units.concrete.finance.CurrencyMismatchException;
+import pcb.units.concrete.finance.Money;
 import pcb.units.concrete.finance.MoneyUnit;
 
 import java.util.Currency;

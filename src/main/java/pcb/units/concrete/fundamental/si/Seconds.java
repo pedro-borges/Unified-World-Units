@@ -1,11 +1,10 @@
-package pcb.units.concrete.fundamental.si.amounts;
+package pcb.units.concrete.fundamental.si;
 
 import pcb.units.amount.Amount;
 import pcb.units.base.AbstractUnitAmount;
 import pcb.units.base.UnitAmount;
-import pcb.units.concrete.fundamental.si.SecondUnit;
+import pcb.units.dimensions.fundamental.Time;
 import pcb.units.dimensions.fundamental.TimeUnit;
-import pcb.units.dimensions.fundamental.amounts.Time;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

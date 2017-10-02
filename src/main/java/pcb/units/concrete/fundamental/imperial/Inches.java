@@ -1,11 +1,10 @@
-package pcb.units.concrete.fundamental.imperial.amounts;
+package pcb.units.concrete.fundamental.imperial;
 
 import pcb.units.amount.Amount;
 import pcb.units.base.AbstractUnitAmount;
 import pcb.units.base.UnitAmount;
-import pcb.units.concrete.fundamental.imperial.InchUnit;
+import pcb.units.dimensions.fundamental.Space;
 import pcb.units.dimensions.fundamental.SpaceUnit;
-import pcb.units.dimensions.fundamental.amounts.Space;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

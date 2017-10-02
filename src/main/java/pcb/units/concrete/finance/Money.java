@@ -1,12 +1,10 @@
-package pcb.units.concrete.finance.amounts;
+package pcb.units.concrete.finance;
 
 import pcb.units.amount.Amount;
 import pcb.units.base.AbstractUnitAmount;
 import pcb.units.base.UnitAmount;
-import pcb.units.concrete.finance.CurrencyMismatchException;
-import pcb.units.concrete.finance.MoneyUnit;
+import pcb.units.dimensions.finance.Currency;
 import pcb.units.dimensions.finance.CurrencyUnit;
-import pcb.units.dimensions.finance.amounts.Currency;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
