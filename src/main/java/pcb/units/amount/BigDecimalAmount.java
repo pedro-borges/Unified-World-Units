@@ -15,7 +15,7 @@ public class BigDecimalAmount
 		implements Amount<BigDecimalAmount> {
 	// region private fields
 
-	private BigDecimal value;
+	private final BigDecimal value;
 
 	// endregion
 
@@ -72,7 +72,6 @@ public class BigDecimalAmount
 		return new BigDecimalAmount(value.pow(magnitude, mathContext));
 	}
 
-	@Override
 	public BigDecimal dividedBy(BigDecimalAmount other, MathContext mathContext) {
 		return value.divide(other.value, mathContext);
 	}
@@ -128,7 +127,7 @@ public class BigDecimalAmount
 		return scaled.value.toPlainString() + last.symbol();
 	}
 
-	// region implement Number
+	// region extend Number
 
 	@Override
 	public int intValue() {
@@ -182,7 +181,7 @@ public class BigDecimalAmount
 
 	@Override
 	public String toString() {
-		return value.toString();
+		return String.valueOf(value);
 	}
 
 	// endregion

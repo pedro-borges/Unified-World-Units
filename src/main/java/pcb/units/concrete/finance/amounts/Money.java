@@ -56,13 +56,6 @@ public class Money<A extends Amount<A>>
 	}
 
 	@Override
-	public BigDecimal dividedBy(UnitAmount<A, CurrencyUnit> other, MathContext mathContext) {
-		throwIfDistinctCurrency(other);
-
-		return getAmount().dividedBy(other.getAmount(), mathContext);
-	}
-
-	@Override
 	public A getAmountIn(CurrencyUnit newUnit) {
 		if (getUnit().getCurrency().equals(newUnit.getCurrency())) {
 			return getAmount();

@@ -15,7 +15,6 @@ public interface Amount<A extends Amount<A>> {
 	A multipliedBy(BigDecimal other, MathContext mathContext);
 	A dividedBy(BigDecimal other, MathContext mathContext);
 	A pow(int magnitude, MathContext mathContext);
-	BigDecimal dividedBy(A other, MathContext mathContext);
 
 	A translated(Function<BigDecimal, BigDecimal> translation);
 }

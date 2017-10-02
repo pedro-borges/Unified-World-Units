@@ -46,11 +46,5 @@ public class Inches<A extends Amount<A>>
 		return new Inches<>(getAmount().dividedBy(other, mathContext));
 	}
 
-	@Override
-	public BigDecimal dividedBy(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
-		Inches<A> inches = new Inches<>(other.getAmountIn(getUnit()));
-		return getAmount().dividedBy(inches.getAmount(), mathContext);
-	}
-
 	// endregion
 }

@@ -5,7 +5,6 @@ import pcb.units.amount.BigDecimalAmount;
 import pcb.units.concrete.finance.CurrencyMismatchException;
 import pcb.units.concrete.finance.MoneyUnit;
 
-import java.math.BigDecimal;
 import java.util.Currency;
 
 import static java.math.MathContext.UNLIMITED;
@@ -71,21 +70,5 @@ public class MoneyTest {
 		Money<BigDecimalAmount> money2 = new Money<>(new BigDecimalAmount(10), USD);
 
 		money1.minus(money2, UNLIMITED);
-	}
-
-	@Test
-	public void testDivideBySameCurrency() {
-		Money<BigDecimalAmount> money1 = new Money<>(new BigDecimalAmount(10), GBP);
-		Money<BigDecimalAmount> money2 = new Money<>(new BigDecimalAmount(5), GBP);
-
-		assertEquals(new BigDecimal(2), money1.dividedBy(money2, UNLIMITED));
-	}
-
-	@Test(expected = CurrencyMismatchException.class)
-	public void testDividedByDifferentCurrency() {
-		Money<BigDecimalAmount> money1 = new Money<>(new BigDecimalAmount(10), GBP);
-		Money<BigDecimalAmount> money2 = new Money<>(new BigDecimalAmount(5), USD);
-
-		money1.dividedBy(money2, UNLIMITED);
 	}
 }

@@ -46,11 +46,5 @@ public class Seconds<A extends Amount<A>>
 		return new Seconds<>(getAmount().dividedBy(other, mathContext));
 	}
 
-	@Override
-	public BigDecimal dividedBy(UnitAmount<A, TimeUnit> other, MathContext mathContext) {
-		Seconds<A> meters = new Seconds<>(other.getAmountIn(getUnit()));
-		return getAmount().dividedBy(meters.getAmount(), mathContext);
-	}
-
 	// endregion
 }

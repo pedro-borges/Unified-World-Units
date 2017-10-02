@@ -13,6 +13,5 @@ public interface UnitAmount<A extends Amount<A>, U extends Unit> {
 	UnitAmount<A, U> minus(UnitAmount<A, U> other, MathContext mathContext);
 	UnitAmount<A, U> multipliedBy(BigDecimal other, MathContext mathContext);
 	UnitAmount<A, U> dividedBy(BigDecimal other, MathContext mathContext);
-	BigDecimal dividedBy(UnitAmount<A, U> other, MathContext mathContext);
 	A getAmountIn(U unit);
 }

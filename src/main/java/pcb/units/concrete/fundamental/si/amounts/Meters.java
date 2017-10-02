@@ -46,11 +46,5 @@ public class Meters<A extends Amount<A>>
 		return new Meters<>(getAmount().dividedBy(other, mathContext));
 	}
 
-	@Override
-	public BigDecimal dividedBy(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
-		Meters<A> meters = new Meters<>(other.getAmountIn(getUnit()));
-		return getAmount().dividedBy(meters.getAmount(), mathContext);
-	}
-
 	// endregion
 }
