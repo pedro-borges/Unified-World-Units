@@ -2,16 +2,17 @@ package pcb.units.base;
 
 import pcb.units.amount.Amount;
 
+import java.math.BigDecimal;
 import java.math.MathContext;
 
-public interface UnitAmount<U extends Unit> {
-	Amount getAmount();
+public interface UnitAmount<A extends Amount<A>, U extends Unit> {
+	A getAmount();
 	U getUnit();
 
-	UnitAmount<U> plus(UnitAmount<U> other, MathContext mathContext);
-	UnitAmount<U> minus(UnitAmount<U> other, MathContext mathContext);
-	UnitAmount<U> multipliedBy(Amount other, MathContext mathContext);
-	UnitAmount<U> dividedBy(Amount other, MathContext mathContext);
-	Amount dividedBy(UnitAmount<U> other, MathContext mathContext);
-	Amount getAmountIn(U unit);
+	UnitAmount<A, U> plus(UnitAmount<A, U> other, MathContext mathContext);
+	UnitAmount<A, U> minus(UnitAmount<A, U> other, MathContext mathContext);
+	UnitAmount<A, U> multipliedBy(BigDecimal other, MathContext mathContext);
+	UnitAmount<A, U> dividedBy(BigDecimal other, MathContext mathContext);
+	BigDecimal dividedBy(UnitAmount<A, U> other, MathContext mathContext);
+	A getAmountIn(U unit);
 }

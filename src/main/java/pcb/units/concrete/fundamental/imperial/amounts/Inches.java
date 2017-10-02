@@ -10,17 +10,13 @@ import pcb.units.dimensions.fundamental.amounts.Space;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Inches
-		extends AbstractUnitAmount<SpaceUnit>
-		implements Space {
+public class Inches<A extends Amount<A>>
+		extends AbstractUnitAmount<A, SpaceUnit>
+		implements Space<A> {
 
 	// region constructors
 
-	public Inches(BigDecimal value) {
-		this(new Amount(value));
-	}
-
-	public Inches(Amount amount) {
+	public Inches(A amount) {
 		super(amount, new InchUnit());
 	}
 
@@ -29,30 +25,30 @@ public class Inches
 	// region implement UnitAmount
 
 	@Override
-	public Inches plus(UnitAmount<SpaceUnit> other, MathContext mathContext) {
-		Inches inches = new Inches(other.getAmountIn(getUnit()));
-		return new Inches(getAmount().plus(inches.getAmount(), mathContext));
+	public Inches<A> plus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
+		Inches<A> inches = new Inches<>(other.getAmountIn(getUnit()));
+		return new Inches<>(getAmount().plus(inches.getAmount(), mathContext));
 	}
 
 	@Override
-	public Inches minus(UnitAmount<SpaceUnit> other, MathContext mathContext) {
-		Inches inches = new Inches(other.getAmountIn(getUnit()));
-		return new Inches(getAmount().minus(inches.getAmount(), mathContext));
+	public Inches<A> minus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
+		Inches<A> inches = new Inches<>(other.getAmountIn(getUnit()));
+		return new Inches<>(getAmount().minus(inches.getAmount(), mathContext));
 	}
 
 	@Override
-	public Inches multipliedBy(Amount other, MathContext mathContext) {
-		return new Inches(getAmount().multipliedBy(other.getValue(), mathContext));
+	public Inches<A> multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new Inches<>(getAmount().multipliedBy(other, mathContext));
 	}
 
 	@Override
-	public Inches dividedBy(Amount other, MathContext mathContext) {
-		return new Inches(getAmount().dividedBy(other.getValue(), mathContext));
+	public Inches<A> dividedBy(BigDecimal other, MathContext mathContext) {
+		return new Inches<>(getAmount().dividedBy(other, mathContext));
 	}
 
 	@Override
-	public Amount dividedBy(UnitAmount<SpaceUnit> other, MathContext mathContext) {
-		Inches inches = new Inches(other.getAmountIn(getUnit()));
+	public BigDecimal dividedBy(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
+		Inches<A> inches = new Inches<>(other.getAmountIn(getUnit()));
 		return getAmount().dividedBy(inches.getAmount(), mathContext);
 	}
 

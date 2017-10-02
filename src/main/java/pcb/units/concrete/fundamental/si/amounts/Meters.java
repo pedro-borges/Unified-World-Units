@@ -10,17 +10,13 @@ import pcb.units.dimensions.fundamental.amounts.Space;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Meters
-		extends AbstractUnitAmount<SpaceUnit>
-		implements Space {
+public class Meters<A extends Amount<A>>
+		extends AbstractUnitAmount<A, SpaceUnit>
+		implements Space<A> {
 
 	// region constructors
 
-	public Meters(BigDecimal value) {
-		this(new Amount(value));
-	}
-
-	public Meters(Amount amount) {
+	public Meters(A amount) {
 		super(amount, new MeterUnit());
 	}
 
@@ -29,30 +25,30 @@ public class Meters
 	// region implement UnitAmount
 
 	@Override
-	public Meters plus(UnitAmount<SpaceUnit> other, MathContext mathContext) {
-		Meters meters = new Meters(other.getAmountIn(getUnit()));
-		return new Meters(getAmount().plus(meters.getAmount(), mathContext));
+	public Meters<A> plus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
+		Meters<A> meters = new Meters<>(other.getAmountIn(getUnit()));
+		return new Meters<>(getAmount().plus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Meters minus(UnitAmount<SpaceUnit> other, MathContext mathContext) {
-		Meters meters = new Meters(other.getAmountIn(getUnit()));
-		return new Meters(getAmount().minus(meters.getAmount(), mathContext));
+	public Meters<A> minus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
+		Meters<A> meters = new Meters<>(other.getAmountIn(getUnit()));
+		return new Meters<>(getAmount().minus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Meters multipliedBy(Amount other, MathContext mathContext) {
-		return new Meters(getAmount().multipliedBy(other.getValue(), mathContext));
+	public Meters<A> multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new Meters<>(getAmount().multipliedBy(other, mathContext));
 	}
 
 	@Override
-	public Meters dividedBy(Amount other, MathContext mathContext) {
-		return new Meters(getAmount().dividedBy(other.getValue(), mathContext));
+	public Meters<A> dividedBy(BigDecimal other, MathContext mathContext) {
+		return new Meters<>(getAmount().dividedBy(other, mathContext));
 	}
 
 	@Override
-	public Amount dividedBy(UnitAmount<SpaceUnit> other, MathContext mathContext) {
-		Meters meters = new Meters(other.getAmountIn(getUnit()));
+	public BigDecimal dividedBy(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
+		Meters<A> meters = new Meters<>(other.getAmountIn(getUnit()));
 		return getAmount().dividedBy(meters.getAmount(), mathContext);
 	}
 

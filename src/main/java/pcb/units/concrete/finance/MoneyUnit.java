@@ -1,7 +1,6 @@
 package pcb.units.concrete.finance;
 
 import com.sun.istack.internal.Nullable;
-import pcb.units.amount.Amount;
 import pcb.units.base.BaseUnit;
 import pcb.units.dimensions.finance.CurrencyUnit;
 
@@ -52,7 +51,7 @@ public class MoneyUnit
 	}
 
 	@Override
-	public Function<Amount, Amount> getTranslationToCanonical() {
+	public Function<BigDecimal, BigDecimal> getTranslationToCanonical() {
 		if (currencyConversionProvider == null) {
 			return super.getTranslationToCanonical();
 		}
@@ -64,11 +63,11 @@ public class MoneyUnit
 					currency.getDisplayName(), CANONICAL_CURRENCY.getDisplayName());
 		}
 
-		return amount -> amount.multipliedBy(ratio, DECIMAL32);
+		return amount -> amount.multiply(ratio, DECIMAL32);
 	}
 
 	@Override
-	public Function<Amount, Amount> getTranslationFromCanonical() {
+	public Function<BigDecimal, BigDecimal> getTranslationFromCanonical() {
 		if (currencyConversionProvider == null) {
 			return super.getTranslationToCanonical();
 		}
@@ -80,7 +79,7 @@ public class MoneyUnit
 					CANONICAL_CURRENCY.getDisplayName(), currency.getDisplayName());
 		}
 
-		return amount -> amount.multipliedBy(ratio, DECIMAL32);
+		return amount -> amount.multiply(ratio, DECIMAL32);
 	}
 
 	// endregion

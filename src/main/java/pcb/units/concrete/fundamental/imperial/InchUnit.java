@@ -15,8 +15,8 @@ public class InchUnit
 
 	public InchUnit() {
 		super("in", "inch", "inches",
-				value -> value.dividedBy(METERS_PER_INCH, DECIMAL64),
-				value -> value.multipliedBy(METERS_PER_INCH, DECIMAL64)
+				value -> value.divide(METERS_PER_INCH, DECIMAL64),
+				value -> value.multiply(METERS_PER_INCH, DECIMAL64)
 		);
 	}
 }

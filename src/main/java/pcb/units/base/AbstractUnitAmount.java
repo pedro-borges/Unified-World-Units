@@ -2,14 +2,16 @@ package pcb.units.base;
 
 import pcb.units.amount.Amount;
 
+import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.function.Function;
 
-public abstract class AbstractUnitAmount<U extends Unit>
-		implements UnitAmount<U> {
+public abstract class AbstractUnitAmount<A extends Amount<A>, U extends Unit>
+		implements UnitAmount<A, U> {
 
 	// region private fields
 
-	private final Amount amount;
+	private final A amount;
 	private final U unit;
 
 	// endregion
@@ -17,7 +19,7 @@ public abstract class AbstractUnitAmount<U extends Unit>
 	// region constructors
 
 	public AbstractUnitAmount(
-			Amount amount,
+			A amount,
 			U unit) {
 
 		this.amount = amount;
@@ -29,7 +31,7 @@ public abstract class AbstractUnitAmount<U extends Unit>
 	// region implement UnitAmount
 
 	@Override
-	public Amount getAmount() {
+	public A getAmount() {
 		return amount;
 	}
 
@@ -39,12 +41,14 @@ public abstract class AbstractUnitAmount<U extends Unit>
 	}
 
 	@Override
-	public Amount getAmountIn(U newUnit) {
+	public A getAmountIn(U newUnit) {
 		if (getUnit().equals(newUnit)) {
 			return amount;
 		}
 
-		return getUnit().getTranslationToCanonical().andThen(newUnit.getTranslationFromCanonical()).apply(amount);
+		Function<BigDecimal, BigDecimal> translation = getUnit().getTranslationToCanonical().andThen(newUnit.getTranslationFromCanonical());
+
+		return amount.translated(translation);
 	}
 
 	// endregion
@@ -54,7 +58,7 @@ public abstract class AbstractUnitAmount<U extends Unit>
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof UnitAmount) {
-			AbstractUnitAmount<?> other = (AbstractUnitAmount<?>) obj;
+			AbstractUnitAmount<?, ?> other = (AbstractUnitAmount<?, ?>) obj;
 
 			return Objects.equals(this.amount, other.amount) &&
 					Objects.equals(this.unit, other.unit);

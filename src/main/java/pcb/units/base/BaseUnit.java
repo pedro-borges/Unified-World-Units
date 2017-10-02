@@ -1,7 +1,6 @@
 package pcb.units.base;
 
-import pcb.units.amount.Amount;
-
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -13,8 +12,8 @@ public class BaseUnit<U extends Unit>
 	private final String symbol;
 	private final String singularName;
 	private final String pluralName;
-	private final Function<Amount, Amount> translationToCanonical;
-	private final Function<Amount, Amount> translationFromCanonical;
+	private final Function<BigDecimal, BigDecimal> translationToCanonical;
+	private final Function<BigDecimal, BigDecimal> translationFromCanonical;
 
 	// endregion
 
@@ -24,8 +23,8 @@ public class BaseUnit<U extends Unit>
 			String symbol,
 			String singularName,
 			String pluralName,
-			Function<Amount, Amount> translationToCanonical,
-			Function<Amount, Amount> translationFromCanonical) {
+			Function<BigDecimal, BigDecimal> translationToCanonical,
+			Function<BigDecimal, BigDecimal> translationFromCanonical) {
 
 		this.symbol = symbol;
 		this.singularName = singularName;
@@ -54,12 +53,12 @@ public class BaseUnit<U extends Unit>
 	}
 
 	@Override
-	public Function<Amount, Amount> getTranslationToCanonical() {
+	public Function<BigDecimal, BigDecimal> getTranslationToCanonical() {
 		return translationToCanonical;
 	}
 
 	@Override
-	public Function<Amount, Amount> getTranslationFromCanonical() {
+	public Function<BigDecimal, BigDecimal> getTranslationFromCanonical() {
 		return translationFromCanonical;
 	}
 

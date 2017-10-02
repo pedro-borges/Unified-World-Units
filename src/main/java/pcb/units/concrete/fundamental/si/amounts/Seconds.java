@@ -10,17 +10,13 @@ import pcb.units.dimensions.fundamental.amounts.Time;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Seconds
-		extends AbstractUnitAmount<TimeUnit>
-		implements Time {
+public class Seconds<A extends Amount<A>>
+		extends AbstractUnitAmount<A, TimeUnit>
+		implements Time<A> {
 
 	// region constructors
 
-	public Seconds(BigDecimal value) {
-		this(new Amount(value));
-	}
-
-	public Seconds(Amount amount) {
+	public Seconds(A amount) {
 		super(amount, new SecondUnit());
 	}
 
@@ -29,30 +25,30 @@ public class Seconds
 	// region implement UnitAmount
 
 	@Override
-	public Seconds plus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		Seconds meters = new Seconds(other.getAmountIn(getUnit()));
-		return new Seconds(getAmount().plus(meters.getAmount(), mathContext));
+	public Seconds<A> plus(UnitAmount<A, TimeUnit> other, MathContext mathContext) {
+		Seconds<A> meters = new Seconds<>(other.getAmountIn(getUnit()));
+		return new Seconds<>(getAmount().plus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Seconds minus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		Seconds meters = new Seconds(other.getAmountIn(getUnit()));
-		return new Seconds(getAmount().minus(meters.getAmount(), mathContext));
+	public Seconds<A> minus(UnitAmount<A, TimeUnit> other, MathContext mathContext) {
+		Seconds<A> meters = new Seconds<>(other.getAmountIn(getUnit()));
+		return new Seconds<>(getAmount().minus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Seconds multipliedBy(Amount other, MathContext mathContext) {
-		return new Seconds(getAmount().multipliedBy(other.getValue(), mathContext));
+	public Seconds<A> multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new Seconds<>(getAmount().multipliedBy(other, mathContext));
 	}
 
 	@Override
-	public Seconds dividedBy(Amount other, MathContext mathContext) {
-		return new Seconds(getAmount().dividedBy(other.getValue(), mathContext));
+	public Seconds<A> dividedBy(BigDecimal other, MathContext mathContext) {
+		return new Seconds<>(getAmount().dividedBy(other, mathContext));
 	}
 
 	@Override
-	public Amount dividedBy(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		Seconds meters = new Seconds(other.getAmountIn(getUnit()));
+	public BigDecimal dividedBy(UnitAmount<A, TimeUnit> other, MathContext mathContext) {
+		Seconds<A> meters = new Seconds<>(other.getAmountIn(getUnit()));
 		return getAmount().dividedBy(meters.getAmount(), mathContext);
 	}
 
