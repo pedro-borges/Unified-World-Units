@@ -7,9 +7,11 @@ import java.util.Objects;
 import java.util.function.Function;
 
 import static java.math.BigDecimal.ZERO;
+import static java.math.MathContext.DECIMAL64;
 
 public class BigDecimal2DAmount
 		implements Amount<BigDecimal2DAmount> {
+
 	// region private fields
 
 	private final BigDecimal value1, value2;
@@ -34,6 +36,11 @@ public class BigDecimal2DAmount
 	// endregion
 
 	// region implement Amount
+
+	@Override
+	public BigDecimal getValue() {
+		return value1.pow(2).add(value2.pow(2)).pow(-2, DECIMAL64);
+	}
 
 	@Override
 	public int getScale() {

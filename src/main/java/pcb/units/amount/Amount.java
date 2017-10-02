@@ -7,6 +7,8 @@ import java.util.function.Function;
 
 public interface Amount<A extends Amount<A>> {
 
+	BigDecimal getValue();
+
 	int getScale();
 	A withScale(int newScale, RoundingMode roundingMode);
 

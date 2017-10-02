@@ -38,6 +38,11 @@ public class BigDecimalAmount
 	// region implement Amount
 
 	@Override
+	public BigDecimal getValue() {
+		return value;
+	}
+
+	@Override
 	public int getScale() {
 		return value.scale();
 	}

@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.function.Function;
 
 import static java.math.BigDecimal.ZERO;
+import static java.math.MathContext.DECIMAL64;
 
 public class BigDecimal3DAmount
 		implements Amount<BigDecimal3DAmount> {
@@ -37,6 +38,15 @@ public class BigDecimal3DAmount
 	// endregion
 
 	// region implement Amount
+
+	@Override
+	public BigDecimal getValue() {
+		return value1.pow(2)
+				.add(value2.pow(2))
+				.pow(-2, DECIMAL64)
+				.add(value3.pow(2))
+				.pow(-2, DECIMAL64);
+	}
 
 	@Override
 	public int getScale() {
