@@ -14,33 +14,31 @@ public class ObjectCounter<T> {
 		inferior = new HashMap<>();
 	}
 
-	public int reset(T key) {
-		superior.remove(key);
-		inferior.remove(key);
-
-		return 0;
+	public ObjectCounter(ObjectCounter<T> source) {
+		superior = new HashMap<>(source.superior);
+		inferior = new HashMap<>(source.inferior);
 	}
 
-	public int increase(T key) {
+	public ObjectCounter<T> increase(T key) {
 		return increase(key, 1);
 	}
 
-	public int increase(T key, int counts) {
-		int result = remove(key) + counts;
+	public ObjectCounter<T> increase(T key, int counts) {
+		ObjectCounter<T> result = new ObjectCounter<>(this);
 
-		updateMaps(key, result);
+		result.updateMaps(key, result.remove(key) + counts);
 
 		return result;
 	}
 
-	public int decrease(T key) {
+	public ObjectCounter<T> decrease(T key) {
 		return decrease(key, 1);
 	}
 
-	public int decrease(T key, int counts) {
-		int result = remove(key) - counts;
+	public ObjectCounter<T> decrease(T key, int counts) {
+		ObjectCounter<T> result = new ObjectCounter<>(this);
 
-		updateMaps(key, result);
+		result.updateMaps(key, result.remove(key) - counts);
 
 		return result;
 	}
