@@ -13,6 +13,31 @@ import static java.math.MathContext.DECIMAL64;
 
 public class BigDecimal3DAmount
 		implements Amount<BigDecimal3DAmount> {
+
+	// region inner classes
+
+	public enum AmountLabel3D implements AmountLabel<BigDecimal3DAmount> {
+		A(0),
+		X(0),
+		B(1),
+		Y(1),
+		C(2),
+		Z(2);
+
+		private final int index;
+
+		AmountLabel3D(int index) {
+			this.index = index;
+		}
+
+		@Override
+		public int index() {
+			return index;
+		}
+	}
+
+	// endregion
+
 	// region private fields
 
 	private final BigDecimal[] value = new BigDecimal[3];
@@ -46,6 +71,11 @@ public class BigDecimal3DAmount
 				.pow(-2, DECIMAL64)
 				.add(value[2].pow(2))
 				.pow(-2, DECIMAL64);
+	}
+
+	@Override
+	public BigDecimal getValue(AmountLabel<BigDecimal3DAmount> label) {
+		return value[label.index()];
 	}
 
 	@Override

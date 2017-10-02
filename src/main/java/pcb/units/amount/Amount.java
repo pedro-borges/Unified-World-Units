@@ -6,8 +6,12 @@ import java.math.RoundingMode;
 import java.util.function.Function;
 
 public interface Amount<A extends Amount<A>> {
+	interface AmountLabel<A> {
+		int index();
+	}
 
 	BigDecimal getValue();
+	BigDecimal getValue(AmountLabel<A> label);
 
 	int getScale();
 	A withScale(int newScale, RoundingMode roundingMode);

@@ -43,6 +43,11 @@ public class BigDecimalAmount
 	}
 
 	@Override
+	public BigDecimal getValue(AmountLabel<BigDecimalAmount> label) {
+		return value;
+	}
+
+	@Override
 	public int getScale() {
 		return value.scale();
 	}

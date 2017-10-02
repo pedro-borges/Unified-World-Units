@@ -12,6 +12,28 @@ import static java.math.MathContext.DECIMAL64;
 public class BigDecimal2DAmount
 		implements Amount<BigDecimal2DAmount> {
 
+	// region inner classes
+
+	public enum AmountLabel2D implements AmountLabel<BigDecimal2DAmount> {
+		A(0),
+		X(0),
+		B(1),
+		Y(1);
+
+		private final int index;
+
+		AmountLabel2D(int index) {
+			this.index = index;
+		}
+
+		@Override
+		public int index() {
+			return index;
+		}
+	}
+
+	// endregion
+
 	// region private fields
 
 	private final BigDecimal[] value = new BigDecimal[2];
@@ -40,6 +62,11 @@ public class BigDecimal2DAmount
 	@Override
 	public BigDecimal getValue() {
 		return value[0].pow(2).add(value[1].pow(2)).pow(-2, DECIMAL64);
+	}
+
+	@Override
+	public BigDecimal getValue(AmountLabel<BigDecimal2DAmount> label) {
+		return value[label.index()];
 	}
 
 	@Override
