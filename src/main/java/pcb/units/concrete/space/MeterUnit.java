@@ -1,7 +1,7 @@
-package pcb.units.concrete.fundamental.si;
+package pcb.units.concrete.space;
 
 import pcb.units.base.BaseUnit;
-import pcb.units.dimensions.fundamental.SpaceUnit;
+import pcb.units.dimensions.space.SpaceUnit;
 
 import java.util.function.Function;
 

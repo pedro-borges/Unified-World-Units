@@ -1,4 +1,4 @@
-package pcb.units.dimensions.fundamental;
+package pcb.units.dimensions.time;
 
 import pcb.units.base.Unit;
 

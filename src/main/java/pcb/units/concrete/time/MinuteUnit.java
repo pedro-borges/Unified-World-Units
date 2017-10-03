@@ -1,7 +1,7 @@
-package pcb.units.concrete.fundamental.si;
+package pcb.units.concrete.time;
 
 import pcb.units.base.BaseUnit;
-import pcb.units.dimensions.fundamental.TimeUnit;
+import pcb.units.dimensions.time.TimeUnit;
 
 import java.math.BigDecimal;
 

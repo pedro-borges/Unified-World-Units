@@ -2,11 +2,11 @@ package pcb.units.base;
 
 import org.junit.Test;
 import pcb.units.amount.BigDecimalAmount;
-import pcb.units.concrete.fundamental.imperial.InchUnit;
-import pcb.units.concrete.fundamental.imperial.Inches;
-import pcb.units.concrete.fundamental.si.MeterUnit;
-import pcb.units.concrete.fundamental.si.Meters;
-import pcb.units.dimensions.fundamental.SpaceUnit;
+import pcb.units.concrete.space.InchUnit;
+import pcb.units.concrete.space.Inches;
+import pcb.units.concrete.space.MeterUnit;
+import pcb.units.concrete.space.Meters;
+import pcb.units.dimensions.space.SpaceUnit;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;

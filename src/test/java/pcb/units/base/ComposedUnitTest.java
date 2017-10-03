@@ -1,8 +1,8 @@
 package pcb.units.base;
 
 import org.junit.Test;
-import pcb.units.concrete.fundamental.imperial.InchUnit;
-import pcb.units.concrete.fundamental.si.MinuteUnit;
+import pcb.units.concrete.space.InchUnit;
+import pcb.units.concrete.time.MinuteUnit;
 
 import java.math.BigDecimal;
 

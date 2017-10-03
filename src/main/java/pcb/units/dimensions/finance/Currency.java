@@ -1,9 +1,9 @@
 package pcb.units.dimensions.finance;
 
-import pcb.units.amount.Amount;
+import pcb.units.amount.BigDecimalAmount;
 import pcb.units.base.UnitAmount;
 
-public interface Currency<A extends Amount<A>>
-		extends UnitAmount<A, CurrencyUnit> {
+public interface Currency
+		extends UnitAmount<BigDecimalAmount, CurrencyUnit> {
 
 }

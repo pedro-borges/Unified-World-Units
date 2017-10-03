@@ -1,4 +1,4 @@
-package pcb.units.dimensions.fundamental;
+package pcb.units.dimensions.space;
 
 import pcb.units.amount.Amount;
 import pcb.units.base.UnitAmount;

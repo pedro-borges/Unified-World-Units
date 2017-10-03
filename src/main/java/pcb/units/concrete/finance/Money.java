@@ -1,6 +1,6 @@
 package pcb.units.concrete.finance;
 
-import pcb.units.amount.Amount;
+import pcb.units.amount.BigDecimalAmount;
 import pcb.units.base.AbstractUnitAmount;
 import pcb.units.base.UnitAmount;
 import pcb.units.dimensions.finance.Currency;
@@ -11,17 +11,17 @@ import java.math.MathContext;
 
 import static java.math.RoundingMode.HALF_EVEN;
 
-public class Money<A extends Amount<A>>
-		extends AbstractUnitAmount<A, CurrencyUnit>
-		implements Currency<A> {
+public class Money
+		extends AbstractUnitAmount<BigDecimalAmount, CurrencyUnit>
+		implements Currency {
 
 	// region constructors
 
-	public Money(A amount, java.util.Currency currency) {
+	public Money(BigDecimalAmount amount, java.util.Currency currency) {
 		this(amount, new MoneyUnit(currency));
 	}
 
-	public Money(A amount, CurrencyUnit unit) {
+	public Money(BigDecimalAmount amount, CurrencyUnit unit) {
 		super(amount.withScale(unit.getCurrency().getDefaultFractionDigits(), HALF_EVEN), unit);
 	}
 
@@ -30,31 +30,31 @@ public class Money<A extends Amount<A>>
 	//region implement UnitAmount
 
 	@Override
-	public Money<A> plus(UnitAmount<A, CurrencyUnit> other, MathContext mathContext) {
+	public Money plus(UnitAmount<BigDecimalAmount, CurrencyUnit> other, MathContext mathContext) {
 		throwIfDistinctCurrency(other);
 
-		return new Money<>(getAmount().plus(other.getAmount(), mathContext), getUnit());
+		return new Money(getAmount().plus(other.getAmount(), mathContext), getUnit());
 	}
 
 	@Override
-	public Money<A> minus(UnitAmount<A, CurrencyUnit> other, MathContext mathContext) {
+	public Money minus(UnitAmount<BigDecimalAmount, CurrencyUnit> other, MathContext mathContext) {
 		throwIfDistinctCurrency(other);
 
-		return new Money<>(getAmount().minus(other.getAmount(), mathContext), getUnit());
+		return new Money(getAmount().minus(other.getAmount(), mathContext), getUnit());
 	}
 
 	@Override
-	public Money<A> multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Money<>(getAmount().multipliedBy(other, mathContext), getUnit());
+	public Money multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new Money(getAmount().multipliedBy(other, mathContext), getUnit());
 	}
 
 	@Override
-	public Money<A> dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Money<>(getAmount().dividedBy(other, mathContext), getUnit());
+	public Money dividedBy(BigDecimal other, MathContext mathContext) {
+		return new Money(getAmount().dividedBy(other, mathContext), getUnit());
 	}
 
 	@Override
-	public A getAmountIn(CurrencyUnit newUnit) {
+	public BigDecimalAmount getAmountIn(CurrencyUnit newUnit) {
 		if (getUnit().getCurrency().equals(newUnit.getCurrency())) {
 			return getAmount();
 		}
@@ -66,7 +66,7 @@ public class Money<A extends Amount<A>>
 
 	// region private methods
 
-	private void throwIfDistinctCurrency(UnitAmount<A, CurrencyUnit> other) {
+	private void throwIfDistinctCurrency(UnitAmount<BigDecimalAmount, CurrencyUnit> other) {
 		if (!getUnit().getCurrency().equals(other.getUnit().getCurrency())) {
 			throw new CurrencyMismatchException("Cant add {} to {}", other.getUnit().getPluralName(), getUnit().getPluralName());
 		}
