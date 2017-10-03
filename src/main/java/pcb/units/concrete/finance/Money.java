@@ -30,26 +30,26 @@ public class Money
 	//region implement UnitAmount
 
 	@Override
-	public Money plus(UnitAmount<BigDecimalAmount, CurrencyUnit> other, MathContext mathContext) {
+	public Money plus(MathContext mathContext, UnitAmount<BigDecimalAmount, CurrencyUnit> other) {
 		throwIfDistinctCurrency(other);
 
 		return new Money(getAmount().plus(other.getAmount(), mathContext), getUnit());
 	}
 
 	@Override
-	public Money minus(UnitAmount<BigDecimalAmount, CurrencyUnit> other, MathContext mathContext) {
+	public Money minus(MathContext mathContext, UnitAmount<BigDecimalAmount, CurrencyUnit> other) {
 		throwIfDistinctCurrency(other);
 
 		return new Money(getAmount().minus(other.getAmount(), mathContext), getUnit());
 	}
 
 	@Override
-	public Money multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Money multipliedBy(MathContext mathContext, BigDecimal other) {
 		return new Money(getAmount().multipliedBy(other, mathContext), getUnit());
 	}
 
 	@Override
-	public Money dividedBy(BigDecimal other, MathContext mathContext) {
+	public Money dividedBy(MathContext mathContext, BigDecimal other) {
 		return new Money(getAmount().dividedBy(other, mathContext), getUnit());
 	}
 

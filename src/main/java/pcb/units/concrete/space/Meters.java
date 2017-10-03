@@ -24,24 +24,24 @@ public class Meters<A extends Amount<A>>
 	// region implement UnitAmount
 
 	@Override
-	public Meters<A> plus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
+	public Meters<A> plus(MathContext mathContext, UnitAmount<A, SpaceUnit> other) {
 		Meters<A> meters = new Meters<>(other.getAmountIn(getUnit()));
 		return new Meters<>(getAmount().plus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Meters<A> minus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
+	public Meters<A> minus(MathContext mathContext, UnitAmount<A, SpaceUnit> other) {
 		Meters<A> meters = new Meters<>(other.getAmountIn(getUnit()));
 		return new Meters<>(getAmount().minus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Meters<A> multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Meters<A> multipliedBy(MathContext mathContext, BigDecimal other) {
 		return new Meters<>(getAmount().multipliedBy(other, mathContext));
 	}
 
 	@Override
-	public Meters<A> dividedBy(BigDecimal other, MathContext mathContext) {
+	public Meters<A> dividedBy(MathContext mathContext, BigDecimal other) {
 		return new Meters<>(getAmount().dividedBy(other, mathContext));
 	}
 

@@ -24,24 +24,24 @@ public class Seconds
 	// region implement UnitAmount
 
 	@Override
-	public Seconds plus(UnitAmount<BigDecimalAmount, TimeUnit> other, MathContext mathContext) {
+	public Seconds plus(MathContext mathContext, UnitAmount<BigDecimalAmount, TimeUnit> other) {
 		Seconds meters = new Seconds(other.getAmountIn(getUnit()));
 		return new Seconds(getAmount().plus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Seconds minus(UnitAmount<BigDecimalAmount, TimeUnit> other, MathContext mathContext) {
+	public Seconds minus(MathContext mathContext, UnitAmount<BigDecimalAmount, TimeUnit> other) {
 		Seconds meters = new Seconds(other.getAmountIn(getUnit()));
 		return new Seconds(getAmount().minus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Seconds multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Seconds multipliedBy(MathContext mathContext, BigDecimal other) {
 		return new Seconds(getAmount().multipliedBy(other, mathContext));
 	}
 
 	@Override
-	public Seconds dividedBy(BigDecimal other, MathContext mathContext) {
+	public Seconds dividedBy(MathContext mathContext, BigDecimal other) {
 		return new Seconds(getAmount().dividedBy(other, mathContext));
 	}
 

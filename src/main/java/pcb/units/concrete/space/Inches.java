@@ -24,24 +24,24 @@ public class Inches<A extends Amount<A>>
 	// region implement UnitAmount
 
 	@Override
-	public Inches<A> plus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
+	public Inches<A> plus(MathContext mathContext, UnitAmount<A, SpaceUnit> other) {
 		Inches<A> inches = new Inches<>(other.getAmountIn(getUnit()));
 		return new Inches<>(getAmount().plus(inches.getAmount(), mathContext));
 	}
 
 	@Override
-	public Inches<A> minus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
+	public Inches<A> minus(MathContext mathContext, UnitAmount<A, SpaceUnit> other) {
 		Inches<A> inches = new Inches<>(other.getAmountIn(getUnit()));
 		return new Inches<>(getAmount().minus(inches.getAmount(), mathContext));
 	}
 
 	@Override
-	public Inches<A> multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Inches<A> multipliedBy(MathContext mathContext, BigDecimal other) {
 		return new Inches<>(getAmount().multipliedBy(other, mathContext));
 	}
 
 	@Override
-	public Inches<A> dividedBy(BigDecimal other, MathContext mathContext) {
+	public Inches<A> dividedBy(MathContext mathContext, BigDecimal other) {
 		return new Inches<>(getAmount().dividedBy(other, mathContext));
 	}
 
