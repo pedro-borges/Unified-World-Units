@@ -1,4 +1,4 @@
-package pcb.units.dimensions.physics;
+package pcb.units.composite.physics;
 
 import pcb.units.base.ComposedUnit;
 import pcb.units.base.Unit;

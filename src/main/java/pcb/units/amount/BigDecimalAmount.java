@@ -13,6 +13,7 @@ import static java.math.BigDecimal.ZERO;
 public class BigDecimalAmount
 		extends Number
 		implements Amount<BigDecimalAmount> {
+
 	// region private fields
 
 	private final BigDecimal value;

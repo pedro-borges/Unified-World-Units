@@ -1,4 +1,4 @@
-package pcb.units.dimensions.physics;
+package pcb.units.composite.physics;
 
 import pcb.units.amount.Amount;
 import pcb.units.base.AbstractUnitAmount;

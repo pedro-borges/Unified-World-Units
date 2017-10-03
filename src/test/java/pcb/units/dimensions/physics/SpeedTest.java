@@ -2,6 +2,7 @@ package pcb.units.dimensions.physics;
 
 import org.junit.Test;
 import pcb.units.amount.BigDecimalAmount;
+import pcb.units.composite.physics.Speed;
 import pcb.units.concrete.fundamental.si.Meters;
 import pcb.units.concrete.fundamental.si.Seconds;
 import pcb.units.dimensions.fundamental.Space;
