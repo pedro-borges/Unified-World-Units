@@ -14,6 +14,8 @@ public class BigDecimalAmount
 		extends Number
 		implements Amount<BigDecimalAmount> {
 
+	public static final BigDecimalAmount IDENTITY = new BigDecimalAmount(1);
+
 	// region private fields
 
 	private final BigDecimal value;
