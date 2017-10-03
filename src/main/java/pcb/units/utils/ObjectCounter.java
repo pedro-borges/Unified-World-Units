@@ -18,11 +18,11 @@ public class ObjectCounter<T> {
 		inferior = new HashMap<>(source.inferior);
 	}
 
-	public ObjectCounter<T> increase(T key) {
-		return increase(key, 1);
+	public ObjectCounter<T> major(T key) {
+		return major(key, 1);
 	}
 
-	public ObjectCounter<T> increase(T key, int counts) {
+	public ObjectCounter<T> major(T key, int counts) {
 		ObjectCounter<T> result = new ObjectCounter<>(this);
 
 		result.updateMaps(key, result.remove(key) + counts);
@@ -30,11 +30,11 @@ public class ObjectCounter<T> {
 		return result;
 	}
 
-	public ObjectCounter<T> decrease(T key) {
-		return decrease(key, 1);
+	public ObjectCounter<T> minor(T key) {
+		return minor(key, 1);
 	}
 
-	public ObjectCounter<T> decrease(T key, int counts) {
+	public ObjectCounter<T> minor(T key, int counts) {
 		ObjectCounter<T> result = new ObjectCounter<>(this);
 
 		result.updateMaps(key, result.remove(key) - counts);

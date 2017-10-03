@@ -19,7 +19,7 @@ public class BaseUnit<U extends Unit>
 
 	// region constructors
 
-	public BaseUnit(
+	protected BaseUnit(
 			String symbol,
 			String singularName,
 			String pluralName,

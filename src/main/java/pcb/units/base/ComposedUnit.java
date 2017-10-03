@@ -20,11 +20,11 @@ public class ComposedUnit
 
 	// region constructors
 
-	public ComposedUnit() {
+	ComposedUnit() {
 		units = new ObjectCounter<>();
 	}
 
-	private ComposedUnit(ObjectCounter<Unit> units)
+	protected ComposedUnit(ObjectCounter<Unit> units)
 	{
 		this.units = units;
 	}
@@ -34,11 +34,11 @@ public class ComposedUnit
 	// region public methods
 
 	public ComposedUnit multipliedBy(Unit unit) {
-		return new ComposedUnit(units.increase(unit));
+		return new ComposedUnit(units.major(unit));
 	}
 
 	public ComposedUnit dividedBy(Unit unit) {
-		return new ComposedUnit(units.decrease(unit));
+		return new ComposedUnit(units.minor(unit));
 	}
 
 	// endregion
