@@ -37,22 +37,22 @@ public class InterestRate
 
 	@Override
 	public InterestRate plus(MathContext mathContext, UnitAmount<BigDecimalAmount, InterestRateUnit> other) {
-		return new InterestRate(getAmount().plus(other.getAmountIn(getUnit()), mathContext), getUnit());
+		return new InterestRate(plusAmount(mathContext, other), getUnit());
 	}
 
 	@Override
 	public InterestRate minus(MathContext mathContext, UnitAmount<BigDecimalAmount, InterestRateUnit> other) {
-		return new InterestRate(getAmount().minus(other.getAmountIn(getUnit()), mathContext), getUnit());
+		return new InterestRate(minusAmount(mathContext, other), getUnit());
 	}
 
 	@Override
 	public InterestRate multipliedBy(MathContext mathContext, BigDecimal other) {
-		return new InterestRate(getAmount().multipliedBy(other, mathContext), getUnit());
+		return new InterestRate(multipliedByAmount(mathContext, other), getUnit());
 	}
 
 	@Override
 	public InterestRate dividedBy(MathContext mathContext, BigDecimal other) {
-		return new InterestRate(getAmount().dividedBy(other, mathContext), getUnit());
+		return new InterestRate(dividedByAmount(mathContext, other), getUnit());
 	}
 
 	// endregion

@@ -3,6 +3,7 @@ package pcb.units.base;
 import pcb.units.amount.Amount;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -70,6 +71,26 @@ public abstract class AbstractUnitAmount<A extends Amount<A>, U extends Unit>
 	@Override
 	public int hashCode() {
 		return Objects.hash(amount, unit);
+	}
+
+	// endregion
+
+	// region
+
+	protected A plusAmount(MathContext mathContext, UnitAmount<A, U> other) {
+		return getAmount().plus(other.getAmountIn(getUnit()), mathContext);
+	}
+
+	protected A minusAmount(MathContext mathContext, UnitAmount<A, U> other) {
+		return getAmount().minus(other.getAmountIn(getUnit()), mathContext);
+	}
+
+	protected A multipliedByAmount(MathContext mathContext, BigDecimal other) {
+		return getAmount().multipliedBy(other, mathContext);
+	}
+
+	protected A dividedByAmount(MathContext mathContext, BigDecimal other) {
+		return getAmount().dividedBy(other, mathContext);
 	}
 
 	// endregion

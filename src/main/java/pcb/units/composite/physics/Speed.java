@@ -36,22 +36,22 @@ public class Speed
 
 	@Override
 	public Speed plus(MathContext mathContext, UnitAmount<BigDecimalAmount, SpeedUnit> other) {
-		return new Speed(getAmount().plus(other.getAmountIn(getUnit()), mathContext), getUnit());
+		return new Speed(plusAmount(mathContext, other), getUnit());
 	}
 
 	@Override
 	public Speed minus(MathContext mathContext, UnitAmount<BigDecimalAmount, SpeedUnit> other) {
-		return new Speed(getAmount().minus(other.getAmountIn(getUnit()), mathContext), getUnit());
+		return new Speed(minusAmount(mathContext, other), getUnit());
 	}
 
 	@Override
 	public Speed multipliedBy(MathContext mathContext, BigDecimal other) {
-		return new Speed(getAmount().multipliedBy(other, mathContext), getUnit());
+		return new Speed(multipliedByAmount(mathContext, other), getUnit());
 	}
 
 	@Override
 	public Speed dividedBy(MathContext mathContext, BigDecimal other) {
-		return new Speed(getAmount().dividedBy(other, mathContext), getUnit());
+		return new Speed(dividedByAmount(mathContext, other), getUnit());
 	}
 
 	// endregion
