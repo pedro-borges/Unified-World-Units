@@ -14,7 +14,7 @@ import pcb.units.concrete.time.MinuteUnit;
 import pcb.units.concrete.time.Minutes;
 import pcb.units.concrete.time.SecondUnit;
 import pcb.units.concrete.time.Seconds;
-import pcb.units.dimensions.space.Space;
+import pcb.units.dimensions.space.Length;
 import pcb.units.dimensions.time.Time;
 
 import static java.math.BigDecimal.TEN;
@@ -23,9 +23,9 @@ import static java.math.RoundingMode.HALF_EVEN;
 import static org.junit.Assert.assertEquals;
 
 public class SpeedTest {
-	private final Space<BigDecimalAmount> space = new Meters<>(new BigDecimalAmount(10));
+	private final Length length = new Meters(new BigDecimalAmount(10));
 	private final Time time = new Minutes(2);
-	private final Speed speed = Speed.create(DECIMAL64, space, time);
+	private final Speed speed = Speed.create(DECIMAL64, length, time);
 
 	@Test
 	public void testCreateFromSpaceAndTime() {
@@ -35,10 +35,10 @@ public class SpeedTest {
 
 	@Test
 	public void testPlusSpeed() {
-		Space<BigDecimalAmount> space = new Inches<>(new BigDecimalAmount(10));
+		Length length = new Inches(new BigDecimalAmount(10));
 		Time time = new Seconds(1);
 
-		Speed speed = Speed.create(DECIMAL64, space, time);
+		Speed speed = Speed.create(DECIMAL64, length, time);
 
 		Speed result = this.speed.plus(speed, DECIMAL64);
 
@@ -48,10 +48,10 @@ public class SpeedTest {
 
 	@Test
 	public void testMinusSpeed() {
-		Space<BigDecimalAmount> space = new Inches<>(new BigDecimalAmount(10));
+		Length length = new Inches(new BigDecimalAmount(10));
 		Time time = new Seconds(1);
 
-		Speed speed = Speed.create(DECIMAL64, space, time);
+		Speed speed = Speed.create(DECIMAL64, length, time);
 
 		Speed result = this.speed.minus(speed, DECIMAL64);
 
@@ -89,11 +89,11 @@ public class SpeedTest {
 
 	@Test
 	public void testMitchGoesRunning() {
-		Space<BigDecimalAmount> mitchDistance = new Meters<>(new BigDecimalAmount(1000));
+		Length mitchDistance = new Meters(new BigDecimalAmount(1000));
 		Time mitchTime = new Minutes(6);
 		Speed mitchSpeed = Speed.create(DECIMAL64, mitchDistance, mitchTime);
 
-		Space<BigDecimalAmount> wifeDistance = new Miles<>(new BigDecimalAmount(1));
+		Length wifeDistance = new Miles(new BigDecimalAmount(1));
 		Time wifeTime = new Minutes(11);
 		Speed wifeSpeed = Speed.create(DECIMAL64, wifeDistance, wifeTime);
 

@@ -1,21 +1,33 @@
 package pcb.units.concrete.space;
 
-import pcb.units.amount.Amount;
+import pcb.units.amount.BigDecimalAmount;
 import pcb.units.base.AbstractUnitAmount;
 import pcb.units.base.UnitAmount;
-import pcb.units.dimensions.space.Space;
+import pcb.units.dimensions.space.Length;
 import pcb.units.dimensions.space.SpaceUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Meters<A extends Amount<A>>
-		extends AbstractUnitAmount<A, SpaceUnit>
-		implements Space<A> {
+public class Meters
+		extends AbstractUnitAmount<BigDecimalAmount, SpaceUnit>
+		implements Length {
 
 	// region constructors
 
-	public Meters(A amount) {
+	public Meters(Number value) {
+		this(value.toString());
+	}
+
+	public Meters(String value) {
+		this(new BigDecimal(value));
+	}
+
+	public Meters(BigDecimal value) {
+		this(new BigDecimalAmount(value));
+	}
+
+	public Meters(BigDecimalAmount amount) {
 		super(amount, MeterUnit.instance);
 	}
 
@@ -24,25 +36,25 @@ public class Meters<A extends Amount<A>>
 	// region implement UnitAmount
 
 	@Override
-	public Meters<A> plus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
-		Meters<A> meters = new Meters<>(other.getAmountIn(getUnit()));
-		return new Meters<>(getAmount().plus(meters.getAmount(), mathContext));
+	public Meters plus(UnitAmount<BigDecimalAmount, SpaceUnit> other, MathContext mathContext) {
+		Meters meters = new Meters(other.getAmountIn(getUnit()));
+		return new Meters(getAmount().plus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Meters<A> minus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
-		Meters<A> meters = new Meters<>(other.getAmountIn(getUnit()));
-		return new Meters<>(getAmount().minus(meters.getAmount(), mathContext));
+	public Meters minus(UnitAmount<BigDecimalAmount, SpaceUnit> other, MathContext mathContext) {
+		Meters meters = new Meters(other.getAmountIn(getUnit()));
+		return new Meters(getAmount().minus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Meters<A> multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Meters<>(getAmount().multipliedBy(other, mathContext));
+	public Meters multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new Meters(getAmount().multipliedBy(other, mathContext));
 	}
 
 	@Override
-	public Meters<A> dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Meters<>(getAmount().dividedBy(other, mathContext));
+	public Meters dividedBy(BigDecimal other, MathContext mathContext) {
+		return new Meters(getAmount().dividedBy(other, mathContext));
 	}
 
 	// endregion

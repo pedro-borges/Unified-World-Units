@@ -12,9 +12,8 @@ import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
 
 public class AbstractUnitAmountTest {
-	private static final BigDecimalAmount ONE = new BigDecimalAmount(1);
-	private static final AbstractUnitAmount<BigDecimalAmount, SpaceUnit> METER = new Meters<>(ONE);
-	private static final AbstractUnitAmount<BigDecimalAmount, SpaceUnit> INCH = new Inches<>(ONE);
+	private static final AbstractUnitAmount<BigDecimalAmount, SpaceUnit> METER = new Meters(1);
+	private static final AbstractUnitAmount<BigDecimalAmount, SpaceUnit> INCH = new Inches(1);
 
 	@Test
 	public void getValueIn() {

@@ -3,7 +3,7 @@ package pcb.units.composite.physics;
 import pcb.units.amount.BigDecimalAmount;
 import pcb.units.base.AbstractUnitAmount;
 import pcb.units.base.UnitAmount;
-import pcb.units.dimensions.space.Space;
+import pcb.units.dimensions.space.Length;
 import pcb.units.dimensions.time.Time;
 
 import java.math.BigDecimal;
@@ -15,9 +15,9 @@ public class Speed
 
 	// region factory
 
-	public static Speed create(MathContext mathContext, Space<BigDecimalAmount> space, Time time) {
-		BigDecimalAmount amount = space.getAmount().dividedBy(time.getAmount().getValue(), mathContext);
-		SpeedUnit unit = new SpeedUnit(space.getUnit(), time.getUnit());
+	public static Speed create(MathContext mathContext, Length length, Time time) {
+		BigDecimalAmount amount = length.getAmount().dividedBy(time.getAmount().getValue(), mathContext);
+		SpeedUnit unit = new SpeedUnit(length.getUnit(), time.getUnit());
 
 		return new Speed(amount, unit);
 	}
