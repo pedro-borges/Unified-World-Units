@@ -3,9 +3,14 @@ package pcb.units.dimensions.physics;
 import org.junit.Test;
 import pcb.units.amount.BigDecimalAmount;
 import pcb.units.composite.physics.Speed;
+import pcb.units.composite.physics.SpeedUnit;
+import pcb.units.concrete.space.InchUnit;
 import pcb.units.concrete.space.Inches;
+import pcb.units.concrete.space.MeterUnit;
 import pcb.units.concrete.space.Meters;
+import pcb.units.concrete.time.MinuteUnit;
 import pcb.units.concrete.time.Minutes;
+import pcb.units.concrete.time.SecondUnit;
 import pcb.units.concrete.time.Seconds;
 import pcb.units.dimensions.space.Space;
 import pcb.units.dimensions.time.Time;
@@ -70,6 +75,13 @@ public class SpeedTest {
 
 	@Test
 	public void testConvertTo() {
-		// todo
+		assertEquals(new BigDecimalAmount("0.0833"),
+				speed.getAmountIn(new SpeedUnit(MeterUnit.instance, SecondUnit.instance)).withScale(4, HALF_EVEN));
+
+		assertEquals(new BigDecimalAmount("196.85"),
+				speed.getAmountIn(new SpeedUnit(InchUnit.instance, MinuteUnit.instance)).withScale(2, HALF_EVEN));
+
+		assertEquals(new BigDecimalAmount("3.28"),
+				speed.getAmountIn(new SpeedUnit(InchUnit.instance, SecondUnit.instance)).withScale(2, HALF_EVEN));
 	}
 }
