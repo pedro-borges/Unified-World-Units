@@ -18,7 +18,7 @@ public class AbstractUnitAmountTest {
 
 	@Test
 	public void getValueIn() {
-		assertEquals(new BigDecimalAmount("0.0254"), INCH.getAmountIn(new MeterUnit()));
-		assertEquals(new BigDecimalAmount("0.0254").pow(-1, DECIMAL64), METER.getAmountIn(new InchUnit()));
+		assertEquals(new BigDecimalAmount("0.0254"), INCH.getAmountIn(MeterUnit.instance));
+		assertEquals(new BigDecimalAmount("0.0254").pow(-1, DECIMAL64), METER.getAmountIn(InchUnit.instance));
 	}
 }

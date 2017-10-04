@@ -9,7 +9,9 @@ public class AmpereUnit
 		extends BaseUnit<ElectricCurrentUnit>
 		implements ElectricCurrentUnit {
 
-	public AmpereUnit() {
+	public static final AmpereUnit instance = new AmpereUnit();
+
+	private AmpereUnit() {
 		super("A", "ampere", "amperes",
 				Function.identity(),
 				Function.identity());

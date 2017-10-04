@@ -9,7 +9,9 @@ public class GramUnit
 		extends BaseUnit<MassUnit>
 		implements MassUnit {
 
-	public GramUnit() {
+	public static final GramUnit instance = new GramUnit();
+
+	private GramUnit() {
 		super("g", "gram", "grams",
 				Function.identity(),
 				Function.identity());

@@ -14,7 +14,7 @@ public class Grams
 		implements Mass {
 
 	public Grams(BigDecimalAmount amount) {
-		super(amount, new GramUnit());
+		super(amount, GramUnit.instance);
 	}
 
 	@Override

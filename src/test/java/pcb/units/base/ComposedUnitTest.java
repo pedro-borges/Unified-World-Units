@@ -11,9 +11,9 @@ import static org.junit.Assert.assertEquals;
 
 public class ComposedUnitTest {
 	private static final ComposedUnit inchesPerSquareMinute = new ComposedUnit()
-			.multipliedBy(new InchUnit())
-			.dividedBy(new MinuteUnit())
-			.dividedBy(new MinuteUnit());
+			.multipliedBy(InchUnit.instance)
+			.dividedBy(MinuteUnit.instance)
+			.dividedBy(MinuteUnit.instance);
 
 	@Test
 	public void testSymbol() {

@@ -16,7 +16,7 @@ public class Meters<A extends Amount<A>>
 	// region constructors
 
 	public Meters(A amount) {
-		super(amount, new MeterUnit());
+		super(amount, MeterUnit.instance);
 	}
 
 	// endregion

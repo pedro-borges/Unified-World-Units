@@ -16,7 +16,7 @@ public class Minutes
 	// region constructors
 
 	public Minutes(BigDecimalAmount amount) {
-		super(amount, new MinuteUnit());
+		super(amount, MinuteUnit.instance);
 	}
 
 	// endregion

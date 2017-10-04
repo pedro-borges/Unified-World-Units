@@ -14,7 +14,7 @@ public class Amperes
 		implements ElectricCurrent {
 
 	public Amperes(BigDecimalAmount amount) {
-		super(amount, new AmpereUnit());
+		super(amount, AmpereUnit.instance);
 	}
 
 	@Override

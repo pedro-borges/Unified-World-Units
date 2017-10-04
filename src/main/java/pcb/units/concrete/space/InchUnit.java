@@ -11,9 +11,11 @@ public class InchUnit
 		extends BaseUnit<SpaceUnit>
 		implements SpaceUnit {
 
+	public static final InchUnit instance = new InchUnit();
+
 	private static final BigDecimal METERS_PER_INCH = new BigDecimal("0.0254");
 
-	public InchUnit() {
+	private InchUnit() {
 		super("in", "inch", "inches",
 				value -> value.multiply(METERS_PER_INCH, DECIMAL64),
 				value -> value.divide(METERS_PER_INCH, DECIMAL64)

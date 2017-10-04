@@ -16,7 +16,7 @@ public class Inches<A extends Amount<A>>
 	// region constructors
 
 	public Inches(A amount) {
-		super(amount, new InchUnit());
+		super(amount, InchUnit.instance);
 	}
 
 	// endregion

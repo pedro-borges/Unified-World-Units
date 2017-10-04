@@ -9,7 +9,9 @@ public class SecondUnit
 		extends BaseUnit<TimeUnit>
 		implements TimeUnit {
 
-	public SecondUnit() {
+	public static final SecondUnit instance = new SecondUnit();
+
+	private SecondUnit() {
 		super("s", "second", "seconds",
 				Function.identity(),
 				Function.identity());
