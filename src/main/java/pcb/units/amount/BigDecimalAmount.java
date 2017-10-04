@@ -10,10 +10,16 @@ import java.util.function.Function;
 import static java.math.BigDecimal.ONE;
 import static java.math.BigDecimal.ZERO;
 
+/**
+ * An implementation of Amount for uni-dimensional values based on {@code java.lang.BigDecimal} representation.
+ */
 public class BigDecimalAmount
 		extends Number
 		implements Amount<BigDecimalAmount> {
 
+	/**
+	 * The identity amount i.e. 1
+	 */
 	public static final BigDecimalAmount IDENTITY = new BigDecimalAmount(1);
 
 	// region private fields
@@ -40,68 +46,102 @@ public class BigDecimalAmount
 
 	// region implement Amount
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public BigDecimal getValue() {
 		return value;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public BigDecimal getValue(AmountLabel<BigDecimalAmount> label) {
+	public BigDecimal getValue(Dimension<BigDecimalAmount> dimension) {
 		return value;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int getScale() {
 		return value.scale();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public BigDecimalAmount withScale(int newScale, RoundingMode roundingMode) {
-		return new BigDecimalAmount(value.setScale(newScale, roundingMode));
+	public BigDecimalAmount withScale(int scale, RoundingMode roundingMode) {
+		return new BigDecimalAmount(value.setScale(scale, roundingMode));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public BigDecimalAmount plus(BigDecimalAmount other, MathContext mathContext) {
 		return new BigDecimalAmount(this.value.add(other.value, mathContext));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public BigDecimalAmount minus(BigDecimalAmount other, MathContext mathContext) {
 		return new BigDecimalAmount(value.subtract(other.value, mathContext));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public BigDecimalAmount multipliedBy(BigDecimal other, MathContext mathContext) {
 		return new BigDecimalAmount(value.multiply(other, mathContext));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public BigDecimalAmount dividedBy(BigDecimal other, MathContext mathContext) {
 		return new BigDecimalAmount(value.divide(other, mathContext));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public BigDecimalAmount pow(int magnitude, MathContext mathContext) {
-		return new BigDecimalAmount(value.pow(magnitude, mathContext));
+	public BigDecimalAmount pow(int n, MathContext mathContext) {
+		return new BigDecimalAmount(value.pow(n, mathContext));
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public BigDecimalAmount translated(Function<BigDecimal, BigDecimal> transformation) {
+		return new BigDecimalAmount(transformation.apply(value));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isZero() {
+		return value.compareTo(ZERO) == 0;
+	}
+
+	// endregion
 
 	public BigDecimal dividedBy(BigDecimalAmount other, MathContext mathContext) {
 		return value.divide(other.value, mathContext);
 	}
 
-	@Override
-	public BigDecimalAmount translated(Function<BigDecimal, BigDecimal> translation) {
-		return new BigDecimalAmount(translation.apply(value));
-	}
-
-	// endregion
-
 	public boolean isPositive() {
 		return value.compareTo(ZERO) > 0;
-	}
-
-	public boolean isZero() {
-		return value.compareTo(ZERO) == 0;
 	}
 
 	public boolean isNegative() {
@@ -142,31 +182,49 @@ public class BigDecimalAmount
 
 	// region extend Number
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public int intValue() {
 		return value.intValue();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public long longValue() {
 		return value.longValue();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public float floatValue() {
 		return value.floatValue();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public double doubleValue() {
 		return value.doubleValue();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public byte byteValue() {
 		return value.byteValue();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public short shortValue() {
 		return value.shortValue();

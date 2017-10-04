@@ -24,24 +24,24 @@ public class Miles<A extends Amount<A>>
 	// region implement UnitAmount
 
 	@Override
-	public Miles<A> plus(MathContext mathContext, UnitAmount<A, SpaceUnit> other) {
+	public Miles<A> plus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
 		Miles<A> inches = new Miles<>(other.getAmountIn(getUnit()));
 		return new Miles<>(getAmount().plus(inches.getAmount(), mathContext));
 	}
 
 	@Override
-	public Miles<A> minus(MathContext mathContext, UnitAmount<A, SpaceUnit> other) {
+	public Miles<A> minus(UnitAmount<A, SpaceUnit> other, MathContext mathContext) {
 		Miles<A> inches = new Miles<>(other.getAmountIn(getUnit()));
 		return new Miles<>(getAmount().minus(inches.getAmount(), mathContext));
 	}
 
 	@Override
-	public Miles<A> multipliedBy(MathContext mathContext, BigDecimal other) {
+	public Miles<A> multipliedBy(BigDecimal other, MathContext mathContext) {
 		return new Miles<>(getAmount().multipliedBy(other, mathContext));
 	}
 
 	@Override
-	public Miles<A> dividedBy(MathContext mathContext, BigDecimal other) {
+	public Miles<A> dividedBy(BigDecimal other, MathContext mathContext) {
 		return new Miles<>(getAmount().dividedBy(other, mathContext));
 	}
 

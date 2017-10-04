@@ -1,6 +1,5 @@
 package pcb.units.concrete.finance;
 
-import com.sun.istack.internal.Nullable;
 import pcb.units.base.BaseUnit;
 import pcb.units.dimensions.finance.CurrencyUnit;
 
@@ -30,7 +29,7 @@ public class MoneyUnit
 		this(currency, null);
 	}
 
-	public MoneyUnit(Currency currency, @Nullable CurrencyConversionProvider currencyConversionProvider) {
+	public MoneyUnit(Currency currency, CurrencyConversionProvider currencyConversionProvider) {
 		super(currency.getSymbol(),
 				currency.getDisplayName(),
 				currency.getDisplayName(),

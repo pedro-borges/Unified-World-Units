@@ -11,12 +11,20 @@ import java.util.function.Function;
 import static java.math.BigDecimal.ZERO;
 import static java.math.MathContext.DECIMAL64;
 
+/**
+ * An implementation of Amount for tri-dimensional values based on {@code java.lang.BigDecimal} representations.
+ */
 public class BigDecimal3DAmount
 		implements Amount<BigDecimal3DAmount> {
 
 	// region inner classes
 
-	public enum AmountLabel3D implements AmountLabel<BigDecimal3DAmount> {
+	/**
+	 * The dimensions of a tri-dimensional amount
+	 *
+	 * Can either be seen as [A, B, C] or as [X, Y, Z]
+	 */
+	public enum Dimension3D implements Dimension<BigDecimal3DAmount> {
 		A(0),
 		X(0),
 		B(1),
@@ -26,7 +34,7 @@ public class BigDecimal3DAmount
 
 		private final int index;
 
-		AmountLabel3D(int index) {
+		Dimension3D(int index) {
 			this.index = index;
 		}
 
@@ -74,8 +82,8 @@ public class BigDecimal3DAmount
 	}
 
 	@Override
-	public BigDecimal getValue(AmountLabel<BigDecimal3DAmount> label) {
-		return value[label.index()];
+	public BigDecimal getValue(Dimension<BigDecimal3DAmount> dimension) {
+		return value[dimension.index()];
 	}
 
 	@Override
@@ -87,11 +95,11 @@ public class BigDecimal3DAmount
 	}
 
 	@Override
-	public BigDecimal3DAmount withScale(int newScale, RoundingMode roundingMode) {
+	public BigDecimal3DAmount withScale(int scale, RoundingMode roundingMode) {
 		return new BigDecimal3DAmount(
-				value[0].setScale(newScale, roundingMode),
-				value[1].setScale(newScale, roundingMode),
-				value[2].setScale(newScale, roundingMode));
+				value[0].setScale(scale, roundingMode),
+				value[1].setScale(scale, roundingMode),
+				value[2].setScale(scale, roundingMode));
 	}
 
 	@Override
@@ -127,28 +135,32 @@ public class BigDecimal3DAmount
 	}
 
 	@Override
-	public BigDecimal3DAmount pow(int magnitude, MathContext mathContext) {
+	public BigDecimal3DAmount pow(int n, MathContext mathContext) {
 		return new BigDecimal3DAmount(
-				value[0].pow(magnitude, mathContext),
-				value[1].pow(magnitude, mathContext),
-				value[2].pow(magnitude, mathContext));
+				value[0].pow(n, mathContext),
+				value[1].pow(n, mathContext),
+				value[2].pow(n, mathContext));
 	}
 
 	@Override
-	public BigDecimal3DAmount translated(Function<BigDecimal, BigDecimal> translation) {
+	public BigDecimal3DAmount translated(Function<BigDecimal, BigDecimal> transformation) {
 		return new BigDecimal3DAmount(
-				translation.apply(value[0]),
-				translation.apply(value[1]),
-				translation.apply(value[2]));
+				transformation.apply(value[0]),
+				transformation.apply(value[1]),
+				transformation.apply(value[2]));
 	}
 
-	// endregion
-
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public boolean isZero() {
 		return (value[0].compareTo(ZERO) == 0) &&
 				(value[1].compareTo(ZERO) == 0) &&
 				(value[2].compareTo(ZERO) == 0);
 	}
+
+	// endregion
 
 	// region override Object
 

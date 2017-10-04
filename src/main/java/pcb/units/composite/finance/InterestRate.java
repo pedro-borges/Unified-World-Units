@@ -48,23 +48,23 @@ public class InterestRate
 	// region implement UnitAmount
 
 	@Override
-	public InterestRate plus(MathContext mathContext, UnitAmount<BigDecimalAmount, InterestRateUnit> other) {
-		return new InterestRate(plusAmount(mathContext, other), getUnit());
+	public InterestRate plus(UnitAmount<BigDecimalAmount, InterestRateUnit> other, MathContext mathContext) {
+		return new InterestRate(plusAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public InterestRate minus(MathContext mathContext, UnitAmount<BigDecimalAmount, InterestRateUnit> other) {
-		return new InterestRate(minusAmount(mathContext, other), getUnit());
+	public InterestRate minus(UnitAmount<BigDecimalAmount, InterestRateUnit> other, MathContext mathContext) {
+		return new InterestRate(minusAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public InterestRate multipliedBy(MathContext mathContext, BigDecimal other) {
-		return new InterestRate(multipliedByAmount(mathContext, other), getUnit());
+	public InterestRate multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new InterestRate(multipliedByAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public InterestRate dividedBy(MathContext mathContext, BigDecimal other) {
-		return new InterestRate(dividedByAmount(mathContext, other), getUnit());
+	public InterestRate dividedBy(BigDecimal other, MathContext mathContext) {
+		return new InterestRate(dividedByAmount(other, mathContext), getUnit());
 	}
 
 	// endregion

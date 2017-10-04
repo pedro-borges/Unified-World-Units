@@ -36,23 +36,23 @@ public class Grams
 	// region implement UnitAmount
 
 	@Override
-	public Grams plus(MathContext mathContext, UnitAmount<BigDecimalAmount, MassUnit> other) {
-		return new Grams(plusAmount(mathContext, other));
+	public Grams plus(UnitAmount<BigDecimalAmount, MassUnit> other, MathContext mathContext) {
+		return new Grams(plusAmount(other, mathContext));
 	}
 
 	@Override
-	public Grams minus(MathContext mathContext, UnitAmount<BigDecimalAmount, MassUnit> other) {
-		return new Grams(minusAmount(mathContext, other));
+	public Grams minus(UnitAmount<BigDecimalAmount, MassUnit> other, MathContext mathContext) {
+		return new Grams(minusAmount(other, mathContext));
 	}
 
 	@Override
-	public Grams multipliedBy(MathContext mathContext, BigDecimal other) {
-		return new Grams(multipliedByAmount(mathContext, other));
+	public Grams multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new Grams(multipliedByAmount(other, mathContext));
 	}
 
 	@Override
-	public Grams dividedBy(MathContext mathContext, BigDecimal other) {
-		return new Grams(dividedByAmount(mathContext, other));
+	public Grams dividedBy(BigDecimal other, MathContext mathContext) {
+		return new Grams(dividedByAmount(other, mathContext));
 	}
 
 	// endregion

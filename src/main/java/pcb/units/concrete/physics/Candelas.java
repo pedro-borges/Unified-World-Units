@@ -36,22 +36,22 @@ public class Candelas
 	// region implement UnitAmount
 
 	@Override
-	public Candelas plus(MathContext mathContext, UnitAmount<BigDecimalAmount, LuminousIntensityUnit> other) {
-		return new Candelas(plusAmount(mathContext, other));
+	public Candelas plus(UnitAmount<BigDecimalAmount, LuminousIntensityUnit> other, MathContext mathContext) {
+		return new Candelas(plusAmount(other, mathContext));
 	}
 
 	@Override
-	public Candelas minus(MathContext mathContext, UnitAmount<BigDecimalAmount, LuminousIntensityUnit> other) {
-		return new Candelas(minusAmount(mathContext, other));
+	public Candelas minus(UnitAmount<BigDecimalAmount, LuminousIntensityUnit> other, MathContext mathContext) {
+		return new Candelas(minusAmount(other, mathContext));
 	}
 
 	@Override
-	public Candelas multipliedBy(MathContext mathContext, BigDecimal other) {
-		return new Candelas(multipliedByAmount(mathContext, other));
+	public Candelas multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new Candelas(multipliedByAmount(other, mathContext));
 	}
 
 	@Override
-	public Candelas dividedBy(MathContext mathContext, BigDecimal other) {
-		return new Candelas(dividedByAmount(mathContext, other));
+	public Candelas dividedBy(BigDecimal other, MathContext mathContext) {
+		return new Candelas(dividedByAmount(other, mathContext));
 	}
 }

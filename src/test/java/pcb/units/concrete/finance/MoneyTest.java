@@ -33,7 +33,7 @@ public class MoneyTest {
 		Money money1 = new Money(1, GBP);
 		Money money2 = new Money(10, GBP);
 
-		assertEquals(new Money(11, GBP), money1.plus(UNLIMITED, money2));
+		assertEquals(new Money(11, GBP), money1.plus(money2, UNLIMITED));
 	}
 
 	@Test(expected = CurrencyMismatchException.class)
@@ -41,7 +41,7 @@ public class MoneyTest {
 		Money money1 = new Money(1, GBP);
 		Money money2 = new Money(10, USD);
 
-		money1.plus(UNLIMITED, money2);
+		money1.plus(money2, UNLIMITED);
 	}
 
 	@Test
@@ -49,7 +49,7 @@ public class MoneyTest {
 		Money money1 = new Money(1, GBP);
 		Money money2 = new Money(10, GBP);
 
-		assertEquals(new Money(-9, GBP), money1.minus(UNLIMITED, money2));
+		assertEquals(new Money(-9, GBP), money1.minus(money2, UNLIMITED));
 	}
 
 	@Test(expected = CurrencyMismatchException.class)
@@ -57,6 +57,6 @@ public class MoneyTest {
 		Money money1 = new Money(1, GBP);
 		Money money2 = new Money(10, USD);
 
-		money1.minus(UNLIMITED, money2);
+		money1.minus(money2, UNLIMITED);
 	}
 }

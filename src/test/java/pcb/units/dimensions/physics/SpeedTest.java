@@ -38,7 +38,7 @@ public class SpeedTest {
 
 		Speed speed = Speed.create(DECIMAL64, space, time);
 
-		Speed result = this.speed.plus(DECIMAL64, speed);
+		Speed result = this.speed.plus(speed, DECIMAL64);
 
 		assertEquals(new BigDecimalAmount("20.24"), result.getAmount().withScale(2, HALF_EVEN));
 		assertEquals("m/min", result.getUnit().getSymbol());
@@ -51,7 +51,7 @@ public class SpeedTest {
 
 		Speed speed = Speed.create(DECIMAL64, space, time);
 
-		Speed result = this.speed.minus(DECIMAL64, speed);
+		Speed result = this.speed.minus(speed, DECIMAL64);
 
 		assertEquals(new BigDecimalAmount("-10.24"), result.getAmount().withScale(2, HALF_EVEN));
 		assertEquals("m/min", result.getUnit().getSymbol());
@@ -59,7 +59,7 @@ public class SpeedTest {
 
 	@Test
 	public void testMultipliedBy() {
-		Speed result = speed.multipliedBy(DECIMAL64, TEN);
+		Speed result = speed.multipliedBy(TEN, DECIMAL64);
 
 		assertEquals(new BigDecimalAmount("50"), result.getAmount().withScale(0, HALF_EVEN));
 		assertEquals("m/min", result.getUnit().getSymbol());
@@ -67,7 +67,7 @@ public class SpeedTest {
 
 	@Test
 	public void testDividedBy() {
-		Speed result = speed.dividedBy(DECIMAL64, TEN);
+		Speed result = speed.dividedBy(TEN, DECIMAL64);
 
 		assertEquals(new BigDecimalAmount("0.5"), result.getAmount().withScale(1, HALF_EVEN));
 		assertEquals("m/min", result.getUnit().getSymbol());

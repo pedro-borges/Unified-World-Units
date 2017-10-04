@@ -45,21 +45,33 @@ public class ComposedUnit
 
 	// region implement Unit
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getSymbol() {
 		return buildString(Unit::getSymbol, Unit::getSymbol, "/");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getSingularName() {
 		return buildString(Unit::getSingularName, Unit::getSingularName, " per ");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getPluralName() {
 		return buildString(Unit::getPluralName, Unit::getSingularName, " per ");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Function<BigDecimal, BigDecimal> getTranslationToCanonical() {
 		Function<BigDecimal, BigDecimal> result = Function.identity();
@@ -79,6 +91,9 @@ public class ComposedUnit
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Function<BigDecimal, BigDecimal> getTranslationFromCanonical() {
 		Function<BigDecimal, BigDecimal> result = Function.identity();

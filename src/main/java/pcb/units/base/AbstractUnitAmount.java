@@ -77,19 +77,19 @@ public abstract class AbstractUnitAmount<A extends Amount<A>, U extends Unit>
 
 	// region
 
-	protected A plusAmount(MathContext mathContext, UnitAmount<A, U> other) {
+	protected A plusAmount(UnitAmount<A, U> other, MathContext mathContext) {
 		return getAmount().plus(other.getAmountIn(getUnit()), mathContext);
 	}
 
-	protected A minusAmount(MathContext mathContext, UnitAmount<A, U> other) {
+	protected A minusAmount(UnitAmount<A, U> other, MathContext mathContext) {
 		return getAmount().minus(other.getAmountIn(getUnit()), mathContext);
 	}
 
-	protected A multipliedByAmount(MathContext mathContext, BigDecimal other) {
+	protected A multipliedByAmount(BigDecimal other, MathContext mathContext) {
 		return getAmount().multipliedBy(other, mathContext);
 	}
 
-	protected A dividedByAmount(MathContext mathContext, BigDecimal other) {
+	protected A dividedByAmount(BigDecimal other, MathContext mathContext) {
 		return getAmount().dividedBy(other, mathContext);
 	}
 

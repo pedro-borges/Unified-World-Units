@@ -37,26 +37,41 @@ public class BaseUnit<U extends Unit>
 
 	// region implement Unit
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getSymbol() {
 		return symbol;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getSingularName() {
 		return singularName;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getPluralName() {
 		return pluralName;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Function<BigDecimal, BigDecimal> getTranslationToCanonical() {
 		return translationToCanonical;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Function<BigDecimal, BigDecimal> getTranslationFromCanonical() {
 		return translationFromCanonical;

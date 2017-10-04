@@ -47,23 +47,23 @@ public class Speed
 	// region implement UnitAmount
 
 	@Override
-	public Speed plus(MathContext mathContext, UnitAmount<BigDecimalAmount, SpeedUnit> other) {
-		return new Speed(plusAmount(mathContext, other), getUnit());
+	public Speed plus(UnitAmount<BigDecimalAmount, SpeedUnit> other, MathContext mathContext) {
+		return new Speed(plusAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public Speed minus(MathContext mathContext, UnitAmount<BigDecimalAmount, SpeedUnit> other) {
-		return new Speed(minusAmount(mathContext, other), getUnit());
+	public Speed minus(UnitAmount<BigDecimalAmount, SpeedUnit> other, MathContext mathContext) {
+		return new Speed(minusAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public Speed multipliedBy(MathContext mathContext, BigDecimal other) {
-		return new Speed(multipliedByAmount(mathContext, other), getUnit());
+	public Speed multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new Speed(multipliedByAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public Speed dividedBy(MathContext mathContext, BigDecimal other) {
-		return new Speed(dividedByAmount(mathContext, other), getUnit());
+	public Speed dividedBy(BigDecimal other, MathContext mathContext) {
+		return new Speed(dividedByAmount(other, mathContext), getUnit());
 	}
 
 	// endregion

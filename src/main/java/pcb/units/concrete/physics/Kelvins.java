@@ -36,23 +36,23 @@ public class Kelvins
 	// region implement UnitAmount
 
 	@Override
-	public Kelvins plus(MathContext mathContext, UnitAmount<BigDecimalAmount, TemperatureUnit> other) {
-		return new Kelvins(plusAmount(mathContext, other));
+	public Kelvins plus(UnitAmount<BigDecimalAmount, TemperatureUnit> other, MathContext mathContext) {
+		return new Kelvins(plusAmount(other, mathContext));
 	}
 
 	@Override
-	public Kelvins minus(MathContext mathContext, UnitAmount<BigDecimalAmount, TemperatureUnit> other) {
-		return new Kelvins(minusAmount(mathContext, other));
+	public Kelvins minus(UnitAmount<BigDecimalAmount, TemperatureUnit> other, MathContext mathContext) {
+		return new Kelvins(minusAmount(other, mathContext));
 	}
 
 	@Override
-	public Kelvins multipliedBy(MathContext mathContext, BigDecimal other) {
-		return new Kelvins(multipliedByAmount(mathContext, other));
+	public Kelvins multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new Kelvins(multipliedByAmount(other, mathContext));
 	}
 
 	@Override
-	public Kelvins dividedBy(MathContext mathContext, BigDecimal other) {
-		return new Kelvins(dividedByAmount(mathContext, other));
+	public Kelvins dividedBy(BigDecimal other, MathContext mathContext) {
+		return new Kelvins(dividedByAmount(other, mathContext));
 	}
 
 	// endregion

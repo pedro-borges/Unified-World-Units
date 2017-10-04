@@ -36,24 +36,24 @@ public class Minutes
 	// region implement UnitAmount
 
 	@Override
-	public Minutes plus(MathContext mathContext, UnitAmount<BigDecimalAmount, TimeUnit> other) {
+	public Minutes plus(UnitAmount<BigDecimalAmount, TimeUnit> other, MathContext mathContext) {
 		Minutes meters = new Minutes(other.getAmountIn(getUnit()));
 		return new Minutes(getAmount().plus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Minutes minus(MathContext mathContext, UnitAmount<BigDecimalAmount, TimeUnit> other) {
+	public Minutes minus(UnitAmount<BigDecimalAmount, TimeUnit> other, MathContext mathContext) {
 		Minutes meters = new Minutes(other.getAmountIn(getUnit()));
 		return new Minutes(getAmount().minus(meters.getAmount(), mathContext));
 	}
 
 	@Override
-	public Minutes multipliedBy(MathContext mathContext, BigDecimal other) {
+	public Minutes multipliedBy(BigDecimal other, MathContext mathContext) {
 		return new Minutes(getAmount().multipliedBy(other, mathContext));
 	}
 
 	@Override
-	public Minutes dividedBy(MathContext mathContext, BigDecimal other) {
+	public Minutes dividedBy(BigDecimal other, MathContext mathContext) {
 		return new Minutes(getAmount().dividedBy(other, mathContext));
 	}
 

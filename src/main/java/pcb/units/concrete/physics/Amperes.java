@@ -36,23 +36,23 @@ public class Amperes
 	// region implement UnitAmount
 
 	@Override
-	public Amperes plus(MathContext mathContext, UnitAmount<BigDecimalAmount, ElectricCurrentUnit> other) {
-		return new Amperes(plusAmount(mathContext, other));
+	public Amperes plus(UnitAmount<BigDecimalAmount, ElectricCurrentUnit> other, MathContext mathContext) {
+		return new Amperes(plusAmount(other, mathContext));
 	}
 
 	@Override
-	public UnitAmount<BigDecimalAmount, ElectricCurrentUnit> minus(MathContext mathContext, UnitAmount<BigDecimalAmount, ElectricCurrentUnit> other) {
-		return new Amperes(minusAmount(mathContext, other));
+	public UnitAmount<BigDecimalAmount, ElectricCurrentUnit> minus(UnitAmount<BigDecimalAmount, ElectricCurrentUnit> other, MathContext mathContext) {
+		return new Amperes(minusAmount(other, mathContext));
 	}
 
 	@Override
-	public UnitAmount<BigDecimalAmount, ElectricCurrentUnit> multipliedBy(MathContext mathContext, BigDecimal other) {
-		return new Amperes(multipliedByAmount(mathContext, other));
+	public UnitAmount<BigDecimalAmount, ElectricCurrentUnit> multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new Amperes(multipliedByAmount(other, mathContext));
 	}
 
 	@Override
-	public UnitAmount<BigDecimalAmount, ElectricCurrentUnit> dividedBy(MathContext mathContext, BigDecimal other) {
-		return new Amperes(dividedByAmount(mathContext, other));
+	public UnitAmount<BigDecimalAmount, ElectricCurrentUnit> dividedBy(BigDecimal other, MathContext mathContext) {
+		return new Amperes(dividedByAmount(other, mathContext));
 	}
 
 	// endregion
