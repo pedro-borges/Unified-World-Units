@@ -68,5 +68,10 @@ public class InterestRate
 		return new InterestRate(dividedByAmount(other, mathContext), getUnit());
 	}
 
+	@Override
+	public InterestRate convertTo(InterestRateUnit unit) {
+		return new InterestRate(getAmountIn(unit), unit);
+	}
+
 	// endregion
 }

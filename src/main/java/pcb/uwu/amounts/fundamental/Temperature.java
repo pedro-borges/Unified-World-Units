@@ -54,5 +54,10 @@ public class Temperature
 		return new Temperature(dividedByAmount(other, mathContext), getUnit());
 	}
 
+	@Override
+	public Temperature convertTo(TemperatureUnit unit) {
+		return new Temperature(getAmountIn(unit), unit);
+	}
+
 	// endregion
 }

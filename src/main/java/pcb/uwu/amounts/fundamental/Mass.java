@@ -54,5 +54,10 @@ public class Mass
 		return new Mass(dividedByAmount(other, mathContext), getUnit());
 	}
 
+	@Override
+	public Mass convertTo(MassUnit unit) {
+		return new Mass(getAmountIn(unit), unit);
+	}
+
 	// endregion
 }

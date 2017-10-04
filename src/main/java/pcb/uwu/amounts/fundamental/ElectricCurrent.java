@@ -40,18 +40,23 @@ public class ElectricCurrent
 	}
 
 	@Override
-	public UnitAmount<BigDecimalAmount, ElectricCurrentUnit> minus(UnitAmount<BigDecimalAmount, ElectricCurrentUnit> other, MathContext mathContext) {
+	public ElectricCurrent minus(UnitAmount<BigDecimalAmount, ElectricCurrentUnit> other, MathContext mathContext) {
 		return new ElectricCurrent(minusAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public UnitAmount<BigDecimalAmount, ElectricCurrentUnit> multipliedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricCurrent multipliedBy(BigDecimal other, MathContext mathContext) {
 		return new ElectricCurrent(multipliedByAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public UnitAmount<BigDecimalAmount, ElectricCurrentUnit> dividedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricCurrent dividedBy(BigDecimal other, MathContext mathContext) {
 		return new ElectricCurrent(dividedByAmount(other, mathContext), getUnit());
+	}
+
+	@Override
+	public ElectricCurrent convertTo(ElectricCurrentUnit unit) {
+		return new ElectricCurrent(getAmountIn(unit), unit);
 	}
 
 	// endregion

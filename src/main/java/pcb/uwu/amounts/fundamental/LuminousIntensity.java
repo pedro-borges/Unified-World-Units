@@ -53,4 +53,9 @@ public class LuminousIntensity
 	public LuminousIntensity dividedBy(BigDecimal other, MathContext mathContext) {
 		return new LuminousIntensity(dividedByAmount(other, mathContext), getUnit());
 	}
+
+	@Override
+	public LuminousIntensity convertTo(LuminousIntensityUnit unit) {
+		return new LuminousIntensity(getAmountIn(unit), unit);
+	}
 }

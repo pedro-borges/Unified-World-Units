@@ -54,5 +54,10 @@ public class Length
 		return new Length(dividedByAmount(other, mathContext), getUnit());
 	}
 
+	@Override
+	public Length convertTo(LengthUnit unit) {
+		return new Length(getAmountIn(unit), unit);
+	}
+
 	// endregion
 }

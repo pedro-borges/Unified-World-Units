@@ -75,6 +75,11 @@ public class Money
 		throw new CurrencyMismatchException("Unable to convert {} to {}", getUnit().getCurrency(), newUnit.getCurrency());
 	}
 
+	@Override
+	public Money convertTo(MoneyUnit unit) {
+		return new Money(getAmountIn(unit), unit);
+	}
+
 	// endregion
 
 	// region private methods

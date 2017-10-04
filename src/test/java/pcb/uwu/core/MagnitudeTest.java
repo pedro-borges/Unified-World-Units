@@ -1,4 +1,4 @@
-package pcb.uwu.amount;
+package pcb.uwu.core;
 
 import org.junit.Test;
 

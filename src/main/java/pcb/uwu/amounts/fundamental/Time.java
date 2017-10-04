@@ -54,5 +54,10 @@ public class Time
 		return new Time(dividedByAmount(other, mathContext), getUnit());
 	}
 
+	@Override
+	public Time convertTo(TimeUnit unit) {
+		return new Time(getAmountIn(unit), unit);
+	}
+
 	// endregion
 }

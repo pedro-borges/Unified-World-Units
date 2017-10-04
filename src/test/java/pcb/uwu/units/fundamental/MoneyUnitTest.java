@@ -1,9 +1,8 @@
-package pcb.uwu.units.concrete.finance;
+package pcb.uwu.units.fundamental;
 
 import org.junit.Test;
 import pcb.uwu.contracts.CurrencyConversionProvider;
 import pcb.uwu.exceptions.InvalidCurrencyException;
-import pcb.uwu.units.fundamental.MoneyUnit;
 
 import java.math.BigDecimal;
 import java.util.Currency;

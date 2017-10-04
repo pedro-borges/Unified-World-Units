@@ -1,7 +1,6 @@
-package pcb.uwu.units.concrete.finance;
+package pcb.uwu.amounts.fundamental;
 
 import org.junit.Test;
-import pcb.uwu.amounts.fundamental.Money;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.exceptions.CurrencyMismatchException;
 

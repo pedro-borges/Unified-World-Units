@@ -68,5 +68,10 @@ public class Speed
 		return new Speed(dividedByAmount(other, mathContext), getUnit());
 	}
 
+	@Override
+	public Speed convertTo(SpeedUnit unit) {
+		return new Speed(getAmountIn(unit), unit);
+	}
+
 	// endregion
 }

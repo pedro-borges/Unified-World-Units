@@ -1,7 +1,6 @@
-package pcb.uwu.amount;
+package pcb.uwu.core;
 
 import org.junit.Test;
-import pcb.uwu.core.BigDecimalAmount;
 
 import java.math.BigDecimal;
 

@@ -57,4 +57,6 @@ public interface UnitAmount<A extends Amount<A>, U extends Unit> {
 	 * @return the converted {@code Amount}
 	 */
 	A getAmountIn(U unit);
+
+	UnitAmount<A, U> convertTo(U unit);
 }

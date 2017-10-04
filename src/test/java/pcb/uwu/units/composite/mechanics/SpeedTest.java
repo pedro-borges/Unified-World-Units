@@ -1,11 +1,10 @@
-package pcb.uwu.units.fundamental.physics;
+package pcb.uwu.units.composite.mechanics;
 
 import org.junit.Test;
 import pcb.uwu.amounts.composite.mechanics.Speed;
 import pcb.uwu.amounts.fundamental.Length;
 import pcb.uwu.amounts.fundamental.Time;
 import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.units.composite.mechanics.SpeedUnit;
 
 import static java.math.BigDecimal.TEN;
 import static java.math.MathContext.DECIMAL64;
