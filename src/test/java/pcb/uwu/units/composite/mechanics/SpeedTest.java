@@ -86,13 +86,15 @@ public class SpeedTest {
 	public void testMitchGoesRunning() {
 		Length mitchDistance = new Length(1000, METER);
 		Time mitchTime = new Time(6, MINUTE);
-		Speed mitchSpeed = Speed.create(DECIMAL64, mitchDistance, mitchTime);
+		Speed mitchSpeed = mitchDistance.dividedBy(mitchTime, DECIMAL64);
 
 		Length wifeDistance = new Length(1, MILE);
 		Time wifeTime = new Time(11, MINUTE);
-		Speed wifeSpeed = Speed.create(DECIMAL64, wifeDistance, wifeTime);
+		Speed wifeSpeed = wifeDistance.dividedBy(wifeTime, DECIMAL64);
 
-		System.out.println("Mitch's speed: " + mitchSpeed.getAmountIn(new SpeedUnit(METER, HOUR)));
-		System.out.println("Wife's speed: " + wifeSpeed.getAmountIn(new SpeedUnit(METER, HOUR)));
+		SpeedUnit METERS_PER_HOUR = new SpeedUnit(METER, HOUR);
+
+		System.out.println("Mitch's speed: " + mitchSpeed.convertTo(METERS_PER_HOUR));
+		System.out.println("Wife's speed: " + wifeSpeed.convertTo(METERS_PER_HOUR));
 	}
 }

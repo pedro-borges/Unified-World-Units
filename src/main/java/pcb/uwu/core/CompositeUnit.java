@@ -4,9 +4,10 @@ import pcb.uwu.utils.ObjectCounter;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 
-public class ComposedUnit
+public class CompositeUnit
 		implements Unit {
 
 	private static final char NEGATIVE = '⁻';
@@ -20,11 +21,11 @@ public class ComposedUnit
 
 	// region constructors
 
-	ComposedUnit() {
+	CompositeUnit() {
 		units = new ObjectCounter<>();
 	}
 
-	protected ComposedUnit(ObjectCounter<Unit> units)
+	protected CompositeUnit(ObjectCounter<Unit> units)
 	{
 		this.units = units;
 	}
@@ -33,12 +34,12 @@ public class ComposedUnit
 
 	// region public methods
 
-	public ComposedUnit multipliedBy(Unit unit) {
-		return new ComposedUnit(units.major(unit));
+	public CompositeUnit multipliedBy(Unit unit) {
+		return new CompositeUnit(units.major(unit));
 	}
 
-	public ComposedUnit dividedBy(Unit unit) {
-		return new ComposedUnit(units.minor(unit));
+	public CompositeUnit dividedBy(Unit unit) {
+		return new CompositeUnit(units.minor(unit));
 	}
 
 	// endregion
@@ -172,6 +173,31 @@ public class ComposedUnit
 		}
 
 		return result;
+	}
+
+	// endregion
+
+	// region override Object
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof CompositeUnit) {
+			CompositeUnit other = (CompositeUnit) obj;
+
+			return Objects.equals(this.units, other.units);
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return units.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return getSymbol();
 	}
 
 	// endregion

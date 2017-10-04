@@ -52,6 +52,26 @@ public abstract class AbstractUnitAmount<A extends Amount<A>, U extends Unit>
 
 	// endregion
 
+	// region protected methods
+
+	protected A plusAmount(UnitAmount<A, U> other, MathContext mathContext) {
+		return getAmount().plus(other.getAmountIn(getUnit()), mathContext);
+	}
+
+	protected A minusAmount(UnitAmount<A, U> other, MathContext mathContext) {
+		return getAmount().minus(other.getAmountIn(getUnit()), mathContext);
+	}
+
+	protected A multipliedByAmount(BigDecimal other, MathContext mathContext) {
+		return getAmount().multipliedBy(other, mathContext);
+	}
+
+	protected A dividedByAmount(BigDecimal other, MathContext mathContext) {
+		return getAmount().dividedBy(other, mathContext);
+	}
+
+	// endregion
+
 	// override Object
 
 	@Override
@@ -71,24 +91,9 @@ public abstract class AbstractUnitAmount<A extends Amount<A>, U extends Unit>
 		return Objects.hash(amount, unit);
 	}
 
-	// endregion
-
-	// region
-
-	protected A plusAmount(UnitAmount<A, U> other, MathContext mathContext) {
-		return getAmount().plus(other.getAmountIn(getUnit()), mathContext);
-	}
-
-	protected A minusAmount(UnitAmount<A, U> other, MathContext mathContext) {
-		return getAmount().minus(other.getAmountIn(getUnit()), mathContext);
-	}
-
-	protected A multipliedByAmount(BigDecimal other, MathContext mathContext) {
-		return getAmount().multipliedBy(other, mathContext);
-	}
-
-	protected A dividedByAmount(BigDecimal other, MathContext mathContext) {
-		return getAmount().dividedBy(other, mathContext);
+	@Override
+	public String toString() {
+		return amount.toString() + unit.toString();
 	}
 
 	// endregion

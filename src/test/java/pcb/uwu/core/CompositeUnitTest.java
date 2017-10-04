@@ -9,8 +9,8 @@ import static org.junit.Assert.assertEquals;
 import static pcb.uwu.units.fundamental.LengthUnit.INCH;
 import static pcb.uwu.units.fundamental.TimeUnit.MINUTE;
 
-public class ComposedUnitTest {
-	private static final ComposedUnit inchesPerSquareMinute = new ComposedUnit()
+public class CompositeUnitTest {
+	private static final CompositeUnit inchesPerSquareMinute = new CompositeUnit()
 			.multipliedBy(INCH)
 			.dividedBy(MINUTE)
 			.dividedBy(MINUTE);
@@ -46,16 +46,16 @@ public class ComposedUnitTest {
 
 	@Test
 	public void testBuildPower() {
-		ComposedUnit composedUnit = new ComposedUnit();
+		CompositeUnit compositeUnit = new CompositeUnit();
 
-		assertEquals("⁻¹¹", composedUnit.buildPower(-11));
-		assertEquals("⁻¹⁰", composedUnit.buildPower(-10));
-		assertEquals("⁻⁹", composedUnit.buildPower(-9));
-		assertEquals("⁻¹", composedUnit.buildPower(-1));
-		assertEquals("⁰", composedUnit.buildPower(0));
-		assertEquals("", composedUnit.buildPower(1));
-		assertEquals("⁹", composedUnit.buildPower(9));
-		assertEquals("¹⁰", composedUnit.buildPower(10));
-		assertEquals("¹¹", composedUnit.buildPower(11));
+		assertEquals("⁻¹¹", compositeUnit.buildPower(-11));
+		assertEquals("⁻¹⁰", compositeUnit.buildPower(-10));
+		assertEquals("⁻⁹", compositeUnit.buildPower(-9));
+		assertEquals("⁻¹", compositeUnit.buildPower(-1));
+		assertEquals("⁰", compositeUnit.buildPower(0));
+		assertEquals("", compositeUnit.buildPower(1));
+		assertEquals("⁹", compositeUnit.buildPower(9));
+		assertEquals("¹⁰", compositeUnit.buildPower(10));
+		assertEquals("¹¹", compositeUnit.buildPower(11));
 	}
 }

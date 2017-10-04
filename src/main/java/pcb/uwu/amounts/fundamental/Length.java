@@ -1,8 +1,10 @@
 package pcb.uwu.amounts.fundamental;
 
+import pcb.uwu.amounts.composite.mechanics.Speed;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
+import pcb.uwu.units.composite.mechanics.SpeedUnit;
 import pcb.uwu.units.fundamental.LengthUnit;
 
 import java.math.BigDecimal;
@@ -57,6 +59,16 @@ public class Length
 	@Override
 	public Length convertTo(LengthUnit unit) {
 		return new Length(getAmountIn(unit), unit);
+	}
+
+	// endregion
+
+	// region composition
+
+	public Speed dividedBy(Time time, MathContext mathContext) {
+		return new Speed(
+				getAmount().dividedBy(time.getAmount().getValue(), mathContext),
+				new SpeedUnit(getUnit(), time.getUnit()));
 	}
 
 	// endregion
