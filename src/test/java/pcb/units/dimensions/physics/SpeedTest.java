@@ -8,6 +8,8 @@ import pcb.units.concrete.space.InchUnit;
 import pcb.units.concrete.space.Inches;
 import pcb.units.concrete.space.MeterUnit;
 import pcb.units.concrete.space.Meters;
+import pcb.units.concrete.space.Miles;
+import pcb.units.concrete.time.HourUnit;
 import pcb.units.concrete.time.MinuteUnit;
 import pcb.units.concrete.time.Minutes;
 import pcb.units.concrete.time.SecondUnit;
@@ -83,5 +85,19 @@ public class SpeedTest {
 
 		assertEquals(new BigDecimalAmount("3.28"),
 				speed.getAmountIn(new SpeedUnit(InchUnit.instance, SecondUnit.instance)).withScale(2, HALF_EVEN));
+	}
+
+	@Test
+	public void testMitchGoesRunning() {
+		Space<BigDecimalAmount> mitchDistance = new Meters<>(new BigDecimalAmount(1000));
+		Time mitchTime = new Minutes(6);
+		Speed mitchSpeed = Speed.create(DECIMAL64, mitchDistance, mitchTime);
+
+		Space<BigDecimalAmount> wifeDistance = new Miles<>(new BigDecimalAmount(1));
+		Time wifeTime = new Minutes(11);
+		Speed wifeSpeed = Speed.create(DECIMAL64, wifeDistance, wifeTime);
+
+		System.out.println("Mitch's speed: " + mitchSpeed.getAmountIn(new SpeedUnit(MeterUnit.instance, HourUnit.instance)));
+		System.out.println("Wife's speed: " + wifeSpeed.getAmountIn(new SpeedUnit(MeterUnit.instance, HourUnit.instance)));
 	}
 }
