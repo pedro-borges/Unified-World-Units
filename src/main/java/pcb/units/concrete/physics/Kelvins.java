@@ -13,9 +13,27 @@ public class Kelvins
 		extends AbstractUnitAmount<BigDecimalAmount, TemperatureUnit>
 		implements Temperature {
 
+	// region constructors
+
+	public Kelvins(Number value) {
+		this(value.toString());
+	}
+
+	public Kelvins(String value) {
+		this(new BigDecimal(value));
+	}
+
+	public Kelvins(BigDecimal value) {
+		this(new BigDecimalAmount(value));
+	}
+
 	public Kelvins(BigDecimalAmount amount) {
 		super(amount, KelvinUnit.instance);
 	}
+
+	// endregion
+
+	// region implement UnitAmount
 
 	@Override
 	public Kelvins plus(MathContext mathContext, UnitAmount<BigDecimalAmount, TemperatureUnit> other) {
@@ -36,4 +54,6 @@ public class Kelvins
 	public Kelvins dividedBy(MathContext mathContext, BigDecimal other) {
 		return new Kelvins(dividedByAmount(mathContext, other));
 	}
+
+	// endregion
 }

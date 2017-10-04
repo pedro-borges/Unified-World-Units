@@ -13,9 +13,27 @@ public class Grams
 		extends AbstractUnitAmount<BigDecimalAmount, MassUnit>
 		implements Mass {
 
+	// region constructors
+
+	public Grams(Number value) {
+		this(value.toString());
+	}
+
+	public Grams(String value) {
+		this(new BigDecimal(value));
+	}
+
+	public Grams(BigDecimal value) {
+		this(new BigDecimalAmount(value));
+	}
+
 	public Grams(BigDecimalAmount amount) {
 		super(amount, GramUnit.instance);
 	}
+
+	// endregion
+
+	// region implement UnitAmount
 
 	@Override
 	public Grams plus(MathContext mathContext, UnitAmount<BigDecimalAmount, MassUnit> other) {
@@ -36,4 +54,6 @@ public class Grams
 	public Grams dividedBy(MathContext mathContext, BigDecimal other) {
 		return new Grams(dividedByAmount(mathContext, other));
 	}
+
+	// endregion
 }

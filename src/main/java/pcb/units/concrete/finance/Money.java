@@ -17,6 +17,18 @@ public class Money
 
 	// region constructors
 
+	public Money(Number value, java.util.Currency currency) {
+		this(value.toString(), currency);
+	}
+
+	public Money(String value, java.util.Currency currency) {
+		this(new BigDecimal(value), currency);
+	}
+
+	public Money(BigDecimal value, java.util.Currency currency) {
+		this(new BigDecimalAmount(value), currency);
+	}
+
 	public Money(BigDecimalAmount amount, java.util.Currency currency) {
 		this(amount, new MoneyUnit(currency));
 	}

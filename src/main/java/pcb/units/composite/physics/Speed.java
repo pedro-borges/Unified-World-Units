@@ -26,7 +26,19 @@ public class Speed
 
 	// region constructors
 
-	private Speed(BigDecimalAmount amount, SpeedUnit unit) {
+	public Speed(Number value, SpeedUnit unit) {
+		this(value.toString(), unit);
+	}
+
+	public Speed(String value, SpeedUnit unit) {
+		this(new BigDecimal(value), unit);
+	}
+
+	public Speed(BigDecimal value, SpeedUnit unit) {
+		this(new BigDecimalAmount(value), unit);
+	}
+
+	public Speed(BigDecimalAmount amount, SpeedUnit unit) {
 		super(amount, unit);
 	}
 

@@ -15,6 +15,18 @@ public class Seconds
 
 	// region constructors
 
+	public Seconds(Number value) {
+		this(value.toString());
+	}
+
+	public Seconds(String value) {
+		this(new BigDecimal(value));
+	}
+
+	public Seconds(BigDecimal value) {
+		this(new BigDecimalAmount(value));
+	}
+
 	public Seconds(BigDecimalAmount amount) {
 		super(amount, SecondUnit.instance);
 	}

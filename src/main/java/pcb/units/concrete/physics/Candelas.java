@@ -13,9 +13,27 @@ public class Candelas
 		extends AbstractUnitAmount<BigDecimalAmount, LuminousIntensityUnit>
 		implements LuminousIntensity {
 
+	// region constructors
+
+	public Candelas(Number value) {
+		this(value.toString());
+	}
+
+	public Candelas(String value) {
+		this(new BigDecimal(value));
+	}
+
+	public Candelas(BigDecimal value) {
+		this(new BigDecimalAmount(value));
+	}
+
 	public Candelas(BigDecimalAmount amount) {
 		super(amount, CandelaUnit.instance);
 	}
+
+	// endregion
+
+	// region implement UnitAmount
 
 	@Override
 	public Candelas plus(MathContext mathContext, UnitAmount<BigDecimalAmount, LuminousIntensityUnit> other) {

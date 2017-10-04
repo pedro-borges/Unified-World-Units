@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 
 public class SpeedTest {
 	private final Space<BigDecimalAmount> space = new Meters<>(new BigDecimalAmount(10));
-	private final Time time = new Minutes(new BigDecimalAmount(2));
+	private final Time time = new Minutes(2);
 	private final Speed speed = Speed.create(DECIMAL64, space, time);
 
 	@Test
@@ -29,7 +29,7 @@ public class SpeedTest {
 	@Test
 	public void testPlusSpeed() {
 		Space<BigDecimalAmount> space = new Inches<>(new BigDecimalAmount(10));
-		Time time = new Seconds(new BigDecimalAmount(1));
+		Time time = new Seconds(1);
 
 		Speed speed = Speed.create(DECIMAL64, space, time);
 
@@ -42,7 +42,7 @@ public class SpeedTest {
 	@Test
 	public void testMinusSpeed() {
 		Space<BigDecimalAmount> space = new Inches<>(new BigDecimalAmount(10));
-		Time time = new Seconds(new BigDecimalAmount(1));
+		Time time = new Seconds(1);
 
 		Speed speed = Speed.create(DECIMAL64, space, time);
 
@@ -66,5 +66,10 @@ public class SpeedTest {
 
 		assertEquals(new BigDecimalAmount("0.5"), result.getAmount().withScale(1, HALF_EVEN));
 		assertEquals("m/min", result.getUnit().getSymbol());
+	}
+
+	@Test
+	public void testConvertTo() {
+		// todo
 	}
 }

@@ -13,9 +13,27 @@ public class Amperes
 		extends AbstractUnitAmount<BigDecimalAmount, ElectricCurrentUnit>
 		implements ElectricCurrent {
 
+	// region constructors
+
+	public Amperes(Number value) {
+		this(value.toString());
+	}
+
+	public Amperes(String value) {
+		this(new BigDecimal(value));
+	}
+
+	public Amperes(BigDecimal value) {
+		this(new BigDecimalAmount(value));
+	}
+
 	public Amperes(BigDecimalAmount amount) {
 		super(amount, AmpereUnit.instance);
 	}
+
+	// endregion
+
+	// region implement UnitAmount
 
 	@Override
 	public Amperes plus(MathContext mathContext, UnitAmount<BigDecimalAmount, ElectricCurrentUnit> other) {
@@ -36,4 +54,6 @@ public class Amperes
 	public UnitAmount<BigDecimalAmount, ElectricCurrentUnit> dividedBy(MathContext mathContext, BigDecimal other) {
 		return new Amperes(dividedByAmount(mathContext, other));
 	}
+
+	// endregion
 }

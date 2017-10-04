@@ -27,7 +27,19 @@ public class InterestRate
 
 	// region constructors
 
-	private InterestRate(BigDecimalAmount amount, InterestRateUnit unit) {
+	public InterestRate(Number value, InterestRateUnit unit) {
+		this(value.toString(), unit);
+	}
+
+	public InterestRate(String value, InterestRateUnit unit) {
+		this(new BigDecimal(value), unit);
+	}
+
+	public InterestRate(BigDecimal value, InterestRateUnit unit) {
+		this(new BigDecimalAmount(value), unit);
+	}
+
+	public InterestRate(BigDecimalAmount amount, InterestRateUnit unit) {
 		super(amount, unit);
 	}
 

@@ -15,6 +15,18 @@ public class Minutes
 
 	// region constructors
 
+	public Minutes(Number value) {
+		this(value.toString());
+	}
+
+	public Minutes(String value) {
+		this(new BigDecimal(value));
+	}
+
+	public Minutes(BigDecimal value) {
+		this(new BigDecimalAmount(value));
+	}
+
 	public Minutes(BigDecimalAmount amount) {
 		super(amount, MinuteUnit.instance);
 	}
