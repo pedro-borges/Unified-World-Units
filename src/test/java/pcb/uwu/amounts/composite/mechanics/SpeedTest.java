@@ -1,7 +1,6 @@
-package pcb.uwu.units.composite.mechanics;
+package pcb.uwu.amounts.composite.mechanics;
 
 import org.junit.Test;
-import pcb.uwu.amounts.composite.mechanics.Speed;
 import pcb.uwu.amounts.fundamental.Length;
 import pcb.uwu.amounts.fundamental.Time;
 import pcb.uwu.core.BigDecimalAmount;

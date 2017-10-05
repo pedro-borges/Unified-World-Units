@@ -5,7 +5,6 @@ import pcb.uwu.amounts.fundamental.Time;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.composite.mechanics.SpeedUnit;
 import pcb.uwu.units.fundamental.LengthUnit;
 
 import java.math.BigDecimal;

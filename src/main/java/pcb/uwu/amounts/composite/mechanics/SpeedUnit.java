@@ -1,4 +1,4 @@
-package pcb.uwu.units.composite.mechanics;
+package pcb.uwu.amounts.composite.mechanics;
 
 import pcb.uwu.core.CompositeUnit;
 import pcb.uwu.core.Unit;

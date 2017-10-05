@@ -1,10 +1,10 @@
 package pcb.uwu.amounts.fundamental;
 
 import pcb.uwu.amounts.composite.mechanics.Speed;
+import pcb.uwu.amounts.composite.mechanics.SpeedUnit;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.composite.mechanics.SpeedUnit;
 import pcb.uwu.units.fundamental.LengthUnit;
 
 import java.math.BigDecimal;

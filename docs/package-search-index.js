@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"pcb.uwu.amounts.composite.finance"},{"l":"pcb.uwu.amounts.composite.mechanics"},{"l":"pcb.uwu.amounts.fundamental"},{"l":"pcb.uwu.contracts"},{"l":"pcb.uwu.core"},{"l":"pcb.uwu.exceptions"},{"l":"pcb.uwu.units.composite.finance"},{"l":"pcb.uwu.units.fundamental"},{"l":"pcb.uwu.utils"}]
