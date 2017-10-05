@@ -1,9 +1,12 @@
 package pcb.uwu.amounts.fundamental;
 
+import pcb.uwu.amounts.composite.finance.InterestRate;
+import pcb.uwu.amounts.composite.finance.Rent;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.exceptions.CurrencyMismatchException;
+import pcb.uwu.units.composite.finance.RentUnit;
 import pcb.uwu.units.fundamental.MoneyUnit;
 
 import java.math.BigDecimal;
@@ -12,9 +15,7 @@ import java.util.Currency;
 
 import static java.math.RoundingMode.HALF_EVEN;
 
-public class Money
-		extends AbstractUnitAmount<MoneyUnit>
-		implements UnitAmount<MoneyUnit> {
+public class Money extends AbstractUnitAmount<MoneyUnit> {
 
 	// region constructors
 
@@ -88,6 +89,26 @@ public class Money
 		if (!getUnit().getCurrency().equals(other.getUnit().getCurrency())) {
 			throw new CurrencyMismatchException("Cant add {} to {}", other.getUnit().getPluralName(), getUnit().getPluralName());
 		}
+	}
+
+	// endregion
+
+	// region composition
+
+	public Rent dividedBy(Time time, MathContext mathContext) {
+		BigDecimalAmount amount = getAmount()
+				.dividedBy(time.getAmount().getValue(), mathContext);
+		RentUnit unit = new RentUnit(getUnit(), time.getUnit());
+
+		return new Rent(amount, unit);
+	}
+
+	public Rent multipliedBy(InterestRate interestRate, MathContext mathContext) {
+		BigDecimalAmount amount = getAmount()
+				.multipliedBy(interestRate.getAmount().getValue(), mathContext);
+		RentUnit unit = new RentUnit(getUnit(), interestRate.getUnit());
+
+		return new Rent(amount, unit);
 	}
 
 	// endregion

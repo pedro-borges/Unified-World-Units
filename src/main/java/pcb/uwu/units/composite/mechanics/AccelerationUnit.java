@@ -5,9 +5,7 @@ import pcb.uwu.core.Unit;
 import pcb.uwu.units.fundamental.TimeUnit;
 import pcb.uwu.utils.ObjectCounter;
 
-public class AccelerationUnit
-		extends CompositeUnit
-		implements Unit {
+public class AccelerationUnit extends CompositeUnit {
 
 	public AccelerationUnit(SpeedUnit lengthUnit, TimeUnit timeUnit) {
 		super(new ObjectCounter<Unit>()

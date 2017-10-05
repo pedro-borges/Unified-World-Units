@@ -5,9 +5,7 @@ import pcb.uwu.core.Unit;
 import pcb.uwu.units.fundamental.MassUnit;
 import pcb.uwu.utils.ObjectCounter;
 
-public class ForceUnit
-		extends CompositeUnit
-		implements Unit {
+public class ForceUnit extends CompositeUnit {
 
 	public ForceUnit(MassUnit massUnit, AccelerationUnit accelerationUnit) {
 		super(new ObjectCounter<Unit>()

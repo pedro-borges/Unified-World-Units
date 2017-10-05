@@ -1,6 +1,5 @@
 package pcb.uwu.amounts.composite.finance;
 
-import pcb.uwu.amounts.fundamental.Time;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
@@ -10,20 +9,7 @@ import pcb.uwu.units.composite.finance.InterestRateUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static pcb.uwu.core.BigDecimalAmount.IDENTITY;
-
 public class InterestRate extends AbstractUnitAmount<InterestRateUnit> {
-
-	// region factories
-
-	public static InterestRate create(MathContext mathContext, Time time) {
-		BigDecimalAmount amount = IDENTITY.dividedBy(time.getAmount().getValue(), mathContext);
-		InterestRateUnit unit = new InterestRateUnit(time.getUnit());
-
-		return new InterestRate(amount, unit);
-	}
-
-	// endregion
 
 	// region constructors
 

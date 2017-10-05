@@ -8,6 +8,8 @@ import java.util.Map;
 public class ObjectCounter<T> {
 	private final Map<T, Integer> superior, inferior;
 
+	// region constructors
+
 	public ObjectCounter() {
 		superior = new HashMap<>();
 		inferior = new HashMap<>();
@@ -17,6 +19,13 @@ public class ObjectCounter<T> {
 		superior = new HashMap<>(source.superior);
 		inferior = new HashMap<>(source.inferior);
 	}
+
+	private ObjectCounter(Map<T, Integer> superior, Map<T, Integer> inferior) {
+		this.superior = superior;
+		this.inferior = inferior;
+	}
+
+	// endregion
 
 	public ObjectCounter<T> major(T key) {
 		return major(key, 1);
@@ -51,6 +60,10 @@ public class ObjectCounter<T> {
 		}
 
 		return 0;
+	}
+
+	public ObjectCounter<T> inverse() {
+		return new ObjectCounter<>(inferior, superior);
 	}
 
 	public List<T> getNegativeKeys() {
