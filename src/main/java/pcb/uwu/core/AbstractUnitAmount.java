@@ -7,8 +7,7 @@ import java.util.function.Function;
 
 import static java.math.MathContext.UNLIMITED;
 
-public abstract class AbstractUnitAmount<U extends Unit>
-		implements UnitAmount<U> {
+public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 	// region private fields
 
@@ -55,31 +54,6 @@ public abstract class AbstractUnitAmount<U extends Unit>
 
 	// endregion
 
-	// region implement UnitAmount
-
-	@Override
-	public BigDecimalAmount getAmount() {
-		return amount;
-	}
-
-	@Override
-	public U getUnit() {
-		return unit;
-	}
-
-	@Override
-	public BigDecimalAmount getAmountIn(U newUnit) {
-		if (getUnit().equals(newUnit)) {
-			return amount;
-		}
-
-		Function<BigDecimal, BigDecimal> translation = getUnit().getTranslationToCanonical().andThen(newUnit.getTranslationFromCanonical());
-
-		return amount.translated(translation);
-	}
-
-	// endregion
-
 	// region protected methods
 
 	protected BigDecimalAmount plusAmount(UnitAmount<U> other, MathContext mathContext) {
@@ -100,7 +74,44 @@ public abstract class AbstractUnitAmount<U extends Unit>
 
 	// endregion
 
-	// override Object
+	// region implement Comparable
+
+	@Override
+	public int compareTo(UnitAmount<U> other) {
+		BigDecimal thisCanonical = this.getUnit().getTranslationToCanonical().apply(this.getAmount().getValue());
+		BigDecimal otherCanonical = other.getUnit().getTranslationToCanonical().apply(other.getAmount().getValue());
+
+		return thisCanonical.compareTo(otherCanonical);
+	}
+
+	// endregion
+
+	// region implement UnitAmount
+
+	@Override
+	public BigDecimalAmount getAmount() {
+		return amount;
+	}
+
+	@Override
+	public U getUnit() {
+		return unit;
+	}
+
+	@Override
+	public BigDecimalAmount getAmountIn(U newUnit) {
+		if (getUnit().equals(newUnit)) {
+			return amount;
+		}
+
+		Function<BigDecimal, BigDecimal> translation = getUnit().getTranslationToCanonical().andThen(newUnit.getTranslationFromCanonical());
+
+		return amount.transformed(translation);
+	}
+
+	// endregion
+
+	// region override Object
 
 	@Override
 	public boolean equals(Object obj) {

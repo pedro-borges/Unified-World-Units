@@ -3,11 +3,7 @@ package pcb.uwu.core;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-/**
- * Represents an amount in a specific unit.
- * @param <U> The {@code Unit}
- */
-public interface UnitAmount<U extends Unit> {
+public interface UnitAmount<U extends Unit> extends Comparable<UnitAmount<U>> {
 	/**
 	 * @return the underlying {@code Amount}
 	 */

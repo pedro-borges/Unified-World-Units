@@ -29,28 +29,28 @@ public class BigDecimalAmountTest {
 	public void withAutoMagnitudeHuge() {
 		BigDecimalAmount amount = new BigDecimalAmount(new BigDecimal("1000000000000000000"));
 
-		assertEquals("1000000T", amount.toDecimalPrefixedString(ALL_MAGNITUDES));
+		assertEquals("1000000T", amount.toStringWithMagnitude(ALL_MAGNITUDES));
 	}
 
 	@Test
 	public void withAutoMagnitudeNormal1() {
 		BigDecimalAmount amount = new BigDecimalAmount(123);
 
-		assertEquals("1.23H", amount.toDecimalPrefixedString(ALL_MAGNITUDES));
+		assertEquals("1.23H", amount.toStringWithMagnitude(ALL_MAGNITUDES));
 	}
 
 	@Test
 	public void withAutoMagnitudeNormal2() {
 		BigDecimalAmount amount = new BigDecimalAmount("123.4");
 
-		assertEquals("123.4", amount.toDecimalPrefixedString(MAJOR_MAGNITUDES));
+		assertEquals("123.4", amount.toStringWithMagnitude(MAJOR_MAGNITUDES));
 	}
 
 	@Test
 	public void withAutoMagnitudeTiny() {
 		BigDecimalAmount amount = new BigDecimalAmount(new BigDecimal("0.0000000000000000001"));
 
-		assertEquals("0.0000001p", amount.toDecimalPrefixedString(ALL_MAGNITUDES));
+		assertEquals("0.0000001p", amount.toStringWithMagnitude(ALL_MAGNITUDES));
 	}
 
 	@Test
@@ -60,7 +60,7 @@ public class BigDecimalAmountTest {
 
 		BigDecimalAmount sum = amount1.plus(amount2, UNLIMITED);
 
-		assertEquals("1.001M", sum.toDecimalPrefixedString(MAJOR_MAGNITUDES));
+		assertEquals("1.001M", sum.toStringWithMagnitude(MAJOR_MAGNITUDES));
 	}
 
 	@Test
@@ -70,7 +70,7 @@ public class BigDecimalAmountTest {
 
 		BigDecimalAmount sum = amount1.plus(amount2, UNLIMITED);
 
-		assertEquals("1.001m", sum.toDecimalPrefixedString(MAJOR_MAGNITUDES));
+		assertEquals("1.001m", sum.toStringWithMagnitude(MAJOR_MAGNITUDES));
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class BigDecimalAmountTest {
 
 		BigDecimalAmount sum = amount1.minus(amount2, UNLIMITED);
 
-		assertEquals("999K", sum.toDecimalPrefixedString(MAJOR_MAGNITUDES));
+		assertEquals("999K", sum.toStringWithMagnitude(MAJOR_MAGNITUDES));
 	}
 
 	@Test
@@ -90,7 +90,7 @@ public class BigDecimalAmountTest {
 
 		BigDecimalAmount sum = amount1.minus(amount2, UNLIMITED);
 
-		assertEquals("-999K", sum.toDecimalPrefixedString(MAJOR_MAGNITUDES));
+		assertEquals("-999K", sum.toStringWithMagnitude(MAJOR_MAGNITUDES));
 	}
 
 	@Test
@@ -100,7 +100,7 @@ public class BigDecimalAmountTest {
 
 		BigDecimalAmount sum = amount1.minus(amount2, UNLIMITED);
 
-		assertEquals("999μ", sum.toDecimalPrefixedString(MAJOR_MAGNITUDES));
+		assertEquals("999μ", sum.toStringWithMagnitude(MAJOR_MAGNITUDES));
 	}
 
 	@Test
@@ -110,6 +110,6 @@ public class BigDecimalAmountTest {
 
 		BigDecimalAmount sum = amount1.minus(amount2, UNLIMITED);
 
-		assertEquals("-999μ", sum.toDecimalPrefixedString(MAJOR_MAGNITUDES));
+		assertEquals("-999μ", sum.toStringWithMagnitude(MAJOR_MAGNITUDES));
 	}
 }

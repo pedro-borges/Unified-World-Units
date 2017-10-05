@@ -13,16 +13,14 @@ import static java.math.BigDecimal.ZERO;
 /**
  * An implementation of Amount for uni-dimensional values based on {@code java.lang.BigDecimal} representation.
  */
-public class BigDecimalAmount
-		extends Number
-		implements Amount<BigDecimalAmount> {
+public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmount> {
+
+	// region private fields
 
 	/**
 	 * The identity amount i.e. 1
 	 */
 	public static final BigDecimalAmount IDENTITY = new BigDecimalAmount(1);
-
-	// region private fields
 
 	private final BigDecimal value;
 
@@ -44,111 +42,139 @@ public class BigDecimalAmount
 
 	// endregion
 
-	// region implement Amount
+	// region public methods
 
 	/**
-	 * {@inheritDoc}
+	 * The scalar representation of this {@code BigDecimalAmount}.
+	 *
+	 * @return the underlying value
 	 */
-	@Override
 	public BigDecimal getValue() {
 		return value;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * The scale of this {@code BigDecimalAmount}.
+	 *
+	 * @return the scale of the {@code BigDecimalAmount}
 	 */
-	@Override
-	public BigDecimal getValue(Dimension<BigDecimalAmount> dimension) {
-		return value;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public int getScale() {
 		return value.scale();
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Set the scale of the {@code BigDecimalAmount}.
+	 *
+	 * @param scale the new scale to set
+	 * @param roundingMode the rounding mode
+	 * @return a new Amount with the new scale
 	 */
-	@Override
 	public BigDecimalAmount withScale(int scale, RoundingMode roundingMode) {
 		return new BigDecimalAmount(value.setScale(scale, roundingMode));
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Sum amount.
+	 * @param other the {@code BigDecimalAmount} to add
+	 * @param mathContext the maths context to consider
+	 * @return a new {@code BigDecimalAmount} representing this + other
 	 */
-	@Override
 	public BigDecimalAmount plus(BigDecimalAmount other, MathContext mathContext) {
 		return new BigDecimalAmount(this.value.add(other.value, mathContext));
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Subtract amount.
+	 * @param other the {@code BigDecimalAmount} to subtract
+	 * @param mathContext the maths context to consider
+	 * @return a new {@code BigDecimalAmount} representing this - other
 	 */
-	@Override
 	public BigDecimalAmount minus(BigDecimalAmount other, MathContext mathContext) {
 		return new BigDecimalAmount(value.subtract(other.value, mathContext));
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Multiply by a scalar.
+	 * @param other the scalar value to multiply by
+	 * @param mathContext the maths context to consider
+	 * @return a new {@code BigDecimalAmount} representing this × other
 	 */
-	@Override
 	public BigDecimalAmount multipliedBy(BigDecimal other, MathContext mathContext) {
 		return new BigDecimalAmount(value.multiply(other, mathContext));
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Divide by a scalar.
+	 * @param other the scalar value to divide by
+	 * @param mathContext the maths context to consider
+	 * @return a new {@code BigDecimalAmount} representing this ÷ other
 	 */
-	@Override
 	public BigDecimalAmount dividedBy(BigDecimal other, MathContext mathContext) {
 		return new BigDecimalAmount(value.divide(other, mathContext));
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Divide amount.
+	 * @param other the {@code BigDecimalAmount} to divide by
+	 * @param mathContext the maths context to consider
+	 * @return the scalar result of dividing this {@code BigDecimalAmount} but another.
 	 */
-	@Override
+	public BigDecimal dividedBy(BigDecimalAmount other, MathContext mathContext) {
+		return value.divide(other.value, mathContext);
+	}
+
+	/**
+	 * Elevate to power.
+	 * @param n the exponential factor
+	 * @param mathContext the maths context to consider
+	 * @return a new {@code BigDecimalAmount} representing thisⁿ
+	 */
 	public BigDecimalAmount pow(int n, MathContext mathContext) {
 		return new BigDecimalAmount(value.pow(n, mathContext));
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * translate with scalar function.
+	 *
+	 * @param transformation a function representing a generic transformation from scalar to scalar
+	 * @return a new {@code BigDecimalAmount} with the transformed value
 	 */
-	@Override
-	public BigDecimalAmount translated(Function<BigDecimal, BigDecimal> transformation) {
+	public BigDecimalAmount transformed(Function<BigDecimal, BigDecimal> transformation) {
 		return new BigDecimalAmount(transformation.apply(value));
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Check if this {@code BigDecimalAmount} is zero.
+	 *
+	 * @return true if this {@code Amount} is zero, false otherwise
 	 */
-	@Override
 	public boolean isZero() {
 		return value.compareTo(ZERO) == 0;
 	}
 
-	// endregion
-
-	public BigDecimal dividedBy(BigDecimalAmount other, MathContext mathContext) {
-		return value.divide(other.value, mathContext);
-	}
-
+	/**
+	 * Check if this {@code BigDecimalAmount} is positive.
+	 *
+	 * @return true if this {@code BigDecimalAmount} is positive, false otherwise
+	 */
 	public boolean isPositive() {
 		return value.compareTo(ZERO) > 0;
 	}
 
+	/**
+	 * Check if this {@code BigDecimalAmount} is negative.
+	 *
+	 * @return true if this {@code BigDecimalAmount} is negative, false otherwise
+	 */
 	public boolean isNegative() {
 		return value.compareTo(ZERO) < 0;
 	}
 
-	public String toDecimalPrefixedString(List<Magnitude> magnitudes) {
+	// endregion
+
+	// region representation
+
+	public String toStringWithMagnitude(List<Magnitude> magnitudes) {
 		if (isZero() || magnitudes.isEmpty())
 		{
 			return value.toPlainString();
@@ -179,6 +205,8 @@ public class BigDecimalAmount
 
 		return scaled.value.toPlainString() + last.symbol();
 	}
+
+	// endregion
 
 	// region extend Number
 
@@ -232,11 +260,20 @@ public class BigDecimalAmount
 
 	// endregion
 
+	// region implement Comparable
+
+	@Override
+	public int compareTo(BigDecimalAmount other) {
+		return this.value.compareTo(other.value);
+	}
+
+	// endregion
+
 	// region override Object
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Amount) {
+		if (obj instanceof BigDecimalAmount) {
 			BigDecimalAmount other = (BigDecimalAmount) obj;
 
 			return Objects.equals(this.value, other.value);
