@@ -15,7 +15,8 @@ public class LengthUnit extends BaseUnit<LengthUnit> {
 	private static final BigDecimal METERS_PER_FOOT = new BigDecimal("0.3048");
 	private static final BigDecimal METERS_PER_INCH = new BigDecimal("0.0254");
 
-	public static final LengthUnit METER = new LengthUnit("m", "meter", "meters",
+	public static final LengthUnit METER = new LengthUnit(
+			"m", "meter", "meters",
 			Function.identity(),
 			Function.identity());
 
