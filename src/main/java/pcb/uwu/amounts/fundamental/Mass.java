@@ -1,46 +1,65 @@
 package pcb.uwu.amounts.fundamental;
 
+import pcb.uwu.amounts.composite.mechanics.Acceleration;
+import pcb.uwu.amounts.composite.mechanics.Force;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
+import pcb.uwu.units.composite.mechanics.ForceUnit;
 import pcb.uwu.units.fundamental.MassUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Mass
-		extends AbstractUnitAmount<BigDecimalAmount, MassUnit>
-		implements UnitAmount<BigDecimalAmount, MassUnit> {
+public class Mass extends AbstractUnitAmount<MassUnit> {
 
 	// region constructors
 
 	public Mass(Number value, MassUnit unit) {
-		this(value.toString(), unit);
+		super(value, unit);
+	}
+
+	public Mass(Number value, Magnitude magnitude, MassUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Mass(String value, MassUnit unit) {
-		this(new BigDecimal(value), unit);
+		super(value, unit);
+	}
+
+	public Mass(String value, Magnitude magnitude, MassUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Mass(BigDecimal value, MassUnit unit) {
-		this(new BigDecimalAmount(value), unit);
+		super(value, unit);
+	}
+
+	public Mass(BigDecimal value, Magnitude magnitude, MassUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Mass(BigDecimalAmount amount, MassUnit unit) {
 		super(amount, unit);
 	}
 
+	public Mass(BigDecimalAmount amount, Magnitude magnitude, MassUnit unit) {
+		super(amount, magnitude, unit);
+	}
+
+
 	// endregion
 
 	// region implement UnitAmount
 
 	@Override
-	public Mass plus(UnitAmount<BigDecimalAmount, MassUnit> other, MathContext mathContext) {
+	public Mass plus(UnitAmount<MassUnit> other, MathContext mathContext) {
 		return new Mass(plusAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public Mass minus(UnitAmount<BigDecimalAmount, MassUnit> other, MathContext mathContext) {
+	public Mass minus(UnitAmount<MassUnit> other, MathContext mathContext) {
 		return new Mass(minusAmount(other, mathContext), getUnit());
 	}
 
@@ -57,6 +76,18 @@ public class Mass
 	@Override
 	public Mass convertTo(MassUnit unit) {
 		return new Mass(getAmountIn(unit), unit);
+	}
+
+	// endregion
+
+	// region composition
+
+	public Force multipliedBy(Acceleration acceleration, MathContext mathContext) {
+		BigDecimalAmount amount = getAmount()
+				.multipliedBy(acceleration.getAmount().getValue(), mathContext);
+		ForceUnit unit = new ForceUnit(getUnit(), acceleration.getUnit());
+
+		return new Force(amount, unit);
 	}
 
 	// endregion

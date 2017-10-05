@@ -2,32 +2,47 @@ package pcb.uwu.amounts.fundamental;
 
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.fundamental.ElectricCurrentUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class ElectricCurrent
-		extends AbstractUnitAmount<BigDecimalAmount, ElectricCurrentUnit>
-		implements UnitAmount<BigDecimalAmount, ElectricCurrentUnit> {
+public class ElectricCurrent extends AbstractUnitAmount<ElectricCurrentUnit> {
 
 	// region constructors
 
 	public ElectricCurrent(Number value, ElectricCurrentUnit unit) {
-		this(value.toString(), unit);
+		super(value, unit);
+	}
+
+	public ElectricCurrent(Number value, Magnitude magnitude, ElectricCurrentUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public ElectricCurrent(String value, ElectricCurrentUnit unit) {
-		this(new BigDecimal(value), unit);
+		super(value, unit);
+	}
+
+	public ElectricCurrent(String value, Magnitude magnitude, ElectricCurrentUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public ElectricCurrent(BigDecimal value, ElectricCurrentUnit unit) {
-		this(new BigDecimalAmount(value), unit);
+		super(value, unit);
+	}
+
+	public ElectricCurrent(BigDecimal value, Magnitude magnitude, ElectricCurrentUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public ElectricCurrent(BigDecimalAmount amount, ElectricCurrentUnit unit) {
 		super(amount, unit);
+	}
+
+	public ElectricCurrent(BigDecimalAmount amount, Magnitude magnitude, ElectricCurrentUnit unit) {
+		super(amount, magnitude, unit);
 	}
 
 	// endregion
@@ -35,12 +50,12 @@ public class ElectricCurrent
 	// region implement UnitAmount
 
 	@Override
-	public ElectricCurrent plus(UnitAmount<BigDecimalAmount, ElectricCurrentUnit> other, MathContext mathContext) {
+	public ElectricCurrent plus(UnitAmount<ElectricCurrentUnit> other, MathContext mathContext) {
 		return new ElectricCurrent(plusAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public ElectricCurrent minus(UnitAmount<BigDecimalAmount, ElectricCurrentUnit> other, MathContext mathContext) {
+	public ElectricCurrent minus(UnitAmount<ElectricCurrentUnit> other, MathContext mathContext) {
 		return new ElectricCurrent(minusAmount(other, mathContext), getUnit());
 	}
 

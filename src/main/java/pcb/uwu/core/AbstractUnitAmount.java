@@ -5,23 +5,51 @@ import java.math.MathContext;
 import java.util.Objects;
 import java.util.function.Function;
 
-public abstract class AbstractUnitAmount<A extends Amount<A>, U extends Unit>
-		implements UnitAmount<A, U> {
+import static java.math.MathContext.UNLIMITED;
+
+public abstract class AbstractUnitAmount<U extends Unit>
+		implements UnitAmount<U> {
 
 	// region private fields
 
-	private final A amount;
+	private final BigDecimalAmount amount;
 	private final U unit;
 
 	// endregion
 
 	// region constructors
 
-	public AbstractUnitAmount(
-			A amount,
-			U unit) {
+	public AbstractUnitAmount(Number value, U unit) {
+		this(value.toString(), unit);
+	}
 
+	public AbstractUnitAmount(Number value, Magnitude magnitude, U unit) {
+		this(value.toString(), magnitude, unit);
+	}
+
+	public AbstractUnitAmount(String value, U unit) {
+		this(new BigDecimal(value), unit);
+	}
+
+	public AbstractUnitAmount(String value, Magnitude magnitude, U unit) {
+		this(new BigDecimal(value), magnitude, unit);
+	}
+
+	public AbstractUnitAmount(BigDecimal value, U unit) {
+		this(new BigDecimalAmount(value), unit);
+	}
+
+	public AbstractUnitAmount(BigDecimal value, Magnitude magnitude, U unit) {
+		this(new BigDecimalAmount(value), magnitude, unit);
+	}
+
+	public AbstractUnitAmount(BigDecimalAmount amount, U unit) {
 		this.amount = amount;
+		this.unit = unit;
+	}
+
+	public AbstractUnitAmount(BigDecimalAmount amount, Magnitude magnitude, U unit) {
+		this.amount = amount.multipliedBy(magnitude.getValue(), UNLIMITED);
 		this.unit = unit;
 	}
 
@@ -30,7 +58,7 @@ public abstract class AbstractUnitAmount<A extends Amount<A>, U extends Unit>
 	// region implement UnitAmount
 
 	@Override
-	public A getAmount() {
+	public BigDecimalAmount getAmount() {
 		return amount;
 	}
 
@@ -40,7 +68,7 @@ public abstract class AbstractUnitAmount<A extends Amount<A>, U extends Unit>
 	}
 
 	@Override
-	public A getAmountIn(U newUnit) {
+	public BigDecimalAmount getAmountIn(U newUnit) {
 		if (getUnit().equals(newUnit)) {
 			return amount;
 		}
@@ -54,19 +82,19 @@ public abstract class AbstractUnitAmount<A extends Amount<A>, U extends Unit>
 
 	// region protected methods
 
-	protected A plusAmount(UnitAmount<A, U> other, MathContext mathContext) {
+	protected BigDecimalAmount plusAmount(UnitAmount<U> other, MathContext mathContext) {
 		return getAmount().plus(other.getAmountIn(getUnit()), mathContext);
 	}
 
-	protected A minusAmount(UnitAmount<A, U> other, MathContext mathContext) {
+	protected BigDecimalAmount minusAmount(UnitAmount<U> other, MathContext mathContext) {
 		return getAmount().minus(other.getAmountIn(getUnit()), mathContext);
 	}
 
-	protected A multipliedByAmount(BigDecimal other, MathContext mathContext) {
+	protected BigDecimalAmount multipliedByAmount(BigDecimal other, MathContext mathContext) {
 		return getAmount().multipliedBy(other, mathContext);
 	}
 
-	protected A dividedByAmount(BigDecimal other, MathContext mathContext) {
+	protected BigDecimalAmount dividedByAmount(BigDecimal other, MathContext mathContext) {
 		return getAmount().dividedBy(other, mathContext);
 	}
 
@@ -77,7 +105,7 @@ public abstract class AbstractUnitAmount<A extends Amount<A>, U extends Unit>
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof UnitAmount) {
-			AbstractUnitAmount<?, ?> other = (AbstractUnitAmount<?, ?>) obj;
+			AbstractUnitAmount<?> other = (AbstractUnitAmount<?>) obj;
 
 			return Objects.equals(this.amount, other.amount) &&
 					Objects.equals(this.unit, other.unit);

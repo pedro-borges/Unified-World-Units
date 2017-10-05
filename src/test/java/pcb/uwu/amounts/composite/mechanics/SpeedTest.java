@@ -4,6 +4,7 @@ import org.junit.Test;
 import pcb.uwu.amounts.fundamental.Length;
 import pcb.uwu.amounts.fundamental.Time;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.units.composite.mechanics.SpeedUnit;
 
 import static java.math.BigDecimal.TEN;
 import static java.math.MathContext.DECIMAL64;
@@ -19,7 +20,7 @@ import static pcb.uwu.units.fundamental.TimeUnit.SECOND;
 public class SpeedTest {
 	private final Length length = new Length(10, METER);
 	private final Time time = new Time(2, MINUTE);
-	private final Speed speed = Speed.create(DECIMAL64, length, time);
+	private final Speed speed = length.dividedBy(time, DECIMAL64);
 
 	@Test
 	public void testCreateFromSpaceAndTime() {
@@ -32,9 +33,9 @@ public class SpeedTest {
 		Length length = new Length(10, INCH);
 		Time time = new Time(1, SECOND);
 
-		Speed speed = Speed.create(DECIMAL64, length, time);
+		Speed other = length.dividedBy(time, DECIMAL64);
 
-		Speed result = this.speed.plus(speed, DECIMAL64);
+		Speed result = speed.plus(other, DECIMAL64);
 
 		assertEquals(new BigDecimalAmount("20.24"), result.getAmount().withScale(2, HALF_EVEN));
 		assertEquals("m/min", result.getUnit().getSymbol());
@@ -45,9 +46,9 @@ public class SpeedTest {
 		Length length = new Length(10, INCH);
 		Time time = new Time(1, SECOND);
 
-		Speed speed = Speed.create(DECIMAL64, length, time);
+		Speed other = length.dividedBy(time, DECIMAL64);
 
-		Speed result = this.speed.minus(speed, DECIMAL64);
+		Speed result = speed.minus(other, DECIMAL64);
 
 		assertEquals(new BigDecimalAmount("-10.24"), result.getAmount().withScale(2, HALF_EVEN));
 		assertEquals("m/min", result.getUnit().getSymbol());

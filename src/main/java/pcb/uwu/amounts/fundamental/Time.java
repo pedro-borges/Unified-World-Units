@@ -2,32 +2,47 @@ package pcb.uwu.amounts.fundamental;
 
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.fundamental.TimeUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Time
-		extends AbstractUnitAmount<BigDecimalAmount, TimeUnit>
-		implements UnitAmount<BigDecimalAmount, TimeUnit> {
+public class Time extends AbstractUnitAmount<TimeUnit> {
 
 	// region constructors
 
 	public Time(Number value, TimeUnit unit) {
-		this(value.toString(), unit);
+		super(value, unit);
+	}
+
+	public Time(Number value, Magnitude magnitude, TimeUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Time(String value, TimeUnit unit) {
-		this(new BigDecimal(value), unit);
+		super(value, unit);
+	}
+
+	public Time(String value, Magnitude magnitude, TimeUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Time(BigDecimal value, TimeUnit unit) {
-		this(new BigDecimalAmount(value), unit);
+		super(value, unit);
+	}
+
+	public Time(BigDecimal value, Magnitude magnitude, TimeUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Time(BigDecimalAmount amount, TimeUnit unit) {
 		super(amount, unit);
+	}
+
+	public Time(BigDecimalAmount amount, Magnitude magnitude, TimeUnit unit) {
+		super(amount, magnitude, unit);
 	}
 
 	// endregion
@@ -35,12 +50,12 @@ public class Time
 	// region implement UnitAmount
 
 	@Override
-	public Time plus(UnitAmount<BigDecimalAmount, TimeUnit> other, MathContext mathContext) {
+	public Time plus(UnitAmount<TimeUnit> other, MathContext mathContext) {
 		return new Time(plusAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public Time minus(UnitAmount<BigDecimalAmount, TimeUnit> other, MathContext mathContext) {
+	public Time minus(UnitAmount<TimeUnit> other, MathContext mathContext) {
 		return new Time(minusAmount(other, mathContext), getUnit());
 	}
 

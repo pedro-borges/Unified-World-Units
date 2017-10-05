@@ -3,6 +3,7 @@ package pcb.uwu.amounts.composite.finance;
 import pcb.uwu.amounts.fundamental.Time;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.finance.InterestRateUnit;
 
@@ -11,9 +12,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.core.BigDecimalAmount.IDENTITY;
 
-public class InterestRate
-		extends AbstractUnitAmount<BigDecimalAmount, InterestRateUnit>
-		implements UnitAmount<BigDecimalAmount, InterestRateUnit> {
+public class InterestRate extends AbstractUnitAmount<InterestRateUnit> {
 
 	// region factories
 
@@ -29,32 +28,49 @@ public class InterestRate
 	// region constructors
 
 	public InterestRate(Number value, InterestRateUnit unit) {
-		this(value.toString(), unit);
+		super(value, unit);
+	}
+
+	public InterestRate(Number value, Magnitude magnitude, InterestRateUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public InterestRate(String value, InterestRateUnit unit) {
-		this(new BigDecimal(value), unit);
+		super(value, unit);
+	}
+
+	public InterestRate(String value, Magnitude magnitude, InterestRateUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public InterestRate(BigDecimal value, InterestRateUnit unit) {
-		this(new BigDecimalAmount(value), unit);
+		super(value, unit);
+	}
+
+	public InterestRate(BigDecimal value, Magnitude magnitude, InterestRateUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public InterestRate(BigDecimalAmount amount, InterestRateUnit unit) {
 		super(amount, unit);
 	}
 
+	public InterestRate(BigDecimalAmount amount, Magnitude magnitude, InterestRateUnit unit) {
+		super(amount, magnitude, unit);
+	}
+
+
 	// endregion
 
 	// region implement UnitAmount
 
 	@Override
-	public InterestRate plus(UnitAmount<BigDecimalAmount, InterestRateUnit> other, MathContext mathContext) {
+	public InterestRate plus(UnitAmount<InterestRateUnit> other, MathContext mathContext) {
 		return new InterestRate(plusAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public InterestRate minus(UnitAmount<BigDecimalAmount, InterestRateUnit> other, MathContext mathContext) {
+	public InterestRate minus(UnitAmount<InterestRateUnit> other, MathContext mathContext) {
 		return new InterestRate(minusAmount(other, mathContext), getUnit());
 	}
 

@@ -1,46 +1,50 @@
 package pcb.uwu.amounts.composite.mechanics;
 
-import pcb.uwu.amounts.fundamental.Length;
 import pcb.uwu.amounts.fundamental.Time;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.fundamental.LengthUnit;
+import pcb.uwu.units.composite.mechanics.AccelerationUnit;
+import pcb.uwu.units.composite.mechanics.SpeedUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Speed
-		extends AbstractUnitAmount<BigDecimalAmount, SpeedUnit>
-		implements UnitAmount<BigDecimalAmount, SpeedUnit> {
-
-	// region factory
-
-	public static <T extends LengthUnit> Speed create(MathContext mathContext, Length length, Time time) {
-		BigDecimalAmount amount = length.getAmount().dividedBy(time.getAmount().getValue(), mathContext);
-		SpeedUnit unit = new SpeedUnit(length.getUnit(), time.getUnit());
-
-		return new Speed(amount, unit);
-	}
-
-	// endregion
+public class Speed extends AbstractUnitAmount<SpeedUnit> {
 
 	// region constructors
 
 	public Speed(Number value, SpeedUnit unit) {
-		this(value.toString(), unit);
+		super(value, unit);
+	}
+
+	public Speed(Number value, Magnitude magnitude, SpeedUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Speed(String value, SpeedUnit unit) {
-		this(new BigDecimal(value), unit);
+		super(value, unit);
+	}
+
+	public Speed(String value, Magnitude magnitude, SpeedUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Speed(BigDecimal value, SpeedUnit unit) {
-		this(new BigDecimalAmount(value), unit);
+		super(value, unit);
+	}
+
+	public Speed(BigDecimal value, Magnitude magnitude, SpeedUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Speed(BigDecimalAmount amount, SpeedUnit unit) {
 		super(amount, unit);
+	}
+
+	public Speed(BigDecimalAmount amount, Magnitude magnitude, SpeedUnit unit) {
+		super(amount, magnitude, unit);
 	}
 
 	// endregion
@@ -48,12 +52,12 @@ public class Speed
 	// region implement UnitAmount
 
 	@Override
-	public Speed plus(UnitAmount<BigDecimalAmount, SpeedUnit> other, MathContext mathContext) {
+	public Speed plus(UnitAmount<SpeedUnit> other, MathContext mathContext) {
 		return new Speed(plusAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public Speed minus(UnitAmount<BigDecimalAmount, SpeedUnit> other, MathContext mathContext) {
+	public Speed minus(UnitAmount<SpeedUnit> other, MathContext mathContext) {
 		return new Speed(minusAmount(other, mathContext), getUnit());
 	}
 
@@ -70,6 +74,18 @@ public class Speed
 	@Override
 	public Speed convertTo(SpeedUnit unit) {
 		return new Speed(getAmountIn(unit), unit);
+	}
+
+	// endregion
+
+	// region composition
+
+	public Acceleration dividedBy(Time time, MathContext mathContext) {
+		BigDecimalAmount amount = getAmount()
+				.dividedBy(time.getAmount().getValue(), mathContext);
+		AccelerationUnit unit = new AccelerationUnit(getUnit(), time.getUnit());
+
+		return new Acceleration(amount, unit);
 	}
 
 	// endregion

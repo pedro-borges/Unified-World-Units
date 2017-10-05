@@ -1,35 +1,52 @@
 package pcb.uwu.amounts.fundamental;
 
 import pcb.uwu.amounts.composite.mechanics.Speed;
-import pcb.uwu.amounts.composite.mechanics.SpeedUnit;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
+import pcb.uwu.units.composite.mechanics.SpeedUnit;
 import pcb.uwu.units.fundamental.LengthUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
 public class Length
-		extends AbstractUnitAmount<BigDecimalAmount, LengthUnit>
-		implements UnitAmount<BigDecimalAmount, LengthUnit> {
+		extends AbstractUnitAmount<LengthUnit>
+		implements UnitAmount<LengthUnit> {
 
 	// region constructors
 
 	public Length(Number value, LengthUnit unit) {
-		this(value.toString(), unit);
+		super(value, unit);
+	}
+
+	public Length(Number value, Magnitude magnitude, LengthUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Length(String value, LengthUnit unit) {
-		this(new BigDecimal(value), unit);
+		super(value, unit);
+	}
+
+	public Length(String value, Magnitude magnitude, LengthUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Length(BigDecimal value, LengthUnit unit) {
-		this(new BigDecimalAmount(value), unit);
+		super(value, unit);
+	}
+
+	public Length(BigDecimal value, Magnitude magnitude, LengthUnit unit) {
+		super(value, magnitude, unit);
 	}
 
 	public Length(BigDecimalAmount amount, LengthUnit unit) {
 		super(amount, unit);
+	}
+
+	public Length(BigDecimalAmount amount, Magnitude magnitude, LengthUnit unit) {
+		super(amount, magnitude, unit);
 	}
 
 	// endregion
@@ -37,12 +54,12 @@ public class Length
 	// region implement UnitAmount
 
 	@Override
-	public Length plus(UnitAmount<BigDecimalAmount, LengthUnit> other, MathContext mathContext) {
+	public Length plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
 		return new Length(plusAmount(other, mathContext), getUnit());
 	}
 
 	@Override
-	public Length minus(UnitAmount<BigDecimalAmount, LengthUnit> other, MathContext mathContext) {
+	public Length minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
 		return new Length(minusAmount(other, mathContext), getUnit());
 	}
 
@@ -66,9 +83,11 @@ public class Length
 	// region composition
 
 	public Speed dividedBy(Time time, MathContext mathContext) {
-		return new Speed(
-				getAmount().dividedBy(time.getAmount().getValue(), mathContext),
-				new SpeedUnit(getUnit(), time.getUnit()));
+		BigDecimalAmount amount = getAmount()
+				.dividedBy(time.getAmount().getValue(), mathContext);
+		SpeedUnit unit = new SpeedUnit(getUnit(), time.getUnit());
+
+		return new Speed(amount, unit);
 	}
 
 	// endregion

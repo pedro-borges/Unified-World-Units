@@ -5,14 +5,13 @@ import java.math.MathContext;
 
 /**
  * Represents an amount in a specific unit.
- * @param <A> The {@code Amount}
  * @param <U> The {@code Unit}
  */
-public interface UnitAmount<A extends Amount<A>, U extends Unit> {
+public interface UnitAmount<U extends Unit> {
 	/**
 	 * @return the underlying {@code Amount}
 	 */
-	A getAmount();
+	BigDecimalAmount getAmount();
 
 	/**
 	 * @return the undelrying {@code Unit}
@@ -25,7 +24,7 @@ public interface UnitAmount<A extends Amount<A>, U extends Unit> {
 	 * @param mathContext the maths context to consider
 	 * @return a new {@code AmountUnit} in this {@code Unit} representing this + other
 	 */
-	UnitAmount<A, U> plus(UnitAmount<A, U> other, MathContext mathContext);
+	UnitAmount<U> plus(UnitAmount<U> other, MathContext mathContext);
 
 	/**
 	 * Subtract another {@code UnitAmount} from this {@code UnitAmount} using unit conversion when necessary.
@@ -33,7 +32,7 @@ public interface UnitAmount<A extends Amount<A>, U extends Unit> {
 	 * @param mathContext the maths context to consider
 	 * @return a new {@code AmountUnit} in this {@code Unit} representing this - other
 	 */
-	UnitAmount<A, U> minus(UnitAmount<A, U> other, MathContext mathContext);
+	UnitAmount<U> minus(UnitAmount<U> other, MathContext mathContext);
 
 	/**
 	 * Multiply this {@code UnitAmount} by a scalar value.
@@ -41,7 +40,7 @@ public interface UnitAmount<A extends Amount<A>, U extends Unit> {
 	 * @param mathContext the maths context to consider
 	 * @return a new {@code AmountUnit} in this {@code Unit} representing this × other
 	 */
-	UnitAmount<A, U> multipliedBy(BigDecimal other, MathContext mathContext);
+	UnitAmount<U> multipliedBy(BigDecimal other, MathContext mathContext);
 
 	/**
 	 * Divide this {@code UnitAmount} by a scalar value.
@@ -49,14 +48,14 @@ public interface UnitAmount<A extends Amount<A>, U extends Unit> {
 	 * @param mathContext the maths context to consider
 	 * @return a new {@code AmountUnit} in this {@code Unit} representing this ÷ other
 	 */
-	UnitAmount<A, U> dividedBy(BigDecimal other, MathContext mathContext);
+	UnitAmount<U> dividedBy(BigDecimal other, MathContext mathContext);
 
 	/**
 	 * Get the underlying {@code Amount} in a new {@code Unit}.
 	 * @param unit the {@code Unit} to convert to
 	 * @return the converted {@code Amount}
 	 */
-	A getAmountIn(U unit);
+	BigDecimalAmount getAmountIn(U unit);
 
-	UnitAmount<A, U> convertTo(U unit);
+	UnitAmount<U> convertTo(U unit);
 }

@@ -10,8 +10,8 @@ import static pcb.uwu.units.fundamental.LengthUnit.INCH;
 import static pcb.uwu.units.fundamental.LengthUnit.METER;
 
 public class AbstractUnitAmountTest {
-	private static final AbstractUnitAmount<BigDecimalAmount, LengthUnit> METERS = new Length(1, METER);
-	private static final AbstractUnitAmount<BigDecimalAmount, LengthUnit> INCHES = new Length(1, INCH);
+	private static final AbstractUnitAmount<LengthUnit> METERS = new Length(1, METER);
+	private static final AbstractUnitAmount<LengthUnit> INCHES = new Length(1, INCH);
 
 	@Test
 	public void getValueIn() {

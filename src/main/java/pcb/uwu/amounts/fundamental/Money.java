@@ -13,8 +13,8 @@ import java.util.Currency;
 import static java.math.RoundingMode.HALF_EVEN;
 
 public class Money
-		extends AbstractUnitAmount<BigDecimalAmount, MoneyUnit>
-		implements UnitAmount<BigDecimalAmount, MoneyUnit> {
+		extends AbstractUnitAmount<MoneyUnit>
+		implements UnitAmount<MoneyUnit> {
 
 	// region constructors
 
@@ -43,14 +43,14 @@ public class Money
 	//region implement UnitAmount
 
 	@Override
-	public Money plus(UnitAmount<BigDecimalAmount, MoneyUnit> other, MathContext mathContext) {
+	public Money plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
 		throwIfDistinctCurrency(other);
 
 		return new Money(getAmount().plus(other.getAmount(), mathContext), getUnit());
 	}
 
 	@Override
-	public Money minus(UnitAmount<BigDecimalAmount, MoneyUnit> other, MathContext mathContext) {
+	public Money minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
 		throwIfDistinctCurrency(other);
 
 		return new Money(getAmount().minus(other.getAmount(), mathContext), getUnit());
@@ -84,7 +84,7 @@ public class Money
 
 	// region private methods
 
-	private void throwIfDistinctCurrency(UnitAmount<BigDecimalAmount, MoneyUnit> other) {
+	private void throwIfDistinctCurrency(UnitAmount<MoneyUnit> other) {
 		if (!getUnit().getCurrency().equals(other.getUnit().getCurrency())) {
 			throw new CurrencyMismatchException("Cant add {} to {}", other.getUnit().getPluralName(), getUnit().getPluralName());
 		}
