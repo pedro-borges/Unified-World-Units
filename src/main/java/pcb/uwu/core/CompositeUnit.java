@@ -1,33 +1,30 @@
 package pcb.uwu.core;
 
-import pcb.uwu.utils.ObjectCounter;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
-public class CompositeUnit
-		implements Unit {
+public class CompositeUnit implements Unit {
+
+	// region private fields
 
 	private static final char NEGATIVE = '⁻';
 	private static final char[] POWERS = new char[] {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'};
 
-	// region private fields
-
-	private final ObjectCounter<Unit> units;
+	private final UnitCounter unitCounter;
 
 	// endregion
 
 	// region constructors
 
 	CompositeUnit() {
-		units = new ObjectCounter<>();
+		unitCounter = new UnitCounter();
 	}
 
-	protected CompositeUnit(ObjectCounter<Unit> units)
+	protected CompositeUnit(UnitCounter unitCounter)
 	{
-		this.units = units;
+		this.unitCounter = unitCounter;
 	}
 
 	// endregion
@@ -35,11 +32,15 @@ public class CompositeUnit
 	// region public methods
 
 	public CompositeUnit multipliedBy(Unit unit) {
-		return new CompositeUnit(units.major(unit));
+		return new CompositeUnit(unitCounter.major(unit));
 	}
 
 	public CompositeUnit dividedBy(Unit unit) {
-		return new CompositeUnit(units.minor(unit));
+		return new CompositeUnit(unitCounter.minor(unit));
+	}
+
+	public UnitCounter getUnitCounter() {
+		return unitCounter;
 	}
 
 	// endregion
@@ -77,14 +78,14 @@ public class CompositeUnit
 	public Function<BigDecimal, BigDecimal> getTranslationToCanonical() {
 		Function<BigDecimal, BigDecimal> result = Function.identity();
 
-		for (Unit unit : units.getPositiveKeys()) {
-			for (int i = 0; i < units.get(unit); i++) {
+		for (Unit unit : unitCounter.getPositiveKeys()) {
+			for (int i = 0; i < unitCounter.get(unit); i++) {
 				result = result.andThen(unit.getTranslationToCanonical());
 			}
 		}
 
-		for (Unit unit : units.getNegativeKeys()) {
-			for (int i = 0; i > units.get(unit); i--) {
+		for (Unit unit : unitCounter.getNegativeKeys()) {
+			for (int i = 0; i > unitCounter.get(unit); i--) {
 				result = result.andThen(unit.getTranslationFromCanonical());
 			}
 		}
@@ -99,19 +100,27 @@ public class CompositeUnit
 	public Function<BigDecimal, BigDecimal> getTranslationFromCanonical() {
 		Function<BigDecimal, BigDecimal> result = Function.identity();
 
-		for (Unit unit : units.getPositiveKeys()) {
-			for (int i = 0; i < units.get(unit); i++) {
+		for (Unit unit : unitCounter.getPositiveKeys()) {
+			for (int i = 0; i < unitCounter.get(unit); i++) {
 				result = result.andThen(unit.getTranslationFromCanonical());
 			}
 		}
 
-		for (Unit unit : units.getNegativeKeys()) {
-			for (int i = 0; i > units.get(unit); i--) {
+		for (Unit unit : unitCounter.getNegativeKeys()) {
+			for (int i = 0; i > unitCounter.get(unit); i--) {
 				result = result.andThen(unit.getTranslationToCanonical());
 			}
 		}
 
 		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isScalar() {
+		return unitCounter.isEmpty();
 	}
 
 	// endregion
@@ -121,13 +130,13 @@ public class CompositeUnit
 	String buildString(Function<Unit, String> major, Function<Unit, String> minor, String separator) {
 		String result = "";
 
-		List<Unit> positiveKeys = units.getPositiveKeys();
-		List<Unit> negativeKeys = units.getNegativeKeys();
+		List<Unit> positiveKeys = unitCounter.getPositiveKeys();
+		List<Unit> negativeKeys = unitCounter.getNegativeKeys();
 
 		boolean first = true;
 
 		for (Unit unit : positiveKeys) {
-			String power = buildPower(units.get(unit));
+			String power = buildPower(unitCounter.get(unit));
 			if (first) {
 				result += major.apply(unit) + power;
 			} else {
@@ -141,7 +150,7 @@ public class CompositeUnit
 		}
 
 		for (Unit unit : negativeKeys) {
-			String power = buildPower(Math.abs(units.get(unit)));
+			String power = buildPower(Math.abs(unitCounter.get(unit)));
 			result += minor.apply(unit) + power;
 		}
 
@@ -184,7 +193,7 @@ public class CompositeUnit
 		if (obj instanceof CompositeUnit) {
 			CompositeUnit other = (CompositeUnit) obj;
 
-			return Objects.equals(this.units, other.units);
+			return Objects.equals(this.unitCounter, other.unitCounter);
 		}
 
 		return false;
@@ -192,7 +201,7 @@ public class CompositeUnit
 
 	@Override
 	public int hashCode() {
-		return units.hashCode();
+		return unitCounter.hashCode();
 	}
 
 	@Override

@@ -41,6 +41,16 @@ public class Money extends AbstractUnitAmount<MoneyUnit> {
 
 	// endregion
 
+	// region private methods
+
+	private void throwIfDistinctCurrency(UnitAmount<MoneyUnit> other) {
+		if (!getUnit().getCurrency().equals(other.getUnit().getCurrency())) {
+			throw new CurrencyMismatchException("Cant add {} to {}", other.getUnit().getPluralName(), getUnit().getPluralName());
+		}
+	}
+
+	// endregion
+
 	//region implement UnitAmount
 
 	@Override
@@ -79,16 +89,6 @@ public class Money extends AbstractUnitAmount<MoneyUnit> {
 	@Override
 	public Money convertTo(MoneyUnit unit) {
 		return new Money(getAmountIn(unit), unit);
-	}
-
-	// endregion
-
-	// region private methods
-
-	private void throwIfDistinctCurrency(UnitAmount<MoneyUnit> other) {
-		if (!getUnit().getCurrency().equals(other.getUnit().getCurrency())) {
-			throw new CurrencyMismatchException("Cant add {} to {}", other.getUnit().getPluralName(), getUnit().getPluralName());
-		}
 	}
 
 	// endregion

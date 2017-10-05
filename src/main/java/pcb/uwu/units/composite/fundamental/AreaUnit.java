@@ -1,9 +1,8 @@
 package pcb.uwu.units.composite.fundamental;
 
 import pcb.uwu.core.CompositeUnit;
-import pcb.uwu.core.Unit;
+import pcb.uwu.core.UnitCounter;
 import pcb.uwu.units.fundamental.LengthUnit;
-import pcb.uwu.utils.ObjectCounter;
 
 import static pcb.uwu.units.fundamental.LengthUnit.FOOT;
 import static pcb.uwu.units.fundamental.LengthUnit.INCH;
@@ -22,7 +21,7 @@ public class AreaUnit extends CompositeUnit {
 	public static final AreaUnit SQUARE_INCH = new AreaUnit(INCH, INCH);
 
 	public AreaUnit(LengthUnit length, LengthUnit height) {
-		super(new ObjectCounter<Unit>()
+		super(new UnitCounter()
 				.major(length)
 				.major(height));
 	}

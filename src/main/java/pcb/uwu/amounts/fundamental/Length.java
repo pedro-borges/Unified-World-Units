@@ -11,9 +11,7 @@ import pcb.uwu.units.fundamental.LengthUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Length
-		extends AbstractUnitAmount<LengthUnit>
-		implements UnitAmount<LengthUnit> {
+public class Length extends AbstractUnitAmount<LengthUnit> {
 
 	// region constructors
 

@@ -1,9 +1,8 @@
 package pcb.uwu.units.composite.fundamental;
 
 import pcb.uwu.core.CompositeUnit;
-import pcb.uwu.core.Unit;
+import pcb.uwu.core.UnitCounter;
 import pcb.uwu.units.fundamental.LengthUnit;
-import pcb.uwu.utils.ObjectCounter;
 
 import static pcb.uwu.units.fundamental.LengthUnit.FOOT;
 import static pcb.uwu.units.fundamental.LengthUnit.INCH;
@@ -23,7 +22,7 @@ public class VolumeUnit extends CompositeUnit {
 	public static final VolumeUnit CUBIC_INCH = new VolumeUnit(INCH, INCH, INCH);
 
 	public VolumeUnit(LengthUnit length, LengthUnit height, LengthUnit depth) {
-		super(new ObjectCounter<Unit>()
+		super(new UnitCounter()
 				.major(length)
 				.major(height)
 				.major(depth));

@@ -31,4 +31,10 @@ public interface Unit {
 	 * @return a scalar function that converts this unit from the respective canonical
 	 */
 	Function<BigDecimal, BigDecimal> getTranslationFromCanonical();
+
+	/**
+	 * Assert if the unit is a scalar.
+	 * @return true if this unit is a scalar, false otherwise
+	 */
+	boolean isScalar();
 }

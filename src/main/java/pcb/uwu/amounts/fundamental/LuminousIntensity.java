@@ -74,4 +74,6 @@ public class LuminousIntensity extends AbstractUnitAmount<LuminousIntensityUnit>
 	public LuminousIntensity convertTo(LuminousIntensityUnit unit) {
 		return new LuminousIntensity(getAmountIn(unit), unit);
 	}
+
+	// endregion
 }

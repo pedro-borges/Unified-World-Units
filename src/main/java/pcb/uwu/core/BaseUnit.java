@@ -1,5 +1,7 @@
 package pcb.uwu.core;
 
+import pcb.uwu.units.fundamental.ScalarUnit;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.function.Function;
@@ -74,6 +76,14 @@ public class BaseUnit<U extends Unit> implements Unit {
 	@Override
 	public Function<BigDecimal, BigDecimal> getTranslationFromCanonical() {
 		return translationFromCanonical;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isScalar() {
+		return this instanceof ScalarUnit;
 	}
 
 	// endregion
