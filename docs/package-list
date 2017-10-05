@@ -5,5 +5,7 @@ pcb.uwu.contracts
 pcb.uwu.core
 pcb.uwu.exceptions
 pcb.uwu.units.composite.finance
+pcb.uwu.units.composite.fundamental
+pcb.uwu.units.composite.mechanics
 pcb.uwu.units.fundamental
 pcb.uwu.utils
