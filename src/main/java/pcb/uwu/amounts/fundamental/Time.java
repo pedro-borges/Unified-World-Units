@@ -8,6 +8,9 @@ import pcb.uwu.units.fundamental.TimeUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.time.Duration;
+
+import static java.math.MathContext.UNLIMITED;
 
 public class Time extends AbstractUnitAmount<TimeUnit> {
 
@@ -43,6 +46,10 @@ public class Time extends AbstractUnitAmount<TimeUnit> {
 
 	public Time(BigDecimalAmount amount, Magnitude magnitude, TimeUnit unit) {
 		super(amount, magnitude, unit);
+	}
+
+	public Time(Duration duration, TimeUnit unit) {
+		super(unit.getTranslationFromCanonical().apply(new BigDecimal(duration.toNanos())).divide(new BigDecimal(1000000000), UNLIMITED), unit);
 	}
 
 	// endregion

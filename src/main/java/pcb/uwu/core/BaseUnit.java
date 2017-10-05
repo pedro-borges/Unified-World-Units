@@ -100,5 +100,10 @@ public class BaseUnit<U extends Unit> implements Unit {
 		return Objects.hash(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
 	}
 
+	@Override
+	public String toString() {
+		return symbol;
+	}
+
 	// endregion
 }

@@ -15,7 +15,7 @@ import static pcb.uwu.core.Magnitude.HECTA;
 import static pcb.uwu.core.Magnitude.KILO;
 import static pcb.uwu.core.Magnitude.MEGA;
 import static pcb.uwu.core.Magnitude.MICRO;
-import static pcb.uwu.core.Magnitude.MILI;
+import static pcb.uwu.core.Magnitude.MILLI;
 import static pcb.uwu.core.Magnitude.NANO;
 import static pcb.uwu.core.Magnitude.NATURAL;
 import static pcb.uwu.core.Magnitude.PICO;
@@ -34,7 +34,7 @@ public class MagnitudeTest {
 		assertEquals(new BigDecimal("1"), NATURAL.getValue());
 		assertEquals(new BigDecimal("0.1"), DECI.getValue());
 		assertEquals(new BigDecimal("0.01"), CENTI.getValue());
-		assertEquals(new BigDecimal("0.001"), MILI.getValue());
+		assertEquals(new BigDecimal("0.001"), MILLI.getValue());
 		assertEquals(new BigDecimal("0.000001"), MICRO.getValue());
 		assertEquals(new BigDecimal("0.000000001"), NANO.getValue());
 		assertEquals(new BigDecimal("0.000000000001"), PICO.getValue());
@@ -51,7 +51,7 @@ public class MagnitudeTest {
 		assertEquals(new BigDecimal("1"), new ElectricCurrent(1, NATURAL, AMPERE).getAmount().getValue());
 		assertEquals(new BigDecimal("0.1"), new ElectricCurrent(1, DECI, AMPERE).getAmount().getValue());
 		assertEquals(new BigDecimal("0.01"), new ElectricCurrent(1, CENTI, AMPERE).getAmount().getValue());
-		assertEquals(new BigDecimal("0.001"), new ElectricCurrent(1, MILI, AMPERE).getAmount().getValue());
+		assertEquals(new BigDecimal("0.001"), new ElectricCurrent(1, MILLI, AMPERE).getAmount().getValue());
 		assertEquals(new BigDecimal("0.000001"), new ElectricCurrent(1, MICRO, AMPERE).getAmount().getValue());
 		assertEquals(new BigDecimal("0.000000001"), new ElectricCurrent(1, NANO, AMPERE).getAmount().getValue());
 		assertEquals(new BigDecimal("0.000000000001"), new ElectricCurrent(1, PICO, AMPERE).getAmount().getValue());
@@ -70,7 +70,7 @@ public class MagnitudeTest {
 		assertEquals(new BigDecimal("1000000000000"), new ElectricCurrent(ONE_BILLION, NATURAL, AMPERE).getAmount().getValue().setScale(0, HALF_EVEN));
 		assertEquals(new BigDecimal("100000000000"), new ElectricCurrent(ONE_BILLION, DECI, AMPERE).getAmount().getValue().setScale(0, HALF_EVEN));
 		assertEquals(new BigDecimal("10000000000"), new ElectricCurrent(ONE_BILLION, CENTI, AMPERE).getAmount().getValue().setScale(0, HALF_EVEN));
-		assertEquals(new BigDecimal("1000000000"), new ElectricCurrent(ONE_BILLION, MILI, AMPERE).getAmount().getValue().setScale(0, HALF_EVEN));
+		assertEquals(new BigDecimal("1000000000"), new ElectricCurrent(ONE_BILLION, MILLI, AMPERE).getAmount().getValue().setScale(0, HALF_EVEN));
 		assertEquals(new BigDecimal("1000000"), new ElectricCurrent(ONE_BILLION, MICRO, AMPERE).getAmount().getValue().setScale(0, HALF_EVEN));
 		assertEquals(new BigDecimal("1000"), new ElectricCurrent(ONE_BILLION, NANO, AMPERE).getAmount().getValue().setScale(0, HALF_EVEN));
 		assertEquals(new BigDecimal("1"), new ElectricCurrent(ONE_BILLION, PICO, AMPERE).getAmount().getValue().setScale(0, HALF_EVEN));
@@ -89,7 +89,7 @@ public class MagnitudeTest {
 		assertEquals(new BigDecimal("0.000000000001"), new ElectricCurrent(ONE_BILLIONTH, NATURAL, AMPERE).getAmount().getValue().setScale(12, HALF_EVEN));
 		assertEquals(new BigDecimal("0.0000000000001"), new ElectricCurrent(ONE_BILLIONTH, DECI, AMPERE).getAmount().getValue().setScale(13, HALF_EVEN));
 		assertEquals(new BigDecimal("0.00000000000001"), new ElectricCurrent(ONE_BILLIONTH, CENTI, AMPERE).getAmount().getValue().setScale(14, HALF_EVEN));
-		assertEquals(new BigDecimal("0.000000000000001"), new ElectricCurrent(ONE_BILLIONTH, MILI, AMPERE).getAmount().getValue().setScale(15, HALF_EVEN));
+		assertEquals(new BigDecimal("0.000000000000001"), new ElectricCurrent(ONE_BILLIONTH, MILLI, AMPERE).getAmount().getValue().setScale(15, HALF_EVEN));
 		assertEquals(new BigDecimal("0.000000000000000001"), new ElectricCurrent(ONE_BILLIONTH, MICRO, AMPERE).getAmount().getValue().setScale(18, HALF_EVEN));
 		assertEquals(new BigDecimal("0.000000000000000000001"), new ElectricCurrent(ONE_BILLIONTH, NANO, AMPERE).getAmount().getValue().setScale(21, HALF_EVEN));
 		assertEquals(new BigDecimal("0.000000000000000000000001"), new ElectricCurrent(ONE_BILLIONTH, PICO, AMPERE).getAmount().getValue().setScale(24, HALF_EVEN));

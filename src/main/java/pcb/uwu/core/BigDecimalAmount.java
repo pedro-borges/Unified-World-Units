@@ -252,7 +252,7 @@ public class BigDecimalAmount
 
 	@Override
 	public String toString() {
-		return String.valueOf(value);
+		return value.toPlainString();
 	}
 
 	// endregion
