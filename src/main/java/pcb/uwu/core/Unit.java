@@ -1,6 +1,5 @@
 package pcb.uwu.core;
 
-import java.math.BigDecimal;
 import java.util.function.Function;
 
 /**
@@ -25,12 +24,12 @@ public interface Unit {
 	/**
 	 * @return a scalar function that converts this unit to the respective canonical
 	 */
-	Function<BigDecimal, BigDecimal> getTranslationToCanonical();
+	Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical();
 
 	/**
 	 * @return a scalar function that converts this unit from the respective canonical
 	 */
-	Function<BigDecimal, BigDecimal> getTranslationFromCanonical();
+	Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical();
 
 	/**
 	 * Assert if the unit is a scalar.

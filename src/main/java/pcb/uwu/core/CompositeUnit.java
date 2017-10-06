@@ -1,6 +1,5 @@
 package pcb.uwu.core;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -75,8 +74,8 @@ public class CompositeUnit implements Unit {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Function<BigDecimal, BigDecimal> getTranslationToCanonical() {
-		Function<BigDecimal, BigDecimal> result = Function.identity();
+	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
+		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
 
 		for (Unit unit : unitCounter.getPositiveKeys()) {
 			for (int i = 0; i < unitCounter.get(unit); i++) {
@@ -97,8 +96,8 @@ public class CompositeUnit implements Unit {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Function<BigDecimal, BigDecimal> getTranslationFromCanonical() {
-		Function<BigDecimal, BigDecimal> result = Function.identity();
+	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
+		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
 
 		for (Unit unit : unitCounter.getPositiveKeys()) {
 			for (int i = 0; i < unitCounter.get(unit); i++) {

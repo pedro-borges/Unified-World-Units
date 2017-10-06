@@ -1,8 +1,8 @@
 package pcb.uwu.units.fundamental;
 
 import pcb.uwu.core.BaseUnit;
+import pcb.uwu.core.BigDecimalAmount;
 
-import java.math.BigDecimal;
 import java.util.function.Function;
 
 public class TemperatureUnit extends BaseUnit<TemperatureUnit> {
@@ -12,7 +12,12 @@ public class TemperatureUnit extends BaseUnit<TemperatureUnit> {
 			Function.identity(),
 			Function.identity());
 
-	private TemperatureUnit(String symbol, String singularName, String pluralName, Function<BigDecimal, BigDecimal> translationToCanonical, Function<BigDecimal, BigDecimal> translationFromCanonical) {
+	private TemperatureUnit(String symbol,
+							String singularName,
+							String pluralName,
+							Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+							Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
+
 		super(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
 	}
 }

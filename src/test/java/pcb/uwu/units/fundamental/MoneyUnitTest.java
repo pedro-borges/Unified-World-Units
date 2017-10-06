@@ -2,17 +2,18 @@ package pcb.uwu.units.fundamental;
 
 import org.junit.Test;
 import pcb.uwu.contracts.CurrencyConversionProvider;
+import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.exceptions.InvalidCurrencyException;
 
 import java.math.BigDecimal;
 import java.util.Currency;
 
 import static java.math.BigDecimal.ONE;
-import static java.math.BigDecimal.ZERO;
 import static java.math.MathContext.DECIMAL32;
 import static java.math.RoundingMode.HALF_EVEN;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static pcb.uwu.core.BigDecimalAmount.ZERO;
 import static pcb.uwu.units.fundamental.MoneyUnit.CANONICAL_CURRENCY;
 
 public class MoneyUnitTest {
@@ -48,12 +49,12 @@ public class MoneyUnitTest {
 
 		assertEquals(GBP, moneyUnit.getCurrency());
 
-		BigDecimal result;
+		BigDecimalAmount result;
 
-		result = moneyUnit.getTranslationToCanonical().apply(new BigDecimal("100.00"));
-		assertEquals(new BigDecimal("110.00"), result.setScale(2, HALF_EVEN));
-		result = moneyUnit.getTranslationFromCanonical().apply(new BigDecimal("110.00"));
-		assertEquals(new BigDecimal("100.00"), result.setScale(2, HALF_EVEN));
+		result = moneyUnit.getTranslationToCanonical().apply(new BigDecimalAmount("100.00"));
+		assertEquals(new BigDecimalAmount("110.00"), result.withScale(2, HALF_EVEN));
+		result = moneyUnit.getTranslationFromCanonical().apply(new BigDecimalAmount("110.00"));
+		assertEquals(new BigDecimalAmount("100.00"), result.withScale(2, HALF_EVEN));
 	}
 
 	@Test(expected = InvalidCurrencyException.class)

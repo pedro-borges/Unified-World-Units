@@ -7,20 +7,19 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
-import static java.math.BigDecimal.ONE;
-import static java.math.BigDecimal.ZERO;
-
 /**
  * An implementation of Amount for uni-dimensional values based on {@code java.lang.BigDecimal} representation.
  */
 public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmount> {
 
-	// region private fields
+	// region fields
 
 	/**
 	 * The identity amount i.e. 1
 	 */
-	public static final BigDecimalAmount IDENTITY = new BigDecimalAmount(1);
+
+	public static final BigDecimalAmount ZERO = new BigDecimalAmount(0);
+	public static final BigDecimalAmount ONE = new BigDecimalAmount(1);
 
 	private final BigDecimal value;
 
@@ -139,8 +138,8 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	 * @param transformation a function representing a generic transformation from scalar to scalar
 	 * @return a new {@code BigDecimalAmount} with the transformed value
 	 */
-	public BigDecimalAmount transformed(Function<BigDecimal, BigDecimal> transformation) {
-		return new BigDecimalAmount(transformation.apply(value));
+	public BigDecimalAmount transformed(Function<BigDecimalAmount, BigDecimalAmount> transformation) {
+		return transformation.apply(this);
 	}
 
 	/**
@@ -149,7 +148,7 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	 * @return true if this {@code Amount} is zero, false otherwise
 	 */
 	public boolean isZero() {
-		return value.compareTo(ZERO) == 0;
+		return compareTo(ZERO) == 0;
 	}
 
 	/**
@@ -158,7 +157,7 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	 * @return true if this {@code BigDecimalAmount} is positive, false otherwise
 	 */
 	public boolean isPositive() {
-		return value.compareTo(ZERO) > 0;
+		return compareTo(ZERO) > 0;
 	}
 
 	/**
@@ -167,7 +166,7 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	 * @return true if this {@code BigDecimalAmount} is negative, false otherwise
 	 */
 	public boolean isNegative() {
-		return value.compareTo(ZERO) < 0;
+		return compareTo(ZERO) < 0;
 	}
 
 	// endregion
@@ -183,9 +182,9 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 		Magnitude last;
 		BigDecimal absolute = value.abs();
 
-		if (absolute.compareTo(ONE) == 0) {
+		if (absolute.compareTo(BigDecimal.ONE) == 0) {
 			return value.toPlainString();
-		} else if (absolute.compareTo(ONE) > 0) {
+		} else if (absolute.compareTo(BigDecimal.ONE) > 0) {
 			last = magnitudes.get(0);
 			for (int i = 0; i < magnitudes.size(); i++) {
 				if (absolute.compareTo(magnitudes.get(i).getValue()) < 0) break;

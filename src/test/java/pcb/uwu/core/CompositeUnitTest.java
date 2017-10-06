@@ -2,10 +2,9 @@ package pcb.uwu.core;
 
 import org.junit.Test;
 
-import java.math.BigDecimal;
-
 import static java.math.RoundingMode.HALF_EVEN;
 import static org.junit.Assert.assertEquals;
+import static pcb.uwu.core.BigDecimalAmount.ONE;
 import static pcb.uwu.units.fundamental.LengthUnit.INCH;
 import static pcb.uwu.units.fundamental.TimeUnit.MINUTE;
 
@@ -32,16 +31,16 @@ public class CompositeUnitTest {
 
 	@Test
 	public void testTranslationToCanonical() {
-		assertEquals(new BigDecimal("0.0000070556"), inchesPerSquareMinute.getTranslationToCanonical()
-				.apply(new BigDecimal(1))
-				.setScale(10, HALF_EVEN));
+		assertEquals(new BigDecimalAmount("0.0000070556"), inchesPerSquareMinute.getTranslationToCanonical()
+				.apply(ONE)
+				.withScale(10, HALF_EVEN));
 	}
 
 	@Test
 	public void testTranslationFromCanonical() {
-		assertEquals(new BigDecimal("141732.2834645669"), inchesPerSquareMinute.getTranslationFromCanonical()
-				.apply(new BigDecimal(1))
-				.setScale(10, HALF_EVEN));
+		assertEquals(new BigDecimalAmount("141732.2834645669"), inchesPerSquareMinute.getTranslationFromCanonical()
+				.apply(ONE)
+				.withScale(10, HALF_EVEN));
 	}
 
 	@Test

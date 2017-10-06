@@ -78,10 +78,10 @@ public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U
 
 	@Override
 	public int compareTo(UnitAmount<U> other) {
-		BigDecimal thisCanonical = this.getUnit().getTranslationToCanonical().apply(this.getAmount().getValue());
-		BigDecimal otherCanonical = other.getUnit().getTranslationToCanonical().apply(other.getAmount().getValue());
+		BigDecimalAmount thisCanonical = this.getUnit().getTranslationToCanonical().apply(this.getAmount());
+		BigDecimalAmount otherCanonical = other.getUnit().getTranslationToCanonical().apply(other.getAmount());
 
-		return thisCanonical.compareTo(otherCanonical);
+		return thisCanonical.getValue().compareTo(otherCanonical.getValue());
 	}
 
 	// endregion
@@ -104,7 +104,7 @@ public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U
 			return amount;
 		}
 
-		Function<BigDecimal, BigDecimal> translation = getUnit().getTranslationToCanonical().andThen(newUnit.getTranslationFromCanonical());
+		Function<BigDecimalAmount, BigDecimalAmount> translation = getUnit().getTranslationToCanonical().andThen(newUnit.getTranslationFromCanonical());
 
 		return amount.transformed(translation);
 	}

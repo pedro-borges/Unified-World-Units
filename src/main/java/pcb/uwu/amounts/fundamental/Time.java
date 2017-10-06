@@ -49,7 +49,7 @@ public class Time extends AbstractUnitAmount<TimeUnit> {
 	}
 
 	public Time(Duration duration, TimeUnit unit) {
-		super(unit.getTranslationFromCanonical().apply(new BigDecimal(duration.toNanos())).divide(new BigDecimal(1000000000), UNLIMITED), unit);
+		super(unit.getTranslationFromCanonical().apply(new BigDecimalAmount(duration.toNanos())).dividedBy(new BigDecimal(1000000000), UNLIMITED), unit);
 	}
 
 	// endregion

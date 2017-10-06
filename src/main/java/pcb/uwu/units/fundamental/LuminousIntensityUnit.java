@@ -1,8 +1,8 @@
 package pcb.uwu.units.fundamental;
 
 import pcb.uwu.core.BaseUnit;
+import pcb.uwu.core.BigDecimalAmount;
 
-import java.math.BigDecimal;
 import java.util.function.Function;
 
 public class LuminousIntensityUnit extends BaseUnit<LuminousIntensityUnit> {
@@ -15,8 +15,8 @@ public class LuminousIntensityUnit extends BaseUnit<LuminousIntensityUnit> {
 	private LuminousIntensityUnit(String symbol,
 								  String singularName,
 								  String pluralName,
-								  Function<BigDecimal, BigDecimal> translationToCanonical,
-								  Function<BigDecimal, BigDecimal> translationFromCanonical) {
+								  Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+								  Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
 
 		super(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
 	}

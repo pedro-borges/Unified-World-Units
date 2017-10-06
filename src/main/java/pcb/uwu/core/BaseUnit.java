@@ -2,7 +2,6 @@ package pcb.uwu.core;
 
 import pcb.uwu.units.fundamental.ScalarUnit;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -13,8 +12,8 @@ public abstract class BaseUnit<U extends Unit> implements Unit {
 	private final String symbol;
 	private final String singularName;
 	private final String pluralName;
-	private final Function<BigDecimal, BigDecimal> translationToCanonical;
-	private final Function<BigDecimal, BigDecimal> translationFromCanonical;
+	private final Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical;
+	private final Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical;
 
 	// endregion
 
@@ -24,8 +23,8 @@ public abstract class BaseUnit<U extends Unit> implements Unit {
 			String symbol,
 			String singularName,
 			String pluralName,
-			Function<BigDecimal, BigDecimal> translationToCanonical,
-			Function<BigDecimal, BigDecimal> translationFromCanonical) {
+			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
 
 		this.symbol = symbol;
 		this.singularName = singularName;
@@ -66,7 +65,7 @@ public abstract class BaseUnit<U extends Unit> implements Unit {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Function<BigDecimal, BigDecimal> getTranslationToCanonical() {
+	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
 		return translationToCanonical;
 	}
 
@@ -74,7 +73,7 @@ public abstract class BaseUnit<U extends Unit> implements Unit {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Function<BigDecimal, BigDecimal> getTranslationFromCanonical() {
+	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
 		return translationFromCanonical;
 	}
 

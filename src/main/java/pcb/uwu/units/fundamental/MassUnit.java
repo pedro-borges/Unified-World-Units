@@ -1,6 +1,7 @@
 package pcb.uwu.units.fundamental;
 
 import pcb.uwu.core.BaseUnit;
+import pcb.uwu.core.BigDecimalAmount;
 
 import java.math.BigDecimal;
 import java.util.function.Function;
@@ -20,24 +21,24 @@ public class MassUnit extends BaseUnit<MassUnit> {
 
 	public static final MassUnit STONE = new MassUnit(
 			"st", "stone", "stones",
-			value -> value.multiply(GRAMS_PER_STONE, DECIMAL64),
-			value -> value.divide(GRAMS_PER_STONE, DECIMAL64));
+			value -> value.multipliedBy(GRAMS_PER_STONE, DECIMAL64),
+			value -> value.dividedBy(GRAMS_PER_STONE, DECIMAL64));
 
 	public static final MassUnit POUND = new MassUnit(
 			"lb", "pound", "pounds",
-			value -> value.multiply(GRAMS_PER_POUND, DECIMAL64),
-			value -> value.divide(GRAMS_PER_POUND, DECIMAL64));
+			value -> value.multipliedBy(GRAMS_PER_POUND, DECIMAL64),
+			value -> value.dividedBy(GRAMS_PER_POUND, DECIMAL64));
 
 	public static final MassUnit OUNCE = new MassUnit(
 			"oz", "ounce", "ounces",
-			value -> value.multiply(GRAMS_PER_OUNCE, DECIMAL64),
-			value -> value.divide(GRAMS_PER_OUNCE, DECIMAL64));
+			value -> value.multipliedBy(GRAMS_PER_OUNCE, DECIMAL64),
+			value -> value.dividedBy(GRAMS_PER_OUNCE, DECIMAL64));
 
 	private MassUnit(String symbol,
 					 String singularName,
 					 String pluralName,
-					 Function<BigDecimal, BigDecimal> translationToCanonical,
-					 Function<BigDecimal, BigDecimal> translationFromCanonical) {
+					 Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+					 Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
 
 		super(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
 	}

@@ -2,6 +2,7 @@ package pcb.uwu.units.fundamental;
 
 import pcb.uwu.contracts.CurrencyConversionProvider;
 import pcb.uwu.core.BaseUnit;
+import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Unit;
 import pcb.uwu.exceptions.InvalidCurrencyException;
 
@@ -47,7 +48,7 @@ public class MoneyUnit
 	// region implement Unit
 
 	@Override
-	public Function<BigDecimal, BigDecimal> getTranslationToCanonical() {
+	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
 		if (currencyConversionProvider == null) {
 			return super.getTranslationToCanonical();
 		}
@@ -59,11 +60,11 @@ public class MoneyUnit
 					currency.getDisplayName(), CANONICAL_CURRENCY.getDisplayName());
 		}
 
-		return amount -> amount.multiply(ratio, DECIMAL32);
+		return amount -> amount.multipliedBy(ratio, DECIMAL32);
 	}
 
 	@Override
-	public Function<BigDecimal, BigDecimal> getTranslationFromCanonical() {
+	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
 		if (currencyConversionProvider == null) {
 			return super.getTranslationToCanonical();
 		}
@@ -75,7 +76,7 @@ public class MoneyUnit
 					CANONICAL_CURRENCY.getDisplayName(), currency.getDisplayName());
 		}
 
-		return amount -> amount.multiply(ratio, DECIMAL32);
+		return amount -> amount.multipliedBy(ratio, DECIMAL32);
 	}
 
 	// endregion
