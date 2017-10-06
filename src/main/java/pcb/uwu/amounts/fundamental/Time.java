@@ -68,12 +68,12 @@ public class Time extends AbstractUnitAmount<TimeUnit> {
 
 	@Override
 	public Time multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Time(multipliedByAmount(other, mathContext), getUnit());
+		return new Time(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public Time dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Time(dividedByAmount(other, mathContext), getUnit());
+		return new Time(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override

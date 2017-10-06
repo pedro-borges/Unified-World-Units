@@ -11,9 +11,9 @@ import static pcb.uwu.units.fundamental.TimeUnit.MINUTE;
 
 public class CompositeUnitTest {
 	private static final CompositeUnit inchesPerSquareMinute = new CompositeUnit()
-			.multipliedBy(INCH)
-			.dividedBy(MINUTE)
-			.dividedBy(MINUTE);
+			.major(INCH)
+			.minor(MINUTE)
+			.minor(MINUTE);
 
 	@Test
 	public void testSymbol() {

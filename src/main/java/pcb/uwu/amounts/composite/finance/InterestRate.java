@@ -62,12 +62,12 @@ public class InterestRate extends AbstractUnitAmount<InterestRateUnit> {
 
 	@Override
 	public InterestRate multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new InterestRate(multipliedByAmount(other, mathContext), getUnit());
+		return new InterestRate(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public InterestRate dividedBy(BigDecimal other, MathContext mathContext) {
-		return new InterestRate(dividedByAmount(other, mathContext), getUnit());
+		return new InterestRate(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override

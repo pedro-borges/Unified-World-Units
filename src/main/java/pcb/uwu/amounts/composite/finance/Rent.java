@@ -62,12 +62,12 @@ public class Rent extends AbstractUnitAmount<RentUnit> {
 
 	@Override
 	public Rent multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Rent(multipliedByAmount(other, mathContext), getUnit());
+		return new Rent(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public Rent dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Rent(dividedByAmount(other, mathContext), getUnit());
+		return new Rent(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override

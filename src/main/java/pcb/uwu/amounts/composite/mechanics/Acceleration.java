@@ -63,12 +63,12 @@ public class Acceleration extends AbstractUnitAmount<AccelerationUnit> {
 
 	@Override
 	public Acceleration multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Acceleration(multipliedByAmount(other, mathContext), getUnit());
+		return new Acceleration(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public Acceleration dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Acceleration(dividedByAmount(other, mathContext), getUnit());
+		return new Acceleration(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override

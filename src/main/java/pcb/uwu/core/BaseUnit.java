@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.function.Function;
 
-public class BaseUnit<U extends Unit> implements Unit {
+public abstract class BaseUnit<U extends Unit> implements Unit {
 
 	// region private fields
 

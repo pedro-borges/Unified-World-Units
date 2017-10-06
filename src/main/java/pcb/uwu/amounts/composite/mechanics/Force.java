@@ -61,12 +61,12 @@ public class Force extends AbstractUnitAmount<ForceUnit> {
 
 	@Override
 	public Force multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Force(multipliedByAmount(other, mathContext), getUnit());
+		return new Force(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public Force dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Force(dividedByAmount(other, mathContext), getUnit());
+		return new Force(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override

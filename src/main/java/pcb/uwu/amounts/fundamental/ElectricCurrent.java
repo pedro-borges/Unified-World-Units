@@ -61,12 +61,12 @@ public class ElectricCurrent extends AbstractUnitAmount<ElectricCurrentUnit> {
 
 	@Override
 	public ElectricCurrent multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricCurrent(multipliedByAmount(other, mathContext), getUnit());
+		return new ElectricCurrent(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricCurrent dividedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricCurrent(dividedByAmount(other, mathContext), getUnit());
+		return new ElectricCurrent(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override

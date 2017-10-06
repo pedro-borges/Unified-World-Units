@@ -63,12 +63,12 @@ public class Speed extends AbstractUnitAmount<SpeedUnit> {
 
 	@Override
 	public Speed multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Speed(multipliedByAmount(other, mathContext), getUnit());
+		return new Speed(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public Speed dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Speed(dividedByAmount(other, mathContext), getUnit());
+		return new Speed(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override

@@ -64,11 +64,11 @@ public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U
 		return getAmount().minus(other.getAmountIn(getUnit()), mathContext);
 	}
 
-	protected BigDecimalAmount multipliedByAmount(BigDecimal other, MathContext mathContext) {
+	protected BigDecimalAmount multipliedByScalar(BigDecimal other, MathContext mathContext) {
 		return getAmount().multipliedBy(other, mathContext);
 	}
 
-	protected BigDecimalAmount dividedByAmount(BigDecimal other, MathContext mathContext) {
+	protected BigDecimalAmount dividedByScalar(BigDecimal other, MathContext mathContext) {
 		return getAmount().dividedBy(other, mathContext);
 	}
 

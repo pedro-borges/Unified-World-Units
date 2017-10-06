@@ -63,12 +63,12 @@ public class Length extends AbstractUnitAmount<LengthUnit> {
 
 	@Override
 	public Length multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Length(multipliedByAmount(other, mathContext), getUnit());
+		return new Length(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public Length dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Length(dividedByAmount(other, mathContext), getUnit());
+		return new Length(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override

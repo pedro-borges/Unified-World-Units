@@ -65,12 +65,12 @@ public class Mass extends AbstractUnitAmount<MassUnit> {
 
 	@Override
 	public Mass multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Mass(multipliedByAmount(other, mathContext), getUnit());
+		return new Mass(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public Mass dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Mass(dividedByAmount(other, mathContext), getUnit());
+		return new Mass(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override

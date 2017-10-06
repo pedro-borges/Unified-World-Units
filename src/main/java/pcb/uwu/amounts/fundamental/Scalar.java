@@ -64,12 +64,12 @@ public class Scalar extends AbstractUnitAmount<ScalarUnit> {
 
 	@Override
 	public Scalar multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Scalar(multipliedByAmount(other, mathContext), getUnit());
+		return new Scalar(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public Scalar dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Scalar(dividedByAmount(other, mathContext), getUnit());
+		return new Scalar(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override

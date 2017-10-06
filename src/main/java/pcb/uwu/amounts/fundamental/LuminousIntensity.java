@@ -62,12 +62,12 @@ public class LuminousIntensity extends AbstractUnitAmount<LuminousIntensityUnit>
 
 	@Override
 	public LuminousIntensity multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new LuminousIntensity(multipliedByAmount(other, mathContext), getUnit());
+		return new LuminousIntensity(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public LuminousIntensity dividedBy(BigDecimal other, MathContext mathContext) {
-		return new LuminousIntensity(dividedByAmount(other, mathContext), getUnit());
+		return new LuminousIntensity(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override

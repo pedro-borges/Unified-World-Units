@@ -22,7 +22,7 @@ public class CompositeUnit implements Unit {
 		unitCounter = new UnitCounter();
 	}
 
-	protected CompositeUnit(UnitCounter unitCounter)
+	public CompositeUnit(UnitCounter unitCounter)
 	{
 		this.unitCounter = unitCounter;
 	}
@@ -31,11 +31,11 @@ public class CompositeUnit implements Unit {
 
 	// region public methods
 
-	public CompositeUnit multipliedBy(Unit unit) {
+	public CompositeUnit major(Unit unit) {
 		return new CompositeUnit(unitCounter.major(unit));
 	}
 
-	public CompositeUnit dividedBy(Unit unit) {
+	public CompositeUnit minor(Unit unit) {
 		return new CompositeUnit(unitCounter.minor(unit));
 	}
 

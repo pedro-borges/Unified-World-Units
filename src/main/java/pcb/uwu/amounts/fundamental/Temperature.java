@@ -62,12 +62,12 @@ public class Temperature extends AbstractUnitAmount<TemperatureUnit> {
 
 	@Override
 	public Temperature multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Temperature(multipliedByAmount(other, mathContext), getUnit());
+		return new Temperature(multipliedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
 	public Temperature dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Temperature(dividedByAmount(other, mathContext), getUnit());
+		return new Temperature(dividedByScalar(other, mathContext), getUnit());
 	}
 
 	@Override
