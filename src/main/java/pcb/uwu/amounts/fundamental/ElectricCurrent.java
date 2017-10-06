@@ -1,9 +1,11 @@
 package pcb.uwu.amounts.fundamental;
 
+import pcb.uwu.amounts.composite.electromagnetism.ElectricCharge;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
+import pcb.uwu.units.composite.electromagnetism.ElectricChargeUnit;
 import pcb.uwu.units.fundamental.ElectricCurrentUnit;
 
 import java.math.BigDecimal;
@@ -72,6 +74,18 @@ public class ElectricCurrent extends AbstractUnitAmount<ElectricCurrentUnit> {
 	@Override
 	public ElectricCurrent convertTo(ElectricCurrentUnit unit) {
 		return new ElectricCurrent(getAmountIn(unit), unit);
+	}
+
+	// endregion
+
+	// region composition
+
+	public ElectricCharge multipliedBy(Time time, MathContext mathContext) {
+		BigDecimalAmount amount = getAmount()
+				.multipliedBy(time.getAmount().getValue(), mathContext);
+		ElectricChargeUnit unit = new ElectricChargeUnit(getUnit(), time.getUnit());
+
+		return new ElectricCharge(amount, unit);
 	}
 
 	// endregion
