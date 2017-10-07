@@ -2,6 +2,7 @@ package pcb.uwu.core;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -107,6 +108,10 @@ public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U
 		Function<BigDecimalAmount, BigDecimalAmount> translation = getUnit().getTranslationToCanonical().andThen(newUnit.getTranslationFromCanonical());
 
 		return amount.transformed(translation);
+	}
+
+	public String toStringWithMagnitude(List<Magnitude> magnitudes) {
+		return amount.toStringWithMagnitude(magnitudes) + unit.toString();
 	}
 
 	// endregion
