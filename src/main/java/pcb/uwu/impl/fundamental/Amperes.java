@@ -76,9 +76,9 @@ public class Amperes extends ElectricCurrent {
 
 	// region composition
 
-	public Coulombs multipliedBy(Seconds time, MathContext mathContext) {
+	public Coulombs multipliedBy(Seconds seconds, MathContext mathContext) {
 		BigDecimalAmount amount = getAmount()
-				.multipliedBy(time.getAmount().getValue(), mathContext);
+				.multipliedBy(seconds.getAmount().getValue(), mathContext);
 
 		return new Coulombs(amount);
 	}
