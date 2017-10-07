@@ -44,7 +44,7 @@ public class Force extends AbstractUnitAmount<ForceUnit> {
 	public Force(BigDecimalAmount amount, Magnitude magnitude, ForceUnit unit) {
 		super(amount, magnitude, unit);
 	}
-	
+
 	// endregion
 
 	// region implement UnitAmount

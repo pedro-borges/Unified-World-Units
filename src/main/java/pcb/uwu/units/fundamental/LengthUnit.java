@@ -21,7 +21,7 @@ public class LengthUnit extends BaseUnit {
 			Function.identity(),
 			Function.identity());
 
-	public static final LengthUnit NAUTIC_MILE = new LengthUnit(
+	public static final LengthUnit NAUTICAL_MILE = new LengthUnit(
 			"mile", "mile", "miles",
 			value -> value.multipliedBy(METERS_PER_NAUTICAL_MILE, DECIMAL64),
 			value -> value.dividedBy(METERS_PER_NAUTICAL_MILE, DECIMAL64));

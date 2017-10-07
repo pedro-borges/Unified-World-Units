@@ -83,7 +83,7 @@ public class Acceleration extends AbstractUnitAmount<AccelerationUnit> {
 	public Force multipliedBy(Mass mass, MathContext mathContext) {
 		BigDecimalAmount amount = getAmount()
 				.multipliedBy(mass.getAmount().getValue(), mathContext);
-		ForceUnit unit = new ForceUnit(getUnit(), mass.getUnit());
+		ForceUnit unit = new ForceUnit(mass.getUnit(), getUnit());
 
 		return new Force(amount, unit);
 	}

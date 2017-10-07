@@ -8,13 +8,13 @@ import static pcb.uwu.units.fundamental.LengthUnit.FOOT;
 import static pcb.uwu.units.fundamental.LengthUnit.INCH;
 import static pcb.uwu.units.fundamental.LengthUnit.METER;
 import static pcb.uwu.units.fundamental.LengthUnit.MILE;
-import static pcb.uwu.units.fundamental.LengthUnit.NAUTIC_MILE;
+import static pcb.uwu.units.fundamental.LengthUnit.NAUTICAL_MILE;
 import static pcb.uwu.units.fundamental.LengthUnit.YARD;
 
 public class AreaUnit extends CompositeUnit {
 
 	public static final AreaUnit SQUARE_METER = new AreaUnit(METER, METER);
-	public static final AreaUnit SQUARE_NAUTIC_MILE = new AreaUnit(NAUTIC_MILE, NAUTIC_MILE);
+	public static final AreaUnit SQUARE_NAUTIC_MILE = new AreaUnit(NAUTICAL_MILE, NAUTICAL_MILE);
 	public static final AreaUnit SQUARE_MILE = new AreaUnit(MILE, MILE);
 	public static final AreaUnit SQUARE_YARD = new AreaUnit(YARD, YARD);
 	public static final AreaUnit SQUARE_FOOT = new AreaUnit(FOOT, FOOT);

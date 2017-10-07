@@ -11,10 +11,4 @@ public class ForceUnit extends CompositeUnit {
 				.major(massUnit)
 				.minor(accelerationUnit));
 	}
-
-	public ForceUnit(AccelerationUnit accelerationUnit, MassUnit massUnit) {
-		super(new UnitCounter()
-				.major(massUnit)
-				.minor(accelerationUnit));
-	}
 }
