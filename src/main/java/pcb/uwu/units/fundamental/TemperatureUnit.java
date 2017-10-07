@@ -5,7 +5,7 @@ import pcb.uwu.core.BigDecimalAmount;
 
 import java.util.function.Function;
 
-public class TemperatureUnit extends BaseUnit<TemperatureUnit> {
+public class TemperatureUnit extends BaseUnit {
 
 	public static final TemperatureUnit KELVIN = new TemperatureUnit(
 			"K", "kelvin", "kelvins",

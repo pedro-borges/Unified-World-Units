@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 import static java.math.MathContext.DECIMAL64;
 
-public class MassUnit extends BaseUnit<MassUnit> {
+public class MassUnit extends BaseUnit {
 
 	private static final BigDecimal GRAMS_PER_STONE = new BigDecimal("6350.29318");
 	private static final BigDecimal GRAMS_PER_POUND = new BigDecimal("453.59237");

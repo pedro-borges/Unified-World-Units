@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 import static java.math.MathContext.DECIMAL64;
 
-public class LengthUnit extends BaseUnit<LengthUnit> {
+public class LengthUnit extends BaseUnit {
 
 	private static final BigDecimal METERS_PER_NAUTICAL_MILE = new BigDecimal("1852");
 	private static final BigDecimal METERS_PER_MILE = new BigDecimal("1609.344");

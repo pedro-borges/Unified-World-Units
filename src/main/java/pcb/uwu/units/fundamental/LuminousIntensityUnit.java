@@ -5,7 +5,7 @@ import pcb.uwu.core.BigDecimalAmount;
 
 import java.util.function.Function;
 
-public class LuminousIntensityUnit extends BaseUnit<LuminousIntensityUnit> {
+public class LuminousIntensityUnit extends BaseUnit {
 
 	public static final LuminousIntensityUnit CANDELA = new LuminousIntensityUnit(
 			"cd", "candela", "candelas",

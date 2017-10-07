@@ -3,7 +3,6 @@ package pcb.uwu.units.fundamental;
 import pcb.uwu.contracts.CurrencyConversionProvider;
 import pcb.uwu.core.BaseUnit;
 import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Unit;
 import pcb.uwu.exceptions.InvalidCurrencyException;
 
 import java.math.BigDecimal;
@@ -13,9 +12,7 @@ import java.util.function.Function;
 
 import static java.math.MathContext.DECIMAL32;
 
-public class MoneyUnit
-		extends BaseUnit<MoneyUnit>
-		implements Unit {
+public class MoneyUnit extends BaseUnit {
 
 	public static final Currency CANONICAL_CURRENCY = Currency.getInstance("USD");
 

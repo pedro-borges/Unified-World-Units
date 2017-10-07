@@ -5,7 +5,7 @@ import pcb.uwu.units.fundamental.ScalarUnit;
 import java.util.Objects;
 import java.util.function.Function;
 
-public abstract class BaseUnit<U extends Unit> implements Unit {
+public abstract class BaseUnit implements Unit {
 
 	// region private fields
 
@@ -92,7 +92,7 @@ public abstract class BaseUnit<U extends Unit> implements Unit {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Unit) {
-			BaseUnit<?> other = (BaseUnit<?>) obj;
+			BaseUnit other = (BaseUnit) obj;
 
 			return Objects.equals(this.symbol, other.symbol) &&
 					Objects.equals(this.singularName, other.singularName) &&

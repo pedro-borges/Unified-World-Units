@@ -4,7 +4,7 @@ import pcb.uwu.core.BaseUnit;
 
 import java.util.function.Function;
 
-public class ScalarUnit extends BaseUnit<ScalarUnit> {
+public class ScalarUnit extends BaseUnit {
 
 	private ScalarUnit() {
 		super("", "", "", Function.identity(), Function.identity());

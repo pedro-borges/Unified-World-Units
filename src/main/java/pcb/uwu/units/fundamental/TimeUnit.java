@@ -8,7 +8,7 @@ import java.util.function.Function;
 
 import static java.math.MathContext.DECIMAL64;
 
-public class TimeUnit extends BaseUnit<TimeUnit> {
+public class TimeUnit extends BaseUnit {
 
 	private static final BigDecimal SECONDS_PER_WEEK = new BigDecimal(604_800);
 	private static final BigDecimal SECONDS_PER_DAY = new BigDecimal(86_400);

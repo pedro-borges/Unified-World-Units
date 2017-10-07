@@ -5,7 +5,7 @@ import pcb.uwu.core.BigDecimalAmount;
 
 import java.util.function.Function;
 
-public class ElectricCurrentUnit extends BaseUnit<ElectricCurrentUnit> {
+public class ElectricCurrentUnit extends BaseUnit {
 
 	public static final ElectricCurrentUnit AMPERE = new ElectricCurrentUnit(
 			"A", "ampere", "amperes",
