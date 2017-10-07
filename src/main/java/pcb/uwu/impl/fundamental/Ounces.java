@@ -71,11 +71,5 @@ public class Ounces extends Mass {
 		return new Ounces(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Ounces convertTo(MassUnit unit) {
-		return new Ounces(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

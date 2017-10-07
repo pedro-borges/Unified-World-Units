@@ -71,11 +71,5 @@ public class Candelas extends LuminousIntensity {
 		return new Candelas(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Candelas convertTo(LuminousIntensityUnit unit) {
-		return new Candelas(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

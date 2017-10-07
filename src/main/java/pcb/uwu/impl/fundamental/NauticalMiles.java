@@ -71,11 +71,5 @@ public class NauticalMiles extends Length {
 		return new NauticalMiles(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public NauticalMiles convertTo(LengthUnit unit) {
-		return new NauticalMiles(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

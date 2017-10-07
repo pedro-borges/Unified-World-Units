@@ -71,11 +71,5 @@ public class Grams extends Mass {
 		return new Grams(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Grams convertTo(MassUnit unit) {
-		return new Grams(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

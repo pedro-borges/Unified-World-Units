@@ -71,11 +71,5 @@ public class Stones extends Mass {
 		return new Stones(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Stones convertTo(MassUnit unit) {
-		return new Stones(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

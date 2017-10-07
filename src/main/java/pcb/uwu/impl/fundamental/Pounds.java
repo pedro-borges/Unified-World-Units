@@ -71,11 +71,5 @@ public class Pounds extends Mass {
 		return new Pounds(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Pounds convertTo(MassUnit unit) {
-		return new Pounds(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

@@ -71,11 +71,5 @@ public class Meters extends Length {
 		return new Meters(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Meters convertTo(LengthUnit unit) {
-		return new Meters(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

@@ -71,10 +71,5 @@ public class Feet extends Length {
 		return new Feet(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Feet convertTo(LengthUnit unit) {
-		return new Feet(getAmountIn(unit));
-	}
-
 	// endregion
 }

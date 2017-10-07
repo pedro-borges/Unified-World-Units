@@ -71,11 +71,5 @@ public class Fahrenheits extends Temperature {
 		return new Fahrenheits(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Fahrenheits convertTo(TemperatureUnit unit) {
-		return new Fahrenheits(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

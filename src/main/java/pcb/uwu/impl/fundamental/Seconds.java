@@ -72,11 +72,6 @@ public class Seconds extends Time {
 		return new Seconds(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Seconds convertTo(TimeUnit unit) {
-		return new Seconds(getAmountIn(unit));
-	}
-
 	// endregion
 
 	// region composite

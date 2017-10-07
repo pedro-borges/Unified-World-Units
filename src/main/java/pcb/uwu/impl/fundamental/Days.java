@@ -71,11 +71,5 @@ public class Days extends Time {
 		return new Days(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Days convertTo(TimeUnit unit) {
-		return new Days(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

@@ -71,11 +71,5 @@ public class Celsius extends Temperature {
 		return new Celsius(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Celsius convertTo(TemperatureUnit unit) {
-		return new Celsius(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

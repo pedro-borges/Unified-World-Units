@@ -71,11 +71,5 @@ public class Kelvins extends Temperature {
 		return new Kelvins(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Kelvins convertTo(TemperatureUnit unit) {
-		return new Kelvins(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

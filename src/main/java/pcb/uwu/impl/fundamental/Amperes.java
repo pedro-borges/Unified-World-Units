@@ -5,7 +5,6 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.impl.composite.electromagnetism.Coulombs;
-import pcb.uwu.units.composite.electromagnetism.ElectricChargeUnit;
 import pcb.uwu.units.fundamental.ElectricCurrentUnit;
 
 import java.math.BigDecimal;
@@ -73,11 +72,6 @@ public class Amperes extends ElectricCurrent {
 		return new Amperes(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Amperes convertTo(ElectricCurrentUnit unit) {
-		return new Amperes(getAmountIn(unit));
-	}
-
 	// endregion
 
 	// region composition
@@ -85,11 +79,9 @@ public class Amperes extends ElectricCurrent {
 	public Coulombs multipliedBy(Seconds time, MathContext mathContext) {
 		BigDecimalAmount amount = getAmount()
 				.multipliedBy(time.getAmount().getValue(), mathContext);
-		ElectricChargeUnit unit = new ElectricChargeUnit(getUnit(), time.getUnit());
 
 		return new Coulombs(amount);
 	}
 
 	// endregion
-
 }

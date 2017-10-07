@@ -71,11 +71,5 @@ public class Minutes extends Time {
 		return new Minutes(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Minutes convertTo(TimeUnit unit) {
-		return new Minutes(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

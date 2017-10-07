@@ -71,11 +71,5 @@ public class Hours extends Time {
 		return new Hours(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Hours convertTo(TimeUnit unit) {
-		return new Hours(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

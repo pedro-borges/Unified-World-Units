@@ -71,11 +71,5 @@ public class Weeks extends Time {
 		return new Weeks(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Weeks convertTo(TimeUnit unit) {
-		return new Weeks(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

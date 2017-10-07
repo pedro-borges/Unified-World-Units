@@ -71,11 +71,5 @@ public class Inches extends Length {
 		return new Inches(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Inches convertTo(LengthUnit unit) {
-		return new Inches(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

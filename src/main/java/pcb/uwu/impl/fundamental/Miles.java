@@ -71,11 +71,5 @@ public class Miles extends Length {
 		return new Miles(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Miles convertTo(LengthUnit unit) {
-		return new Miles(getAmountIn(unit));
-	}
-
 	// endregion
-
 }

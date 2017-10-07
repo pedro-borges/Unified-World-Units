@@ -71,11 +71,5 @@ public class Yards extends Length {
 		return new Yards(dividedByScalar(other, mathContext));
 	}
 
-	@Override
-	public Yards convertTo(LengthUnit unit) {
-		return new Yards(getAmountIn(unit));
-	}
-
 	// endregion
-
 }
