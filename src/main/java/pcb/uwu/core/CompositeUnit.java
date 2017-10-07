@@ -12,18 +12,29 @@ public class CompositeUnit implements Unit {
 	private static final char[] POWERS = new char[] {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'};
 
 	private final UnitCounter unitCounter;
+	private final Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical;
+	private final Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical;
 
 	// endregion
 
 	// region constructors
 
 	CompositeUnit() {
-		unitCounter = new UnitCounter();
+		this(new UnitCounter());
 	}
 
 	public CompositeUnit(UnitCounter unitCounter)
 	{
+		this(unitCounter, Function.identity(), Function.identity());
+	}
+
+	protected CompositeUnit(UnitCounter unitCounter,
+							Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+							Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
+
 		this.unitCounter = unitCounter;
+		this.translationToCanonical = translationToCanonical;
+		this.translationFromCanonical = translationFromCanonical;
 	}
 
 	// endregion
