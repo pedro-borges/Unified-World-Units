@@ -14,10 +14,6 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 
 	// region fields
 
-	/**
-	 * The identity amount i.e. 1
-	 */
-
 	public static final BigDecimalAmount ZERO = new BigDecimalAmount(0);
 	public static final BigDecimalAmount ONE = new BigDecimalAmount(1);
 
@@ -194,7 +190,7 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 			last = magnitudes.get(magnitudes.size() - 1);
 			for (int i = magnitudes.size() - 1; i >= 0; i--) {
 				last = magnitudes.get(i);
-				if (absolute.compareTo(magnitudes.get(i).getValue()) > 0) break;
+				if (absolute.compareTo(magnitudes.get(i).getValue()) >= 0) break;
 			}
 		}
 

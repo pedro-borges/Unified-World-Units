@@ -36,12 +36,14 @@ public class ForceUnit extends CompositeUnit {
 
 		@Override
 		public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
-			return super.getTranslationToCanonical().andThen(amount -> amount.multipliedBy(ONE_THOUSAND, UNLIMITED));
+			return super.getTranslationToCanonical()
+					.andThen(amount -> amount.multipliedBy(ONE_THOUSAND, UNLIMITED));
 		}
 
 		@Override
 		public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
-			return super.getTranslationFromCanonical().andThen(amount -> amount.dividedBy(ONE_THOUSAND, UNLIMITED));
+			return super.getTranslationFromCanonical()
+					.andThen(amount -> amount.dividedBy(ONE_THOUSAND, UNLIMITED));
 		}
 	};
 

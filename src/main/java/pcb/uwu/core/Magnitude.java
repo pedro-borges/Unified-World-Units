@@ -14,7 +14,7 @@ public enum Magnitude {
 	CENTI(-2, "c"),
 	DECI(-1, "d"),
 	NATURAL(0, ""),
-	DECA(1, "D"),
+	DEKA(1, "D"),
 	HECTA(2, "H"),
 	KILO(3, "K"),
 	MEGA(6, "M"),
@@ -23,7 +23,7 @@ public enum Magnitude {
 	;
 
 	public static final List<Magnitude> ALL_MAGNITUDES = Arrays
-			.asList(PICO, NANO, MICRO, MILLI, CENTI, DECI, NATURAL, DECA, HECTA, KILO, MEGA, GIGA, TERA);
+			.asList(PICO, NANO, MICRO, MILLI, CENTI, DECI, NATURAL, DEKA, HECTA, KILO, MEGA, GIGA, TERA);
 	public static final List<Magnitude> MAJOR_MAGNITUDES = Arrays
 			.asList(PICO, NANO, MICRO, MILLI, NATURAL, KILO, MEGA, GIGA, TERA);
 

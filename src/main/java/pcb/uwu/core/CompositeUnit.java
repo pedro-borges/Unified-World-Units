@@ -103,6 +103,27 @@ public class CompositeUnit implements Unit {
 		return result;
 	}
 
+	protected Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical(
+			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
+
+		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
+
+		for (Unit unit : unitCounter.getPositiveKeys()) {
+			for (int i = 0; i < unitCounter.get(unit); i++) {
+				result = result.andThen(unit.getTranslationToCanonical().andThen(translationToCanonical));
+			}
+		}
+
+		for (Unit unit : unitCounter.getNegativeKeys()) {
+			for (int i = 0; i > unitCounter.get(unit); i--) {
+				result = result.andThen(unit.getTranslationFromCanonical().andThen(translationFromCanonical));
+			}
+		}
+
+		return result;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -119,6 +140,27 @@ public class CompositeUnit implements Unit {
 		for (Unit unit : unitCounter.getNegativeKeys()) {
 			for (int i = 0; i > unitCounter.get(unit); i--) {
 				result = result.andThen(unit.getTranslationToCanonical());
+			}
+		}
+
+		return result;
+	}
+
+	protected Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical(
+			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
+
+		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
+
+		for (Unit unit : unitCounter.getPositiveKeys()) {
+			for (int i = 0; i < unitCounter.get(unit); i++) {
+				result = result.andThen(unit.getTranslationFromCanonical().andThen(translationFromCanonical));
+			}
+		}
+
+		for (Unit unit : unitCounter.getNegativeKeys()) {
+			for (int i = 0; i > unitCounter.get(unit); i--) {
+				result = result.andThen(unit.getTranslationToCanonical().andThen(translationToCanonical));
 			}
 		}
 

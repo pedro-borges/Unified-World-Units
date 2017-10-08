@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static java.math.BigDecimal.ONE;
 import static java.math.MathContext.UNLIMITED;
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.core.Magnitude.ALL_MAGNITUDES;
@@ -20,7 +19,7 @@ public class BigDecimalAmountTest {
 
 	@Test
 	public void testConstructBigDecimal() {
-		BigDecimalAmount amount = new BigDecimalAmount(ONE);
+		BigDecimalAmount amount = new BigDecimalAmount(1);
 
 		assertEquals("1", amount.toString());
 	}
@@ -111,5 +110,22 @@ public class BigDecimalAmountTest {
 		BigDecimalAmount sum = amount1.minus(amount2, UNLIMITED);
 
 		assertEquals("-999μ", sum.toStringWithMagnitude(MAJOR_MAGNITUDES));
+	}
+
+	@Test
+	public void testStringWithMagnitudes() {
+//		assertEquals("1T", new BigDecimalAmount("1000000000000").toStringWithMagnitude(ALL_MAGNITUDES));
+//		assertEquals("1G", new BigDecimalAmount("1000000000").toStringWithMagnitude(ALL_MAGNITUDES));
+//		assertEquals("1M", new BigDecimalAmount("1000000").toStringWithMagnitude(ALL_MAGNITUDES));
+//		assertEquals("1K", new BigDecimalAmount("1000").toStringWithMagnitude(ALL_MAGNITUDES));
+//		assertEquals("1H", new BigDecimalAmount("100").toStringWithMagnitude(ALL_MAGNITUDES));
+//		assertEquals("1D", new BigDecimalAmount("10").toStringWithMagnitude(ALL_MAGNITUDES));
+//		assertEquals("1", new BigDecimalAmount("1").toStringWithMagnitude(ALL_MAGNITUDES));
+		assertEquals("1d", new BigDecimalAmount("0.1").toStringWithMagnitude(ALL_MAGNITUDES));
+		assertEquals("1c", new BigDecimalAmount("0.01").toStringWithMagnitude(ALL_MAGNITUDES));
+		assertEquals("1m", new BigDecimalAmount("0.001").toStringWithMagnitude(ALL_MAGNITUDES));
+		assertEquals("1μ", new BigDecimalAmount("0.000001").toStringWithMagnitude(ALL_MAGNITUDES));
+		assertEquals("1n", new BigDecimalAmount("0.000000001").toStringWithMagnitude(ALL_MAGNITUDES));
+		assertEquals("1p", new BigDecimalAmount("0.000000000001").toStringWithMagnitude(ALL_MAGNITUDES));
 	}
 }
