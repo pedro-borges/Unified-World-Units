@@ -6,8 +6,8 @@ import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.exceptions.CurrencyMismatchException;
-import pcb.uwu.units.finance.MoneyRateUnit;
 import pcb.uwu.units.finance.MoneyUnit;
+import pcb.uwu.units.finance.RentUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -98,7 +98,7 @@ public class Money extends AbstractUnitAmount<MoneyUnit> {
 	public Rent dividedBy(Time time, MathContext mathContext) {
 		BigDecimalAmount amount = getAmount()
 				.dividedBy(time.getAmount().getValue(), mathContext);
-		MoneyRateUnit unit = new MoneyRateUnit(getUnit(), time.getUnit());
+		RentUnit unit = new RentUnit(getUnit(), time.getUnit());
 
 		return new Rent(amount, unit);
 	}
@@ -106,7 +106,7 @@ public class Money extends AbstractUnitAmount<MoneyUnit> {
 	public Rent multipliedBy(InterestRate interestRate, MathContext mathContext) {
 		BigDecimalAmount amount = getAmount()
 				.multipliedBy(interestRate.getAmount().getValue(), mathContext);
-		MoneyRateUnit unit = new MoneyRateUnit(getUnit(), interestRate.getUnit());
+		RentUnit unit = new RentUnit(getUnit(), interestRate.getUnit());
 
 		return new Rent(amount, unit);
 	}
