@@ -109,6 +109,10 @@ public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U
 		return amount.transformed(translation);
 	}
 
+	public BigDecimalAmount dividedBy(UnitAmount<U> other, MathContext mathContext) {
+		return amount.dividedBy(other.getAmountIn(unit), mathContext);
+	}
+
 	// endregion
 
 	// region override Object

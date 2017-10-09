@@ -47,6 +47,14 @@ public interface UnitAmount<U extends Unit> extends Comparable<UnitAmount<U>> {
 	UnitAmount<U> dividedBy(BigDecimal other, MathContext mathContext);
 
 	/**
+	 * Divide another {@code UnitAmount<U>} by this {@code UnitAmount<U>}.
+	 * @param other the {@code UnitAmount<U>} to divide by
+	 * @param mathContext the maths context to consider
+	 * @return a new {@code BigDecimal} scalar representing this ÷ other
+	 */
+	BigDecimalAmount dividedBy(UnitAmount<U> other, MathContext mathContext);
+
+	/**
 	 * Get the underlying {@code Amount} in a new {@code Unit}.
 	 * @param unit the {@code Unit} to convert to
 	 * @return the converted {@code Amount}

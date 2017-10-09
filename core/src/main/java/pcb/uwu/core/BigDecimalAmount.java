@@ -88,6 +88,16 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	}
 
 	/**
+	 * Multiply by amount.
+	 * @param other the {@code BigDecimalAmount} to multiply by
+	 * @param mathContext the maths context to consider
+	 * @return the scalar result of dividing this {@code BigDecimalAmount} but another.
+	 */
+	public BigDecimalAmount multipliedBy(BigDecimalAmount other, MathContext mathContext) {
+		return new BigDecimalAmount(value.multiply(other.value, mathContext));
+	}
+
+	/**
 	 * Multiply by a scalar.
 	 * @param other the scalar value to multiply by
 	 * @param mathContext the maths context to consider
@@ -98,6 +108,16 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	}
 
 	/**
+	 * Divide by amount.
+	 * @param other the {@code BigDecimalAmount} to divide by
+	 * @param mathContext the maths context to consider
+	 * @return the scalar result of dividing this {@code BigDecimalAmount} but another.
+	 */
+	public BigDecimalAmount dividedBy(BigDecimalAmount other, MathContext mathContext) {
+		return new BigDecimalAmount(value.divide(other.value, mathContext));
+	}
+
+	/**
 	 * Divide by a scalar.
 	 * @param other the scalar value to divide by
 	 * @param mathContext the maths context to consider
@@ -105,16 +125,6 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	 */
 	public BigDecimalAmount dividedBy(BigDecimal other, MathContext mathContext) {
 		return new BigDecimalAmount(value.divide(other, mathContext));
-	}
-
-	/**
-	 * Divide amount.
-	 * @param other the {@code BigDecimalAmount} to divide by
-	 * @param mathContext the maths context to consider
-	 * @return the scalar result of dividing this {@code BigDecimalAmount} but another.
-	 */
-	public BigDecimal dividedBy(BigDecimalAmount other, MathContext mathContext) {
-		return value.divide(other.value, mathContext);
 	}
 
 	/**
