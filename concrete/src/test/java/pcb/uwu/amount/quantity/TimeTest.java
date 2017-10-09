@@ -5,9 +5,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.core.BigDecimalAmount.ONE;
@@ -15,13 +12,8 @@ import static pcb.uwu.core.BigDecimalAmount.ONE;
 @RunWith(Parameterized.class)
 public class TimeTest {
 	@Parameters
-	public static Collection<Object[]> testData() {
-		return Arrays.asList(new Object[][] {
-				{ seconds },
-				{ minutes },
-				{ hours },
-				{ days },
-				{ weeks }});
+	public static Object[] testData() {
+		return new Object[] { seconds, minutes, hours, days, weeks };
 	}
 
 	private static final Seconds seconds = new Seconds(604_800);
