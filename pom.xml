@@ -4,9 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pcb</groupId>
-    <artifactId>units</artifactId>
+    <groupId>pcb.uow</groupId>
+    <artifactId>unified-world-units</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>core</module>
+        <module>concrete</module>
+    </modules>
 
     <build>
         <plugins>
