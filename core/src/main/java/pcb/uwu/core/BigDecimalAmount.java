@@ -3,7 +3,6 @@ package pcb.uwu.core;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -169,37 +168,37 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 
 	// region representation
 
-	public String toStringWithMagnitude(List<Magnitude> magnitudes) {
-		if (isZero() || magnitudes.isEmpty())
-		{
-			return value.toPlainString();
-		}
-
-		Magnitude last;
-		BigDecimal absolute = value.abs();
-
-		if (absolute.compareTo(BigDecimal.ONE) == 0) {
-			return value.toPlainString();
-		} else if (absolute.compareTo(BigDecimal.ONE) > 0) {
-			last = magnitudes.get(0);
-			for (int i = 0; i < magnitudes.size(); i++) {
-				if (absolute.compareTo(magnitudes.get(i).getValue()) < 0) break;
-				last = magnitudes.get(i);
-			}
-		} else {
-			last = magnitudes.get(magnitudes.size() - 1);
-			for (int i = magnitudes.size() - 1; i >= 0; i--) {
-				last = magnitudes.get(i);
-				if (absolute.compareTo(magnitudes.get(i).getValue()) >= 0) break;
-			}
-		}
-
-		BigDecimalAmount scaled = new BigDecimalAmount(value
-				.movePointLeft(last.order())
-				.stripTrailingZeros());
-
-		return scaled.value.toPlainString() + last.symbol();
-	}
+//	public String toStringWithMagnitude(List<Magnitude> magnitudes) {
+//		if (isZero() || magnitudes.isEmpty())
+//		{
+//			return value.toPlainString();
+//		}
+//
+//		Magnitude last;
+//		BigDecimal absolute = value.abs();
+//
+//		if (absolute.compareTo(BigDecimal.ONE) == 0) {
+//			return value.toPlainString();
+//		} else if (absolute.compareTo(BigDecimal.ONE) > 0) {
+//			last = magnitudes.get(0);
+//			for (int i = 0; i < magnitudes.size(); i++) {
+//				if (absolute.compareTo(magnitudes.get(i).getValue()) < 0) break;
+//				last = magnitudes.get(i);
+//			}
+//		} else {
+//			last = magnitudes.get(magnitudes.size() - 1);
+//			for (int i = magnitudes.size() - 1; i >= 0; i--) {
+//				last = magnitudes.get(i);
+//				if (absolute.compareTo(magnitudes.get(i).getValue()) >= 0) break;
+//			}
+//		}
+//
+//		BigDecimalAmount scaled = new BigDecimalAmount(value
+//				.movePointLeft(last.order())
+//				.stripTrailingZeros());
+//
+//		return scaled.value.toPlainString() + last.symbol();
+//	}
 
 	// endregion
 

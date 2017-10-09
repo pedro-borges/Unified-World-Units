@@ -4,7 +4,6 @@ import org.junit.Test;
 import pcb.uwu.units.composite.mechanics.ForceUnit;
 
 import static org.junit.Assert.assertEquals;
-import static pcb.uwu.core.Magnitude.MAJOR_MAGNITUDES;
 import static pcb.uwu.unit.composite.mechanics.NewtonUnit.NEWTON;
 import static pcb.uwu.unit.quantity.GramUnit.GRAM;
 import static pcb.uwu.unit.quantity.MeterUnit.METER;
@@ -17,7 +16,7 @@ public class NewtonsTest {
 		Newtons newtons = new Newtons(2);
 
 		assertEquals("2N", newtons.toString());
-		assertEquals("2Kgm/s²", newtons.convertTo(unit).toStringWithMagnitude(MAJOR_MAGNITUDES));
+		assertEquals("2000gm/s²", newtons.convertTo(unit).toString());
 
 		Force force = new Force(2200, unit);
 

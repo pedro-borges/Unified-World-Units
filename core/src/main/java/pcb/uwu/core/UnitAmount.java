@@ -2,7 +2,6 @@ package pcb.uwu.core;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.List;
 
 public interface UnitAmount<U extends Unit> extends Comparable<UnitAmount<U>> {
 	/**
@@ -55,6 +54,4 @@ public interface UnitAmount<U extends Unit> extends Comparable<UnitAmount<U>> {
 	BigDecimalAmount getAmountIn(U unit);
 
 	UnitAmount<U> convertTo(U unit);
-
-	String toStringWithMagnitude(List<Magnitude> magnitudes);
 }
