@@ -1,4 +1,4 @@
-package pcb.uwu.units.composite.finance;
+package pcb.uwu.units.finance;
 
 import pcb.uwu.units.composite.fundamental.FrequencyUnit;
 import pcb.uwu.units.quantity.TimeUnit;

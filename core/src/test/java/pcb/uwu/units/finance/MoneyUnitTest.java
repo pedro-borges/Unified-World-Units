@@ -1,4 +1,4 @@
-package pcb.uwu.units.quantity;
+package pcb.uwu.units.finance;
 
 import org.junit.Test;
 import pcb.uwu.contracts.CurrencyConversionProvider;
@@ -14,7 +14,7 @@ import static java.math.RoundingMode.HALF_EVEN;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.core.BigDecimalAmount.ZERO;
-import static pcb.uwu.units.quantity.MoneyUnit.CANONICAL_CURRENCY;
+import static pcb.uwu.units.finance.MoneyUnit.CANONICAL_CURRENCY;
 
 public class MoneyUnitTest {
 	private static final Currency GBP = Currency.getInstance("GBP");

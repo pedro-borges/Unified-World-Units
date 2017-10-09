@@ -1,9 +1,9 @@
-package pcb.uwu.amount.composite.finance;
+package pcb.uwu.amount.finance;
 
 import org.junit.Test;
 import pcb.uwu.amount.quantity.Money;
 import pcb.uwu.amount.quantity.Time;
-import pcb.uwu.units.composite.finance.InterestRateUnit;
+import pcb.uwu.units.finance.InterestRateUnit;
 
 import java.util.Currency;
 

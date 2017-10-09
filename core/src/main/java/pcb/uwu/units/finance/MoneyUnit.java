@@ -1,4 +1,4 @@
-package pcb.uwu.units.quantity;
+package pcb.uwu.units.finance;
 
 import pcb.uwu.contracts.CurrencyConversionProvider;
 import pcb.uwu.core.BaseUnit;
