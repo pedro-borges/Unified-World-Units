@@ -41,7 +41,7 @@ public class CompositeUnit implements Unit {
 		return new CompositeUnit(unitCounter.major(unit));
 	}
 
-	public CompositeUnit minor(Unit unit) {
+	public CompositeUnit minor(BaseUnit unit) {
 		return new CompositeUnit(unitCounter.minor(unit));
 	}
 

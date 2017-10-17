@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 public class UnitCounter {
-	private final Map<Unit, Integer> major, minor;
+	private final Map<BaseUnit, Integer> major, minor;
 
 	private static final char NEGATIVE = '⁻';
 	private static final char[] POWERS = new char[] {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'};
@@ -25,7 +25,7 @@ public class UnitCounter {
 		minor = new HashMap<>(source.minor);
 	}
 
-	private UnitCounter(Map<Unit, Integer> major, Map<Unit, Integer> minor) {
+	private UnitCounter(Map<BaseUnit, Integer> major, Map<BaseUnit, Integer> minor) {
 		this.major = major;
 		this.minor = minor;
 	}
@@ -62,11 +62,11 @@ public class UnitCounter {
 		return result;
 	}
 
-	public UnitCounter minor(Unit unit) {
+	public UnitCounter minor(BaseUnit unit) {
 		return minor(unit, 1);
 	}
 
-	public UnitCounter minor(Unit unit, int counts) {
+	public UnitCounter minor(BaseUnit unit, int counts) {
 		UnitCounter result = new UnitCounter(this);
 
 		result.majorMaps(unit, result.remove(unit) - counts);
@@ -153,11 +153,11 @@ public class UnitCounter {
 		return result;
 	}
 
-	private void minorMaps(Unit unit, int counts) {
+	private void minorMaps(BaseUnit unit, int counts) {
 		majorMaps(unit, -counts);
 	}
 
-	private void majorMaps(Unit unit, int counts) {
+	private void majorMaps(BaseUnit unit, int counts) {
 		if (counts < 0) {
 			minor.put(unit, counts);
 		} else if (counts > 0) {
@@ -184,16 +184,16 @@ public class UnitCounter {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <U extends Unit> U findMajorUnit(Class<U> unitClass) {
+	public <U extends BaseUnit> U findMajorUnit(Class<U> unitClass) {
 		return getUnit(unitClass, major.keySet());
 	}
 
 	@SuppressWarnings("unchecked")
-	public <U extends Unit> U findMinorUnit(Class<U> unitClass) {
+	public <U extends BaseUnit> U findMinorUnit(Class<U> unitClass) {
 		return getUnit(unitClass, minor.keySet());
 	}
 
-	private <U extends Unit> U getUnit(Class<U> unitClass, Set<Unit> units) {
+	private <U extends BaseUnit> U getUnit(Class<U> unitClass, Set<BaseUnit> units) {
 		for (Unit unit : units) {
 			if (unitClass.isAssignableFrom(unit.getClass())) return (U) unit;
 		}
