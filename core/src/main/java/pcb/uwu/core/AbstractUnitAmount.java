@@ -99,6 +99,11 @@ public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U
 	}
 
 	@Override
+	public BigDecimalAmount dividedBy(UnitAmount<U> other, MathContext mathContext) {
+		return amount.dividedBy(other.getAmountIn(unit), mathContext);
+	}
+
+	@Override
 	public BigDecimalAmount getAmountIn(U newUnit) {
 		if (getUnit().equals(newUnit)) {
 			return amount;
@@ -107,10 +112,6 @@ public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U
 		Function<BigDecimalAmount, BigDecimalAmount> translation = getUnit().getTranslationToCanonical().andThen(newUnit.getTranslationFromCanonical());
 
 		return amount.transformed(translation);
-	}
-
-	public BigDecimalAmount dividedBy(UnitAmount<U> other, MathContext mathContext) {
-		return amount.dividedBy(other.getAmountIn(unit), mathContext);
 	}
 
 	// endregion

@@ -19,6 +19,6 @@ public class ForceUnit extends CompositeUnit {
 	public ForceUnit(MassUnit massUnit, AccelerationUnit accelerationUnit) {
 		super(new UnitCounter()
 				.major(massUnit)
-				.major(accelerationUnit));
+				.major(accelerationUnit.getUnitCounter()));
 	}
 }

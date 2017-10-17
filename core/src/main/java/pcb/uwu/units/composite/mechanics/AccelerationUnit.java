@@ -8,7 +8,7 @@ public class AccelerationUnit extends CompositeUnit {
 
 	public AccelerationUnit(SpeedUnit lengthUnit, TimeUnit timeUnit) {
 		super(new UnitCounter()
-				.major(lengthUnit)
+				.major(lengthUnit.getUnitCounter())
 				.minor(timeUnit));
 	}
 }

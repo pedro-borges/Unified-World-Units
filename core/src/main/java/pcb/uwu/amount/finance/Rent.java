@@ -1,10 +1,14 @@
 package pcb.uwu.amount.finance;
 
+import pcb.uwu.amount.quantity.Money;
+import pcb.uwu.amount.quantity.Time;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
+import pcb.uwu.units.finance.MoneyUnit;
 import pcb.uwu.units.finance.RentUnit;
+import pcb.uwu.units.quantity.TimeUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -45,7 +49,6 @@ public class Rent extends AbstractUnitAmount<RentUnit> {
 		super(amount, magnitude, unit);
 	}
 
-
 	// endregion
 
 	// region implement UnitAmount
@@ -77,5 +80,16 @@ public class Rent extends AbstractUnitAmount<RentUnit> {
 
 	// endregion
 
-	// composite
+	// region composite
+
+	public Money multipliedBy(Time time, MathContext mathContext) {
+		MoneyUnit moneyUnit = getUnit().getUnitCounter().findMajorUnit(MoneyUnit.class);
+		TimeUnit timeUnit = getUnit().getUnitCounter().findMinorUnit(TimeUnit.class);
+		BigDecimalAmount amount = getAmount()
+				.multipliedBy(time.getAmountIn(timeUnit), mathContext);
+
+		return new Money(amount, moneyUnit);
+	}
+
+	// endregion
 }

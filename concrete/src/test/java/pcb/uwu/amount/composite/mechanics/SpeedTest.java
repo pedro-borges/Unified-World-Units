@@ -1,6 +1,5 @@
 package pcb.uwu.amount.composite.mechanics;
 
-import org.junit.Assert;
 import org.junit.Test;
 import pcb.uwu.amount.quantity.Length;
 import pcb.uwu.amount.quantity.Time;
@@ -26,7 +25,7 @@ public class SpeedTest {
 	@Test
 	public void testCreateFromSpaceAndTime() {
 		assertEquals(new BigDecimalAmount(5), speed.getAmount());
-		Assert.assertEquals("m/min", speed.getUnit().getSymbol());
+		assertEquals("m/min", speed.getUnit().getSymbol());
 	}
 
 	@Test
@@ -39,7 +38,7 @@ public class SpeedTest {
 		Speed result = speed.plus(other, DECIMAL64);
 
 		assertEquals(new BigDecimalAmount("20.24"), result.getAmount().withScale(2, HALF_EVEN));
-		Assert.assertEquals("m/min", result.getUnit().getSymbol());
+		assertEquals("m/min", result.getUnit().getSymbol());
 	}
 
 	@Test
@@ -52,7 +51,7 @@ public class SpeedTest {
 		Speed result = speed.minus(other, DECIMAL64);
 
 		assertEquals(new BigDecimalAmount("-10.24"), result.getAmount().withScale(2, HALF_EVEN));
-		Assert.assertEquals("m/min", result.getUnit().getSymbol());
+		assertEquals("m/min", result.getUnit().getSymbol());
 	}
 
 	@Test
@@ -60,7 +59,7 @@ public class SpeedTest {
 		Speed result = speed.multipliedBy(TEN, DECIMAL64);
 
 		assertEquals(new BigDecimalAmount("50"), result.getAmount().withScale(0, HALF_EVEN));
-		Assert.assertEquals("m/min", result.getUnit().getSymbol());
+		assertEquals("m/min", result.getUnit().getSymbol());
 	}
 
 	@Test
@@ -68,7 +67,23 @@ public class SpeedTest {
 		Speed result = speed.dividedBy(TEN, DECIMAL64);
 
 		assertEquals(new BigDecimalAmount("0.5"), result.getAmount().withScale(1, HALF_EVEN));
-		Assert.assertEquals("m/min", result.getUnit().getSymbol());
+		assertEquals("m/min", result.getUnit().getSymbol());
+	}
+
+	@Test
+	public void testDividedByTime() {
+		Acceleration result = speed.dividedBy(time, DECIMAL64);
+
+		assertEquals(new BigDecimalAmount("2.5"), result.getAmount().withScale(1, HALF_EVEN));
+		assertEquals("m/min²", result.getUnit().getSymbol());
+	}
+
+	@Test
+	public void testMultipliedByTime() {
+		Length result = speed.multipliedBy(time, DECIMAL64);
+
+		assertEquals(new BigDecimalAmount("10"), result.getAmount().withScale(0, HALF_EVEN));
+		assertEquals("m", result.getUnit().getSymbol());
 	}
 
 	@Test

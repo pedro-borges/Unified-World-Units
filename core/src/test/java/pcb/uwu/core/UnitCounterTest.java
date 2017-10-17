@@ -9,9 +9,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class UnitCounterTest {
-	public static final Unit SECOND = new TimeUnit("s", "", "", null, null) {};
-	public static final Unit AMPERE = new ElectricCurrentUnit("A", "", "", null, null) {};
-	public static final Unit KILOGRAM = new MassUnit("Kg", "", "", null, null) {};
+	public static final BaseUnit SECOND = new TimeUnit("s", "", "", null, null) {};
+	public static final BaseUnit AMPERE = new ElectricCurrentUnit("A", "", "", null, null) {};
+	public static final BaseUnit KILOGRAM = new MassUnit("Kg", "", "", null, null) {};
 
 	@Test
 	public void testObjectCounter() {
@@ -37,5 +37,17 @@ public class UnitCounterTest {
 		assertEquals(2, test.getPositiveKeys().size());
 		assertTrue(test.getPositiveKeys().contains(SECOND));
 		assertTrue(test.getPositiveKeys().contains(AMPERE));
+	}
+
+	@Test
+	public void testFindMajorUnit() {
+		UnitCounter test = new UnitCounter()
+				.major(SECOND)
+				.major(AMPERE)
+				.major(KILOGRAM);
+
+		assertEquals(SECOND, test.findMajorUnit(TimeUnit.class));
+		assertEquals(AMPERE, test.findMajorUnit(ElectricCurrentUnit.class));
+		assertEquals(KILOGRAM, test.findMajorUnit(MassUnit.class));
 	}
 }

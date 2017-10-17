@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
 
 public class UnitCounter {
 	private final Map<Unit, Integer> major, minor;
+
+	private static final char NEGATIVE = '⁻';
+	private static final char[] POWERS = new char[] {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'};
 
 	// region constructors
 
@@ -36,11 +41,11 @@ public class UnitCounter {
 		return result;
 	}
 
-	public UnitCounter major(Unit unit) {
+	public UnitCounter major(BaseUnit unit) {
 		return major(unit, 1);
 	}
 
-	public UnitCounter major(Unit unit, int counts) {
+	public UnitCounter major(BaseUnit unit, int counts) {
 		UnitCounter result = new UnitCounter(this);
 
 		result.majorMaps(unit, result.remove(unit) + counts);
@@ -92,7 +97,61 @@ public class UnitCounter {
 		return new ArrayList<>(major.keySet());
 	}
 
+	public String asString(Function<Unit, String> majorString, Function<Unit, String> minorString, String separator) {
+		String result = "";
+
+		boolean first = true;
+
+		for (Unit unit : major.keySet()) {
+			String power = buildPower(get(unit));
+			if (first) {
+				result += majorString.apply(unit) + power;
+			} else {
+				result += minorString.apply(unit) + power;
+			}
+			first = false;
+		}
+
+		if (!minor.isEmpty()) {
+			result += separator;
+		}
+
+		for (Unit unit : minor.keySet()) {
+			String power = buildPower(Math.abs(get(unit)));
+			result += minorString.apply(unit) + power;
+		}
+
+		return result;
+	}
+
 	// region private methods
+
+	private String buildPower(int power) {
+		String result = "";
+		boolean negative = power < 0;
+
+		// Omit neutral power of 1
+		if (power == 1) {
+			return result;
+		}
+
+		if (power == 0) {
+			return String.valueOf(POWERS[0]);
+		}
+
+		power = Math.abs(power);
+
+		for (;power > 0 ; power /= 10)
+		{
+			result = POWERS[power % 10] + result;
+		}
+
+		if (negative) {
+			return NEGATIVE + result;
+		}
+
+		return result;
+	}
 
 	private void minorMaps(Unit unit, int counts) {
 		majorMaps(unit, -counts);
@@ -122,6 +181,24 @@ public class UnitCounter {
 
 	public boolean isEmpty() {
 		return major.isEmpty() && minor.isEmpty();
+	}
+
+	@SuppressWarnings("unchecked")
+	public <U extends Unit> U findMajorUnit(Class<U> unitClass) {
+		return getUnit(unitClass, major.keySet());
+	}
+
+	@SuppressWarnings("unchecked")
+	public <U extends Unit> U findMinorUnit(Class<U> unitClass) {
+		return getUnit(unitClass, minor.keySet());
+	}
+
+	private <U extends Unit> U getUnit(Class<U> unitClass, Set<Unit> units) {
+		for (Unit unit : units) {
+			if (unitClass.isAssignableFrom(unit.getClass())) return (U) unit;
+		}
+
+		return null;
 	}
 
 	// endregion

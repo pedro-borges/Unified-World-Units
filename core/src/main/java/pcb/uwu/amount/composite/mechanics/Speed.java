@@ -1,5 +1,6 @@
 package pcb.uwu.amount.composite.mechanics;
 
+import pcb.uwu.amount.quantity.Length;
 import pcb.uwu.amount.quantity.Time;
 import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
@@ -7,6 +8,8 @@ import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.mechanics.AccelerationUnit;
 import pcb.uwu.units.composite.mechanics.SpeedUnit;
+import pcb.uwu.units.quantity.LengthUnit;
+import pcb.uwu.units.quantity.TimeUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -86,6 +89,15 @@ public class Speed extends AbstractUnitAmount<SpeedUnit> {
 		AccelerationUnit unit = new AccelerationUnit(getUnit(), time.getUnit());
 
 		return new Acceleration(amount, unit);
+	}
+
+	public Length multipliedBy(Time time, MathContext mathContext) {
+		LengthUnit lengthUnit = getUnit().getUnitCounter().findMajorUnit(LengthUnit.class);
+		TimeUnit timeUnit = getUnit().getUnitCounter().findMinorUnit(TimeUnit.class);
+		BigDecimalAmount amount = getAmount()
+				.multipliedBy(time.getAmountIn(timeUnit), mathContext);
+
+		return new Length(amount, lengthUnit);
 	}
 
 	// endregion
