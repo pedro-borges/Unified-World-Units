@@ -2,8 +2,8 @@ package pcb.uwu.amount.quantity;
 
 import pcb.uwu.amount.composite.mechanics.Acceleration;
 import pcb.uwu.amount.composite.mechanics.Force;
-import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.mechanics.ForceUnit;
@@ -12,7 +12,7 @@ import pcb.uwu.units.quantity.MassUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Mass extends AbstractUnitAmount<MassUnit> {
+public class Mass extends CompositeUnitAmount<MassUnit> {
 
 	// region constructors
 

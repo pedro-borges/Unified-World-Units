@@ -27,16 +27,16 @@ public class UnitCounterTest {
 		assertEquals(2, (test = test.major(SECOND)).get(SECOND));
 		assertEquals(3, (test = test.major(SECOND)).get(SECOND));
 		assertEquals(-1, (test = test.minor(KILOGRAM)).get(KILOGRAM));
-		assertEquals(1, test.getNegativeKeys().size());
-		assertTrue(test.getNegativeKeys().contains(KILOGRAM));
-		assertEquals(2, test.getPositiveKeys().size());
-		assertTrue(test.getPositiveKeys().contains(SECOND));
-		assertTrue(test.getPositiveKeys().contains(AMPERE));
+		assertEquals(1, test.getMinorKeys().size());
+		assertTrue(test.getMinorKeys().contains(KILOGRAM));
+		assertEquals(2, test.getMajorKeys().size());
+		assertTrue(test.getMajorKeys().contains(SECOND));
+		assertTrue(test.getMajorKeys().contains(AMPERE));
 		assertEquals(0, (test = test.major(KILOGRAM)).get(KILOGRAM));
-		assertEquals(0, test.getNegativeKeys().size());
-		assertEquals(2, test.getPositiveKeys().size());
-		assertTrue(test.getPositiveKeys().contains(SECOND));
-		assertTrue(test.getPositiveKeys().contains(AMPERE));
+		assertEquals(0, test.getMinorKeys().size());
+		assertEquals(2, test.getMajorKeys().size());
+		assertTrue(test.getMajorKeys().contains(SECOND));
+		assertTrue(test.getMajorKeys().contains(AMPERE));
 	}
 
 	@Test

@@ -1,7 +1,7 @@
 package pcb.uwu.amount.composite.fundamental;
 
-import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.fundamental.VolumeUnit;
@@ -9,7 +9,7 @@ import pcb.uwu.units.composite.fundamental.VolumeUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Volume extends AbstractUnitAmount<VolumeUnit> {
+public class Volume extends CompositeUnitAmount<VolumeUnit> {
 
 	// region constructors
 

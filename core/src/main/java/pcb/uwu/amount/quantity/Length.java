@@ -1,10 +1,12 @@
 package pcb.uwu.amount.quantity;
 
+import pcb.uwu.amount.composite.fundamental.Area;
 import pcb.uwu.amount.composite.mechanics.Speed;
-import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
+import pcb.uwu.units.composite.fundamental.AreaUnit;
 import pcb.uwu.units.composite.mechanics.SpeedUnit;
 import pcb.uwu.units.quantity.LengthUnit;
 import pcb.uwu.units.quantity.TimeUnit;
@@ -12,7 +14,7 @@ import pcb.uwu.units.quantity.TimeUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Length extends AbstractUnitAmount<LengthUnit> {
+public class Length extends CompositeUnitAmount<LengthUnit> {
 
 	// region constructors
 
@@ -97,6 +99,12 @@ public class Length extends AbstractUnitAmount<LengthUnit> {
 				.dividedBy(speed.getAmountIn(new SpeedUnit(speedLengthUnit, speedTimeUnit)).getValue(), mathContext);
 
 		return new Time(amount, speedTimeUnit);
+	}
+
+	public Area multipliedBy(Length length, MathContext mathContext) {
+		return new Area(
+				getAmount().multipliedBy(length.getAmount(), mathContext),
+				new AreaUnit(getUnit(), length.getUnit()));
 	}
 
 	// endregion

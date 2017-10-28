@@ -1,7 +1,7 @@
 package pcb.uwu.amount.composite.mechanics;
 
-import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.mechanics.ForceUnit;
@@ -9,7 +9,7 @@ import pcb.uwu.units.composite.mechanics.ForceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Force extends AbstractUnitAmount<ForceUnit> {
+public class Force extends CompositeUnitAmount<ForceUnit> {
 
 	// region constructors
 

@@ -3,6 +3,7 @@ package pcb.uwu.units.finance;
 import pcb.uwu.contracts.CurrencyConversionProvider;
 import pcb.uwu.core.BaseUnit;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.UnitCounter;
 import pcb.uwu.exceptions.InvalidCurrencyException;
 
 import java.math.BigDecimal;
@@ -20,6 +21,7 @@ public class MoneyUnit extends BaseUnit {
 
 	private final Currency currency;
 	private final CurrencyConversionProvider currencyConversionProvider;
+	private final UnitCounter unitCounter;
 
 	// endregion
 
@@ -30,13 +32,15 @@ public class MoneyUnit extends BaseUnit {
 	}
 
 	public MoneyUnit(Currency currency, CurrencyConversionProvider currencyConversionProvider) {
-		super(currency.getSymbol(),
+		super(100,
+				currency.getSymbol(),
 				currency.getDisplayName(),
 				currency.getDisplayName(),
 				ignored -> { throw new InvalidCurrencyException("Cannot convert currencies"); },
 				ignored -> { throw new InvalidCurrencyException("Cannot convert currencies"); });
 
 		this.currency = currency;
+		this.unitCounter = new UnitCounter(this);
 		this.currencyConversionProvider = currencyConversionProvider;
 	}
 
@@ -74,6 +78,16 @@ public class MoneyUnit extends BaseUnit {
 		}
 
 		return amount -> amount.multipliedBy(ratio, DECIMAL32);
+	}
+
+	@Override
+	public Class<? extends BaseUnit> getBaseUnitType() {
+		return MoneyUnit.class;
+	}
+
+	@Override
+	public UnitCounter getUnitCounter() {
+		return unitCounter;
 	}
 
 	// endregion

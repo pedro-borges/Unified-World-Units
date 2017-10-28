@@ -8,8 +8,6 @@ public class CompositeUnit implements Unit {
 	// region private fields
 
 	private final UnitCounter unitCounter;
-	private final Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical;
-	private final Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical;
 
 	// endregion
 
@@ -21,16 +19,19 @@ public class CompositeUnit implements Unit {
 
 	public CompositeUnit(UnitCounter unitCounter)
 	{
-		this(unitCounter, Function.identity(), Function.identity());
+		this.unitCounter = unitCounter;
 	}
 
-	protected CompositeUnit(UnitCounter unitCounter,
-							Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
-							Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
+	public CompositeUnit(Unit unit) {
+		this();
 
-		this.unitCounter = unitCounter;
-		this.translationToCanonical = translationToCanonical;
-		this.translationFromCanonical = translationFromCanonical;
+		for (BaseUnit majorUnit : unit.getUnitCounter().getMajorKeys()) {
+			major(majorUnit);
+		}
+
+		for (BaseUnit minorUnit : unit.getUnitCounter().getMinorKeys()) {
+			minor(minorUnit);
+		}
 	}
 
 	// endregion
@@ -84,36 +85,15 @@ public class CompositeUnit implements Unit {
 	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
 		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
 
-		for (Unit unit : unitCounter.getPositiveKeys()) {
+		for (BaseUnit unit : unitCounter.getMajorKeys()) {
 			for (int i = 0; i < unitCounter.get(unit); i++) {
 				result = result.andThen(unit.getTranslationToCanonical());
 			}
 		}
 
-		for (Unit unit : unitCounter.getNegativeKeys()) {
+		for (BaseUnit unit : unitCounter.getMinorKeys()) {
 			for (int i = 0; i > unitCounter.get(unit); i--) {
 				result = result.andThen(unit.getTranslationFromCanonical());
-			}
-		}
-
-		return result;
-	}
-
-	protected Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical(
-			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
-			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
-
-		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
-
-		for (Unit unit : unitCounter.getPositiveKeys()) {
-			for (int i = 0; i < unitCounter.get(unit); i++) {
-				result = result.andThen(unit.getTranslationToCanonical().andThen(translationToCanonical));
-			}
-		}
-
-		for (Unit unit : unitCounter.getNegativeKeys()) {
-			for (int i = 0; i > unitCounter.get(unit); i--) {
-				result = result.andThen(unit.getTranslationFromCanonical().andThen(translationFromCanonical));
 			}
 		}
 
@@ -127,36 +107,15 @@ public class CompositeUnit implements Unit {
 	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
 		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
 
-		for (Unit unit : unitCounter.getPositiveKeys()) {
+		for (BaseUnit unit : unitCounter.getMajorKeys()) {
 			for (int i = 0; i < unitCounter.get(unit); i++) {
 				result = result.andThen(unit.getTranslationFromCanonical());
 			}
 		}
 
-		for (Unit unit : unitCounter.getNegativeKeys()) {
+		for (BaseUnit unit : unitCounter.getMinorKeys()) {
 			for (int i = 0; i > unitCounter.get(unit); i--) {
 				result = result.andThen(unit.getTranslationToCanonical());
-			}
-		}
-
-		return result;
-	}
-
-	protected Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical(
-			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
-			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
-
-		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
-
-		for (Unit unit : unitCounter.getPositiveKeys()) {
-			for (int i = 0; i < unitCounter.get(unit); i++) {
-				result = result.andThen(unit.getTranslationFromCanonical().andThen(translationFromCanonical));
-			}
-		}
-
-		for (Unit unit : unitCounter.getNegativeKeys()) {
-			for (int i = 0; i > unitCounter.get(unit); i--) {
-				result = result.andThen(unit.getTranslationToCanonical().andThen(translationToCanonical));
 			}
 		}
 
@@ -169,6 +128,11 @@ public class CompositeUnit implements Unit {
 	@Override
 	public boolean isScalar() {
 		return unitCounter.isEmpty();
+	}
+
+	@Override
+	public Class<? extends BaseUnit> getBaseUnitType() {
+		return null;
 	}
 
 	// endregion

@@ -16,11 +16,11 @@ public class LitresTest {
 		VolumeUnit unit = new VolumeUnit(METER, METER, METER) {};
 		Litres litres = new Litres(1);
 
-		assertEquals("1l", litres.toString());
-		assertEquals("0.001m³", litres.convertTo(unit).toString());
+		assertEquals("1 l", litres.toString());
+		assertEquals("0.001 m³", litres.convertTo(unit).toString());
 
 		Volume volume = new Volume(3.03, unit);
 
-		Assert.assertEquals("3030.00l", volume.convertTo(LITRE).toString());
+		Assert.assertEquals("3030.00 l", volume.convertTo(LITRE).toString());
 	}
 }

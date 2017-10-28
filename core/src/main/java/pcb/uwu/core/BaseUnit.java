@@ -5,10 +5,11 @@ import pcb.uwu.units.quantity.ScalarUnit;
 import java.util.Objects;
 import java.util.function.Function;
 
-public abstract class BaseUnit implements Unit {
+public abstract class BaseUnit implements Unit, Comparable<BaseUnit> {
 
 	// region private fields
 
+	private final int precendence;
 	private final String symbol;
 	private final String singularName;
 	private final String pluralName;
@@ -20,12 +21,14 @@ public abstract class BaseUnit implements Unit {
 	// region constructors
 
 	protected BaseUnit(
+			int precedence,
 			String symbol,
 			String singularName,
 			String pluralName,
 			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
 			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
 
+		this.precendence = precedence;
 		this.symbol = symbol;
 		this.singularName = singularName;
 		this.pluralName = pluralName;
@@ -86,6 +89,15 @@ public abstract class BaseUnit implements Unit {
 	}
 
 	// endregion
+
+	// region implement Comparable
+
+	@Override
+	public int compareTo(BaseUnit other) {
+		return other.precendence - this.precendence;
+	}
+
+	//endregion
 
 	// region overload Object
 

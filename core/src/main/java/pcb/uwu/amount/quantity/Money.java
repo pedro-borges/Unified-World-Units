@@ -2,8 +2,8 @@ package pcb.uwu.amount.quantity;
 
 import pcb.uwu.amount.finance.InterestRate;
 import pcb.uwu.amount.finance.Rent;
-import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.exceptions.CurrencyMismatchException;
 import pcb.uwu.units.finance.MoneyUnit;
@@ -15,7 +15,7 @@ import java.util.Currency;
 
 import static java.math.RoundingMode.HALF_EVEN;
 
-public class Money extends AbstractUnitAmount<MoneyUnit> {
+public class Money extends CompositeUnitAmount<MoneyUnit> {
 
 	// region constructors
 

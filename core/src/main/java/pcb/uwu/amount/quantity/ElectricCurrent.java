@@ -1,8 +1,8 @@
 package pcb.uwu.amount.quantity;
 
 import pcb.uwu.amount.composite.electromagnetism.ElectricCharge;
-import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.electromagnetism.ElectricChargeUnit;
@@ -11,7 +11,7 @@ import pcb.uwu.units.quantity.ElectricCurrentUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class ElectricCurrent extends AbstractUnitAmount<ElectricCurrentUnit> {
+public class ElectricCurrent extends CompositeUnitAmount<ElectricCurrentUnit> {
 
 	// region constructors
 

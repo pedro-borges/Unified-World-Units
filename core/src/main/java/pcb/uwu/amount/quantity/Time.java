@@ -1,8 +1,8 @@
 package pcb.uwu.amount.quantity;
 
 import pcb.uwu.amount.composite.electromagnetism.ElectricCharge;
-import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.electromagnetism.ElectricChargeUnit;
@@ -14,7 +14,7 @@ import java.time.Duration;
 
 import static java.math.MathContext.UNLIMITED;
 
-public class Time extends AbstractUnitAmount<TimeUnit> {
+public class Time extends CompositeUnitAmount<TimeUnit> {
 
 	// region constructors
 

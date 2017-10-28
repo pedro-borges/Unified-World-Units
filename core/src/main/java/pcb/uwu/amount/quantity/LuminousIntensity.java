@@ -1,7 +1,7 @@
 package pcb.uwu.amount.quantity;
 
-import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.quantity.LuminousIntensityUnit;
@@ -9,7 +9,7 @@ import pcb.uwu.units.quantity.LuminousIntensityUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class LuminousIntensity extends AbstractUnitAmount<LuminousIntensityUnit> {
+public class LuminousIntensity extends CompositeUnitAmount<LuminousIntensityUnit> {
 
 	// region constructors
 

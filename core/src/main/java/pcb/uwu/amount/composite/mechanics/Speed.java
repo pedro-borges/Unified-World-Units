@@ -2,8 +2,8 @@ package pcb.uwu.amount.composite.mechanics;
 
 import pcb.uwu.amount.quantity.Length;
 import pcb.uwu.amount.quantity.Time;
-import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.mechanics.AccelerationUnit;
@@ -14,7 +14,7 @@ import pcb.uwu.units.quantity.TimeUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class Speed extends AbstractUnitAmount<SpeedUnit> {
+public class Speed extends CompositeUnitAmount<SpeedUnit> {
 
 	// region constructors
 

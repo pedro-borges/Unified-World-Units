@@ -30,6 +30,6 @@ public class LengthTest {
 
 	@Test
 	public void testConversions() {
-		assertEquals(ONE, length.dividedBy(meters, DECIMAL64));
+		assertEquals(ONE, length.dividedBy(meters, DECIMAL64).getAmount());
 	}
 }

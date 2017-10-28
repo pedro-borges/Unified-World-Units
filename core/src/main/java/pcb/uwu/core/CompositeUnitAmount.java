@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 import static java.math.MathContext.UNLIMITED;
 
-public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U> {
+public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 	// region private fields
 
@@ -18,36 +18,36 @@ public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U
 
 	// region constructors
 
-	public AbstractUnitAmount(Number value, U unit) {
+	public CompositeUnitAmount(Number value, U unit) {
 		this(value.toString(), unit);
 	}
 
-	public AbstractUnitAmount(Number value, Magnitude magnitude, U unit) {
+	public CompositeUnitAmount(Number value, Magnitude magnitude, U unit) {
 		this(value.toString(), magnitude, unit);
 	}
 
-	public AbstractUnitAmount(String value, U unit) {
+	public CompositeUnitAmount(String value, U unit) {
 		this(new BigDecimal(value), unit);
 	}
 
-	public AbstractUnitAmount(String value, Magnitude magnitude, U unit) {
+	public CompositeUnitAmount(String value, Magnitude magnitude, U unit) {
 		this(new BigDecimal(value), magnitude, unit);
 	}
 
-	public AbstractUnitAmount(BigDecimal value, U unit) {
+	public CompositeUnitAmount(BigDecimal value, U unit) {
 		this(new BigDecimalAmount(value), unit);
 	}
 
-	public AbstractUnitAmount(BigDecimal value, Magnitude magnitude, U unit) {
+	public CompositeUnitAmount(BigDecimal value, Magnitude magnitude, U unit) {
 		this(new BigDecimalAmount(value), magnitude, unit);
 	}
 
-	public AbstractUnitAmount(BigDecimalAmount amount, U unit) {
+	public CompositeUnitAmount(BigDecimalAmount amount, U unit) {
 		this.amount = amount;
 		this.unit = unit;
 	}
 
-	public AbstractUnitAmount(BigDecimalAmount amount, Magnitude magnitude, U unit) {
+	public CompositeUnitAmount(BigDecimalAmount amount, Magnitude magnitude, U unit) {
 		this.amount = amount.multipliedBy(magnitude.getValue(), UNLIMITED);
 		this.unit = unit;
 	}
@@ -99,8 +99,23 @@ public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U
 	}
 
 	@Override
-	public BigDecimalAmount dividedBy(UnitAmount<U> other, MathContext mathContext) {
-		return amount.dividedBy(other.getAmountIn(unit), mathContext);
+	public UnitAmount<U> plus(UnitAmount<U> other, MathContext mathContext) {
+		return new CompositeUnitAmount<>(plusAmount(other, mathContext), unit);
+	}
+
+	@Override
+	public UnitAmount<U> minus(UnitAmount<U> other, MathContext mathContext) {
+		return new CompositeUnitAmount<>(minusAmount(other, mathContext), unit);
+	}
+
+	@Override
+	public UnitAmount<U> multipliedBy(BigDecimal other, MathContext mathContext) {
+		return new CompositeUnitAmount<>(multipliedByScalar(other, mathContext), unit);
+	}
+
+	@Override
+	public UnitAmount<U> dividedBy(BigDecimal other, MathContext mathContext) {
+		return new CompositeUnitAmount<>(dividedByScalar(other, mathContext), unit);
 	}
 
 	@Override
@@ -114,6 +129,11 @@ public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U
 		return amount.transformed(translation);
 	}
 
+	@Override
+	public UnitAmount<U> convertTo(U unit) {
+		return null;
+	}
+
 	// endregion
 
 	// region override Object
@@ -121,7 +141,7 @@ public abstract class AbstractUnitAmount<U extends Unit> implements UnitAmount<U
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof UnitAmount) {
-			AbstractUnitAmount<?> other = (AbstractUnitAmount<?>) obj;
+			CompositeUnitAmount<?> other = (CompositeUnitAmount<?>) obj;
 
 			return Objects.equals(this.amount, other.amount) &&
 					Objects.equals(this.unit, other.unit);

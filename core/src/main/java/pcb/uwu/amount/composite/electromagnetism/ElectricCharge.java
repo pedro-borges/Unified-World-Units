@@ -1,7 +1,7 @@
 package pcb.uwu.amount.composite.electromagnetism;
 
-import pcb.uwu.core.AbstractUnitAmount;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.electromagnetism.ElectricChargeUnit;
@@ -9,7 +9,7 @@ import pcb.uwu.units.composite.electromagnetism.ElectricChargeUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class ElectricCharge extends AbstractUnitAmount<ElectricChargeUnit> {
+public class ElectricCharge extends CompositeUnitAmount<ElectricChargeUnit> {
 
 	// region constructors
 

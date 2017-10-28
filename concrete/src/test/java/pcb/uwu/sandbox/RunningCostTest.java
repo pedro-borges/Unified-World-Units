@@ -17,6 +17,7 @@ import static org.junit.Assert.assertEquals;
 import static pcb.uwu.core.Magnitude.KILO;
 
 public class RunningCostTest {
+
 	private final Length distance = new Meters(70, KILO);
 
 	private final Speed speed = new Meters(13, KILO)
@@ -31,6 +32,6 @@ public class RunningCostTest {
 
 		Money price = runningCost.multipliedBy(duration, UNLIMITED);
 
-		assertEquals("96.92£", price.toString());
+		assertEquals("96.92 £", price.toString());
 	}
 }

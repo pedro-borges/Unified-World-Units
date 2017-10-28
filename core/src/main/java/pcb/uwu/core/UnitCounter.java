@@ -1,13 +1,14 @@
 package pcb.uwu.core;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class UnitCounter {
+
 	private final Map<BaseUnit, Integer> major, minor;
 
 	private static final char NEGATIVE = '⁻';
@@ -23,6 +24,12 @@ public class UnitCounter {
 	public UnitCounter(UnitCounter source) {
 		major = new HashMap<>(source.major);
 		minor = new HashMap<>(source.minor);
+	}
+
+	public UnitCounter(BaseUnit canonic) {
+		this();
+
+		major.put(canonic, 1);
 	}
 
 	private UnitCounter(Map<BaseUnit, Integer> major, Map<BaseUnit, Integer> minor) {
@@ -74,7 +81,7 @@ public class UnitCounter {
 		return result;
 	}
 
-	public int get(Unit unit) {
+	public int get(BaseUnit unit) {
 		if (major.containsKey(unit)) {
 			return major.get(unit);
 		}
@@ -89,12 +96,12 @@ public class UnitCounter {
 		return new UnitCounter(minor, major);
 	}
 
-	public List<Unit> getNegativeKeys() {
-		return new ArrayList<>(minor.keySet());
+	public Set<BaseUnit> getMinorKeys() {
+		return minor.keySet();
 	}
 
-	public List<Unit> getPositiveKeys() {
-		return new ArrayList<>(major.keySet());
+	public Set<BaseUnit> getMajorKeys() {
+		return major.keySet();
 	}
 
 	public String asString(Function<Unit, String> majorString, Function<Unit, String> minorString, String separator) {
@@ -102,7 +109,7 @@ public class UnitCounter {
 
 		boolean first = true;
 
-		for (Unit unit : major.keySet()) {
+		for (BaseUnit unit : major.keySet()) {
 			String power = buildPower(get(unit));
 			if (first) {
 				result += majorString.apply(unit) + power;
@@ -116,7 +123,7 @@ public class UnitCounter {
 			result += separator;
 		}
 
-		for (Unit unit : minor.keySet()) {
+		for (BaseUnit unit : minor.keySet()) {
 			String power = buildPower(Math.abs(get(unit)));
 			result += minorString.apply(unit) + power;
 		}
@@ -168,7 +175,7 @@ public class UnitCounter {
 		}
 	}
 
-	private int remove(Unit key) {
+	private int remove(BaseUnit key) {
 		if (major.containsKey(key)) {
 			return major.remove(key);
 		}
@@ -185,7 +192,7 @@ public class UnitCounter {
 
 	@SuppressWarnings("unchecked")
 	public <U extends BaseUnit> U findMajorUnit(Class<U> unitClass) {
-		return getUnit(unitClass, major.keySet());
+		return getUnit(unitClass, major.keySet()); //todo drop after normalisation is applied
 	}
 
 	@SuppressWarnings("unchecked")
@@ -199,6 +206,12 @@ public class UnitCounter {
 		}
 
 		return null;
+	}
+
+	public Set<BaseUnit> getBaseUnits() {
+		return Stream.of(major.keySet(), minor.keySet())
+				.flatMap(Set::stream)
+				.collect(Collectors.toSet());
 	}
 
 	// endregion

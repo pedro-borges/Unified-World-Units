@@ -36,4 +36,16 @@ public interface Unit {
 	 * @return true if this unit is a scalar, false otherwise
 	 */
 	boolean isScalar();
+
+	Class<? extends BaseUnit> getBaseUnitType();
+
+	UnitCounter getUnitCounter();
+
+	default CompositeUnit multipliedBy(Unit other) {
+		return new CompositeUnit(new UnitCounter().major(getUnitCounter()).major(other.getUnitCounter()));
+	}
+
+	default CompositeUnit dividedBy(Unit other) {
+		return new CompositeUnit(new UnitCounter().major(getUnitCounter()).minor(other.getUnitCounter()));
+	}
 }
