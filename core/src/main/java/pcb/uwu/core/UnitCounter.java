@@ -21,15 +21,14 @@ public class UnitCounter {
 		minor = new HashMap<>();
 	}
 
-	public UnitCounter(UnitCounter source) {
-		major = new HashMap<>(source.major);
-		minor = new HashMap<>(source.minor);
-	}
-
 	public UnitCounter(BaseUnit canonic) {
 		this();
 
 		major.put(canonic, 1);
+	}
+
+	private UnitCounter(UnitCounter source) {
+		this(new HashMap<>(source.major), new HashMap<>(source.minor));
 	}
 
 	private UnitCounter(Map<BaseUnit, Integer> major, Map<BaseUnit, Integer> minor) {
@@ -42,8 +41,8 @@ public class UnitCounter {
 	public UnitCounter major(UnitCounter unitCounter) {
 		UnitCounter result = new UnitCounter(this);
 
-		unitCounter.major.forEach(result::majorMaps);
-		unitCounter.minor.forEach(result::majorMaps);
+		unitCounter.major.forEach(result::addMajor);
+		unitCounter.minor.forEach(result::addMajor);
 
 		return result;
 	}
@@ -55,7 +54,7 @@ public class UnitCounter {
 	public UnitCounter major(BaseUnit unit, int counts) {
 		UnitCounter result = new UnitCounter(this);
 
-		result.majorMaps(unit, result.remove(unit) + counts);
+		result.addMajor(unit, result.remove(unit) + counts);
 
 		return result;
 	}
@@ -63,8 +62,8 @@ public class UnitCounter {
 	public UnitCounter minor(UnitCounter unitCounter) {
 		UnitCounter result = new UnitCounter(this);
 
-		unitCounter.major.forEach(result::minorMaps);
-		unitCounter.minor.forEach(result::minorMaps);
+		unitCounter.major.forEach(result::addMinor);
+		unitCounter.minor.forEach(result::addMinor);
 
 		return result;
 	}
@@ -76,7 +75,7 @@ public class UnitCounter {
 	public UnitCounter minor(BaseUnit unit, int counts) {
 		UnitCounter result = new UnitCounter(this);
 
-		result.majorMaps(unit, result.remove(unit) - counts);
+		result.addMajor(unit, result.remove(unit) - counts);
 
 		return result;
 	}
@@ -160,11 +159,11 @@ public class UnitCounter {
 		return result;
 	}
 
-	private void minorMaps(BaseUnit unit, int counts) {
-		majorMaps(unit, -counts);
+	private void addMinor(BaseUnit unit, int counts) {
+		addMajor(unit, -counts);
 	}
 
-	private void majorMaps(BaseUnit unit, int counts) {
+	private void addMajor(BaseUnit unit, int counts) {
 		if (counts < 0) {
 			minor.put(unit, counts);
 		} else if (counts > 0) {
@@ -200,6 +199,7 @@ public class UnitCounter {
 		return getUnit(unitClass, minor.keySet());
 	}
 
+	@SuppressWarnings("unchecked")
 	private <U extends BaseUnit> U getUnit(Class<U> unitClass, Set<BaseUnit> units) {
 		for (Unit unit : units) {
 			if (unitClass.isAssignableFrom(unit.getClass())) return (U) unit;
