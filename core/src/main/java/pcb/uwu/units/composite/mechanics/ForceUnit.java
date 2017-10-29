@@ -8,12 +8,11 @@ import pcb.uwu.units.quantity.TimeUnit;
 
 public class ForceUnit extends CompositeUnit {
 
-	public ForceUnit(MassUnit mass, LengthUnit length, TimeUnit time1, TimeUnit time2) {
+	public ForceUnit(MassUnit mass, LengthUnit length, TimeUnit time) {
 		super(new UnitCounter()
 				.major(mass)
 				.major(length)
-				.minor(time1)
-				.minor(time2));
+				.minor(time, 2));
 	}
 
 	public ForceUnit(MassUnit massUnit, AccelerationUnit accelerationUnit) {

@@ -1,6 +1,8 @@
 package pcb.uwu.amount.quantity;
 
 import pcb.uwu.amount.composite.electromagnetism.Coulombs;
+import pcb.uwu.amount.composite.electromagnetism.Ohms;
+import pcb.uwu.amount.composite.electromagnetism.Volts;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -76,10 +78,11 @@ public class Amperes extends ElectricCurrent {
 	// region composition
 
 	public Coulombs multipliedBy(Seconds seconds, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount()
-				.multipliedBy(seconds.getAmount().getValue(), mathContext);
+		return new Coulombs(super.multipliedBy(seconds, mathContext).getAmount());
+	}
 
-		return new Coulombs(amount);
+	public Volts multipliedBy(Ohms ohms, MathContext mathContext) {
+		return new Volts(super.multipliedBy(ohms, mathContext).getAmount());
 	}
 
 	// endregion

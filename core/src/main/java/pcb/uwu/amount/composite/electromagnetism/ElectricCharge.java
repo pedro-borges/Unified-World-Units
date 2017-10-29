@@ -75,8 +75,4 @@ public class ElectricCharge extends CompositeUnitAmount<ElectricChargeUnit> {
 	}
 
 	// endregion
-
-	// region composition
-
-	// endregion
 }

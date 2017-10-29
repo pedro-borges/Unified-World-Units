@@ -11,7 +11,7 @@ public class NewtonUnit extends ForceUnit {
 	public static final NewtonUnit NEWTON = new NewtonUnit();
 
 	public NewtonUnit() {
-		super(KILOGRAM, METER, SECOND, SECOND);
+		super(KILOGRAM, METER, SECOND);
 	}
 
 	@Override

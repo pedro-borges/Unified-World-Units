@@ -1,5 +1,7 @@
 package pcb.uwu.amount.composite.electromagnetism;
 
+import pcb.uwu.amount.quantity.Amperes;
+import pcb.uwu.amount.quantity.Seconds;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -73,6 +75,14 @@ public class Coulombs extends ElectricCharge {
 	@Override
 	public Coulombs convertTo(ElectricChargeUnit unit) {
 		return new Coulombs(getAmountIn(unit));
+	}
+
+	// endregion
+
+	// region composition
+
+	public Amperes dividedBy(Seconds seconds, MathContext mathContext) {
+		return new Amperes(super.dividedBy(seconds, mathContext).getAmount());
 	}
 
 	// endregion

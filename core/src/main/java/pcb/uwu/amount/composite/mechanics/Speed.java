@@ -9,6 +9,7 @@ import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.mechanics.AccelerationUnit;
 import pcb.uwu.units.composite.mechanics.SpeedUnit;
 import pcb.uwu.units.quantity.LengthUnit;
+import pcb.uwu.units.quantity.TimeUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -88,6 +89,12 @@ public class Speed extends CompositeUnitAmount<SpeedUnit> {
 		AccelerationUnit unit = new AccelerationUnit(getUnit(), time.getUnit());
 
 		return new Acceleration(amount, unit);
+	}
+
+	public Time dividedBy(Acceleration acceleration, MathContext mathContext) {
+		TimeUnit timeUnit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
+
+		return new Time(super.dividedBy(acceleration, mathContext).getAmount(), timeUnit);
 	}
 
 	public Length multipliedBy(Time time, MathContext mathContext) {
