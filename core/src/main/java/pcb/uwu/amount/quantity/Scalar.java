@@ -11,40 +11,42 @@ import pcb.uwu.units.quantity.ScalarUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.units.quantity.ScalarUnit.SCALAR;
+
 public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 
 	// region constructors
 
-	public Scalar(Number value, ScalarUnit unit) {
-		super(value, unit);
+	public Scalar(Number value) {
+		super(value, SCALAR);
 	}
 
-	public Scalar(Number value, Magnitude magnitude, ScalarUnit unit) {
-		super(value, magnitude, unit);
+	public Scalar(Number value, Magnitude magnitude) {
+		super(value, magnitude, SCALAR);
 	}
 
-	public Scalar(String value, ScalarUnit unit) {
-		super(value, unit);
+	public Scalar(String value) {
+		super(value, SCALAR);
 	}
 
-	public Scalar(String value, Magnitude magnitude, ScalarUnit unit) {
-		super(value, magnitude, unit);
+	public Scalar(String value, Magnitude magnitude) {
+		super(value, magnitude, SCALAR);
 	}
 
-	public Scalar(BigDecimal value, ScalarUnit unit) {
-		super(value, unit);
+	public Scalar(BigDecimal value) {
+		super(value, SCALAR);
 	}
 
-	public Scalar(BigDecimal value, Magnitude magnitude, ScalarUnit unit) {
-		super(value, magnitude, unit);
+	public Scalar(BigDecimal value, Magnitude magnitude) {
+		super(value, magnitude, SCALAR);
 	}
 
-	public Scalar(BigDecimalAmount amount, ScalarUnit unit) {
-		super(amount, unit);
+	public Scalar(BigDecimalAmount amount) {
+		super(amount, SCALAR);
 	}
 
-	public Scalar(BigDecimalAmount amount, Magnitude magnitude, ScalarUnit unit) {
-		super(amount, magnitude, unit);
+	public Scalar(BigDecimalAmount amount, Magnitude magnitude) {
+		super(amount, magnitude, SCALAR);
 	}
 
 
@@ -54,27 +56,27 @@ public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 
 	@Override
 	public Scalar plus(UnitAmount<ScalarUnit> other, MathContext mathContext) {
-		return new Scalar(plusAmount(other, mathContext), getUnit());
+		return new Scalar(plusAmount(other, mathContext));
 	}
 
 	@Override
 	public Scalar minus(UnitAmount<ScalarUnit> other, MathContext mathContext) {
-		return new Scalar(minusAmount(other, mathContext), getUnit());
+		return new Scalar(minusAmount(other, mathContext));
 	}
 
 	@Override
 	public Scalar multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Scalar(multipliedByScalar(other, mathContext), getUnit());
+		return new Scalar(multipliedByScalar(other, mathContext));
 	}
 
 	@Override
 	public Scalar dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Scalar(dividedByScalar(other, mathContext), getUnit());
+		return new Scalar(dividedByScalar(other, mathContext));
 	}
 
 	@Override
 	public Scalar convertTo(ScalarUnit unit) {
-		return new Scalar(getAmountIn(unit), unit);
+		return new Scalar(getAmountIn(unit));
 	}
 
 	// endregion

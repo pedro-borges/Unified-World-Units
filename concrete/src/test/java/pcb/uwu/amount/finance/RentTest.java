@@ -21,7 +21,5 @@ public class RentTest {
 	public void testFromMoneyAndTime() {
 		assertEquals("2.00 £/d", money.dividedBy(time, DECIMAL64).toString());
 		assertEquals("1.200 £/wk", money.multipliedBy(interestRate, DECIMAL64).toString());
-
-		System.err.println(interestRate.getClass().getComponentType());
 	}
 }

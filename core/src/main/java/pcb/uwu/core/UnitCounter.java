@@ -3,16 +3,36 @@ package pcb.uwu.core;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.function.Function;
 
-import static java.util.Collections.emptyMap;
 import static java.util.stream.Collectors.toSet;
+import static pcb.uwu.core.UnitCounter.UnitCount.EMPTY_BASE_UNIT_COUNT;
+import static pcb.uwu.units.quantity.ScalarUnit.SCALAR;
 
 public class UnitCounter {
 
-	private final Map<Class<? extends BaseUnit>, Map<BaseUnit, Integer>> powers;
+	public static class UnitCount {
+		static final UnitCount EMPTY_BASE_UNIT_COUNT = new UnitCount(SCALAR, 0);
+
+		private final BaseUnit unit;
+		private final int count;
+
+		public UnitCount(BaseUnit unit, int count) {
+			this.unit = unit;
+			this.count = count;
+		}
+
+		public BaseUnit getUnit() {
+			return unit;
+		}
+
+		public int getCount() {
+			return count;
+		}
+	}
+
+	private final Map<Class<? extends BaseUnit>, UnitCount> powers;
 
 	private static final char NEGATIVE = '⁻';
 	private static final char[] POWERS = new char[] {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'};
@@ -29,15 +49,23 @@ public class UnitCounter {
 		addPower(canonic.getBaseUnitType(), canonic, 1);
 	}
 
-	private UnitCounter(UnitCounter source) {
+	public UnitCounter(UnitCounter source) {
 		this(source.powers);
 	}
 
-	private UnitCounter(Map<Class<? extends BaseUnit>, Map<BaseUnit, Integer>> powers) {
+	private UnitCounter(Map<Class<? extends BaseUnit>, UnitCount> powers) {
 		this.powers = new HashMap<>(powers);
 	}
 
 	// endregion
+
+	public UnitCounter invert() {
+		Map<Class<? extends BaseUnit>, UnitCount> result = new HashMap<>();
+
+		powers.forEach((clazz, unitCount) -> result.put(clazz, new UnitCount(unitCount.unit, -unitCount.count)));
+
+		return new UnitCounter(result);
+	}
 
 	public UnitCounter major(UnitCounter unitCounter) {
 		UnitCounter result = new UnitCounter(this);
@@ -79,31 +107,27 @@ public class UnitCounter {
 		return result;
 	}
 
-	public int get(BaseUnit unit) {
-		return powers.getOrDefault(unit.getBaseUnitType(), emptyMap()).getOrDefault(unit, 0);
+	public UnitCount get(BaseUnit unit) {
+		return powers.getOrDefault(unit.getBaseUnitType(), EMPTY_BASE_UNIT_COUNT);
 	}
 
-	public Set<BaseUnit> getBaseUnits() {
-		return powers.values().stream()
-				.map(Map::keySet)
-				.flatMap(Collection::stream)
-				.collect(toSet());
+	public Collection<UnitCount> getBaseUnits() {
+		return powers.values();
 	}
 
 	public String asString(Function<Unit, String> majorString, Function<Unit, String> minorString, String separator) {
 		String result = "";
 
 		Set<BaseUnit> major = powers.values().stream()
-				.map(Map::entrySet)
-				.flatMap(Collection::stream)
-				.filter(entry -> entry.getValue() > 0)
-				.map(Entry::getKey)
+				.filter(entry -> entry.getCount() > 0)
+				.map(UnitCount::getUnit)
+				.sorted()
 				.collect(toSet());
 
 		boolean first = true;
 
 		for (BaseUnit unit : major) {
-			String power = buildPower(get(unit));
+			String power = buildPower(get(unit).count);
 			if (first) {
 				result += majorString.apply(unit) + power;
 			} else {
@@ -113,10 +137,9 @@ public class UnitCounter {
 		}
 
 		Set<BaseUnit> minor = powers.values().stream()
-				.map(Map::entrySet)
-				.flatMap(Collection::stream)
-				.filter(entry -> entry.getValue() < 0)
-				.map(Entry::getKey)
+				.filter(entry -> entry.count < 0)
+				.map(UnitCount::getUnit)
+				.sorted()
 				.collect(toSet());
 
 		if (!minor.isEmpty()) {
@@ -124,7 +147,7 @@ public class UnitCounter {
 		}
 
 		for (BaseUnit unit : minor) {
-			String power = buildPower(Math.abs(get(unit)));
+			String power = buildPower(Math.abs(get(unit).count));
 			result += minorString.apply(unit) + power;
 		}
 
@@ -160,40 +183,23 @@ public class UnitCounter {
 		return result;
 	}
 
-	private void addMajor(Class<? extends BaseUnit> clazz, Map<BaseUnit, Integer> unitCounts) {
-		for (Entry<BaseUnit, Integer> entry : unitCounts.entrySet()) {
-			BaseUnit unit = entry.getKey();
-			Integer count = entry.getValue();
-
-			addPower(clazz, unit, count);
-		}
+	private void addMajor(Class<? extends BaseUnit> clazz, UnitCount unitCount) {
+		addPower(clazz, unitCount.unit, unitCount.count);
 	}
 
-	private void addMinor(Class<? extends BaseUnit> clazz, Map<BaseUnit, Integer> unitCounts) {
-		for (Entry<BaseUnit, Integer> entry : unitCounts.entrySet()) {
-			BaseUnit unit = entry.getKey();
-			Integer count = entry.getValue();
-
-			addPower(clazz, unit, -count);
-		}
+	private void addMinor(Class<? extends BaseUnit> clazz, UnitCount unitCount) {
+		addPower(clazz, unitCount.unit, -unitCount.count);
 	}
 
 	private void addPower(Class<? extends BaseUnit> clazz, BaseUnit unit, Integer count) {
 		if (count == 0) return;
 
-		Map<BaseUnit, Integer> internal = powers.getOrDefault(clazz, new HashMap<>());
-		int result = internal.getOrDefault(unit, 0) + count;
+		int result = powers.getOrDefault(clazz, EMPTY_BASE_UNIT_COUNT).count + count;
 
 		if (result == 0) {
-			internal.remove(unit);
-
-			if (internal.isEmpty()) {
-				powers.remove(clazz);
-			}
+			powers.remove(clazz);
 		} else {
-			internal.put(unit, result);
-
-			powers.put(clazz, internal);
+			powers.put(clazz, new UnitCount(unit, result));
 		}
 	}
 
@@ -207,8 +213,10 @@ public class UnitCounter {
 	}
 
 	@SuppressWarnings("unchecked")
-	private <U extends BaseUnit> U getUnit(Class<U> unitClass, Set<BaseUnit> units) {
-		for (Unit unit : units) {
+	private <U extends BaseUnit> U getUnit(Class<U> unitClass, Collection<UnitCount> units) {
+		for (UnitCount unitCount : units) {
+			BaseUnit unit = unitCount.getUnit();
+
 			if (unitClass.isAssignableFrom(unit.getClass())) return (U) unit;
 		}
 

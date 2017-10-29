@@ -4,8 +4,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+import pcb.uwu.core.BigDecimalAmount;
 
 import static java.math.MathContext.DECIMAL64;
+import static java.math.RoundingMode.HALF_EVEN;
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.core.BigDecimalAmount.ONE;
 
@@ -13,7 +15,7 @@ import static pcb.uwu.core.BigDecimalAmount.ONE;
 public class LengthTest {
 	@Parameters
 	public static Object[] testData() {
-		return new Object[] { meters,  };
+		return new Object[] { miles, yards, meters, feet, inches };
 	}
 
 	private static final Miles miles = new Miles(1);
@@ -30,6 +32,12 @@ public class LengthTest {
 
 	@Test
 	public void testConversions() {
-		assertEquals(ONE, length.dividedBy(meters, DECIMAL64).getAmount());
+		BigDecimalAmount one = ONE.withScale(6, HALF_EVEN);
+
+		assertEquals(one, length.dividedBy(miles, DECIMAL64).getAmount().withScale(6, HALF_EVEN));
+		assertEquals(one, length.dividedBy(yards, DECIMAL64).getAmount().withScale(6, HALF_EVEN));
+		assertEquals(one, length.dividedBy(meters, DECIMAL64).getAmount().withScale(6, HALF_EVEN));
+		assertEquals(one, length.dividedBy(feet, DECIMAL64).getAmount().withScale(6, HALF_EVEN));
+		assertEquals(one, length.dividedBy(inches, DECIMAL64).getAmount().withScale(6, HALF_EVEN));
 	}
 }

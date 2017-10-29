@@ -40,12 +40,4 @@ public interface Unit {
 	Class<? extends BaseUnit> getBaseUnitType();
 
 	UnitCounter getUnitCounter();
-
-	default CompositeUnit multipliedBy(Unit other) {
-		return new CompositeUnit(new UnitCounter().major(getUnitCounter()).major(other.getUnitCounter()));
-	}
-
-	default CompositeUnit dividedBy(Unit other) {
-		return new CompositeUnit(new UnitCounter().major(getUnitCounter()).minor(other.getUnitCounter()));
-	}
 }

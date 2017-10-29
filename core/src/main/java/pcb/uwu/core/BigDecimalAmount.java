@@ -67,6 +67,10 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 		return new BigDecimalAmount(value.setScale(scale, roundingMode));
 	}
 
+	public BigDecimalAmount invert(MathContext mathContext) {
+		return new BigDecimalAmount(ONE.dividedBy(this, mathContext));
+	}
+
 	/**
 	 * Sum amount.
 	 * @param other the {@code BigDecimalAmount} to add

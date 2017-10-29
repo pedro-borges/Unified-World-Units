@@ -3,9 +3,6 @@ package pcb.uwu.core;
 import org.junit.Test;
 import pcb.uwu.amount.quantity.Length;
 import pcb.uwu.amount.quantity.Meters;
-import pcb.uwu.amount.quantity.Minutes;
-import pcb.uwu.amount.quantity.Seconds;
-import pcb.uwu.amount.quantity.Time;
 import pcb.uwu.amount.quantity.Yards;
 
 import static java.math.MathContext.DECIMAL64;
@@ -13,23 +10,28 @@ import static org.junit.Assert.assertEquals;
 
 public class UnitAmountTest {
 	private static final Length meters = new Meters(1);
-	private static final Time seconds = new Seconds(1);
-	private static final Length yards = new Yards(1);
-	private static final Time minutes = new Minutes(1);
+	private static final Length yards = new Yards(4);
+	private CompositeUnitAmount<? extends Unit> result;
 
 	@Test
-	public void testMultiplyByMajor() {
-		CompositeUnitAmount<? extends Unit> one = seconds.dividedBy(meters, DECIMAL64);
-		CompositeUnitAmount<? extends Unit> two = minutes.dividedBy(yards, DECIMAL64);
+	public void testMajorMajor() {
+		CompositeUnitAmount<? extends Unit> compositeUnit2 = yards.multipliedBy(yards, DECIMAL64);
 
-		CompositeUnitAmount<? extends Unit> result = one.multipliedBy(two, DECIMAL64);
-		UnitCounter resultUnitCounter = result.getUnit().getUnitCounter();
+		result = meters.multipliedBy(compositeUnit2, DECIMAL64);
 
-		assertEquals(1, result.getAmount().getValue().intValueExact());
-		assertEquals(4, resultUnitCounter.getBaseUnits().size());
-		assertEquals(1, resultUnitCounter.get(seconds.getUnit()));
-		assertEquals(1, resultUnitCounter.get(minutes.getUnit()));
-		assertEquals(-1, resultUnitCounter.get(meters.getUnit()));
-		assertEquals(-1, resultUnitCounter.get(yards.getUnit()));
+		assertEquals("13.37803776 m³", result.toString());
+
+		result = meters.dividedBy(compositeUnit2, DECIMAL64);
+
+		assertEquals("0.06835083114610674 /yd", result.toString());
+	}
+
+	@Test
+	public void testMajorMinor() {
+		CompositeUnitAmount<? extends Unit> compositeUnit2 = yards.multipliedBy(yards, DECIMAL64).invert(DECIMAL64);
+
+		result = meters.multipliedBy(compositeUnit2, DECIMAL64);
+
+		assertEquals("0.06835083114610674 /yd", result.toString());
 	}
 }

@@ -4,9 +4,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+import pcb.uwu.core.BigDecimalAmount;
 
 import static java.math.MathContext.DECIMAL64;
+import static java.math.RoundingMode.HALF_EVEN;
 import static org.junit.Assert.assertEquals;
+import static pcb.uwu.core.BigDecimalAmount.ONE;
 
 @RunWith(Parameterized.class)
 public class TimeTest {
@@ -29,10 +32,12 @@ public class TimeTest {
 
 	@Test
 	public void testConversions() {
-		assertEquals("1", time.dividedBy(seconds, DECIMAL64).toString());
-		assertEquals("1", time.dividedBy(minutes, DECIMAL64).toString());
-		assertEquals("1", time.dividedBy(hours, DECIMAL64).toString());
-		assertEquals("1", time.dividedBy(days, DECIMAL64).toString());
-		assertEquals("1", time.dividedBy(weeks, DECIMAL64).toString());
+		BigDecimalAmount one = ONE.withScale(6, HALF_EVEN);
+
+		assertEquals(one, time.dividedBy(seconds, DECIMAL64).getAmount().withScale(6, HALF_EVEN));
+		assertEquals(one, time.dividedBy(minutes, DECIMAL64).getAmount().withScale(6, HALF_EVEN));
+		assertEquals(one, time.dividedBy(hours, DECIMAL64).getAmount().withScale(6, HALF_EVEN));
+		assertEquals(one, time.dividedBy(days, DECIMAL64).getAmount().withScale(6, HALF_EVEN));
+		assertEquals(one, time.dividedBy(weeks, DECIMAL64).getAmount().withScale(6, HALF_EVEN));
 	}
 }

@@ -1,5 +1,7 @@
 package pcb.uwu.core;
 
+import pcb.uwu.core.UnitCounter.UnitCount;
+
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -73,15 +75,16 @@ public class CompositeUnit implements Unit {
 	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
 		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
 
-		for (BaseUnit unit : unitCounter.getBaseUnits()) {
-			int power = unitCounter.get(unit);
+		for (UnitCount unitCount : unitCounter.getBaseUnits()) {
+			BaseUnit unit = unitCount.getUnit();
+			int count = unitCount.getCount();
 
-			if (power > 0) {
-				for (int i = 0; i < power; i++) {
+			if (count > 0) {
+				for (int i = 0; i < count; i++) {
 					result = result.andThen(unit.getTranslationToCanonical());
 				}
-			} else if (power < 0) {
-				for (int i = 0; i > power; i--) {
+			} else if (count < 0) {
+				for (int i = 0; i > count; i--) {
 					result = result.andThen(unit.getTranslationFromCanonical());
 				}
 			}
@@ -97,15 +100,16 @@ public class CompositeUnit implements Unit {
 	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
 		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
 
-		for (BaseUnit unit : unitCounter.getBaseUnits()) {
-			int power = unitCounter.get(unit);
+		for (UnitCount unitCount : unitCounter.getBaseUnits()) {
+			BaseUnit unit = unitCount.getUnit();
+			int count = unitCount.getCount();
 
-			if (power > 0) {
-				for (int i = 0; i < power; i++) {
+			if (count > 0) {
+				for (int i = 0; i < count; i++) {
 					result = result.andThen(unit.getTranslationFromCanonical());
 				}
-			} else if (power < 0) {
-				for (int i = 0; i > unitCounter.get(unit); i--) {
+			} else if (count < 0) {
+				for (int i = 0; i > count; i--) {
 					result = result.andThen(unit.getTranslationToCanonical());
 				}
 			}

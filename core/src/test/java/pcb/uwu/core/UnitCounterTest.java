@@ -16,24 +16,24 @@ public class UnitCounterTest {
 	public void testObjectCounter() {
 		UnitCounter test = new UnitCounter();
 
-		assertEquals(0, test.get(SECOND));
-		assertEquals(1, (test = test.major(SECOND)).get(SECOND));
-		assertEquals(0, (test = test.minor(SECOND)).get(SECOND));
-		assertEquals(-1, (test = test.minor(SECOND)).get(SECOND));
-		assertEquals(0, (test = test.major(SECOND)).get(SECOND));
-		assertEquals(1, (test = test.major(SECOND)).get(SECOND));
-		assertEquals(1, (test = test.major(AMPERE)).get(AMPERE));
-		assertEquals(2, (test = test.major(SECOND)).get(SECOND));
-		assertEquals(3, (test = test.major(SECOND)).get(SECOND));
-		assertEquals(-1, (test = test.minor(KILOGRAM)).get(KILOGRAM));
+		assertEquals(0, test.get(SECOND).getCount());
+		assertEquals(1, (test = test.major(SECOND)).get(SECOND).getCount());
+		assertEquals(0, (test = test.minor(SECOND)).get(SECOND).getCount());
+		assertEquals(-1, (test = test.minor(SECOND)).get(SECOND).getCount());
+		assertEquals(0, (test = test.major(SECOND)).get(SECOND).getCount());
+		assertEquals(1, (test = test.major(SECOND)).get(SECOND).getCount());
+		assertEquals(1, (test = test.major(AMPERE)).get(AMPERE).getCount());
+		assertEquals(2, (test = test.major(SECOND)).get(SECOND).getCount());
+		assertEquals(3, (test = test.major(SECOND)).get(SECOND).getCount());
+		assertEquals(-1, (test = test.minor(KILOGRAM)).get(KILOGRAM).getCount());
 		assertEquals(3, test.getBaseUnits().size());
-		assertEquals(-1, test.get(KILOGRAM));
-		assertEquals(3, test.get(SECOND));
-		assertEquals(1, test.get(AMPERE));
-		assertEquals(0, (test = test.major(KILOGRAM)).get(KILOGRAM));
+		assertEquals(-1, test.get(KILOGRAM).getCount());
+		assertEquals(3, test.get(SECOND).getCount());
+		assertEquals(1, test.get(AMPERE).getCount());
+		assertEquals(0, (test = test.major(KILOGRAM)).get(KILOGRAM).getCount());
 		assertEquals(2, test.getBaseUnits().size());
-		assertEquals(3, test.get(SECOND));
-		assertEquals(1, test.get(AMPERE));
+		assertEquals(3, test.get(SECOND).getCount());
+		assertEquals(1, test.get(AMPERE).getCount());
 	}
 
 	@Test
