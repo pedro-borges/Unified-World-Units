@@ -7,6 +7,7 @@ import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.mechanics.PaceUnit;
+import pcb.uwu.units.composite.mechanics.SpeedUnit;
 import pcb.uwu.units.quantity.TimeUnit;
 
 import java.math.BigDecimal;
@@ -75,6 +76,11 @@ public class Pace extends CompositeUnitAmount<PaceUnit> {
 	@Override
 	public Pace convertTo(PaceUnit unit) {
 		return new Pace(getAmountIn(unit), unit);
+	}
+
+	@Override
+	public Speed invert(MathContext mathContext) {
+		return new Speed(getAmount().invert(mathContext), new SpeedUnit(getUnit()));
 	}
 
 	// endregion

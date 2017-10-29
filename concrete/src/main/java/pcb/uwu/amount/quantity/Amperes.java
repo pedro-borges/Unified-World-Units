@@ -1,7 +1,10 @@
 package pcb.uwu.amount.quantity;
 
 import pcb.uwu.amount.composite.electromagnetism.Coulombs;
-import pcb.uwu.amount.composite.electromagnetism.Ohms;
+import pcb.uwu.amount.composite.electromagnetism.ElectricConductance;
+import pcb.uwu.amount.composite.electromagnetism.ElectricPotential;
+import pcb.uwu.amount.composite.electromagnetism.ElectricResistance;
+import pcb.uwu.amount.composite.electromagnetism.Siemens;
 import pcb.uwu.amount.composite.electromagnetism.Volts;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
@@ -11,7 +14,11 @@ import pcb.uwu.units.quantity.ElectricCurrentUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.unit.composite.electromagnetism.OhmUnit.OHM;
+import static pcb.uwu.unit.composite.electromagnetism.SiemensUnit.SIEMENS;
+import static pcb.uwu.unit.composite.electromagnetism.VoltUnit.VOLT;
 import static pcb.uwu.unit.quantity.AmpereUnit.AMPERE;
+import static pcb.uwu.unit.quantity.SecondUnit.SECOND;
 
 public class Amperes extends ElectricCurrent {
 
@@ -77,12 +84,20 @@ public class Amperes extends ElectricCurrent {
 
 	// region composition
 
-	public Coulombs multipliedBy(Seconds seconds, MathContext mathContext) {
-		return new Coulombs(super.multipliedBy(seconds, mathContext).getAmount());
+	public Coulombs multipliedBy(Time time, MathContext mathContext) {
+		return new Coulombs(getAmount().multipliedBy(time.getAmountIn(SECOND), mathContext));
 	}
 
-	public Volts multipliedBy(Ohms ohms, MathContext mathContext) {
-		return new Volts(super.multipliedBy(ohms, mathContext).getAmount());
+	public Volts multipliedBy(ElectricResistance electricResistance, MathContext mathContext) {
+		return new Volts(getAmount().multipliedBy(electricResistance.getAmountIn(OHM), mathContext));
+	}
+
+	public Siemens dividedBy(ElectricPotential electricPotential, MathContext mathContext) {
+		return new Siemens(getAmount().dividedBy(electricPotential.getAmountIn(VOLT), mathContext));
+	}
+
+	public Volts dividedBy(ElectricConductance electricConductance, MathContext mathContext) {
+		return new Volts(getAmount().dividedBy(electricConductance.getAmountIn(SIEMENS), mathContext));
 	}
 
 	// endregion

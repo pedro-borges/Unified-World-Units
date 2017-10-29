@@ -7,6 +7,7 @@ import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.mechanics.AccelerationUnit;
+import pcb.uwu.units.composite.mechanics.PaceUnit;
 import pcb.uwu.units.composite.mechanics.SpeedUnit;
 import pcb.uwu.units.quantity.LengthUnit;
 import pcb.uwu.units.quantity.TimeUnit;
@@ -77,6 +78,11 @@ public class Speed extends CompositeUnitAmount<SpeedUnit> {
 	@Override
 	public Speed convertTo(SpeedUnit unit) {
 		return new Speed(getAmountIn(unit), unit);
+	}
+
+	@Override
+	public Pace invert(MathContext mathContext) {
+		return new Pace(getAmount().invert(mathContext), new PaceUnit(getUnit()));
 	}
 
 	// endregion

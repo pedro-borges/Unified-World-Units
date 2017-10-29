@@ -7,25 +7,25 @@ import pcb.uwu.units.quantity.LengthUnit;
 import pcb.uwu.units.quantity.MassUnit;
 import pcb.uwu.units.quantity.TimeUnit;
 
-public class ElectricResistanceUnit extends CompositeUnit {
+public class ElectricConductanceUnit extends CompositeUnit {
 
 	// region base constructor
 
-	public ElectricResistanceUnit(MassUnit massUnit, LengthUnit lengthUnit, ElectricCurrentUnit electricCurrentUnit, TimeUnit timeUnit) {
+	public ElectricConductanceUnit(MassUnit massUnit, LengthUnit lengthUnit, ElectricCurrentUnit electricCurrentUnit, TimeUnit timeUnit) {
 		super(new UnitCounter()
-				.major(massUnit)
-				.major(lengthUnit, 2)
-				.minor(timeUnit, 3)
-				.minor(electricCurrentUnit, 2));
+				.major(timeUnit, 3)
+				.major(electricCurrentUnit, 2)
+				.minor(massUnit)
+				.minor(lengthUnit, 2));
 	}
 
 	// endregion
 
 	// region composite constructors
 
-	public ElectricResistanceUnit(ElectricConductanceUnit electricConductanceUnit) {
+	public ElectricConductanceUnit(ElectricResistanceUnit electricResistanceUnit) {
 		super(new UnitCounter()
-				.minor(electricConductanceUnit.getUnitCounter()));
+				.minor(electricResistanceUnit.getUnitCounter()));
 	}
 
 	// endregion

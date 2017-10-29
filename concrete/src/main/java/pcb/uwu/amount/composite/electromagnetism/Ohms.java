@@ -77,6 +77,11 @@ public class Ohms extends ElectricResistance {
 		return new Ohms(getAmountIn(unit));
 	}
 
+	@Override
+	public Siemens invert(MathContext mathContext) {
+		return new Siemens(getAmount().invert(mathContext));
+	}
+
 	// endregion
 
 	// region composition
