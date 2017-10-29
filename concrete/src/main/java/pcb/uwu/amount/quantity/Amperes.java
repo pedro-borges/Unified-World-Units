@@ -2,10 +2,14 @@ package pcb.uwu.amount.quantity;
 
 import pcb.uwu.amount.composite.electromagnetism.Coulombs;
 import pcb.uwu.amount.composite.electromagnetism.ElectricConductance;
+import pcb.uwu.amount.composite.electromagnetism.ElectricInductance;
 import pcb.uwu.amount.composite.electromagnetism.ElectricPotential;
 import pcb.uwu.amount.composite.electromagnetism.ElectricResistance;
+import pcb.uwu.amount.composite.electromagnetism.MagneticFlux;
 import pcb.uwu.amount.composite.electromagnetism.Siemens;
 import pcb.uwu.amount.composite.electromagnetism.Volts;
+import pcb.uwu.amount.composite.electromagnetism.Webbers;
+import pcb.uwu.amount.composite.termodynamics.Joules;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -14,9 +18,11 @@ import pcb.uwu.units.quantity.ElectricCurrentUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.unit.composite.electromagnetism.HenryUnit.HENRY;
 import static pcb.uwu.unit.composite.electromagnetism.OhmUnit.OHM;
 import static pcb.uwu.unit.composite.electromagnetism.SiemensUnit.SIEMENS;
 import static pcb.uwu.unit.composite.electromagnetism.VoltUnit.VOLT;
+import static pcb.uwu.unit.composite.electromagnetism.WebberUnit.WEBBER;
 import static pcb.uwu.unit.quantity.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.quantity.SecondUnit.SECOND;
 
@@ -98,6 +104,14 @@ public class Amperes extends ElectricCurrent {
 
 	public Volts dividedBy(ElectricConductance electricConductance, MathContext mathContext) {
 		return new Volts(getAmount().dividedBy(electricConductance.getAmountIn(SIEMENS), mathContext));
+	}
+
+	public Webbers multipliedBy(ElectricInductance electricInductance, MathContext mathContext) {
+		return new Webbers(getAmount().multipliedBy(electricInductance.getAmountIn(HENRY), mathContext));
+	}
+
+	public Joules multipliedBy(MagneticFlux magneticFlux, MathContext mathContext) {
+		return new Joules(getAmount().multipliedBy(magneticFlux.getAmountIn(WEBBER), mathContext));
 	}
 
 	// endregion
