@@ -14,4 +14,19 @@ public class OhmUnit extends ElectricResistanceUnit {
 	public OhmUnit() {
 		super(KILOGRAM, METER, AMPERE, SECOND);
 	}
+
+	@Override
+	public String getSymbol() {
+		return "Ω";
+	}
+
+	@Override
+	public String getSingularName() {
+		return "ohm";
+	}
+
+	@Override
+	public String getPluralName() {
+		return "ohms";
+	}
 }

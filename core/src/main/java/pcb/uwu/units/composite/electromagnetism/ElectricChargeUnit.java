@@ -7,9 +7,14 @@ import pcb.uwu.units.quantity.TimeUnit;
 
 public class ElectricChargeUnit extends CompositeUnit {
 
+	// region base constructor
+
 	public ElectricChargeUnit(ElectricCurrentUnit electricCurrentUnit, TimeUnit timeUnit) {
 		super(new UnitCounter()
 				.major(electricCurrentUnit)
 				.major(timeUnit));
 	}
+
+	// endregion
+
 }

@@ -1,6 +1,6 @@
 package pcb.uwu.amount.composite.electromagnetism;
 
-import pcb.uwu.amount.quantity.Amperes;
+import pcb.uwu.amount.quantity.ElectricCurrent;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.composite.electromagnetism.OhmUnit.OHM;
+import static pcb.uwu.unit.quantity.AmpereUnit.AMPERE;
 
 public class Ohms extends ElectricResistance {
 
@@ -80,8 +81,8 @@ public class Ohms extends ElectricResistance {
 
 	// region composition
 
-	public Volts multipliedBy(Amperes amperes, MathContext mathContext) {
-		return new Volts(super.multipliedBy(amperes, mathContext).getAmount());
+	public Volts multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
+		return new Volts(getAmount().multipliedBy(electricCurrent.getAmountIn(AMPERE), mathContext));
 	}
 
 	// endregion

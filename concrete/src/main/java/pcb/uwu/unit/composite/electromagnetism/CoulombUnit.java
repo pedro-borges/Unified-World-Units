@@ -12,4 +12,19 @@ public class CoulombUnit extends ElectricChargeUnit {
 	public CoulombUnit() {
 		super(AMPERE, SECOND);
 	}
+
+	@Override
+	public String getSymbol() {
+		return "C";
+	}
+
+	@Override
+	public String getSingularName() {
+		return "coulomb";
+	}
+
+	@Override
+	public String getPluralName() {
+		return "coulombs";
+	}
 }

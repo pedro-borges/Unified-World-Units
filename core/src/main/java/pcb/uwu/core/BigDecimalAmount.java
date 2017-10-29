@@ -3,7 +3,6 @@ package pcb.uwu.core;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-import java.util.Objects;
 import java.util.function.Function;
 
 /**
@@ -284,7 +283,7 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 		if (obj instanceof BigDecimalAmount) {
 			BigDecimalAmount other = (BigDecimalAmount) obj;
 
-			return Objects.equals(this.value, other.value);
+			return this.value.compareTo(other.value) == 0;
 		}
 
 		return false;

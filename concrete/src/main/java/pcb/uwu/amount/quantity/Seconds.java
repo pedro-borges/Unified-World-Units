@@ -1,6 +1,8 @@
 package pcb.uwu.amount.quantity;
 
 import pcb.uwu.amount.composite.electromagnetism.Coulombs;
+import pcb.uwu.amount.composite.termodynamics.Joules;
+import pcb.uwu.amount.composite.termodynamics.Power;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -9,6 +11,8 @@ import pcb.uwu.units.quantity.TimeUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.unit.composite.termodynamics.WattUnit.WATT;
+import static pcb.uwu.unit.quantity.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.quantity.SecondUnit.SECOND;
 
 public class Seconds extends Time {
@@ -75,11 +79,12 @@ public class Seconds extends Time {
 
 	// region composite
 
-	public Coulombs multipliedBy(Amperes amperes, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount()
-				.multipliedBy(amperes.getAmount().getValue(), mathContext);
+	public Coulombs multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
+		return new Coulombs(getAmount().multipliedBy(electricCurrent.getAmountIn(AMPERE), mathContext));
+	}
 
-		return new Coulombs(amount);
+	public Joules multipliedBy(Power power, MathContext mathContext) {
+		return new Joules(getAmount().multipliedBy(power.getAmountIn(WATT), mathContext));
 	}
 
 	// endregion

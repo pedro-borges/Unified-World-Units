@@ -1,16 +1,10 @@
 package pcb.uwu.amount.composite.mechanics;
 
-import pcb.uwu.amount.quantity.Mass;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.composite.mechanics.AccelerationUnit;
 import pcb.uwu.units.composite.mechanics.ForceUnit;
-import pcb.uwu.units.composite.mechanics.SpeedUnit;
-import pcb.uwu.units.quantity.LengthUnit;
-import pcb.uwu.units.quantity.MassUnit;
-import pcb.uwu.units.quantity.TimeUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -78,25 +72,6 @@ public class Force extends CompositeUnitAmount<ForceUnit> {
 	@Override
 	public Force convertTo(ForceUnit unit) {
 		return new Force(getAmountIn(unit), unit);
-	}
-
-	// endregion
-
-	// region composition
-
-	public Mass dividedBy(Acceleration acceleration, MathContext mathContext) {
-		MassUnit massUnit = getUnit().getUnitCounter().findUnit(MassUnit.class);
-
-		return new Mass(super.dividedBy(acceleration, mathContext).getAmount(), massUnit);
-	}
-
-	public Acceleration dividedBy(Mass mass, MathContext mathContext) {
-		LengthUnit lengthUnit = getUnit().getUnitCounter().findUnit(LengthUnit.class);
-		TimeUnit timeUnit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
-
-		AccelerationUnit accelerationUnit = new AccelerationUnit(new SpeedUnit(lengthUnit, timeUnit), timeUnit);
-
-		return new Acceleration(super.dividedBy(mass, mathContext).getAmount(), accelerationUnit);
 	}
 
 	// endregion

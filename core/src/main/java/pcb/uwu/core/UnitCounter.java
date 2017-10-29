@@ -5,6 +5,7 @@ import pcb.uwu.exceptions.OffendingUnitException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -32,12 +33,33 @@ public class UnitCounter {
 		public int getCount() {
 			return count;
 		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof UnitCount) {
+				UnitCount other = (UnitCount) obj;
+
+				return Objects.equals(this.unit, other.unit) &&
+						Objects.equals(this.count, other.count);
+			}
+
+			return false;
+		}
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(unit, count);
+		}
 	}
+
+	// region private fields
 
 	private final Map<Class<? extends BaseUnit>, UnitCount> counts;
 
 	private static final char NEGATIVE = '⁻';
 	private static final char[] POWERS = new char[] {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'};
+
+	// endregion
 
 	// region constructors
 
@@ -237,4 +259,34 @@ public class UnitCounter {
 	}
 
 	// endregion
+
+	// region override Object
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof UnitCounter) {
+			UnitCounter other = (UnitCounter) obj;
+
+			if (this.counts.size() != other.counts.size()) return false;
+
+			for (Class<? extends BaseUnit> baseUnit : counts.keySet()) {
+				UnitCount thisCount = this.counts.get(baseUnit);
+				UnitCount otherCount = other.counts.get(baseUnit);
+
+				if (!Objects.equals(thisCount, otherCount)) return false;
+			}
+
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return counts.hashCode();
+	}
+
+	// endregion
+
 }

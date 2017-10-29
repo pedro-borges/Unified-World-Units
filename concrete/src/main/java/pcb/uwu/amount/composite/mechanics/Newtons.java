@@ -1,20 +1,26 @@
 package pcb.uwu.amount.composite.mechanics;
 
+import pcb.uwu.amount.composite.fundamental.Area;
+import pcb.uwu.amount.composite.termodynamics.Joules;
+import pcb.uwu.amount.composite.termodynamics.Pascals;
+import pcb.uwu.amount.composite.termodynamics.Pressure;
+import pcb.uwu.amount.quantity.KiloGrams;
+import pcb.uwu.amount.quantity.Length;
 import pcb.uwu.amount.quantity.Mass;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.composite.mechanics.AccelerationUnit;
 import pcb.uwu.units.composite.mechanics.ForceUnit;
-import pcb.uwu.units.composite.mechanics.SpeedUnit;
-import pcb.uwu.units.quantity.LengthUnit;
-import pcb.uwu.units.quantity.MassUnit;
-import pcb.uwu.units.quantity.TimeUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.unit.composite.fundamental.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.composite.mechanics.NewtonUnit.NEWTON;
+import static pcb.uwu.unit.composite.termodynamics.PascalUnit.PASCAL;
+import static pcb.uwu.unit.quantity.MeterUnit.METER;
+import static pcb.uwu.unit.quantity.SecondUnit.SECOND;
 
 public class Newtons extends Force {
 
@@ -80,19 +86,26 @@ public class Newtons extends Force {
 
 	// region composition
 
-	public Mass dividedBy(Acceleration acceleration, MathContext mathContext) {
-		MassUnit massUnit = getUnit().getUnitCounter().findUnit(MassUnit.class);
-
-		return new Mass(super.dividedBy(acceleration, mathContext).getAmount(), massUnit);
+	public KiloGrams dividedBy(Acceleration acceleration, MathContext mathContext) {
+		return new KiloGrams(super.dividedBy(acceleration, mathContext).getAmount());
 	}
 
 	public Acceleration dividedBy(Mass mass, MathContext mathContext) {
-		LengthUnit lengthUnit = getUnit().getUnitCounter().findUnit(LengthUnit.class);
-		TimeUnit timeUnit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
-
 		return new Acceleration(
 				super.dividedBy(mass, mathContext).getAmount(),
-				new AccelerationUnit(new SpeedUnit(lengthUnit, timeUnit), timeUnit));
+				new AccelerationUnit(METER, SECOND));
+	}
+
+	public Joules multipliedBy(Length length, MathContext mathContext) {
+		return new Joules(getAmount().multipliedBy(length.getAmountIn(METER), mathContext));
+	}
+
+	public Area dividedBy(Pressure pressure, MathContext mathContext) {
+		return new Area(getAmount().dividedBy(pressure.getAmountIn(PASCAL), mathContext), SQUARE_METER);
+	}
+
+	public Pascals dividedBy(Area area, MathContext mathContext) {
+		return new Pascals(getAmount().dividedBy(area.getAmountIn(SQUARE_METER), mathContext));
 	}
 
 	// endregion

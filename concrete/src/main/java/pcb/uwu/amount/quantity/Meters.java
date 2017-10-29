@@ -1,5 +1,7 @@
 package pcb.uwu.amount.quantity;
 
+import pcb.uwu.amount.composite.mechanics.Force;
+import pcb.uwu.amount.composite.termodynamics.Joules;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -8,6 +10,7 @@ import pcb.uwu.units.quantity.LengthUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.unit.composite.mechanics.NewtonUnit.NEWTON;
 import static pcb.uwu.unit.quantity.MeterUnit.METER;
 
 public class Meters extends Length {
@@ -68,6 +71,14 @@ public class Meters extends Length {
 	@Override
 	public Meters dividedBy(BigDecimal other, MathContext mathContext) {
 		return new Meters(dividedByScalar(other, mathContext));
+	}
+
+	// endregion
+
+	// region composition
+
+	public Joules multipliedBy(Force force, MathContext mathContext) {
+		return new Joules(getAmount().multipliedBy(force.getAmountIn(NEWTON), mathContext));
 	}
 
 	// endregion

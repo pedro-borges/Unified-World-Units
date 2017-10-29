@@ -1,32 +1,32 @@
 package pcb.uwu.unit.composite.electromagnetism;
 
-import pcb.uwu.units.composite.electromagnetism.ElectricPotentialUnit;
+import pcb.uwu.units.composite.electromagnetism.ElectricCapacitanceUnit;
 
 import static pcb.uwu.unit.quantity.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.quantity.KiloGramUnit.KILOGRAM;
 import static pcb.uwu.unit.quantity.MeterUnit.METER;
 import static pcb.uwu.unit.quantity.SecondUnit.SECOND;
 
-public class VoltUnit extends ElectricPotentialUnit {
+public class FaradUnit extends ElectricCapacitanceUnit {
 
-	public static final VoltUnit VOLT = new VoltUnit();
+	public static final FaradUnit FARAD = new FaradUnit();
 
-	public VoltUnit() {
-		super(KILOGRAM, METER, AMPERE, SECOND);
+	public FaradUnit() {
+		super(AMPERE, SECOND, METER, KILOGRAM);
 	}
 
 	@Override
 	public String getSymbol() {
-		return "V";
+		return "F";
 	}
 
 	@Override
 	public String getSingularName() {
-		return "volt";
+		return "farad";
 	}
 
 	@Override
 	public String getPluralName() {
-		return "volts";
+		return "farads";
 	}
 }

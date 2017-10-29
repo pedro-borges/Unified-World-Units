@@ -9,6 +9,8 @@ import pcb.uwu.units.quantity.TimeUnit;
 
 public class ElectricResistanceUnit extends CompositeUnit {
 
+	// region base constructor
+
 	public ElectricResistanceUnit(MassUnit massUnit, LengthUnit lengthUnit, ElectricCurrentUnit electricCurrentUnit, TimeUnit timeUnit) {
 		super(new UnitCounter()
 				.major(massUnit)
@@ -16,4 +18,7 @@ public class ElectricResistanceUnit extends CompositeUnit {
 				.minor(timeUnit, 3)
 				.minor(electricCurrentUnit, 2));
 	}
+
+	// endregion
+
 }

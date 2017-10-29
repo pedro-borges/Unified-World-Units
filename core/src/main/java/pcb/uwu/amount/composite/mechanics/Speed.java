@@ -104,4 +104,5 @@ public class Speed extends CompositeUnitAmount<SpeedUnit> {
 	}
 
 	// endregion
+
 }
