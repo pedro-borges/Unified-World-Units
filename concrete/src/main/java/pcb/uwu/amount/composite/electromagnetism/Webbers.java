@@ -115,7 +115,7 @@ public class Webbers extends MagneticFlux {
 		return new Teslas(getAmount().dividedBy(area.getAmountIn(SQUARE_METER), mathContext));
 	}
 
-	public Joules multiplyBy(ElectricCurrent electricCurrent, MathContext mathContext) {
+	public Joules multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
 		return new Joules(getAmount().multipliedBy(electricCurrent.getAmountIn(AMPERE), mathContext));
 	}
 
