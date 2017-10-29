@@ -4,12 +4,12 @@ import pcb.uwu.exceptions.OffendingUnitException;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.function.Function;
 
-import static java.util.stream.Collectors.toSet;
+import static java.util.stream.Collectors.toList;
 import static pcb.uwu.core.UnitCounter.UnitCount.EMPTY_BASE_UNIT_COUNT;
 import static pcb.uwu.units.quantity.ScalarUnit.SCALAR;
 
@@ -140,53 +140,37 @@ public class UnitCounter {
 	}
 
 	public String asString(Function<Unit, String> majorString, Function<Unit, String> minorString, String separator) {
-		String result = "";
+		StringBuilder result = new StringBuilder();
 
-		Set<BaseUnit> major = counts.values().stream()
-				.filter(entry -> entry.getCount() > 0)
+		List<BaseUnit> baseUnits = counts.values().stream()
 				.map(UnitCount::getUnit)
 				.sorted()
-				.collect(toSet());
+				.collect(toList());
 
 		boolean first = true;
 
-		for (BaseUnit unit : major) {
+		for (BaseUnit unit : baseUnits) {
 			String power = buildPower(get(unit).count);
 			if (first) {
-				result += majorString.apply(unit) + power;
+				result.append(majorString.apply(unit)).append(power);
 			} else {
-				result += minorString.apply(unit) + power;
+				result.append('⋅').append(minorString.apply(unit)).append(power);
 			}
 			first = false;
 		}
 
-		Set<BaseUnit> minor = counts.values().stream()
-				.filter(entry -> entry.count < 0)
-				.map(UnitCount::getUnit)
-				.sorted()
-				.collect(toSet());
-
-		if (!minor.isEmpty()) {
-			result += separator;
-		}
-
-		for (BaseUnit unit : minor) {
-			String power = buildPower(Math.abs(get(unit).count));
-			result += minorString.apply(unit) + power;
-		}
-
-		return result;
+		return result.toString();
 	}
 
 	// region private methods
 
 	private String buildPower(int power) {
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		boolean negative = power < 0;
 
 		// Omit neutral power of 1
 		if (power == 1) {
-			return result;
+			return result.toString();
 		}
 
 		if (power == 0) {
@@ -197,14 +181,14 @@ public class UnitCounter {
 
 		for (;power > 0 ; power /= 10)
 		{
-			result = POWERS[power % 10] + result;
+			result.insert(0, POWERS[power % 10]);
 		}
 
 		if (negative) {
-			return NEGATIVE + result;
+			return NEGATIVE + result.toString();
 		}
 
-		return result;
+		return result.toString();
 	}
 
 	private void addMajor(Class<? extends BaseUnit> clazz, UnitCount unitCount) {

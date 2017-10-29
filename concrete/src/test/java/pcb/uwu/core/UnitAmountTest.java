@@ -23,7 +23,7 @@ public class UnitAmountTest {
 
 		result = meters.dividedBy(compositeUnit2, DECIMAL64);
 
-		assertEquals("0.06835083114610674 /yd", result.toString());
+		assertEquals("0.06835083114610674 yd⁻¹", result.toString());
 	}
 
 	@Test
@@ -32,6 +32,6 @@ public class UnitAmountTest {
 
 		result = meters.multipliedBy(compositeUnit2, DECIMAL64);
 
-		assertEquals("0.06835083114610674 /yd", result.toString());
+		assertEquals("0.06835083114610674 yd⁻¹", result.toString());
 	}
 }

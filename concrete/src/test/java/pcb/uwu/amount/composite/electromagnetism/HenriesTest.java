@@ -15,5 +15,4 @@ public class HenriesTest {
 		assertEquals(new Webbers(35, MILLI),
 				henries.multipliedBy(new Amperes(7, MILLI), DECIMAL64));
 	}
-
 }

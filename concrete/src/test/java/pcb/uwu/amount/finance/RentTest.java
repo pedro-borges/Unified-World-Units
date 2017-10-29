@@ -4,11 +4,13 @@ import org.junit.Test;
 import pcb.uwu.amount.quantity.Money;
 import pcb.uwu.amount.quantity.Time;
 import pcb.uwu.units.finance.InterestRateUnit;
+import pcb.uwu.units.finance.RentUnit;
 
 import java.util.Currency;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
+import static pcb.uwu.core.Magnitude.MILLI;
 import static pcb.uwu.unit.quantity.DayUnit.DAY;
 import static pcb.uwu.unit.quantity.WeekUnit.WEEK;
 
@@ -19,7 +21,9 @@ public class RentTest {
 
 	@Test
 	public void testFromMoneyAndTime() {
-		assertEquals("2.00 £/d", money.dividedBy(time, DECIMAL64).toString());
-		assertEquals("1.200 £/wk", money.multipliedBy(interestRate, DECIMAL64).toString());
+		assertEquals(new Rent(2, new RentUnit(money.getUnit(), time.getUnit())),
+				money.dividedBy(time, DECIMAL64));
+		assertEquals(new Rent(1200, MILLI, new RentUnit(money.getUnit(), interestRate.getUnit())),
+				money.multipliedBy(interestRate, DECIMAL64));
 	}
 }
