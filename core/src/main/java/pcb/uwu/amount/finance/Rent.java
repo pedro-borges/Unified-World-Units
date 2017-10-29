@@ -8,7 +8,6 @@ import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.finance.MoneyUnit;
 import pcb.uwu.units.finance.RentUnit;
-import pcb.uwu.units.quantity.TimeUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -84,11 +83,8 @@ public class Rent extends CompositeUnitAmount<RentUnit> {
 
 	public Money multipliedBy(Time time, MathContext mathContext) {
 		MoneyUnit moneyUnit = getUnit().getUnitCounter().findUnit(MoneyUnit.class);
-		TimeUnit timeUnit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
-		BigDecimalAmount amount = getAmount()
-				.multipliedBy(time.getAmountIn(timeUnit), mathContext);
 
-		return new Money(amount, moneyUnit);
+		return new Money(super.multipliedBy(time, mathContext).getAmount(), moneyUnit);
 	}
 
 	// endregion
