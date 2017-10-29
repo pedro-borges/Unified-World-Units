@@ -73,7 +73,7 @@ public class CompositeUnit implements Unit {
 	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
 		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
 
-		for (BaseUnit unit : unitCounter.getPowers()) {
+		for (BaseUnit unit : unitCounter.getBaseUnits()) {
 			int power = unitCounter.get(unit);
 
 			if (power > 0) {
@@ -97,7 +97,7 @@ public class CompositeUnit implements Unit {
 	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
 		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
 
-		for (BaseUnit unit : unitCounter.getPowers()) {
+		for (BaseUnit unit : unitCounter.getBaseUnits()) {
 			int power = unitCounter.get(unit);
 
 			if (power > 0) {

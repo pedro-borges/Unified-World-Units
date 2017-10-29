@@ -26,7 +26,7 @@ public class UnitAmountTest {
 		UnitCounter resultUnitCounter = result.getUnit().getUnitCounter();
 
 		assertEquals(1, result.getAmount().getValue().intValueExact());
-		assertEquals(4, resultUnitCounter.getPowers().size());
+		assertEquals(4, resultUnitCounter.getBaseUnits().size());
 		assertEquals(1, resultUnitCounter.get(seconds.getUnit()));
 		assertEquals(1, resultUnitCounter.get(minutes.getUnit()));
 		assertEquals(-1, resultUnitCounter.get(meters.getUnit()));

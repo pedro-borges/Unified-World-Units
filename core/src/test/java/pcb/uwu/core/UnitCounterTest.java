@@ -26,12 +26,12 @@ public class UnitCounterTest {
 		assertEquals(2, (test = test.major(SECOND)).get(SECOND));
 		assertEquals(3, (test = test.major(SECOND)).get(SECOND));
 		assertEquals(-1, (test = test.minor(KILOGRAM)).get(KILOGRAM));
-		assertEquals(3, test.getPowers().size());
+		assertEquals(3, test.getBaseUnits().size());
 		assertEquals(-1, test.get(KILOGRAM));
 		assertEquals(3, test.get(SECOND));
 		assertEquals(1, test.get(AMPERE));
 		assertEquals(0, (test = test.major(KILOGRAM)).get(KILOGRAM));
-		assertEquals(2, test.getPowers().size());
+		assertEquals(2, test.getBaseUnits().size());
 		assertEquals(3, test.get(SECOND));
 		assertEquals(1, test.get(AMPERE));
 	}
