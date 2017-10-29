@@ -35,16 +35,4 @@ public class UnitCounterTest {
 		assertEquals(3, test.get(SECOND).getCount());
 		assertEquals(1, test.get(AMPERE).getCount());
 	}
-
-	@Test
-	public void testFindMajorUnit() {
-		UnitCounter test = new UnitCounter()
-				.major(SECOND)
-				.major(AMPERE)
-				.major(KILOGRAM);
-
-		assertEquals(SECOND, test.findUnit(TimeUnit.class));
-		assertEquals(AMPERE, test.findUnit(ElectricCurrentUnit.class));
-		assertEquals(KILOGRAM, test.findUnit(MassUnit.class));
-	}
 }

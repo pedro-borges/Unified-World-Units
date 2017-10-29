@@ -1,5 +1,7 @@
 package pcb.uwu.core;
 
+import pcb.uwu.exceptions.OffendingUnitException;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +34,7 @@ public class UnitCounter {
 		}
 	}
 
-	private final Map<Class<? extends BaseUnit>, UnitCount> powers;
+	private final Map<Class<? extends BaseUnit>, UnitCount> counts;
 
 	private static final char NEGATIVE = '⁻';
 	private static final char[] POWERS = new char[] {'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'};
@@ -40,21 +42,21 @@ public class UnitCounter {
 	// region constructors
 
 	public UnitCounter() {
-		powers = new HashMap<>();
+		counts = new HashMap<>();
 	}
 
-	public UnitCounter(BaseUnit canonic) {
+	public UnitCounter(BaseUnit unit) {
 		this();
 
-		addPower(canonic.getBaseUnitType(), canonic, 1);
+		addPower(unit.getBaseUnitType(), unit, 1);
 	}
 
 	public UnitCounter(UnitCounter source) {
-		this(source.powers);
+		this(source.counts);
 	}
 
-	private UnitCounter(Map<Class<? extends BaseUnit>, UnitCount> powers) {
-		this.powers = new HashMap<>(powers);
+	private UnitCounter(Map<Class<? extends BaseUnit>, UnitCount> counts) {
+		this.counts = new HashMap<>(counts);
 	}
 
 	// endregion
@@ -62,7 +64,7 @@ public class UnitCounter {
 	public UnitCounter invert() {
 		Map<Class<? extends BaseUnit>, UnitCount> result = new HashMap<>();
 
-		powers.forEach((clazz, unitCount) -> result.put(clazz, new UnitCount(unitCount.unit, -unitCount.count)));
+		counts.forEach((clazz, unitCount) -> result.put(clazz, new UnitCount(unitCount.unit, -unitCount.count)));
 
 		return new UnitCounter(result);
 	}
@@ -70,7 +72,7 @@ public class UnitCounter {
 	public UnitCounter major(UnitCounter unitCounter) {
 		UnitCounter result = new UnitCounter(this);
 
-		unitCounter.powers.forEach(result::addMajor);
+		unitCounter.counts.forEach(result::addMajor);
 
 		return result;
 	}
@@ -90,7 +92,7 @@ public class UnitCounter {
 	public UnitCounter minor(UnitCounter unitCounter) {
 		UnitCounter result = new UnitCounter(this);
 
-		unitCounter.powers.forEach(result::addMinor);
+		unitCounter.counts.forEach(result::addMinor);
 
 		return result;
 	}
@@ -108,17 +110,17 @@ public class UnitCounter {
 	}
 
 	public UnitCount get(BaseUnit unit) {
-		return powers.getOrDefault(unit.getBaseUnitType(), EMPTY_BASE_UNIT_COUNT);
+		return counts.getOrDefault(unit.getBaseUnitType(), EMPTY_BASE_UNIT_COUNT);
 	}
 
 	public Collection<UnitCount> getBaseUnits() {
-		return powers.values();
+		return counts.values();
 	}
 
 	public String asString(Function<Unit, String> majorString, Function<Unit, String> minorString, String separator) {
 		String result = "";
 
-		Set<BaseUnit> major = powers.values().stream()
+		Set<BaseUnit> major = counts.values().stream()
 				.filter(entry -> entry.getCount() > 0)
 				.map(UnitCount::getUnit)
 				.sorted()
@@ -136,7 +138,7 @@ public class UnitCounter {
 			first = false;
 		}
 
-		Set<BaseUnit> minor = powers.values().stream()
+		Set<BaseUnit> minor = counts.values().stream()
 				.filter(entry -> entry.count < 0)
 				.map(UnitCount::getUnit)
 				.sorted()
@@ -194,22 +196,29 @@ public class UnitCounter {
 	private void addPower(Class<? extends BaseUnit> clazz, BaseUnit unit, Integer count) {
 		if (count == 0) return;
 
-		int result = powers.getOrDefault(clazz, EMPTY_BASE_UNIT_COUNT).count + count;
+		UnitCount unitCount = counts.get(clazz);
+		int result;
+
+		if (unitCount == null) {
+			result = count;
+		} else {
+			if (!unitCount.unit.equals(unit)) {
+				throw new OffendingUnitException(unitCount.unit.getSingularName() + " and " + unit.getSingularName() + " are both " + unit.getBaseUnitType().getSimpleName());
+			}
+
+		 	result = unitCount.count + count;
+		}
 
 		if (result == 0) {
-			powers.remove(clazz);
+			counts.remove(clazz);
 		} else {
-			powers.put(clazz, new UnitCount(unit, result));
+			counts.put(clazz, new UnitCount(unit, result));
 		}
-	}
-
-	public boolean isEmpty() {
-		return powers.isEmpty();
 	}
 
 	@SuppressWarnings("unchecked")
 	public <U extends BaseUnit> U findUnit(Class<U> unitClass) {
-		return getUnit(unitClass, getBaseUnits()); //todo drop after normalisation is applied
+		return getUnit(unitClass, getBaseUnits());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -221,6 +230,10 @@ public class UnitCounter {
 		}
 
 		return null;
+	}
+
+	public boolean isEmpty() {
+		return counts.isEmpty();
 	}
 
 	// endregion
