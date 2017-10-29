@@ -16,7 +16,7 @@ public class NewtonsTest {
 		Newtons newtons = new Newtons(2);
 
 		assertEquals("2 N", newtons.toString());
-		assertEquals("2 mKg/s²", newtons.convertTo(unit).toString());
+		assertEquals("2 Kgm/s²", newtons.convertTo(unit).toString());
 
 		Force force = new Force(2.2, unit);
 

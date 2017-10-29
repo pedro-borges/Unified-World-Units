@@ -10,7 +10,6 @@ import pcb.uwu.amount.quantity.Yards;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class UnitAmountTest {
 	private static final Length meters = new Meters(1);
@@ -27,11 +26,10 @@ public class UnitAmountTest {
 		UnitCounter resultUnitCounter = result.getUnit().getUnitCounter();
 
 		assertEquals(1, result.getAmount().getValue().intValueExact());
-		assertEquals(2, resultUnitCounter.getMajorKeys().size());
-		assertTrue(resultUnitCounter.getMajorKeys().contains(seconds.getUnit()));
-		assertTrue(resultUnitCounter.getMajorKeys().contains(minutes.getUnit()));
-		assertEquals(2, resultUnitCounter.getMinorKeys().size());
-		assertTrue(resultUnitCounter.getMinorKeys().contains(meters.getUnit()));
-		assertTrue(resultUnitCounter.getMinorKeys().contains(yards.getUnit()));
+		assertEquals(4, resultUnitCounter.getPowers().size());
+		assertEquals(1, resultUnitCounter.get(seconds.getUnit()));
+		assertEquals(1, resultUnitCounter.get(minutes.getUnit()));
+		assertEquals(-1, resultUnitCounter.get(meters.getUnit()));
+		assertEquals(-1, resultUnitCounter.get(yards.getUnit()));
 	}
 }

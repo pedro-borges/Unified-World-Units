@@ -157,7 +157,7 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 	@Override
 	public String toString() {
-		return amount.toString() + ' ' + unit.toString();
+		return amount.toString() + (unit.isScalar() ? "" : " ") + unit.toString();
 	}
 
 	// endregion

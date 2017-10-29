@@ -22,18 +22,6 @@ public class CompositeUnit implements Unit {
 		this.unitCounter = unitCounter;
 	}
 
-	public CompositeUnit(Unit unit) {
-		this();
-
-		for (BaseUnit majorUnit : unit.getUnitCounter().getMajorKeys()) {
-			major(majorUnit);
-		}
-
-		for (BaseUnit minorUnit : unit.getUnitCounter().getMinorKeys()) {
-			minor(minorUnit);
-		}
-	}
-
 	// endregion
 
 	// region public methods
@@ -85,15 +73,17 @@ public class CompositeUnit implements Unit {
 	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
 		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
 
-		for (BaseUnit unit : unitCounter.getMajorKeys()) {
-			for (int i = 0; i < unitCounter.get(unit); i++) {
-				result = result.andThen(unit.getTranslationToCanonical());
-			}
-		}
+		for (BaseUnit unit : unitCounter.getPowers()) {
+			int power = unitCounter.get(unit);
 
-		for (BaseUnit unit : unitCounter.getMinorKeys()) {
-			for (int i = 0; i > unitCounter.get(unit); i--) {
-				result = result.andThen(unit.getTranslationFromCanonical());
+			if (power > 0) {
+				for (int i = 0; i < power; i++) {
+					result = result.andThen(unit.getTranslationToCanonical());
+				}
+			} else if (power < 0) {
+				for (int i = 0; i > power; i--) {
+					result = result.andThen(unit.getTranslationFromCanonical());
+				}
 			}
 		}
 
@@ -107,15 +97,17 @@ public class CompositeUnit implements Unit {
 	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
 		Function<BigDecimalAmount, BigDecimalAmount> result = Function.identity();
 
-		for (BaseUnit unit : unitCounter.getMajorKeys()) {
-			for (int i = 0; i < unitCounter.get(unit); i++) {
-				result = result.andThen(unit.getTranslationFromCanonical());
-			}
-		}
+		for (BaseUnit unit : unitCounter.getPowers()) {
+			int power = unitCounter.get(unit);
 
-		for (BaseUnit unit : unitCounter.getMinorKeys()) {
-			for (int i = 0; i > unitCounter.get(unit); i--) {
-				result = result.andThen(unit.getTranslationToCanonical());
+			if (power > 0) {
+				for (int i = 0; i < power; i++) {
+					result = result.andThen(unit.getTranslationFromCanonical());
+				}
+			} else if (power < 0) {
+				for (int i = 0; i > unitCounter.get(unit); i--) {
+					result = result.andThen(unit.getTranslationToCanonical());
+				}
 			}
 		}
 

@@ -83,8 +83,8 @@ public class Rent extends CompositeUnitAmount<RentUnit> {
 	// region composite
 
 	public Money multipliedBy(Time time, MathContext mathContext) {
-		MoneyUnit moneyUnit = getUnit().getUnitCounter().findMajorUnit(MoneyUnit.class);
-		TimeUnit timeUnit = getUnit().getUnitCounter().findMinorUnit(TimeUnit.class);
+		MoneyUnit moneyUnit = getUnit().getUnitCounter().findUnit(MoneyUnit.class);
+		TimeUnit timeUnit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
 		BigDecimalAmount amount = getAmount()
 				.multipliedBy(time.getAmountIn(timeUnit), mathContext);
 

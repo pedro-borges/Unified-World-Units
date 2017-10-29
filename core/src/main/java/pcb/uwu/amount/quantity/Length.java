@@ -92,8 +92,8 @@ public class Length extends CompositeUnitAmount<LengthUnit> {
 	}
 
 	public Time dividedBy(Speed speed, MathContext mathContext) {
-		TimeUnit speedTimeUnit = speed.getUnit().getUnitCounter().findMinorUnit(TimeUnit.class);
-		LengthUnit speedLengthUnit = speed.getUnit().getUnitCounter().findMajorUnit(LengthUnit.class);
+		TimeUnit speedTimeUnit = speed.getUnit().getUnitCounter().findUnit(TimeUnit.class);
+		LengthUnit speedLengthUnit = speed.getUnit().getUnitCounter().findUnit(LengthUnit.class);
 
 		BigDecimalAmount amount = getAmount()
 				.dividedBy(speed.getAmountIn(new SpeedUnit(speedLengthUnit, speedTimeUnit)).getValue(), mathContext);

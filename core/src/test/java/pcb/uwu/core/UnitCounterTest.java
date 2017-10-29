@@ -6,7 +6,6 @@ import pcb.uwu.units.quantity.MassUnit;
 import pcb.uwu.units.quantity.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class UnitCounterTest {
 	public static final BaseUnit SECOND = new TimeUnit("s", "", "", null, null) {};
@@ -27,16 +26,14 @@ public class UnitCounterTest {
 		assertEquals(2, (test = test.major(SECOND)).get(SECOND));
 		assertEquals(3, (test = test.major(SECOND)).get(SECOND));
 		assertEquals(-1, (test = test.minor(KILOGRAM)).get(KILOGRAM));
-		assertEquals(1, test.getMinorKeys().size());
-		assertTrue(test.getMinorKeys().contains(KILOGRAM));
-		assertEquals(2, test.getMajorKeys().size());
-		assertTrue(test.getMajorKeys().contains(SECOND));
-		assertTrue(test.getMajorKeys().contains(AMPERE));
+		assertEquals(3, test.getPowers().size());
+		assertEquals(-1, test.get(KILOGRAM));
+		assertEquals(3, test.get(SECOND));
+		assertEquals(1, test.get(AMPERE));
 		assertEquals(0, (test = test.major(KILOGRAM)).get(KILOGRAM));
-		assertEquals(0, test.getMinorKeys().size());
-		assertEquals(2, test.getMajorKeys().size());
-		assertTrue(test.getMajorKeys().contains(SECOND));
-		assertTrue(test.getMajorKeys().contains(AMPERE));
+		assertEquals(2, test.getPowers().size());
+		assertEquals(3, test.get(SECOND));
+		assertEquals(1, test.get(AMPERE));
 	}
 
 	@Test
@@ -46,8 +43,8 @@ public class UnitCounterTest {
 				.major(AMPERE)
 				.major(KILOGRAM);
 
-		assertEquals(SECOND, test.findMajorUnit(TimeUnit.class));
-		assertEquals(AMPERE, test.findMajorUnit(ElectricCurrentUnit.class));
-		assertEquals(KILOGRAM, test.findMajorUnit(MassUnit.class));
+		assertEquals(SECOND, test.findUnit(TimeUnit.class));
+		assertEquals(AMPERE, test.findUnit(ElectricCurrentUnit.class));
+		assertEquals(KILOGRAM, test.findUnit(MassUnit.class));
 	}
 }

@@ -7,7 +7,6 @@ import org.junit.runners.Parameterized.Parameters;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
-import static pcb.uwu.core.BigDecimalAmount.ONE;
 
 @RunWith(Parameterized.class)
 public class TimeTest {
@@ -30,10 +29,10 @@ public class TimeTest {
 
 	@Test
 	public void testConversions() {
-		assertEquals(ONE, time.dividedBy(seconds, DECIMAL64));
-		assertEquals(ONE, time.dividedBy(minutes, DECIMAL64));
-		assertEquals(ONE, time.dividedBy(hours, DECIMAL64));
-		assertEquals(ONE, time.dividedBy(days, DECIMAL64));
-		assertEquals(ONE, time.dividedBy(weeks, DECIMAL64));
+		assertEquals("1", time.dividedBy(seconds, DECIMAL64).toString());
+		assertEquals("1", time.dividedBy(minutes, DECIMAL64).toString());
+		assertEquals("1", time.dividedBy(hours, DECIMAL64).toString());
+		assertEquals("1", time.dividedBy(days, DECIMAL64).toString());
+		assertEquals("1", time.dividedBy(weeks, DECIMAL64).toString());
 	}
 }
