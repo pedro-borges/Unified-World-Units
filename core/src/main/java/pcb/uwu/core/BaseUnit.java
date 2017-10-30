@@ -99,7 +99,7 @@ public abstract class BaseUnit implements Unit, Comparable<BaseUnit> {
 
 	//endregion
 
-	// region overload Object
+	// region override Object
 
 	@Override
 	public boolean equals(Object obj) {
