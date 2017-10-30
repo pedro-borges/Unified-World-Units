@@ -1,5 +1,7 @@
 package pcb.uwu.amount.base;
 
+import pcb.uwu.amount.derived.optics.Lumens;
+import pcb.uwu.amount.derived.scalar.SolidAngle;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -9,6 +11,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
+import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
 
 public class Candelas extends LuminousIntensity {
 
@@ -68,6 +71,14 @@ public class Candelas extends LuminousIntensity {
 	@Override
 	public Candelas dividedBy(BigDecimal other, MathContext mathContext) {
 		return new Candelas(dividedByScalar(other, mathContext));
+	}
+
+	// endregion
+
+	// region composition
+
+	public Lumens multipliedBy(SolidAngle solidAngle, MathContext mathContext) {
+		return new Lumens(getAmount().multipliedBy(solidAngle.getAmountIn(STERADIAN), mathContext));
 	}
 
 	// endregion

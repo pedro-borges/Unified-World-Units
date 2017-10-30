@@ -1,5 +1,7 @@
 package pcb.uwu.amount.derived.scalar;
 
+import pcb.uwu.amount.base.LuminousIntensity;
+import pcb.uwu.amount.derived.optics.Lumens;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -8,6 +10,7 @@ import pcb.uwu.units.derived.scalar.SolidAngleUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
 import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
 
 public class Steradians extends SolidAngle {
@@ -68,6 +71,14 @@ public class Steradians extends SolidAngle {
 	@Override
 	public Steradians dividedBy(BigDecimal other, MathContext mathContext) {
 		return new Steradians(dividedByScalar(other, mathContext));
+	}
+
+	// endregion
+
+	// region composition
+
+	public Lumens multipliedBy(LuminousIntensity luminousIntensity, MathContext mathContext) {
+		return new Lumens(getAmount().multipliedBy(luminousIntensity.getAmountIn(CANDELA), mathContext));
 	}
 
 	// endregion
