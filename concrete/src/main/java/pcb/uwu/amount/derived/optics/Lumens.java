@@ -2,6 +2,7 @@ package pcb.uwu.amount.derived.optics;
 
 import pcb.uwu.amount.base.Candelas;
 import pcb.uwu.amount.base.LuminousIntensity;
+import pcb.uwu.amount.base.Time;
 import pcb.uwu.amount.derived.scalar.SolidAngle;
 import pcb.uwu.amount.derived.scalar.Steradians;
 import pcb.uwu.core.BigDecimalAmount;
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
+import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.optics.LumenUnit.LUMEN;
 import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
 
@@ -86,6 +88,10 @@ public class Lumens extends LuminousFlux {
 
 	public Steradians dividedBy(LuminousIntensity luminousIntensity, MathContext mathContext) {
 		return new Steradians(getAmount().dividedBy(luminousIntensity.getAmountIn(CANDELA), mathContext));
+	}
+
+	public Talbots multipliedBy(Time time, MathContext mathContext) {
+		return new Talbots(getAmount().multipliedBy(time.getAmountIn(SECOND), mathContext));
 	}
 
 	// endregion

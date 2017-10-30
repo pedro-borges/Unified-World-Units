@@ -2,6 +2,7 @@ package pcb.uwu.amount.derived.optics;
 
 import org.junit.Test;
 import pcb.uwu.amount.base.Candelas;
+import pcb.uwu.amount.base.Seconds;
 import pcb.uwu.amount.derived.scalar.Steradians;
 
 import static java.math.MathContext.DECIMAL64;
@@ -20,5 +21,11 @@ public class LumensTest {
 	public void dividedByLuminousIntensity() {
 		assertEquals(new Steradians(2),
 				lumens.dividedBy(new Candelas(11), DECIMAL64));
+	}
+
+	@Test
+	public void multipliedByTime() {
+		assertEquals(new Talbots(66),
+				lumens.multipliedBy(new Seconds(3), DECIMAL64));
 	}
 }

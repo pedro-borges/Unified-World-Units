@@ -1,12 +1,10 @@
 package pcb.uwu.amount.base;
 
-import pcb.uwu.amount.derived.electromagnetism.ElectricCharge;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.base.TimeUnit;
-import pcb.uwu.units.derived.electromagnetism.ElectricChargeUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -85,15 +83,4 @@ public class Time extends CompositeUnitAmount<TimeUnit> {
 
 	// endregion
 
-	// region derived
-
-	public ElectricCharge multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount()
-				.multipliedBy(electricCurrent.getAmount().getValue(), mathContext);
-		ElectricChargeUnit unit = new ElectricChargeUnit(electricCurrent.getUnit(), getUnit());
-
-		return new ElectricCharge(amount, unit);
-	}
-
-	// endregion
 }

@@ -1,6 +1,8 @@
 package pcb.uwu.amount.base;
 
 import pcb.uwu.amount.derived.electromagnetism.Coulombs;
+import pcb.uwu.amount.derived.optics.LuminousFlux;
+import pcb.uwu.amount.derived.optics.Talbots;
 import pcb.uwu.amount.derived.termodynamics.Joules;
 import pcb.uwu.amount.derived.termodynamics.Power;
 import pcb.uwu.core.BigDecimalAmount;
@@ -13,6 +15,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import static pcb.uwu.unit.derived.optics.LumenUnit.LUMEN;
 import static pcb.uwu.unit.derived.termodynamics.WattUnit.WATT;
 
 public class Seconds extends Time {
@@ -87,5 +90,10 @@ public class Seconds extends Time {
 		return new Joules(getAmount().multipliedBy(power.getAmountIn(WATT), mathContext));
 	}
 
+	public Talbots multipliedBy(LuminousFlux luminousFlux, MathContext mathContext) {
+		return new Talbots(getAmount().multipliedBy(luminousFlux.getAmountIn(LUMEN), mathContext));
+	}
+
 	// endregion
+
 }
