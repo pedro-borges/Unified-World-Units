@@ -1,8 +1,8 @@
 package pcb.uwu.core;
 
 import org.junit.Test;
-import pcb.uwu.units.quantity.LengthUnit;
-import pcb.uwu.units.quantity.MassUnit;
+import pcb.uwu.units.base.LengthUnit;
+import pcb.uwu.units.base.MassUnit;
 
 import java.util.List;
 import java.util.function.Function;

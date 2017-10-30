@@ -1,8 +1,8 @@
 package pcb.uwu.amount.finance;
 
 import org.junit.Test;
-import pcb.uwu.amount.quantity.Money;
-import pcb.uwu.amount.quantity.Time;
+import pcb.uwu.amount.base.Money;
+import pcb.uwu.amount.base.Time;
 import pcb.uwu.units.finance.InterestRateUnit;
 import pcb.uwu.units.finance.RentUnit;
 
@@ -11,8 +11,8 @@ import java.util.Currency;
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.core.Magnitude.MILLI;
-import static pcb.uwu.unit.quantity.DayUnit.DAY;
-import static pcb.uwu.unit.quantity.WeekUnit.WEEK;
+import static pcb.uwu.unit.base.DayUnit.DAY;
+import static pcb.uwu.unit.base.WeekUnit.WEEK;
 
 public class RentTest {
 	private Money money = new Money(6, Currency.getInstance("GBP"));

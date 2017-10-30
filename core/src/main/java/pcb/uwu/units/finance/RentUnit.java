@@ -2,7 +2,7 @@ package pcb.uwu.units.finance;
 
 import pcb.uwu.core.CompositeUnit;
 import pcb.uwu.core.UnitCounter;
-import pcb.uwu.units.quantity.TimeUnit;
+import pcb.uwu.units.base.TimeUnit;
 
 public class RentUnit extends CompositeUnit {
 

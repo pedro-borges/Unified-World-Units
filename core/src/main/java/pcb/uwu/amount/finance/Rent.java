@@ -1,7 +1,7 @@
 package pcb.uwu.amount.finance;
 
-import pcb.uwu.amount.quantity.Money;
-import pcb.uwu.amount.quantity.Time;
+import pcb.uwu.amount.base.Money;
+import pcb.uwu.amount.base.Time;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -79,7 +79,7 @@ public class Rent extends CompositeUnitAmount<RentUnit> {
 
 	// endregion
 
-	// region composite
+	// region derived
 
 	public Money multipliedBy(Time time, MathContext mathContext) {
 		MoneyUnit moneyUnit = getUnit().getUnitCounter().findUnit(MoneyUnit.class);

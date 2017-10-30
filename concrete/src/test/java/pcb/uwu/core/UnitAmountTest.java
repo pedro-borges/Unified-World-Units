@@ -1,9 +1,9 @@
 package pcb.uwu.core;
 
 import org.junit.Test;
-import pcb.uwu.amount.quantity.Length;
-import pcb.uwu.amount.quantity.Meters;
-import pcb.uwu.amount.quantity.Yards;
+import pcb.uwu.amount.base.Length;
+import pcb.uwu.amount.base.Meters;
+import pcb.uwu.amount.base.Yards;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;

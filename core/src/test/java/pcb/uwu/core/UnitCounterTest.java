@@ -1,9 +1,9 @@
 package pcb.uwu.core;
 
 import org.junit.Test;
-import pcb.uwu.units.quantity.ElectricCurrentUnit;
-import pcb.uwu.units.quantity.MassUnit;
-import pcb.uwu.units.quantity.TimeUnit;
+import pcb.uwu.units.base.ElectricCurrentUnit;
+import pcb.uwu.units.base.MassUnit;
+import pcb.uwu.units.base.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 

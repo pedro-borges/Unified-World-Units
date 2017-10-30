@@ -1,13 +1,13 @@
 package pcb.uwu.sandbox;
 
 import org.junit.Test;
-import pcb.uwu.amount.composite.mechanics.Speed;
+import pcb.uwu.amount.base.Hours;
+import pcb.uwu.amount.base.Length;
+import pcb.uwu.amount.base.Meters;
+import pcb.uwu.amount.base.Money;
+import pcb.uwu.amount.base.Time;
+import pcb.uwu.amount.derived.mechanics.Speed;
 import pcb.uwu.amount.finance.Rent;
-import pcb.uwu.amount.quantity.Hours;
-import pcb.uwu.amount.quantity.Length;
-import pcb.uwu.amount.quantity.Meters;
-import pcb.uwu.amount.quantity.Money;
-import pcb.uwu.amount.quantity.Time;
 
 import java.util.Currency;
 
