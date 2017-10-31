@@ -10,15 +10,13 @@ public abstract class MassUnit extends BaseUnit {
 
 	private final UnitCounter unitCounter;
 
-	public MassUnit(String symbol,
-					 String singularName,
-					 String pluralName,
-					 Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
-					 Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
+	public MassUnit(String symbol, String singularName, String pluralName,
+			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
 
 		super(2, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
 
-		this.unitCounter = new UnitCounter(this);
+		unitCounter = new UnitCounter(this);
 	}
 
 	@Override

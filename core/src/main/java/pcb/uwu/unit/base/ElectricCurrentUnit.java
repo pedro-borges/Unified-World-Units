@@ -10,11 +10,9 @@ public abstract class ElectricCurrentUnit extends BaseUnit {
 
 	private final UnitCounter unitCounter;
 
-	public ElectricCurrentUnit(String symbol,
-							   String singularName,
-							   String pluralName,
-							   Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
-							   Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
+	public ElectricCurrentUnit(String symbol, String singularName, String pluralName,
+			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
 
 		super(4, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
 

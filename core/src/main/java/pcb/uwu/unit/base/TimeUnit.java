@@ -11,12 +11,12 @@ public abstract class TimeUnit extends BaseUnit {
 	private final UnitCounter unitCounter;
 
 	public TimeUnit(String symbol, String singularName, String pluralName,
-					Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
-					Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
+			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
 
 		super(3, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
 
-		this.unitCounter = new UnitCounter(this);
+		unitCounter = new UnitCounter(this);
 	}
 
 	@Override

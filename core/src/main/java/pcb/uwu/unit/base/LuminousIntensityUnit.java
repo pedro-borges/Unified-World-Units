@@ -10,15 +10,13 @@ public abstract class LuminousIntensityUnit extends BaseUnit {
 
 	private final UnitCounter unitCounter;
 
-	public LuminousIntensityUnit(String symbol,
-								 String singularName,
-								 String pluralName,
-								 Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
-								 Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
+	public LuminousIntensityUnit(String symbol, String singularName, String pluralName,
+			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
 
 		super(6, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
 
-		this.unitCounter = new UnitCounter(this);
+		unitCounter = new UnitCounter(this);
 	}
 
 	@Override

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<unit>
+    <package>base</package>
+    <name>Temperature</name>
+    <precedence>5</precedence>
+</unit>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<unit>
+    <package>base</package>
+    <name>Mass</name>
+    <precedence>2</precedence>
+</unit>

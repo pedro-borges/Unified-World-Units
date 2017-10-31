@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<unit>
+	<package>base</package>
+	<base>ElectricCurrent</base>
+	<singularName>Ampere</singularName>
+	<pluralName>Amperes</pluralName>
+	<symbol>A</symbol>
+	<translationToCanonical>Function.identity()</translationToCanonical>
+	<translationFromCanonical>Function.identity()</translationFromCanonical>
+</unit>

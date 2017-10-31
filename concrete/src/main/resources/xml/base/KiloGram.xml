@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<unit>
+	<package>base</package>
+	<base>Mass</base>
+	<singularName>KiloGram</singularName>
+	<pluralName>KiloGrams</pluralName>
+	<symbol>Kg</symbol>
+	<translationToCanonical>Function.identity()</translationToCanonical>
+	<translationFromCanonical>Function.identity()</translationFromCanonical>
+</unit>

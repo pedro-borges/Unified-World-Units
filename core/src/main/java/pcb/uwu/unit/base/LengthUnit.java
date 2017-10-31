@@ -10,11 +10,9 @@ public abstract class LengthUnit extends BaseUnit {
 
 	private final UnitCounter unitCounter;
 
-	public LengthUnit(String symbol,
-					   String singularName,
-					   String pluralName,
-					   Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
-					   Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
+	public LengthUnit(String symbol, String singularName, String pluralName,
+			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
+			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
 
 		super(1, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
 
