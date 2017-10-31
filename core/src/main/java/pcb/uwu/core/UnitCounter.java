@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 import static java.util.stream.Collectors.toList;
 import static pcb.uwu.core.UnitCounter.UnitCount.EMPTY_BASE_UNIT_COUNT;
-import static pcb.uwu.units.base.ScalarUnit.SCALAR;
+import static pcb.uwu.unit.base.ScalarUnit.SCALAR;
 
 public class UnitCounter {
 

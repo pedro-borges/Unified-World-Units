@@ -1,7 +1,5 @@
 package pcb.uwu.unit.derived.optics;
 
-import pcb.uwu.units.derived.optics.IlluminanceUnit;
-
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
 import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;

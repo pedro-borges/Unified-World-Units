@@ -9,7 +9,7 @@ import pcb.uwu.amount.derived.scalar.SolidAngle;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.base.LuminousIntensityUnit;
+import pcb.uwu.unit.base.LuminousIntensityUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

@@ -1,7 +1,5 @@
 package pcb.uwu.unit.derived.termodynamics;
 
-import pcb.uwu.units.derived.termodynamics.EnergyUnit;
-
 import static pcb.uwu.unit.base.KiloGramUnit.KILOGRAM;
 import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;

@@ -3,7 +3,7 @@ package pcb.uwu.amount.derived.fundamental;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.derived.fundamental.VolumeUnit;
+import pcb.uwu.unit.derived.fundamental.VolumeUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

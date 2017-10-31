@@ -1,7 +1,6 @@
 package pcb.uwu.unit.base;
 
 import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.units.base.TemperatureUnit;
 
 import java.math.BigDecimal;
 

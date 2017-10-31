@@ -4,7 +4,7 @@ import pcb.uwu.amount.base.ElectricCurrent;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.derived.electromagnetism.ElectricResistanceUnit;
+import pcb.uwu.unit.derived.electromagnetism.ElectricResistanceUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

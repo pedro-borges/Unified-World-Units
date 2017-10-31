@@ -1,6 +1,6 @@
 package pcb.uwu.core;
 
-import pcb.uwu.units.base.ScalarUnit;
+import pcb.uwu.unit.base.ScalarUnit;
 
 import java.util.Objects;
 import java.util.function.Function;

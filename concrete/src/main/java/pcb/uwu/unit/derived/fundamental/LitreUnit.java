@@ -1,7 +1,6 @@
 package pcb.uwu.unit.derived.fundamental;
 
 import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.units.derived.fundamental.VolumeUnit;
 
 import java.math.BigDecimal;
 import java.util.function.Function;

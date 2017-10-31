@@ -1,7 +1,5 @@
 package pcb.uwu.unit.base;
 
-import pcb.uwu.units.base.MassUnit;
-
 import java.util.function.Function;
 
 public class KiloGramUnit extends MassUnit {

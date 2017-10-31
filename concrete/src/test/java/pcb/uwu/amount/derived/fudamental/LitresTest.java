@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import pcb.uwu.amount.derived.fundamental.Litres;
 import pcb.uwu.amount.derived.fundamental.Volume;
-import pcb.uwu.units.derived.fundamental.VolumeUnit;
+import pcb.uwu.unit.derived.fundamental.VolumeUnit;
 
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.unit.base.MeterUnit.METER;

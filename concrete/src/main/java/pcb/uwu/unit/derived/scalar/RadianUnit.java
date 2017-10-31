@@ -1,7 +1,5 @@
 package pcb.uwu.unit.derived.scalar;
 
-import pcb.uwu.units.derived.scalar.AngleUnit;
-
 public class RadianUnit extends AngleUnit {
 
 	public static final RadianUnit RADIAN = new RadianUnit();

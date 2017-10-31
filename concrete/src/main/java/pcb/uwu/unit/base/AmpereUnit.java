@@ -1,7 +1,5 @@
 package pcb.uwu.unit.base;
 
-import pcb.uwu.units.base.ElectricCurrentUnit;
-
 import java.util.function.Function;
 
 public class AmpereUnit extends ElectricCurrentUnit {

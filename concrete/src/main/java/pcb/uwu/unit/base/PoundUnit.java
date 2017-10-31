@@ -1,7 +1,5 @@
 package pcb.uwu.unit.base;
 
-import pcb.uwu.units.base.MassUnit;
-
 import java.math.BigDecimal;
 
 import static java.math.MathContext.DECIMAL64;

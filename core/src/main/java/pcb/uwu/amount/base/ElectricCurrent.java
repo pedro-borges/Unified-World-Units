@@ -4,7 +4,7 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.base.ElectricCurrentUnit;
+import pcb.uwu.unit.base.ElectricCurrentUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

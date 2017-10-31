@@ -6,7 +6,7 @@ import pcb.uwu.amount.base.Meters;
 import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.amount.derived.termodynamics.Joules;
 import pcb.uwu.amount.derived.termodynamics.Pascals;
-import pcb.uwu.units.derived.mechanics.AccelerationUnit;
+import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;

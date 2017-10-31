@@ -3,7 +3,7 @@ package pcb.uwu.amount.derived.scalar;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.derived.scalar.AngleUnit;
+import pcb.uwu.unit.derived.scalar.AngleUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

@@ -1,7 +1,5 @@
 package pcb.uwu.unit.derived.scalar;
 
-import pcb.uwu.units.derived.scalar.SolidAngleUnit;
-
 public class SteradianUnit extends SolidAngleUnit {
 
 	public static final SteradianUnit STERADIAN = new SteradianUnit();

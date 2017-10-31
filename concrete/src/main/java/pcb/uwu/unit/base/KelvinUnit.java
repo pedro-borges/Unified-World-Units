@@ -1,7 +1,5 @@
 package pcb.uwu.unit.base;
 
-import pcb.uwu.units.base.TemperatureUnit;
-
 import java.util.function.Function;
 
 public class KelvinUnit extends TemperatureUnit {

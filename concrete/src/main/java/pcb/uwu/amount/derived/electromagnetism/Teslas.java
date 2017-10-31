@@ -4,7 +4,7 @@ import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.derived.electromagnetism.MagneticFieldUnit;
+import pcb.uwu.unit.derived.electromagnetism.MagneticFieldUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

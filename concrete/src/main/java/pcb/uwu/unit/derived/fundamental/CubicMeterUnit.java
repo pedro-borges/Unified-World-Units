@@ -1,7 +1,5 @@
 package pcb.uwu.unit.derived.fundamental;
 
-import pcb.uwu.units.derived.fundamental.VolumeUnit;
-
 import static pcb.uwu.unit.base.MeterUnit.METER;
 
 public class CubicMeterUnit extends VolumeUnit {

@@ -10,8 +10,8 @@ import pcb.uwu.amount.derived.termodynamics.Pressure;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.derived.mechanics.AccelerationUnit;
-import pcb.uwu.units.derived.mechanics.ForceUnit;
+import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
+import pcb.uwu.unit.derived.mechanics.ForceUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

@@ -3,8 +3,8 @@ package pcb.uwu.amount.finance;
 import org.junit.Test;
 import pcb.uwu.amount.base.Money;
 import pcb.uwu.amount.base.Time;
-import pcb.uwu.units.finance.InterestRateUnit;
-import pcb.uwu.units.finance.RentUnit;
+import pcb.uwu.unit.finance.InterestRateUnit;
+import pcb.uwu.unit.finance.RentUnit;
 
 import java.util.Currency;
 

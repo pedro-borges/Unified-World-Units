@@ -1,7 +1,5 @@
 package pcb.uwu.unit.base;
 
-import pcb.uwu.units.base.TimeUnit;
-
 import java.util.function.Function;
 
 public class SecondUnit extends TimeUnit {

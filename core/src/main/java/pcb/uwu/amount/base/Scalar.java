@@ -5,13 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.base.ScalarUnit;
-import pcb.uwu.units.finance.InterestRateUnit;
+import pcb.uwu.unit.base.ScalarUnit;
+import pcb.uwu.unit.finance.InterestRateUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static pcb.uwu.units.base.ScalarUnit.SCALAR;
+import static pcb.uwu.unit.base.ScalarUnit.SCALAR;
 
 public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 

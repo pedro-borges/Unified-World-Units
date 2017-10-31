@@ -6,8 +6,8 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.exceptions.CurrencyMismatchException;
-import pcb.uwu.units.finance.MoneyUnit;
-import pcb.uwu.units.finance.RentUnit;
+import pcb.uwu.unit.finance.MoneyUnit;
+import pcb.uwu.unit.finance.RentUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

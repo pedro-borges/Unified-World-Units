@@ -12,7 +12,6 @@ import pcb.uwu.amount.base.Miles;
 import pcb.uwu.amount.base.Yards;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.base.LengthUnit;
 
 import static java.math.MathContext.DECIMAL64;
 import static java.math.RoundingMode.HALF_EVEN;

@@ -4,8 +4,8 @@ import org.junit.Test;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.units.derived.mechanics.AccelerationUnit;
-import pcb.uwu.units.derived.mechanics.SpeedUnit;
+import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
+import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 
 import static java.math.BigDecimal.TEN;
 import static java.math.MathContext.DECIMAL64;

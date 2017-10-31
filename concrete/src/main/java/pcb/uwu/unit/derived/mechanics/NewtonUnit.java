@@ -1,7 +1,5 @@
 package pcb.uwu.unit.derived.mechanics;
 
-import pcb.uwu.units.derived.mechanics.ForceUnit;
-
 import static pcb.uwu.unit.base.KiloGramUnit.KILOGRAM;
 import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;

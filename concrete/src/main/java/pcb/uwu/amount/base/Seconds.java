@@ -8,7 +8,7 @@ import pcb.uwu.amount.derived.termodynamics.Power;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.units.base.TimeUnit;
+import pcb.uwu.unit.base.TimeUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

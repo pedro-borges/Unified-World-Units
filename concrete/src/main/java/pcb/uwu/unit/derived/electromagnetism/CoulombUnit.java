@@ -1,7 +1,5 @@
 package pcb.uwu.unit.derived.electromagnetism;
 
-import pcb.uwu.units.derived.electromagnetism.ElectricChargeUnit;
-
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
 
