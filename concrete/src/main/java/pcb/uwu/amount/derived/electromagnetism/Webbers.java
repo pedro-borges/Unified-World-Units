@@ -16,11 +16,11 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.electromagnetism.HenryUnit.HENRY;
 import static pcb.uwu.unit.derived.electromagnetism.TeslaUnit.TESLA;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
 import static pcb.uwu.unit.derived.electromagnetism.WebberUnit.WEBBER;
-import static pcb.uwu.unit.derived.fundamental.SquareMeterUnit.SQUARE_METER;
 
 public class Webbers extends MagneticFlux {
 

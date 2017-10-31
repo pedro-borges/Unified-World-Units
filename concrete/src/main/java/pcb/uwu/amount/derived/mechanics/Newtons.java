@@ -18,7 +18,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.fundamental.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON;
 import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
 

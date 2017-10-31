@@ -1,10 +1,12 @@
 package pcb.uwu.amount.base;
 
+import pcb.uwu.amount.derived.fundamental.Frequency;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.units.base.TimeUnit;
+import pcb.uwu.units.derived.fundamental.FrequencyUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -79,6 +81,11 @@ public class Time extends CompositeUnitAmount<TimeUnit> {
 	@Override
 	public Time convertTo(TimeUnit unit) {
 		return new Time(getAmountIn(unit), unit);
+	}
+
+	@Override
+	public Frequency invert(MathContext mathContext) {
+		return new Frequency(getAmount().invert(mathContext), new FrequencyUnit(getUnit()));
 	}
 
 	// endregion

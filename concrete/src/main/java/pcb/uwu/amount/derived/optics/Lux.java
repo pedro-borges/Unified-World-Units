@@ -9,7 +9,7 @@ import pcb.uwu.units.derived.optics.IlluminanceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static pcb.uwu.unit.derived.fundamental.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
 
 public class Lux extends Illuminance {

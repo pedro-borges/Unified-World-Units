@@ -7,8 +7,8 @@ import pcb.uwu.amount.derived.mechanics.Newtons;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER;
-import static pcb.uwu.unit.derived.fundamental.SquareMeterUnit.SQUARE_METER;
 
 public class PascalsTest {
 	private static final Pascals pascals = new Pascals(9);

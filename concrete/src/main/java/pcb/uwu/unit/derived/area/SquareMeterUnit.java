@@ -1,4 +1,4 @@
-package pcb.uwu.unit.derived.fundamental;
+package pcb.uwu.unit.derived.area;
 
 import pcb.uwu.units.derived.fundamental.AreaUnit;
 

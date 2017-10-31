@@ -5,7 +5,7 @@ import pcb.uwu.amount.derived.fundamental.Area;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
-import static pcb.uwu.unit.derived.fundamental.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 
 public class TeslasTest {
 	private static final Teslas teslas = new Teslas(2);

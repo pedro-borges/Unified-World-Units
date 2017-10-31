@@ -11,8 +11,8 @@ import pcb.uwu.units.derived.termodynamics.PressureUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER;
-import static pcb.uwu.unit.derived.fundamental.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
 
 public class Pascals extends Pressure {

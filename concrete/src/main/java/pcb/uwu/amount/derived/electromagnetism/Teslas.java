@@ -9,8 +9,8 @@ import pcb.uwu.units.derived.electromagnetism.MagneticFieldUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.electromagnetism.TeslaUnit.TESLA;
-import static pcb.uwu.unit.derived.fundamental.SquareMeterUnit.SQUARE_METER;
 
 public class Teslas extends MagneticField {
 

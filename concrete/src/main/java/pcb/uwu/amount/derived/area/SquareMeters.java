@@ -13,7 +13,7 @@ import pcb.uwu.units.derived.fundamental.AreaUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static pcb.uwu.unit.derived.fundamental.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
 

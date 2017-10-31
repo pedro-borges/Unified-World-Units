@@ -12,7 +12,7 @@ import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.fundamental.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 
 public class NewtonsTest {
 	private static final Newtons newtons = new Newtons(12);
