@@ -80,20 +80,19 @@ public class Seconds extends Time {
 
 	// endregion
 
-	// region derived
+	// region composition
 
-	public Coulombs multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Coulombs(getAmount().multipliedBy(electricCurrent.getAmountIn(AMPERE), mathContext));
+	public Coulombs multipliedBy(ElectricCurrent unitAmount, MathContext mathContext) {
+		return new Coulombs(getAmount().multipliedBy(unitAmount.getAmountIn(AMPERE), mathContext));
 	}
 
-	public Joules multipliedBy(Power power, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(power.getAmountIn(WATT), mathContext));
+	public Joules multipliedBy(Power unitAmount, MathContext mathContext) {
+		return new Joules(getAmount().multipliedBy(unitAmount.getAmountIn(WATT), mathContext));
 	}
 
-	public Talbots multipliedBy(LuminousFlux luminousFlux, MathContext mathContext) {
-		return new Talbots(getAmount().multipliedBy(luminousFlux.getAmountIn(LUMEN), mathContext));
+	public Talbots multipliedBy(LuminousFlux unitAmount, MathContext mathContext) {
+		return new Talbots(getAmount().multipliedBy(unitAmount.getAmountIn(LUMEN), mathContext));
 	}
 
 	// endregion
-
 }

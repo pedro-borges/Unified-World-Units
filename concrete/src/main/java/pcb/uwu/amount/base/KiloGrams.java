@@ -71,4 +71,8 @@ public class KiloGrams extends Mass {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

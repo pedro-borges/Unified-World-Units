@@ -71,4 +71,8 @@ public class Kelvins extends Temperature {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

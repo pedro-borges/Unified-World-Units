@@ -77,8 +77,8 @@ public class Meters extends Length {
 
 	// region composition
 
-	public Joules multipliedBy(Force force, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(force.getAmountIn(NEWTON), mathContext));
+	public Joules multipliedBy(Force unitAmount, MathContext mathContext) {
+		return new Joules(getAmount().multipliedBy(unitAmount.getAmountIn(NEWTON), mathContext));
 	}
 
 	// endregion

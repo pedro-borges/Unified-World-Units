@@ -7,4 +7,17 @@
 	<symbol>m</symbol>
 	<translationToCanonical>Function.identity()</translationToCanonical>
 	<translationFromCanonical>Function.identity()</translationFromCanonical>
+	<composition>
+		<multipliedBy>
+			<multiplicand>
+				<package>derived.mechanics</package>
+				<base>Force</base>
+				<name>Newton</name>
+			</multiplicand>
+			<result>
+				<package>derived.termodynamics</package>
+				<name>Joules</name>
+			</result>
+		</multipliedBy>
+	</composition>
 </unit>

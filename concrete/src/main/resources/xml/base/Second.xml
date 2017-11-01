@@ -7,4 +7,39 @@
 	<symbol>s</symbol>
 	<translationToCanonical>Function.identity()</translationToCanonical>
 	<translationFromCanonical>Function.identity()</translationFromCanonical>
+	<composition>
+		<multipliedBy>
+			<multiplicand>
+				<package>base</package>
+				<base>ElectricCurrent</base>
+				<name>Ampere</name>
+			</multiplicand>
+			<result>
+				<package>derived.electromagnetism</package>
+				<name>Coulombs</name>
+			</result>
+		</multipliedBy>
+		<multipliedBy>
+			<multiplicand>
+				<package>derived.termodynamics</package>
+				<base>Power</base>
+				<name>Watt</name>
+			</multiplicand>
+			<result>
+				<package>derived.termodynamics</package>
+				<name>Joules</name>
+			</result>
+		</multipliedBy>
+		<multipliedBy>
+			<multiplicand>
+				<package>derived.optics</package>
+				<base>LuminousFlux</base>
+				<name>Lumen</name>
+			</multiplicand>
+			<result>
+				<package>derived.optics</package>
+				<name>Talbots</name>
+			</result>
+		</multipliedBy>
+	</composition>
 </unit>
