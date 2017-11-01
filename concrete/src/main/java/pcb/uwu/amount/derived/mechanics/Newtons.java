@@ -18,7 +18,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUAREMETER;
 import static pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON;
 import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
 
@@ -101,11 +101,11 @@ public class Newtons extends Force {
 	}
 
 	public Area dividedBy(Pressure pressure, MathContext mathContext) {
-		return new Area(getAmount().dividedBy(pressure.getAmountIn(PASCAL), mathContext), SQUARE_METER);
+		return new Area(getAmount().dividedBy(pressure.getAmountIn(PASCAL), mathContext), SQUAREMETER);
 	}
 
 	public Pascals dividedBy(Area area, MathContext mathContext) {
-		return new Pascals(getAmount().dividedBy(area.getAmountIn(SQUARE_METER), mathContext));
+		return new Pascals(getAmount().dividedBy(area.getAmountIn(SQUAREMETER), mathContext));
 	}
 
 	// endregion

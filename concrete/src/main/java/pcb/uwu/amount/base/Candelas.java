@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUAREMETER;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
 import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
 
@@ -88,7 +88,7 @@ public class Candelas extends LuminousIntensity {
 	}
 
 	public Nits dividedBy(Area area, MathContext mathContext) {
-		return new Nits(getAmount().dividedBy(area.getAmountIn(SQUARE_METER), mathContext));
+		return new Nits(getAmount().dividedBy(area.getAmountIn(SQUAREMETER), mathContext));
 	}
 
 	public SquareMeters dividedBy(Luminance luminance, MathContext mathContext) {

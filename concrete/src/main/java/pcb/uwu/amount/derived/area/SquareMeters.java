@@ -13,7 +13,7 @@ import pcb.uwu.unit.derived.fundamental.AreaUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUAREMETER;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
 
@@ -22,35 +22,35 @@ public class SquareMeters extends Area {
 	// region constructors
 
 	public SquareMeters(Number value) {
-		super(value, SQUARE_METER);
+		super(value, SQUAREMETER);
 	}
 
 	public SquareMeters(Number value, Magnitude magnitude) {
-		super(value, magnitude, SQUARE_METER);
+		super(value, magnitude, SQUAREMETER);
 	}
 
 	public SquareMeters(String value) {
-		super(value, SQUARE_METER);
+		super(value, SQUAREMETER);
 	}
 
 	public SquareMeters(String value, Magnitude magnitude) {
-		super(value, magnitude, SQUARE_METER);
+		super(value, magnitude, SQUAREMETER);
 	}
 
 	public SquareMeters(BigDecimal value) {
-		super(value, SQUARE_METER);
+		super(value, SQUAREMETER);
 	}
 
 	public SquareMeters(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, SQUARE_METER);
+		super(value, magnitude, SQUAREMETER);
 	}
 
 	public SquareMeters(BigDecimalAmount amount) {
-		super(amount, SQUARE_METER);
+		super(amount, SQUAREMETER);
 	}
 
 	public SquareMeters(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, SQUARE_METER);
+		super(amount, magnitude, SQUAREMETER);
 	}
 
 	// endregion

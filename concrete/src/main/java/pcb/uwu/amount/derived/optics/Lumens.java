@@ -17,7 +17,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUAREMETER;
 import static pcb.uwu.unit.derived.optics.LumenUnit.LUMEN;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
 import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
@@ -99,7 +99,7 @@ public class Lumens extends LuminousFlux {
 	}
 
 	public Lux dividedBy(Area area, MathContext mathContext) {
-		return new Lux(getAmount().dividedBy(area.getAmountIn(SQUARE_METER), mathContext));
+		return new Lux(getAmount().dividedBy(area.getAmountIn(SQUAREMETER), mathContext));
 	}
 
 	public SquareMeters dividedBy(Illuminance illuminance, MathContext mathContext) {

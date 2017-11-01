@@ -12,7 +12,7 @@ import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUAREMETER;
 
 public class NewtonsTest {
 	private static final Newtons newtons = new Newtons(12);
@@ -37,13 +37,13 @@ public class NewtonsTest {
 
 	@Test
 	public void dividedByPressure() {
-		assertEquals(new Area(4, SQUARE_METER),
+		assertEquals(new Area(4, SQUAREMETER),
 				newtons.dividedBy(new Pascals(3), DECIMAL64));
 	}
 
 	@Test
 	public void dividedByArea() {
 		assertEquals(new Pascals(3),
-				newtons.dividedBy(new Area(4, SQUARE_METER), DECIMAL64));
+				newtons.dividedBy(new Area(4, SQUAREMETER), DECIMAL64));
 	}
 }

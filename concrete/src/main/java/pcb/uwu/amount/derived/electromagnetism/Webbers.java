@@ -16,7 +16,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUAREMETER;
 import static pcb.uwu.unit.derived.electromagnetism.HenryUnit.HENRY;
 import static pcb.uwu.unit.derived.electromagnetism.TeslaUnit.TESLA;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
@@ -108,11 +108,11 @@ public class Webbers extends MagneticFlux {
 	}
 
 	public Area dividedBy(MagneticField magneticField, MathContext mathContext) {
-		return new Area(getAmount().dividedBy(magneticField.getAmountIn(TESLA), mathContext), SQUARE_METER);
+		return new Area(getAmount().dividedBy(magneticField.getAmountIn(TESLA), mathContext), SQUAREMETER);
 	}
 
 	public Teslas dividedBy(Area area, MathContext mathContext) {
-		return new Teslas(getAmount().dividedBy(area.getAmountIn(SQUARE_METER), mathContext));
+		return new Teslas(getAmount().dividedBy(area.getAmountIn(SQUAREMETER), mathContext));
 	}
 
 	public Joules multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {

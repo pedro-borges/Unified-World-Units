@@ -6,7 +6,7 @@ import static pcb.uwu.unit.base.MeterUnit.METER;
 
 public class SquareMeterUnit extends AreaUnit {
 
-	public static final SquareMeterUnit SQUARE_METER = new SquareMeterUnit();
+	public static final SquareMeterUnit SQUAREMETER = new SquareMeterUnit();
 
 	public SquareMeterUnit() {
 		super(METER, METER);

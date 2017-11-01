@@ -10,7 +10,7 @@ import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.core.Magnitude.KILO;
 import static pcb.uwu.core.Magnitude.MILLI;
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUAREMETER;
 
 public class WebbersTest {
 	private static final Webbers webbers = new Webbers(12);
@@ -41,14 +41,14 @@ public class WebbersTest {
 
 	@Test
 	public void dividedByMagneticField() {
-		assertEquals(new Area(2, SQUARE_METER),
+		assertEquals(new Area(2, SQUAREMETER),
 				webbers.dividedBy(new Teslas(6), DECIMAL64));
 	}
 
 	@Test
 	public void dividedByArea() {
 		assertEquals(new Teslas(6),
-				webbers.dividedBy(new Area(2, SQUARE_METER), DECIMAL64));
+				webbers.dividedBy(new Area(2, SQUAREMETER), DECIMAL64));
 	}
 
 	@Test

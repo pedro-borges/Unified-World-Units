@@ -11,7 +11,7 @@ import pcb.uwu.unit.derived.termodynamics.PressureUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUAREMETER;
 import static pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER;
 import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
 
@@ -84,7 +84,7 @@ public class Pascals extends Pressure {
 	}
 
 	public Newtons multipliedBy(Area area, MathContext mathContext) {
-		return new Newtons(getAmount().multipliedBy(area.getAmountIn(SQUARE_METER), mathContext));
+		return new Newtons(getAmount().multipliedBy(area.getAmountIn(SQUAREMETER), mathContext));
 	}
 
 	// endregion
