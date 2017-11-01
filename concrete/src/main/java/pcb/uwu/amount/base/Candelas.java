@@ -1,7 +1,7 @@
 package pcb.uwu.amount.base;
 
-import pcb.uwu.amount.derived.area.SquareMeters;
 import pcb.uwu.amount.derived.area.Area;
+import pcb.uwu.amount.derived.area.SquareMeters;
 import pcb.uwu.amount.derived.optics.Lumens;
 import pcb.uwu.amount.derived.optics.Luminance;
 import pcb.uwu.amount.derived.optics.Nits;
@@ -83,16 +83,16 @@ public class Candelas extends LuminousIntensity {
 
 	// region composition
 
-	public Lumens multipliedBy(SolidAngle solidAngle, MathContext mathContext) {
-		return new Lumens(getAmount().multipliedBy(solidAngle.getAmountIn(STERADIAN), mathContext));
+	public Lumens multipliedBy(SolidAngle unitAmount, MathContext mathContext) {
+		return new Lumens(getAmount().multipliedBy(unitAmount.getAmountIn(STERADIAN), mathContext));
 	}
 
-	public Nits dividedBy(Area area, MathContext mathContext) {
-		return new Nits(getAmount().dividedBy(area.getAmountIn(SQUAREMETER), mathContext));
+	public Nits dividedBy(Area unitAmount, MathContext mathContext) {
+		return new Nits(getAmount().dividedBy(unitAmount.getAmountIn(SQUAREMETER), mathContext));
 	}
 
-	public SquareMeters dividedBy(Luminance luminance, MathContext mathContext) {
-		return new SquareMeters(getAmount().dividedBy(luminance.getAmountIn(NIT), mathContext));
+	public SquareMeters dividedBy(Luminance unitAmount, MathContext mathContext) {
+		return new SquareMeters(getAmount().dividedBy(unitAmount.getAmountIn(NIT), mathContext));
 	}
 
 	// endregion
