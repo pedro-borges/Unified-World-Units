@@ -1,7 +1,7 @@
 package pcb.uwu.amount.derived.termodynamics;
 
 import org.junit.Test;
-import pcb.uwu.amount.derived.fundamental.Area;
+import pcb.uwu.amount.derived.area.Area;
 import pcb.uwu.amount.derived.fundamental.Volume;
 import pcb.uwu.amount.derived.mechanics.Newtons;
 

@@ -1,4 +1,4 @@
-package pcb.uwu.amount.derived.fundamental;
+package pcb.uwu.amount.derived.area;
 
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;

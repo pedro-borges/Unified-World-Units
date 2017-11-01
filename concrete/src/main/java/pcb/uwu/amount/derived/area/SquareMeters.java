@@ -1,7 +1,6 @@
 package pcb.uwu.amount.derived.area;
 
 import pcb.uwu.amount.base.Candelas;
-import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.amount.derived.optics.Illuminance;
 import pcb.uwu.amount.derived.optics.Lumens;
 import pcb.uwu.amount.derived.optics.Luminance;

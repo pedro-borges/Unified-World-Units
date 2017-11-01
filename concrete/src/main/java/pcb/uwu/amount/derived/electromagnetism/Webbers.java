@@ -4,7 +4,7 @@ import pcb.uwu.amount.base.Amperes;
 import pcb.uwu.amount.base.ElectricCurrent;
 import pcb.uwu.amount.base.Seconds;
 import pcb.uwu.amount.base.Time;
-import pcb.uwu.amount.derived.fundamental.Area;
+import pcb.uwu.amount.derived.area.Area;
 import pcb.uwu.amount.derived.termodynamics.Joules;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;

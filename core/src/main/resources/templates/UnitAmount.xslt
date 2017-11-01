@@ -8,7 +8,7 @@
 		<xsl:variable name="unit"><xsl:value-of select="name"/>Unit</xsl:variable>
 		<xsl:variable name="unitAmount">UnitAmount&lt;<xsl:value-of select="name"/>Unit&gt;</xsl:variable>package pcb.uwu.amount.<xsl:value-of select="package"/>;
 
-import pcb.uwu.amount.derived.fundamental.Area;
+import pcb.uwu.amount.derived.area.Area;
 import pcb.uwu.amount.derived.mechanics.Speed;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;

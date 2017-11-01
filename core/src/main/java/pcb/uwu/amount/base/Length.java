@@ -1,6 +1,6 @@
 package pcb.uwu.amount.base;
 
-import pcb.uwu.amount.derived.fundamental.Area;
+import pcb.uwu.amount.derived.area.Area;
 import pcb.uwu.amount.derived.mechanics.Speed;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;

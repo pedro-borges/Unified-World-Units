@@ -3,7 +3,7 @@ package pcb.uwu.amount.derived.mechanics;
 import pcb.uwu.amount.base.KiloGrams;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.base.Mass;
-import pcb.uwu.amount.derived.fundamental.Area;
+import pcb.uwu.amount.derived.area.Area;
 import pcb.uwu.amount.derived.termodynamics.Joules;
 import pcb.uwu.amount.derived.termodynamics.Pascals;
 import pcb.uwu.amount.derived.termodynamics.Pressure;

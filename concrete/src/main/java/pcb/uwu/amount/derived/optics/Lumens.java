@@ -4,7 +4,7 @@ import pcb.uwu.amount.base.Candelas;
 import pcb.uwu.amount.base.LuminousIntensity;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.amount.derived.area.SquareMeters;
-import pcb.uwu.amount.derived.fundamental.Area;
+import pcb.uwu.amount.derived.area.Area;
 import pcb.uwu.amount.derived.scalar.SolidAngle;
 import pcb.uwu.amount.derived.scalar.Steradians;
 import pcb.uwu.core.BigDecimalAmount;

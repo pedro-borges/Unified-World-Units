@@ -1,7 +1,7 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
 import org.junit.Test;
-import pcb.uwu.amount.derived.fundamental.Area;
+import pcb.uwu.amount.derived.area.Area;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;

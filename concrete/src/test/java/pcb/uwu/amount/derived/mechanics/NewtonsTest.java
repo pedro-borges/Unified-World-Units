@@ -3,7 +3,7 @@ package pcb.uwu.amount.derived.mechanics;
 import org.junit.Test;
 import pcb.uwu.amount.base.KiloGrams;
 import pcb.uwu.amount.base.Meters;
-import pcb.uwu.amount.derived.fundamental.Area;
+import pcb.uwu.amount.derived.area.Area;
 import pcb.uwu.amount.derived.termodynamics.Joules;
 import pcb.uwu.amount.derived.termodynamics.Pascals;
 import pcb.uwu.unit.derived.mechanics.AccelerationUnit;

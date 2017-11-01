@@ -1,7 +1,7 @@
 package pcb.uwu.amount.base;
 
 import pcb.uwu.amount.derived.area.SquareMeters;
-import pcb.uwu.amount.derived.fundamental.Area;
+import pcb.uwu.amount.derived.area.Area;
 import pcb.uwu.amount.derived.optics.Lumens;
 import pcb.uwu.amount.derived.optics.Luminance;
 import pcb.uwu.amount.derived.optics.Nits;

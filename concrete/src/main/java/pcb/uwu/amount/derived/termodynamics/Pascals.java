@@ -1,6 +1,6 @@
 package pcb.uwu.amount.derived.termodynamics;
 
-import pcb.uwu.amount.derived.fundamental.Area;
+import pcb.uwu.amount.derived.area.Area;
 import pcb.uwu.amount.derived.fundamental.Volume;
 import pcb.uwu.amount.derived.mechanics.Newtons;
 import pcb.uwu.core.BigDecimalAmount;
