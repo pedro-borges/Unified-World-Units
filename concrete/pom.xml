@@ -40,9 +40,8 @@
                             <stylesheet>src/main/resources/templates/UnitAmount.xslt</stylesheet>
 							<outputDir>src/main/java/pcb/uwu/amount</outputDir>
 							<fileMappers>
-								<fileMapper implementation="org.codehaus.plexus.components.io.filemappers.RegExpFileMapper">
-									<pattern>\.xml$</pattern>
-									<replacement>s.java</replacement>
+								<fileMapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
+									<targetExtension>.java</targetExtension>
 								</fileMapper>
 							</fileMappers>
 							<outputProperties>
@@ -60,7 +59,7 @@
 								</outputProperty>
 							</outputProperties>
                         </transformationSet>
-                        <transformationSet>
+                        <!--<transformationSet>
                             <dir>src/main/resources/xml</dir>
                             <stylesheet>src/main/resources/templates/Unit.xslt</stylesheet>
 							<outputDir>src/main/java/pcb/uwu/unit</outputDir>
@@ -84,7 +83,7 @@
 									<value>no</value>
 								</outputProperty>
 							</outputProperties>
-                        </transformationSet>
+                        </transformationSet>-->
                     </transformationSets>
                 </configuration>
             </plugin>

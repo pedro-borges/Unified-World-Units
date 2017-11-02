@@ -4,7 +4,4 @@
 	<base>Temperature</base>
 	<singularName>Kelvin</singularName>
 	<pluralName>Kelvins</pluralName>
-	<symbol>K</symbol>
-	<translationToCanonical>Function.identity()</translationToCanonical>
-	<translationFromCanonical>Function.identity()</translationFromCanonical>
 </unit>

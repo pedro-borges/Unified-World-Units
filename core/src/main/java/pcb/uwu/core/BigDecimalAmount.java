@@ -73,11 +73,29 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	/**
 	 * Sum amount.
 	 * @param other the {@code BigDecimalAmount} to add
+	 * @return a new {@code BigDecimalAmount} representing this + other
+	 */
+	public BigDecimalAmount plus(BigDecimal other) {
+		return new BigDecimalAmount(this.value.add(other));
+	}
+
+	/**
+	 * Sum amount.
+	 * @param other the {@code BigDecimalAmount} to add
 	 * @param mathContext the maths context to consider
 	 * @return a new {@code BigDecimalAmount} representing this + other
 	 */
 	public BigDecimalAmount plus(BigDecimalAmount other, MathContext mathContext) {
 		return new BigDecimalAmount(this.value.add(other.value, mathContext));
+	}
+
+	/**
+	 * Subtract amount.
+	 * @param other the {@code BigDecimalAmount} to subtract
+	 * @return a new {@code BigDecimalAmount} representing this - other
+	 */
+	public BigDecimalAmount minus(BigDecimal other) {
+		return new BigDecimalAmount(value.subtract(other));
 	}
 
 	/**

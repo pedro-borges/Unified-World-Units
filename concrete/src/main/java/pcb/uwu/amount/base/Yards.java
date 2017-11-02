@@ -71,4 +71,8 @@ public class Yards extends Length {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

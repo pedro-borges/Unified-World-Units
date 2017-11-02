@@ -71,4 +71,8 @@ public class Days extends Time {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

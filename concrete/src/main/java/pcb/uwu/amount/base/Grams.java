@@ -71,4 +71,8 @@ public class Grams extends Mass {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

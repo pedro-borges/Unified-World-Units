@@ -71,4 +71,8 @@ public class Inches extends Length {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

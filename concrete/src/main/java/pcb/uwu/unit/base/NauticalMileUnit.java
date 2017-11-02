@@ -8,7 +8,7 @@ public class NauticalMileUnit extends LengthUnit {
 
 	private static final BigDecimal METERS_PER_NAUTICAL_MILE = new BigDecimal("1852");
 
-	public static final NauticalMileUnit NAUTICAL_MILE = new NauticalMileUnit();
+	public static final NauticalMileUnit NAUTICALMILE = new NauticalMileUnit();
 
 	private NauticalMileUnit() {
 		super("mile", "mile", "miles",

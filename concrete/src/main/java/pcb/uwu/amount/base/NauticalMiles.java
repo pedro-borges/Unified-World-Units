@@ -8,42 +8,42 @@ import pcb.uwu.unit.base.LengthUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static pcb.uwu.unit.base.NauticalMileUnit.NAUTICAL_MILE;
+import static pcb.uwu.unit.base.NauticalMileUnit.NAUTICALMILE;
 
 public class NauticalMiles extends Length {
 
 	// region constructors
 
 	public NauticalMiles(Number value) {
-		super(value, NAUTICAL_MILE);
+		super(value, NAUTICALMILE);
 	}
 
 	public NauticalMiles(Number value, Magnitude magnitude) {
-		super(value, magnitude, NAUTICAL_MILE);
+		super(value, magnitude, NAUTICALMILE);
 	}
 
 	public NauticalMiles(String value) {
-		super(value, NAUTICAL_MILE);
+		super(value, NAUTICALMILE);
 	}
 
 	public NauticalMiles(String value, Magnitude magnitude) {
-		super(value, magnitude, NAUTICAL_MILE);
+		super(value, magnitude, NAUTICALMILE);
 	}
 
 	public NauticalMiles(BigDecimal value) {
-		super(value, NAUTICAL_MILE);
+		super(value, NAUTICALMILE);
 	}
 
 	public NauticalMiles(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, NAUTICAL_MILE);
+		super(value, magnitude, NAUTICALMILE);
 	}
 
 	public NauticalMiles(BigDecimalAmount amount) {
-		super(amount, NAUTICAL_MILE);
+		super(amount, NAUTICALMILE);
 	}
 
 	public NauticalMiles(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, NAUTICAL_MILE);
+		super(amount, magnitude, NAUTICALMILE);
 	}
 
 	// endregion
@@ -69,6 +69,10 @@ public class NauticalMiles extends Length {
 	public NauticalMiles dividedBy(BigDecimal other, MathContext mathContext) {
 		return new NauticalMiles(dividedByScalar(other, mathContext));
 	}
+
+	// endregion
+
+	// region composition
 
 	// endregion
 }

@@ -4,9 +4,6 @@
 	<base>LuminousIntensity</base>
 	<singularName>Candela</singularName>
 	<pluralName>Candelas</pluralName>
-	<symbol>cd</symbol>
-	<translationToCanonical>Function.identity()</translationToCanonical>
-	<translationFromCanonical>Function.identity()</translationFromCanonical>
 	<composition>
 		<multipliedBy>
 			<multiplicand>

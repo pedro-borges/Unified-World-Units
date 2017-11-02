@@ -71,4 +71,8 @@ public class Minutes extends Time {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

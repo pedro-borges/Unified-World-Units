@@ -4,7 +4,4 @@
 	<base>Mass</base>
 	<singularName>KiloGram</singularName>
 	<pluralName>KiloGrams</pluralName>
-	<symbol>Kg</symbol>
-	<translationToCanonical>Function.identity()</translationToCanonical>
-	<translationFromCanonical>Function.identity()</translationFromCanonical>
 </unit>

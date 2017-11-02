@@ -71,4 +71,8 @@ public class Stones extends Mass {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

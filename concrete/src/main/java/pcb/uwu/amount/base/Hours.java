@@ -71,4 +71,8 @@ public class Hours extends Time {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

@@ -4,9 +4,6 @@
 	<base>Time</base>
 	<singularName>Second</singularName>
 	<pluralName>Seconds</pluralName>
-	<symbol>s</symbol>
-	<translationToCanonical>Function.identity()</translationToCanonical>
-	<translationFromCanonical>Function.identity()</translationFromCanonical>
 	<composition>
 		<multipliedBy>
 			<multiplicand>

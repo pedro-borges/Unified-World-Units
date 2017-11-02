@@ -4,9 +4,6 @@
 	<base>Length</base>
 	<singularName>Meter</singularName>
 	<pluralName>Meters</pluralName>
-	<symbol>m</symbol>
-	<translationToCanonical>Function.identity()</translationToCanonical>
-	<translationFromCanonical>Function.identity()</translationFromCanonical>
 	<composition>
 		<multipliedBy>
 			<multiplicand>

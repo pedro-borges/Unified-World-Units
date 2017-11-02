@@ -71,4 +71,8 @@ public class Weeks extends Time {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

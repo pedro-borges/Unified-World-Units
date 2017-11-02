@@ -71,4 +71,8 @@ public class Feet extends Length {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

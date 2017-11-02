@@ -1,7 +1,5 @@
 package pcb.uwu.unit.base;
 
-import pcb.uwu.core.BigDecimalAmount;
-
 import java.math.BigDecimal;
 
 import static java.math.MathContext.DECIMAL64;
@@ -14,12 +12,12 @@ public class FahrenheitUnit extends TemperatureUnit {
 	public FahrenheitUnit() {
 		super("°F", "fahrenheit", "fahrenheit",
 				value -> value
-						.plus(new BigDecimalAmount("459.67")
+						.plus(new BigDecimal("459.67"))
 						.multipliedBy(new BigDecimal(5), UNLIMITED)
-						.dividedBy(new BigDecimal(9), DECIMAL64), UNLIMITED),
+						.dividedBy(new BigDecimal(9), DECIMAL64),
 				value -> value
 						.multipliedBy(new BigDecimal(9), UNLIMITED)
 						.dividedBy(new BigDecimal(5), DECIMAL64)
-						.minus(new BigDecimalAmount("459.67"), UNLIMITED));
+						.minus(new BigDecimal("459.67")));
 	}
 }

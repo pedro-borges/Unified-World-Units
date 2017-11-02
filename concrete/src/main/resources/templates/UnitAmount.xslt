@@ -10,31 +10,26 @@
 		<xsl:variable name="unit"><xsl:value-of select="singularName"/>Unit</xsl:variable>
 		<xsl:variable name="baseUnit"><xsl:value-of select="base"/>Unit</xsl:variable>
 		<xsl:variable name="unitAmount">UnitAmount&lt;<xsl:value-of select="base"/>Unit&gt;</xsl:variable>package pcb.uwu.amount.<xsl:value-of select="package"/>;
-
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.<xsl:value-of select="$baseUnit"/>;
 <xsl:for-each select="composition/dividedBy">
 import pcb.uwu.amount.<xsl:value-of select="unit1/package"/>.<xsl:value-of select="unit1/base"/>;
 import pcb.uwu.amount.<xsl:value-of select="unit2/package"/>.<xsl:value-of select="unit2/base"/>;
 import pcb.uwu.amount.<xsl:value-of select="unit1/package"/>.<xsl:value-of select="unit1/pluralName"/>;
-import pcb.uwu.amount.<xsl:value-of select="unit2/package"/>.<xsl:value-of select="unit2/pluralName"/>;
-</xsl:for-each>
+import pcb.uwu.amount.<xsl:value-of select="unit2/package"/>.<xsl:value-of select="unit2/pluralName"/>;</xsl:for-each>
 <xsl:for-each select="composition/multipliedBy">
 import pcb.uwu.amount.<xsl:value-of select="result/package"/>.<xsl:value-of select="result/name"/>;
-import pcb.uwu.amount.<xsl:value-of select="multiplicand/package"/>.<xsl:value-of select="multiplicand/base"/>;
-</xsl:for-each>
+import pcb.uwu.amount.<xsl:value-of select="multiplicand/package"/>.<xsl:value-of select="multiplicand/base"/>;</xsl:for-each>
+import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Magnitude;
+import pcb.uwu.core.UnitAmount;
+import pcb.uwu.unit.base.<xsl:value-of select="$baseUnit"/>;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
-
 <xsl:for-each select="composition/dividedBy">
 import static pcb.uwu.unit.<xsl:value-of select="unit1/package"/>.<xsl:value-of select="unit1/singularName"/>Unit.<xsl:value-of select="translate(unit1/singularName, $lowerCase, $upperCase)"/>;
-import static pcb.uwu.unit.<xsl:value-of select="unit2/package"/>.<xsl:value-of select="unit2/singularName"/>Unit.<xsl:value-of select="translate(unit2/singularName, $lowerCase, $upperCase)"/>;
-</xsl:for-each>
+import static pcb.uwu.unit.<xsl:value-of select="unit2/package"/>.<xsl:value-of select="unit2/singularName"/>Unit.<xsl:value-of select="translate(unit2/singularName, $lowerCase, $upperCase)"/>;</xsl:for-each>
 <xsl:for-each select="composition/multipliedBy">
-import static pcb.uwu.unit.<xsl:value-of select="multiplicand/package"/>.<xsl:value-of select="multiplicand/name"/>Unit.<xsl:value-of select="translate(multiplicand/name, $lowerCase, $upperCase)"/>;
-</xsl:for-each>
+import static pcb.uwu.unit.<xsl:value-of select="multiplicand/package"/>.<xsl:value-of select="multiplicand/name"/>Unit.<xsl:value-of select="translate(multiplicand/name, $lowerCase, $upperCase)"/>;</xsl:for-each>
 import static pcb.uwu.unit.base.<xsl:value-of select="$unit"/>.<xsl:value-of select="translate(singularName, $lowerCase, $upperCase)"/>;
 
 public class <xsl:value-of select="pluralName"/> extends <xsl:value-of select="base"/> {

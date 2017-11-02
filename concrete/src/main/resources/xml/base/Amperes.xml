@@ -4,9 +4,6 @@
 	<base>ElectricCurrent</base>
 	<singularName>Ampere</singularName>
 	<pluralName>Amperes</pluralName>
-	<symbol>A</symbol>
-	<translationToCanonical>Function.identity()</translationToCanonical>
-	<translationFromCanonical>Function.identity()</translationFromCanonical>
 	<composition>
 		<multipliedBy>
 			<multiplicand>

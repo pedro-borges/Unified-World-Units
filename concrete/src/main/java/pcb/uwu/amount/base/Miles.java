@@ -71,4 +71,8 @@ public class Miles extends Length {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

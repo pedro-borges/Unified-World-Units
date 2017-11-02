@@ -71,4 +71,8 @@ public class Fahrenheits extends Temperature {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }

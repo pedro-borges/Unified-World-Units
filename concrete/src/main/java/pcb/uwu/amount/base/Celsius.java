@@ -71,4 +71,8 @@ public class Celsius extends Temperature {
 	}
 
 	// endregion
+
+	// region composition
+
+	// endregion
 }
