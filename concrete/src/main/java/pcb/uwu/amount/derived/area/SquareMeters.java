@@ -7,7 +7,7 @@ import pcb.uwu.amount.derived.optics.Luminance;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.fundamental.AreaUnit;
+import pcb.uwu.unit.derived.area.AreaUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -80,12 +80,12 @@ public class SquareMeters extends Area {
 
 	// region composition
 
-	public Candelas multipliedBy(Luminance luminance, MathContext mathContext) {
-		return new Candelas(getAmount().multipliedBy(luminance.getAmountIn(NIT), mathContext));
+	public Candelas multipliedBy(Luminance unitAmount, MathContext mathContext) {
+		return new Candelas(getAmount().multipliedBy(unitAmount.getAmountIn(NIT), mathContext));
 	}
 
-	public Lumens multipliedBy(Illuminance illuminance, MathContext mathContext) {
-		return new Lumens(getAmount().multipliedBy(illuminance.getAmountIn(LUX), mathContext));
+	public Lumens multipliedBy(Illuminance unitAmount, MathContext mathContext) {
+		return new Lumens(getAmount().multipliedBy(unitAmount.getAmountIn(LUX), mathContext));
 	}
 
 	// endregion

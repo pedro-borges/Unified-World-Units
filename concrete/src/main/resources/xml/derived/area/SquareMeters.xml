@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<unit>
+	<package>derived.area</package>
+	<base>Area</base>
+	<singularName>SquareMeter</singularName>
+	<pluralName>SquareMeters</pluralName>
+	<composition>
+		<multipliedBy>
+			<multiplicand>
+				<package>derived.optics</package>
+				<base>Luminance</base>
+				<name>Nit</name>
+			</multiplicand>
+			<result>
+				<package>base</package>
+				<name>Candelas</name>
+			</result>
+		</multipliedBy>
+		<multipliedBy>
+			<multiplicand>
+				<package>derived.optics</package>
+				<base>Illuminance</base>
+				<name>Lux</name>
+			</multiplicand>
+			<result>
+				<package>derived.optics</package>
+				<name>Lumens</name>
+			</result>
+		</multipliedBy>
+	</composition>
+</unit>

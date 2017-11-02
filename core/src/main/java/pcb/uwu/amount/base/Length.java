@@ -8,7 +8,7 @@ import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.LengthUnit;
 import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.unit.derived.fundamental.AreaUnit;
+import pcb.uwu.unit.derived.area.AreaUnit;
 import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 
 import java.math.BigDecimal;
