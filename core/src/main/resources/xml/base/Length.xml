@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<unit>
-    <package>base</package>
-    <name>Length</name>
-    <precedence>1</precedence>
-</unit>

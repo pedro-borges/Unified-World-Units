@@ -1,4 +1,4 @@
-package pcb.uwu.amount.derived.termodynamics;
+package pcb.uwu.amount.derived.thermodynamics;
 
 import pcb.uwu.amount.derived.area.Area;
 import pcb.uwu.amount.derived.fundamental.Volume;

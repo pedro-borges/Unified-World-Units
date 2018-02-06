@@ -4,8 +4,8 @@ import org.junit.Test;
 import pcb.uwu.amount.base.KiloGrams;
 import pcb.uwu.amount.base.Meters;
 import pcb.uwu.amount.derived.area.Area;
-import pcb.uwu.amount.derived.termodynamics.Joules;
-import pcb.uwu.amount.derived.termodynamics.Pascals;
+import pcb.uwu.amount.derived.thermodynamics.Joules;
+import pcb.uwu.amount.derived.thermodynamics.Pascals;
 import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
 
 import static java.math.MathContext.DECIMAL64;

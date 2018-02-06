@@ -2,7 +2,7 @@ package pcb.uwu.amount.derived.electromagnetism;
 
 import org.junit.Test;
 import pcb.uwu.amount.base.Amperes;
-import pcb.uwu.amount.derived.termodynamics.Joules;
+import pcb.uwu.amount.derived.thermodynamics.Joules;
 
 import java.math.MathContext;
 

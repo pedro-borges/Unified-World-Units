@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<unit>
-	<package>base</package>
-	<base>Temperature</base>
-	<singularName>Celsius</singularName>
-	<pluralName>Celsius</pluralName>
-</unit>

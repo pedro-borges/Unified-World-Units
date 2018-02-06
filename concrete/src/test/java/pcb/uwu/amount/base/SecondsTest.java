@@ -4,8 +4,8 @@ import org.junit.Test;
 import pcb.uwu.amount.derived.electromagnetism.Coulombs;
 import pcb.uwu.amount.derived.optics.Lumens;
 import pcb.uwu.amount.derived.optics.Talbots;
-import pcb.uwu.amount.derived.termodynamics.Joules;
-import pcb.uwu.amount.derived.termodynamics.Watts;
+import pcb.uwu.amount.derived.thermodynamics.Joules;
+import pcb.uwu.amount.derived.thermodynamics.Watts;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;

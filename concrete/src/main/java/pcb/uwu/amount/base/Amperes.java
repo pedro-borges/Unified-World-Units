@@ -9,7 +9,7 @@ import pcb.uwu.amount.derived.electromagnetism.MagneticFlux;
 import pcb.uwu.amount.derived.electromagnetism.Siemens;
 import pcb.uwu.amount.derived.electromagnetism.Volts;
 import pcb.uwu.amount.derived.electromagnetism.Webbers;
-import pcb.uwu.amount.derived.termodynamics.Joules;
+import pcb.uwu.amount.derived.thermodynamics.Joules;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;

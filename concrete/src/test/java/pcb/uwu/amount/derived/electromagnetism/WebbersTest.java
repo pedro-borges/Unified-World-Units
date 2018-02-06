@@ -4,7 +4,7 @@ import org.junit.Test;
 import pcb.uwu.amount.base.Amperes;
 import pcb.uwu.amount.base.Seconds;
 import pcb.uwu.amount.derived.area.Area;
-import pcb.uwu.amount.derived.termodynamics.Joules;
+import pcb.uwu.amount.derived.thermodynamics.Joules;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;

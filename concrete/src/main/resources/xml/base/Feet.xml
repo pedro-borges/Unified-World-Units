@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<unit>
-	<package>base</package>
-	<base>Length</base>
-	<singularName>Foot</singularName>
-	<pluralName>Feet</pluralName>
-</unit>
