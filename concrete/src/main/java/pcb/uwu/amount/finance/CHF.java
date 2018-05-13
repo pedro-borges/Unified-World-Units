@@ -1,14 +1,15 @@
 package pcb.uwu.amount.finance;
 
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.UnitAmount;
+import pcb.uwu.unit.finance.MoneyUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.Currency;
 
 public class CHF extends Money {
 
-	public static final Currency CURRENCY = Currency.getInstance("CHF");
+	public static final MoneyUnit CURRENCY = MoneyUnit.of("CHF");
 
 	// region constructor
 
@@ -38,6 +39,16 @@ public class CHF extends Money {
 
 	public CHF minus(CHF other) {
 		return new CHF(getAmount().minus(other.getAmount().getValue()));
+	}
+
+	@Override
+	public CHF plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
+		return new CHF(plusAmount(other, mathContext));
+	}
+
+	@Override
+	public CHF minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
+		return new CHF(minusAmount(other, mathContext));
 	}
 
 	@Override

@@ -6,13 +6,11 @@ import pcb.uwu.amount.derived.finance.Rent;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.exception.CurrencyMismatchException;
 import pcb.uwu.unit.finance.MoneyUnit;
 import pcb.uwu.unit.finance.RentUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.Currency;
 
 import static java.math.RoundingMode.HALF_EVEN;
 
@@ -20,34 +18,20 @@ public class Money extends CompositeUnitAmount<MoneyUnit> {
 
 	// region constructors
 
-	public Money(Number value, Currency currency) {
-		this(value.toString(), currency);
+	public Money(Number value, MoneyUnit unit) {
+		this(value.toString(), unit);
 	}
 
-	public Money(String value, Currency currency) {
-		this(new BigDecimal(value), currency);
+	public Money(String value, MoneyUnit unit) {
+		this(new BigDecimal(value), unit);
 	}
 
-	public Money(BigDecimal value, Currency currency) {
-		this(new BigDecimalAmount(value), currency);
-	}
-
-	public Money(BigDecimalAmount amount, Currency currency) {
-		this(amount, new MoneyUnit(currency));
+	public Money(BigDecimal value, MoneyUnit unit) {
+		this(new BigDecimalAmount(value), unit);
 	}
 
 	public Money(BigDecimalAmount amount, MoneyUnit unit) {
-		super(amount.withScale(unit.getCurrency().getDefaultFractionDigits(), HALF_EVEN), unit);
-	}
-
-	// endregion
-
-	// region private methods
-
-	private void throwIfDistinctCurrency(UnitAmount<MoneyUnit> other) {
-		if (!getUnit().getCurrency().equals(other.getUnit().getCurrency())) {
-			throw new CurrencyMismatchException("Cant add {} to {}", other.getUnit().getPluralName(), getUnit().getPluralName());
-		}
+		super(amount.withScale(unit.getDefaultFractionDigits(), HALF_EVEN), unit);
 	}
 
 	// endregion
@@ -56,16 +40,12 @@ public class Money extends CompositeUnitAmount<MoneyUnit> {
 
 	@Override
 	public Money plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		throwIfDistinctCurrency(other);
-
-		return new Money(getAmount().plus(other.getAmount(), mathContext), getUnit());
+		return new Money(getAmount().plus(other.getAmountIn(getUnit()), mathContext), getUnit());
 	}
 
 	@Override
 	public Money minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		throwIfDistinctCurrency(other);
-
-		return new Money(getAmount().minus(other.getAmount(), mathContext), getUnit());
+		return new Money(getAmount().minus(other.getAmountIn(getUnit()), mathContext), getUnit());
 	}
 
 	@Override
@@ -76,15 +56,6 @@ public class Money extends CompositeUnitAmount<MoneyUnit> {
 	@Override
 	public Money dividedBy(BigDecimal other, MathContext mathContext) {
 		return new Money(getAmount().dividedBy(other, mathContext), getUnit());
-	}
-
-	@Override
-	public BigDecimalAmount getAmountIn(MoneyUnit newUnit) {
-		if (getUnit().getCurrency().equals(newUnit.getCurrency())) {
-			return getAmount();
-		}
-
-		throw new CurrencyMismatchException("Unable to convert {} to {}", getUnit().getCurrency(), newUnit.getCurrency());
 	}
 
 	@Override

@@ -30,7 +30,7 @@ public class MoneyUnitTest {
 	public void testConstructorCurrency() {
 		MoneyUnit moneyUnit = new MoneyUnit(GBP);
 
-		assertEquals(GBP, moneyUnit.getCurrency());
+		assertEquals("£", moneyUnit.toString());
 
 		moneyUnit.getTranslationToCanonical().apply(ZERO);
 	}
@@ -47,7 +47,7 @@ public class MoneyUnitTest {
 
 		MoneyUnit moneyUnit = new MoneyUnit(GBP, currencyConversionProvider);
 
-		assertEquals(GBP, moneyUnit.getCurrency());
+		assertEquals("£", moneyUnit.toString());
 
 		BigDecimalAmount result;
 
@@ -63,7 +63,7 @@ public class MoneyUnitTest {
 
 		MoneyUnit moneyUnit = new MoneyUnit(GBP, currencyConversionProvider);
 
-		assertEquals(GBP, moneyUnit.getCurrency());
+		assertEquals("£", moneyUnit.toString());
 
 		moneyUnit.getTranslationToCanonical().apply(ZERO);
 	}

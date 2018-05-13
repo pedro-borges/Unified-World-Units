@@ -120,6 +120,11 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 	@Override
 	public BigDecimalAmount getAmountIn(U newUnit) {
+		if (unit.equals(newUnit))
+		{
+			return amount;
+		}
+
 		Function<BigDecimalAmount, BigDecimalAmount> translation = getUnit()
 				.getTranslationToCanonical()
 				.andThen(newUnit.getTranslationFromCanonical());
@@ -129,6 +134,11 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 	@Override
 	public BigDecimalAmount getAmountIn(Magnitude magnitude, U newUnit) {
+		if (unit.equals(newUnit))
+		{
+			return amount.dividedBy(magnitude.getValue(), UNLIMITED);
+		}
+
 		Function<BigDecimalAmount, BigDecimalAmount> translation = getUnit()
 				.getTranslationToCanonical()
 				.andThen(newUnit.getTranslationFromCanonical());

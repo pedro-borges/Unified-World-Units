@@ -3,16 +3,15 @@ package pcb.uwu.amount.base;
 import org.junit.Test;
 import pcb.uwu.amount.finance.Money;
 import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.exception.CurrencyMismatchException;
-
-import java.util.Currency;
+import pcb.uwu.exception.InvalidCurrencyException;
+import pcb.uwu.unit.finance.MoneyUnit;
 
 import static java.math.MathContext.UNLIMITED;
 import static org.junit.Assert.assertEquals;
 
 public class MoneyTest {
-	private static final Currency GBP = Currency.getInstance("GBP");
-	private static final Currency USD = Currency.getInstance("USD");
+	private static final MoneyUnit GBP = MoneyUnit.of("GBP");
+	private static final MoneyUnit USD = MoneyUnit.of("USD");
 
 	// region test constructors
 
@@ -24,7 +23,6 @@ public class MoneyTest {
 
 	private void assertConstructors(Money money) {
 		assertEquals(GBP.getDefaultFractionDigits(), money.getAmount().getScale());
-		assertEquals(GBP, money.getUnit().getCurrency());
 		assertEquals(new BigDecimalAmount("1.00"), money.getAmount());
 	}
 
@@ -38,7 +36,7 @@ public class MoneyTest {
 		assertEquals(new Money(11, GBP), money1.plus(money2, UNLIMITED));
 	}
 
-	@Test(expected = CurrencyMismatchException.class)
+	@Test(expected = InvalidCurrencyException.class)
 	public void testPlusDifferentCurrency() {
 		Money money1 = new Money(1, GBP);
 		Money money2 = new Money(10, USD);
@@ -54,7 +52,7 @@ public class MoneyTest {
 		assertEquals(new Money(-9, GBP), money1.minus(money2, UNLIMITED));
 	}
 
-	@Test(expected = CurrencyMismatchException.class)
+	@Test(expected = InvalidCurrencyException.class)
 	public void testMinusDifferentCurrency() {
 		Money money1 = new Money(1, GBP);
 		Money money2 = new Money(10, USD);

@@ -1,14 +1,15 @@
 package pcb.uwu.amount.finance;
 
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.UnitAmount;
+import pcb.uwu.unit.finance.MoneyUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.Currency;
 
 public class AUD extends Money {
 
-	public static final Currency CURRENCY = Currency.getInstance("AUD");
+	public static final MoneyUnit CURRENCY = MoneyUnit.of("AUD");
 
 	// region constructor
 
@@ -38,6 +39,16 @@ public class AUD extends Money {
 
 	public AUD minus(AUD other) {
 		return new AUD(getAmount().minus(other.getAmount().getValue()));
+	}
+
+	@Override
+	public AUD plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
+		return new AUD(plusAmount(other, mathContext));
+	}
+
+	@Override
+	public AUD minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
+		return new AUD(minusAmount(other, mathContext));
 	}
 
 	@Override

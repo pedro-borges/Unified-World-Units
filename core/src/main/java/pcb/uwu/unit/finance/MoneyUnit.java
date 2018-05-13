@@ -44,6 +44,10 @@ public class MoneyUnit extends BaseUnit {
 		this.currencyConversionProvider = currencyConversionProvider;
 	}
 
+	public static MoneyUnit of(String code) {
+		return new MoneyUnit(Currency.getInstance(code));
+	}
+
 	// endregion
 
 	// region implement Unit
@@ -94,8 +98,8 @@ public class MoneyUnit extends BaseUnit {
 
 	// region public methods
 
-	public Currency getCurrency() {
-		return currency;
+	public int getDefaultFractionDigits() {
+		return currency.getDefaultFractionDigits();
 	}
 
 	// endregion

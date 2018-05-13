@@ -8,8 +8,7 @@ import pcb.uwu.amount.base.Time;
 import pcb.uwu.amount.derived.finance.Rent;
 import pcb.uwu.amount.derived.mechanics.Speed;
 import pcb.uwu.amount.finance.Money;
-
-import java.util.Currency;
+import pcb.uwu.unit.finance.MoneyUnit;
 
 import static java.math.MathContext.DECIMAL64;
 import static java.math.MathContext.UNLIMITED;
@@ -23,7 +22,7 @@ public class RunningCostTest {
 	private final Speed speed = new Meters(13, KILO)
 			.dividedBy(new Hours(1), UNLIMITED);
 
-	private final Rent runningCost = new Money(18, Currency.getInstance("GBP"))
+	private final Rent runningCost = new Money(18, MoneyUnit.of("GBP"))
 			.dividedBy(new Hours(1), UNLIMITED);
 
 	@Test
