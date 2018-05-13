@@ -9,7 +9,7 @@ import pcb.uwu.amount.derived.optics.Luminance;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.area.AreaUnit;
+import pcb.uwu.unit.derived.fundamental.AreaUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

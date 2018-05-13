@@ -75,5 +75,4 @@ public class Pressure extends CompositeUnitAmount<PressureUnit> {
 	}
 
 	// endregion
-
 }

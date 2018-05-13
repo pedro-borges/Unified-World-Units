@@ -1,4 +1,4 @@
-package pcb.uwu.unit.derived.area;
+package pcb.uwu.unit.derived.fundamental;
 
 import pcb.uwu.core.CompositeUnit;
 import pcb.uwu.core.UnitCounter;

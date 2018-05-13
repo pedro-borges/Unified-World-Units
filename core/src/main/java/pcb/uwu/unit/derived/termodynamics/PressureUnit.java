@@ -5,7 +5,7 @@ import pcb.uwu.core.UnitCounter;
 import pcb.uwu.unit.base.LengthUnit;
 import pcb.uwu.unit.base.MassUnit;
 import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.unit.derived.area.AreaUnit;
+import pcb.uwu.unit.derived.fundamental.AreaUnit;
 import pcb.uwu.unit.derived.mechanics.ForceUnit;
 
 public class PressureUnit extends CompositeUnit {
