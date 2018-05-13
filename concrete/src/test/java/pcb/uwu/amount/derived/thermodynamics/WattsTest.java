@@ -26,5 +26,4 @@ public class WattsTest {
 	public void dividedByElectricPotential() {
 		assertEquals("0.1 A", watts.dividedBy(new Volts(200), DECIMAL64).toString());
 	}
-
 }

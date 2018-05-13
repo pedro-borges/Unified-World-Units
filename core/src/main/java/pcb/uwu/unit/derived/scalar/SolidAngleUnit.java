@@ -8,7 +8,7 @@ import java.util.function.Function;
 public class SolidAngleUnit extends BaseUnit {
 
 	protected SolidAngleUnit() {
-		super(0, "", "", "", Function.identity(), Function.identity());
+		super(0, "sr", "Steradian", "Steradians", Function.identity(), Function.identity());
 	}
 
 	@Override

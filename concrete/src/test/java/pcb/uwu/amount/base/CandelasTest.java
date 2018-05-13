@@ -2,7 +2,6 @@ package pcb.uwu.amount.base;
 
 import org.junit.Test;
 import pcb.uwu.amount.derived.fundamental.area.SquareMeters;
-import pcb.uwu.amount.derived.optics.Lumens;
 import pcb.uwu.amount.derived.optics.Nits;
 import pcb.uwu.amount.derived.scalar.Steradians;
 
@@ -14,19 +13,16 @@ public class CandelasTest {
 
 	@Test
 	public void multipliedBySolidAngle() {
-		assertEquals(new Lumens(54),
-				candelas.multipliedBy(new Steradians(3), DECIMAL64));
+		assertEquals("54 lm", candelas.multipliedBy(new Steradians(3), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByArea() {
-		assertEquals(new Nits(6),
-				candelas.dividedBy(new SquareMeters(3), DECIMAL64));
+		assertEquals("6 nit", candelas.dividedBy(new SquareMeters(3), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByLuminance() {
-		assertEquals(new SquareMeters(3),
-				candelas.dividedBy(new Nits(6), DECIMAL64));
+		assertEquals("3 m²", candelas.dividedBy(new Nits(6), DECIMAL64).toString());
 	}
 }

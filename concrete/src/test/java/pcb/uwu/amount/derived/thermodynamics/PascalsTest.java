@@ -3,7 +3,6 @@ package pcb.uwu.amount.derived.thermodynamics;
 import org.junit.Test;
 import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.amount.derived.fundamental.Volume;
-import pcb.uwu.amount.derived.mechanics.Newtons;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
@@ -15,13 +14,11 @@ public class PascalsTest {
 
 	@Test
 	public void multipliedByVolume() {
-		assertEquals(new Joules(27),
-				pascals.multipliedBy(new Volume(3, CUBIC_METER), DECIMAL64));
+		assertEquals("27 J", pascals.multipliedBy(new Volume(3, CUBIC_METER), DECIMAL64).toString());
 	}
 
 	@Test
 	public void multipliedByArea() {
-		assertEquals(new Newtons(18),
-				pascals.multipliedBy(new Area(2, SQUARE_METER), DECIMAL64));
+		assertEquals("18 N", pascals.multipliedBy(new Area(2, SQUARE_METER), DECIMAL64).toString());
 	}
 }

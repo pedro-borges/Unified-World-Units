@@ -17,49 +17,41 @@ public class JoulesTest {
 
 	@Test
 	public void dividedByVolume() {
-		assertEquals(new Pascals(40),
-				joules.dividedBy(new Volume(5, CUBIC_METER), DECIMAL64));
+		assertEquals("40 Pa", joules.dividedBy(new Volume(5, CUBIC_METER), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByPressure() {
-		assertEquals(new Volume(5, CUBIC_METER),
-				joules.dividedBy(new Pascals(40), DECIMAL64));
+		assertEquals("5 m³", joules.dividedBy(new Pascals(40), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByPower() {
-		assertEquals(new Seconds(5),
-				joules.dividedBy(new Watts(40), DECIMAL64));
+		assertEquals("5 s", joules.dividedBy(new Watts(40), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByTime() {
-		assertEquals(new Watts(40),
-				joules.dividedBy(new Seconds(5), DECIMAL64));
+		assertEquals("40 W", joules.dividedBy(new Seconds(5), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByLength() {
-		assertEquals(new Newtons(5),
-				joules.dividedBy(new Meters(40), DECIMAL64));
+		assertEquals("5 N", joules.dividedBy(new Meters(40), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByForce() {
-		assertEquals(new Meters(40),
-				joules.dividedBy(new Newtons(5), DECIMAL64));
+		assertEquals("40 m", joules.dividedBy(new Newtons(5), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricCharge() {
-		assertEquals(new Volts(5),
-				joules.dividedBy(new Coulombs(40), DECIMAL64));
+		assertEquals("5 V", joules.dividedBy(new Coulombs(40), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricPotential() {
-		assertEquals(new Coulombs(40),
-				joules.dividedBy(new Volts(5), DECIMAL64));
+		assertEquals("40 C", joules.dividedBy(new Volts(5), DECIMAL64).toString());
 	}
 }

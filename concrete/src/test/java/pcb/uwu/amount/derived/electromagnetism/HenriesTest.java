@@ -12,7 +12,6 @@ public class HenriesTest {
 
 	@Test
 	public void multipliedByElectricCurrent() {
-		assertEquals(new Webbers(35, MILLI),
-				henries.multipliedBy(new Amperes(7, MILLI), DECIMAL64));
+		assertEquals("0.035 Wb", henries.multipliedBy(new Amperes(7, MILLI), DECIMAL64).toString());
 	}
 }

@@ -14,31 +14,26 @@ public class LumensTest {
 
 	@Test
 	public void dividedBySolidAngle() {
-		assertEquals(new Candelas(11),
-				lumens.dividedBy(new Steradians(2), DECIMAL64));
+		assertEquals("11 cd", lumens.dividedBy(new Steradians(2), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByLuminousIntensity() {
-		assertEquals(new Steradians(2),
-				lumens.dividedBy(new Candelas(11), DECIMAL64));
+		assertEquals("2 sr", lumens.dividedBy(new Candelas(11), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByArea() {
-		assertEquals(new Lux(2),
-				lumens.dividedBy(new SquareMeters(11), DECIMAL64));
+		assertEquals("2 lx", lumens.dividedBy(new SquareMeters(11), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByIlluminance() {
-		assertEquals(new SquareMeters(11),
-				lumens.dividedBy(new Lux(2), DECIMAL64));
+		assertEquals("11 m²", lumens.dividedBy(new Lux(2), DECIMAL64).toString());
 	}
 
 	@Test
 	public void multipliedByTime() {
-		assertEquals(new Talbots(66),
-				lumens.multipliedBy(new Seconds(3), DECIMAL64));
+		assertEquals("66 T", lumens.multipliedBy(new Seconds(3), DECIMAL64).toString());
 	}
 }

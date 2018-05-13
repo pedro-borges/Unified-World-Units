@@ -12,8 +12,7 @@ public class TeslasTest {
 
 	@Test
 	public void multipliedByArea() {
-		assertEquals(new Webbers(4),
-				teslas.multipliedBy(new Area(2, SQUARE_METER), DECIMAL64));
+		assertEquals("4 Wb", teslas.multipliedBy(new Area(2, SQUARE_METER), DECIMAL64).toString());
 	}
 
 }

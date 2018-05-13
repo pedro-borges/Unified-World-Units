@@ -1,7 +1,6 @@
 package pcb.uwu.amount.base;
 
 import org.junit.Test;
-import pcb.uwu.amount.derived.electromagnetism.Coulombs;
 import pcb.uwu.amount.derived.electromagnetism.Ohms;
 import pcb.uwu.amount.derived.electromagnetism.Siemens;
 import pcb.uwu.amount.derived.electromagnetism.Volts;
@@ -16,25 +15,21 @@ public class AmperesTest {
 
 	@Test
 	public void multipliedByTime() {
-		assertEquals(new Coulombs(240, MILLI),
-				amperes.multipliedBy(new Minutes(2), DECIMAL64));
+		assertEquals("0.240 C", amperes.multipliedBy(new Minutes(2), DECIMAL64).toString());
 	}
 
 	@Test
 	public void multipliedByElectricResistance() {
-		assertEquals(new Volts("4.000"),
-				amperes.multipliedBy(new Ohms(2, KILO), DECIMAL64));
+		assertEquals("4.000 V", amperes.multipliedBy(new Ohms(2, KILO), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricalPotential() {
-		assertEquals(new Siemens(2),
-				amperes.dividedBy(new Volts(1, MILLI), DECIMAL64));
+		assertEquals("2 S", amperes.dividedBy(new Volts(1, MILLI), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricalConductance() {
-		assertEquals(new Volts(1, MILLI),
-				amperes.dividedBy(new Siemens(2), DECIMAL64));
+		assertEquals("0.001 V", amperes.dividedBy(new Siemens(2), DECIMAL64).toString());
 	}
 }

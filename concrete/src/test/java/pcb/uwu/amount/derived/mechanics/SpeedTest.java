@@ -4,7 +4,6 @@ import org.junit.Test;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
 import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 
 import static java.math.BigDecimal.TEN;
@@ -45,26 +44,22 @@ public class SpeedTest {
 
 	@Test
 	public void testMultipliedBy() {
-		assertEquals(new Speed(50, speed.getUnit()),
-				speed.multipliedBy(TEN, DECIMAL64));
+		assertEquals("50 min⁻¹⋅m", speed.multipliedBy(TEN, DECIMAL64).toString());
 	}
 
 	@Test
 	public void testDividedBy() {
-		assertEquals(new Speed("0.5", speed.getUnit()),
-				speed.dividedBy(TEN, DECIMAL64));
+		assertEquals("0.5 min⁻¹⋅m", speed.dividedBy(TEN, DECIMAL64).toString());
 	}
 
 	@Test
 	public void testDividedByTime() {
-		assertEquals(new Acceleration("2.5", new AccelerationUnit(speed.getUnit(), time.getUnit())),
-				speed.dividedBy(time, DECIMAL64));
+		assertEquals("2.5 min⁻²⋅m", speed.dividedBy(time, DECIMAL64).toString());
 	}
 
 	@Test
 	public void testMultipliedByTime() {
-		assertEquals(new Length(10, METER),
-				speed.multipliedBy(time, DECIMAL64));
+		assertEquals("10 m", speed.multipliedBy(time, DECIMAL64).toString());
 	}
 
 	@Test

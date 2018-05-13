@@ -11,13 +11,11 @@ public class TalbotsTest {
 
 	@Test
 	public void dividedByLuminousFlux() {
-		assertEquals(new Seconds(10),
-				talbots.dividedBy(new Lumens(5), DECIMAL64));
+		assertEquals("10 s", talbots.dividedBy(new Lumens(5), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByTime() {
-		assertEquals(new Lumens(5),
-				talbots.dividedBy(new Seconds(10), DECIMAL64));
+		assertEquals("5 lm", talbots.dividedBy(new Seconds(10), DECIMAL64).toString());
 	}
 }
