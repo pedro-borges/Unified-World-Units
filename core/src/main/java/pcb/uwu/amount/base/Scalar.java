@@ -1,6 +1,6 @@
 package pcb.uwu.amount.base;
 
-import pcb.uwu.amount.finance.InterestRate;
+import pcb.uwu.amount.derived.finance.InterestRate;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;

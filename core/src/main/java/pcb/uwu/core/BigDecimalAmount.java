@@ -152,7 +152,7 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	 * Elevate to power.
 	 * @param n the exponential factor
 	 * @param mathContext the maths context to consider
-	 * @return a new {@code BigDecimalAmount} representing thisⁿ
+	 * @return a new {@code BigDecimalAmount} representing {@code this}ⁿ
 	 */
 	public BigDecimalAmount pow(int n, MathContext mathContext) {
 		return new BigDecimalAmount(value.pow(n, mathContext));

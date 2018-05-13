@@ -3,14 +3,14 @@ package pcb.uwu.amount.derived.electromagnetism;
 import org.junit.Test;
 import pcb.uwu.amount.base.Amperes;
 import pcb.uwu.amount.base.Seconds;
-import pcb.uwu.amount.derived.area.Area;
+import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.amount.derived.thermodynamics.Joules;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.core.Magnitude.KILO;
 import static pcb.uwu.core.Magnitude.MILLI;
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUAREMETER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 
 public class WebbersTest {
 	private static final Webbers webbers = new Webbers(12);
@@ -41,14 +41,14 @@ public class WebbersTest {
 
 	@Test
 	public void dividedByMagneticField() {
-		assertEquals(new Area(2, SQUAREMETER),
+		assertEquals(new Area(2, SQUARE_METER),
 				webbers.dividedBy(new Teslas(6), DECIMAL64));
 	}
 
 	@Test
 	public void dividedByArea() {
 		assertEquals(new Teslas(6),
-				webbers.dividedBy(new Area(2, SQUAREMETER), DECIMAL64));
+				webbers.dividedBy(new Area(2, SQUARE_METER), DECIMAL64));
 	}
 
 	@Test

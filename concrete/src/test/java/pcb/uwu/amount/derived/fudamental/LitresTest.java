@@ -2,8 +2,8 @@ package pcb.uwu.amount.derived.fudamental;
 
 import org.junit.Assert;
 import org.junit.Test;
-import pcb.uwu.amount.derived.fundamental.Litres;
 import pcb.uwu.amount.derived.fundamental.Volume;
+import pcb.uwu.amount.derived.fundamental.volume.Litres;
 import pcb.uwu.unit.derived.fundamental.VolumeUnit;
 
 import static org.junit.Assert.assertEquals;

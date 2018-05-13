@@ -1,7 +1,7 @@
 package pcb.uwu.amount.derived.optics;
 
 import pcb.uwu.amount.base.Candelas;
-import pcb.uwu.amount.derived.area.Area;
+import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -10,7 +10,7 @@ import pcb.uwu.unit.derived.optics.LuminanceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUAREMETER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
 
 public class Nits extends Luminance {
@@ -78,7 +78,7 @@ public class Nits extends Luminance {
 	// region composition
 
 	public Candelas multipliedBy(Area area, MathContext mathContext) {
-		return new Candelas(getAmount().multipliedBy(area.getAmountIn(SQUAREMETER), mathContext));
+		return new Candelas(getAmount().multipliedBy(area.getAmountIn(SQUARE_METER), mathContext));
 	}
 
 	// endregion

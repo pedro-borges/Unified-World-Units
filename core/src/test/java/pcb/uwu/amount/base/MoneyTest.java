@@ -1,8 +1,9 @@
 package pcb.uwu.amount.base;
 
 import org.junit.Test;
+import pcb.uwu.amount.finance.Money;
 import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.exceptions.CurrencyMismatchException;
+import pcb.uwu.exception.CurrencyMismatchException;
 
 import java.util.Currency;
 

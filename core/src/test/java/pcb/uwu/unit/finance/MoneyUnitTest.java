@@ -1,9 +1,9 @@
 package pcb.uwu.unit.finance;
 
 import org.junit.Test;
-import pcb.uwu.contracts.CurrencyConversionProvider;
+import pcb.uwu.contract.CurrencyConversionProvider;
 import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.exceptions.InvalidCurrencyException;
+import pcb.uwu.exception.InvalidCurrencyException;
 
 import java.math.BigDecimal;
 import java.util.Currency;
@@ -11,7 +11,7 @@ import java.util.Currency;
 import static java.math.BigDecimal.ONE;
 import static java.math.MathContext.DECIMAL32;
 import static java.math.RoundingMode.HALF_EVEN;
-import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.assertSame;
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.core.BigDecimalAmount.ZERO;
 import static pcb.uwu.unit.finance.MoneyUnit.CANONICAL_CURRENCY;
@@ -23,7 +23,7 @@ public class MoneyUnitTest {
 
 	@Test
 	public void testCurrencyEquals() {
-		assertTrue(Currency.getInstance("GBP") == GBP);
+		assertSame(Currency.getInstance("GBP"), GBP);
 	}
 
 	@Test(expected = InvalidCurrencyException.class)

@@ -13,7 +13,7 @@ public interface UnitAmount<U extends Unit> extends Comparable<UnitAmount<U>> {
 	BigDecimalAmount getAmount();
 
 	/**
-	 * @return the undelrying {@code Unit}
+	 * @return the underlrying {@code Unit}
 	 */
 	U getUnit();
 

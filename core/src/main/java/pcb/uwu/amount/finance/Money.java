@@ -1,11 +1,12 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.finance;
 
-import pcb.uwu.amount.finance.InterestRate;
-import pcb.uwu.amount.finance.Rent;
+import pcb.uwu.amount.base.Time;
+import pcb.uwu.amount.derived.finance.InterestRate;
+import pcb.uwu.amount.derived.finance.Rent;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.exceptions.CurrencyMismatchException;
+import pcb.uwu.exception.CurrencyMismatchException;
 import pcb.uwu.unit.finance.MoneyUnit;
 import pcb.uwu.unit.finance.RentUnit;
 

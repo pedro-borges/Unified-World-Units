@@ -1,5 +1,6 @@
-package pcb.uwu.amount.derived.fundamental;
+package pcb.uwu.amount.derived.fundamental.volume;
 
+import pcb.uwu.amount.derived.fundamental.Volume;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;

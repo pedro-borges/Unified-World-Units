@@ -1,4 +1,4 @@
-package pcb.uwu.amount.finance;
+package pcb.uwu.amount.derived.finance;
 
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
@@ -44,7 +44,6 @@ public class InterestRate extends CompositeUnitAmount<InterestRateUnit> {
 	public InterestRate(BigDecimalAmount amount, Magnitude magnitude, InterestRateUnit unit) {
 		super(amount, magnitude, unit);
 	}
-
 
 	// endregion
 

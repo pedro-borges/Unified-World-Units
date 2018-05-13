@@ -1,7 +1,7 @@
-package pcb.uwu.amount.finance;
+package pcb.uwu.amount.derived.finance;
 
-import pcb.uwu.amount.base.Money;
 import pcb.uwu.amount.base.Time;
+import pcb.uwu.amount.finance.Money;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;

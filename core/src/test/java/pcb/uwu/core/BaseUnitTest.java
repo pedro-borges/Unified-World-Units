@@ -16,7 +16,7 @@ public class BaseUnitTest {
 	private MassUnit mass = new MassUnit("", "", "", Function.identity(), Function.identity()) {};
 
 	@Test
-	public void testPrecendence() {
+	public void testPrecedence() {
 		List<BaseUnit> test = Stream.of(mass, length)
 				.sorted()
 				.collect(Collectors.toList());

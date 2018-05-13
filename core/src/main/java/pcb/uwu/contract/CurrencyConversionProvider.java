@@ -1,4 +1,4 @@
-package pcb.uwu.contracts;
+package pcb.uwu.contract;
 
 import java.math.BigDecimal;
 import java.util.Currency;

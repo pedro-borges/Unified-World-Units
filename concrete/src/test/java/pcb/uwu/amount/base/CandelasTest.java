@@ -1,7 +1,7 @@
 package pcb.uwu.amount.base;
 
 import org.junit.Test;
-import pcb.uwu.amount.derived.area.SquareMeters;
+import pcb.uwu.amount.derived.fundamental.area.SquareMeters;
 import pcb.uwu.amount.derived.optics.Lumens;
 import pcb.uwu.amount.derived.optics.Nits;
 import pcb.uwu.amount.derived.scalar.Steradians;

@@ -1,10 +1,10 @@
 package pcb.uwu.unit.finance;
 
-import pcb.uwu.contracts.CurrencyConversionProvider;
+import pcb.uwu.contract.CurrencyConversionProvider;
 import pcb.uwu.core.BaseUnit;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitCounter;
-import pcb.uwu.exceptions.InvalidCurrencyException;
+import pcb.uwu.exception.InvalidCurrencyException;
 
 import java.math.BigDecimal;
 import java.util.Currency;

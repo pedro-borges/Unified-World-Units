@@ -1,4 +1,4 @@
-package pcb.uwu.exceptions;
+package pcb.uwu.exception;
 
 public class InvalidCurrencyException extends RuntimeException {
 	public InvalidCurrencyException(String message, Object... args) {

@@ -9,7 +9,7 @@ public abstract class BaseUnit implements Unit, Comparable<BaseUnit> {
 
 	// region private fields
 
-	private final int precendence;
+	private final int precedence;
 	private final String symbol;
 	private final String singularName;
 	private final String pluralName;
@@ -28,7 +28,7 @@ public abstract class BaseUnit implements Unit, Comparable<BaseUnit> {
 			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
 			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
 
-		this.precendence = precedence;
+		this.precedence = precedence;
 		this.symbol = symbol;
 		this.singularName = singularName;
 		this.pluralName = pluralName;
@@ -94,7 +94,7 @@ public abstract class BaseUnit implements Unit, Comparable<BaseUnit> {
 
 	@Override
 	public int compareTo(BaseUnit other) {
-		return other.precendence - this.precendence;
+		return other.precedence - this.precedence;
 	}
 
 	//endregion

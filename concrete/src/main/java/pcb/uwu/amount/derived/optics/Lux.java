@@ -1,6 +1,6 @@
 package pcb.uwu.amount.derived.optics;
 
-import pcb.uwu.amount.derived.area.Area;
+import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -9,7 +9,7 @@ import pcb.uwu.unit.derived.optics.IlluminanceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUAREMETER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
 
 public class Lux extends Illuminance {
@@ -77,7 +77,7 @@ public class Lux extends Illuminance {
 	// region composition
 
 	public Lumens multipliedBy(Area area, MathContext mathContext) {
-		return new Lumens(getAmount().multipliedBy(area.getAmountIn(SQUAREMETER), mathContext));
+		return new Lumens(getAmount().multipliedBy(area.getAmountIn(SQUARE_METER), mathContext));
 	}
 
 	// endregion

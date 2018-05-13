@@ -1,6 +1,6 @@
 package pcb.uwu.core;
 
-import pcb.uwu.exceptions.OffendingUnitException;
+import pcb.uwu.exception.OffendingUnitException;
 
 import java.util.Collection;
 import java.util.HashMap;
