@@ -12,7 +12,6 @@ public class OhmsTest {
 
 	@Test
 	public void multipliedByElectricCurrent() {
-		assertEquals(new Volts(75),
-				ohms.multipliedBy(new Amperes(50, MILLI), DECIMAL64));
+		assertEquals("75.000 V", ohms.multipliedBy(new Amperes(50, MILLI), DECIMAL64).toString());
 	}
 }

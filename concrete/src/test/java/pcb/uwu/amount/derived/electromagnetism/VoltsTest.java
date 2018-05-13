@@ -2,7 +2,6 @@ package pcb.uwu.amount.derived.electromagnetism;
 
 import org.junit.Test;
 import pcb.uwu.amount.base.Amperes;
-import pcb.uwu.amount.derived.thermodynamics.Joules;
 
 import java.math.MathContext;
 
@@ -14,19 +13,17 @@ public class VoltsTest {
 
 	@Test
 	public void divideByElectricResistance() {
-		assertEquals(new Amperes(20, MILLI),
-				volts.dividedBy(new Ohms(500), MathContext.DECIMAL64));
+		assertEquals("0.02 A", volts.dividedBy(new Ohms(500), MathContext.DECIMAL64).toString());
 	}
 
 	@Test
 	public void divideByElectricCurrent() {
-		assertEquals(new Ohms(500),
-				volts.dividedBy(new Amperes(20, MILLI), MathContext.DECIMAL64));
+		assertEquals("500 Ω", volts.dividedBy(new Amperes(20, MILLI), MathContext.DECIMAL64).toString());
 	}
 
 	@Test
 	public void multiplyByElectricCharge() {
-		assertEquals(new Joules(2),
-				volts.multipliedBy(new Coulombs(200, MILLI), MathContext.DECIMAL64));
+		assertEquals("2.000 J",
+				volts.multipliedBy(new Coulombs(200, MILLI), MathContext.DECIMAL64).toString());
 	}
 }

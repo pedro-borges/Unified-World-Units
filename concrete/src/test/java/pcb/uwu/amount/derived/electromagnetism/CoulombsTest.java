@@ -3,7 +3,6 @@ package pcb.uwu.amount.derived.electromagnetism;
 import org.junit.Test;
 import pcb.uwu.amount.base.Amperes;
 import pcb.uwu.amount.base.Seconds;
-import pcb.uwu.amount.derived.thermodynamics.Joules;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
@@ -15,31 +14,26 @@ public class CoulombsTest {
 
 	@Test
 	public void dividedByTime() {
-		assertEquals(new Amperes(2, MILLI),
-				coulombs.dividedBy(new Seconds(25), DECIMAL64));
+		assertEquals("0.002 A", coulombs.dividedBy(new Seconds(25), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricCurrent() {
-		assertEquals(new Seconds(25),
-				coulombs.dividedBy(new Amperes(2, MILLI), DECIMAL64));
+		assertEquals("25 s", coulombs.dividedBy(new Amperes(2, MILLI), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricCapacitance() {
-		assertEquals(new Volts(125),
-				coulombs.dividedBy(new Farads(400, MICRO), DECIMAL64));
+		assertEquals("125 V", coulombs.dividedBy(new Farads(400, MICRO), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricPotential() {
-		assertEquals(new Farads(400, MICRO),
-				coulombs.dividedBy(new Volts(125), DECIMAL64));
+		assertEquals("0.0004 F", coulombs.dividedBy(new Volts(125), DECIMAL64).toString());
 	}
 
 	@Test
 	public void multipliedByElectricPotential() {
-		assertEquals(new Joules(5),
-				coulombs.multipliedBy(new Volts(100), DECIMAL64));
+		assertEquals("5.000 J", coulombs.multipliedBy(new Volts(100), DECIMAL64).toString());
 	}
 }

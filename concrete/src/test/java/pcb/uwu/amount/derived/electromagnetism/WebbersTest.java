@@ -4,7 +4,6 @@ import org.junit.Test;
 import pcb.uwu.amount.base.Amperes;
 import pcb.uwu.amount.base.Seconds;
 import pcb.uwu.amount.derived.fundamental.Area;
-import pcb.uwu.amount.derived.thermodynamics.Joules;
 
 import static java.math.MathContext.DECIMAL64;
 import static org.junit.Assert.assertEquals;
@@ -17,44 +16,37 @@ public class WebbersTest {
 
 	@Test
 	public void dividedByTime() {
-		assertEquals(new Volts(2),
-				webbers.dividedBy(new Seconds(6), DECIMAL64));
+		assertEquals("2 V", webbers.dividedBy(new Seconds(6), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricPotential() {
-		assertEquals(new Seconds(6),
-				webbers.dividedBy(new Volts(2), DECIMAL64));
+		assertEquals("6 s", webbers.dividedBy(new Volts(2), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricCurrent() {
-		assertEquals(new Henries(2, KILO),
-				webbers.dividedBy(new Amperes(6, MILLI), DECIMAL64));
+		assertEquals("2000 H", webbers.dividedBy(new Amperes(6, MILLI), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricInductance() {
-		assertEquals(new Amperes(6, MILLI),
-				webbers.dividedBy(new Henries(2, KILO), DECIMAL64));
+		assertEquals("0.006 A", webbers.dividedBy(new Henries(2, KILO), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByMagneticField() {
-		assertEquals(new Area(2, SQUARE_METER),
-				webbers.dividedBy(new Teslas(6), DECIMAL64));
+		assertEquals("2 m²", webbers.dividedBy(new Teslas(6), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByArea() {
-		assertEquals(new Teslas(6),
-				webbers.dividedBy(new Area(2, SQUARE_METER), DECIMAL64));
+		assertEquals("6 T", webbers.dividedBy(new Area(2, SQUARE_METER), DECIMAL64).toString());
 	}
 
 	@Test
 	public void multiplyByElectricCurrent() {
-		assertEquals(new Joules(600, MILLI),
-				webbers.multipliedBy(new Amperes(50, MILLI), DECIMAL64));
+		assertEquals("0.600 J", webbers.multipliedBy(new Amperes(50, MILLI), DECIMAL64).toString());
 	}
 
 }

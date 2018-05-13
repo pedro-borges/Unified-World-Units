@@ -22,7 +22,7 @@ public class AmperesTest {
 
 	@Test
 	public void multipliedByElectricResistance() {
-		assertEquals(new Volts(4),
+		assertEquals(new Volts("4.000"),
 				amperes.multipliedBy(new Ohms(2, KILO), DECIMAL64));
 	}
 

@@ -12,7 +12,6 @@ public class LuxTest {
 
 	@Test
 	public void multipliedByArea() {
-		assertEquals(new Lumens(200),
-				lux.multipliedBy(new SquareMeters(100, MILLI), DECIMAL64));
+		assertEquals("200.000 lm", lux.multipliedBy(new SquareMeters(100, MILLI), DECIMAL64).toString());
 	}
 }

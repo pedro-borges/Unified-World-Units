@@ -30,7 +30,7 @@ public class SpeedTest {
 
 		Speed other = length.dividedBy(time, DECIMAL64);
 
-		assertEquals(new Speed("20.24", speed.getUnit()), speed.plus(other, DECIMAL64));
+		assertEquals("20.2400 min⁻¹⋅m", speed.plus(other, DECIMAL64).toString());
 	}
 
 	@Test
@@ -40,8 +40,7 @@ public class SpeedTest {
 
 		Speed other = length.dividedBy(time, DECIMAL64);
 
-		assertEquals(new Speed("-10.24", speed.getUnit()),
-				speed.minus(other, DECIMAL64));
+		assertEquals("-10.2400 min⁻¹⋅m", speed.minus(other, DECIMAL64).toString());
 	}
 
 	@Test

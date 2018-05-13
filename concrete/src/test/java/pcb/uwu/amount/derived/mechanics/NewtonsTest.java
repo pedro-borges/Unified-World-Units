@@ -4,7 +4,6 @@ import org.junit.Test;
 import pcb.uwu.amount.base.KiloGrams;
 import pcb.uwu.amount.base.Meters;
 import pcb.uwu.amount.derived.fundamental.Area;
-import pcb.uwu.amount.derived.thermodynamics.Joules;
 import pcb.uwu.amount.derived.thermodynamics.Pascals;
 import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
 
@@ -19,31 +18,27 @@ public class NewtonsTest {
 
 	@Test
 	public void dividedByAcceleration() {
-		assertEquals(new KiloGrams(4),
-				newtons.dividedBy(new Acceleration(3, new AccelerationUnit(METER, SECOND)), DECIMAL64));
+		assertEquals("4.000000000000000 Kg",
+				newtons.dividedBy(new Acceleration(3, new AccelerationUnit(METER, SECOND)), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByMass() {
-		assertEquals(new Acceleration(3, new AccelerationUnit(METER, SECOND)),
-				newtons.dividedBy(new KiloGrams(4), DECIMAL64));
+		assertEquals("3.00 s⁻²⋅m", newtons.dividedBy(new KiloGrams(4), DECIMAL64).toString());
 	}
 
 	@Test
 	public void multipliedByLength() {
-		assertEquals(new Joules(60),
-				newtons.multipliedBy(new Meters(5), DECIMAL64));
+		assertEquals("60 J", newtons.multipliedBy(new Meters(5), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByPressure() {
-		assertEquals(new Area(4, SQUARE_METER),
-				newtons.dividedBy(new Pascals(3), DECIMAL64));
+		assertEquals("4 m²", newtons.dividedBy(new Pascals(3), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByArea() {
-		assertEquals(new Pascals(3),
-				newtons.dividedBy(new Area(4, SQUARE_METER), DECIMAL64));
+		assertEquals("3 Pa", newtons.dividedBy(new Area(4, SQUARE_METER), DECIMAL64).toString());
 	}
 }

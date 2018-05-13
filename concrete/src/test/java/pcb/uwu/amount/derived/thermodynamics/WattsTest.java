@@ -14,20 +14,17 @@ public class WattsTest {
 
 	@Test
 	public void multipliedByTime() {
-		assertEquals(new Joules(300),
-				watts.multipliedBy(new Seconds(15), DECIMAL64));
+		assertEquals("300 J", watts.multipliedBy(new Seconds(15), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricCurrent() {
-		assertEquals(new Volts(200),
-				watts.dividedBy(new Amperes(100, Magnitude.MILLI), DECIMAL64));
+		assertEquals("200 V", watts.dividedBy(new Amperes(100, Magnitude.MILLI), DECIMAL64).toString());
 	}
 
 	@Test
 	public void dividedByElectricPotential() {
-		assertEquals(new Amperes(100, Magnitude.MILLI),
-				watts.dividedBy(new Volts(200), DECIMAL64));
+		assertEquals("0.1 A", watts.dividedBy(new Volts(200), DECIMAL64).toString());
 	}
 
 }
