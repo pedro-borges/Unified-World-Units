@@ -5,6 +5,8 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.function.Function;
 
+import static java.math.MathContext.UNLIMITED;
+
 /**
  * An implementation of Amount for uni-dimensional values based on {@code java.lang.BigDecimal} representation.
  */
@@ -109,18 +111,45 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	}
 
 	/**
-	 * Multiply by amount.
-	 * @param other the {@code BigDecimalAmount} to multiply by
-	 * @param mathContext the maths context to consider
-	 * @return the scalar result of dividing this {@code BigDecimalAmount} but another.
+	 * Multiply by a scalar.
+	 * @param other the short value to multiply by
+	 * @return a new {@code BigDecimalAmount} representing this × other
 	 */
-	public BigDecimalAmount multipliedBy(BigDecimalAmount other, MathContext mathContext) {
-		return new BigDecimalAmount(value.multiply(other.value, mathContext));
+	public BigDecimalAmount multipliedBy(short other) {
+		return multipliedBy(other, UNLIMITED);
 	}
 
 	/**
 	 * Multiply by a scalar.
-	 * @param other the scalar value to multiply by
+	 * @param other the int value to multiply by
+	 * @return a new {@code BigDecimalAmount} representing this × other
+	 */
+	public BigDecimalAmount multipliedBy(int other) {
+		return multipliedBy(other, UNLIMITED);
+	}
+
+	/**
+	 * Multiply by a scalar.
+	 * @param other the long value to multiply by
+	 * @return a new {@code BigDecimalAmount} representing this × other
+	 */
+	public BigDecimalAmount multipliedBy(long other) {
+		return multipliedBy(other, UNLIMITED);
+	}
+
+	/**
+	 * Multiply by a scalar.
+	 * @param other the value to multiply by
+	 * @param mathContext the maths context to consider
+	 * @return a new {@code BigDecimalAmount} representing this × other
+	 */
+	public BigDecimalAmount multipliedBy(Number other, MathContext mathContext) {
+		return multipliedBy(new BigDecimal(other.toString()), mathContext);
+	}
+
+	/**
+	 * Multiply by a scalar.
+	 * @param other the value to multiply by
 	 * @param mathContext the maths context to consider
 	 * @return a new {@code BigDecimalAmount} representing this × other
 	 */
@@ -129,18 +158,38 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	}
 
 	/**
-	 * Divide by amount.
-	 * @param other the {@code BigDecimalAmount} to divide by
+	 * Multiply by a scalar.
+	 * @param other the {@code BigDecimalAmount} to multiply by
 	 * @param mathContext the maths context to consider
 	 * @return the scalar result of dividing this {@code BigDecimalAmount} but another.
 	 */
-	public BigDecimalAmount dividedBy(BigDecimalAmount other, MathContext mathContext) {
-		return new BigDecimalAmount(value.divide(other.value, mathContext));
+	public BigDecimalAmount multipliedBy(BigDecimalAmount other, MathContext mathContext) {
+		return multipliedBy(other.value, mathContext);
 	}
 
 	/**
 	 * Divide by a scalar.
-	 * @param other the scalar value to divide by
+	 * @param other the value to divide by
+	 * @param mathContext the maths context to consider
+	 * @return a new {@code BigDecimalAmount} representing this ÷ other
+	 */
+	public BigDecimalAmount dividedBy(Number other, MathContext mathContext) {
+		return dividedBy(new BigDecimal(other.toString()), mathContext);
+	}
+
+	/**
+	 * Divide by a scalar.
+	 * @param other the value to divide by
+	 * @param mathContext the maths context to consider
+	 * @return the scalar result of dividing this {@code BigDecimalAmount} but another.
+	 */
+	public BigDecimalAmount dividedBy(BigDecimalAmount other, MathContext mathContext) {
+		return dividedBy(other.value, mathContext);
+	}
+
+	/**
+	 * Divide by a scalar.
+	 * @param other the value to divide by
 	 * @param mathContext the maths context to consider
 	 * @return a new {@code BigDecimalAmount} representing this ÷ other
 	 */
@@ -150,12 +199,12 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 
 	/**
 	 * Elevate to power.
-	 * @param n the exponential factor
+	 * @param power the exponential factor
 	 * @param mathContext the maths context to consider
 	 * @return a new {@code BigDecimalAmount} representing {@code this}ⁿ
 	 */
-	public BigDecimalAmount pow(int n, MathContext mathContext) {
-		return new BigDecimalAmount(value.pow(n, mathContext));
+	public BigDecimalAmount pow(int power, MathContext mathContext) {
+		return new BigDecimalAmount(value.pow(power, mathContext));
 	}
 
 	/**

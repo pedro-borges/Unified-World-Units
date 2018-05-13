@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.fundamental;
 
+import pcb.uwu.amount.base.Length;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -8,8 +9,39 @@ import pcb.uwu.unit.derived.area.AreaUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.function.BiFunction;
+
+import static pcb.uwu.utils.MathUtils.PI;
 
 public class Area extends CompositeUnitAmount<AreaUnit> {
+
+	// region geometry factories
+
+	public static final AreaFactory FOR = new AreaFactory();
+
+	public static class AreaFactory {
+
+		public static final BiFunction<BigDecimalAmount, MathContext, BigDecimalAmount> CIRCLE_FUNCTION =
+				(radius, mathContext) -> radius
+						.pow(2, mathContext)
+						.multipliedBy(PI, mathContext);
+
+		public static final BiFunction<BigDecimalAmount, MathContext, BigDecimalAmount> SQUARE_FUNCTION =
+				(side, mathContext) -> side
+						.pow(2, mathContext);
+
+		public Area circleWithRadius(Length radius, MathContext mathContext) {
+			return new Area(CIRCLE_FUNCTION.apply(radius.getAmount(), mathContext),
+					new AreaUnit(radius.getUnit(), radius.getUnit()));
+		}
+
+		public Area squareWithSide(Length side, MathContext mathContext) {
+			return new Area(SQUARE_FUNCTION.apply(side.getAmount(), mathContext),
+					new AreaUnit(side.getUnit(), side.getUnit()));
+		}
+	}
+
+	// endregion
 
 	// region constructors
 

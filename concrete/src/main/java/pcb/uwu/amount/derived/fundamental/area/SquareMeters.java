@@ -1,6 +1,7 @@
 package pcb.uwu.amount.derived.fundamental.area;
 
 import pcb.uwu.amount.base.Candelas;
+import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.amount.derived.optics.Illuminance;
 import pcb.uwu.amount.derived.optics.Lumens;
@@ -13,11 +14,31 @@ import pcb.uwu.unit.derived.area.AreaUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
 
 public class SquareMeters extends Area {
+
+	// region geometry factories
+
+	public static final SquareMetersFactory FOR = new SquareMetersFactory();
+
+	public static class SquareMetersFactory extends AreaFactory {
+
+		@Override
+		public SquareMeters circleWithRadius(Length radius, MathContext mathContext) {
+			return new SquareMeters(CIRCLE_FUNCTION.apply(radius.getAmountIn(METER), mathContext));
+		}
+
+		@Override
+		public SquareMeters squareWithSide(Length side, MathContext mathContext) {
+			return new SquareMeters(SQUARE_FUNCTION.apply(side.getAmountIn(METER), mathContext));
+		}
+	}
+
+	//
 
 	// region constructors
 
