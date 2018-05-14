@@ -1,17 +1,13 @@
 package pcb.uwu.unit.finance;
 
-import pcb.uwu.contract.CurrencyConversionProvider;
 import pcb.uwu.core.BaseUnit;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitCounter;
 import pcb.uwu.exception.InvalidCurrencyException;
 
-import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Objects;
 import java.util.function.Function;
-
-import static java.math.MathContext.DECIMAL32;
 
 public class MoneyUnit extends BaseUnit {
 
@@ -20,7 +16,6 @@ public class MoneyUnit extends BaseUnit {
 	// region private fields
 
 	private final Currency currency;
-	private final CurrencyConversionProvider currencyConversionProvider;
 	private final UnitCounter unitCounter;
 
 	// endregion
@@ -28,10 +23,6 @@ public class MoneyUnit extends BaseUnit {
 	// region constructors
 
 	public MoneyUnit(Currency currency) {
-		this(currency, null);
-	}
-
-	public MoneyUnit(Currency currency, CurrencyConversionProvider currencyConversionProvider) {
 		super(100,
 				currency.getSymbol(),
 				currency.getDisplayName(),
@@ -41,7 +32,6 @@ public class MoneyUnit extends BaseUnit {
 
 		this.currency = currency;
 		this.unitCounter = new UnitCounter(this);
-		this.currencyConversionProvider = currencyConversionProvider;
 	}
 
 	public static MoneyUnit of(String code) {
@@ -54,34 +44,12 @@ public class MoneyUnit extends BaseUnit {
 
 	@Override
 	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
-		if (currencyConversionProvider == null) {
-			return super.getTranslationToCanonical();
-		}
-
-		BigDecimal ratio = currencyConversionProvider.getRatio(currency, CANONICAL_CURRENCY.currency);
-
-		if (ratio == null) {
-			throw new InvalidCurrencyException("No ratio available to convert {} to {}",
-					currency.getDisplayName(), CANONICAL_CURRENCY.currency.getDisplayName());
-		}
-
-		return amount -> amount.multipliedBy(ratio, DECIMAL32);
+		throw new InvalidCurrencyException("Dynamic currency conversion is not possible");
 	}
 
 	@Override
 	public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
-		if (currencyConversionProvider == null) {
-			return super.getTranslationToCanonical();
-		}
-
-		BigDecimal ratio = currencyConversionProvider.getRatio(CANONICAL_CURRENCY.currency, currency);
-
-		if (ratio == null) {
-			throw new InvalidCurrencyException("No ratio available to convert {} to {}",
-					CANONICAL_CURRENCY.currency.getDisplayName(), currency.getDisplayName());
-		}
-
-		return amount -> amount.multipliedBy(ratio, DECIMAL32);
+		throw new InvalidCurrencyException("Dynamic currency conversion is not possible");
 	}
 
 	@Override
