@@ -145,9 +145,9 @@ public interface UnitAmount<U extends Unit> extends Comparable<UnitAmount<U>> {
 	}
 
 	/**
-	 * Get the underlying {@code Amount} in a new {@code Unit}.
+	 * Get the underlying {@code BigDecimalAmount} in a new {@code Unit}.
 	 * @param unit the {@code Unit} to convert to
-	 * @return the converted {@code Amount}
+	 * @return the converted {@code BigDecimalAmount}
 	 */
 	BigDecimalAmount getAmountIn(U unit);
 
@@ -159,5 +159,10 @@ public interface UnitAmount<U extends Unit> extends Comparable<UnitAmount<U>> {
 	 */
 	BigDecimalAmount getAmountIn(Magnitude magnitude, U unit);
 
+	/**
+	 * Get the {@code UnitAmount} in a new {@code Unit}.
+	 * @param unit the {@code Unit} to convert to
+	 * @return the converted {@code UnitAmount}
+	 */
 	UnitAmount<U> in(U unit);
 }

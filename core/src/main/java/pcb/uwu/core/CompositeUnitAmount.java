@@ -148,7 +148,7 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 	@Override
 	public UnitAmount<U> in(U unit) {
-		return null;
+		return new CompositeUnitAmount<>(getAmountIn(unit), unit);
 	}
 
 	// endregion
