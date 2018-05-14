@@ -74,7 +74,7 @@ public class Pace extends CompositeUnitAmount<PaceUnit> {
 	}
 
 	@Override
-	public Pace convertTo(PaceUnit unit) {
+	public Pace in(PaceUnit unit) {
 		return new Pace(getAmountIn(unit), unit);
 	}
 

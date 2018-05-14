@@ -70,7 +70,7 @@ public class Illuminance extends CompositeUnitAmount<IlluminanceUnit> {
 	}
 
 	@Override
-	public Illuminance convertTo(IlluminanceUnit unit) {
+	public Illuminance in(IlluminanceUnit unit) {
 		return new Illuminance(getAmountIn(unit), unit);
 	}
 

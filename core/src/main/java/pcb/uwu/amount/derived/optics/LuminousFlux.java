@@ -70,7 +70,7 @@ public class LuminousFlux extends CompositeUnitAmount<LuminousFluxUnit> {
 	}
 
 	@Override
-	public LuminousFlux convertTo(LuminousFluxUnit unit) {
+	public LuminousFlux in(LuminousFluxUnit unit) {
 		return new LuminousFlux(getAmountIn(unit), unit);
 	}
 

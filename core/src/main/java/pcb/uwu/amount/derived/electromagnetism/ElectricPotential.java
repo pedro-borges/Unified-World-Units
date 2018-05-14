@@ -70,7 +70,7 @@ public class ElectricPotential extends CompositeUnitAmount<ElectricPotentialUnit
 	}
 
 	@Override
-	public ElectricPotential convertTo(ElectricPotentialUnit unit) {
+	public ElectricPotential in(ElectricPotentialUnit unit) {
 		return new ElectricPotential(getAmountIn(unit), unit);
 	}
 

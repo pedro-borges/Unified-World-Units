@@ -75,7 +75,7 @@ public class Length extends CompositeUnitAmount<LengthUnit> {
 	}
 
 	@Override
-	public Length convertTo(LengthUnit unit) {
+	public Length in(LengthUnit unit) {
 		return new Length(getAmountIn(unit), unit);
 	}
 

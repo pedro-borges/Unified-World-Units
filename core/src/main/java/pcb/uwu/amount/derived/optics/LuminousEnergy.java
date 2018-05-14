@@ -70,7 +70,7 @@ public class LuminousEnergy extends CompositeUnitAmount<LuminousEnergyUnit> {
 	}
 
 	@Override
-	public LuminousEnergy convertTo(LuminousEnergyUnit unit) {
+	public LuminousEnergy in(LuminousEnergyUnit unit) {
 		return new LuminousEnergy(getAmountIn(unit), unit);
 	}
 

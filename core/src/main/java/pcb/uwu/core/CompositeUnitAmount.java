@@ -147,7 +147,7 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 	}
 
 	@Override
-	public UnitAmount<U> convertTo(U unit) {
+	public UnitAmount<U> in(U unit) {
 		return null;
 	}
 
@@ -158,10 +158,10 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof UnitAmount) {
-			CompositeUnitAmount<?> other = (CompositeUnitAmount<?>) obj;
+			CompositeUnitAmount<?> that = (CompositeUnitAmount<?>) obj;
 
-			return Objects.equals(this.amount, other.amount) &&
-					Objects.equals(this.unit, other.unit);
+			return Objects.equals(this.amount, that.amount) &&
+					Objects.equals(this.unit, that.unit);
 		}
 
 		return false;

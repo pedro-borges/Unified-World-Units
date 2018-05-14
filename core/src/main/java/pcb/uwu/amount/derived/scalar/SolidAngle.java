@@ -71,7 +71,7 @@ public class SolidAngle extends CompositeUnitAmount<SolidAngleUnit> {
 	}
 
 	@Override
-	public SolidAngle convertTo(SolidAngleUnit unit) {
+	public SolidAngle in(SolidAngleUnit unit) {
 		return new SolidAngle(getAmountIn(unit), unit);
 	}
 

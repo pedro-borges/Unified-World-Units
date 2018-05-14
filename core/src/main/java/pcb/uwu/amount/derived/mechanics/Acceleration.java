@@ -76,7 +76,7 @@ public class Acceleration extends CompositeUnitAmount<AccelerationUnit> {
 	}
 
 	@Override
-	public Acceleration convertTo(AccelerationUnit unit) {
+	public Acceleration in(AccelerationUnit unit) {
 		return new Acceleration(getAmountIn(unit), unit);
 	}
 

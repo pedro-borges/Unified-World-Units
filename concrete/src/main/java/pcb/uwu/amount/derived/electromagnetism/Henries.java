@@ -73,7 +73,7 @@ public class Henries extends ElectricInductance {
 	}
 
 	@Override
-	public Henries convertTo(ElectricInductanceUnit unit) {
+	public Henries in(ElectricInductanceUnit unit) {
 		return new Henries(getAmountIn(unit));
 	}
 

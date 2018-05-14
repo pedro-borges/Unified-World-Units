@@ -37,10 +37,10 @@ public class UnitCounter {
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof UnitCount) {
-				UnitCount other = (UnitCount) obj;
+				UnitCount that = (UnitCount) obj;
 
-				return Objects.equals(this.unit, other.unit) &&
-						Objects.equals(this.count, other.count);
+				return Objects.equals(this.unit, that.unit) &&
+						Objects.equals(this.count, that.count);
 			}
 
 			return false;
@@ -249,18 +249,9 @@ public class UnitCounter {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof UnitCounter) {
-			UnitCounter other = (UnitCounter) obj;
+			UnitCounter that = (UnitCounter) obj;
 
-			if (this.counts.size() != other.counts.size()) return false;
-
-			for (Class<? extends BaseUnit> baseUnit : counts.keySet()) {
-				UnitCount thisCount = this.counts.get(baseUnit);
-				UnitCount otherCount = other.counts.get(baseUnit);
-
-				if (!Objects.equals(thisCount, otherCount)) return false;
-			}
-
-			return true;
+			return Objects.equals(this.counts, that.counts);
 		}
 
 		return false;

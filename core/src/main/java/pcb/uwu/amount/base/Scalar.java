@@ -75,7 +75,7 @@ public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 	}
 
 	@Override
-	public Scalar convertTo(ScalarUnit unit) {
+	public Scalar in(ScalarUnit unit) {
 		return new Scalar(getAmountIn(unit));
 	}
 

@@ -73,7 +73,7 @@ public class Ohms extends ElectricResistance {
 	}
 
 	@Override
-	public Ohms convertTo(ElectricResistanceUnit unit) {
+	public Ohms in(ElectricResistanceUnit unit) {
 		return new Ohms(getAmountIn(unit));
 	}
 

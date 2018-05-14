@@ -70,7 +70,7 @@ public class MagneticField extends CompositeUnitAmount<MagneticFieldUnit> {
 	}
 
 	@Override
-	public MagneticField convertTo(MagneticFieldUnit unit) {
+	public MagneticField in(MagneticFieldUnit unit) {
 		return new MagneticField(getAmountIn(unit), unit);
 	}
 

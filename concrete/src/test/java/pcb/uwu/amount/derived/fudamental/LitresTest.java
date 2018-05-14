@@ -18,15 +18,15 @@ import static pcb.uwu.unit.derived.fundamental.LitreUnit.LITRE;
 public class LitresTest {
 	@Test
 	public void construct() {
-		VolumeUnit unit = new VolumeUnit(METER, METER, METER) {};
+		VolumeUnit cubicMeter = new VolumeUnit(METER, METER, METER) {};
 		Litres litres = new Litres(1);
 
 		assertEquals("1 l", litres.toString());
-		assertEquals("0.001 m³", litres.convertTo(unit).toString());
+		assertEquals("0.001 m³", litres.in(cubicMeter).toString());
 
-		Volume volume = new Volume(3.03, unit);
+		Volume volume = new Volume(3.03, cubicMeter);
 
-		Assert.assertEquals("3030.00 l", volume.convertTo(LITRE).toString());
+		Assert.assertEquals("3030.00 l", volume.in(LITRE).toString());
 	}
 
 	@Test

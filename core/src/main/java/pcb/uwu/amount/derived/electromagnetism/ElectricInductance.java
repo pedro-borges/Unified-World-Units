@@ -70,7 +70,7 @@ public class ElectricInductance extends CompositeUnitAmount<ElectricInductanceUn
 	}
 
 	@Override
-	public ElectricInductance convertTo(ElectricInductanceUnit unit) {
+	public ElectricInductance in(ElectricInductanceUnit unit) {
 		return new ElectricInductance(getAmountIn(unit), unit);
 	}
 

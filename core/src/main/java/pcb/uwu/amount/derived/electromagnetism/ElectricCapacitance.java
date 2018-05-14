@@ -70,7 +70,7 @@ public class ElectricCapacitance extends CompositeUnitAmount<ElectricCapacitance
 	}
 
 	@Override
-	public ElectricCapacitance convertTo(ElectricCapacitanceUnit unit) {
+	public ElectricCapacitance in(ElectricCapacitanceUnit unit) {
 		return new ElectricCapacitance(getAmountIn(unit), unit);
 	}
 

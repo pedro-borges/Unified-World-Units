@@ -109,9 +109,9 @@ public class MoneyUnit extends BaseUnit {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof MoneyUnit) {
-			MoneyUnit other = (MoneyUnit) obj;
+			MoneyUnit that = (MoneyUnit) obj;
 
-			return Objects.equals(this.currency, other.currency);
+			return Objects.equals(this.currency, that.currency);
 		}
 
 		return false;

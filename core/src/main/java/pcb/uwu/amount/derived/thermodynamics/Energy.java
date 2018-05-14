@@ -70,7 +70,7 @@ public class Energy extends CompositeUnitAmount<EnergyUnit> {
 	}
 
 	@Override
-	public Energy convertTo(EnergyUnit unit) {
+	public Energy in(EnergyUnit unit) {
 		return new Energy(getAmountIn(unit), unit);
 	}
 

@@ -73,7 +73,7 @@ public class Siemens extends ElectricConductance {
 	}
 
 	@Override
-	public Siemens convertTo(ElectricConductanceUnit unit) {
+	public Siemens in(ElectricConductanceUnit unit) {
 		return new Siemens(getAmountIn(unit));
 	}
 

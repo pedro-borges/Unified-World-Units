@@ -71,7 +71,7 @@ public class Temperature extends CompositeUnitAmount<TemperatureUnit> {
 	}
 
 	@Override
-	public Temperature convertTo(TemperatureUnit unit) {
+	public Temperature in(TemperatureUnit unit) {
 		return new Temperature(getAmountIn(unit), unit);
 	}
 

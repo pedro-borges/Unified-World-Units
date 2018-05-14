@@ -71,7 +71,7 @@ public class Angle extends CompositeUnitAmount<AngleUnit> {
 	}
 
 	@Override
-	public Angle convertTo(AngleUnit unit) {
+	public Angle in(AngleUnit unit) {
 		return new Angle(getAmountIn(unit), unit);
 	}
 

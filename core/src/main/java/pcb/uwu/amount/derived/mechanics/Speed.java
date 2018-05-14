@@ -76,7 +76,7 @@ public class Speed extends CompositeUnitAmount<SpeedUnit> {
 	}
 
 	@Override
-	public Speed convertTo(SpeedUnit unit) {
+	public Speed in(SpeedUnit unit) {
 		return new Speed(getAmountIn(unit), unit);
 	}
 

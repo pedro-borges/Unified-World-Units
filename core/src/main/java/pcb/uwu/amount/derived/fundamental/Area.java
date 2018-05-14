@@ -102,7 +102,7 @@ public class Area extends CompositeUnitAmount<AreaUnit> {
 	}
 
 	@Override
-	public Area convertTo(AreaUnit unit) {
+	public Area in(AreaUnit unit) {
 		return new Area(getAmountIn(unit), unit);
 	}
 

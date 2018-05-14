@@ -70,7 +70,7 @@ public class MagneticFlux extends CompositeUnitAmount<MagneticFluxUnit> {
 	}
 
 	@Override
-	public MagneticFlux convertTo(MagneticFluxUnit unit) {
+	public MagneticFlux in(MagneticFluxUnit unit) {
 		return new MagneticFlux(getAmountIn(unit), unit);
 	}
 

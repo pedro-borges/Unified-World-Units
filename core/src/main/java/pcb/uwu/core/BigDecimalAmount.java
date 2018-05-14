@@ -348,9 +348,9 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof BigDecimalAmount) {
-			BigDecimalAmount other = (BigDecimalAmount) obj;
+			BigDecimalAmount that = (BigDecimalAmount) obj;
 
-			return this.value.equals(other.value);
+			return this.value.equals(that.value);
 		}
 
 		return false;

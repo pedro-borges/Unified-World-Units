@@ -80,7 +80,7 @@ public class Coulombs extends ElectricCharge {
 	}
 
 	@Override
-	public Coulombs convertTo(ElectricChargeUnit unit) {
+	public Coulombs in(ElectricChargeUnit unit) {
 		return new Coulombs(getAmountIn(unit));
 	}
 

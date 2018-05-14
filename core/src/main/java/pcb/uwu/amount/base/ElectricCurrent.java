@@ -70,7 +70,7 @@ public class ElectricCurrent extends CompositeUnitAmount<ElectricCurrentUnit> {
 	}
 
 	@Override
-	public ElectricCurrent convertTo(ElectricCurrentUnit unit) {
+	public ElectricCurrent in(ElectricCurrentUnit unit) {
 		return new ElectricCurrent(getAmountIn(unit), unit);
 	}
 

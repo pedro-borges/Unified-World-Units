@@ -71,7 +71,7 @@ public class LuminousIntensity extends CompositeUnitAmount<LuminousIntensityUnit
 	}
 
 	@Override
-	public LuminousIntensity convertTo(LuminousIntensityUnit unit) {
+	public LuminousIntensity in(LuminousIntensityUnit unit) {
 		return new LuminousIntensity(getAmountIn(unit), unit);
 	}
 

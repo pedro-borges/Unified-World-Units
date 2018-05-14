@@ -70,7 +70,7 @@ public class Pressure extends CompositeUnitAmount<PressureUnit> {
 	}
 
 	@Override
-	public Pressure convertTo(PressureUnit unit) {
+	public Pressure in(PressureUnit unit) {
 		return new Pressure(getAmountIn(unit), unit);
 	}
 

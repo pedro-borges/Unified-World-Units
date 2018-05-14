@@ -70,7 +70,7 @@ public class InterestRate extends CompositeUnitAmount<InterestRateUnit> {
 	}
 
 	@Override
-	public InterestRate convertTo(InterestRateUnit unit) {
+	public InterestRate in(InterestRateUnit unit) {
 		return new InterestRate(getAmountIn(unit), unit);
 	}
 

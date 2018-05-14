@@ -74,7 +74,7 @@ public class Farads extends ElectricCapacitance {
 	}
 
 	@Override
-	public Farads convertTo(ElectricCapacitanceUnit unit) {
+	public Farads in(ElectricCapacitanceUnit unit) {
 		return new Farads(getAmountIn(unit));
 	}
 

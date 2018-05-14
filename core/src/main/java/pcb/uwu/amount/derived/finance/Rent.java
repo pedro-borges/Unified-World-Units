@@ -73,7 +73,7 @@ public class Rent extends CompositeUnitAmount<RentUnit> {
 	}
 
 	@Override
-	public Rent convertTo(RentUnit unit) {
+	public Rent in(RentUnit unit) {
 		return new Rent(getAmountIn(unit), unit);
 	}
 

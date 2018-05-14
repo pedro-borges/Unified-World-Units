@@ -79,7 +79,7 @@ public class Time extends CompositeUnitAmount<TimeUnit> {
 	}
 
 	@Override
-	public Time convertTo(TimeUnit unit) {
+	public Time in(TimeUnit unit) {
 		return new Time(getAmountIn(unit), unit);
 	}
 

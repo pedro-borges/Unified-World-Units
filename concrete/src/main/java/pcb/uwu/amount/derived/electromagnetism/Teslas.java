@@ -73,7 +73,7 @@ public class Teslas extends MagneticField {
 	}
 
 	@Override
-	public Teslas convertTo(MagneticFieldUnit unit) {
+	public Teslas in(MagneticFieldUnit unit) {
 		return new Teslas(getAmountIn(unit));
 	}
 

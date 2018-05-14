@@ -70,7 +70,7 @@ public class ElectricResistance extends CompositeUnitAmount<ElectricResistanceUn
 	}
 
 	@Override
-	public ElectricResistance convertTo(ElectricResistanceUnit unit) {
+	public ElectricResistance in(ElectricResistanceUnit unit) {
 		return new ElectricResistance(getAmountIn(unit), unit);
 	}
 

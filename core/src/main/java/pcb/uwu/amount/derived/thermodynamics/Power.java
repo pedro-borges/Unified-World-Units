@@ -70,7 +70,7 @@ public class Power extends CompositeUnitAmount<PowerUnit> {
 	}
 
 	@Override
-	public Power convertTo(PowerUnit unit) {
+	public Power in(PowerUnit unit) {
 		return new Power(getAmountIn(unit), unit);
 	}
 

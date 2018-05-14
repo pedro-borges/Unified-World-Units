@@ -138,9 +138,11 @@ public class CompositeUnit implements Unit {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof CompositeUnit) {
-			CompositeUnit other = (CompositeUnit) obj;
+			CompositeUnit that = (CompositeUnit) obj;
 
-			return Objects.equals(this.unitCounter, other.unitCounter);
+			return Objects.equals(this.unitCounter, that.unitCounter)
+					&& Objects.equals(this.getTranslationFromCanonical(), that.getTranslationFromCanonical())
+					&& Objects.equals(this.getTranslationToCanonical(), that.getTranslationToCanonical());
 		}
 
 		return false;

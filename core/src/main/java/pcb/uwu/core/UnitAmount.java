@@ -159,5 +159,5 @@ public interface UnitAmount<U extends Unit> extends Comparable<UnitAmount<U>> {
 	 */
 	BigDecimalAmount getAmountIn(Magnitude magnitude, U unit);
 
-	UnitAmount<U> convertTo(U unit);
+	UnitAmount<U> in(U unit);
 }

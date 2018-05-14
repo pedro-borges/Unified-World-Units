@@ -83,7 +83,7 @@ public class Webbers extends MagneticFlux {
 	}
 
 	@Override
-	public Webbers convertTo(MagneticFluxUnit unit) {
+	public Webbers in(MagneticFluxUnit unit) {
 		return new Webbers(getAmountIn(unit));
 	}
 

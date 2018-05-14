@@ -4,21 +4,18 @@ import pcb.uwu.amount.base.Meters;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
-import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import static pcb.uwu.unit.derived.mechanics.MeterPerSecondUnit.METER_PER_SECOND;
 
 public class MetersPerSecond extends Speed {
 
 	// region constants
 
-	private static final SpeedUnit METER_PER_SECOND = new SpeedUnit(METER, SECOND);
-
-	public static final Speed SPEED_OF_LIGHT = new Speed("299792458", new SpeedUnit(METER, SECOND));
+	public static final Speed SPEED_OF_LIGHT = new MetersPerSecond("299792458");
 
 	// endregion
 

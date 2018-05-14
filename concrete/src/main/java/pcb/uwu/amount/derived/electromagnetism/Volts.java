@@ -77,7 +77,7 @@ public class Volts extends ElectricPotential {
 	}
 
 	@Override
-	public Volts convertTo(ElectricPotentialUnit unit) {
+	public Volts in(ElectricPotentialUnit unit) {
 		return new Volts(getAmountIn(unit));
 	}
 

@@ -103,7 +103,7 @@ public class Volume extends CompositeUnitAmount<VolumeUnit> {
 	}
 
 	@Override
-	public Volume convertTo(VolumeUnit unit) {
+	public Volume in(VolumeUnit unit) {
 		return new Volume(getAmountIn(unit), unit);
 	}
 

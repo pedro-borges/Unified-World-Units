@@ -70,7 +70,7 @@ public class ElectricCharge extends CompositeUnitAmount<ElectricChargeUnit> {
 	}
 
 	@Override
-	public ElectricCharge convertTo(ElectricChargeUnit unit) {
+	public ElectricCharge in(ElectricChargeUnit unit) {
 		return new ElectricCharge(getAmountIn(unit), unit);
 	}
 

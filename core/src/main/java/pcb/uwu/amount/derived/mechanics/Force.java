@@ -70,7 +70,7 @@ public class Force extends CompositeUnitAmount<ForceUnit> {
 	}
 
 	@Override
-	public Force convertTo(ForceUnit unit) {
+	public Force in(ForceUnit unit) {
 		return new Force(getAmountIn(unit), unit);
 	}
 

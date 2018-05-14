@@ -72,7 +72,7 @@ public class Frequency extends CompositeUnitAmount<FrequencyUnit> {
 	}
 
 	@Override
-	public Frequency convertTo(FrequencyUnit unit) {
+	public Frequency in(FrequencyUnit unit) {
 		return new Frequency(getAmountIn(unit), unit);
 	}
 

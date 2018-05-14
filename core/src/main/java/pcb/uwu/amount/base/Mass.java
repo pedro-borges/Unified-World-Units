@@ -74,7 +74,7 @@ public class Mass extends CompositeUnitAmount<MassUnit> {
 	}
 
 	@Override
-	public Mass convertTo(MassUnit unit) {
+	public Mass in(MassUnit unit) {
 		return new Mass(getAmountIn(unit), unit);
 	}
 

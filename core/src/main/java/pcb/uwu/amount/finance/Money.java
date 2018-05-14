@@ -59,7 +59,7 @@ public class Money extends CompositeUnitAmount<MoneyUnit> {
 	}
 
 	@Override
-	public Money convertTo(MoneyUnit unit) {
+	public Money in(MoneyUnit unit) {
 		return new Money(getAmountIn(unit), unit);
 	}
 
