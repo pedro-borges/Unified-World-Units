@@ -6,7 +6,7 @@ import pcb.uwu.core.UnitCounter;
 
 import java.util.function.Function;
 
-public abstract class LuminousIntensityUnit extends BaseUnit {
+public class LuminousIntensityUnit extends BaseUnit {
 
 	private final UnitCounter unitCounter;
 

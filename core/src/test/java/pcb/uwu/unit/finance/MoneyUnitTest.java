@@ -17,35 +17,35 @@ import static pcb.uwu.core.BigDecimalAmount.ZERO;
 import static pcb.uwu.unit.finance.MoneyUnit.CANONICAL_CURRENCY;
 
 public class MoneyUnitTest {
-	private static final Currency GBP = Currency.getInstance("GBP");
+	public static final MoneyUnit GBP = new MoneyUnit(Currency.getInstance("GBP"));
 
 	// region test constructors
 
 	@Test
 	public void testCurrencyEquals() {
-		assertSame(Currency.getInstance("GBP"), GBP);
+		assertSame(Currency.getInstance("GBP"), GBP.getCurrency());
 	}
 
 	@Test(expected = InvalidCurrencyException.class)
 	public void testConstructorCurrency() {
-		MoneyUnit moneyUnit = new MoneyUnit(GBP);
+		assertEquals("£", GBP.toString());
 
-		assertEquals("£", moneyUnit.toString());
-
-		moneyUnit.getTranslationToCanonical().apply(ZERO);
+		GBP.getTranslationToCanonical().apply(ZERO);
 	}
 
 	@Test
 	public void testConstructorCurrencyConverterWithConversion() {
 		CurrencyConversionProvider currencyConversionProvider = (originalCurrency, destinationCurrency) ->
 		{
-			if (originalCurrency == GBP && destinationCurrency == CANONICAL_CURRENCY) return new BigDecimal("1.1");
-			if (originalCurrency == CANONICAL_CURRENCY && destinationCurrency == GBP) return ONE.divide(new BigDecimal("1.1"), DECIMAL32);
+			if (originalCurrency == GBP.getCurrency() && destinationCurrency == CANONICAL_CURRENCY.getCurrency())
+				return new BigDecimal("1.1");
+			if (originalCurrency == CANONICAL_CURRENCY.getCurrency() && destinationCurrency == GBP.getCurrency())
+				return ONE.divide(new BigDecimal("1.1"), DECIMAL32);
 
 			return null;
 		};
 
-		MoneyUnit moneyUnit = new MoneyUnit(GBP, currencyConversionProvider);
+		MoneyUnit moneyUnit = new MoneyUnit(GBP.getCurrency(), currencyConversionProvider);
 
 		assertEquals("£", moneyUnit.toString());
 
@@ -61,7 +61,7 @@ public class MoneyUnitTest {
 	public void testConstructorCurrencyConverterWithNoConversion() {
 		CurrencyConversionProvider currencyConversionProvider = (originalCurrency, destinationCurrency) -> null;
 
-		MoneyUnit moneyUnit = new MoneyUnit(GBP, currencyConversionProvider);
+		MoneyUnit moneyUnit = new MoneyUnit(GBP.getCurrency(), currencyConversionProvider);
 
 		assertEquals("£", moneyUnit.toString());
 

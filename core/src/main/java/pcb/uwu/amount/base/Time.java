@@ -1,11 +1,14 @@
 package pcb.uwu.amount.base;
 
+import pcb.uwu.amount.derived.finance.Debt;
 import pcb.uwu.amount.derived.fundamental.Frequency;
+import pcb.uwu.amount.finance.Money;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.TimeUnit;
+import pcb.uwu.unit.derived.finance.DebtUnit;
 import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
 
 import java.math.BigDecimal;
@@ -91,6 +94,17 @@ public class Time extends CompositeUnitAmount<TimeUnit> {
 	@Override
 	public Frequency invert(MathContext mathContext) {
 		return new Frequency(getAmount().invert(mathContext), new FrequencyUnit(getUnit()));
+	}
+
+	// endregion
+
+	// region composition
+
+	public Debt multipliedBy(Money money, MathContext mathContext) {
+		BigDecimalAmount amount = multipliedByScalar(this, money.getAmount().getValue(), mathContext);
+		DebtUnit unit = new DebtUnit(money.getUnit(), getUnit());
+
+		return new Debt(amount, unit);
 	}
 
 	// endregion

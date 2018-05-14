@@ -85,12 +85,13 @@ public class Rent extends CompositeUnitAmount<RentUnit> {
 
 	// endregion
 
-	// region derived
+	// region composition
 
 	public Money multipliedBy(Time time, MathContext mathContext) {
-		MoneyUnit moneyUnit = getUnit().getUnitCounter().findUnit(MoneyUnit.class);
+		BigDecimalAmount amount = super.multipliedBy(time, mathContext).getAmount();
+		MoneyUnit unit = getUnit().getUnitCounter().findUnit(MoneyUnit.class);
 
-		return new Money(super.multipliedBy(time, mathContext).getAmount(), moneyUnit);
+		return new Money(amount, unit);
 	}
 
 	// endregion

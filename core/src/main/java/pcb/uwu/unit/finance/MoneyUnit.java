@@ -15,7 +15,7 @@ import static java.math.MathContext.DECIMAL32;
 
 public class MoneyUnit extends BaseUnit {
 
-	public static final Currency CANONICAL_CURRENCY = Currency.getInstance("USD");
+	public static final MoneyUnit CANONICAL_CURRENCY = new MoneyUnit(Currency.getInstance("USD"));
 
 	// region private fields
 
@@ -58,11 +58,11 @@ public class MoneyUnit extends BaseUnit {
 			return super.getTranslationToCanonical();
 		}
 
-		BigDecimal ratio = currencyConversionProvider.getRatio(currency, CANONICAL_CURRENCY);
+		BigDecimal ratio = currencyConversionProvider.getRatio(currency, CANONICAL_CURRENCY.currency);
 
 		if (ratio == null) {
 			throw new InvalidCurrencyException("No ratio available to convert {} to {}",
-					currency.getDisplayName(), CANONICAL_CURRENCY.getDisplayName());
+					currency.getDisplayName(), CANONICAL_CURRENCY.currency.getDisplayName());
 		}
 
 		return amount -> amount.multipliedBy(ratio, DECIMAL32);
@@ -74,11 +74,11 @@ public class MoneyUnit extends BaseUnit {
 			return super.getTranslationToCanonical();
 		}
 
-		BigDecimal ratio = currencyConversionProvider.getRatio(CANONICAL_CURRENCY, currency);
+		BigDecimal ratio = currencyConversionProvider.getRatio(CANONICAL_CURRENCY.currency, currency);
 
 		if (ratio == null) {
 			throw new InvalidCurrencyException("No ratio available to convert {} to {}",
-					CANONICAL_CURRENCY.getDisplayName(), currency.getDisplayName());
+					CANONICAL_CURRENCY.currency.getDisplayName(), currency.getDisplayName());
 		}
 
 		return amount -> amount.multipliedBy(ratio, DECIMAL32);
@@ -97,6 +97,10 @@ public class MoneyUnit extends BaseUnit {
 	// endregion
 
 	// region public methods
+
+	public Currency getCurrency() {
+		return currency;
+	}
 
 	public int getDefaultFractionDigits() {
 		return currency.getDefaultFractionDigits();

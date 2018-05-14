@@ -1,11 +1,13 @@
 package pcb.uwu.amount.finance;
 
 import pcb.uwu.amount.base.Time;
+import pcb.uwu.amount.derived.finance.Debt;
 import pcb.uwu.amount.derived.finance.InterestRate;
 import pcb.uwu.amount.derived.finance.Rent;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.UnitAmount;
+import pcb.uwu.unit.derived.finance.DebtUnit;
 import pcb.uwu.unit.finance.MoneyUnit;
 import pcb.uwu.unit.finance.RentUnit;
 
@@ -73,19 +75,24 @@ public class Money extends CompositeUnitAmount<MoneyUnit> {
 	// region composition
 
 	public Rent dividedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount()
-				.dividedBy(time.getAmount().getValue(), mathContext);
+		BigDecimalAmount amount = getAmount().dividedBy(time.getAmount().getValue(), mathContext);
 		RentUnit unit = new RentUnit(getUnit(), time.getUnit());
 
 		return new Rent(amount, unit);
 	}
 
 	public Rent multipliedBy(InterestRate interestRate, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount()
-				.multipliedBy(interestRate.getAmount().getValue(), mathContext);
+		BigDecimalAmount amount = getAmount().multipliedBy(interestRate.getAmount().getValue(), mathContext);
 		RentUnit unit = new RentUnit(getUnit(), interestRate.getUnit());
 
 		return new Rent(amount, unit);
+	}
+
+	public Debt multipliedBy(Time time, MathContext mathContext) {
+		BigDecimalAmount amount = multipliedByScalar(this, time.getAmount().getValue(), mathContext);
+		DebtUnit unit = new DebtUnit(getUnit(), time.getUnit());
+
+		return new Debt(amount, unit);
 	}
 
 	// endregion

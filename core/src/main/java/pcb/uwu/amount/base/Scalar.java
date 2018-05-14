@@ -6,7 +6,7 @@ import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.ScalarUnit;
-import pcb.uwu.unit.finance.InterestRateUnit;
+import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -91,7 +91,7 @@ public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 	public InterestRate dividedBy(Time time, MathContext mathContext) {
 		BigDecimalAmount amount = getAmount()
 				.dividedBy(time.getAmount().getValue(), mathContext);
-		InterestRateUnit unit = new InterestRateUnit(time.getUnit());
+		FrequencyUnit unit = new FrequencyUnit(time.getUnit());
 
 		return new InterestRate(amount, unit);
 	}

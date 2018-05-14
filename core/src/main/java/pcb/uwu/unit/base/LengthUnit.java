@@ -6,7 +6,7 @@ import pcb.uwu.core.UnitCounter;
 
 import java.util.function.Function;
 
-public abstract class LengthUnit extends BaseUnit {
+public class LengthUnit extends BaseUnit {
 
 	private final UnitCounter unitCounter;
 

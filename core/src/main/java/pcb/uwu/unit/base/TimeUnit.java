@@ -6,7 +6,7 @@ import pcb.uwu.core.UnitCounter;
 
 import java.util.function.Function;
 
-public abstract class TimeUnit extends BaseUnit {
+public class TimeUnit extends BaseUnit {
 
 	private final UnitCounter unitCounter;
 

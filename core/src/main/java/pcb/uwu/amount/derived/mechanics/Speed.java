@@ -96,23 +96,24 @@ public class Speed extends CompositeUnitAmount<SpeedUnit> {
 	// region composition
 
 	public Acceleration dividedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount()
-				.dividedBy(time.getAmount().getValue(), mathContext);
+		BigDecimalAmount amount = getAmount().dividedBy(time.getAmount().getValue(), mathContext);
 		AccelerationUnit unit = new AccelerationUnit(getUnit(), time.getUnit());
 
 		return new Acceleration(amount, unit);
 	}
 
 	public Time dividedBy(Acceleration acceleration, MathContext mathContext) {
-		TimeUnit timeUnit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
+		BigDecimalAmount amount = super.dividedBy(acceleration, mathContext).getAmount();
+		TimeUnit unit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
 
-		return new Time(super.dividedBy(acceleration, mathContext).getAmount(), timeUnit);
+		return new Time(amount, unit);
 	}
 
 	public Length multipliedBy(Time time, MathContext mathContext) {
-		LengthUnit lengthUnit = getUnit().getUnitCounter().findUnit(LengthUnit.class);
+		BigDecimalAmount amount = super.multipliedBy(time, mathContext).getAmount();
+		LengthUnit unit = getUnit().getUnitCounter().findUnit(LengthUnit.class);
 
-		return new Length(super.multipliedBy(time, mathContext).getAmount(), lengthUnit);
+		return new Length(amount, unit);
 	}
 
 	// endregion

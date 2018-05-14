@@ -25,6 +25,6 @@ public class MitchGoesRunning {
 		Speed wifeSpeed = wifeDistance.dividedBy(wifeTime, DECIMAL64);
 
 		assertEquals("2.777777777777778 s⁻¹⋅m", mitchSpeed.in(METER_PER_SECOND).toString());
-		assertEquals("2.4384000000000 s⁻¹⋅m", wifeSpeed.in(METER_PER_SECOND).toString());
+		assertEquals("2.438400000000000 s⁻¹⋅m", wifeSpeed.in(METER_PER_SECOND).toString());
 	}
 }

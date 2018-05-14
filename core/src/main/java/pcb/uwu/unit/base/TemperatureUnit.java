@@ -6,7 +6,7 @@ import pcb.uwu.core.UnitCounter;
 
 import java.util.function.Function;
 
-public abstract class TemperatureUnit extends BaseUnit {
+public class TemperatureUnit extends BaseUnit {
 
 	private final UnitCounter unitCounter;
 

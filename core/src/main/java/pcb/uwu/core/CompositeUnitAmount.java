@@ -122,9 +122,11 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 			// other is major and this is major
 			while (otherMagnitude > 0 && resultMagnitude > 0) {
-				transformation = transformation
-						.andThen(otherUnitCount.getUnit().getTranslationToCanonical())
-						.andThen(resultUnitCount.getUnit().getTranslationFromCanonical());
+				if (!otherUnitCount.getUnit().equals(resultUnitCount.getUnit())) {
+					transformation = transformation
+							.andThen(otherUnitCount.getUnit().getTranslationToCanonical())
+							.andThen(resultUnitCount.getUnit().getTranslationFromCanonical());
+				}
 
 				resultUnitCounter = resultUnitCounter.major(resultUnitCount.getUnit());
 
@@ -134,9 +136,11 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 			// other is minor and this is minor
 			while (otherMagnitude < 0 && resultMagnitude < 0) {
-				transformation = transformation
-						.andThen(otherUnitCount.getUnit().getTranslationFromCanonical())
-						.andThen(resultUnitCount.getUnit().getTranslationToCanonical());
+				if (!otherUnitCount.getUnit().equals(resultUnitCount.getUnit())) {
+					transformation = transformation
+							.andThen(otherUnitCount.getUnit().getTranslationFromCanonical())
+							.andThen(resultUnitCount.getUnit().getTranslationToCanonical());
+				}
 
 				resultUnitCounter = resultUnitCounter.minor(resultUnitCount.getUnit());
 
@@ -146,9 +150,11 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 			// other is major and this is minor
 			while (otherMagnitude > 0 && resultMagnitude < 0) {
-				transformation = transformation
-						.andThen(otherUnitCount.getUnit().getTranslationToCanonical())
-						.andThen(resultUnitCount.getUnit().getTranslationFromCanonical());
+				if (!otherUnitCount.getUnit().equals(resultUnitCount.getUnit())) {
+					transformation = transformation
+							.andThen(otherUnitCount.getUnit().getTranslationToCanonical())
+							.andThen(resultUnitCount.getUnit().getTranslationFromCanonical());
+				}
 
 				resultUnitCounter = resultUnitCounter.major(resultUnitCount.getUnit());
 
@@ -158,9 +164,11 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 			// other is minor and this is major
 			while (otherMagnitude < 0 && resultMagnitude > 0) {
-				transformation = transformation
-						.andThen(otherUnitCount.getUnit().getTranslationFromCanonical())
-						.andThen(resultUnitCount.getUnit().getTranslationToCanonical());
+				if (!otherUnitCount.getUnit().equals(resultUnitCount.getUnit())) {
+					transformation = transformation
+							.andThen(otherUnitCount.getUnit().getTranslationFromCanonical())
+							.andThen(resultUnitCount.getUnit().getTranslationToCanonical());
+				}
 
 				resultUnitCounter = resultUnitCounter.minor(resultUnitCount.getUnit());
 
