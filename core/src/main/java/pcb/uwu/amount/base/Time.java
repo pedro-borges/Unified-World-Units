@@ -13,6 +13,7 @@ import java.math.MathContext;
 import java.time.Duration;
 
 import static java.math.MathContext.UNLIMITED;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Time extends CompositeUnitAmount<TimeUnit> {
 
@@ -80,7 +81,7 @@ public class Time extends CompositeUnitAmount<TimeUnit> {
 
 	@Override
 	public Time in(TimeUnit unit) {
-		return new Time(getAmountIn(unit), unit);
+		return new Time(getAmountIn(this, unit), unit);
 	}
 
 	@Override
@@ -89,5 +90,4 @@ public class Time extends CompositeUnitAmount<TimeUnit> {
 	}
 
 	// endregion
-
 }

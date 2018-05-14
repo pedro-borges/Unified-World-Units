@@ -12,6 +12,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Nits extends Luminance {
 
@@ -78,7 +79,7 @@ public class Nits extends Luminance {
 	// region composition
 
 	public Candelas multipliedBy(Area area, MathContext mathContext) {
-		return new Candelas(getAmount().multipliedBy(area.getAmountIn(SQUARE_METER), mathContext));
+		return new Candelas(getAmount().multipliedBy(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
 	// endregion

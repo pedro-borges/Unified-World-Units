@@ -9,6 +9,8 @@ import pcb.uwu.unit.derived.electromagnetism.MagneticFieldUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class MagneticField extends CompositeUnitAmount<MagneticFieldUnit> {
 
 	// region constructors
@@ -71,7 +73,7 @@ public class MagneticField extends CompositeUnitAmount<MagneticFieldUnit> {
 
 	@Override
 	public MagneticField in(MagneticFieldUnit unit) {
-		return new MagneticField(getAmountIn(unit), unit);
+		return new MagneticField(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

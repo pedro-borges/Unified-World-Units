@@ -9,6 +9,8 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricChargeUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class ElectricCharge extends CompositeUnitAmount<ElectricChargeUnit> {
 
 	// region constructors
@@ -71,7 +73,7 @@ public class ElectricCharge extends CompositeUnitAmount<ElectricChargeUnit> {
 
 	@Override
 	public ElectricCharge in(ElectricChargeUnit unit) {
-		return new ElectricCharge(getAmountIn(unit), unit);
+		return new ElectricCharge(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

@@ -10,6 +10,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.mechanics.MeterPerSecondUnit.METER_PER_SECOND;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class MetersPerSecond extends Speed {
 
@@ -59,7 +60,7 @@ public class MetersPerSecond extends Speed {
 
 	@Override
 	public Meters multipliedBy(Time time, MathContext mathContext) {
-		return new Meters(super.multipliedByScalar(time.getAmountIn(SECOND).getValue(), mathContext));
+		return new Meters(super.multipliedByScalar(getAmountIn(time, SECOND).getValue(), mathContext));
 	}
 
 	// endregion

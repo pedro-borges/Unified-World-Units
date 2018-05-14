@@ -12,6 +12,7 @@ import java.math.MathContext;
 import java.util.function.BiFunction;
 
 import static pcb.uwu.utils.MathUtils.PI;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Volume extends CompositeUnitAmount<VolumeUnit> {
 
@@ -104,7 +105,7 @@ public class Volume extends CompositeUnitAmount<VolumeUnit> {
 
 	@Override
 	public Volume in(VolumeUnit unit) {
-		return new Volume(getAmountIn(unit), unit);
+		return new Volume(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

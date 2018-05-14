@@ -9,6 +9,8 @@ import pcb.uwu.unit.base.ElectricCurrentUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class ElectricCurrent extends CompositeUnitAmount<ElectricCurrentUnit> {
 
 	// region constructors
@@ -71,7 +73,7 @@ public class ElectricCurrent extends CompositeUnitAmount<ElectricCurrentUnit> {
 
 	@Override
 	public ElectricCurrent in(ElectricCurrentUnit unit) {
-		return new ElectricCurrent(getAmountIn(unit), unit);
+		return new ElectricCurrent(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

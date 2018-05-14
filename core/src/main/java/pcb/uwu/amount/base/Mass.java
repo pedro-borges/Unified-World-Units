@@ -12,6 +12,8 @@ import pcb.uwu.unit.derived.mechanics.ForceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class Mass extends CompositeUnitAmount<MassUnit> {
 
 	// region constructors
@@ -75,7 +77,7 @@ public class Mass extends CompositeUnitAmount<MassUnit> {
 
 	@Override
 	public Mass in(MassUnit unit) {
-		return new Mass(getAmountIn(unit), unit);
+		return new Mass(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

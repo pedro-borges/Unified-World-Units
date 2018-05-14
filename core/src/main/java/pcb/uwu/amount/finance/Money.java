@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static java.math.RoundingMode.HALF_EVEN;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Money extends CompositeUnitAmount<MoneyUnit> {
 
@@ -40,12 +41,12 @@ public class Money extends CompositeUnitAmount<MoneyUnit> {
 
 	@Override
 	public Money plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		return new Money(getAmount().plus(other.getAmountIn(getUnit()), mathContext), getUnit());
+		return new Money(getAmount().plus(getAmountIn(other, getUnit()), mathContext), getUnit());
 	}
 
 	@Override
 	public Money minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		return new Money(getAmount().minus(other.getAmountIn(getUnit()), mathContext), getUnit());
+		return new Money(getAmount().minus(getAmountIn(other, getUnit()), mathContext), getUnit());
 	}
 
 	@Override
@@ -60,7 +61,7 @@ public class Money extends CompositeUnitAmount<MoneyUnit> {
 
 	@Override
 	public Money in(MoneyUnit unit) {
-		return new Money(getAmountIn(unit), unit);
+		return new Money(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

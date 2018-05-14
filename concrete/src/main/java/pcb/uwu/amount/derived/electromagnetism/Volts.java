@@ -15,6 +15,7 @@ import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.derived.electromagnetism.CoulombUnit.COULOMB;
 import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Volts extends ElectricPotential {
 
@@ -78,7 +79,7 @@ public class Volts extends ElectricPotential {
 
 	@Override
 	public Volts in(ElectricPotentialUnit unit) {
-		return new Volts(getAmountIn(unit));
+		return new Volts(getAmountIn(this, unit));
 	}
 
 	// endregion
@@ -86,15 +87,15 @@ public class Volts extends ElectricPotential {
 	// region composition
 
 	public Amperes dividedBy(ElectricResistance electricResistance, MathContext mathContext) {
-		return new Amperes(getAmount().dividedBy(electricResistance.getAmountIn(OHM), mathContext));
+		return new Amperes(getAmount().dividedBy(getAmountIn(electricResistance, OHM), mathContext));
 	}
 
 	public Ohms dividedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Ohms(getAmount().dividedBy(electricCurrent.getAmountIn(AMPERE), mathContext));
+		return new Ohms(getAmount().dividedBy(getAmountIn(electricCurrent, AMPERE), mathContext));
 	}
 
 	public Joules multipliedBy(ElectricCharge electricCharge, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(electricCharge.getAmountIn(COULOMB), mathContext));
+		return new Joules(getAmount().multipliedBy(getAmountIn(electricCharge, COULOMB), mathContext));
 	}
 
 	// endregion

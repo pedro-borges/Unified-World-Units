@@ -13,6 +13,7 @@ import java.math.MathContext;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.optics.LumenUnit.LUMEN;
 import static pcb.uwu.unit.derived.optics.TalbotUnit.TALBOT;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Talbots extends LuminousEnergy {
 
@@ -79,11 +80,11 @@ public class Talbots extends LuminousEnergy {
 	// region composition
 
 	public Lumens dividedBy(Time time, MathContext mathContext) {
-		return new Lumens(getAmount().dividedBy(time.getAmountIn(SECOND), mathContext));
+		return new Lumens(getAmount().dividedBy(getAmountIn(time, SECOND), mathContext));
 	}
 
 	public Seconds dividedBy(LuminousFlux luminousFlux, MathContext mathContext) {
-		return new Seconds(getAmount().dividedBy(luminousFlux.getAmountIn(LUMEN), mathContext));
+		return new Seconds(getAmount().dividedBy(getAmountIn(luminousFlux, LUMEN), mathContext));
 	}
 
 	// endregion

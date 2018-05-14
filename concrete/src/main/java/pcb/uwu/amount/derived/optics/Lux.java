@@ -11,6 +11,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Lux extends Illuminance {
 
@@ -77,7 +78,7 @@ public class Lux extends Illuminance {
 	// region composition
 
 	public Lumens multipliedBy(Area area, MathContext mathContext) {
-		return new Lumens(getAmount().multipliedBy(area.getAmountIn(SQUARE_METER), mathContext));
+		return new Lumens(getAmount().multipliedBy(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
 	// endregion

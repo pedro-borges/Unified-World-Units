@@ -21,6 +21,7 @@ import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON;
 import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Newtons extends Force {
 
@@ -97,15 +98,15 @@ public class Newtons extends Force {
 	}
 
 	public Joules multipliedBy(Length length, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(length.getAmountIn(METER), mathContext));
+		return new Joules(getAmount().multipliedBy(getAmountIn(length, METER), mathContext));
 	}
 
 	public Area dividedBy(Pressure pressure, MathContext mathContext) {
-		return new Area(getAmount().dividedBy(pressure.getAmountIn(PASCAL), mathContext), SQUARE_METER);
+		return new Area(getAmount().dividedBy(getAmountIn(pressure, PASCAL), mathContext), SQUARE_METER);
 	}
 
 	public Pascals dividedBy(Area area, MathContext mathContext) {
-		return new Pascals(getAmount().dividedBy(area.getAmountIn(SQUARE_METER), mathContext));
+		return new Pascals(getAmount().dividedBy(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
 	// endregion

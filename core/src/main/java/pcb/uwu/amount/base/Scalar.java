@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.ScalarUnit.SCALAR;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 
@@ -76,7 +77,7 @@ public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 
 	@Override
 	public Scalar in(ScalarUnit unit) {
-		return new Scalar(getAmountIn(unit));
+		return new Scalar(getAmountIn(this, unit));
 	}
 
 	// endregion

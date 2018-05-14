@@ -9,6 +9,8 @@ import pcb.uwu.unit.derived.scalar.AngleUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class Angle extends CompositeUnitAmount<AngleUnit> {
 
 	// region constructors
@@ -72,7 +74,7 @@ public class Angle extends CompositeUnitAmount<AngleUnit> {
 
 	@Override
 	public Angle in(AngleUnit unit) {
-		return new Angle(getAmountIn(unit), unit);
+		return new Angle(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

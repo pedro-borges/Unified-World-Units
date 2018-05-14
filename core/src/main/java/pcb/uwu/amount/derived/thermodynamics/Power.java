@@ -9,6 +9,8 @@ import pcb.uwu.unit.derived.termodynamics.PowerUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class Power extends CompositeUnitAmount<PowerUnit> {
 
 	// region constructors
@@ -71,7 +73,7 @@ public class Power extends CompositeUnitAmount<PowerUnit> {
 
 	@Override
 	public Power in(PowerUnit unit) {
-		return new Power(getAmountIn(unit), unit);
+		return new Power(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

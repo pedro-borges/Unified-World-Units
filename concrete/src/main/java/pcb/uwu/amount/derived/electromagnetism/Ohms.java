@@ -11,6 +11,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Ohms extends ElectricResistance {
 
@@ -74,7 +75,7 @@ public class Ohms extends ElectricResistance {
 
 	@Override
 	public Ohms in(ElectricResistanceUnit unit) {
-		return new Ohms(getAmountIn(unit));
+		return new Ohms(getAmountIn(this, unit));
 	}
 
 	@Override
@@ -87,7 +88,7 @@ public class Ohms extends ElectricResistance {
 	// region composition
 
 	public Volts multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Volts(getAmount().multipliedBy(electricCurrent.getAmountIn(AMPERE), mathContext));
+		return new Volts(getAmount().multipliedBy(getAmountIn(electricCurrent, AMPERE), mathContext));
 	}
 
 	// endregion

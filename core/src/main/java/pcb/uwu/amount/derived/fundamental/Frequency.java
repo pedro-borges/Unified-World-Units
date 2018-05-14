@@ -11,6 +11,8 @@ import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class Frequency extends CompositeUnitAmount<FrequencyUnit> {
 
 	// region constructors
@@ -73,7 +75,7 @@ public class Frequency extends CompositeUnitAmount<FrequencyUnit> {
 
 	@Override
 	public Frequency in(FrequencyUnit unit) {
-		return new Frequency(getAmountIn(unit), unit);
+		return new Frequency(getAmountIn(this, unit), unit);
 	}
 
 	@Override

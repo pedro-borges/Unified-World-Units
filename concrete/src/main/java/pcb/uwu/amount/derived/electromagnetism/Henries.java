@@ -11,6 +11,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.derived.electromagnetism.HenryUnit.HENRY;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Henries extends ElectricInductance {
 
@@ -74,7 +75,7 @@ public class Henries extends ElectricInductance {
 
 	@Override
 	public Henries in(ElectricInductanceUnit unit) {
-		return new Henries(getAmountIn(unit));
+		return new Henries(getAmountIn(this, unit));
 	}
 
 	// endregion
@@ -82,7 +83,7 @@ public class Henries extends ElectricInductance {
 	// region composition
 
 	public Webbers multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Webbers(getAmount().multipliedBy(electricCurrent.getAmountIn(AMPERE), mathContext));
+		return new Webbers(getAmount().multipliedBy(getAmountIn(electricCurrent, AMPERE), mathContext));
 	}
 
 	// endregion

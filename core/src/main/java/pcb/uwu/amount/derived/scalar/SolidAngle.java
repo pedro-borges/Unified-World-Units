@@ -9,6 +9,8 @@ import pcb.uwu.unit.derived.scalar.SolidAngleUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class SolidAngle extends CompositeUnitAmount<SolidAngleUnit> {
 
 	// region constructors
@@ -72,7 +74,7 @@ public class SolidAngle extends CompositeUnitAmount<SolidAngleUnit> {
 
 	@Override
 	public SolidAngle in(SolidAngleUnit unit) {
-		return new SolidAngle(getAmountIn(unit), unit);
+		return new SolidAngle(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

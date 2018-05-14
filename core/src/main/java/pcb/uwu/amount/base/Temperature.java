@@ -9,6 +9,8 @@ import pcb.uwu.unit.base.TemperatureUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class Temperature extends CompositeUnitAmount<TemperatureUnit> {
 
 	// region constructors
@@ -72,7 +74,7 @@ public class Temperature extends CompositeUnitAmount<TemperatureUnit> {
 
 	@Override
 	public Temperature in(TemperatureUnit unit) {
-		return new Temperature(getAmountIn(unit), unit);
+		return new Temperature(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

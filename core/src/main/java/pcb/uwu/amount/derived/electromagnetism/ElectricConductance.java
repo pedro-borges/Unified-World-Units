@@ -9,6 +9,8 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricConductanceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class ElectricConductance extends CompositeUnitAmount<ElectricConductanceUnit> {
 
 	// region constructors
@@ -71,7 +73,7 @@ public class ElectricConductance extends CompositeUnitAmount<ElectricConductance
 
 	@Override
 	public ElectricConductance in(ElectricConductanceUnit unit) {
-		return new ElectricConductance(getAmountIn(unit), unit);
+		return new ElectricConductance(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

@@ -11,6 +11,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.electromagnetism.TeslaUnit.TESLA;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Teslas extends MagneticField {
 
@@ -74,7 +75,7 @@ public class Teslas extends MagneticField {
 
 	@Override
 	public Teslas in(MagneticFieldUnit unit) {
-		return new Teslas(getAmountIn(unit));
+		return new Teslas(getAmountIn(this, unit));
 	}
 
 	// endregion
@@ -82,7 +83,7 @@ public class Teslas extends MagneticField {
 	// region composition
 
 	public Webbers multipliedBy(Area area, MathContext mathContext) {
-		return new Webbers(getAmount().multipliedBy(area.getAmountIn(SQUARE_METER), mathContext));
+		return new Webbers(getAmount().multipliedBy(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 	
 	// endregion

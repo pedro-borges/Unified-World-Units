@@ -12,6 +12,7 @@ import java.math.MathContext;
 import static pcb.uwu.unit.derived.electromagnetism.FaradUnit.FARAD;
 import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Farads extends ElectricCapacitance {
 
@@ -75,7 +76,7 @@ public class Farads extends ElectricCapacitance {
 
 	@Override
 	public Farads in(ElectricCapacitanceUnit unit) {
-		return new Farads(getAmountIn(unit));
+		return new Farads(getAmountIn(this, unit));
 	}
 
 	// endregion
@@ -83,11 +84,11 @@ public class Farads extends ElectricCapacitance {
 	// region composition
 
 	public Coulombs multipliedBy(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Coulombs(getAmount().multipliedBy(electricPotential.getAmountIn(VOLT), mathContext));
+		return new Coulombs(getAmount().multipliedBy(getAmountIn(electricPotential, VOLT), mathContext));
 	}
 
 	public Seconds multipliedBy(ElectricResistance electricResistance, MathContext mathContext) {
-		return new Seconds(getAmount().multipliedBy(electricResistance.getAmountIn(OHM), mathContext));
+		return new Seconds(getAmount().multipliedBy(getAmountIn(electricResistance, OHM), mathContext));
 	}
 
 	// endregion

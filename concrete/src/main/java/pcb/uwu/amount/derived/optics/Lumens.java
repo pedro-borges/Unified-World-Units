@@ -21,6 +21,7 @@ import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.LumenUnit.LUMEN;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
 import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Lumens extends LuminousFlux {
 
@@ -87,23 +88,23 @@ public class Lumens extends LuminousFlux {
 	// region composition
 
 	public Candelas dividedBy(SolidAngle solidAngle, MathContext mathContext) {
-		return new Candelas(getAmount().dividedBy(solidAngle.getAmountIn(STERADIAN), mathContext));
+		return new Candelas(getAmount().dividedBy(getAmountIn(solidAngle, STERADIAN), mathContext));
 	}
 
 	public Steradians dividedBy(LuminousIntensity luminousIntensity, MathContext mathContext) {
-		return new Steradians(getAmount().dividedBy(luminousIntensity.getAmountIn(CANDELA), mathContext));
+		return new Steradians(getAmount().dividedBy(getAmountIn(luminousIntensity, CANDELA), mathContext));
 	}
 
 	public Talbots multipliedBy(Time time, MathContext mathContext) {
-		return new Talbots(getAmount().multipliedBy(time.getAmountIn(SECOND), mathContext));
+		return new Talbots(getAmount().multipliedBy(getAmountIn(time, SECOND), mathContext));
 	}
 
 	public Lux dividedBy(Area area, MathContext mathContext) {
-		return new Lux(getAmount().dividedBy(area.getAmountIn(SQUARE_METER), mathContext));
+		return new Lux(getAmount().dividedBy(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
 	public SquareMeters dividedBy(Illuminance illuminance, MathContext mathContext) {
-		return new SquareMeters(getAmount().dividedBy(illuminance.getAmountIn(LUX), mathContext));
+		return new SquareMeters(getAmount().dividedBy(getAmountIn(illuminance, LUX), mathContext));
 	}
 
 	// endregion

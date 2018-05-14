@@ -12,6 +12,7 @@ import java.math.MathContext;
 import java.util.function.BiFunction;
 
 import static pcb.uwu.utils.MathUtils.PI;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Area extends CompositeUnitAmount<AreaUnit> {
 
@@ -103,7 +104,7 @@ public class Area extends CompositeUnitAmount<AreaUnit> {
 
 	@Override
 	public Area in(AreaUnit unit) {
-		return new Area(getAmountIn(unit), unit);
+		return new Area(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

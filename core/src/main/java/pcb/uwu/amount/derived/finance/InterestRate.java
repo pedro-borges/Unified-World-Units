@@ -9,6 +9,8 @@ import pcb.uwu.unit.finance.InterestRateUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class InterestRate extends CompositeUnitAmount<InterestRateUnit> {
 
 	// region constructors
@@ -71,7 +73,7 @@ public class InterestRate extends CompositeUnitAmount<InterestRateUnit> {
 
 	@Override
 	public InterestRate in(InterestRateUnit unit) {
-		return new InterestRate(getAmountIn(unit), unit);
+		return new InterestRate(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

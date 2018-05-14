@@ -15,6 +15,8 @@ import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class Speed extends CompositeUnitAmount<SpeedUnit> {
 
 	// region constructors
@@ -77,7 +79,7 @@ public class Speed extends CompositeUnitAmount<SpeedUnit> {
 
 	@Override
 	public Speed in(SpeedUnit unit) {
-		return new Speed(getAmountIn(unit), unit);
+		return new Speed(getAmountIn(this, unit), unit);
 	}
 
 	@Override

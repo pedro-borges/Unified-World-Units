@@ -18,6 +18,7 @@ import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.electromagnetism.CoulombUnit.COULOMB;
 import static pcb.uwu.unit.derived.electromagnetism.FaradUnit.FARAD;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Coulombs extends ElectricCharge {
 
@@ -81,7 +82,7 @@ public class Coulombs extends ElectricCharge {
 
 	@Override
 	public Coulombs in(ElectricChargeUnit unit) {
-		return new Coulombs(getAmountIn(unit));
+		return new Coulombs(getAmountIn(this, unit));
 	}
 
 	// endregion
@@ -89,23 +90,23 @@ public class Coulombs extends ElectricCharge {
 	// region composition
 
 	public Amperes dividedBy(Time time, MathContext mathContext) {
-		return new Amperes(getAmount().dividedBy(time.getAmountIn(SECOND), mathContext));
+		return new Amperes(getAmount().dividedBy(getAmountIn(time, SECOND), mathContext));
 	}
 
 	public Seconds dividedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Seconds(getAmount().dividedBy(electricCurrent.getAmountIn(AMPERE), mathContext));
+		return new Seconds(getAmount().dividedBy(getAmountIn(electricCurrent, AMPERE), mathContext));
 	}
 
 	public Volts dividedBy(ElectricCapacitance electricCapacitance, MathContext mathContext) {
-		return new Volts(getAmount().dividedBy(electricCapacitance.getAmountIn(FARAD), mathContext));
+		return new Volts(getAmount().dividedBy(getAmountIn(electricCapacitance, FARAD), mathContext));
 	}
 
 	public Farads dividedBy(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Farads(getAmount().dividedBy(electricPotential.getAmountIn(VOLT), mathContext));
+		return new Farads(getAmount().dividedBy(getAmountIn(electricPotential, VOLT), mathContext));
 	}
 
 	public Joules multipliedBy(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(electricPotential.getAmountIn(VOLT), mathContext));
+		return new Joules(getAmount().multipliedBy(getAmountIn(electricPotential, VOLT), mathContext));
 	}
 
 	// endregion

@@ -12,6 +12,8 @@ import pcb.uwu.unit.finance.RentUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class Rent extends CompositeUnitAmount<RentUnit> {
 
 	// region constructors
@@ -74,7 +76,7 @@ public class Rent extends CompositeUnitAmount<RentUnit> {
 
 	@Override
 	public Rent in(RentUnit unit) {
-		return new Rent(getAmountIn(unit), unit);
+		return new Rent(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

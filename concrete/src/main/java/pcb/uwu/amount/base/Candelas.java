@@ -18,6 +18,7 @@ import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
 import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Candelas extends LuminousIntensity {
 
@@ -83,16 +84,16 @@ public class Candelas extends LuminousIntensity {
 
 	// region composition
 
-	public Lumens multipliedBy(SolidAngle unitAmount, MathContext mathContext) {
-		return new Lumens(getAmount().multipliedBy(unitAmount.getAmountIn(STERADIAN), mathContext));
+	public Lumens multipliedBy(SolidAngle solidAngle, MathContext mathContext) {
+		return new Lumens(getAmount().multipliedBy(getAmountIn(solidAngle, STERADIAN), mathContext));
 	}
 
-	public Nits dividedBy(Area unitAmount, MathContext mathContext) {
-		return new Nits(getAmount().dividedBy(unitAmount.getAmountIn(SQUARE_METER), mathContext));
+	public Nits dividedBy(Area area, MathContext mathContext) {
+		return new Nits(getAmount().dividedBy(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
-	public SquareMeters dividedBy(Luminance unitAmount, MathContext mathContext) {
-		return new SquareMeters(getAmount().dividedBy(unitAmount.getAmountIn(NIT), mathContext));
+	public SquareMeters dividedBy(Luminance luminance, MathContext mathContext) {
+		return new SquareMeters(getAmount().dividedBy(getAmountIn(luminance, NIT), mathContext));
 	}
 
 	// endregion

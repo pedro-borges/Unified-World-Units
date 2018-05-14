@@ -9,6 +9,8 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricResistanceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class ElectricResistance extends CompositeUnitAmount<ElectricResistanceUnit> {
 
 	// region constructors
@@ -71,7 +73,7 @@ public class ElectricResistance extends CompositeUnitAmount<ElectricResistanceUn
 
 	@Override
 	public ElectricResistance in(ElectricResistanceUnit unit) {
-		return new ElectricResistance(getAmountIn(unit), unit);
+		return new ElectricResistance(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

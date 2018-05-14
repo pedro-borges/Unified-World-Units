@@ -18,6 +18,7 @@ import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class SquareMeters extends Area {
 
@@ -29,12 +30,12 @@ public class SquareMeters extends Area {
 
 		@Override
 		public SquareMeters circleWithRadius(Length radius, MathContext mathContext) {
-			return new SquareMeters(CIRCLE_FUNCTION.apply(radius.getAmountIn(METER), mathContext));
+			return new SquareMeters(CIRCLE_FUNCTION.apply(getAmountIn(radius, METER), mathContext));
 		}
 
 		@Override
 		public SquareMeters squareWithSide(Length side, MathContext mathContext) {
-			return new SquareMeters(SQUARE_FUNCTION.apply(side.getAmountIn(METER), mathContext));
+			return new SquareMeters(SQUARE_FUNCTION.apply(getAmountIn(side, METER), mathContext));
 		}
 	}
 
@@ -102,12 +103,12 @@ public class SquareMeters extends Area {
 
 	// region composition
 
-	public Candelas multipliedBy(Luminance unitAmount, MathContext mathContext) {
-		return new Candelas(getAmount().multipliedBy(unitAmount.getAmountIn(NIT), mathContext));
+	public Candelas multipliedBy(Luminance luminance, MathContext mathContext) {
+		return new Candelas(getAmount().multipliedBy(getAmountIn(luminance, NIT), mathContext));
 	}
 
-	public Lumens multipliedBy(Illuminance unitAmount, MathContext mathContext) {
-		return new Lumens(getAmount().multipliedBy(unitAmount.getAmountIn(LUX), mathContext));
+	public Lumens multipliedBy(Illuminance illuminance, MathContext mathContext) {
+		return new Lumens(getAmount().multipliedBy(getAmountIn(illuminance, LUX), mathContext));
 	}
 
 	// endregion

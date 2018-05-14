@@ -1,10 +1,7 @@
 package pcb.uwu.core;
 
-import pcb.uwu.core.UnitCounter.UnitCount;
-
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.function.Function;
 
 public interface UnitAmount<U extends Unit> extends Comparable<UnitAmount<U>> {
 	/**
@@ -49,115 +46,11 @@ public interface UnitAmount<U extends Unit> extends Comparable<UnitAmount<U>> {
 	 */
 	UnitAmount<U> dividedBy(BigDecimal other, MathContext mathContext);
 
-	default CompositeUnitAmount<? extends Unit> multipliedBy(UnitAmount<? extends Unit> other, MathContext mathContext) {
-		UnitCounter resultUnitCounter = new UnitCounter(getUnit().getUnitCounter());
-		Function<BigDecimalAmount, BigDecimalAmount> transformation = Function.identity();
+	UnitAmount<? extends Unit> multipliedBy(UnitAmount<? extends Unit> other, MathContext mathContext);
 
-		for (UnitCount otherUnitCount : other.getUnit().getUnitCounter().getBaseUnits()) {
-			UnitCount resultUnitCount = resultUnitCounter.get(otherUnitCount.getUnit());
+	UnitAmount<? extends Unit> dividedBy(UnitAmount<? extends Unit> other, MathContext mathContext);
 
-			if (resultUnitCount == null) {
-				// New unit type, no adaptation necessary
-				resultUnitCounter.major(otherUnitCount.getUnit(), otherUnitCount.getCount());
-				continue;
-			}
-
-			// Existing unit type, adaptation is necessary
-			int resultMagnitude = resultUnitCount.getCount();
-			int otherMagnitude = otherUnitCount.getCount();
-
-			// other is major and this is major
-			while (otherMagnitude > 0 && resultMagnitude > 0) {
-				transformation = transformation
-						.andThen(otherUnitCount.getUnit().getTranslationToCanonical())
-						.andThen(resultUnitCount.getUnit().getTranslationFromCanonical());
-
-				resultUnitCounter = resultUnitCounter.major(resultUnitCount.getUnit());
-
-				resultMagnitude++;
-				otherMagnitude--;
-			}
-
-			// other is minor and this is minor
-			while (otherMagnitude < 0 && resultMagnitude < 0) {
-				transformation = transformation
-						.andThen(otherUnitCount.getUnit().getTranslationFromCanonical())
-						.andThen(resultUnitCount.getUnit().getTranslationToCanonical());
-
-				resultUnitCounter = resultUnitCounter.minor(resultUnitCount.getUnit());
-
-				resultMagnitude--;
-				otherMagnitude++;
-			}
-
-			// other is major and this is minor
-			while (otherMagnitude > 0 && resultMagnitude < 0) {
-				transformation = transformation
-						.andThen(otherUnitCount.getUnit().getTranslationToCanonical())
-						.andThen(resultUnitCount.getUnit().getTranslationFromCanonical());
-
-				resultUnitCounter = resultUnitCounter.major(resultUnitCount.getUnit());
-
-				resultMagnitude++;
-				otherMagnitude--;
-			}
-
-			// other is minor and this is major
-			while (otherMagnitude < 0 && resultMagnitude > 0) {
-				transformation = transformation
-						.andThen(otherUnitCount.getUnit().getTranslationFromCanonical())
-						.andThen(resultUnitCount.getUnit().getTranslationToCanonical());
-
-				resultUnitCounter = resultUnitCounter.minor(resultUnitCount.getUnit());
-
-				resultMagnitude--;
-				otherMagnitude++;
-			}
-
-			// other still exists and this is exhausted
-			while (otherMagnitude > 0) {
-				resultUnitCounter = resultUnitCounter.major(otherUnitCount.getUnit());
-
-				otherMagnitude--;
-			}
-
-			// other still exists and this is exhausted
-			while (otherMagnitude < 0) {
-				resultUnitCounter = resultUnitCounter.minor(otherUnitCount.getUnit());
-
-				otherMagnitude++;
-			}
-		}
-
-		BigDecimalAmount resultAmount = transformation.apply(getAmount().multipliedBy(other.getAmount(), mathContext));
-
-		return new CompositeUnitAmount<>(resultAmount, new CompositeUnit(resultUnitCounter));
-	}
-
-	default CompositeUnitAmount<? extends Unit> dividedBy(UnitAmount<? extends Unit> other, MathContext mathContext) {
-		return multipliedBy(other.invert(mathContext), mathContext);
-	}
-
-	default CompositeUnitAmount<? extends Unit> invert(MathContext mathContext) {
-		return new CompositeUnitAmount<>(
-				getAmount().invert(mathContext),
-				new CompositeUnit(getUnit().getUnitCounter().invert()));
-	}
-
-	/**
-	 * Get the underlying {@code BigDecimalAmount} in a new {@code Unit}.
-	 * @param unit the {@code Unit} to convert to
-	 * @return the converted {@code BigDecimalAmount}
-	 */
-	BigDecimalAmount getAmountIn(U unit);
-
-	/**
-	 * Get the underlying {@code Amount} in a new {@code Unit}.
-	 * @param magnitude the {@code Magnitude} to consider
-	 * @param unit the {@code Unit} to convert to
-	 * @return the converted {@code Amount}
-	 */
-	BigDecimalAmount getAmountIn(Magnitude magnitude, U unit);
+	UnitAmount<? extends Unit> invert(MathContext mathContext);
 
 	/**
 	 * Get the {@code UnitAmount} in a new {@code Unit}.

@@ -12,6 +12,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
 import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Steradians extends SolidAngle {
 
@@ -78,7 +79,7 @@ public class Steradians extends SolidAngle {
 	// region composition
 
 	public Lumens multipliedBy(LuminousIntensity luminousIntensity, MathContext mathContext) {
-		return new Lumens(getAmount().multipliedBy(luminousIntensity.getAmountIn(CANDELA), mathContext));
+		return new Lumens(getAmount().multipliedBy(getAmountIn(luminousIntensity, CANDELA), mathContext));
 	}
 
 	// endregion

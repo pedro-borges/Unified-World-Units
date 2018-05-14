@@ -9,6 +9,8 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class ElectricPotential extends CompositeUnitAmount<ElectricPotentialUnit> {
 
 	// region constructors
@@ -71,7 +73,7 @@ public class ElectricPotential extends CompositeUnitAmount<ElectricPotentialUnit
 
 	@Override
 	public ElectricPotential in(ElectricPotentialUnit unit) {
-		return new ElectricPotential(getAmountIn(unit), unit);
+		return new ElectricPotential(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

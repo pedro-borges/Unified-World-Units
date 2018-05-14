@@ -9,6 +9,8 @@ import pcb.uwu.unit.derived.termodynamics.PressureUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class Pressure extends CompositeUnitAmount<PressureUnit> {
 
 	// region constructors
@@ -71,7 +73,7 @@ public class Pressure extends CompositeUnitAmount<PressureUnit> {
 
 	@Override
 	public Pressure in(PressureUnit unit) {
-		return new Pressure(getAmountIn(unit), unit);
+		return new Pressure(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

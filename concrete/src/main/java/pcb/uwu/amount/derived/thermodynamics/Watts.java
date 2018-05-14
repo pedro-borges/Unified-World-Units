@@ -17,6 +17,7 @@ import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
 import static pcb.uwu.unit.derived.termodynamics.WattUnit.WATT;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Watts extends Power {
 
@@ -83,15 +84,15 @@ public class Watts extends Power {
 	// region composition
 
 	public Joules multipliedBy(Time time, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(time.getAmountIn(SECOND), mathContext));
+		return new Joules(getAmount().multipliedBy(getAmountIn(time, SECOND), mathContext));
 	}
 
 	public Volts dividedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Volts(getAmount().dividedBy(electricCurrent.getAmountIn(AMPERE), mathContext));
+		return new Volts(getAmount().dividedBy(getAmountIn(electricCurrent, AMPERE), mathContext));
 	}
 
 	public Amperes dividedBy(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Amperes(getAmount().dividedBy(electricPotential.getAmountIn(VOLT), mathContext));
+		return new Amperes(getAmount().dividedBy(getAmountIn(electricPotential, VOLT), mathContext));
 	}
 
 	// endregion

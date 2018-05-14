@@ -12,6 +12,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Meters extends Length {
 
@@ -77,8 +78,8 @@ public class Meters extends Length {
 
 	// region composition
 
-	public Joules multipliedBy(Force unitAmount, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(unitAmount.getAmountIn(NEWTON), mathContext));
+	public Joules multipliedBy(Force force, MathContext mathContext) {
+		return new Joules(getAmount().multipliedBy(getAmountIn(force, NEWTON), mathContext));
 	}
 
 	// endregion

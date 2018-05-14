@@ -25,6 +25,7 @@ import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
 import static pcb.uwu.unit.derived.electromagnetism.SiemensUnit.SIEMENS;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
 import static pcb.uwu.unit.derived.electromagnetism.WebberUnit.WEBBER;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Amperes extends ElectricCurrent {
 
@@ -90,28 +91,28 @@ public class Amperes extends ElectricCurrent {
 
 	// region composition
 
-	public Coulombs multipliedBy(Time unitAmount, MathContext mathContext) {
-		return new Coulombs(getAmount().multipliedBy(unitAmount.getAmountIn(SECOND), mathContext));
+	public Coulombs multipliedBy(Time time, MathContext mathContext) {
+		return new Coulombs(getAmount().multipliedBy(getAmountIn(time, SECOND), mathContext));
 	}
 
-	public Volts multipliedBy(ElectricResistance unitAmount, MathContext mathContext) {
-		return new Volts(getAmount().multipliedBy(unitAmount.getAmountIn(OHM), mathContext));
+	public Volts multipliedBy(ElectricResistance electricResistance, MathContext mathContext) {
+		return new Volts(getAmount().multipliedBy(getAmountIn(electricResistance, OHM), mathContext));
 	}
 
-	public Webbers multipliedBy(ElectricInductance unitAmount, MathContext mathContext) {
-		return new Webbers(getAmount().multipliedBy(unitAmount.getAmountIn(HENRY), mathContext));
+	public Webbers multipliedBy(ElectricInductance electricInductance, MathContext mathContext) {
+		return new Webbers(getAmount().multipliedBy(getAmountIn(electricInductance, HENRY), mathContext));
 	}
 
-	public Joules multipliedBy(MagneticFlux unitAmount, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(unitAmount.getAmountIn(WEBBER), mathContext));
+	public Joules multipliedBy(MagneticFlux magneticFlux, MathContext mathContext) {
+		return new Joules(getAmount().multipliedBy(getAmountIn(magneticFlux, WEBBER), mathContext));
 	}
 
-	public Siemens dividedBy(ElectricPotential unitAmount, MathContext mathContext) {
-		return new Siemens(getAmount().dividedBy(unitAmount.getAmountIn(VOLT), mathContext));
+	public Siemens dividedBy(ElectricPotential electricPotential, MathContext mathContext) {
+		return new Siemens(getAmount().dividedBy(getAmountIn(electricPotential, VOLT), mathContext));
 	}
 
-	public Volts dividedBy(ElectricConductance unitAmount, MathContext mathContext) {
-		return new Volts(getAmount().dividedBy(unitAmount.getAmountIn(SIEMENS), mathContext));
+	public Volts dividedBy(ElectricConductance electricConductance, MathContext mathContext) {
+		return new Volts(getAmount().dividedBy(getAmountIn(electricConductance, SIEMENS), mathContext));
 	}
 
 	// endregion

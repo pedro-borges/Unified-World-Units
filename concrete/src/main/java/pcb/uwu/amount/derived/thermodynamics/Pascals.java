@@ -14,6 +14,7 @@ import java.math.MathContext;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER;
 import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Pascals extends Pressure {
 
@@ -80,11 +81,11 @@ public class Pascals extends Pressure {
 	// region composition
 
 	public Joules multipliedBy(Volume volume, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(volume.getAmountIn(CUBIC_METER), mathContext));
+		return new Joules(getAmount().multipliedBy(getAmountIn(volume, CUBIC_METER), mathContext));
 	}
 
 	public Newtons multipliedBy(Area area, MathContext mathContext) {
-		return new Newtons(getAmount().multipliedBy(area.getAmountIn(SQUARE_METER), mathContext));
+		return new Newtons(getAmount().multipliedBy(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
 	// endregion

@@ -13,6 +13,7 @@ import java.math.MathContext;
 import static pcb.uwu.core.Magnitude.DECI;
 import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.derived.fundamental.LitreUnit.LITRE;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Litres extends Volume {
 
@@ -23,12 +24,12 @@ public class Litres extends Volume {
 	public static class LitresFactory extends VolumeFactory {
 		@Override
 		public Litres sphereWithRadius(Length radius, MathContext mathContext) {
-			return new Litres(SPHERE_FUNCTION.apply(radius.getAmountIn(DECI, METER), mathContext));
+			return new Litres(SPHERE_FUNCTION.apply(getAmountIn(radius, DECI, METER), mathContext));
 		}
 
 		@Override
 		public Litres cubeWithSide(Length side, MathContext mathContext) {
-			return new Litres(CUBE_FUNCTION.apply(side.getAmountIn(DECI, METER), mathContext));
+			return new Litres(CUBE_FUNCTION.apply(getAmountIn(side, DECI, METER), mathContext));
 		}
 	}
 

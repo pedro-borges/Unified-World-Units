@@ -11,6 +11,7 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.derived.electromagnetism.SiemensUnit.SIEMENS;
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 
 public class Siemens extends ElectricConductance {
 
@@ -74,7 +75,7 @@ public class Siemens extends ElectricConductance {
 
 	@Override
 	public Siemens in(ElectricConductanceUnit unit) {
-		return new Siemens(getAmountIn(unit));
+		return new Siemens(getAmountIn(this, unit));
 	}
 
 	@Override
@@ -87,7 +88,7 @@ public class Siemens extends ElectricConductance {
 	// region composition
 
 	public Volts multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Volts(getAmount().multipliedBy(electricCurrent.getAmountIn(AMPERE), mathContext));
+		return new Volts(getAmount().multipliedBy(getAmountIn(electricCurrent, AMPERE), mathContext));
 	}
 
 	// endregion

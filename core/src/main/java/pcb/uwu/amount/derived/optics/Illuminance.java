@@ -9,6 +9,8 @@ import pcb.uwu.unit.derived.optics.IlluminanceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+
 public class Illuminance extends CompositeUnitAmount<IlluminanceUnit> {
 
 	// region constructors
@@ -71,7 +73,7 @@ public class Illuminance extends CompositeUnitAmount<IlluminanceUnit> {
 
 	@Override
 	public Illuminance in(IlluminanceUnit unit) {
-		return new Illuminance(getAmountIn(unit), unit);
+		return new Illuminance(getAmountIn(this, unit), unit);
 	}
 
 	// endregion

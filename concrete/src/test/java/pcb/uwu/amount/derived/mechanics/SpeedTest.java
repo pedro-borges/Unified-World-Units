@@ -3,12 +3,10 @@ package pcb.uwu.amount.derived.mechanics;
 import org.junit.Test;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.base.Time;
-import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 
 import static java.math.BigDecimal.TEN;
 import static java.math.MathContext.DECIMAL64;
-import static java.math.RoundingMode.HALF_EVEN;
 import static org.junit.Assert.assertEquals;
 import static pcb.uwu.unit.base.InchUnit.INCH;
 import static pcb.uwu.unit.base.MeterUnit.METER;
@@ -61,14 +59,9 @@ public class SpeedTest {
 	}
 
 	@Test
-	public void testConvertTo() {
-		assertEquals(new BigDecimalAmount("0.0833"),
-				speed.getAmountIn(new SpeedUnit(METER, SECOND)).withScale(4, HALF_EVEN));
-
-		assertEquals(new BigDecimalAmount("196.85"),
-				speed.getAmountIn(new SpeedUnit(INCH, MINUTE)).withScale(2, HALF_EVEN));
-
-		assertEquals(new BigDecimalAmount("3.28"),
-				speed.getAmountIn(new SpeedUnit(INCH, SECOND)).withScale(2, HALF_EVEN));
+	public void testIn() {
+		assertEquals("0.08333333333333333 s⁻¹⋅m", speed.in(new SpeedUnit(METER, SECOND)).toString());
+		assertEquals("196.8503937007874 min⁻¹⋅in", speed.in(new SpeedUnit(INCH, MINUTE)).toString());
+		assertEquals("3.280839895013123 s⁻¹⋅in", speed.in(new SpeedUnit(INCH, SECOND)).toString());
 	}
 }
