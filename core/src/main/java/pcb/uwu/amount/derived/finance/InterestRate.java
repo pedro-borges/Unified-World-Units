@@ -9,7 +9,11 @@ import pcb.uwu.unit.finance.InterestRateUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class InterestRate extends CompositeUnitAmount<InterestRateUnit> {
 
@@ -53,22 +57,22 @@ public class InterestRate extends CompositeUnitAmount<InterestRateUnit> {
 
 	@Override
 	public InterestRate plus(UnitAmount<InterestRateUnit> other, MathContext mathContext) {
-		return new InterestRate(plusAmount(other, mathContext), getUnit());
+		return new InterestRate(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public InterestRate minus(UnitAmount<InterestRateUnit> other, MathContext mathContext) {
-		return new InterestRate(minusAmount(other, mathContext), getUnit());
+		return new InterestRate(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public InterestRate multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new InterestRate(multipliedByScalar(other, mathContext), getUnit());
+		return new InterestRate(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public InterestRate dividedBy(BigDecimal other, MathContext mathContext) {
-		return new InterestRate(dividedByScalar(other, mathContext), getUnit());
+		return new InterestRate(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

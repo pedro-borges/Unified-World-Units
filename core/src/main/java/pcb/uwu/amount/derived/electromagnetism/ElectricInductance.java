@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricInductanceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class ElectricInductance extends CompositeUnitAmount<ElectricInductanceUnit> {
 
@@ -53,22 +57,22 @@ public class ElectricInductance extends CompositeUnitAmount<ElectricInductanceUn
 
 	@Override
 	public ElectricInductance plus(UnitAmount<ElectricInductanceUnit> other, MathContext mathContext) {
-		return new ElectricInductance(plusAmount(other, mathContext), getUnit());
+		return new ElectricInductance(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricInductance minus(UnitAmount<ElectricInductanceUnit> other, MathContext mathContext) {
-		return new ElectricInductance(minusAmount(other, mathContext), getUnit());
+		return new ElectricInductance(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricInductance multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricInductance(multipliedByScalar(other, mathContext), getUnit());
+		return new ElectricInductance(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricInductance dividedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricInductance(dividedByScalar(other, mathContext), getUnit());
+		return new ElectricInductance(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

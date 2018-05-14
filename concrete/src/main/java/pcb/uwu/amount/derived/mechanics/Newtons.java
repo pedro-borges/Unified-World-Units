@@ -21,7 +21,11 @@ import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON;
 import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Newtons extends Force {
 
@@ -65,22 +69,22 @@ public class Newtons extends Force {
 
 	@Override
 	public Newtons plus(UnitAmount<ForceUnit> other, MathContext mathContext) {
-		return new Newtons(plusAmount(other, mathContext));
+		return new Newtons(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Newtons minus(UnitAmount<ForceUnit> other, MathContext mathContext) {
-		return new Newtons(minusAmount(other, mathContext));
+		return new Newtons(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Newtons multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Newtons(multipliedByScalar(other, mathContext));
+		return new Newtons(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Newtons dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Newtons(dividedByScalar(other, mathContext));
+		return new Newtons(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

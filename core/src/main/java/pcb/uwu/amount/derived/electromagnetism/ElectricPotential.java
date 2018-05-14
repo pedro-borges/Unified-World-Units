@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class ElectricPotential extends CompositeUnitAmount<ElectricPotentialUnit> {
 
@@ -53,22 +57,22 @@ public class ElectricPotential extends CompositeUnitAmount<ElectricPotentialUnit
 
 	@Override
 	public ElectricPotential plus(UnitAmount<ElectricPotentialUnit> other, MathContext mathContext) {
-		return new ElectricPotential(plusAmount(other, mathContext), getUnit());
+		return new ElectricPotential(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricPotential minus(UnitAmount<ElectricPotentialUnit> other, MathContext mathContext) {
-		return new ElectricPotential(minusAmount(other, mathContext), getUnit());
+		return new ElectricPotential(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricPotential multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricPotential(multipliedByScalar(other, mathContext), getUnit());
+		return new ElectricPotential(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricPotential dividedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricPotential(dividedByScalar(other, mathContext), getUnit());
+		return new ElectricPotential(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

@@ -18,7 +18,11 @@ import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class SquareMeters extends Area {
 
@@ -39,7 +43,7 @@ public class SquareMeters extends Area {
 		}
 	}
 
-	//
+	// endregion
 
 	// region constructors
 
@@ -81,22 +85,22 @@ public class SquareMeters extends Area {
 
 	@Override
 	public SquareMeters plus(UnitAmount<AreaUnit> other, MathContext mathContext) {
-		return new SquareMeters(plusAmount(other, mathContext));
+		return new SquareMeters(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public SquareMeters minus(UnitAmount<AreaUnit> other, MathContext mathContext) {
-		return new SquareMeters(minusAmount(other, mathContext));
+		return new SquareMeters(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public SquareMeters multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new SquareMeters(multipliedByScalar(other, mathContext));
+		return new SquareMeters(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public SquareMeters dividedBy(BigDecimal other, MathContext mathContext) {
-		return new SquareMeters(dividedByScalar(other, mathContext));
+		return new SquareMeters(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricCapacitanceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class ElectricCapacitance extends CompositeUnitAmount<ElectricCapacitanceUnit> {
 
@@ -53,22 +57,22 @@ public class ElectricCapacitance extends CompositeUnitAmount<ElectricCapacitance
 
 	@Override
 	public ElectricCapacitance plus(UnitAmount<ElectricCapacitanceUnit> other, MathContext mathContext) {
-		return new ElectricCapacitance(plusAmount(other, mathContext), getUnit());
+		return new ElectricCapacitance(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricCapacitance minus(UnitAmount<ElectricCapacitanceUnit> other, MathContext mathContext) {
-		return new ElectricCapacitance(minusAmount(other, mathContext), getUnit());
+		return new ElectricCapacitance(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricCapacitance multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricCapacitance(multipliedByScalar(other, mathContext), getUnit());
+		return new ElectricCapacitance(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricCapacitance dividedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricCapacitance(dividedByScalar(other, mathContext), getUnit());
+		return new ElectricCapacitance(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

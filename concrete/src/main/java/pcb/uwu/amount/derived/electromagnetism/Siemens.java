@@ -11,7 +11,11 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.derived.electromagnetism.SiemensUnit.SIEMENS;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Siemens extends ElectricConductance {
 
@@ -55,22 +59,22 @@ public class Siemens extends ElectricConductance {
 
 	@Override
 	public Siemens plus(UnitAmount<ElectricConductanceUnit> other, MathContext mathContext) {
-		return new Siemens(plusAmount(other, mathContext));
+		return new Siemens(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Siemens minus(UnitAmount<ElectricConductanceUnit> other, MathContext mathContext) {
-		return new Siemens(minusAmount(other, mathContext));
+		return new Siemens(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Siemens multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Siemens(multipliedByScalar(other, mathContext));
+		return new Siemens(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Siemens dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Siemens(dividedByScalar(other, mathContext));
+		return new Siemens(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override

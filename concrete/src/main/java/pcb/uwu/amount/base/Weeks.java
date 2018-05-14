@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.WeekUnit.WEEK;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Weeks extends Time {
 
@@ -52,22 +56,22 @@ public class Weeks extends Time {
 
 	@Override
 	public Weeks plus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Weeks(plusAmount(other, mathContext));
+		return new Weeks(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Weeks minus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Weeks(minusAmount(other, mathContext));
+		return new Weeks(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Weeks multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Weeks(multipliedByScalar(other, mathContext));
+		return new Weeks(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Weeks dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Weeks(dividedByScalar(other, mathContext));
+		return new Weeks(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

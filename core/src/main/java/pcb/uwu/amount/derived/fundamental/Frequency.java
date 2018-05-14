@@ -11,7 +11,11 @@ import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Frequency extends CompositeUnitAmount<FrequencyUnit> {
 
@@ -55,22 +59,22 @@ public class Frequency extends CompositeUnitAmount<FrequencyUnit> {
 
 	@Override
 	public Frequency plus(UnitAmount<FrequencyUnit> other, MathContext mathContext) {
-		return new Frequency(plusAmount(other, mathContext), getUnit());
+		return new Frequency(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Frequency minus(UnitAmount<FrequencyUnit> other, MathContext mathContext) {
-		return new Frequency(minusAmount(other, mathContext), getUnit());
+		return new Frequency(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Frequency multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Frequency(multipliedByScalar(other, mathContext), getUnit());
+		return new Frequency(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Frequency dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Frequency(dividedByScalar(other, mathContext), getUnit());
+		return new Frequency(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

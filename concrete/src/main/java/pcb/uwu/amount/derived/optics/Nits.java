@@ -12,7 +12,11 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Nits extends Luminance {
 
@@ -56,22 +60,22 @@ public class Nits extends Luminance {
 
 	@Override
 	public Nits plus(UnitAmount<LuminanceUnit> other, MathContext mathContext) {
-		return new Nits(plusAmount(other, mathContext));
+		return new Nits(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Nits minus(UnitAmount<LuminanceUnit> other, MathContext mathContext) {
-		return new Nits(minusAmount(other, mathContext));
+		return new Nits(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Nits multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Nits(multipliedByScalar(other, mathContext));
+		return new Nits(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Nits dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Nits(dividedByScalar(other, mathContext));
+		return new Nits(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

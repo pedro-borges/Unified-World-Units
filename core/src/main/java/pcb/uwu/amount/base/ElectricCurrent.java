@@ -9,7 +9,11 @@ import pcb.uwu.unit.base.ElectricCurrentUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class ElectricCurrent extends CompositeUnitAmount<ElectricCurrentUnit> {
 
@@ -53,22 +57,22 @@ public class ElectricCurrent extends CompositeUnitAmount<ElectricCurrentUnit> {
 
 	@Override
 	public ElectricCurrent plus(UnitAmount<ElectricCurrentUnit> other, MathContext mathContext) {
-		return new ElectricCurrent(plusAmount(other, mathContext), getUnit());
+		return new ElectricCurrent(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricCurrent minus(UnitAmount<ElectricCurrentUnit> other, MathContext mathContext) {
-		return new ElectricCurrent(minusAmount(other, mathContext), getUnit());
+		return new ElectricCurrent(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricCurrent multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricCurrent(multipliedByScalar(other, mathContext), getUnit());
+		return new ElectricCurrent(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricCurrent dividedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricCurrent(dividedByScalar(other, mathContext), getUnit());
+		return new ElectricCurrent(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

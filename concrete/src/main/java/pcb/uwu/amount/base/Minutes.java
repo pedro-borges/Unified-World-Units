@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.MinuteUnit.MINUTE;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Minutes extends Time {
 
@@ -52,22 +56,22 @@ public class Minutes extends Time {
 
 	@Override
 	public Minutes plus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Minutes(plusAmount(other, mathContext));
+		return new Minutes(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Minutes minus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Minutes(minusAmount(other, mathContext));
+		return new Minutes(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Minutes multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Minutes(multipliedByScalar(other, mathContext));
+		return new Minutes(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Minutes dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Minutes(dividedByScalar(other, mathContext));
+		return new Minutes(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

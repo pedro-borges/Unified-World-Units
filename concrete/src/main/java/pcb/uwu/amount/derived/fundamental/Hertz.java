@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.derived.fundamental.HertzUnit.HERTZ;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Hertz extends Frequency {
 	
@@ -52,22 +56,22 @@ public class Hertz extends Frequency {
 
 	@Override
 	public Hertz plus(UnitAmount<FrequencyUnit> other, MathContext mathContext) {
-		return new Hertz(plusAmount(other, mathContext));
+		return new Hertz(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Hertz minus(UnitAmount<FrequencyUnit> other, MathContext mathContext) {
-		return new Hertz(minusAmount(other, mathContext));
+		return new Hertz(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Hertz multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Hertz(multipliedByScalar(other, mathContext));
+		return new Hertz(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Hertz dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Hertz(dividedByScalar(other, mathContext));
+		return new Hertz(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

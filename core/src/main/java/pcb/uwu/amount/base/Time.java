@@ -13,7 +13,11 @@ import java.math.MathContext;
 import java.time.Duration;
 
 import static java.math.MathContext.UNLIMITED;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Time extends CompositeUnitAmount<TimeUnit> {
 
@@ -61,22 +65,22 @@ public class Time extends CompositeUnitAmount<TimeUnit> {
 
 	@Override
 	public Time plus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Time(plusAmount(other, mathContext), getUnit());
+		return new Time(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Time minus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Time(minusAmount(other, mathContext), getUnit());
+		return new Time(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Time multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Time(multipliedByScalar(other, mathContext), getUnit());
+		return new Time(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Time dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Time(dividedByScalar(other, mathContext), getUnit());
+		return new Time(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

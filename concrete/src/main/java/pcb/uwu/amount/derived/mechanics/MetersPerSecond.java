@@ -1,16 +1,20 @@
 package pcb.uwu.amount.derived.mechanics;
 
 import pcb.uwu.amount.base.Meters;
+import pcb.uwu.amount.base.Seconds;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
+import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.mechanics.MeterPerSecondUnit.METER_PER_SECOND;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 
 public class MetersPerSecond extends Speed {
 
@@ -60,7 +64,12 @@ public class MetersPerSecond extends Speed {
 
 	@Override
 	public Meters multipliedBy(Time time, MathContext mathContext) {
-		return new Meters(super.multipliedByScalar(getAmountIn(time, SECOND).getValue(), mathContext));
+		return new Meters(multipliedByScalar(this, getAmountIn(time, SECOND).getValue(), mathContext));
+	}
+
+	@Override
+	public Seconds dividedBy(Acceleration acceleration, MathContext mathContext) {
+		return new Seconds(dividedByScalar(this, getAmountIn(acceleration, new AccelerationUnit(METER_PER_SECOND, SECOND)).getValue(), mathContext));
 	}
 
 	// endregion

@@ -7,6 +7,11 @@ import pcb.uwu.unit.finance.MoneyUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+
 public class CHF extends Money {
 
 	public static final MoneyUnit CURRENCY = MoneyUnit.of("CHF");
@@ -43,22 +48,22 @@ public class CHF extends Money {
 
 	@Override
 	public CHF plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		return new CHF(plusAmount(other, mathContext));
+		return new CHF(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public CHF minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		return new CHF(minusAmount(other, mathContext));
+		return new CHF(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public CHF multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new CHF(multipliedByScalar(other, mathContext));
+		return new CHF(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public CHF dividedBy(BigDecimal other, MathContext mathContext) {
-		return new CHF(dividedByScalar(other, mathContext));
+		return new CHF(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

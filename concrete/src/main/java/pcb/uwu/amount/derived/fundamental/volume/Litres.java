@@ -13,7 +13,11 @@ import java.math.MathContext;
 import static pcb.uwu.core.Magnitude.DECI;
 import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.derived.fundamental.LitreUnit.LITRE;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Litres extends Volume {
 
@@ -75,22 +79,22 @@ public class Litres extends Volume {
 
 	@Override
 	public Litres plus(UnitAmount<VolumeUnit> other, MathContext mathContext) {
-		return new Litres(plusAmount(other, mathContext));
+		return new Litres(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Litres minus(UnitAmount<VolumeUnit> other, MathContext mathContext) {
-		return new Litres(minusAmount(other, mathContext));
+		return new Litres(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Litres multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Litres(multipliedByScalar(other, mathContext));
+		return new Litres(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Litres dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Litres(dividedByScalar(other, mathContext));
+		return new Litres(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

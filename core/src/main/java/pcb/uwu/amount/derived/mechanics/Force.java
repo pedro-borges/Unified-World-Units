@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.mechanics.ForceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Force extends CompositeUnitAmount<ForceUnit> {
 
@@ -53,22 +57,22 @@ public class Force extends CompositeUnitAmount<ForceUnit> {
 
 	@Override
 	public Force plus(UnitAmount<ForceUnit> other, MathContext mathContext) {
-		return new Force(plusAmount(other, mathContext), getUnit());
+		return new Force(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Force minus(UnitAmount<ForceUnit> other, MathContext mathContext) {
-		return new Force(minusAmount(other, mathContext), getUnit());
+		return new Force(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Force multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Force(multipliedByScalar(other, mathContext), getUnit());
+		return new Force(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Force dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Force(dividedByScalar(other, mathContext), getUnit());
+		return new Force(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

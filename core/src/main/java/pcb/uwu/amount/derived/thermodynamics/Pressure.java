@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.termodynamics.PressureUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Pressure extends CompositeUnitAmount<PressureUnit> {
 
@@ -53,22 +57,22 @@ public class Pressure extends CompositeUnitAmount<PressureUnit> {
 
 	@Override
 	public Pressure plus(UnitAmount<PressureUnit> other, MathContext mathContext) {
-		return new Pressure(plusAmount(other, mathContext), getUnit());
+		return new Pressure(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Pressure minus(UnitAmount<PressureUnit> other, MathContext mathContext) {
-		return new Pressure(minusAmount(other, mathContext), getUnit());
+		return new Pressure(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Pressure multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Pressure(multipliedByScalar(other, mathContext), getUnit());
+		return new Pressure(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Pressure dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Pressure(dividedByScalar(other, mathContext), getUnit());
+		return new Pressure(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

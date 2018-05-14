@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.scalar.AngleUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Angle extends CompositeUnitAmount<AngleUnit> {
 
@@ -54,22 +58,22 @@ public class Angle extends CompositeUnitAmount<AngleUnit> {
 
 	@Override
 	public Angle plus(UnitAmount<AngleUnit> other, MathContext mathContext) {
-		return new Angle(plusAmount(other, mathContext), getUnit());
+		return new Angle(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Angle minus(UnitAmount<AngleUnit> other, MathContext mathContext) {
-		return new Angle(minusAmount(other, mathContext), getUnit());
+		return new Angle(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Angle multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Angle(multipliedByScalar(other, mathContext), getUnit());
+		return new Angle(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Angle dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Angle(dividedByScalar(other, mathContext), getUnit());
+		return new Angle(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.DayUnit.DAY;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Days extends Time {
 
@@ -52,22 +56,22 @@ public class Days extends Time {
 
 	@Override
 	public Days plus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Days(plusAmount(other, mathContext));
+		return new Days(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Days minus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Days(minusAmount(other, mathContext));
+		return new Days(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Days multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Days(multipliedByScalar(other, mathContext));
+		return new Days(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Days dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Days(dividedByScalar(other, mathContext));
+		return new Days(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

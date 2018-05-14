@@ -11,7 +11,11 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.derived.electromagnetism.HenryUnit.HENRY;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Henries extends ElectricInductance {
 
@@ -55,22 +59,22 @@ public class Henries extends ElectricInductance {
 
 	@Override
 	public Henries plus(UnitAmount<ElectricInductanceUnit> other, MathContext mathContext) {
-		return new Henries(plusAmount(other, mathContext));
+		return new Henries(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Henries minus(UnitAmount<ElectricInductanceUnit> other, MathContext mathContext) {
-		return new Henries(minusAmount(other, mathContext));
+		return new Henries(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Henries multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Henries(multipliedByScalar(other, mathContext));
+		return new Henries(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Henries dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Henries(dividedByScalar(other, mathContext));
+		return new Henries(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override

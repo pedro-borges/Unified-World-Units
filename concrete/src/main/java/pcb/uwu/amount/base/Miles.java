@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.MileUnit.MILE;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Miles extends Length {
 
@@ -52,22 +56,22 @@ public class Miles extends Length {
 
 	@Override
 	public Miles plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Miles(plusAmount(other, mathContext));
+		return new Miles(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Miles minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Miles(minusAmount(other, mathContext));
+		return new Miles(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Miles multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Miles(multipliedByScalar(other, mathContext));
+		return new Miles(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Miles dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Miles(dividedByScalar(other, mathContext));
+		return new Miles(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

@@ -14,7 +14,11 @@ import java.math.MathContext;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER;
 import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Pascals extends Pressure {
 
@@ -58,22 +62,22 @@ public class Pascals extends Pressure {
 
 	@Override
 	public Pascals plus(UnitAmount<PressureUnit> other, MathContext mathContext) {
-		return new Pascals(plusAmount(other, mathContext));
+		return new Pascals(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Pascals minus(UnitAmount<PressureUnit> other, MathContext mathContext) {
-		return new Pascals(minusAmount(other, mathContext));
+		return new Pascals(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Pascals multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Pascals(multipliedByScalar(other, mathContext));
+		return new Pascals(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Pascals dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Pascals(dividedByScalar(other, mathContext));
+		return new Pascals(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

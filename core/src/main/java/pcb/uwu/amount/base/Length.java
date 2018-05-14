@@ -14,7 +14,11 @@ import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Length extends CompositeUnitAmount<LengthUnit> {
 
@@ -58,22 +62,22 @@ public class Length extends CompositeUnitAmount<LengthUnit> {
 
 	@Override
 	public Length plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Length(plusAmount(other, mathContext), getUnit());
+		return new Length(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Length minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Length(minusAmount(other, mathContext), getUnit());
+		return new Length(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Length multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Length(multipliedByScalar(other, mathContext), getUnit());
+		return new Length(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Length dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Length(dividedByScalar(other, mathContext), getUnit());
+		return new Length(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

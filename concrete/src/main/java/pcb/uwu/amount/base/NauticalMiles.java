@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.NauticalMileUnit.NAUTICAL_MILE;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class NauticalMiles extends Length {
 
@@ -52,22 +56,22 @@ public class NauticalMiles extends Length {
 
 	@Override
 	public NauticalMiles plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new NauticalMiles(plusAmount(other, mathContext));
+		return new NauticalMiles(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public NauticalMiles minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new NauticalMiles(minusAmount(other, mathContext));
+		return new NauticalMiles(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public NauticalMiles multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new NauticalMiles(multipliedByScalar(other, mathContext));
+		return new NauticalMiles(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public NauticalMiles dividedBy(BigDecimal other, MathContext mathContext) {
-		return new NauticalMiles(dividedByScalar(other, mathContext));
+		return new NauticalMiles(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

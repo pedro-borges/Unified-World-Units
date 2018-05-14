@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricChargeUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class ElectricCharge extends CompositeUnitAmount<ElectricChargeUnit> {
 
@@ -53,22 +57,22 @@ public class ElectricCharge extends CompositeUnitAmount<ElectricChargeUnit> {
 
 	@Override
 	public ElectricCharge plus(UnitAmount<ElectricChargeUnit> other, MathContext mathContext) {
-		return new ElectricCharge(plusAmount(other, mathContext), getUnit());
+		return new ElectricCharge(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricCharge minus(UnitAmount<ElectricChargeUnit> other, MathContext mathContext) {
-		return new ElectricCharge(minusAmount(other, mathContext), getUnit());
+		return new ElectricCharge(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricCharge multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricCharge(multipliedByScalar(other, mathContext), getUnit());
+		return new ElectricCharge(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricCharge dividedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricCharge(dividedByScalar(other, mathContext), getUnit());
+		return new ElectricCharge(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

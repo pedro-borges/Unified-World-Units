@@ -1,6 +1,7 @@
 package pcb.uwu.core;
 
 import pcb.uwu.core.UnitCounter.UnitCount;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -57,26 +58,6 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 	// endregion
 
-	// region protected methods
-
-	protected BigDecimalAmount plusAmount(UnitAmount<U> other, MathContext mathContext) {
-		return getAmount().plus(getAmountIn(other, getUnit()), mathContext);
-	}
-
-	protected BigDecimalAmount minusAmount(UnitAmount<U> other, MathContext mathContext) {
-		return getAmount().minus(getAmountIn(other, getUnit()), mathContext);
-	}
-
-	protected BigDecimalAmount multipliedByScalar(BigDecimal other, MathContext mathContext) {
-		return getAmount().multipliedBy(other, mathContext);
-	}
-
-	protected BigDecimalAmount dividedByScalar(BigDecimal other, MathContext mathContext) {
-		return getAmount().dividedBy(other, mathContext);
-	}
-
-	// endregion
-
 	// region implement Comparable
 
 	@Override
@@ -103,22 +84,22 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 
 	@Override
 	public UnitAmount<U> plus(UnitAmount<U> other, MathContext mathContext) {
-		return new CompositeUnitAmount<>(plusAmount(other, mathContext), unit);
+		return new CompositeUnitAmount<>(UnitAmountUtils.plusAmount(this, other, mathContext), unit);
 	}
 
 	@Override
 	public UnitAmount<U> minus(UnitAmount<U> other, MathContext mathContext) {
-		return new CompositeUnitAmount<>(minusAmount(other, mathContext), unit);
+		return new CompositeUnitAmount<>(UnitAmountUtils.minusAmount(this, other, mathContext), unit);
 	}
 
 	@Override
 	public UnitAmount<U> multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new CompositeUnitAmount<>(multipliedByScalar(other, mathContext), unit);
+		return new CompositeUnitAmount<>(UnitAmountUtils.multipliedByScalar(this, other, mathContext), unit);
 	}
 
 	@Override
 	public UnitAmount<U> dividedBy(BigDecimal other, MathContext mathContext) {
-		return new CompositeUnitAmount<>(dividedByScalar(other, mathContext), unit);
+		return new CompositeUnitAmount<>(UnitAmountUtils.dividedByScalar(this, other, mathContext), unit);
 	}
 
 	@Override

@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.CelsiusUnit.CELSIUS;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Celsius extends Temperature {
 
@@ -52,22 +56,22 @@ public class Celsius extends Temperature {
 
 	@Override
 	public Celsius plus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Celsius(plusAmount(other, mathContext));
+		return new Celsius(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Celsius minus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Celsius(minusAmount(other, mathContext));
+		return new Celsius(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Celsius multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Celsius(multipliedByScalar(other, mathContext));
+		return new Celsius(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Celsius dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Celsius(dividedByScalar(other, mathContext));
+		return new Celsius(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.PoundUnit.POUND;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Pounds extends Mass {
 
@@ -52,22 +56,22 @@ public class Pounds extends Mass {
 
 	@Override
 	public Pounds plus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Pounds(plusAmount(other, mathContext));
+		return new Pounds(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Pounds minus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Pounds(minusAmount(other, mathContext));
+		return new Pounds(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Pounds multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Pounds(multipliedByScalar(other, mathContext));
+		return new Pounds(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Pounds dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Pounds(dividedByScalar(other, mathContext));
+		return new Pounds(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

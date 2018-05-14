@@ -12,7 +12,11 @@ import java.math.MathContext;
 import java.util.function.BiFunction;
 
 import static pcb.uwu.utils.MathUtils.PI;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Area extends CompositeUnitAmount<AreaUnit> {
 
@@ -84,22 +88,22 @@ public class Area extends CompositeUnitAmount<AreaUnit> {
 
 	@Override
 	public Area plus(UnitAmount<AreaUnit> other, MathContext mathContext) {
-		return new Area(plusAmount(other, mathContext), getUnit());
+		return new Area(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Area minus(UnitAmount<AreaUnit> other, MathContext mathContext) {
-		return new Area(minusAmount(other, mathContext), getUnit());
+		return new Area(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Area multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Area(multipliedByScalar(other, mathContext), getUnit());
+		return new Area(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Area dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Area(dividedByScalar(other, mathContext), getUnit());
+		return new Area(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

@@ -17,7 +17,11 @@ import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.optics.LumenUnit.LUMEN;
 import static pcb.uwu.unit.derived.termodynamics.WattUnit.WATT;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Seconds extends Time {
 
@@ -61,22 +65,22 @@ public class Seconds extends Time {
 
 	@Override
 	public Seconds plus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Seconds(plusAmount(other, mathContext));
+		return new Seconds(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Seconds minus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Seconds(minusAmount(other, mathContext));
+		return new Seconds(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Seconds multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Seconds(multipliedByScalar(other, mathContext));
+		return new Seconds(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Seconds dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Seconds(dividedByScalar(other, mathContext));
+		return new Seconds(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

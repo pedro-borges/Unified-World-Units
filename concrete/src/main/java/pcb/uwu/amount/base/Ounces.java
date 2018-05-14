@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.OunceUnit.OUNCE;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Ounces extends Mass {
 
@@ -52,22 +56,22 @@ public class Ounces extends Mass {
 
 	@Override
 	public Ounces plus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Ounces(plusAmount(other, mathContext));
+		return new Ounces(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Ounces minus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Ounces(minusAmount(other, mathContext));
+		return new Ounces(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Ounces multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Ounces(multipliedByScalar(other, mathContext));
+		return new Ounces(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Ounces dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Ounces(dividedByScalar(other, mathContext));
+		return new Ounces(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

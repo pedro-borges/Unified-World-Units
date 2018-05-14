@@ -12,7 +12,11 @@ import pcb.uwu.unit.finance.RentUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Rent extends CompositeUnitAmount<RentUnit> {
 
@@ -56,22 +60,22 @@ public class Rent extends CompositeUnitAmount<RentUnit> {
 
 	@Override
 	public Rent plus(UnitAmount<RentUnit> other, MathContext mathContext) {
-		return new Rent(plusAmount(other, mathContext), getUnit());
+		return new Rent(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Rent minus(UnitAmount<RentUnit> other, MathContext mathContext) {
-		return new Rent(minusAmount(other, mathContext), getUnit());
+		return new Rent(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Rent multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Rent(multipliedByScalar(other, mathContext), getUnit());
+		return new Rent(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Rent dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Rent(dividedByScalar(other, mathContext), getUnit());
+		return new Rent(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

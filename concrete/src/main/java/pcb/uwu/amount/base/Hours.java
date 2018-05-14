@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.HourUnit.HOUR;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Hours extends Time {
 
@@ -52,22 +56,22 @@ public class Hours extends Time {
 
 	@Override
 	public Hours plus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Hours(plusAmount(other, mathContext));
+		return new Hours(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Hours minus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Hours(minusAmount(other, mathContext));
+		return new Hours(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Hours multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Hours(multipliedByScalar(other, mathContext));
+		return new Hours(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Hours dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Hours(dividedByScalar(other, mathContext));
+		return new Hours(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

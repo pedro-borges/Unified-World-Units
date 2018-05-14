@@ -13,7 +13,11 @@ import java.math.MathContext;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.optics.LumenUnit.LUMEN;
 import static pcb.uwu.unit.derived.optics.TalbotUnit.TALBOT;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Talbots extends LuminousEnergy {
 
@@ -57,22 +61,22 @@ public class Talbots extends LuminousEnergy {
 
 	@Override
 	public Talbots plus(UnitAmount<LuminousEnergyUnit> other, MathContext mathContext) {
-		return new Talbots(plusAmount(other, mathContext));
+		return new Talbots(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Talbots minus(UnitAmount<LuminousEnergyUnit> other, MathContext mathContext) {
-		return new Talbots(minusAmount(other, mathContext));
+		return new Talbots(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Talbots multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Talbots(multipliedByScalar(other, mathContext));
+		return new Talbots(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Talbots dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Talbots(dividedByScalar(other, mathContext));
+		return new Talbots(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

@@ -12,7 +12,11 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
 import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Steradians extends SolidAngle {
 
@@ -56,22 +60,22 @@ public class Steradians extends SolidAngle {
 
 	@Override
 	public Steradians plus(UnitAmount<SolidAngleUnit> other, MathContext mathContext) {
-		return new Steradians(plusAmount(other, mathContext));
+		return new Steradians(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Steradians minus(UnitAmount<SolidAngleUnit> other, MathContext mathContext) {
-		return new Steradians(minusAmount(other, mathContext));
+		return new Steradians(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Steradians multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Steradians(multipliedByScalar(other, mathContext));
+		return new Steradians(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Steradians dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Steradians(dividedByScalar(other, mathContext));
+		return new Steradians(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

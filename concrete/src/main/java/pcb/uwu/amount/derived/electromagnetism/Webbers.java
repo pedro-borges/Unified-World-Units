@@ -21,7 +21,11 @@ import static pcb.uwu.unit.derived.electromagnetism.HenryUnit.HENRY;
 import static pcb.uwu.unit.derived.electromagnetism.TeslaUnit.TESLA;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
 import static pcb.uwu.unit.derived.electromagnetism.WebberUnit.WEBBER;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Webbers extends MagneticFlux {
 
@@ -65,22 +69,22 @@ public class Webbers extends MagneticFlux {
 
 	@Override
 	public Webbers plus(UnitAmount<MagneticFluxUnit> other, MathContext mathContext) {
-		return new Webbers(plusAmount(other, mathContext));
+		return new Webbers(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Webbers minus(UnitAmount<MagneticFluxUnit> other, MathContext mathContext) {
-		return new Webbers(minusAmount(other, mathContext));
+		return new Webbers(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Webbers multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Webbers(multipliedByScalar(other, mathContext));
+		return new Webbers(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Webbers dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Webbers(dividedByScalar(other, mathContext));
+		return new Webbers(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override

@@ -11,7 +11,11 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.electromagnetism.TeslaUnit.TESLA;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Teslas extends MagneticField {
 
@@ -55,22 +59,22 @@ public class Teslas extends MagneticField {
 
 	@Override
 	public Teslas plus(UnitAmount<MagneticFieldUnit> other, MathContext mathContext) {
-		return new Teslas(plusAmount(other, mathContext));
+		return new Teslas(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Teslas minus(UnitAmount<MagneticFieldUnit> other, MathContext mathContext) {
-		return new Teslas(minusAmount(other, mathContext));
+		return new Teslas(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Teslas multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Teslas(multipliedByScalar(other, mathContext));
+		return new Teslas(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Teslas dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Teslas(dividedByScalar(other, mathContext));
+		return new Teslas(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override

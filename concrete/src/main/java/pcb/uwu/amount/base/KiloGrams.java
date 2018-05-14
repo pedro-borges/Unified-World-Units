@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.KiloGramUnit.KILOGRAM;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class KiloGrams extends Mass {
 
@@ -52,22 +56,22 @@ public class KiloGrams extends Mass {
 
 	@Override
 	public KiloGrams plus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new KiloGrams(plusAmount(other, mathContext));
+		return new KiloGrams(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public KiloGrams minus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new KiloGrams(minusAmount(other, mathContext));
+		return new KiloGrams(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public KiloGrams multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new KiloGrams(multipliedByScalar(other, mathContext));
+		return new KiloGrams(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public KiloGrams dividedBy(BigDecimal other, MathContext mathContext) {
-		return new KiloGrams(dividedByScalar(other, mathContext));
+		return new KiloGrams(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

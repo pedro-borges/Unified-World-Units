@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.KelvinUnit.KELVIN;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Kelvins extends Temperature {
 
@@ -52,22 +56,22 @@ public class Kelvins extends Temperature {
 
 	@Override
 	public Kelvins plus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Kelvins(plusAmount(other, mathContext));
+		return new Kelvins(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Kelvins minus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Kelvins(minusAmount(other, mathContext));
+		return new Kelvins(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Kelvins multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Kelvins(multipliedByScalar(other, mathContext));
+		return new Kelvins(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Kelvins dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Kelvins(dividedByScalar(other, mathContext));
+		return new Kelvins(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

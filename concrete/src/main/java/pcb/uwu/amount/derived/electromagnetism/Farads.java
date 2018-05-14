@@ -12,7 +12,11 @@ import java.math.MathContext;
 import static pcb.uwu.unit.derived.electromagnetism.FaradUnit.FARAD;
 import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Farads extends ElectricCapacitance {
 
@@ -56,22 +60,22 @@ public class Farads extends ElectricCapacitance {
 
 	@Override
 	public Farads plus(UnitAmount<ElectricCapacitanceUnit> other, MathContext mathContext) {
-		return new Farads(plusAmount(other, mathContext));
+		return new Farads(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Farads minus(UnitAmount<ElectricCapacitanceUnit> other, MathContext mathContext) {
-		return new Farads(minusAmount(other, mathContext));
+		return new Farads(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Farads multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Farads(multipliedByScalar(other, mathContext));
+		return new Farads(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Farads dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Farads(dividedByScalar(other, mathContext));
+		return new Farads(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override

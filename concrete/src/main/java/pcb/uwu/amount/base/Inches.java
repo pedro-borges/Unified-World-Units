@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.InchUnit.INCH;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Inches extends Length {
 
@@ -52,22 +56,22 @@ public class Inches extends Length {
 
 	@Override
 	public Inches plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Inches(plusAmount(other, mathContext));
+		return new Inches(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Inches minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Inches(minusAmount(other, mathContext));
+		return new Inches(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Inches multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Inches(multipliedByScalar(other, mathContext));
+		return new Inches(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Inches dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Inches(dividedByScalar(other, mathContext));
+		return new Inches(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

@@ -9,7 +9,11 @@ import pcb.uwu.unit.base.TemperatureUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Temperature extends CompositeUnitAmount<TemperatureUnit> {
 
@@ -54,22 +58,22 @@ public class Temperature extends CompositeUnitAmount<TemperatureUnit> {
 
 	@Override
 	public Temperature plus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Temperature(plusAmount(other, mathContext), getUnit());
+		return new Temperature(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Temperature minus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Temperature(minusAmount(other, mathContext), getUnit());
+		return new Temperature(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Temperature multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Temperature(multipliedByScalar(other, mathContext), getUnit());
+		return new Temperature(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Temperature dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Temperature(dividedByScalar(other, mathContext), getUnit());
+		return new Temperature(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

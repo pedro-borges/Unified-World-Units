@@ -13,7 +13,11 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static java.math.RoundingMode.HALF_EVEN;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Money extends CompositeUnitAmount<MoneyUnit> {
 
@@ -41,22 +45,22 @@ public class Money extends CompositeUnitAmount<MoneyUnit> {
 
 	@Override
 	public Money plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		return new Money(getAmount().plus(getAmountIn(other, getUnit()), mathContext), getUnit());
+		return new Money(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Money minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		return new Money(getAmount().minus(getAmountIn(other, getUnit()), mathContext), getUnit());
+		return new Money(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Money multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Money(getAmount().multipliedBy(other, mathContext), getUnit());
+		return new Money(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Money dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Money(getAmount().dividedBy(other, mathContext), getUnit());
+		return new Money(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

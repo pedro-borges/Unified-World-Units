@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.electromagnetism.MagneticFieldUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class MagneticField extends CompositeUnitAmount<MagneticFieldUnit> {
 
@@ -53,22 +57,22 @@ public class MagneticField extends CompositeUnitAmount<MagneticFieldUnit> {
 
 	@Override
 	public MagneticField plus(UnitAmount<MagneticFieldUnit> other, MathContext mathContext) {
-		return new MagneticField(plusAmount(other, mathContext), getUnit());
+		return new MagneticField(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public MagneticField minus(UnitAmount<MagneticFieldUnit> other, MathContext mathContext) {
-		return new MagneticField(minusAmount(other, mathContext), getUnit());
+		return new MagneticField(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public MagneticField multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new MagneticField(multipliedByScalar(other, mathContext), getUnit());
+		return new MagneticField(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public MagneticField dividedBy(BigDecimal other, MathContext mathContext) {
-		return new MagneticField(dividedByScalar(other, mathContext), getUnit());
+		return new MagneticField(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.termodynamics.PowerUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Power extends CompositeUnitAmount<PowerUnit> {
 
@@ -53,22 +57,22 @@ public class Power extends CompositeUnitAmount<PowerUnit> {
 
 	@Override
 	public Power plus(UnitAmount<PowerUnit> other, MathContext mathContext) {
-		return new Power(plusAmount(other, mathContext), getUnit());
+		return new Power(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Power minus(UnitAmount<PowerUnit> other, MathContext mathContext) {
-		return new Power(minusAmount(other, mathContext), getUnit());
+		return new Power(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Power multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Power(multipliedByScalar(other, mathContext), getUnit());
+		return new Power(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Power dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Power(dividedByScalar(other, mathContext), getUnit());
+		return new Power(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
@@ -77,5 +81,4 @@ public class Power extends CompositeUnitAmount<PowerUnit> {
 	}
 
 	// endregion
-
 }

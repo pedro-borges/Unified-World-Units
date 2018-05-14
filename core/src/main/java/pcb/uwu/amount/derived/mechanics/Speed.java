@@ -15,7 +15,11 @@ import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Speed extends CompositeUnitAmount<SpeedUnit> {
 
@@ -59,22 +63,22 @@ public class Speed extends CompositeUnitAmount<SpeedUnit> {
 
 	@Override
 	public Speed plus(UnitAmount<SpeedUnit> other, MathContext mathContext) {
-		return new Speed(plusAmount(other, mathContext), getUnit());
+		return new Speed(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Speed minus(UnitAmount<SpeedUnit> other, MathContext mathContext) {
-		return new Speed(minusAmount(other, mathContext), getUnit());
+		return new Speed(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Speed multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Speed(multipliedByScalar(other, mathContext), getUnit());
+		return new Speed(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Speed dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Speed(dividedByScalar(other, mathContext), getUnit());
+		return new Speed(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

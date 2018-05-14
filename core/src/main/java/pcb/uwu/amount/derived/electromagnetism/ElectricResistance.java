@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricResistanceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class ElectricResistance extends CompositeUnitAmount<ElectricResistanceUnit> {
 
@@ -53,22 +57,22 @@ public class ElectricResistance extends CompositeUnitAmount<ElectricResistanceUn
 
 	@Override
 	public ElectricResistance plus(UnitAmount<ElectricResistanceUnit> other, MathContext mathContext) {
-		return new ElectricResistance(plusAmount(other, mathContext), getUnit());
+		return new ElectricResistance(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricResistance minus(UnitAmount<ElectricResistanceUnit> other, MathContext mathContext) {
-		return new ElectricResistance(minusAmount(other, mathContext), getUnit());
+		return new ElectricResistance(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricResistance multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricResistance(multipliedByScalar(other, mathContext), getUnit());
+		return new ElectricResistance(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricResistance dividedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricResistance(dividedByScalar(other, mathContext), getUnit());
+		return new ElectricResistance(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

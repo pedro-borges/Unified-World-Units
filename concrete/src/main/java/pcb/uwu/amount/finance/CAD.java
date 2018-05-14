@@ -7,6 +7,11 @@ import pcb.uwu.unit.finance.MoneyUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+
 public class CAD extends Money {
 
 	public static final MoneyUnit CURRENCY = MoneyUnit.of("CAD");
@@ -43,22 +48,22 @@ public class CAD extends Money {
 
 	@Override
 	public CAD plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		return new CAD(plusAmount(other, mathContext));
+		return new CAD(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public CAD minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		return new CAD(minusAmount(other, mathContext));
+		return new CAD(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public CAD multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new CAD(multipliedByScalar(other, mathContext));
+		return new CAD(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public CAD dividedBy(BigDecimal other, MathContext mathContext) {
-		return new CAD(dividedByScalar(other, mathContext));
+		return new CAD(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

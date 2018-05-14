@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.optics.IlluminanceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Illuminance extends CompositeUnitAmount<IlluminanceUnit> {
 
@@ -53,22 +57,22 @@ public class Illuminance extends CompositeUnitAmount<IlluminanceUnit> {
 
 	@Override
 	public Illuminance plus(UnitAmount<IlluminanceUnit> other, MathContext mathContext) {
-		return new Illuminance(plusAmount(other, mathContext), getUnit());
+		return new Illuminance(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Illuminance minus(UnitAmount<IlluminanceUnit> other, MathContext mathContext) {
-		return new Illuminance(minusAmount(other, mathContext), getUnit());
+		return new Illuminance(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Illuminance multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Illuminance(multipliedByScalar(other, mathContext), getUnit());
+		return new Illuminance(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Illuminance dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Illuminance(dividedByScalar(other, mathContext), getUnit());
+		return new Illuminance(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

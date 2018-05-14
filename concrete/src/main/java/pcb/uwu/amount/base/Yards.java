@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.YardUnit.YARD;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Yards extends Length {
 
@@ -52,22 +56,22 @@ public class Yards extends Length {
 
 	@Override
 	public Yards plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Yards(plusAmount(other, mathContext));
+		return new Yards(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Yards minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Yards(minusAmount(other, mathContext));
+		return new Yards(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Yards multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Yards(multipliedByScalar(other, mathContext));
+		return new Yards(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Yards dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Yards(dividedByScalar(other, mathContext));
+		return new Yards(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

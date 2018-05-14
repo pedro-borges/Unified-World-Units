@@ -5,6 +5,8 @@ import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.Unit;
 import pcb.uwu.core.UnitAmount;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.function.Function;
 
 import static java.math.MathContext.UNLIMITED;
@@ -41,5 +43,21 @@ public class UnitAmountUtils {
 				.andThen(newUnit.getTranslationFromCanonical());
 
 		return amount.transformed(translation).dividedBy(magnitude.getValue(), UNLIMITED);
+	}
+
+	public static <U extends Unit> BigDecimalAmount plusAmount(UnitAmount<U> unitAmount, UnitAmount<U> other, MathContext mathContext) {
+		return unitAmount.getAmount().plus(getAmountIn(other, unitAmount.getUnit()), mathContext);
+	}
+
+	public static <U extends Unit> BigDecimalAmount minusAmount(UnitAmount<U> unitAmount, UnitAmount<U> other, MathContext mathContext) {
+		return unitAmount.getAmount().minus(getAmountIn(other, unitAmount.getUnit()), mathContext);
+	}
+
+	public static <U extends Unit> BigDecimalAmount multipliedByScalar(UnitAmount<U> unitAmount, BigDecimal other, MathContext mathContext) {
+		return unitAmount.getAmount().multipliedBy(other, mathContext);
+	}
+
+	public static <U extends Unit> BigDecimalAmount dividedByScalar(UnitAmount<U> unitAmount, BigDecimal other, MathContext mathContext) {
+		return unitAmount.getAmount().dividedBy(other, mathContext);
 	}
 }

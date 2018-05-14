@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.scalar.SolidAngleUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class SolidAngle extends CompositeUnitAmount<SolidAngleUnit> {
 
@@ -54,22 +58,22 @@ public class SolidAngle extends CompositeUnitAmount<SolidAngleUnit> {
 
 	@Override
 	public SolidAngle plus(UnitAmount<SolidAngleUnit> other, MathContext mathContext) {
-		return new SolidAngle(plusAmount(other, mathContext), getUnit());
+		return new SolidAngle(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public SolidAngle minus(UnitAmount<SolidAngleUnit> other, MathContext mathContext) {
-		return new SolidAngle(minusAmount(other, mathContext), getUnit());
+		return new SolidAngle(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public SolidAngle multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new SolidAngle(multipliedByScalar(other, mathContext), getUnit());
+		return new SolidAngle(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public SolidAngle dividedBy(BigDecimal other, MathContext mathContext) {
-		return new SolidAngle(dividedByScalar(other, mathContext), getUnit());
+		return new SolidAngle(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

@@ -17,7 +17,11 @@ import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
 import static pcb.uwu.unit.derived.termodynamics.WattUnit.WATT;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Watts extends Power {
 
@@ -61,22 +65,22 @@ public class Watts extends Power {
 
 	@Override
 	public Watts plus(UnitAmount<PowerUnit> other, MathContext mathContext) {
-		return new Watts(plusAmount(other, mathContext));
+		return new Watts(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Watts minus(UnitAmount<PowerUnit> other, MathContext mathContext) {
-		return new Watts(minusAmount(other, mathContext));
+		return new Watts(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Watts multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Watts(multipliedByScalar(other, mathContext));
+		return new Watts(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Watts dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Watts(dividedByScalar(other, mathContext));
+		return new Watts(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

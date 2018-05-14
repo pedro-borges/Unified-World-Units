@@ -13,7 +13,11 @@ import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Pace extends CompositeUnitAmount<PaceUnit> {
 
@@ -57,22 +61,22 @@ public class Pace extends CompositeUnitAmount<PaceUnit> {
 
 	@Override
 	public Pace plus(UnitAmount<PaceUnit> other, MathContext mathContext) {
-		return new Pace(plusAmount(other, mathContext), getUnit());
+		return new Pace(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Pace minus(UnitAmount<PaceUnit> other, MathContext mathContext) {
-		return new Pace(minusAmount(other, mathContext), getUnit());
+		return new Pace(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Pace multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Pace(multipliedByScalar(other, mathContext), getUnit());
+		return new Pace(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Pace dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Pace(dividedByScalar(other, mathContext), getUnit());
+		return new Pace(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

@@ -15,7 +15,11 @@ import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.derived.electromagnetism.CoulombUnit.COULOMB;
 import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Volts extends ElectricPotential {
 
@@ -59,22 +63,22 @@ public class Volts extends ElectricPotential {
 
 	@Override
 	public Volts plus(UnitAmount<ElectricPotentialUnit> other, MathContext mathContext) {
-		return new Volts(plusAmount(other, mathContext));
+		return new Volts(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Volts minus(UnitAmount<ElectricPotentialUnit> other, MathContext mathContext) {
-		return new Volts(minusAmount(other, mathContext));
+		return new Volts(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Volts multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Volts(multipliedByScalar(other, mathContext));
+		return new Volts(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Volts dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Volts(dividedByScalar(other, mathContext));
+		return new Volts(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override

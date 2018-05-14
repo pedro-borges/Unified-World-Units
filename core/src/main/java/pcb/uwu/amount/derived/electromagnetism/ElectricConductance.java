@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricConductanceUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class ElectricConductance extends CompositeUnitAmount<ElectricConductanceUnit> {
 
@@ -53,22 +57,22 @@ public class ElectricConductance extends CompositeUnitAmount<ElectricConductance
 
 	@Override
 	public ElectricConductance plus(UnitAmount<ElectricConductanceUnit> other, MathContext mathContext) {
-		return new ElectricConductance(plusAmount(other, mathContext), getUnit());
+		return new ElectricConductance(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricConductance minus(UnitAmount<ElectricConductanceUnit> other, MathContext mathContext) {
-		return new ElectricConductance(minusAmount(other, mathContext), getUnit());
+		return new ElectricConductance(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricConductance multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricConductance(multipliedByScalar(other, mathContext), getUnit());
+		return new ElectricConductance(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public ElectricConductance dividedBy(BigDecimal other, MathContext mathContext) {
-		return new ElectricConductance(dividedByScalar(other, mathContext), getUnit());
+		return new ElectricConductance(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

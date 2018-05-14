@@ -11,7 +11,11 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Lux extends Illuminance {
 
@@ -55,22 +59,22 @@ public class Lux extends Illuminance {
 
 	@Override
 	public Lux plus(UnitAmount<IlluminanceUnit> other, MathContext mathContext) {
-		return new Lux(plusAmount(other, mathContext));
+		return new Lux(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Lux minus(UnitAmount<IlluminanceUnit> other, MathContext mathContext) {
-		return new Lux(minusAmount(other, mathContext));
+		return new Lux(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Lux multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Lux(multipliedByScalar(other, mathContext));
+		return new Lux(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Lux dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Lux(dividedByScalar(other, mathContext));
+		return new Lux(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

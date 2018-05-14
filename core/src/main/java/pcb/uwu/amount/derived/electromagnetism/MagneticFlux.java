@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.electromagnetism.MagneticFluxUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class MagneticFlux extends CompositeUnitAmount<MagneticFluxUnit> {
 
@@ -53,22 +57,22 @@ public class MagneticFlux extends CompositeUnitAmount<MagneticFluxUnit> {
 
 	@Override
 	public MagneticFlux plus(UnitAmount<MagneticFluxUnit> other, MathContext mathContext) {
-		return new MagneticFlux(plusAmount(other, mathContext), getUnit());
+		return new MagneticFlux(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public MagneticFlux minus(UnitAmount<MagneticFluxUnit> other, MathContext mathContext) {
-		return new MagneticFlux(minusAmount(other, mathContext), getUnit());
+		return new MagneticFlux(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public MagneticFlux multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new MagneticFlux(multipliedByScalar(other, mathContext), getUnit());
+		return new MagneticFlux(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public MagneticFlux dividedBy(BigDecimal other, MathContext mathContext) {
-		return new MagneticFlux(dividedByScalar(other, mathContext), getUnit());
+		return new MagneticFlux(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

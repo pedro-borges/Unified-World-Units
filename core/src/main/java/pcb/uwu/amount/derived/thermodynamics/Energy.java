@@ -9,7 +9,11 @@ import pcb.uwu.unit.derived.termodynamics.EnergyUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Energy extends CompositeUnitAmount<EnergyUnit> {
 
@@ -53,22 +57,22 @@ public class Energy extends CompositeUnitAmount<EnergyUnit> {
 
 	@Override
 	public Energy plus(UnitAmount<EnergyUnit> other, MathContext mathContext) {
-		return new Energy(plusAmount(other, mathContext), getUnit());
+		return new Energy(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Energy minus(UnitAmount<EnergyUnit> other, MathContext mathContext) {
-		return new Energy(minusAmount(other, mathContext), getUnit());
+		return new Energy(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Energy multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Energy(multipliedByScalar(other, mathContext), getUnit());
+		return new Energy(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Energy dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Energy(dividedByScalar(other, mathContext), getUnit());
+		return new Energy(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

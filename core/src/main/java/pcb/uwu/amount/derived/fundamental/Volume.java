@@ -12,7 +12,11 @@ import java.math.MathContext;
 import java.util.function.BiFunction;
 
 import static pcb.uwu.utils.MathUtils.PI;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Volume extends CompositeUnitAmount<VolumeUnit> {
 
@@ -85,22 +89,22 @@ public class Volume extends CompositeUnitAmount<VolumeUnit> {
 
 	@Override
 	public Volume plus(UnitAmount<VolumeUnit> other, MathContext mathContext) {
-		return new Volume(plusAmount(other, mathContext), getUnit());
+		return new Volume(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Volume minus(UnitAmount<VolumeUnit> other, MathContext mathContext) {
-		return new Volume(minusAmount(other, mathContext), getUnit());
+		return new Volume(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Volume multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Volume(multipliedByScalar(other, mathContext), getUnit());
+		return new Volume(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Volume dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Volume(dividedByScalar(other, mathContext), getUnit());
+		return new Volume(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

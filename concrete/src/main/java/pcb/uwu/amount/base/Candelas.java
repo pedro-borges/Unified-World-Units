@@ -18,7 +18,11 @@ import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
 import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Candelas extends LuminousIntensity {
 
@@ -62,22 +66,22 @@ public class Candelas extends LuminousIntensity {
 
 	@Override
 	public Candelas plus(UnitAmount<LuminousIntensityUnit> other, MathContext mathContext) {
-		return new Candelas(plusAmount(other, mathContext));
+		return new Candelas(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Candelas minus(UnitAmount<LuminousIntensityUnit> other, MathContext mathContext) {
-		return new Candelas(minusAmount(other, mathContext));
+		return new Candelas(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Candelas multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Candelas(multipliedByScalar(other, mathContext));
+		return new Candelas(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Candelas dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Candelas(dividedByScalar(other, mathContext));
+		return new Candelas(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

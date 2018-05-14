@@ -12,7 +12,11 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.ScalarUnit.SCALAR;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 
@@ -57,22 +61,22 @@ public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 
 	@Override
 	public Scalar plus(UnitAmount<ScalarUnit> other, MathContext mathContext) {
-		return new Scalar(plusAmount(other, mathContext));
+		return new Scalar(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Scalar minus(UnitAmount<ScalarUnit> other, MathContext mathContext) {
-		return new Scalar(minusAmount(other, mathContext));
+		return new Scalar(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Scalar multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Scalar(multipliedByScalar(other, mathContext));
+		return new Scalar(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Scalar dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Scalar(dividedByScalar(other, mathContext));
+		return new Scalar(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override

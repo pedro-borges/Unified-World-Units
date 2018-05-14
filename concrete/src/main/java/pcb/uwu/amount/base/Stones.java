@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.StoneUnit.STONE;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Stones extends Mass {
 
@@ -52,22 +56,22 @@ public class Stones extends Mass {
 
 	@Override
 	public Stones plus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Stones(plusAmount(other, mathContext));
+		return new Stones(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Stones minus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Stones(minusAmount(other, mathContext));
+		return new Stones(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Stones multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Stones(multipliedByScalar(other, mathContext));
+		return new Stones(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Stones dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Stones(dividedByScalar(other, mathContext));
+		return new Stones(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

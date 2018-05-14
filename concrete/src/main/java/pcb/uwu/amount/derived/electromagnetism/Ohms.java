@@ -11,7 +11,11 @@ import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Ohms extends ElectricResistance {
 
@@ -55,22 +59,22 @@ public class Ohms extends ElectricResistance {
 
 	@Override
 	public Ohms plus(UnitAmount<ElectricResistanceUnit> other, MathContext mathContext) {
-		return new Ohms(plusAmount(other, mathContext));
+		return new Ohms(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Ohms minus(UnitAmount<ElectricResistanceUnit> other, MathContext mathContext) {
-		return new Ohms(minusAmount(other, mathContext));
+		return new Ohms(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Ohms multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Ohms(multipliedByScalar(other, mathContext));
+		return new Ohms(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Ohms dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Ohms(dividedByScalar(other, mathContext));
+		return new Ohms(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override

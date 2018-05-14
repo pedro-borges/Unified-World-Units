@@ -9,6 +9,10 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.FootUnit.FOOT;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Feet extends Length {
 
@@ -52,22 +56,22 @@ public class Feet extends Length {
 
 	@Override
 	public Feet plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Feet(plusAmount(other, mathContext));
+		return new Feet(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Feet minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Feet(minusAmount(other, mathContext));
+		return new Feet(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Feet multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Feet(multipliedByScalar(other, mathContext));
+		return new Feet(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Feet dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Feet(dividedByScalar(other, mathContext));
+		return new Feet(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

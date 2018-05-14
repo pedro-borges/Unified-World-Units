@@ -7,6 +7,11 @@ import pcb.uwu.unit.finance.MoneyUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+
 public class JPY extends Money {
 
 	public static final MoneyUnit CURRENCY = MoneyUnit.of("JPY");
@@ -43,22 +48,22 @@ public class JPY extends Money {
 
 	@Override
 	public JPY plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		return new JPY(plusAmount(other, mathContext));
+		return new JPY(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public JPY minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
-		return new JPY(minusAmount(other, mathContext));
+		return new JPY(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public JPY multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new JPY(multipliedByScalar(other, mathContext));
+		return new JPY(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public JPY dividedBy(BigDecimal other, MathContext mathContext) {
-		return new JPY(dividedByScalar(other, mathContext));
+		return new JPY(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

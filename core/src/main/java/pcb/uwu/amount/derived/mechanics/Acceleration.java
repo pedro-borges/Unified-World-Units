@@ -15,7 +15,11 @@ import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Acceleration extends CompositeUnitAmount<AccelerationUnit> {
 
@@ -59,22 +63,22 @@ public class Acceleration extends CompositeUnitAmount<AccelerationUnit> {
 
 	@Override
 	public Acceleration plus(UnitAmount<AccelerationUnit> other, MathContext mathContext) {
-		return new Acceleration(plusAmount(other, mathContext), getUnit());
+		return new Acceleration(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Acceleration minus(UnitAmount<AccelerationUnit> other, MathContext mathContext) {
-		return new Acceleration(minusAmount(other, mathContext), getUnit());
+		return new Acceleration(minusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Acceleration multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Acceleration(multipliedByScalar(other, mathContext), getUnit());
+		return new Acceleration(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
 	public Acceleration dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Acceleration(dividedByScalar(other, mathContext), getUnit());
+		return new Acceleration(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override

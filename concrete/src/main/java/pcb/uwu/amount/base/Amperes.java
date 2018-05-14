@@ -25,7 +25,11 @@ import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
 import static pcb.uwu.unit.derived.electromagnetism.SiemensUnit.SIEMENS;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
 import static pcb.uwu.unit.derived.electromagnetism.WebberUnit.WEBBER;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Amperes extends ElectricCurrent {
 
@@ -69,22 +73,22 @@ public class Amperes extends ElectricCurrent {
 
 	@Override
 	public Amperes plus(UnitAmount<ElectricCurrentUnit> other, MathContext mathContext) {
-		return new Amperes(plusAmount(other, mathContext));
+		return new Amperes(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Amperes minus(UnitAmount<ElectricCurrentUnit> other, MathContext mathContext) {
-		return new Amperes(minusAmount(other, mathContext));
+		return new Amperes(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Amperes multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Amperes(multipliedByScalar(other, mathContext));
+		return new Amperes(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Amperes dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Amperes(dividedByScalar(other, mathContext));
+		return new Amperes(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

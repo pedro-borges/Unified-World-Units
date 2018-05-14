@@ -18,7 +18,11 @@ import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.electromagnetism.CoulombUnit.COULOMB;
 import static pcb.uwu.unit.derived.electromagnetism.FaradUnit.FARAD;
 import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Coulombs extends ElectricCharge {
 
@@ -62,22 +66,22 @@ public class Coulombs extends ElectricCharge {
 
 	@Override
 	public Coulombs plus(UnitAmount<ElectricChargeUnit> other, MathContext mathContext) {
-		return new Coulombs(plusAmount(other, mathContext));
+		return new Coulombs(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Coulombs minus(UnitAmount<ElectricChargeUnit> other, MathContext mathContext) {
-		return new Coulombs(minusAmount(other, mathContext));
+		return new Coulombs(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Coulombs multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Coulombs(multipliedByScalar(other, mathContext));
+		return new Coulombs(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Coulombs dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Coulombs(dividedByScalar(other, mathContext));
+		return new Coulombs(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override

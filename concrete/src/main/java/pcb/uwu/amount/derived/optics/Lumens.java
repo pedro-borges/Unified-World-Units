@@ -21,7 +21,11 @@ import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.LumenUnit.LUMEN;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
 import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Lumens extends LuminousFlux {
 
@@ -65,22 +69,22 @@ public class Lumens extends LuminousFlux {
 
 	@Override
 	public Lumens plus(UnitAmount<LuminousFluxUnit> other, MathContext mathContext) {
-		return new Lumens(plusAmount(other, mathContext));
+		return new Lumens(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Lumens minus(UnitAmount<LuminousFluxUnit> other, MathContext mathContext) {
-		return new Lumens(minusAmount(other, mathContext));
+		return new Lumens(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Lumens multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Lumens(multipliedByScalar(other, mathContext));
+		return new Lumens(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Lumens dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Lumens(dividedByScalar(other, mathContext));
+		return new Lumens(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion

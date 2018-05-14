@@ -28,7 +28,11 @@ import static pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON;
 import static pcb.uwu.unit.derived.termodynamics.JouleUnit.JOULE;
 import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
 import static pcb.uwu.unit.derived.termodynamics.WattUnit.WATT;
+import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
+import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
+import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Joules extends Energy {
 
@@ -72,22 +76,22 @@ public class Joules extends Energy {
 
 	@Override
 	public Joules plus(UnitAmount<EnergyUnit> other, MathContext mathContext) {
-		return new Joules(plusAmount(other, mathContext));
+		return new Joules(plusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Joules minus(UnitAmount<EnergyUnit> other, MathContext mathContext) {
-		return new Joules(minusAmount(other, mathContext));
+		return new Joules(minusAmount(this, other, mathContext));
 	}
 
 	@Override
 	public Joules multipliedBy(BigDecimal other, MathContext mathContext) {
-		return new Joules(multipliedByScalar(other, mathContext));
+		return new Joules(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
 	public Joules dividedBy(BigDecimal other, MathContext mathContext) {
-		return new Joules(dividedByScalar(other, mathContext));
+		return new Joules(dividedByScalar(this, other, mathContext));
 	}
 
 	// endregion
