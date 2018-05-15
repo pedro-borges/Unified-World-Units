@@ -24,9 +24,9 @@ public class PeriodicTableGenerator {
 					.append(name)
 					.append("\", \"")
 					.append(element.symbol)
-					.append("\", \"")
+					.append("\", new BigDecimal(\"")
 					.append(element.atomicWeight)
-					.append("\");\n");
+					.append("\"));\n");
 		}
 
 		try (FileWriter writer = new FileWriter(file)) {
