@@ -18,7 +18,7 @@ public class PeriodicTableGenerator {
 			String name = element.name().charAt(0) + element.name().substring(1).toLowerCase();
 			builder.append("public static final ChemicalElement ")
 					.append(element.name())
-					.append(" = new ChemicalElement(")
+					.append(" =\n\t\tnew ChemicalElement(")
 					.append(element.atomicNumber)
 					.append(", \"")
 					.append(name)

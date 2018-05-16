@@ -1,4 +1,7 @@
 # units
 A generic library of world units.
 
-Work in progress, since Oct 2017 not yet ready for use, please come back in a couple of months or less :)
+Work in progress since Oct 2017. Fully functional but not ready for use in production.
+
+Use at own risk, contribute at own heart.
+
