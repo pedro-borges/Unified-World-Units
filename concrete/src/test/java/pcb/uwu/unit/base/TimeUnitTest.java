@@ -6,12 +6,19 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 import pcb.uwu.amount.base.Days;
 import pcb.uwu.amount.base.Hours;
+import pcb.uwu.amount.base.Length;
+import pcb.uwu.amount.base.Meters;
 import pcb.uwu.amount.base.Minutes;
 import pcb.uwu.amount.base.Seconds;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.amount.base.Weeks;
+import pcb.uwu.amount.derived.mechanics.Pace;
+import pcb.uwu.amount.derived.mechanics.Speed;
 import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
+
+import java.math.MathContext;
 
 import static java.math.MathContext.DECIMAL64;
 import static java.math.RoundingMode.HALF_EVEN;
@@ -45,5 +52,17 @@ public class TimeUnitTest {
 		for (UnitAmount<TimeUnit> unitAmount : testData()) {
 			assertEquals(one, time.dividedBy(unitAmount, DECIMAL64).getAmount().withScale(6, HALF_EVEN));
 		}
+	}
+
+	@Test
+	public void a()
+	{
+		Length distance = new Meters(10, Magnitude.KILO);
+		Time duration = new Hours(2);
+		Speed speed = distance.dividedBy(duration, MathContext.UNLIMITED);
+		Pace pace = duration.dividedBy(distance, MathContext.UNLIMITED);
+
+		System.out.println(speed.getAmount() + " " + speed.getUnit());
+		System.out.println(pace.getAmount() + " " + pace.getUnit());
 	}
 }

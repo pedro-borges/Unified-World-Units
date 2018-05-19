@@ -9,7 +9,7 @@ public class PaceUnit extends CompositeUnit {
 
 	// region base constructor
 
-	public PaceUnit(LengthUnit lengthUnit, TimeUnit timeUnit) {
+	public PaceUnit(TimeUnit timeUnit, LengthUnit lengthUnit) {
 		super(new UnitCounter()
 				.major(timeUnit)
 				.minor(lengthUnit));

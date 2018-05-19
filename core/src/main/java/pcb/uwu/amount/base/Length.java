@@ -90,8 +90,7 @@ public class Length extends CompositeUnitAmount<LengthUnit> {
 	// region composition
 
 	public Speed dividedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount()
-				.dividedBy(time.getAmount().getValue(), mathContext);
+		BigDecimalAmount amount = getAmount().dividedBy(time.getAmount().getValue(), mathContext);
 		SpeedUnit unit = new SpeedUnit(getUnit(), time.getUnit());
 
 		return new Speed(amount, unit);

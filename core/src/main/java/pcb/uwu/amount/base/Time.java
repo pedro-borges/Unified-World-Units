@@ -2,6 +2,7 @@ package pcb.uwu.amount.base;
 
 import pcb.uwu.amount.derived.finance.Debt;
 import pcb.uwu.amount.derived.fundamental.Frequency;
+import pcb.uwu.amount.derived.mechanics.Pace;
 import pcb.uwu.amount.finance.Money;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
@@ -10,6 +11,7 @@ import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.TimeUnit;
 import pcb.uwu.unit.derived.finance.DebtUnit;
 import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
+import pcb.uwu.unit.derived.mechanics.PaceUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -105,6 +107,13 @@ public class Time extends CompositeUnitAmount<TimeUnit> {
 		DebtUnit unit = new DebtUnit(money.getUnit(), getUnit());
 
 		return new Debt(amount, unit);
+	}
+
+	public Pace dividedBy(Length length, MathContext mathContext) {
+		BigDecimalAmount amount = getAmount().dividedBy(length.getAmount().getValue(), mathContext);
+		PaceUnit unit = new PaceUnit(getUnit(), length.getUnit());
+
+		return new Pace(amount, unit);
 	}
 
 	// endregion
