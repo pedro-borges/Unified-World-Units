@@ -19,3 +19,15 @@ System.out.println(pace.getAmount() + " " + pace.getUnit());
 >5000 h⁻¹⋅m
 
 >0.0002 h⋅m⁻¹
+
+Soon to be:
+
+```
+ Length distance = new Meters(10, Magnitude.KILO);
+ Time duration = new Hours(2);
+ Speed speed = distance.dividedBy(duration);
+ Pace pace = duration.dividedBy(distance);
+ 
+ System.out.println(speed.getAmount(MathContext.UNLIMITED) + " " + speed.getUnit());
+ System.out.println(pace.getAmount(MathContext.UNLIMITED) + " " + pace.getUnit());
+```
