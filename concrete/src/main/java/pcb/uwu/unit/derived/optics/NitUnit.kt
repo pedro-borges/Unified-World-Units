@@ -4,7 +4,8 @@ import pcb.uwu.unit.base.CandelaUnit
 import pcb.uwu.unit.derived.area.SquareMeterUnit
 
 object NitUnit
-    : LuminanceUnit(CandelaUnit, SquareMeterUnit)
+    : LuminanceUnit(luminousIntensityUnit = CandelaUnit,
+                    areaUnit = SquareMeterUnit)
 {
     override val symbol = "nit"
     override val singularName = "nit"

@@ -5,7 +5,9 @@ import pcb.uwu.util.andThen
 
 
 object LitreUnit
-    : VolumeUnit(MeterUnit, MeterUnit, MeterUnit)
+    : VolumeUnit(lengthUnit = MeterUnit,
+                 heightUnit = MeterUnit,
+                 depthUnit = MeterUnit)
 {
     override val symbol = "l"
     override val singularName = "litre"

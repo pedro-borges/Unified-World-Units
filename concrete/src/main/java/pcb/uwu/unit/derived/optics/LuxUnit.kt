@@ -5,7 +5,9 @@ import pcb.uwu.unit.base.MeterUnit
 import pcb.uwu.unit.scalar.SteradianUnit
 
 object LuxUnit
-    : IlluminanceUnit(CandelaUnit, SteradianUnit, MeterUnit)
+    : IlluminanceUnit(luminousIntensityUnit = CandelaUnit,
+                      solidAngleUnit = SteradianUnit,
+                      lengthUnit = MeterUnit)
 {
     override val symbol = "lx"
     override val singularName = "lux"
