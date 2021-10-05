@@ -20,6 +20,9 @@ import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 
+	public static final Scalar ZERO = new Scalar(0);
+	public static final Scalar ONE = new Scalar(1);
+
 	// region constructors
 
 	public Scalar(Number value) {
@@ -53,7 +56,6 @@ public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 	public Scalar(BigDecimalAmount amount, Magnitude magnitude) {
 		super(amount, magnitude, SCALAR);
 	}
-
 
 	// endregion
 

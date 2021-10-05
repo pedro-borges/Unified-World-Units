@@ -58,4 +58,11 @@ public interface UnitAmount<U extends Unit> extends Comparable<UnitAmount<U>> {
 	 * @return the converted {@code UnitAmount}
 	 */
 	UnitAmount<U> in(U unit);
+
+	/**
+	 * Compares two {@code UnitAmount} relaxing to base units
+	 * i.e. 300 seconds is equivalent to 5 minutes
+	 * @return true if equivalent, false otherwise
+	 */
+	boolean equivalentTo(UnitAmount<?> unitAmount);
 }

@@ -1,12 +1,16 @@
 package pcb.uwu.core;
 
+import pcb.uwu.amount.base.Scalar;
+
 import java.math.MathContext;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class AmountExpression {
-    private UnitAmount<?> base;
     private List<ExpressionPart> parts = new LinkedList<>();
 
     private enum Operator {
@@ -25,7 +29,7 @@ public class AmountExpression {
         @Override
         public boolean equals(Object obj) {
             if (this == obj) return true;
-            if (obj == null || getClass() != obj.getClass()) return false;
+            if (!(obj instanceof ExpressionPart)) return false;
 
             ExpressionPart that = (ExpressionPart) obj;
             return this.operator == that.operator
@@ -36,11 +40,16 @@ public class AmountExpression {
         public int hashCode() {
             return Objects.hash(operator, unitAmount);
         }
+
+        @Override
+        public String toString() {
+            return operator + " " + unitAmount;
+        }
     }
 
-    public AmountExpression(UnitAmount<?> base)
+    public AmountExpression(UnitAmount<?> unitAmount)
     {
-        this.base = base;
+        parts.add(new ExpressionPart(Operator.MULTIPLY, unitAmount));
     }
 
     public AmountExpression multipliedBy(CompositeUnitAmount<?> other)
@@ -57,7 +66,9 @@ public class AmountExpression {
 
     public UnitAmount<?> calculate(MathContext mathContext)
     {
-        UnitAmount<?> result = base;
+        UnitAmount<?> result = Scalar.ONE;
+
+        trim(parts);
 
         for (ExpressionPart part : parts) {
             switch (part.operator)
@@ -70,19 +81,39 @@ public class AmountExpression {
         return result;
     }
 
+    public static void trim(List<ExpressionPart> parts)
+    {
+        List<ExpressionPart> majorParts = parts.stream()
+                .filter(part -> part.operator == Operator.MULTIPLY)
+                .collect(toList());
+        List<ExpressionPart> minorParts = parts.stream()
+                .filter(part -> part.operator == Operator.DIVIDE)
+                .collect(toList());
+
+        for (ExpressionPart majorPart : majorParts) {
+            for (ExpressionPart minorPart : minorParts) {
+                // Cut off perfect opposites
+                if (majorPart.unitAmount.equivalentTo(minorPart.unitAmount))
+                {
+                    parts.remove(majorPart);
+                    parts.remove(minorPart);
+                }
+            }
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (!(obj instanceof AmountExpression)) return false;
 
         AmountExpression that = (AmountExpression) obj;
 
-        return Objects.equals(this.base, that.base)
-                && Objects.equals(this.parts, that.parts);
+        return Objects.equals(this.parts, that.parts);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(base, parts);
+        return Objects.hash(parts);
     }
 }
