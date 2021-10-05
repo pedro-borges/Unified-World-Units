@@ -1,36 +1,29 @@
-package pcb.uwu.amount.derived.finance;
+package pcb.uwu.amount.derived.finance
 
-import org.junit.Test;
-import pcb.uwu.amount.base.Weeks;
-import pcb.uwu.amount.finance.USD;
-import pcb.uwu.unit.derived.finance.DebtUnit;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.base.Weeks
+import pcb.uwu.amount.finance.USD
+import pcb.uwu.unit.base.WeekUnit.WEEK
+import pcb.uwu.unit.derived.finance.DebtUnit
+import pcb.uwu.unit.derived.fundamental.PerDayUnit.PER_DAY
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
-import static pcb.uwu.unit.base.WeekUnit.WEEK;
-import static pcb.uwu.unit.derived.fundamental.PerDayUnit.PER_DAY;
+class DebtTest
+{
+    @Test
+    fun multipliedByInterestRate() =
+        assertEquals("84 US$",
+                     Debt(60, DebtUnit(USD.CURRENCY, WEEK)).multipliedBy(InterestRate("0.2", PER_DAY), DECIMAL64).toString())
 
-public class DebtTest {
-	public static final Debt debt = new Debt(60, new DebtUnit(USD.CURRENCY, WEEK));
+    @Test
+    fun dividedByTime() =
+        assertEquals("30 US$",
+                     Debt(60, DebtUnit(USD.CURRENCY, WEEK)).dividedBy(Weeks(2), DECIMAL64).toString())
 
-	@Test
-	public void multipliedByInterestRate() {
-		InterestRate interestRate = new InterestRate("0.2", PER_DAY);
+    @Test
+    fun dividedByMoney() =
+        assertEquals("3 wk",
+                     Debt(60, DebtUnit(USD.CURRENCY, WEEK)).dividedBy(USD(20), DECIMAL64).toString())
 
-		assertEquals("84.00 USD", debt.multipliedBy(interestRate, DECIMAL64).toString());
-	}
-
-	@Test
-	public void dividedByTime() {
-		Weeks weeks = new Weeks(2);
-
-		assertEquals("30.00 USD", debt.dividedBy(weeks, DECIMAL64).toString());
-	}
-
-	@Test
-	public void dividedByMoney() {
-		USD money = new USD(20);
-
-		assertEquals("3.00 wk", debt.dividedBy(money, DECIMAL64).toString());
-	}
 }

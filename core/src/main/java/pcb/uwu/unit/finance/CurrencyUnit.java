@@ -9,9 +9,12 @@ import java.util.Currency;
 import java.util.Objects;
 import java.util.function.Function;
 
-public class MoneyUnit extends BaseUnit {
+public class CurrencyUnit extends BaseUnit {
 
-	public static final MoneyUnit CANONICAL_CURRENCY = new MoneyUnit(Currency.getInstance("USD"));
+	public static final CurrencyUnit CANONICAL_CURRENCY = new CurrencyUnit(Currency.getInstance("USD"));
+	public static final CurrencyUnit GBP = CurrencyUnit.of("GBP");
+	public static final CurrencyUnit USD = CurrencyUnit.of("USD");
+	public static final CurrencyUnit EUR = CurrencyUnit.of("EUR");
 
 	// region private fields
 
@@ -22,7 +25,7 @@ public class MoneyUnit extends BaseUnit {
 
 	// region constructors
 
-	public MoneyUnit(Currency currency) {
+	public CurrencyUnit(Currency currency) {
 		super(100,
 				currency.getSymbol(),
 				currency.getDisplayName(),
@@ -34,8 +37,8 @@ public class MoneyUnit extends BaseUnit {
 		this.unitCounter = new UnitCounter(this);
 	}
 
-	public static MoneyUnit of(String code) {
-		return new MoneyUnit(Currency.getInstance(code));
+	public static CurrencyUnit of(String code) {
+		return new CurrencyUnit(Currency.getInstance(code));
 	}
 
 	// endregion
@@ -54,7 +57,7 @@ public class MoneyUnit extends BaseUnit {
 
 	@Override
 	public Class<? extends BaseUnit> getBaseUnitType() {
-		return MoneyUnit.class;
+		return CurrencyUnit.class;
 	}
 
 	@Override
@@ -80,8 +83,8 @@ public class MoneyUnit extends BaseUnit {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof MoneyUnit) {
-			MoneyUnit that = (MoneyUnit) obj;
+		if (obj instanceof CurrencyUnit) {
+			CurrencyUnit that = (CurrencyUnit) obj;
 
 			return Objects.equals(this.currency, that.currency);
 		}

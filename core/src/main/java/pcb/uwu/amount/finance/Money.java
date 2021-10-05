@@ -8,7 +8,7 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.finance.DebtUnit;
-import pcb.uwu.unit.finance.MoneyUnit;
+import pcb.uwu.unit.finance.CurrencyUnit;
 import pcb.uwu.unit.finance.RentUnit;
 
 import java.math.BigDecimal;
@@ -21,23 +21,23 @@ import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
 import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
-public class Money extends CompositeUnitAmount<MoneyUnit> {
+public class Money extends CompositeUnitAmount<CurrencyUnit> {
 
 	// region constructors
 
-	public Money(Number value, MoneyUnit unit) {
+	public Money(Number value, CurrencyUnit unit) {
 		this(value.toString(), unit);
 	}
 
-	public Money(String value, MoneyUnit unit) {
+	public Money(String value, CurrencyUnit unit) {
 		this(new BigDecimal(value), unit);
 	}
 
-	public Money(BigDecimal value, MoneyUnit unit) {
+	public Money(BigDecimal value, CurrencyUnit unit) {
 		this(new BigDecimalAmount(value), unit);
 	}
 
-	public Money(BigDecimalAmount amount, MoneyUnit unit) {
+	public Money(BigDecimalAmount amount, CurrencyUnit unit) {
 		super(amount.withScale(unit.getDefaultFractionDigits(), HALF_EVEN), unit);
 	}
 
@@ -46,12 +46,12 @@ public class Money extends CompositeUnitAmount<MoneyUnit> {
 	//region implement UnitAmount
 
 	@Override
-	public Money plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
+	public Money plus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
 		return new Money(plusAmount(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Money minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
+	public Money minus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
 		return new Money(minusAmount(this, other, mathContext), getUnit());
 	}
 
@@ -66,7 +66,7 @@ public class Money extends CompositeUnitAmount<MoneyUnit> {
 	}
 
 	@Override
-	public Money in(MoneyUnit unit) {
+	public Money in(CurrencyUnit unit) {
 		return new Money(getAmountIn(this, unit), unit);
 	}
 

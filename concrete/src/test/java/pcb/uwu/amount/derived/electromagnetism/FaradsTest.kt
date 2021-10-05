@@ -1,22 +1,20 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.junit.Test;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.core.Magnitude.KILO
+import pcb.uwu.core.Magnitude.MICRO
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
-import static pcb.uwu.core.Magnitude.KILO;
-import static pcb.uwu.core.Magnitude.MICRO;
+class FaradsTest
+{
+    @Test
+    fun multipliedByElectricPotential() =
+        assertEquals("0.002 C",
+                     Farads(100, MICRO).multipliedBy(Volts(20), DECIMAL64).toString())
 
-public class FaradsTest {
-	private static final Farads farads = new Farads(100, MICRO);
-
-	@Test
-	public void multipliedByElectricPotential() {
-		assertEquals("0.002000 C", farads.multipliedBy(new Volts(20), DECIMAL64).toString());
-	}
-
-	@Test
-	public void multipliedByElectricResistance() {
-		assertEquals("0.200000 s", farads.multipliedBy(new Ohms(2, KILO), DECIMAL64).toString());
-	}
+    @Test
+    fun multipliedByElectricResistance() =
+        assertEquals("0.2 s",
+                     Farads(100, MICRO).multipliedBy(Ohms(2, KILO), DECIMAL64).toString())
 }

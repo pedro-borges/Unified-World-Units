@@ -1,17 +1,16 @@
-package pcb.uwu.amount.derived.optics;
+package pcb.uwu.amount.derived.optics
 
-import org.junit.Test;
-import pcb.uwu.amount.derived.fundamental.area.SquareMeters;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.core.Magnitude.MILLI
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
-import static pcb.uwu.core.Magnitude.MILLI;
+class LuxTest
+{
+    @Test
+    fun multipliedByArea() =
+        assertEquals("200 lm",
+                     Lux(2000).multipliedBy(SquareMeters(100, MILLI), DECIMAL64).toString())
 
-public class LuxTest {
-	private static final Lux lux = new Lux(2000);
-
-	@Test
-	public void multipliedByArea() {
-		assertEquals("200.000 lm", lux.multipliedBy(new SquareMeters(100, MILLI), DECIMAL64).toString());
-	}
 }

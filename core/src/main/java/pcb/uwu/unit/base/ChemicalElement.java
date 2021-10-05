@@ -71,7 +71,7 @@ public class ChemicalElement {
 	public static final ChemicalElement GERMANIUM =
 			new ChemicalElement(32, "Germanium", "Ge", new BigDecimal("72.630888888888"));
 	public static final ChemicalElement ARSENIC =
-			new ChemicalElement(33, "Arsenic", "As", new BigDecimal("749215956666666"));
+			new ChemicalElement(33, "Arsenic", "As", new BigDecimal("74.9215956666666"));
 	public static final ChemicalElement SELENIUM =
 			new ChemicalElement(34, "Selenium", "Se", new BigDecimal("78.971888888888"));
 	public static final ChemicalElement BROMINE =
@@ -250,7 +250,7 @@ public class ChemicalElement {
 	private final String symbol;
 	private final BigDecimal atomicWeight;
 
-	public ChemicalElement(int atomicNumber, String name, String symbol, BigDecimal atomicWeight) {
+	private ChemicalElement(int atomicNumber, String name, String symbol, BigDecimal atomicWeight) {
 		this.atomicNumber = atomicNumber;
 		this.name = name;
 		this.symbol = symbol;

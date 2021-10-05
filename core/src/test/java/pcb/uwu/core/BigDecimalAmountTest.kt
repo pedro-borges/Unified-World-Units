@@ -1,82 +1,48 @@
-package pcb.uwu.core;
+package pcb.uwu.core
 
-import org.junit.Test;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import java.math.MathContext.UNLIMITED
 
-import static java.math.MathContext.UNLIMITED;
-import static org.junit.Assert.assertEquals;
+class BigDecimalAmountTest
+{
+    @Test
+    fun testConstructNumber() =
+        assertEquals("1",
+                     BigDecimalAmount(1).toString())
 
-public class BigDecimalAmountTest {
-	@Test
-	public void testConstructNumber() {
-		BigDecimalAmount amount = new BigDecimalAmount(1);
+    @Test
+    fun testConstructBigDecimal() =
+        assertEquals("1",
+                     BigDecimalAmount(1).toString())
 
-		assertEquals("1", amount.toString());
-	}
+    @Test
+    fun testPlusBig() =
+        assertEquals("1001000",
+                     BigDecimalAmount(1000000).plus(BigDecimalAmount(1000), UNLIMITED).toString())
 
-	@Test
-	public void testConstructBigDecimal() {
-		BigDecimalAmount amount = new BigDecimalAmount(1);
+    @Test
+    fun testPlusSmall() =
+        assertEquals("0.001001",
+                     BigDecimalAmount("0.000001").plus(BigDecimalAmount("0.001"), UNLIMITED).toString())
 
-		assertEquals("1", amount.toString());
-	}
+    @Test
+    fun testMinusSmallerBig() =
+        assertEquals("999000",
+                     BigDecimalAmount(1000000).minus(BigDecimalAmount(1000), UNLIMITED).toString())
 
-	@Test
-	public void testPlusBig() {
-		BigDecimalAmount amount1 = new BigDecimalAmount(1_000_000);
-		BigDecimalAmount amount2 = new BigDecimalAmount(1_000);
+    @Test
+    fun testMinusHigherBig() =
+        assertEquals("-999000",
+                     BigDecimalAmount(1000).minus(BigDecimalAmount(1000000), UNLIMITED).toString())
 
-		BigDecimalAmount sum = amount1.plus(amount2, UNLIMITED);
+    @Test
+    fun testMinusLowerSmall() =
+        assertEquals("0.000999",
+                     BigDecimalAmount("0.001").minus(BigDecimalAmount("0.000001"), UNLIMITED).toString())
 
-		assertEquals("1001000", sum.toString());
-	}
-
-	@Test
-	public void testPlusSmall() {
-		BigDecimalAmount amount1 = new BigDecimalAmount("0.000001");
-		BigDecimalAmount amount2 = new BigDecimalAmount("0.001");
-
-		BigDecimalAmount sum = amount1.plus(amount2, UNLIMITED);
-
-		assertEquals("0.001001", sum.toString());
-	}
-
-	@Test
-	public void testMinusSmallerBig() {
-		BigDecimalAmount amount1 = new BigDecimalAmount(1_000_000);
-		BigDecimalAmount amount2 = new BigDecimalAmount(1_000);
-
-		BigDecimalAmount sum = amount1.minus(amount2, UNLIMITED);
-
-		assertEquals("999000", sum.toString());
-	}
-
-	@Test
-	public void testMinusHigherBig() {
-		BigDecimalAmount amount1 = new BigDecimalAmount(1_000);
-		BigDecimalAmount amount2 = new BigDecimalAmount(1_000_000);
-
-		BigDecimalAmount sum = amount1.minus(amount2, UNLIMITED);
-
-		assertEquals("-999000", sum.toString());
-	}
-
-	@Test
-	public void testMinusLowerSmall() {
-		BigDecimalAmount amount1 = new BigDecimalAmount("0.001");
-		BigDecimalAmount amount2 = new BigDecimalAmount("0.000001");
-
-		BigDecimalAmount sum = amount1.minus(amount2, UNLIMITED);
-
-		assertEquals("0.000999", sum.toString());
-	}
-
-	@Test
-	public void testMinusHigherSmall() {
-		BigDecimalAmount amount1 = new BigDecimalAmount("0.000001");
-		BigDecimalAmount amount2 = new BigDecimalAmount("0.001");
-
-		BigDecimalAmount sum = amount1.minus(amount2, UNLIMITED);
-
-		assertEquals("-0.000999", sum.toString());
-	}
+    @Test
+    fun testMinusHigherSmall() =
+        assertEquals("-0.000999",
+                     BigDecimalAmount("0.000001").minus(BigDecimalAmount("0.001"), UNLIMITED).toString())
 }

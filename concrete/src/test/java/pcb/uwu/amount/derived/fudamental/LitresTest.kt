@@ -1,59 +1,48 @@
-package pcb.uwu.amount.derived.fudamental;
+package pcb.uwu.amount.derived.fudamental
 
-import org.junit.Assert;
-import org.junit.Test;
-import pcb.uwu.amount.base.Meters;
-import pcb.uwu.amount.derived.fundamental.Volume;
-import pcb.uwu.amount.derived.fundamental.volume.Litres;
-import pcb.uwu.unit.derived.fundamental.VolumeUnit;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.base.Meters
+import pcb.uwu.amount.derived.fundamental.Volume
+import pcb.uwu.amount.derived.fundamental.volume.Litres
+import pcb.uwu.core.Magnitude.*
+import pcb.uwu.unit.base.MeterUnit.METER
+import pcb.uwu.unit.derived.fundamental.LitreUnit.LITRE
+import pcb.uwu.unit.derived.fundamental.VolumeUnit
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
-import static pcb.uwu.core.Magnitude.CENTI;
-import static pcb.uwu.core.Magnitude.DECI;
-import static pcb.uwu.core.Magnitude.MILLI;
-import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.derived.fundamental.LitreUnit.LITRE;
+class LitresTest
+{
+    @Test
+    fun construct()
+    {
+        assertEquals("1 l",
+                     Litres(1).toString())
+        assertEquals("0.001 m³",
+                     Litres(1).`in`(VolumeUnit(METER, METER, METER)).toString())
+        assertEquals("3030 l",
+                     Volume(3.03, VolumeUnit(METER, METER, METER)).`in`(LITRE).toString())
+    }
 
-public class LitresTest {
-	@Test
-	public void construct() {
-		VolumeUnit cubicMeter = new VolumeUnit(METER, METER, METER) {};
-		Litres litres = new Litres(1);
+    @Test
+    fun sphereFactory()
+    {
+        assertEquals("0.00418879020478639 l",
+                     Litres.FOR.sphereWithRadius(Meters(10, MILLI), DECIMAL64).toString())
+        assertEquals("4.18879020478639 l",
+                     Litres.FOR.sphereWithRadius(Meters(10, CENTI), DECIMAL64).toString())
+        assertEquals("4188.79020478639 l",
+                     Litres.FOR.sphereWithRadius(Meters(10, DECI), DECIMAL64).toString())
+    }
 
-		assertEquals("1 l", litres.toString());
-		assertEquals("0.001 m³", litres.in(cubicMeter).toString());
-
-		Volume volume = new Volume(3.03, cubicMeter);
-
-		Assert.assertEquals("3030.00 l", volume.in(LITRE).toString());
-	}
-
-	@Test
-	public void sphereFactory() {
-		Litres ball;
-
-		ball = Litres.FOR.sphereWithRadius(new Meters(10, MILLI), DECIMAL64);
-		assertEquals("0.004188790204786390 l", ball.toString());
-
-		ball = Litres.FOR.sphereWithRadius(new Meters(10, CENTI), DECIMAL64);
-		assertEquals("4.188790204786390 l", ball.toString());
-
-		ball = Litres.FOR.sphereWithRadius(new Meters(10, DECI), DECIMAL64);
-		assertEquals("4188.790204786390 l", ball.toString());
-	}
-
-	@Test
-	public void cubeFactory() {
-		Litres cube;
-
-		cube = Litres.FOR.cubeWithSide(new Meters(1, CENTI), DECIMAL64);
-		assertEquals("0.001 l", cube.toString());
-
-		cube = Litres.FOR.cubeWithSide(new Meters(1, DECI), DECIMAL64);
-		assertEquals("1 l", cube.toString());
-
-		cube = Litres.FOR.cubeWithSide(new Meters(1), DECIMAL64);
-		assertEquals("1000 l", cube.toString());
-	}
+    @Test
+    fun cubeFactory()
+    {
+        assertEquals("0.001 l",
+                     Litres.FOR.cubeWithSide(Meters(1, CENTI), DECIMAL64).toString())
+        assertEquals("1 l",
+                     Litres.FOR.cubeWithSide(Meters(1, DECI), DECIMAL64).toString())
+        assertEquals("1000 l",
+                     Litres.FOR.cubeWithSide(Meters(1), DECIMAL64).toString())
+    }
 }

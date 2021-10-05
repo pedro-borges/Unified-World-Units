@@ -1,62 +1,44 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.junit.Test;
-import pcb.uwu.amount.finance.Money;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.exception.InvalidCurrencyException;
-import pcb.uwu.unit.finance.MoneyUnit;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.finance.Money
+import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.exception.InvalidCurrencyException
+import pcb.uwu.unit.finance.CurrencyUnit.GBP
+import pcb.uwu.unit.finance.CurrencyUnit.USD
+import java.math.MathContext.UNLIMITED
 
-import static java.math.MathContext.UNLIMITED;
-import static org.junit.Assert.assertEquals;
+class MoneyTest
+{
+    // region test constructors
+    @Test
+    fun testConstructHonoursDefaultFractionDigits()
+    {
+        assertEquals(BigDecimalAmount("1.00"), Money("1.005", GBP).amount)
+        assertEquals(BigDecimalAmount("1.00"), Money("0.995", GBP).amount)
+    }
 
-public class MoneyTest {
-	private static final MoneyUnit GBP = MoneyUnit.of("GBP");
-	private static final MoneyUnit USD = MoneyUnit.of("USD");
+    // endregion
+    @Test
+    fun testPlusSameCurrency() =
+        assertEquals(Money(11, GBP),
+                     Money(1, GBP).plus(Money(10, GBP), UNLIMITED))
 
-	// region test constructors
+    @Test(expected = InvalidCurrencyException::class)
+    fun testPlusDifferentCurrency()
+    {
+        Money(1, GBP).plus(Money(10, USD), UNLIMITED)
+    }
 
-	@Test
-	public void testConstructHonoursDefaultFractionDigits() {
-		assertConstructors(new Money("1.005", GBP));
-		assertConstructors(new Money("0.995", GBP));
-	}
+    @Test
+    fun testMinusSameCurrency() =
+        assertEquals(Money(-9, GBP),
+                     Money(1, GBP).minus(Money(10, GBP), UNLIMITED))
 
-	private void assertConstructors(Money money) {
-		assertEquals(GBP.getDefaultFractionDigits(), money.getAmount().getScale());
-		assertEquals(new BigDecimalAmount("1.00"), money.getAmount());
-	}
-
-	// endregion
-
-	@Test
-	public void testPlusSameCurrency() {
-		Money money1 = new Money(1, GBP);
-		Money money2 = new Money(10, GBP);
-
-		assertEquals(new Money(11, GBP), money1.plus(money2, UNLIMITED));
-	}
-
-	@Test(expected = InvalidCurrencyException.class)
-	public void testPlusDifferentCurrency() {
-		Money money1 = new Money(1, GBP);
-		Money money2 = new Money(10, USD);
-
-		money1.plus(money2, UNLIMITED);
-	}
-
-	@Test
-	public void testMinusSameCurrency() {
-		Money money1 = new Money(1, GBP);
-		Money money2 = new Money(10, GBP);
-
-		assertEquals(new Money(-9, GBP), money1.minus(money2, UNLIMITED));
-	}
-
-	@Test(expected = InvalidCurrencyException.class)
-	public void testMinusDifferentCurrency() {
-		Money money1 = new Money(1, GBP);
-		Money money2 = new Money(10, USD);
-
-		money1.minus(money2, UNLIMITED);
-	}
+    @Test(expected = InvalidCurrencyException::class)
+    fun testMinusDifferentCurrency()
+    {
+        Money(1, GBP).minus(Money(10, USD), UNLIMITED)
+    }
 }

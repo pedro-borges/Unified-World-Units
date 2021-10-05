@@ -7,13 +7,13 @@ import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
 
 public class RentUnit extends CompositeUnit {
 
-	public RentUnit(MoneyUnit money, TimeUnit time) {
+	public RentUnit(CurrencyUnit money, TimeUnit time) {
 		super(new UnitCounter()
 				.major(money)
 				.minor(time));
 	}
 
-	public RentUnit(MoneyUnit money, FrequencyUnit interestRateUnit) {
+	public RentUnit(CurrencyUnit money, FrequencyUnit interestRateUnit) {
 		super(new UnitCounter()
 				.major(money)
 				.major(interestRateUnit.getUnitCounter()));

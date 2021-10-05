@@ -2,7 +2,7 @@ package pcb.uwu.amount.finance;
 
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.finance.MoneyUnit;
+import pcb.uwu.unit.finance.CurrencyUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -14,7 +14,7 @@ import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class CAD extends Money {
 
-	public static final MoneyUnit CURRENCY = MoneyUnit.of("CAD");
+	public static final CurrencyUnit CURRENCY = CurrencyUnit.of("CAD");
 
 	// region constructor
 
@@ -47,12 +47,12 @@ public class CAD extends Money {
 	}
 
 	@Override
-	public CAD plus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
+	public CAD plus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
 		return new CAD(plusAmount(this, other, mathContext));
 	}
 
 	@Override
-	public CAD minus(UnitAmount<MoneyUnit> other, MathContext mathContext) {
+	public CAD minus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
 		return new CAD(minusAmount(this, other, mathContext));
 	}
 

@@ -1,29 +1,27 @@
-package pcb.uwu.amount.derived.thermodynamics;
+package pcb.uwu.amount.derived.thermodynamics
 
-import org.junit.Test;
-import pcb.uwu.amount.base.Amperes;
-import pcb.uwu.amount.base.Seconds;
-import pcb.uwu.amount.derived.electromagnetism.Volts;
-import pcb.uwu.core.Magnitude;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.base.Amperes
+import pcb.uwu.amount.base.Seconds
+import pcb.uwu.amount.derived.electromagnetism.Volts
+import pcb.uwu.core.Magnitude.MILLI
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
+class WattsTest
+{
+    @Test
+    fun multipliedByTime() =
+        assertEquals("300 J",
+                     Watts(20).multipliedBy(Seconds(15), DECIMAL64).toString())
 
-public class WattsTest {
-	private static final Watts watts = new Watts(20);
+    @Test
+    fun dividedByElectricCurrent() =
+        assertEquals("200 V",
+                     Watts(20).dividedBy(Amperes(100, MILLI), DECIMAL64).toString())
 
-	@Test
-	public void multipliedByTime() {
-		assertEquals("300 J", watts.multipliedBy(new Seconds(15), DECIMAL64).toString());
-	}
-
-	@Test
-	public void dividedByElectricCurrent() {
-		assertEquals("200 V", watts.dividedBy(new Amperes(100, Magnitude.MILLI), DECIMAL64).toString());
-	}
-
-	@Test
-	public void dividedByElectricPotential() {
-		assertEquals("0.1 A", watts.dividedBy(new Volts(200), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByElectricPotential() =
+        assertEquals("0.1 A",
+                     Watts(20).dividedBy(Volts(200), DECIMAL64).toString())
 }

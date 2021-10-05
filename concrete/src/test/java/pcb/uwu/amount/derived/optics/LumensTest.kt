@@ -1,39 +1,38 @@
-package pcb.uwu.amount.derived.optics;
+package pcb.uwu.amount.derived.optics
 
-import org.junit.Test;
-import pcb.uwu.amount.base.Candelas;
-import pcb.uwu.amount.base.Seconds;
-import pcb.uwu.amount.derived.fundamental.area.SquareMeters;
-import pcb.uwu.amount.derived.scalar.Steradians;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.base.Candelas
+import pcb.uwu.amount.base.Seconds
+import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.scalar.Steradians
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
+class LumensTest
+{
+    @Test
+    fun dividedBySolidAngle() =
+        assertEquals("11 cd",
+                     Lumens(22).dividedBy(Steradians(2), DECIMAL64).toString())
 
-public class LumensTest {
-	private static final Lumens lumens = new Lumens(22);
+    @Test
+    fun dividedByLuminousIntensity() =
+        assertEquals("2 sr",
+                     Lumens(22).dividedBy(Candelas(11), DECIMAL64).toString())
 
-	@Test
-	public void dividedBySolidAngle() {
-		assertEquals("11 cd", lumens.dividedBy(new Steradians(2), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByArea() =
+        assertEquals("2 lx",
+                     Lumens(22).dividedBy(SquareMeters(11), DECIMAL64).toString())
 
-	@Test
-	public void dividedByLuminousIntensity() {
-		assertEquals("2 sr", lumens.dividedBy(new Candelas(11), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByIlluminance() =
+        assertEquals("11 m²",
+                     Lumens(22).dividedBy(Lux(2), DECIMAL64).toString())
 
-	@Test
-	public void dividedByArea() {
-		assertEquals("2 lx", lumens.dividedBy(new SquareMeters(11), DECIMAL64).toString());
-	}
+    @Test
+    fun multipliedByTime() =
+        assertEquals("66 T",
+                     Lumens(22).multipliedBy(Seconds(3), DECIMAL64).toString())
 
-	@Test
-	public void dividedByIlluminance() {
-		assertEquals("11 m²", lumens.dividedBy(new Lux(2), DECIMAL64).toString());
-	}
-
-	@Test
-	public void multipliedByTime() {
-		assertEquals("66 T", lumens.multipliedBy(new Seconds(3), DECIMAL64).toString());
-	}
 }

@@ -1,23 +1,23 @@
-package pcb.uwu.amount.finance;
+package pcb.uwu.amount.finance
 
-import org.junit.Test;
-import pcb.uwu.amount.base.Time;
-import pcb.uwu.amount.derived.finance.InterestRate;
-import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.base.Time
+import pcb.uwu.amount.derived.finance.InterestRate
+import pcb.uwu.unit.base.DayUnit.DAY
+import pcb.uwu.unit.base.WeekUnit.WEEK
+import pcb.uwu.unit.derived.fundamental.FrequencyUnit
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
-import static pcb.uwu.unit.base.DayUnit.DAY;
-import static pcb.uwu.unit.base.WeekUnit.WEEK;
+class RentTest
+{
 
-public class RentTest {
-	private GBP gbp = new GBP(6);
-	private Time time = new Time(3, DAY);
-	private InterestRate interestRate = new InterestRate(0.2, new FrequencyUnit(WEEK));
-
-	@Test
-	public void testFromMoneyAndTime() {
-		assertEquals("2.00 £⋅d⁻¹", gbp.dividedBy(time, DECIMAL64).toString());
-		assertEquals("1.200 £⋅wk⁻¹", gbp.multipliedBy(interestRate, DECIMAL64).toString());
-	}
+    @Test
+    fun testFromMoneyAndTime()
+    {
+        assertEquals("2 £⋅d⁻¹",
+                     GBP(6).dividedBy(Time(3, DAY), DECIMAL64).toString())
+        assertEquals("1.2 £⋅wk⁻¹",
+                     GBP(6).multipliedBy(InterestRate(0.2, FrequencyUnit(WEEK)), DECIMAL64).toString())
+    }
 }

@@ -1,52 +1,50 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.junit.Test;
-import pcb.uwu.amount.base.Amperes;
-import pcb.uwu.amount.base.Seconds;
-import pcb.uwu.amount.derived.fundamental.Area;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.base.Amperes
+import pcb.uwu.amount.base.Seconds
+import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.core.Magnitude.KILO
+import pcb.uwu.core.Magnitude.MILLI
+import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
-import static pcb.uwu.core.Magnitude.KILO;
-import static pcb.uwu.core.Magnitude.MILLI;
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
+class WebbersTest
+{
+    @Test
+    fun dividedByTime() =
+        assertEquals("2 V",
+                     Webbers(12).dividedBy(Seconds(6), DECIMAL64).toString())
 
-public class WebbersTest {
-	private static final Webbers webbers = new Webbers(12);
+    @Test
+    fun dividedByElectricPotential() =
+        assertEquals("6 s",
+                     Webbers(12).dividedBy(Volts(2), DECIMAL64).toString())
 
-	@Test
-	public void dividedByTime() {
-		assertEquals("2 V", webbers.dividedBy(new Seconds(6), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByElectricCurrent() =
+        assertEquals("2000 H",
+                     Webbers(12).dividedBy(Amperes(6, MILLI), DECIMAL64).toString())
 
-	@Test
-	public void dividedByElectricPotential() {
-		assertEquals("6 s", webbers.dividedBy(new Volts(2), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByElectricInductance() =
+        assertEquals("0.006 A",
+                     Webbers(12).dividedBy(Henries(2, KILO), DECIMAL64).toString())
 
-	@Test
-	public void dividedByElectricCurrent() {
-		assertEquals("2000 H", webbers.dividedBy(new Amperes(6, MILLI), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByMagneticField() =
+        assertEquals("2 m²",
+                     Webbers(12).dividedBy(Teslas(6), DECIMAL64).toString())
 
-	@Test
-	public void dividedByElectricInductance() {
-		assertEquals("0.006 A", webbers.dividedBy(new Henries(2, KILO), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByArea() =
+        assertEquals("6 T",
+                     Webbers(12).dividedBy(Area(2, SQUARE_METER), DECIMAL64).toString())
 
-	@Test
-	public void dividedByMagneticField() {
-		assertEquals("2 m²", webbers.dividedBy(new Teslas(6), DECIMAL64).toString());
-	}
-
-	@Test
-	public void dividedByArea() {
-		assertEquals("6 T", webbers.dividedBy(new Area(2, SQUARE_METER), DECIMAL64).toString());
-	}
-
-	@Test
-	public void multiplyByElectricCurrent() {
-		assertEquals("0.600 J", webbers.multipliedBy(new Amperes(50, MILLI), DECIMAL64).toString());
-	}
+    @Test
+    fun multiplyByElectricCurrent() =
+        assertEquals("0.6 J",
+                     Webbers(12).multipliedBy(Amperes(50, MILLI), DECIMAL64).toString())
 
 }

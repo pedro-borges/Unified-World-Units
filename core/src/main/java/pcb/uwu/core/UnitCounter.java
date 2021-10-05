@@ -222,7 +222,6 @@ public class UnitCounter {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public <U extends BaseUnit> U findUnit(Class<U> unitClass) {
 		return getUnit(unitClass, getBaseUnits());
 	}

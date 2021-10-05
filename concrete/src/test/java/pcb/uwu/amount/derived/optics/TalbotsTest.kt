@@ -1,21 +1,20 @@
-package pcb.uwu.amount.derived.optics;
+package pcb.uwu.amount.derived.optics
 
-import org.junit.Test;
-import pcb.uwu.amount.base.Seconds;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.base.Seconds
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
+class TalbotsTest
+{
+    @Test
+    fun dividedByLuminousFlux() =
+        assertEquals("10 s",
+                     Talbots(50).dividedBy(Lumens(5), DECIMAL64).toString())
 
-public class TalbotsTest {
-	private static final Talbots talbots = new Talbots(50);
+    @Test
+    fun dividedByTime() =
+        assertEquals("5 lm",
+                     Talbots(50).dividedBy(Seconds(10), DECIMAL64).toString())
 
-	@Test
-	public void dividedByLuminousFlux() {
-		assertEquals("10 s", talbots.dividedBy(new Lumens(5), DECIMAL64).toString());
-	}
-
-	@Test
-	public void dividedByTime() {
-		assertEquals("5 lm", talbots.dividedBy(new Seconds(10), DECIMAL64).toString());
-	}
 }

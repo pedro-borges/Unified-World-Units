@@ -1,27 +1,25 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.junit.Test;
-import pcb.uwu.amount.derived.optics.Lumens;
-import pcb.uwu.amount.derived.thermodynamics.Watts;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.derived.optics.Lumens
+import pcb.uwu.amount.derived.thermodynamics.Watts
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
+class SecondsTest
+{
+    @Test
+    fun multipliedByElectricCurrent() =
+        assertEquals("35 C",
+                     Seconds(7).multipliedBy(Amperes(5), DECIMAL64).toString())
 
-public class SecondsTest {
-	private static final Seconds seconds = new Seconds(7);
+    @Test
+    fun multipliedByPower() =
+        assertEquals("35 J",
+                     Seconds(7).multipliedBy(Watts(5), DECIMAL64).toString())
 
-	@Test
-	public void multipliedByElectricCurrent() {
-		assertEquals("35 C", seconds.multipliedBy(new Amperes(5), DECIMAL64).toString());
-	}
-
-	@Test
-	public void multipliedByPower() {
-		assertEquals("35 J", seconds.multipliedBy(new Watts(5), DECIMAL64).toString());
-	}
-
-	@Test
-	public void multipliedByLuminousFlux() {
-		assertEquals("35 T", seconds.multipliedBy(new Lumens(5), DECIMAL64).toString());
-	}
+    @Test
+    fun multipliedByLuminousFlux() =
+        assertEquals("35 T",
+                     Seconds(7).multipliedBy(Lumens(5), DECIMAL64).toString())
 }

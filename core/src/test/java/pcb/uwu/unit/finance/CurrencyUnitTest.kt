@@ -1,30 +1,24 @@
-package pcb.uwu.unit.finance;
+package pcb.uwu.unit.finance
 
-import org.junit.Test;
-import pcb.uwu.exception.InvalidCurrencyException;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.core.BigDecimalAmount.ZERO
+import pcb.uwu.exception.InvalidCurrencyException
+import pcb.uwu.unit.finance.CurrencyUnit.GBP
+import java.util.*
 
-import java.util.Currency;
+class CurrencyUnitTest
+{
+    @Test
+    fun testCurrencyEquals()
+    {
+        assertEquals(Currency.getInstance("GBP"), GBP.currency)
+    }
 
-import static junit.framework.TestCase.assertSame;
-import static org.junit.Assert.assertEquals;
-import static pcb.uwu.core.BigDecimalAmount.ZERO;
-
-public class MoneyUnitTest {
-	public static final MoneyUnit GBP = new MoneyUnit(Currency.getInstance("GBP"));
-
-	// region test constructors
-
-	@Test
-	public void testCurrencyEquals() {
-		assertSame(Currency.getInstance("GBP"), GBP.getCurrency());
-	}
-
-	@Test(expected = InvalidCurrencyException.class)
-	public void testConstructorCurrency() {
-		assertEquals("£", GBP.toString());
-
-		GBP.getTranslationToCanonical().apply(ZERO);
-	}
-
-	// endregion
+    @Test(expected = InvalidCurrencyException::class)
+    fun testConstructorCurrency()
+    {
+        assertEquals("£", GBP.toString())
+        GBP.translationToCanonical.apply(ZERO)
+    }
 }

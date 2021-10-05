@@ -1,17 +1,16 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.junit.Test;
-import pcb.uwu.amount.base.Amperes;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.base.Amperes
+import pcb.uwu.core.Magnitude.MILLI
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
-import static pcb.uwu.core.Magnitude.MILLI;
+class OhmsTest
+{
+    @Test
+    fun multipliedByElectricCurrent() =
+        assertEquals("75 V",
+                     Ohms(1500).multipliedBy(Amperes(50, MILLI), DECIMAL64).toString())
 
-public class OhmsTest {
-	private static final Ohms ohms = new Ohms(1500);
-
-	@Test
-	public void multipliedByElectricCurrent() {
-		assertEquals("75.000 V", ohms.multipliedBy(new Amperes(50, MILLI), DECIMAL64).toString());
-	}
 }

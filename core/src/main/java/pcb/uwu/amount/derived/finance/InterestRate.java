@@ -6,7 +6,7 @@ import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
-import pcb.uwu.unit.finance.MoneyUnit;
+import pcb.uwu.unit.finance.CurrencyUnit;
 import pcb.uwu.unit.finance.RentUnit;
 
 import java.math.BigDecimal;
@@ -96,7 +96,7 @@ public class InterestRate extends CompositeUnitAmount<FrequencyUnit> {
 
 	public Money multipliedBy(Debt debt, MathContext mathContext) {
 		BigDecimalAmount amount = super.multipliedBy(debt, mathContext).getAmount();
-		MoneyUnit unit = getUnit().getUnitCounter().findUnit(MoneyUnit.class);
+		CurrencyUnit unit = getUnit().getUnitCounter().findUnit(CurrencyUnit.class);
 
 		return new Money(amount, unit);
 	}

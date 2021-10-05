@@ -8,7 +8,7 @@ import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.TimeUnit;
 import pcb.uwu.unit.derived.finance.DebtUnit;
-import pcb.uwu.unit.finance.MoneyUnit;
+import pcb.uwu.unit.finance.CurrencyUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -90,14 +90,14 @@ public class Debt extends CompositeUnitAmount<DebtUnit> {
 
 	public Money multipliedBy(InterestRate interestRate, MathContext mathContext) {
 		BigDecimalAmount amount = super.multipliedBy(interestRate, mathContext).getAmount();
-		MoneyUnit unit = getUnit().getUnitCounter().findUnit(MoneyUnit.class);
+		CurrencyUnit unit = getUnit().getUnitCounter().findUnit(CurrencyUnit.class);
 
 		return new Money(amount, unit);
 	}
 
 	public Money dividedBy(Time time, MathContext mathContext) {
 		BigDecimalAmount amount = super.dividedBy(time, mathContext).getAmount();
-		MoneyUnit unit = getUnit().getUnitCounter().findUnit(MoneyUnit.class);
+		CurrencyUnit unit = getUnit().getUnitCounter().findUnit(CurrencyUnit.class);
 
 		return new Money(amount, unit);
 	}

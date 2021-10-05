@@ -1,57 +1,56 @@
-package pcb.uwu.amount.derived.thermodynamics;
+package pcb.uwu.amount.derived.thermodynamics
 
-import org.junit.Test;
-import pcb.uwu.amount.base.Meters;
-import pcb.uwu.amount.base.Seconds;
-import pcb.uwu.amount.derived.electromagnetism.Coulombs;
-import pcb.uwu.amount.derived.electromagnetism.Volts;
-import pcb.uwu.amount.derived.fundamental.Volume;
-import pcb.uwu.amount.derived.mechanics.Newtons;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.base.Meters
+import pcb.uwu.amount.base.Seconds
+import pcb.uwu.amount.derived.electromagnetism.Coulombs
+import pcb.uwu.amount.derived.electromagnetism.Volts
+import pcb.uwu.amount.derived.fundamental.Volume
+import pcb.uwu.amount.derived.mechanics.Newtons
+import pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
-import static pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER;
+class JoulesTest
+{
+    @Test
+    fun dividedByVolume() =
+        assertEquals("40 Pa",
+                     Joules(200).dividedBy(Volume(5, CUBIC_METER), DECIMAL64).toString())
 
-public class JoulesTest {
-	private static final Joules joules = new Joules(200);
+    @Test
+    fun dividedByPressure() =
+        assertEquals("5 m³",
+                     Joules(200).dividedBy(Pascals(40), DECIMAL64).toString())
 
-	@Test
-	public void dividedByVolume() {
-		assertEquals("40 Pa", joules.dividedBy(new Volume(5, CUBIC_METER), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByPower() =
+        assertEquals("5 s",
+                     Joules(200).dividedBy(Watts(40), DECIMAL64).toString())
 
-	@Test
-	public void dividedByPressure() {
-		assertEquals("5 m³", joules.dividedBy(new Pascals(40), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByTime() =
+        assertEquals("40 W",
+                     Joules(200).dividedBy(Seconds(5), DECIMAL64).toString())
 
-	@Test
-	public void dividedByPower() {
-		assertEquals("5 s", joules.dividedBy(new Watts(40), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByLength() =
+        assertEquals("5 N",
+                     Joules(200).dividedBy(Meters(40), DECIMAL64).toString())
 
-	@Test
-	public void dividedByTime() {
-		assertEquals("40 W", joules.dividedBy(new Seconds(5), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByForce() =
+        assertEquals("40 m",
+                     Joules(200).dividedBy(Newtons(5), DECIMAL64).toString())
 
-	@Test
-	public void dividedByLength() {
-		assertEquals("5 N", joules.dividedBy(new Meters(40), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByElectricCharge() =
+        assertEquals("5 V",
+                     Joules(200).dividedBy(Coulombs(40), DECIMAL64).toString())
 
-	@Test
-	public void dividedByForce() {
-		assertEquals("40 m", joules.dividedBy(new Newtons(5), DECIMAL64).toString());
-	}
+    @Test
+    fun dividedByElectricPotential() =
+        assertEquals("40 C",
+                     Joules(200).dividedBy(Volts(5), DECIMAL64).toString())
 
-	@Test
-	public void dividedByElectricCharge() {
-		assertEquals("5 V", joules.dividedBy(new Coulombs(40), DECIMAL64).toString());
-	}
-
-	@Test
-	public void dividedByElectricPotential() {
-		assertEquals("40 C", joules.dividedBy(new Volts(5), DECIMAL64).toString());
-	}
 }

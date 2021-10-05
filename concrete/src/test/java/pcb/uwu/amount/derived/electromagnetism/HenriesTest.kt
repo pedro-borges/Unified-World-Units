@@ -1,17 +1,22 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.junit.Test;
-import pcb.uwu.amount.base.Amperes;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.base.Amperes
+import pcb.uwu.core.Magnitude.MILLI
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
-import static pcb.uwu.core.Magnitude.MILLI;
+class HenriesTest
+{
+    @Test
+    fun multipliedByElectricCurrent()
+    {
+        assertEquals("0.035 Wb",
+                     henries.multipliedBy(Amperes(7, MILLI), DECIMAL64).toString())
+    }
 
-public class HenriesTest {
-	private static final Henries henries = new Henries(5);
-
-	@Test
-	public void multipliedByElectricCurrent() {
-		assertEquals("0.035 Wb", henries.multipliedBy(new Amperes(7, MILLI), DECIMAL64).toString());
-	}
+    companion object
+    {
+        private val henries = Henries(5)
+    }
 }

@@ -1,19 +1,21 @@
-package pcb.uwu.utils;
+package pcb.uwu.utils
 
-import org.junit.Test;
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
-import static org.junit.Assert.assertEquals;
+class MathUtilsTest
+{
+    @Test
+    fun max()
+    {
+        assertEquals(5, MathUtils.max(4, 1, 5, 3).toInt().toLong())
+        assertEquals(-1, MathUtils.max(-4, -1, -5, -3).toInt().toLong())
+    }
 
-public class MathUtilsTest {
-	@Test
-	public void max() {
-		assertEquals(5, MathUtils.max(4, 1, 5, 3).intValue());
-		assertEquals(-1, MathUtils.max(-4, -1, -5, -3).intValue());
-	}
-
-	@Test
-	public void min() {
-		assertEquals(1, MathUtils.min(4, 1, 5, 3).intValue());
-		assertEquals(-5, MathUtils.min(-4, -1, -5, -3).intValue());
-	}
+    @Test
+    fun min()
+    {
+        assertEquals(1, MathUtils.min(4, 1, 5, 3).toInt())
+        assertEquals(-5, MathUtils.min(-4, -1, -5, -3).toInt())
+    }
 }

@@ -1,16 +1,15 @@
-package pcb.uwu.amount.derived.optics;
+package pcb.uwu.amount.derived.optics
 
-import org.junit.Test;
-import pcb.uwu.amount.derived.fundamental.area.SquareMeters;
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import java.math.MathContext.DECIMAL64
 
-import static java.math.MathContext.DECIMAL64;
-import static org.junit.Assert.assertEquals;
+class NitsTest
+{
+    @Test
+    fun multipliedByArea() =
+        assertEquals("20 cd",
+                     Nits(4).multipliedBy(SquareMeters(5), DECIMAL64).toString())
 
-public class NitsTest {
-	private static final Nits nits = new Nits(4);
-
-	@Test
-	public void multipliedByArea() {
-		assertEquals("20 cd", nits.multipliedBy(new SquareMeters(5), DECIMAL64).toString());
-	}
 }

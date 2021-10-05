@@ -376,7 +376,7 @@ public class BigDecimalAmount extends Number implements Comparable<BigDecimalAmo
 
     @Override
     public String toString() {
-        return value.toPlainString();
+        return value.stripTrailingZeros().toPlainString();
     }
 
     // endregion
