@@ -62,14 +62,14 @@ public class Pascals extends Pressure {
 
 	@NotNull
 	@Override
-	public Pascals plus(@NotNull UnitAmount<PressureUnit> amount) {
-		return new Pascals(plusAmount(this, amount));
+	public Pascals plus(@NotNull UnitAmount<PressureUnit> pressure) {
+		return new Pascals(plusAmount(this, pressure));
 	}
 
 	@NotNull
 	@Override
-	public Pascals minus(@NotNull UnitAmount<PressureUnit> amount) {
-		return new Pascals(minusAmount(this, amount));
+	public Pascals minus(@NotNull UnitAmount<PressureUnit> pressure) {
+		return new Pascals(minusAmount(this, pressure));
 	}
 
 	@NotNull

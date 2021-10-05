@@ -23,12 +23,14 @@ open class Angle : CompositeUnitAmount<AngleUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<AngleUnit>) =
-        Angle(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(angle: UnitAmount<AngleUnit>) =
+        Angle(amount = this.amount + (angle to this.unit).amount,
               unit = this.unit)
 
-    override fun minus(amount: UnitAmount<AngleUnit>) =
-        Angle(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(angle: UnitAmount<AngleUnit>) =
+        Angle(amount = this.amount - (angle to this.unit).amount,
               unit = this.unit)
 
     override fun times(number: Number) =

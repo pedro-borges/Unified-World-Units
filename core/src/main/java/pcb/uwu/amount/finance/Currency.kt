@@ -13,7 +13,7 @@ import pcb.uwu.unit.finance.RentUnit
 import pcb.uwu.utils.UnitAmountUtils
 import java.math.RoundingMode.HALF_EVEN
 
-open class Money :
+open class Currency :
     CompositeUnitAmount<CurrencyUnit>
 {
     constructor(amount: Number,
@@ -26,25 +26,27 @@ open class Money :
 
     //region UnitAmount
 
-    override fun plus(amount: UnitAmount<CurrencyUnit>) =
-        Money(amount = this.amount + (amount to this.unit).amount,
-              unit = this.unit)
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(currency: UnitAmount<CurrencyUnit>) =
+        Currency(amount = this.amount + (currency to this.unit).amount,
+                 unit = this.unit)
 
-    override fun minus(amount: UnitAmount<CurrencyUnit>) =
-        Money(amount = this.amount - (amount to this.unit).amount,
-              unit = this.unit)
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(currency: UnitAmount<CurrencyUnit>) =
+        Currency(amount = this.amount - (currency to this.unit).amount,
+                 unit = this.unit)
 
     override fun times(number: Number) =
-        Money(amount = this.amount * number,
-              unit = this.unit)
+        Currency(amount = this.amount * number,
+                 unit = this.unit)
 
     override fun div(number: Number) =
-        Money(amount = this.amount / number,
-              unit = this.unit)
+        Currency(amount = this.amount / number,
+                 unit = this.unit)
 
     override fun to(unit: CurrencyUnit) =
-        Money(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
-              unit = this.unit)
+        Currency(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
+                 unit = this.unit)
 
     // endregion
 

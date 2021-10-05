@@ -23,12 +23,14 @@ open class MagneticFlux : CompositeUnitAmount<MagneticFluxUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<MagneticFluxUnit>) =
-        MagneticFlux(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(magneticFlux: UnitAmount<MagneticFluxUnit>) =
+        MagneticFlux(amount = this.amount + (magneticFlux to this.unit).amount,
                      unit = this.unit)
 
-    override fun minus(amount: UnitAmount<MagneticFluxUnit>) =
-        MagneticFlux(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(magneticFlux: UnitAmount<MagneticFluxUnit>) =
+        MagneticFlux(amount = this.amount - (magneticFlux to this.unit).amount,
                      unit = this.unit)
 
     override fun times(number: Number) =

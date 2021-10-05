@@ -61,14 +61,14 @@ public class Talbots extends LuminousEnergy {
 
 	@NotNull
 	@Override
-	public Talbots plus(@NotNull UnitAmount<LuminousEnergyUnit> amount) {
-		return new Talbots(plusAmount(this, amount));
+	public Talbots plus(@NotNull UnitAmount<LuminousEnergyUnit> luminousEnergy) {
+		return new Talbots(plusAmount(this, luminousEnergy));
 	}
 
 	@NotNull
 	@Override
-	public Talbots minus(@NotNull UnitAmount<LuminousEnergyUnit> amount) {
-		return new Talbots(minusAmount(this, amount));
+	public Talbots minus(@NotNull UnitAmount<LuminousEnergyUnit> luminousEnergy) {
+		return new Talbots(minusAmount(this, luminousEnergy));
 	}
 
 	@NotNull

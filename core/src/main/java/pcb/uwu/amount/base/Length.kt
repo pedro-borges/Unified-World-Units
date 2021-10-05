@@ -30,12 +30,14 @@ open class Length : CompositeUnitAmount<LengthUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<LengthUnit>) =
-        Length(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(length: UnitAmount<LengthUnit>) =
+        Length(amount = this.amount + (length to this.unit).amount,
                unit = this.unit)
 
-    override fun minus(amount: UnitAmount<LengthUnit>) =
-        Length(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(length: UnitAmount<LengthUnit>) =
+        Length(amount = this.amount - (length to this.unit).amount,
                unit = this.unit)
 
     override fun times(number: Number) =

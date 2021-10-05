@@ -25,12 +25,14 @@ open class Area : CompositeUnitAmount<AreaUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<AreaUnit>) =
-        Area(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(area: UnitAmount<AreaUnit>) =
+        Area(amount = this.amount + (area to this.unit).amount,
              unit = this.unit)
 
-    override fun minus(amount: UnitAmount<AreaUnit>) =
-        Area(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(area: UnitAmount<AreaUnit>) =
+        Area(amount = this.amount - (area to this.unit).amount,
              unit = this.unit)
 
     override fun times(number: Number) =

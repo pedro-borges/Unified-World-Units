@@ -56,14 +56,14 @@ public class Hertz extends Frequency {
 
 	@NotNull
 	@Override
-	public Hertz plus(@NotNull UnitAmount<FrequencyUnit> amount) {
-		return new Hertz(plusAmount(this, amount));
+	public Hertz plus(@NotNull UnitAmount<FrequencyUnit> frequency) {
+		return new Hertz(plusAmount(this, frequency));
 	}
 
 	@NotNull
 	@Override
-	public Hertz minus(@NotNull UnitAmount<FrequencyUnit> amount) {
-		return new Hertz(minusAmount(this, amount));
+	public Hertz minus(@NotNull UnitAmount<FrequencyUnit> frequency) {
+		return new Hertz(minusAmount(this, frequency));
 	}
 
 	@NotNull

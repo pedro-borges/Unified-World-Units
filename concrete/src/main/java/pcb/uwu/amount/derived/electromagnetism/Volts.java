@@ -63,14 +63,14 @@ public class Volts extends ElectricPotential {
 
 	@NotNull
 	@Override
-	public Volts plus(@NotNull UnitAmount<ElectricPotentialUnit> amount) {
-		return new Volts(plusAmount(this, amount));
+	public Volts plus(@NotNull UnitAmount<ElectricPotentialUnit> electricPotential) {
+		return new Volts(plusAmount(this, electricPotential));
 	}
 
 	@NotNull
 	@Override
-	public Volts minus(@NotNull UnitAmount<ElectricPotentialUnit> amount) {
-		return new Volts(minusAmount(this, amount));
+	public Volts minus(@NotNull UnitAmount<ElectricPotentialUnit> electricPotential) {
+		return new Volts(minusAmount(this, electricPotential));
 	}
 
 	@NotNull

@@ -56,14 +56,14 @@ public class Radians extends Angle {
 
 	@NotNull
 	@Override
-	public Radians plus(@NotNull UnitAmount<AngleUnit> amount) {
-		return new Radians(plusAmount(this, amount));
+	public Radians plus(@NotNull UnitAmount<AngleUnit> angle) {
+		return new Radians(plusAmount(this, angle));
 	}
 
 	@NotNull
 	@Override
-	public Radians minus(@NotNull UnitAmount<AngleUnit> amount) {
-		return new Radians(minusAmount(this, amount));
+	public Radians minus(@NotNull UnitAmount<AngleUnit> angle) {
+		return new Radians(minusAmount(this, angle));
 	}
 
 	@NotNull

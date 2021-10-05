@@ -24,11 +24,13 @@ class Scalar : CompositeUnitAmount<ScalarUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<ScalarUnit>) =
-        Scalar(amount = this.amount + (amount to this.unit).amount)
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(scalar: UnitAmount<ScalarUnit>) =
+        Scalar(amount = this.amount + (scalar to this.unit).amount)
 
-    override fun minus(amount: UnitAmount<ScalarUnit>) =
-        Scalar(amount = this.amount - (amount to this.unit).amount)
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(scalar: UnitAmount<ScalarUnit>) =
+        Scalar(amount = this.amount - (scalar to this.unit).amount)
 
     override fun times(number: Number) =
         Scalar(amount = this.amount * number)

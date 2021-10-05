@@ -76,14 +76,14 @@ public class Joules extends Energy {
 
 	@NotNull
 	@Override
-	public Joules plus(@NotNull UnitAmount<EnergyUnit> amount) {
-		return new Joules(plusAmount(this, amount));
+	public Joules plus(@NotNull UnitAmount<EnergyUnit> energy) {
+		return new Joules(plusAmount(this, energy));
 	}
 
 	@NotNull
 	@Override
-	public Joules minus(@NotNull UnitAmount<EnergyUnit> amount) {
-		return new Joules(minusAmount(this, amount));
+	public Joules minus(@NotNull UnitAmount<EnergyUnit> energy) {
+		return new Joules(minusAmount(this, energy));
 	}
 
 	@NotNull

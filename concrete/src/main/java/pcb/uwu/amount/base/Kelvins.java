@@ -56,14 +56,14 @@ public class Kelvins extends Temperature {
 
 	@NotNull
 	@Override
-	public Kelvins plus(@NotNull UnitAmount<TemperatureUnit> amount) {
-		return new Kelvins(plusAmount(this, amount));
+	public Kelvins plus(@NotNull UnitAmount<TemperatureUnit> temperature) {
+		return new Kelvins(plusAmount(this, temperature));
 	}
 
 	@NotNull
 	@Override
-	public Kelvins minus(@NotNull UnitAmount<TemperatureUnit> amount) {
-		return new Kelvins(minusAmount(this, amount));
+	public Kelvins minus(@NotNull UnitAmount<TemperatureUnit> temperature) {
+		return new Kelvins(minusAmount(this, temperature));
 	}
 
 	@NotNull

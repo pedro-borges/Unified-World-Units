@@ -1,6 +1,6 @@
 package pcb.uwu.amount.derived.finance
 
-import pcb.uwu.amount.finance.Money
+import pcb.uwu.amount.finance.Currency
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
@@ -26,12 +26,14 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<FrequencyUnit>) =
-        InterestRate(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(interestRate: UnitAmount<FrequencyUnit>) =
+        InterestRate(amount = this.amount + (interestRate to this.unit).amount,
                      unit = this.unit)
 
-    override fun minus(amount: UnitAmount<FrequencyUnit>) =
-        InterestRate(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(interestRate: UnitAmount<FrequencyUnit>) =
+        InterestRate(amount = this.amount - (interestRate to this.unit).amount,
                      unit = this.unit)
 
     override fun times(number: Number) =
@@ -50,13 +52,13 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
 
     // region composition
 
-    fun times(money: Money) =
-        Rent(amount = UnitAmountUtils.times(this, money.amount.value),
-             unit = RentUnit(money.unit, this.unit))
+    fun times(currency: Currency) =
+        Rent(amount = UnitAmountUtils.times(this, currency.amount.value),
+             unit = RentUnit(currency.unit, this.unit))
 
     fun times(debt: Debt) =
-        Money(amount = (this * debt).amount,
-              unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
+        Currency(amount = (this * debt).amount,
+                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
     // endregion
 }

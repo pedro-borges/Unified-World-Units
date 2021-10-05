@@ -23,12 +23,14 @@ open class Luminance : CompositeUnitAmount<LuminanceUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<LuminanceUnit>) =
-        Luminance(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(luminance: UnitAmount<LuminanceUnit>) =
+        Luminance(amount = this.amount + (luminance to this.unit).amount,
                   unit = this.unit)
 
-    override fun minus(amount: UnitAmount<LuminanceUnit>) =
-        Luminance(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(luminance: UnitAmount<LuminanceUnit>) =
+        Luminance(amount = this.amount - (luminance to this.unit).amount,
                   unit = this.unit)
 
     override fun times(number: Number) =

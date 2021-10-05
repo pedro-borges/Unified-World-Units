@@ -23,12 +23,14 @@ open class ElectricResistance : CompositeUnitAmount<ElectricResistanceUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<ElectricResistanceUnit>) =
-        ElectricResistance(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(electricResistance: UnitAmount<ElectricResistanceUnit>) =
+        ElectricResistance(amount = this.amount + (electricResistance to this.unit).amount,
                            unit = this.unit)
 
-    override fun minus(amount: UnitAmount<ElectricResistanceUnit>) =
-        ElectricResistance(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(electricResistance: UnitAmount<ElectricResistanceUnit>) =
+        ElectricResistance(amount = this.amount - (electricResistance to this.unit).amount,
                            unit = this.unit)
 
     override fun times(number: Number) =

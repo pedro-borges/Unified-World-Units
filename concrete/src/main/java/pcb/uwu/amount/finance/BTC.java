@@ -12,7 +12,7 @@ import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
-public class BTC extends Money {
+public class BTC extends Currency {
 
 	public static final CurrencyUnit CURRENCY = CurrencyUnit.of("BTC");
 
@@ -48,14 +48,14 @@ public class BTC extends Money {
 
 	@NotNull
 	@Override
-	public BTC plus(@NotNull UnitAmount<CurrencyUnit> amount) {
-		return new BTC(plusAmount(this, amount));
+	public BTC plus(@NotNull UnitAmount<CurrencyUnit> currency) {
+		return new BTC(plusAmount(this, currency));
 	}
 
 	@NotNull
 	@Override
-	public BTC minus(@NotNull UnitAmount<CurrencyUnit> amount) {
-		return new BTC(minusAmount(this, amount));
+	public BTC minus(@NotNull UnitAmount<CurrencyUnit> currency) {
+		return new BTC(minusAmount(this, currency));
 	}
 
 	@NotNull

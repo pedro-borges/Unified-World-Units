@@ -87,14 +87,14 @@ public class SquareMeters extends Area {
 
 	@NotNull
 	@Override
-	public SquareMeters plus(@NotNull UnitAmount<AreaUnit> amount) {
-		return new SquareMeters(plusAmount(this, amount));
+	public SquareMeters plus(@NotNull UnitAmount<AreaUnit> area) {
+		return new SquareMeters(plusAmount(this, area));
 	}
 
 	@NotNull
 	@Override
-	public SquareMeters minus(@NotNull UnitAmount<AreaUnit> amount) {
-		return new SquareMeters(minusAmount(this, amount));
+	public SquareMeters minus(@NotNull UnitAmount<AreaUnit> area) {
+		return new SquareMeters(minusAmount(this, area));
 	}
 
 	@NotNull

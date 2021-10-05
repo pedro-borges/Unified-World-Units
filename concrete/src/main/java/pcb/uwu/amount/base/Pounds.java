@@ -56,14 +56,14 @@ public class Pounds extends Mass {
 
 	@NotNull
 	@Override
-	public Pounds plus(@NotNull UnitAmount<MassUnit> amount) {
-		return new Pounds(plusAmount(this, amount));
+	public Pounds plus(@NotNull UnitAmount<MassUnit> mass) {
+		return new Pounds(plusAmount(this, mass));
 	}
 
 	@NotNull
 	@Override
-	public Pounds minus(@NotNull UnitAmount<MassUnit> amount) {
-		return new Pounds(minusAmount(this, amount));
+	public Pounds minus(@NotNull UnitAmount<MassUnit> mass) {
+		return new Pounds(minusAmount(this, mass));
 	}
 
 	@NotNull

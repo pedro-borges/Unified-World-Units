@@ -60,14 +60,14 @@ public class Farads extends ElectricCapacitance {
 
 	@NotNull
 	@Override
-	public Farads plus(@NotNull UnitAmount<ElectricCapacitanceUnit> amount) {
-		return new Farads(plusAmount(this, amount));
+	public Farads plus(@NotNull UnitAmount<ElectricCapacitanceUnit> electricCapacitance) {
+		return new Farads(plusAmount(this, electricCapacitance));
 	}
 
 	@NotNull
 	@Override
-	public Farads minus(@NotNull UnitAmount<ElectricCapacitanceUnit> amount) {
-		return new Farads(minusAmount(this, amount));
+	public Farads minus(@NotNull UnitAmount<ElectricCapacitanceUnit> electricCapacitance) {
+		return new Farads(minusAmount(this, electricCapacitance));
 	}
 
 	@NotNull

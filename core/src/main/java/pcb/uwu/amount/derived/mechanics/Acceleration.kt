@@ -29,12 +29,14 @@ class Acceleration : CompositeUnitAmount<AccelerationUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<AccelerationUnit>) =
-        Acceleration(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(acceleration: UnitAmount<AccelerationUnit>) =
+        Acceleration(amount = this.amount + (acceleration to this.unit).amount,
                      unit = this.unit)
 
-    override fun minus(amount: UnitAmount<AccelerationUnit>) =
-        Acceleration(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(acceleration: UnitAmount<AccelerationUnit>) =
+        Acceleration(amount = this.amount - (acceleration to this.unit).amount,
                      unit = this.unit)
 
     override fun times(number: Number) =

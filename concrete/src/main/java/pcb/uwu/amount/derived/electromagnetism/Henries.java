@@ -59,14 +59,14 @@ public class Henries extends ElectricInductance {
 
 	@NotNull
 	@Override
-	public Henries plus(@NotNull UnitAmount<ElectricInductanceUnit> amount) {
-		return new Henries(plusAmount(this, amount));
+	public Henries plus(@NotNull UnitAmount<ElectricInductanceUnit> electricInductance) {
+		return new Henries(plusAmount(this, electricInductance));
 	}
 
 	@NotNull
 	@Override
-	public Henries minus(@NotNull UnitAmount<ElectricInductanceUnit> amount) {
-		return new Henries(minusAmount(this, amount));
+	public Henries minus(@NotNull UnitAmount<ElectricInductanceUnit> electricInductance) {
+		return new Henries(minusAmount(this, electricInductance));
 	}
 
 	@NotNull

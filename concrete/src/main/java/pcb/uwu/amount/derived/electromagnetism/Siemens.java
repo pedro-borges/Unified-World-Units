@@ -59,14 +59,14 @@ public class Siemens extends ElectricConductance {
 
 	@NotNull
 	@Override
-	public Siemens plus(@NotNull UnitAmount<ElectricConductanceUnit> amount) {
-		return new Siemens(plusAmount(this, amount));
+	public Siemens plus(@NotNull UnitAmount<ElectricConductanceUnit> electricConductance) {
+		return new Siemens(plusAmount(this, electricConductance));
 	}
 
 	@NotNull
 	@Override
-	public Siemens minus(@NotNull UnitAmount<ElectricConductanceUnit> amount) {
-		return new Siemens(minusAmount(this, amount));
+	public Siemens minus(@NotNull UnitAmount<ElectricConductanceUnit> electricConductance) {
+		return new Siemens(minusAmount(this, electricConductance));
 	}
 
 	@NotNull

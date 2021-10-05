@@ -56,14 +56,14 @@ public class Weeks extends Time {
 
 	@NotNull
 	@Override
-	public Weeks plus(@NotNull UnitAmount<TimeUnit> amount) {
-		return new Weeks(plusAmount(this, amount));
+	public Weeks plus(@NotNull UnitAmount<TimeUnit> time) {
+		return new Weeks(plusAmount(this, time));
 	}
 
 	@NotNull
 	@Override
-	public Weeks minus(@NotNull UnitAmount<TimeUnit> amount) {
-		return new Weeks(minusAmount(this, amount));
+	public Weeks minus(@NotNull UnitAmount<TimeUnit> time) {
+		return new Weeks(minusAmount(this, time));
 	}
 
 	@NotNull

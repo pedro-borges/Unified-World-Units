@@ -56,14 +56,14 @@ public class Miles extends Length {
 
 	@NotNull
 	@Override
-	public Miles plus(@NotNull UnitAmount<LengthUnit> amount) {
-		return new Miles(plusAmount(this, amount));
+	public Miles plus(@NotNull UnitAmount<LengthUnit> length) {
+		return new Miles(plusAmount(this, length));
 	}
 
 	@NotNull
 	@Override
-	public Miles minus(@NotNull UnitAmount<LengthUnit> amount) {
-		return new Miles(minusAmount(this, amount));
+	public Miles minus(@NotNull UnitAmount<LengthUnit> length) {
+		return new Miles(minusAmount(this, length));
 	}
 
 	@NotNull

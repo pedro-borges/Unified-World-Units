@@ -1,108 +1,57 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.derived.fundamental.Area;
-import pcb.uwu.amount.derived.fundamental.area.SquareMeters;
-import pcb.uwu.amount.derived.optics.Lumens;
-import pcb.uwu.amount.derived.optics.Luminance;
-import pcb.uwu.amount.derived.optics.Nits;
-import pcb.uwu.amount.derived.scalar.SolidAngle;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.LuminousIntensityUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.optics.Lumens
+import pcb.uwu.amount.derived.optics.Luminance
+import pcb.uwu.amount.derived.optics.Nits
+import pcb.uwu.amount.derived.scalar.SolidAngle
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.CandelaUnit.CANDELA
+import pcb.uwu.unit.base.LuminousIntensityUnit
+import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
+import pcb.uwu.unit.derived.optics.NitUnit.NIT
+import pcb.uwu.unit.scalar.SteradianUnit.STERADIAN
 
-import java.math.BigDecimal;
+class Candelas : LuminousIntensity
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, CANDELA)
 
-import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
-import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
-import static pcb.uwu.unit.scalar.SteradianUnit.STERADIAN;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String, magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, CANDELA)
 
-public class Candelas extends LuminousIntensity {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(luminousIntensity: UnitAmount<LuminousIntensityUnit>) =
+        Candelas(this.amount + (luminousIntensity to this.unit).amount)
 
-	public Candelas(Number value) {
-		super(value, CANDELA);
-	}
+    override fun minus(luminousIntensity: UnitAmount<LuminousIntensityUnit>) =
+        Candelas(this.amount + (luminousIntensity to this.unit).amount)
 
-	public Candelas(Number value, Magnitude magnitude) {
-		super(value, magnitude, CANDELA);
-	}
+    override fun times(number: Number) =
+        Candelas(this.amount * number)
 
-	public Candelas(String value) {
-		super(value, CANDELA);
-	}
+    override fun div(number: Number) =
+        Candelas(this.amount / number)
 
-	public Candelas(String value, Magnitude magnitude) {
-		super(value, magnitude, CANDELA);
-	}
+    // endregion
 
-	public Candelas(BigDecimal value) {
-		super(value, CANDELA);
-	}
+    // region composition
 
-	public Candelas(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, CANDELA);
-	}
+    operator fun times(solidAngle: SolidAngle) =
+        Lumens(this.amount * (solidAngle to STERADIAN).amount)
 
-	public Candelas(BigDecimalAmount amount) {
-		super(amount, CANDELA);
-	}
+    operator fun div(area: Area) =
+        Nits(this.amount / (area to SQUARE_METER).amount)
 
-	public Candelas(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, CANDELA);
-	}
+    operator fun div(luminance: Luminance) =
+        SquareMeters(this.amount / (luminance to NIT).amount)
 
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Candelas plus(@NotNull UnitAmount<LuminousIntensityUnit> amount) {
-		return new Candelas(plusAmount(this, amount));
-	}
-
-	@NotNull
-	@Override
-	public Candelas minus(@NotNull UnitAmount<LuminousIntensityUnit> amount) {
-		return new Candelas(minusAmount(this, amount));
-	}
-
-	@NotNull
-	@Override
-	public Candelas times(@NotNull Number number) {
-		return new Candelas(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Candelas div(@NotNull Number number) {
-		return new Candelas(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Lumens times(SolidAngle solidAngle) {
-		return new Lumens(getAmount().times(getAmountIn(solidAngle, STERADIAN)));
-	}
-
-	public Nits div(Area area) {
-		return new Nits(getAmount().div(getAmountIn(area, SQUARE_METER)));
-	}
-
-	public SquareMeters div(Luminance luminance) {
-		return new SquareMeters(getAmount().div(getAmountIn(luminance, NIT)));
-	}
-
-	// endregion
+    // endregion
 }

@@ -1,7 +1,7 @@
 package pcb.uwu.amount.derived.finance
 
 import pcb.uwu.amount.base.Time
-import pcb.uwu.amount.finance.Money
+import pcb.uwu.amount.finance.Currency
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
@@ -27,12 +27,14 @@ class Debt : CompositeUnitAmount<DebtUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<DebtUnit>) =
-        Debt(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(debt: UnitAmount<DebtUnit>) =
+        Debt(amount = this.amount + (debt to this.unit).amount,
              unit = this.unit)
 
-    override fun minus(amount: UnitAmount<DebtUnit>) =
-        Debt(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(debt: UnitAmount<DebtUnit>) =
+        Debt(amount = this.amount - (debt to this.unit).amount,
              unit = this.unit)
 
     override fun times(number: Number) =
@@ -52,15 +54,15 @@ class Debt : CompositeUnitAmount<DebtUnit>
     // region composition
 
     fun times(interestRate: InterestRate) =
-        Money(amount = (this * interestRate).amount,
-              unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
+        Currency(amount = (this * interestRate).amount,
+                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
     fun div(time: Time) =
-        Money(amount = (this / time).amount,
-              unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
+        Currency(amount = (this / time).amount,
+                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
-    fun div(money: Money) =
-        Time(amount = (this / money).amount,
+    fun div(currency: Currency) =
+        Time(amount = (this / currency).amount,
              unit = this.unit.unitCounter.findUnit(TimeUnit::class.java)!!)
 
     // endregion

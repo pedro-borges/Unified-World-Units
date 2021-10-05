@@ -73,14 +73,14 @@ public class Amperes extends ElectricCurrent {
 
 	@NotNull
 	@Override
-	public Amperes plus(@NotNull UnitAmount<ElectricCurrentUnit> amount) {
-		return new Amperes(plusAmount(this, amount));
+	public Amperes plus(@NotNull UnitAmount<ElectricCurrentUnit> electricCurrrent) {
+		return new Amperes(plusAmount(this, electricCurrrent));
 	}
 
 	@NotNull
 	@Override
-	public Amperes minus(@NotNull UnitAmount<ElectricCurrentUnit> amount) {
-		return new Amperes(minusAmount(this, amount));
+	public Amperes minus(@NotNull UnitAmount<ElectricCurrentUnit> electricCurrrent) {
+		return new Amperes(minusAmount(this, electricCurrrent));
 	}
 
 	@NotNull

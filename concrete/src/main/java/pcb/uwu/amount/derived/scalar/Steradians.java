@@ -60,14 +60,14 @@ public class Steradians extends SolidAngle {
 
 	@NotNull
 	@Override
-	public Steradians plus(@NotNull UnitAmount<SolidAngleUnit> amount) {
-		return new Steradians(plusAmount(this, amount));
+	public Steradians plus(@NotNull UnitAmount<SolidAngleUnit> solidAngle) {
+		return new Steradians(plusAmount(this, solidAngle));
 	}
 
 	@NotNull
 	@Override
-	public Steradians minus(@NotNull UnitAmount<SolidAngleUnit> amount) {
-		return new Steradians(minusAmount(this, amount));
+	public Steradians minus(@NotNull UnitAmount<SolidAngleUnit> solidAngle) {
+		return new Steradians(minusAmount(this, solidAngle));
 	}
 
 	@NotNull

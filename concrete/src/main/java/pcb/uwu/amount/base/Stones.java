@@ -56,14 +56,14 @@ public class Stones extends Mass {
 
 	@NotNull
 	@Override
-	public Stones plus(@NotNull UnitAmount<MassUnit> amount) {
-		return new Stones(plusAmount(this, amount));
+	public Stones plus(@NotNull UnitAmount<MassUnit> mass) {
+		return new Stones(plusAmount(this, mass));
 	}
 
 	@NotNull
 	@Override
-	public Stones minus(@NotNull UnitAmount<MassUnit> amount) {
-		return new Stones(minusAmount(this, amount));
+	public Stones minus(@NotNull UnitAmount<MassUnit> mass) {
+		return new Stones(minusAmount(this, mass));
 	}
 
 	@NotNull

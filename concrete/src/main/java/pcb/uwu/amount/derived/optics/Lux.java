@@ -59,14 +59,14 @@ public class Lux extends Illuminance {
 
 	@NotNull
 	@Override
-	public Lux plus(@NotNull UnitAmount<IlluminanceUnit> amount) {
-		return new Lux(plusAmount(this, amount));
+	public Lux plus(@NotNull UnitAmount<IlluminanceUnit> illuminance) {
+		return new Lux(plusAmount(this, illuminance));
 	}
 
 	@NotNull
 	@Override
-	public Lux minus(@NotNull UnitAmount<IlluminanceUnit> amount) {
-		return new Lux(minusAmount(this, amount));
+	public Lux minus(@NotNull UnitAmount<IlluminanceUnit> illuminance) {
+		return new Lux(minusAmount(this, illuminance));
 	}
 
 	@NotNull

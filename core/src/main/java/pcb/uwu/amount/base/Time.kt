@@ -3,7 +3,7 @@ package pcb.uwu.amount.base
 import pcb.uwu.amount.derived.finance.Debt
 import pcb.uwu.amount.derived.fundamental.Frequency
 import pcb.uwu.amount.derived.mechanics.Pace
-import pcb.uwu.amount.finance.Money
+import pcb.uwu.amount.finance.Currency
 import pcb.uwu.core.BigDecimalAmount
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
@@ -39,12 +39,14 @@ open class Time : CompositeUnitAmount<TimeUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<TimeUnit>) =
-        Time(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(time: UnitAmount<TimeUnit>) =
+        Time(amount = this.amount + (time to this.unit).amount,
              unit = this.unit)
 
-    override fun minus(amount: UnitAmount<TimeUnit>) =
-        Time(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(time: UnitAmount<TimeUnit>) =
+        Time(amount = this.amount - (time to this.unit).amount,
              unit = this.unit)
 
     override fun times(number: Number) =
@@ -67,9 +69,9 @@ open class Time : CompositeUnitAmount<TimeUnit>
 
     // region composition
 
-    fun times(money: Money) =
-        Debt(amount = this.amount * money.amount,
-             unit = DebtUnit(money.unit, this.unit))
+    fun times(currency: Currency) =
+        Debt(amount = this.amount * currency.amount,
+             unit = DebtUnit(currency.unit, this.unit))
 
     fun div(length: Length) =
         Pace(amount = this.amount / length.amount,

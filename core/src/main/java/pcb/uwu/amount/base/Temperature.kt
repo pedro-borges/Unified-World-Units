@@ -37,12 +37,14 @@ open class Temperature : CompositeUnitAmount<TemperatureUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<TemperatureUnit>) =
-        Temperature(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(temperature: UnitAmount<TemperatureUnit>) =
+        Temperature(amount = this.amount + (temperature to this.unit).amount,
                     unit = this.unit)
 
-    override fun minus(amount: UnitAmount<TemperatureUnit>) =
-        Temperature(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(temperature: UnitAmount<TemperatureUnit>) =
+        Temperature(amount = this.amount - (temperature to this.unit).amount,
                     unit = this.unit)
 
     override fun times(number: Number) =

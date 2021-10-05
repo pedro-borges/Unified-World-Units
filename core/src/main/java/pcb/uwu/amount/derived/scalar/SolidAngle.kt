@@ -23,12 +23,14 @@ open class SolidAngle : CompositeUnitAmount<SolidAngleUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<SolidAngleUnit>) =
-        SolidAngle(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(solidAngle: UnitAmount<SolidAngleUnit>) =
+        SolidAngle(amount = this.amount + (solidAngle to this.unit).amount,
                    unit = this.unit)
 
-    override fun minus(amount: UnitAmount<SolidAngleUnit>) =
-        SolidAngle(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(solidAngle: UnitAmount<SolidAngleUnit>) =
+        SolidAngle(amount = this.amount - (solidAngle to this.unit).amount,
                    unit = this.unit)
 
     override fun times(number: Number) =

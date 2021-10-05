@@ -23,12 +23,14 @@ open class Power : CompositeUnitAmount<PowerUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<PowerUnit>) =
-        Power(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(power: UnitAmount<PowerUnit>) =
+        Power(amount = this.amount + (power to this.unit).amount,
               unit = this.unit)
 
-    override fun minus(amount: UnitAmount<PowerUnit>) =
-        Power(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(power: UnitAmount<PowerUnit>) =
+        Power(amount = this.amount - (power to this.unit).amount,
               unit = this.unit)
 
     override fun times(number: Number) =

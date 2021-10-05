@@ -12,7 +12,7 @@ import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
-public class CHF extends Money {
+public class CHF extends Currency {
 
 	public static final CurrencyUnit CURRENCY = CurrencyUnit.of("CHF");
 
@@ -48,14 +48,14 @@ public class CHF extends Money {
 
 	@NotNull
 	@Override
-	public CHF plus(@NotNull UnitAmount<CurrencyUnit> amount) {
-		return new CHF(plusAmount(this, amount));
+	public CHF plus(@NotNull UnitAmount<CurrencyUnit> currency) {
+		return new CHF(plusAmount(this, currency));
 	}
 
 	@NotNull
 	@Override
-	public CHF minus(@NotNull UnitAmount<CurrencyUnit> amount) {
-		return new CHF(minusAmount(this, amount));
+	public CHF minus(@NotNull UnitAmount<CurrencyUnit> currency) {
+		return new CHF(minusAmount(this, currency));
 	}
 
 	@NotNull

@@ -12,7 +12,7 @@ import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
-public class CAD extends Money {
+public class CAD extends Currency {
 
 	public static final CurrencyUnit CURRENCY = CurrencyUnit.of("CAD");
 
@@ -48,14 +48,14 @@ public class CAD extends Money {
 
 	@NotNull
 	@Override
-	public CAD plus(@NotNull UnitAmount<CurrencyUnit> amount) {
-		return new CAD(plusAmount(this, amount));
+	public CAD plus(@NotNull UnitAmount<CurrencyUnit> currency) {
+		return new CAD(plusAmount(this, currency));
 	}
 
 	@NotNull
 	@Override
-	public CAD minus(@NotNull UnitAmount<CurrencyUnit> amount) {
-		return new CAD(minusAmount(this, amount));
+	public CAD minus(@NotNull UnitAmount<CurrencyUnit> currency) {
+		return new CAD(minusAmount(this, currency));
 	}
 
 	@NotNull

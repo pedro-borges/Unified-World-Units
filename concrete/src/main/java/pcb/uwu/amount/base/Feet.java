@@ -56,14 +56,14 @@ public class Feet extends Length {
 
 	@NotNull
 	@Override
-	public Feet plus(@NotNull UnitAmount<LengthUnit> amount) {
-		return new Feet(plusAmount(this, amount));
+	public Feet plus(@NotNull UnitAmount<LengthUnit> length) {
+		return new Feet(plusAmount(this, length));
 	}
 
 	@NotNull
 	@Override
-	public Feet minus(@NotNull UnitAmount<LengthUnit> amount) {
-		return new Feet(minusAmount(this, amount));
+	public Feet minus(@NotNull UnitAmount<LengthUnit> length) {
+		return new Feet(minusAmount(this, length));
 	}
 
 	@NotNull

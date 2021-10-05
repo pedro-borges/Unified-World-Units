@@ -20,11 +20,11 @@ class Days : Time
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<TimeUnit>) =
-        Days(this.amount + (amount to DAY).amount)
+    override fun plus(time: UnitAmount<TimeUnit>) =
+        Days(this.amount + (time to DAY).amount)
 
-    override fun minus(amount: UnitAmount<TimeUnit>) =
-        Days(this.amount - (amount to DAY).amount)
+    override fun minus(time: UnitAmount<TimeUnit>) =
+        Days(this.amount - (time to DAY).amount)
 
     override fun times(number: Number) =
         Days(this.amount * number)

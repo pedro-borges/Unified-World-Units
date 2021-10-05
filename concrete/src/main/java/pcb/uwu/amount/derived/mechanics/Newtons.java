@@ -69,14 +69,14 @@ public class Newtons extends Force {
 
 	@NotNull
 	@Override
-	public Newtons plus(@NotNull UnitAmount<ForceUnit> amount) {
-		return new Newtons(plusAmount(this, amount));
+	public Newtons plus(@NotNull UnitAmount<ForceUnit> force) {
+		return new Newtons(plusAmount(this, force));
 	}
 
 	@NotNull
 	@Override
-	public Newtons minus(@NotNull UnitAmount<ForceUnit> amount) {
-		return new Newtons(minusAmount(this, amount));
+	public Newtons minus(@NotNull UnitAmount<ForceUnit> force) {
+		return new Newtons(minusAmount(this, force));
 	}
 
 	@NotNull

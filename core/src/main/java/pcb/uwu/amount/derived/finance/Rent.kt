@@ -1,7 +1,7 @@
 package pcb.uwu.amount.derived.finance
 
 import pcb.uwu.amount.base.Time
-import pcb.uwu.amount.finance.Money
+import pcb.uwu.amount.finance.Currency
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
@@ -26,12 +26,14 @@ class Rent : CompositeUnitAmount<RentUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<RentUnit>) =
-        Rent(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(rent: UnitAmount<RentUnit>) =
+        Rent(amount = this.amount + (rent to this.unit).amount,
              unit = this.unit)
 
-    override fun minus(amount: UnitAmount<RentUnit>) =
-        Rent(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(rent: UnitAmount<RentUnit>) =
+        Rent(amount = this.amount - (rent to this.unit).amount,
              unit = this.unit)
 
     override fun times(number: Number) =
@@ -51,8 +53,8 @@ class Rent : CompositeUnitAmount<RentUnit>
     // region composition
 
     operator fun times(time: Time) =
-        Money(amount = super.times(time).amount,
-              unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
+        Currency(amount = super.times(time).amount,
+                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
     // endregion
 }

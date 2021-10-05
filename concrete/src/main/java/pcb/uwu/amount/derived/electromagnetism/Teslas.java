@@ -59,14 +59,14 @@ public class Teslas extends MagneticField {
 
 	@NotNull
 	@Override
-	public Teslas plus(@NotNull UnitAmount<MagneticFieldUnit> amount) {
-		return new Teslas(plusAmount(this, amount));
+	public Teslas plus(@NotNull UnitAmount<MagneticFieldUnit> magneticField) {
+		return new Teslas(plusAmount(this, magneticField));
 	}
 
 	@NotNull
 	@Override
-	public Teslas minus(@NotNull UnitAmount<MagneticFieldUnit> amount) {
-		return new Teslas(minusAmount(this, amount));
+	public Teslas minus(@NotNull UnitAmount<MagneticFieldUnit> magneticField) {
+		return new Teslas(minusAmount(this, magneticField));
 	}
 
 	@NotNull

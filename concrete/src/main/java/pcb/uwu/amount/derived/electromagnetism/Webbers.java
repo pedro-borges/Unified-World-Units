@@ -69,14 +69,14 @@ public class Webbers extends MagneticFlux {
 
 	@NotNull
 	@Override
-	public Webbers plus(@NotNull UnitAmount<MagneticFluxUnit> amount) {
-		return new Webbers(plusAmount(this, amount));
+	public Webbers plus(@NotNull UnitAmount<MagneticFluxUnit> magneticFlux) {
+		return new Webbers(plusAmount(this, magneticFlux));
 	}
 
 	@NotNull
 	@Override
-	public Webbers minus(@NotNull UnitAmount<MagneticFluxUnit> amount) {
-		return new Webbers(minusAmount(this, amount));
+	public Webbers minus(@NotNull UnitAmount<MagneticFluxUnit> magneticFlux) {
+		return new Webbers(minusAmount(this, magneticFlux));
 	}
 
 	@NotNull

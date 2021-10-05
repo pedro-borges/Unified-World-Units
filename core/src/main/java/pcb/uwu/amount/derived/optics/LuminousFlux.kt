@@ -23,12 +23,14 @@ open class LuminousFlux : CompositeUnitAmount<LuminousFluxUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<LuminousFluxUnit>) =
-        LuminousFlux(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(luminousFlux: UnitAmount<LuminousFluxUnit>) =
+        LuminousFlux(amount = this.amount + (luminousFlux to this.unit).amount,
                      unit = this.unit)
 
-    override fun minus(amount: UnitAmount<LuminousFluxUnit>) =
-        LuminousFlux(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(luminousFlux: UnitAmount<LuminousFluxUnit>) =
+        LuminousFlux(amount = this.amount - (luminousFlux to this.unit).amount,
                      unit = this.unit)
 
     override fun times(number: Number) =

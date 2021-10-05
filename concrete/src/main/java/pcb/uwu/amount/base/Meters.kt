@@ -24,11 +24,11 @@ class Meters : Length
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<LengthUnit>) =
-        Meters(this.amount + (amount to METER).amount)
+    override fun plus(length: UnitAmount<LengthUnit>) =
+        Meters(this.amount + (length to METER).amount)
 
-    override fun minus(amount: UnitAmount<LengthUnit>) =
-        Meters(this.amount - (amount to METER).amount)
+    override fun minus(length: UnitAmount<LengthUnit>) =
+        Meters(this.amount - (length to METER).amount)
 
     override fun times(number: Number) =
         Meters(this.amount * number)

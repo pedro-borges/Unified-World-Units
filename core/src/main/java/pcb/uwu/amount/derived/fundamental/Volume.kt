@@ -23,12 +23,14 @@ open class Volume : CompositeUnitAmount<VolumeUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<VolumeUnit>) =
-        Volume(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(volume: UnitAmount<VolumeUnit>) =
+        Volume(amount = this.amount + (volume to this.unit).amount,
                unit = this.unit)
 
-    override fun minus(amount: UnitAmount<VolumeUnit>) =
-        Volume(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(volume: UnitAmount<VolumeUnit>) =
+        Volume(amount = this.amount - (volume to this.unit).amount,
                unit = this.unit)
 
     override fun times(number: Number) =

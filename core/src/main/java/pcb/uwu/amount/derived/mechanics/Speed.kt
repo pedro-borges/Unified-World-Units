@@ -29,12 +29,14 @@ open class Speed : CompositeUnitAmount<SpeedUnit>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<SpeedUnit>) =
-        Speed(amount = this.amount + (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun plus(speed: UnitAmount<SpeedUnit>) =
+        Speed(amount = this.amount + (speed to this.unit).amount,
               unit = this.unit)
 
-    override fun minus(amount: UnitAmount<SpeedUnit>) =
-        Speed(amount = this.amount - (amount to this.unit).amount,
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun minus(speed: UnitAmount<SpeedUnit>) =
+        Speed(amount = this.amount - (speed to this.unit).amount,
               unit = this.unit)
 
     override fun times(number: Number) =

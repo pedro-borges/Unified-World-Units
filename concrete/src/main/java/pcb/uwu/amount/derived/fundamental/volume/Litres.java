@@ -82,14 +82,14 @@ public class Litres extends Volume {
 
 	@NotNull
 	@Override
-	public Litres plus(@NotNull UnitAmount<VolumeUnit> amount) {
-		return new Litres(plusAmount(this, amount));
+	public Litres plus(@NotNull UnitAmount<VolumeUnit> volume) {
+		return new Litres(plusAmount(this, volume));
 	}
 
 	@NotNull
 	@Override
-	public Litres minus(@NotNull UnitAmount<VolumeUnit> amount) {
-		return new Litres(minusAmount(this, amount));
+	public Litres minus(@NotNull UnitAmount<VolumeUnit> volume) {
+		return new Litres(minusAmount(this, volume));
 	}
 
 	@NotNull

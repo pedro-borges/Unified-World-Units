@@ -56,14 +56,14 @@ public class NauticalMiles extends Length {
 
 	@NotNull
 	@Override
-	public NauticalMiles plus(@NotNull UnitAmount<LengthUnit> amount) {
-		return new NauticalMiles(plusAmount(this, amount));
+	public NauticalMiles plus(@NotNull UnitAmount<LengthUnit> length) {
+		return new NauticalMiles(plusAmount(this, length));
 	}
 
 	@NotNull
 	@Override
-	public NauticalMiles minus(@NotNull UnitAmount<LengthUnit> amount) {
-		return new NauticalMiles(minusAmount(this, amount));
+	public NauticalMiles minus(@NotNull UnitAmount<LengthUnit> length) {
+		return new NauticalMiles(minusAmount(this, length));
 	}
 
 	@NotNull
