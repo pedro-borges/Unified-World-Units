@@ -42,7 +42,7 @@ open class ElectricCharge : CompositeUnitAmount<ElectricChargeUnit>
                        unit = this.unit)
 
     override fun into(unit: ElectricChargeUnit) =
-        ElectricCharge(amount = UnitAmountUtils.getAmountIn(this, unit),
+        ElectricCharge(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                        unit = unit)
 
     // endregion

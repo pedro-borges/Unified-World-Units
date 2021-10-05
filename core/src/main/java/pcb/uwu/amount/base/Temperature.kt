@@ -55,7 +55,7 @@ open class Temperature : CompositeUnitAmount<TemperatureUnit>
                     unit = this.unit)
 
     override fun into(unit: TemperatureUnit) =
-        Temperature(amount = UnitAmountUtils.getAmountIn(this, unit),
+        Temperature(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                     unit = unit)
 
     // endregion

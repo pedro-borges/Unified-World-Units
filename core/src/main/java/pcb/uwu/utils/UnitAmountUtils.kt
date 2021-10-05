@@ -1,63 +1,42 @@
-package pcb.uwu.utils;
+package pcb.uwu.utils
 
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.Unit;
-import pcb.uwu.core.UnitAmount;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.Unit
+import pcb.uwu.core.UnitAmount
+import java.math.BigDecimal
+import java.math.MathContext
+import java.math.MathContext.UNLIMITED
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.util.function.Function;
+object UnitAmountUtils
+{
+    @JvmStatic
+    @JvmOverloads
+    fun <U : Unit> getAmountIn(unitAmount: UnitAmount<U>, magnitude: Magnitude = NATURAL, newUnit: U) =
+        if (unitAmount.unit == newUnit) unitAmount.amount.div(magnitude.value, UNLIMITED)
+        else unitAmount.amount
+            .transformed(unitAmount.unit.translationToCanonical.andThen(newUnit.translationFromCanonical))
+            .div(magnitude.value, UNLIMITED)
 
-import static java.math.MathContext.UNLIMITED;
+    @JvmStatic
+    fun <U : Unit> plusAmount(unitAmount: UnitAmount<U>, other: UnitAmount<U>) =
+        unitAmount.amount.plus(getAmountIn(unitAmount = other,
+                                           newUnit = unitAmount.unit))
 
-public class UnitAmountUtils {
+    @JvmStatic
+    fun <U : Unit> minusAmount(unitAmount: UnitAmount<U>, other: UnitAmount<U>) =
+        unitAmount.amount.minus(getAmountIn(unitAmount = other,
+                                            newUnit = unitAmount.unit))
 
-	public static <U extends Unit> BigDecimalAmount getAmountIn(UnitAmount<U> unitAmount, U newUnit) {
-		U unit = unitAmount.getUnit();
-		BigDecimalAmount amount = unitAmount.getAmount();
+    @JvmStatic
+    fun <U : Unit> multipliedByScalar(unitAmount: UnitAmount<U>,
+                                      other: BigDecimal,
+                                      mathContext: MathContext) =
+        unitAmount.amount.times(other, mathContext)
 
-		if (unit.equals(newUnit))
-		{
-			return amount;
-		}
-
-		Function<BigDecimalAmount, BigDecimalAmount> translation = unit
-				.getTranslationToCanonical()
-				.andThen(newUnit.getTranslationFromCanonical());
-
-		return amount.transformed(translation);
-	}
-
-	public static <U extends Unit> BigDecimalAmount getAmountIn(UnitAmount<U> unitAmount, Magnitude magnitude, U newUnit) {
-		U unit = unitAmount.getUnit();
-		BigDecimalAmount amount = unitAmount.getAmount();
-
-		if (unit.equals(newUnit))
-		{
-			return amount.div(magnitude.getValue(), UNLIMITED);
-		}
-
-		Function<BigDecimalAmount, BigDecimalAmount> translation = unit
-				.getTranslationToCanonical()
-				.andThen(newUnit.getTranslationFromCanonical());
-
-		return amount.transformed(translation).div(magnitude.getValue(), UNLIMITED);
-	}
-
-	public static <U extends Unit> BigDecimalAmount plusAmount(UnitAmount<U> unitAmount, UnitAmount<U> other) {
-		return unitAmount.getAmount().plus(getAmountIn(other, unitAmount.getUnit()));
-	}
-
-	public static <U extends Unit> BigDecimalAmount minusAmount(UnitAmount<U> unitAmount, UnitAmount<U> other) {
-		return unitAmount.getAmount().minus(getAmountIn(other, unitAmount.getUnit()));
-	}
-
-	public static <U extends Unit> BigDecimalAmount multipliedByScalar(UnitAmount<U> unitAmount, BigDecimal other, MathContext mathContext) {
-		return unitAmount.getAmount().times(other, mathContext);
-	}
-
-	public static <U extends Unit> BigDecimalAmount dividedByScalar(UnitAmount<U> unitAmount, BigDecimal other, MathContext mathContext) {
-		return unitAmount.getAmount().div(other, mathContext);
-	}
+    @JvmStatic
+    fun <U : Unit> dividedByScalar(unitAmount: UnitAmount<U>,
+                                   other: BigDecimal,
+                                   mathContext: MathContext) =
+        unitAmount.amount.div(other, mathContext)
 }

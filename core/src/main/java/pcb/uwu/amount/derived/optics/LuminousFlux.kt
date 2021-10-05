@@ -42,7 +42,7 @@ open class LuminousFlux : CompositeUnitAmount<LuminousFluxUnit>
                      unit = this.unit)
 
     override fun into(unit: LuminousFluxUnit) =
-        LuminousFlux(amount = UnitAmountUtils.getAmountIn(this, unit),
+        LuminousFlux(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                      unit = unit)
 
     // endregion

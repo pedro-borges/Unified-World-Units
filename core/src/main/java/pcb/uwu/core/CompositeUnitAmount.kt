@@ -175,7 +175,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 
     override fun into(unit: U): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.getAmountIn(this, unit), unit)
+        return CompositeUnitAmount(UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit), unit)
     }
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")

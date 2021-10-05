@@ -57,7 +57,7 @@ open class Time : CompositeUnitAmount<TimeUnit>
              unit = this.unit)
 
     override fun into(unit: TimeUnit) =
-        Time(amount = UnitAmountUtils.getAmountIn(this, unit),
+        Time(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
              unit = unit)
 
     override fun invert(mathContext: MathContext) =

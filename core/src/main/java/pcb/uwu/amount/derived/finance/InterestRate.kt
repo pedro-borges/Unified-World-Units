@@ -45,7 +45,7 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
                      unit = this.unit)
 
     override fun into(unit: FrequencyUnit) =
-        InterestRate(amount = UnitAmountUtils.getAmountIn(this, unit),
+        InterestRate(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                      unit = unit)
 
     // endregion

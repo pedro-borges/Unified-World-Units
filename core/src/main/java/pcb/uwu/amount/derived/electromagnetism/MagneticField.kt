@@ -42,7 +42,7 @@ open class MagneticField : CompositeUnitAmount<MagneticFieldUnit>
                       unit = this.unit)
 
     override fun into(unit: MagneticFieldUnit) =
-        MagneticField(amount = UnitAmountUtils.getAmountIn(this, unit),
+        MagneticField(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                       unit = unit)
 
     // endregion

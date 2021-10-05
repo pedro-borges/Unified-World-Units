@@ -1,5 +1,6 @@
 package pcb.uwu.utils
 
+import org.junit.Ignore
 import org.junit.Test
 import java.io.File
 import java.io.FileWriter
@@ -8,6 +9,7 @@ import java.math.BigDecimal
 
 class PeriodicTableGenerator
 {
+    @Ignore
     @Test
     fun generateElements()
     {

@@ -1,33 +1,17 @@
-package pcb.uwu.utils;
+package pcb.uwu.utils
 
-import java.math.BigDecimal;
+import java.math.BigDecimal
 
-public class MathUtils {
-	public static final BigDecimal PI = new BigDecimal(Math.PI);
+object MathUtils
+{
+    @JvmField
+	val PI = BigDecimal(Math.PI)
 
-	@SafeVarargs
-	public static <T extends Comparable<T>> T max(T first, T... others) {
-		T result = first;
+    @SafeVarargs
+    fun <T : Comparable<T>> max(first: T, vararg others: T) =
+        others.maxOrNull() ?: first
 
-		for (T value : others) {
-			if (value.compareTo(result) > 0) {
-				result = value;
-			}
-		}
-
-		return result;
-	}
-
-	@SafeVarargs
-	public static <T extends Comparable<T>> T min(T first, T... others) {
-		T result = first;
-
-		for (T value : others) {
-			if (value.compareTo(result) < 0) {
-				result = value;
-			}
-		}
-
-		return result;
-	}
+    @SafeVarargs
+    fun <T : Comparable<T>> min(first: T, vararg others: T) =
+        others.minOrNull() ?: first
 }

@@ -46,7 +46,7 @@ class Pace : CompositeUnitAmount<PaceUnit>
              unit = this.unit)
 
     override fun into(unit: PaceUnit) =
-        Pace(amount = UnitAmountUtils.getAmountIn(this, unit),
+        Pace(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
              unit = unit)
 
     override fun invert(mathContext: MathContext) =

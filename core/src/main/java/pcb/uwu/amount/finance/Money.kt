@@ -45,7 +45,7 @@ open class Money :
               unit = this.unit)
 
     override fun into(unit: CurrencyUnit) =
-        Money(amount = UnitAmountUtils.getAmountIn(this, unit),
+        Money(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
               unit = this.unit)
 
     // endregion

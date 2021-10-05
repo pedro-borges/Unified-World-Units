@@ -45,7 +45,7 @@ open class Mass : CompositeUnitAmount<MassUnit>
              unit = this.unit)
 
     override fun into(unit: MassUnit) =
-        Mass(amount = UnitAmountUtils.getAmountIn(this, unit),
+        Mass(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
              unit = unit)
 
     // endregion

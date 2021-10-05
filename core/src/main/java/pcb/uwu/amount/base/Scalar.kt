@@ -39,7 +39,7 @@ class Scalar : CompositeUnitAmount<ScalarUnit>
         Scalar(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext))
 
     override fun into(unit: ScalarUnit) =
-        Scalar(amount = UnitAmountUtils.getAmountIn(this, unit))
+        Scalar(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit))
 
     // endregion
 

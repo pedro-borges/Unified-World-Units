@@ -42,7 +42,7 @@ open class SolidAngle : CompositeUnitAmount<SolidAngleUnit>
                    unit = this.unit)
 
     override fun into(unit: SolidAngleUnit) =
-        SolidAngle(amount = UnitAmountUtils.getAmountIn(this, unit),
+        SolidAngle(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                    unit = unit)
 
     // endregion

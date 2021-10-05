@@ -42,7 +42,7 @@ open class Luminance : CompositeUnitAmount<LuminanceUnit>
                   unit = this.unit)
 
     override fun into(unit: LuminanceUnit) =
-        Luminance(amount = UnitAmountUtils.getAmountIn(this, unit),
+        Luminance(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                   unit = unit)
 
     // endregion

@@ -42,7 +42,7 @@ open class Pressure : CompositeUnitAmount<PressureUnit>
                  unit = this.unit)
 
     override fun into(unit: PressureUnit) =
-        Pressure(amount = UnitAmountUtils.getAmountIn(this, unit),
+        Pressure(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                  unit = unit)
 
     // endregion

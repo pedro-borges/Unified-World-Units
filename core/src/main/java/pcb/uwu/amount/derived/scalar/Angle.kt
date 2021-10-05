@@ -42,7 +42,7 @@ open class Angle : CompositeUnitAmount<AngleUnit>
               unit = this.unit)
 
     override fun into(unit: AngleUnit) =
-        Angle(amount = UnitAmountUtils.getAmountIn(this, unit),
+        Angle(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
               unit = unit)
 
     // endregion

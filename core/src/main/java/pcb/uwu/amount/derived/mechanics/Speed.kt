@@ -48,7 +48,7 @@ open class Speed : CompositeUnitAmount<SpeedUnit>
               unit = this.unit)
 
     override fun into(unit: SpeedUnit) =
-        Speed(amount = UnitAmountUtils.getAmountIn(this, unit),
+        Speed(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
               unit = unit)
 
     override fun invert(mathContext: MathContext) =

@@ -46,7 +46,7 @@ open class Length : CompositeUnitAmount<LengthUnit>
                unit = this.unit)
 
     override fun into(unit: LengthUnit) =
-        Length(amount = UnitAmountUtils.getAmountIn(this, unit),
+        Length(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                unit = unit)
 
     // endregion

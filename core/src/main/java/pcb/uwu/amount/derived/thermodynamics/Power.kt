@@ -42,7 +42,7 @@ open class Power : CompositeUnitAmount<PowerUnit>
               unit = this.unit)
 
     override fun into(unit: PowerUnit) =
-        Power(amount = UnitAmountUtils.getAmountIn(this, unit),
+        Power(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
               unit = unit)
 
     // endregion
