@@ -1,87 +1,49 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit;
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+open class ElectricPotential : CompositeUnitAmount<ElectricPotentialUnit>
+{
+    @JvmOverloads
+    constructor(value: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: ElectricPotentialUnit)
+            : super(value, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(value: String,
+                magnitude: Magnitude = NATURAL,
+                unit: ElectricPotentialUnit)
+            : super(value, magnitude, unit)
 
-public class ElectricPotential extends CompositeUnitAmount<ElectricPotentialUnit> {
+    // region UnitAmount
 
-	// region constructors
+    override operator fun plus(other: UnitAmount<ElectricPotentialUnit>) =
+        ElectricPotential(value = this.amount + other.into(this.unit).amount,
+                          unit = this.unit)
 
-	public ElectricPotential(Number value, ElectricPotentialUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<ElectricPotentialUnit>) =
+        ElectricPotential(value = this.amount - other.into(this.unit).amount,
+                          unit = this.unit)
 
-	public ElectricPotential(Number value, Magnitude magnitude, ElectricPotentialUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun multiply(other: BigDecimal, mathContext: MathContext): ElectricPotential =
+        ElectricPotential(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+                          unit = this.unit)
 
-	public ElectricPotential(String value, ElectricPotentialUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        ElectricPotential(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+                          unit = this.unit)
 
-	public ElectricPotential(String value, Magnitude magnitude, ElectricPotentialUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: ElectricPotentialUnit) =
+        ElectricPotential(value = UnitAmountUtils.getAmountIn(this, unit),
+                          unit = this.unit)
 
-	public ElectricPotential(BigDecimal value, ElectricPotentialUnit unit) {
-		super(value, unit);
-	}
-
-	public ElectricPotential(BigDecimal value, Magnitude magnitude, ElectricPotentialUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public ElectricPotential(BigDecimalAmount amount, ElectricPotentialUnit unit) {
-		super(amount, unit);
-	}
-
-	public ElectricPotential(BigDecimalAmount amount, Magnitude magnitude, ElectricPotentialUnit unit) {
-		super(amount, magnitude, unit);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public ElectricPotential plus(@NotNull UnitAmount<ElectricPotentialUnit> other) {
-		return new ElectricPotential(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public ElectricPotential minus(@NotNull UnitAmount<ElectricPotentialUnit> other) {
-		return new ElectricPotential(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public ElectricPotential multiply(BigDecimal other, MathContext mathContext) {
-		return new ElectricPotential(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public ElectricPotential div(BigDecimal other, MathContext mathContext) {
-		return new ElectricPotential(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public ElectricPotential into(ElectricPotentialUnit unit) {
-		return new ElectricPotential(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
+    // endregion
 }

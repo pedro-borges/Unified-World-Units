@@ -32,18 +32,6 @@ open class Time : CompositeUnitAmount<TimeUnit>
                 unit: TimeUnit)
             : super(value, magnitude, unit)
 
-    @JvmOverloads
-    constructor(value: BigDecimal,
-                magnitude: Magnitude = NATURAL,
-                unit: TimeUnit)
-            : super(value, magnitude, unit)
-
-    @JvmOverloads
-    constructor(amount: BigDecimalAmount,
-                magnitude: Magnitude = NATURAL,
-                unit: TimeUnit)
-            : super(amount, magnitude, unit)
-
     constructor(duration: Duration,
                 unit: TimeUnit)
             : super(unit.translationFromCanonical.apply(BigDecimalAmount(duration.toNanos()))
@@ -53,24 +41,24 @@ open class Time : CompositeUnitAmount<TimeUnit>
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<TimeUnit>) =
-        Time(value = amount + other.into(unit).amount,
-             unit = unit)
+        Time(value = this.amount + other.into(this.unit).amount,
+             unit = this.unit)
 
     override operator fun minus(other: UnitAmount<TimeUnit>) =
-        Time(value = amount - other.into(unit).amount,
-             unit = unit)
+        Time(value = this.amount - other.into(this.unit).amount,
+             unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
         Time(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
-             unit = unit)
+             unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
         Time(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
-             unit = unit)
+             unit = this.unit)
 
     override fun into(unit: TimeUnit) =
         Time(value = UnitAmountUtils.getAmountIn(this, unit),
-             unit = unit)
+             unit = this.unit)
 
     override fun invert(mathContext: MathContext) =
         Frequency(amount.invert(mathContext), FrequencyUnit(unit))

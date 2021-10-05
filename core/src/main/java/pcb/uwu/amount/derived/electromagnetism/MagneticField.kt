@@ -1,87 +1,49 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.electromagnetism.MagneticFieldUnit;
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.electromagnetism.MagneticFieldUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+open class MagneticField : CompositeUnitAmount<MagneticFieldUnit>
+{
+    @JvmOverloads
+    constructor(value: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: MagneticFieldUnit)
+            : super(value, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(value: String,
+                magnitude: Magnitude = NATURAL,
+                unit: MagneticFieldUnit)
+            : super(value, magnitude, unit)
 
-public class MagneticField extends CompositeUnitAmount<MagneticFieldUnit> {
+    // region UnitAmount
 
-	// region constructors
+    override operator fun plus(other: UnitAmount<MagneticFieldUnit>) =
+        MagneticField(value = this.amount + other.into(this.unit).amount,
+                      unit = this.unit)
 
-	public MagneticField(Number value, MagneticFieldUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<MagneticFieldUnit>) =
+        MagneticField(value = this.amount - other.into(this.unit).amount,
+                      unit = this.unit)
 
-	public MagneticField(Number value, Magnitude magnitude, MagneticFieldUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+        MagneticField(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+                      unit = this.unit)
 
-	public MagneticField(String value, MagneticFieldUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        MagneticField(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+                      unit = this.unit)
 
-	public MagneticField(String value, Magnitude magnitude, MagneticFieldUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: MagneticFieldUnit) =
+        MagneticField(value = UnitAmountUtils.getAmountIn(this, unit),
+                      unit = this.unit)
 
-	public MagneticField(BigDecimal value, MagneticFieldUnit unit) {
-		super(value, unit);
-	}
-
-	public MagneticField(BigDecimal value, Magnitude magnitude, MagneticFieldUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public MagneticField(BigDecimalAmount amount, MagneticFieldUnit unit) {
-		super(amount, unit);
-	}
-
-	public MagneticField(BigDecimalAmount amount, Magnitude magnitude, MagneticFieldUnit unit) {
-		super(amount, magnitude, unit);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public MagneticField plus(@NotNull UnitAmount<MagneticFieldUnit> other) {
-		return new MagneticField(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public MagneticField minus(@NotNull UnitAmount<MagneticFieldUnit> other) {
-		return new MagneticField(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public MagneticField multiply(BigDecimal other, MathContext mathContext) {
-		return new MagneticField(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public MagneticField div(BigDecimal other, MathContext mathContext) {
-		return new MagneticField(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public MagneticField into(MagneticFieldUnit unit) {
-		return new MagneticField(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
+    // endregion
 }

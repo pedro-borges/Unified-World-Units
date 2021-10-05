@@ -1,6 +1,5 @@
 package pcb.uwu.amount.base
 
-import pcb.uwu.core.BigDecimalAmount
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
@@ -24,39 +23,27 @@ open class LuminousIntensity : CompositeUnitAmount<LuminousIntensityUnit>
                 unit: LuminousIntensityUnit)
             : super(value, magnitude, unit)
 
-    @JvmOverloads
-    constructor(value: BigDecimal,
-                magnitude: Magnitude = NATURAL,
-                unit: LuminousIntensityUnit)
-            : super(value, magnitude, unit)
-
-    @JvmOverloads
-    constructor(amount: BigDecimalAmount,
-                magnitude: Magnitude = NATURAL,
-                unit: LuminousIntensityUnit)
-            : super(amount, magnitude, unit)
-
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<LuminousIntensityUnit>) =
-        LuminousIntensity(value = amount + other.into(unit).amount,
-                          unit = unit)
+        LuminousIntensity(value = this.amount + other.into(this.unit).amount,
+                          unit = this.unit)
 
     override operator fun minus(other: UnitAmount<LuminousIntensityUnit>) =
-        LuminousIntensity(value = amount - other.into(unit).amount,
-                          unit = unit)
+        LuminousIntensity(value = this.amount - other.into(this.unit).amount,
+                          unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
         LuminousIntensity(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
-                          unit = unit)
+                          unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
         LuminousIntensity(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
-                          unit = unit)
+                          unit = this.unit)
 
     override fun into(unit: LuminousIntensityUnit) =
         LuminousIntensity(value = UnitAmountUtils.getAmountIn(this, unit),
-                                 unit = unit)
+                                 unit = this.unit)
 
     // endregion
 }

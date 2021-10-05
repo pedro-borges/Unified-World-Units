@@ -1,105 +1,59 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.derived.finance.InterestRate;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.ScalarUnit;
-import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
+import pcb.uwu.amount.derived.finance.InterestRate
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.ScalarUnit
+import pcb.uwu.unit.base.ScalarUnit.Companion.SCALAR
+import pcb.uwu.unit.derived.fundamental.FrequencyUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+class Scalar : CompositeUnitAmount<ScalarUnit>
+{
+    @JvmOverloads
+    constructor(value: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(value, magnitude, SCALAR)
 
-import static pcb.uwu.unit.base.ScalarUnit.SCALAR;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(value: String,
+                magnitude: Magnitude = NATURAL)
+            : super(value, magnitude, SCALAR)
 
-public class Scalar extends CompositeUnitAmount<ScalarUnit> {
+    // region UnitAmount
 
-	public static final Scalar ZERO = new Scalar(0);
-	public static final Scalar ONE = new Scalar(1);
+    override operator fun plus(other: UnitAmount<ScalarUnit>) =
+        Scalar(amount + other.into(this.unit).amount)
 
-	// region constructors
+    override operator fun minus(other: UnitAmount<ScalarUnit>) =
+        Scalar(amount - other.into(this.unit).amount)
 
-	public Scalar(Number value) {
-		super(value, SCALAR);
-	}
+    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+        Scalar(UnitAmountUtils.multipliedByScalar(this, other, mathContext))
 
-	public Scalar(Number value, Magnitude magnitude) {
-		super(value, magnitude, SCALAR);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        Scalar(UnitAmountUtils.dividedByScalar(this, other, mathContext))
 
-	public Scalar(String value) {
-		super(value, SCALAR);
-	}
+    override fun into(unit: ScalarUnit) =
+        Scalar(UnitAmountUtils.getAmountIn(this, unit))
 
-	public Scalar(String value, Magnitude magnitude) {
-		super(value, magnitude, SCALAR);
-	}
+    // endregion
 
-	public Scalar(BigDecimal value) {
-		super(value, SCALAR);
-	}
+    // region composition
 
-	public Scalar(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, SCALAR);
-	}
+    fun dividedBy(time: Time, mathContext: MathContext) =
+        InterestRate(this.amount.div(time.amount.value, mathContext),
+                     FrequencyUnit(time.unit))
 
-	public Scalar(BigDecimalAmount amount) {
-		super(amount, SCALAR);
-	}
+    // endregion
 
-	public Scalar(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, SCALAR);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Scalar plus(@NotNull UnitAmount<ScalarUnit> other) {
-		return new Scalar(plusAmount(this, other));
-	}
-
-	@NotNull
-	@Override
-	public Scalar minus(@NotNull UnitAmount<ScalarUnit> other) {
-		return new Scalar(minusAmount(this, other));
-	}
-
-	@Override
-	public Scalar multiply(BigDecimal other, MathContext mathContext) {
-		return new Scalar(multipliedByScalar(this, other, mathContext));
-	}
-
-	@Override
-	public Scalar div(BigDecimal other, MathContext mathContext) {
-		return new Scalar(dividedByScalar(this, other, mathContext));
-	}
-
-	@Override
-	public Scalar into(ScalarUnit unit) {
-		return new Scalar(getAmountIn(this, unit));
-	}
-
-	// endregion
-
-	// region composition
-
-	public InterestRate dividedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount()
-				.div(time.getAmount().getValue(), mathContext);
-		FrequencyUnit unit = new FrequencyUnit(time.getUnit());
-
-		return new InterestRate(amount, unit);
-	}
-
-	// endregion
+    companion object
+    {
+        val ZERO = Scalar(0)
+        val ONE = Scalar(1)
+    }
 }

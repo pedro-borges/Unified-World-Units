@@ -34,30 +34,6 @@ public class Acceleration extends CompositeUnitAmount<AccelerationUnit> {
 		super(value, magnitude, unit);
 	}
 
-	public Acceleration(String value, AccelerationUnit unit) {
-		super(value, unit);
-	}
-
-	public Acceleration(String value, Magnitude magnitude, AccelerationUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public Acceleration(BigDecimal value, AccelerationUnit unit) {
-		super(value, unit);
-	}
-
-	public Acceleration(BigDecimal value, Magnitude magnitude, AccelerationUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public Acceleration(BigDecimalAmount amount, AccelerationUnit unit) {
-		super(amount, unit);
-	}
-
-	public Acceleration(BigDecimalAmount amount, Magnitude magnitude, AccelerationUnit unit) {
-		super(amount, magnitude, unit);
-	}
-	
 	// endregion
 
 	// region implement UnitAmount

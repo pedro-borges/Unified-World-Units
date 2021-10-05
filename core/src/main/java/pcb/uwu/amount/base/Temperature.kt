@@ -39,24 +39,24 @@ open class Temperature : CompositeUnitAmount<TemperatureUnit>
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<TemperatureUnit>) =
-        Temperature(value = amount + other.into(unit).amount,
-                    unit = unit)
+        Temperature(value = this.amount + other.into(this.unit).amount,
+                    unit = this.unit)
 
     override operator fun minus(other: UnitAmount<TemperatureUnit>) =
-        Temperature(value = amount - other.into(unit).amount,
-                    unit = unit)
+        Temperature(value = this.amount - other.into(this.unit).amount,
+                    unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
         Temperature(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
-                    unit = unit)
+                    unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
         Temperature(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
-                    unit = unit)
+                    unit = this.unit)
 
     override fun into(unit: TemperatureUnit) =
         Temperature(value = UnitAmountUtils.getAmountIn(this, unit),
-                    unit = unit)
+                    unit = this.unit)
 
     // endregion
 }

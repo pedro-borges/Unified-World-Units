@@ -1,9 +1,11 @@
 package pcb.uwu.core
 
+import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitCounter.UnitCount.Companion.EMPTY_BASE_UNIT_COUNT
 import pcb.uwu.utils.UnitAmountUtils
 import java.math.BigDecimal
 import java.math.MathContext
+import java.math.MathContext.UNLIMITED
 import java.util.Objects
 import java.util.function.Function
 
@@ -14,13 +16,29 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 
     // region constructors
 
-    constructor(value: Number, unit: U) : this(value.toString(), unit)
-    constructor(value: Number, magnitude: Magnitude, unit: U) : this(value.toString(), magnitude, unit)
-    constructor(value: String, unit: U) : this(BigDecimal(value), unit)
-    constructor(value: String, magnitude: Magnitude, unit: U) : this(BigDecimal(value), magnitude, unit)
-    constructor(value: BigDecimal, unit: U) : this(BigDecimalAmount(value), unit)
-    constructor(value: BigDecimal, magnitude: Magnitude, unit: U) : this(BigDecimalAmount(value), magnitude, unit)
-    constructor(amount: BigDecimalAmount, magnitude: Magnitude, unit: U) : this(amount.times(magnitude.value, MathContext.UNLIMITED), unit)
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: U)
+            : this(amount.toString(), magnitude, unit)
+
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL,
+                unit: U)
+            : this(BigDecimal(amount), magnitude, unit)
+
+    @JvmOverloads
+    constructor(amount: BigDecimal,
+                magnitude: Magnitude = NATURAL,
+                unit: U)
+            : this(BigDecimalAmount(amount), magnitude, unit)
+
+    constructor(amount: BigDecimalAmount,
+                magnitude: Magnitude = NATURAL,
+                unit: U)
+            : this(amount.times(magnitude.value, UNLIMITED), unit)
+
     constructor(amount: BigDecimalAmount, unit: U)
     {
         this.amount = amount
