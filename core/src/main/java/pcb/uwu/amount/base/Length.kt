@@ -66,7 +66,7 @@ open class Length : CompositeUnitAmount<LengthUnit>
 
     open operator fun div(speed: Speed) =
         Time(amount = super.div(speed).amount,
-             unit = speed.unit.unitCounter.findUnit(TimeUnit::class.java)!!)
+             unit = speed.unit.unitCounter.findUnit(TimeUnit::class)!!)
 
     open operator fun times(length: Length) =
         Area(amount = amount * length.amount,

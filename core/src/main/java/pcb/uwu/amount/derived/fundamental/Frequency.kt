@@ -49,7 +49,7 @@ open class Frequency : CompositeUnitAmount<FrequencyUnit>
 
     override fun invert() =
         Time(amount = amount.invert(),
-             unit = unit.unitCounter.findUnit(TimeUnit::class.java)!!)
+             unit = unit.unitCounter.findUnit(TimeUnit::class)!!)
 
     // endregion
 }

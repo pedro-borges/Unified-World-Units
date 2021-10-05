@@ -59,7 +59,7 @@ class Pace : CompositeUnitAmount<PaceUnit>
 
     fun times(length: Length) =
         Time(amount = (this * length).amount,
-             unit = unit.unitCounter.findUnit(TimeUnit::class.java)!!)
+             unit = unit.unitCounter.findUnit(TimeUnit::class)!!)
 
     // endregion
 }

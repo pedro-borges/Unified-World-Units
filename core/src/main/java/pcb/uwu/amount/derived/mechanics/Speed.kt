@@ -66,11 +66,11 @@ open class Speed : CompositeUnitAmount<SpeedUnit>
 
     open fun div(acceleration: Acceleration) =
         Time(amount = (this / acceleration).amount,
-             unit = this.unit.unitCounter.findUnit(TimeUnit::class.java)!!)
+             unit = this.unit.unitCounter.findUnit(TimeUnit::class)!!)
 
     open fun times(time: Time) =
         Length(amount = (this * time).amount,
-               unit = this.unit.unitCounter.findUnit(LengthUnit::class.java)!!)
+               unit = this.unit.unitCounter.findUnit(LengthUnit::class)!!)
 
     // endregion
 }

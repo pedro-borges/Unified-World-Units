@@ -3,6 +3,7 @@ package pcb.uwu.unit.base
 import pcb.uwu.core.Amount
 import pcb.uwu.core.BaseUnit
 import pcb.uwu.core.UnitCounter
+import kotlin.reflect.KClass
 
 open class AngleUnit(symbol: String,
                      singularName: String,
@@ -18,5 +19,5 @@ open class AngleUnit(symbol: String,
 {
     override val unitCounter: UnitCounter
         get() = UnitCounter()
-    override val baseUnitType = AngleUnit::class.java
+    override val baseUnitType: KClass<out BaseUnit> = AngleUnit::class
 }

@@ -4,6 +4,7 @@ import pcb.uwu.core.Amount
 import pcb.uwu.core.BaseUnit
 import pcb.uwu.core.UnitCounter
 import pcb.uwu.exception.InvalidCurrencyException
+import kotlin.reflect.KClass
 
 class CurrencyUnit(val code: String,
                    symbol: String,
@@ -26,7 +27,7 @@ class CurrencyUnit(val code: String,
     override val translationFromCanonical: (Amount) -> Amount
         get() = throw InvalidCurrencyException("Dynamic currency conversion is not possible")
 
-    override val baseUnitType = CurrencyUnit::class.java
+    override val baseUnitType: KClass<out BaseUnit> = CurrencyUnit::class
 
     // region Object
 

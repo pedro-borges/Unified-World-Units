@@ -55,15 +55,15 @@ class Debt : CompositeUnitAmount<DebtUnit>
 
     fun times(interestRate: InterestRate) =
         Currency(amount = (this * interestRate).amount,
-                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
+                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class)!!)
 
     fun div(time: Time) =
         Currency(amount = (this / time).amount,
-                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
+                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class)!!)
 
     fun div(currency: Currency) =
         Time(amount = (this / currency).amount,
-             unit = this.unit.unitCounter.findUnit(TimeUnit::class.java)!!)
+             unit = this.unit.unitCounter.findUnit(TimeUnit::class)!!)
 
     // endregion
 }

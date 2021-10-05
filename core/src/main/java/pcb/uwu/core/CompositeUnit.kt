@@ -2,6 +2,7 @@ package pcb.uwu.core
 
 import pcb.uwu.util.andThen
 import pcb.uwu.util.identity
+import kotlin.reflect.KClass
 
 open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCounter())
     : Unit
@@ -78,7 +79,7 @@ open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCount
 
     override val isScalar = unitCounter.isEmpty
 
-    override val baseUnitType: Class<out BaseUnit>
+    override val baseUnitType: KClass<out BaseUnit>
         get() = throw IllegalStateException()
 
     // endregion

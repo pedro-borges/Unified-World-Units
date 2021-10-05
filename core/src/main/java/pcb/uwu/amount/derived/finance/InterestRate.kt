@@ -59,7 +59,7 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
 
     fun times(debt: Debt) =
         Currency(amount = (this * debt).amount,
-                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
+                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class)!!)
 
     // endregion
 }

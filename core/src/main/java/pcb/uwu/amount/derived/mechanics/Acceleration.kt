@@ -62,8 +62,8 @@ class Acceleration : CompositeUnitAmount<AccelerationUnit>
 
     fun times(time: Time) =
         Speed(amount = (this * time).amount,
-              unit = SpeedUnit(this.unit.unitCounter.findUnit(LengthUnit::class.java)!!,
-                               this.unit.unitCounter.findUnit(TimeUnit::class.java)!!))
+              unit = SpeedUnit(this.unit.unitCounter.findUnit(LengthUnit::class)!!,
+                               this.unit.unitCounter.findUnit(TimeUnit::class)!!))
 
     // endregion
 }

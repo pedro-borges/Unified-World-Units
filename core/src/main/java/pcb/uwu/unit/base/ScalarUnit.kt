@@ -3,6 +3,7 @@ package pcb.uwu.unit.base
 import pcb.uwu.core.BaseUnit
 import pcb.uwu.core.UnitCounter
 import pcb.uwu.util.identity
+import kotlin.reflect.KClass
 
 
 object ScalarUnit
@@ -15,5 +16,5 @@ object ScalarUnit
 {
     override val unitCounter
         get() = UnitCounter()
-    override val baseUnitType = ScalarUnit::class.java
+    override val baseUnitType: KClass<out BaseUnit> = ScalarUnit::class
 }

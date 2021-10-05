@@ -6,6 +6,8 @@ import pcb.uwu.unit.base.ScalarUnit
 import java.util.Objects
 import java.util.function.Function
 import kotlin.math.abs
+import kotlin.reflect.KClass
+import kotlin.reflect.full.isSuperclassOf
 
 class UnitCounter
 {
@@ -35,7 +37,7 @@ class UnitCounter
 
     // region private fields
 
-    private val counts: MutableMap<Class<out BaseUnit>, UnitCount>
+    private val counts: MutableMap<KClass<out BaseUnit>, UnitCount>
 
     // endregion
 
@@ -50,7 +52,7 @@ class UnitCounter
 
     constructor(source: UnitCounter) : this(source.counts)
 
-    private constructor(counts: Map<Class<out BaseUnit>, UnitCount>)
+    private constructor(counts: Map<KClass<out BaseUnit>, UnitCount>)
     {
         this.counts = HashMap(counts)
     }
@@ -59,7 +61,7 @@ class UnitCounter
 
     fun invert(): UnitCounter
     {
-        val result: MutableMap<Class<out BaseUnit>, UnitCount> = HashMap()
+        val result: MutableMap<KClass<out BaseUnit>, UnitCount> = HashMap()
 
         counts.forEach { (clazz, unitCount) ->
             result[clazz] = UnitCount(unitCount.unit, -unitCount.count)
@@ -159,20 +161,20 @@ class UnitCounter
         else result.toString()
     }
 
-    private fun addMajor(clazz: Class<out BaseUnit>, unitCount: UnitCount)
+    private fun addMajor(kClass: KClass<out BaseUnit>, unitCount: UnitCount)
     {
-        addPower(clazz, unitCount.unit, unitCount.count)
+        addPower(kClass, unitCount.unit, unitCount.count)
     }
 
-    private fun addMinor(clazz: Class<out BaseUnit>, unitCount: UnitCount)
+    private fun addMinor(kClass: KClass<out BaseUnit>, unitCount: UnitCount)
     {
-        addPower(clazz, unitCount.unit, -unitCount.count)
+        addPower(kClass, unitCount.unit, -unitCount.count)
     }
 
-    private fun addPower(clazz: Class<out BaseUnit>, unit: BaseUnit, count: Int)
+    private fun addPower(kClazz: KClass<out BaseUnit>, unit: BaseUnit, count: Int)
     {
         if (count == 0) return
-        val unitCount = counts[clazz]
+        val unitCount = counts[kClazz]
         val result = if (unitCount == null)
         {
             count
@@ -187,26 +189,26 @@ class UnitCounter
         }
         if (result == 0)
         {
-            counts.remove(clazz)
+            counts.remove(kClazz)
         }
         else
         {
-            counts[clazz] = UnitCount(unit, result)
+            counts[kClazz] = UnitCount(unit, result)
         }
     }
 
-    fun <U : BaseUnit> findUnit(unitClass: Class<U>): U?
+    fun <U : BaseUnit> findUnit(unitClass: KClass<U>): U?
     {
         return getUnit(unitClass, baseUnits)
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun <U : BaseUnit> getUnit(unitClass: Class<U>, units: Collection<UnitCount>): U?
+    private fun <U : BaseUnit> getUnit(unitClass: KClass<U>, units: Collection<UnitCount>): U?
     {
         for (unitCount in units)
         {
             val unit = unitCount.unit
-            if (unitClass.isAssignableFrom(unit.javaClass)) return unit as U
+            if (unitClass.isSuperclassOf(unit::class)) return unit as U
         }
         return null
     }

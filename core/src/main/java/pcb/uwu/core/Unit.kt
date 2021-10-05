@@ -1,5 +1,7 @@
 package pcb.uwu.core
 
+import kotlin.reflect.KClass
+
 /**
  * Represents a unit, either basic or complex.
  */
@@ -39,6 +41,6 @@ interface Unit
      * @return true if this unit is a scalar, false otherwise
      */
     val isScalar: Boolean
-    val baseUnitType: Class<out BaseUnit>
+    val baseUnitType: KClass<out BaseUnit>
     val unitCounter: UnitCounter
 }

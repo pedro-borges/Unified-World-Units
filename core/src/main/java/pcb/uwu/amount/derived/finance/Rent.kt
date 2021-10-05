@@ -54,7 +54,7 @@ class Rent : CompositeUnitAmount<RentUnit>
 
     operator fun times(time: Time) =
         Currency(amount = super.times(time).amount,
-                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
+                 unit = this.unit.unitCounter.findUnit(CurrencyUnit::class)!!)
 
     // endregion
 }
