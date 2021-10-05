@@ -1,4 +1,4 @@
-package pcb.uwu.utils
+package pcb.uwu.util
 
 import org.junit.Test
 import kotlin.test.assertEquals

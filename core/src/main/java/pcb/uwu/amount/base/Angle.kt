@@ -5,7 +5,7 @@ import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.AngleUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 open class Angle : CompositeUnitAmount<AngleUnit>
 {

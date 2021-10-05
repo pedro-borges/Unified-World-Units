@@ -3,7 +3,7 @@ package pcb.uwu.amount.derived.fundamental
 import pcb.uwu.amount.base.Length
 import pcb.uwu.core.Amount
 import pcb.uwu.unit.derived.fundamental.AreaUnit
-import pcb.uwu.utils.MathUtils.PI
+import pcb.uwu.util.MathUtils.PI
 
 open class AreaFactory
 {

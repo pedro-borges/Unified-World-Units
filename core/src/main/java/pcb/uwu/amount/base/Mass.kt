@@ -8,7 +8,7 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.derived.mechanics.ForceUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 open class Mass : CompositeUnitAmount<MassUnit>
 {

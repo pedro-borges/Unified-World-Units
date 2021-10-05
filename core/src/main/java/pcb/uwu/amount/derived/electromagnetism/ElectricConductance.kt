@@ -7,7 +7,7 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.electromagnetism.ElectricConductanceUnit
 import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 open class ElectricConductance : CompositeUnitAmount<ElectricConductanceUnit>
 {

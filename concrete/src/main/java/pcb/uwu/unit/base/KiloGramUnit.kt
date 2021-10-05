@@ -1,6 +1,6 @@
 package pcb.uwu.unit.base
 
-import pcb.uwu.utils.identity
+import pcb.uwu.util.identity
 
 object KiloGramUnit
     : MassUnit(symbol = "Kg",

@@ -8,7 +8,7 @@ import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.CurrencyUnit
 import pcb.uwu.unit.derived.fundamental.FrequencyUnit
 import pcb.uwu.unit.finance.RentUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 class InterestRate : CompositeUnitAmount<FrequencyUnit>
 {

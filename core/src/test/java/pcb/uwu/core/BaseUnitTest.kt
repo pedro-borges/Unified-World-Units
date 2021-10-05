@@ -4,7 +4,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import pcb.uwu.unit.base.LengthUnit
 import pcb.uwu.unit.base.MassUnit
-import pcb.uwu.utils.identity
+import pcb.uwu.util.identity
 
 
 class BaseUnitTest

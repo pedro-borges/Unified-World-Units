@@ -10,7 +10,7 @@ import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.fundamental.AreaUnit
 import pcb.uwu.unit.derived.fundamental.VolumeUnit
 import pcb.uwu.unit.derived.optics.LuminousFluxUnit
-import pcb.uwu.utils.UnitAmountUtils.getAmountIn
+import pcb.uwu.util.UnitAmountUtils.getAmountIn
 
 open class Area : CompositeUnitAmount<AreaUnit>
 {

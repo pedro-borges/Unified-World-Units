@@ -14,7 +14,7 @@ import pcb.uwu.unit.base.AmpereUnit
 import pcb.uwu.unit.base.SecondUnit
 import pcb.uwu.unit.derived.area.SquareMeterUnit
 import pcb.uwu.unit.derived.electromagnetism.*
-import pcb.uwu.utils.UnitAmountUtils.getAmountIn
+import pcb.uwu.util.UnitAmountUtils.getAmountIn
 
 class Webbers : MagneticFlux
 {

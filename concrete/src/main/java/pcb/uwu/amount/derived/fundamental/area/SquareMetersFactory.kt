@@ -3,7 +3,7 @@ package pcb.uwu.amount.derived.fundamental.area
 import pcb.uwu.amount.base.Length
 import pcb.uwu.amount.derived.fundamental.AreaFactory
 import pcb.uwu.unit.base.MeterUnit
-import pcb.uwu.utils.UnitAmountUtils.getAmountIn
+import pcb.uwu.util.UnitAmountUtils.getAmountIn
 
 class SquareMetersFactory : AreaFactory()
 {

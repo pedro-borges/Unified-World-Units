@@ -9,7 +9,7 @@ import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.CurrencyUnit
 import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.unit.derived.finance.DebtUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 class Debt : CompositeUnitAmount<DebtUnit>
 {

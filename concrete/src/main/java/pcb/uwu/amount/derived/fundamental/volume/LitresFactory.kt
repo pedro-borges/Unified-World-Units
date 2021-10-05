@@ -4,7 +4,7 @@ import pcb.uwu.amount.base.Length
 import pcb.uwu.amount.derived.fundamental.VolumeFactory
 import pcb.uwu.core.Magnitude.DECI
 import pcb.uwu.unit.base.MeterUnit
-import pcb.uwu.utils.UnitAmountUtils.getAmountIn
+import pcb.uwu.util.UnitAmountUtils.getAmountIn
 
 class LitresFactory : VolumeFactory()
 {

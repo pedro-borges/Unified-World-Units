@@ -9,7 +9,7 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricCapacitanceUnit
 import pcb.uwu.unit.derived.electromagnetism.ElectricChargeUnit
 import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 open class ElectricCharge : CompositeUnitAmount<ElectricChargeUnit>
 {

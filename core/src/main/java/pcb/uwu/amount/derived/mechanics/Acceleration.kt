@@ -11,7 +11,7 @@ import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.unit.derived.mechanics.AccelerationUnit
 import pcb.uwu.unit.derived.mechanics.ForceUnit
 import pcb.uwu.unit.derived.mechanics.SpeedUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 class Acceleration : CompositeUnitAmount<AccelerationUnit>
 {

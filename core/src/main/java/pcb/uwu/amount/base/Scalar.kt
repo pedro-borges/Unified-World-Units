@@ -7,7 +7,7 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.ScalarUnit
 import pcb.uwu.unit.derived.fundamental.FrequencyUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 class Scalar : CompositeUnitAmount<ScalarUnit>
 {

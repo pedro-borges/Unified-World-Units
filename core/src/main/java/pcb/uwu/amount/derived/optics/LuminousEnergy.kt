@@ -7,7 +7,7 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.optics.LuminousEnergyUnit
 import pcb.uwu.unit.derived.optics.LuminousFluxUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 open class LuminousEnergy : CompositeUnitAmount<LuminousEnergyUnit>
 {

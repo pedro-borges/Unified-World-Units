@@ -2,9 +2,9 @@ package pcb.uwu.core
 
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitCounter.UnitCount.Companion.EMPTY_BASE_UNIT_COUNT
-import pcb.uwu.utils.UnitAmountUtils
-import pcb.uwu.utils.andThen
-import pcb.uwu.utils.identity
+import pcb.uwu.util.UnitAmountUtils
+import pcb.uwu.util.andThen
+import pcb.uwu.util.identity
 import java.math.BigDecimal
 import java.util.Objects
 

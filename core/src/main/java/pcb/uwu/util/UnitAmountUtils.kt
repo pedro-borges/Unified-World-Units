@@ -1,4 +1,4 @@
-package pcb.uwu.utils
+package pcb.uwu.util
 
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL

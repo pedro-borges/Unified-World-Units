@@ -1,4 +1,4 @@
-package pcb.uwu.utils
+package pcb.uwu.util
 
 fun <T> identity() =
     { it: T -> it }

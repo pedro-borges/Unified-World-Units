@@ -17,7 +17,7 @@ import pcb.uwu.unit.derived.mechanics.ForceUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 import pcb.uwu.unit.derived.termodynamics.PowerUnit
 import pcb.uwu.unit.derived.termodynamics.PressureUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 open class Energy : CompositeUnitAmount<EnergyUnit>
 {

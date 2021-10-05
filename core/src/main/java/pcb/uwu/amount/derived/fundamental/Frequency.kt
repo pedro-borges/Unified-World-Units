@@ -7,7 +7,7 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.unit.derived.fundamental.FrequencyUnit
-import pcb.uwu.utils.UnitAmountUtils.getAmountIn
+import pcb.uwu.util.UnitAmountUtils.getAmountIn
 
 open class Frequency : CompositeUnitAmount<FrequencyUnit>
 {

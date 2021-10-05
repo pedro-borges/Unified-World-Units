@@ -9,7 +9,7 @@ import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.unit.derived.mechanics.PaceUnit
 import pcb.uwu.unit.derived.mechanics.SpeedUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 class Pace : CompositeUnitAmount<PaceUnit>
 {

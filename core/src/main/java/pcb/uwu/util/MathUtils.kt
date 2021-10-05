@@ -1,4 +1,4 @@
-package pcb.uwu.utils
+package pcb.uwu.util
 
 import java.math.BigDecimal
 

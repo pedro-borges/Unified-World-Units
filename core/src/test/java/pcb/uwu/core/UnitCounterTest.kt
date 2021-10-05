@@ -5,7 +5,7 @@ import org.junit.Test
 import pcb.uwu.unit.base.ElectricCurrentUnit
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.base.TimeUnit
-import pcb.uwu.utils.identity
+import pcb.uwu.util.identity
 
 
 class UnitCounterTest

@@ -14,7 +14,7 @@ import pcb.uwu.unit.derived.electromagnetism.MagneticFieldUnit
 import pcb.uwu.unit.derived.electromagnetism.MagneticFluxUnit
 import pcb.uwu.unit.derived.fundamental.AreaUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 open class MagneticFlux : CompositeUnitAmount<MagneticFluxUnit>
 {

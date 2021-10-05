@@ -13,7 +13,7 @@ import pcb.uwu.unit.derived.optics.IlluminanceUnit
 import pcb.uwu.unit.derived.optics.LuminousEnergyUnit
 import pcb.uwu.unit.derived.optics.LuminousFluxUnit
 import pcb.uwu.unit.scalar.SolidAngleUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 open class LuminousFlux : CompositeUnitAmount<LuminousFluxUnit>
 {

@@ -20,7 +20,7 @@ import pcb.uwu.unit.derived.fundamental.FrequencyUnit
 import pcb.uwu.unit.derived.mechanics.PaceUnit
 import pcb.uwu.unit.derived.optics.LuminousEnergyUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 import java.math.BigDecimal
 import java.time.Duration
 

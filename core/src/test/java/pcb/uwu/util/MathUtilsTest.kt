@@ -1,9 +1,9 @@
-package pcb.uwu.utils
+package pcb.uwu.util
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
-import pcb.uwu.utils.MathUtils.min
+import pcb.uwu.util.MathUtils.min
 
 class MathUtilsTest
 {

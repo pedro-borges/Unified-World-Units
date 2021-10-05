@@ -1,7 +1,7 @@
 package pcb.uwu.core
 
-import pcb.uwu.utils.andThen
-import pcb.uwu.utils.identity
+import pcb.uwu.util.andThen
+import pcb.uwu.util.identity
 
 open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCounter())
     : Unit

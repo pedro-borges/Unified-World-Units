@@ -7,7 +7,7 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.electromagnetism.ElectricInductanceUnit
 import pcb.uwu.unit.derived.electromagnetism.MagneticFluxUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 open class ElectricInductance : CompositeUnitAmount<ElectricInductanceUnit>
 {

@@ -2,7 +2,7 @@ package pcb.uwu.unit.base
 
 import pcb.uwu.core.BaseUnit
 import pcb.uwu.core.UnitCounter
-import pcb.uwu.utils.identity
+import pcb.uwu.util.identity
 
 
 object ScalarUnit

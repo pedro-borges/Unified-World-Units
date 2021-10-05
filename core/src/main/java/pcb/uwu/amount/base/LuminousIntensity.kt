@@ -12,7 +12,7 @@ import pcb.uwu.unit.base.LuminousIntensityUnit
 import pcb.uwu.unit.derived.fundamental.AreaUnit
 import pcb.uwu.unit.derived.optics.LuminanceUnit
 import pcb.uwu.unit.derived.optics.LuminousFluxUnit
-import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.util.UnitAmountUtils
 
 open class LuminousIntensity : CompositeUnitAmount<LuminousIntensityUnit>
 {
