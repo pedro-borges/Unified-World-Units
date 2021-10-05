@@ -26,11 +26,11 @@ class Grams : Mass
     override fun minus(mass: UnitAmount<MassUnit>) =
         Grams(this.amount - (mass to GRAM).amount)
 
-    override fun times(number: Number) =
-        Grams(this.amount * number)
+    override fun times(scalar: Number) =
+        Grams(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Grams(this.amount / number)
+    override fun div(scalar: Number) =
+        Grams(this.amount / scalar)
 
     // endregion
 }

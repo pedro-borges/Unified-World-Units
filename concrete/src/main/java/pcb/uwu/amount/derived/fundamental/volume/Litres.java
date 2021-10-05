@@ -94,14 +94,14 @@ public class Litres extends Volume {
 
 	@NotNull
 	@Override
-	public Litres times(@NotNull Number number) {
-		return new Litres(UnitAmountUtils.times(this, number));
+	public Litres times(@NotNull Number scalar) {
+		return new Litres(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Litres div(@NotNull Number number) {
-		return new Litres(dividedByScalar(this, number));
+	public Litres div(@NotNull Number scalar) {
+		return new Litres(dividedByScalar(this, scalar));
 	}
 
 	// endregion

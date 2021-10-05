@@ -73,14 +73,14 @@ public class Talbots extends LuminousEnergy {
 
 	@NotNull
 	@Override
-	public Talbots times(@NotNull Number number) {
-		return new Talbots(UnitAmountUtils.times(this, number));
+	public Talbots times(@NotNull Number scalar) {
+		return new Talbots(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Talbots div(@NotNull Number number) {
-		return new Talbots(dividedByScalar(this, number));
+	public Talbots div(@NotNull Number scalar) {
+		return new Talbots(dividedByScalar(this, scalar));
 	}
 
 	// endregion

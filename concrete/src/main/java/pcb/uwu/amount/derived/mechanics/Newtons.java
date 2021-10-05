@@ -81,14 +81,14 @@ public class Newtons extends Force {
 
 	@NotNull
 	@Override
-	public Newtons times(@NotNull Number number) {
-		return new Newtons(UnitAmountUtils.times(this, number));
+	public Newtons times(@NotNull Number scalar) {
+		return new Newtons(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Newtons div(@NotNull Number number) {
-		return new Newtons(dividedByScalar(this, number));
+	public Newtons div(@NotNull Number scalar) {
+		return new Newtons(dividedByScalar(this, scalar));
 	}
 
 	// endregion

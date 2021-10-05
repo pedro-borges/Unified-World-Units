@@ -33,12 +33,12 @@ open class ElectricResistance : CompositeUnitAmount<ElectricResistanceUnit>
         ElectricResistance(amount = this.amount - (electricResistance to this.unit).amount,
                            unit = this.unit)
 
-    override fun times(number: Number) =
-        ElectricResistance(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        ElectricResistance(amount = this.amount * scalar,
                            unit = this.unit)
 
-    override fun div(number: Number) =
-        ElectricResistance(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        ElectricResistance(amount = this.amount / scalar,
                            unit = this.unit)
 
     override fun to(unit: ElectricResistanceUnit) =

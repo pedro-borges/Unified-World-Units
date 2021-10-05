@@ -23,16 +23,14 @@ class NauticalMiles : Length
     override fun plus(length: UnitAmount<LengthUnit>) =
         NauticalMiles(this.amount + (length to NAUTICAL_MILE).amount)
 
-
     override fun minus(length: UnitAmount<LengthUnit>) =
         NauticalMiles(this.amount - (length to NAUTICAL_MILE).amount)
 
+    override fun times(scalar: Number) =
+        NauticalMiles(this.amount * scalar)
 
-    override fun times(number: Number) =
-        NauticalMiles(this.amount * number)
-
-    override fun div(number: Number) =
-        NauticalMiles(this.amount / number)
+    override fun div(scalar: Number) =
+        NauticalMiles(this.amount / scalar)
 
     // endregion
 }

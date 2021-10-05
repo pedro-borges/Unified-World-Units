@@ -26,11 +26,11 @@ class Celsius : Temperature
     override fun minus(temperature: UnitAmount<TemperatureUnit>) =
         Celsius(this.amount + (temperature to CELSIUS).amount)
 
-    override fun times(number: Number) =
-        Celsius(this.amount * number)
+    override fun times(scalar: Number) =
+        Celsius(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Celsius(this.amount / number)
+    override fun div(scalar: Number) =
+        Celsius(this.amount / scalar)
 
     // endregion
 }

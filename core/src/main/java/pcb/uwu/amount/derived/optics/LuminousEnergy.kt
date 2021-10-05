@@ -33,12 +33,12 @@ open class LuminousEnergy : CompositeUnitAmount<LuminousEnergyUnit>
         LuminousEnergy(amount = this.amount - (luminousEnergy to this.unit).amount,
                        unit = this.unit)
 
-    override fun times(number: Number) =
-        LuminousEnergy(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        LuminousEnergy(amount = this.amount * scalar,
                        unit = this.unit)
 
-    override fun div(number: Number) =
-        LuminousEnergy(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        LuminousEnergy(amount = this.amount / scalar,
                        unit = this.unit)
 
     override fun to(unit: LuminousEnergyUnit) =

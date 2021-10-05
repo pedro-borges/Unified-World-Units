@@ -1,9 +1,14 @@
 package pcb.uwu.amount.derived.thermodynamics
 
+import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.fundamental.Volume
+import pcb.uwu.amount.derived.mechanics.Force
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.mechanics.ForceUnit
+import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 import pcb.uwu.unit.derived.termodynamics.PressureUnit
 import pcb.uwu.utils.UnitAmountUtils
 
@@ -33,17 +38,30 @@ open class Pressure : CompositeUnitAmount<PressureUnit>
         Pressure(amount = this.amount - (pressure to this.unit).amount,
                  unit = this.unit)
 
-    override fun times(number: Number) =
-        Pressure(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Pressure(amount = this.amount * scalar,
                  unit = this.unit)
 
-    override fun div(number: Number) =
-        Pressure(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Pressure(amount = this.amount / scalar,
                  unit = this.unit)
 
     override fun to(unit: PressureUnit) =
         Pressure(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                  unit = unit)
+
+    // endregion
+
+    // region composition
+
+
+    open operator fun times(volume: Volume) =
+        Energy(amount = this.amount * volume.amount,
+               unit = EnergyUnit(this.unit, volume.unit))
+
+    open operator fun times(area: Area) =
+        Force(amount = this.amount * area.amount,
+             unit = ForceUnit(this.unit, area.unit))
 
     // endregion
 }

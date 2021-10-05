@@ -33,12 +33,12 @@ open class Volume : CompositeUnitAmount<VolumeUnit>
         Volume(amount = this.amount - (volume to this.unit).amount,
                unit = this.unit)
 
-    override fun times(number: Number) =
-        Volume(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Volume(amount = this.amount * scalar,
                unit = this.unit)
 
-    override fun div(number: Number) =
-        Volume(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Volume(amount = this.amount / scalar,
                unit = this.unit)
 
     override fun to(unit: VolumeUnit) =

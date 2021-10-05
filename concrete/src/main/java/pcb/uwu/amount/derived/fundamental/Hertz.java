@@ -68,14 +68,14 @@ public class Hertz extends Frequency {
 
 	@NotNull
 	@Override
-	public Hertz times(@NotNull Number number) {
-		return new Hertz(UnitAmountUtils.times(this, number));
+	public Hertz times(@NotNull Number scalar) {
+		return new Hertz(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Hertz div(@NotNull Number number) {
-		return new Hertz(dividedByScalar(this, number));
+	public Hertz div(@NotNull Number scalar) {
+		return new Hertz(dividedByScalar(this, scalar));
 	}
 
 	// endregion

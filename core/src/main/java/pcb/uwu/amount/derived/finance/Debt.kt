@@ -37,12 +37,12 @@ class Debt : CompositeUnitAmount<DebtUnit>
         Debt(amount = this.amount - (debt to this.unit).amount,
              unit = this.unit)
 
-    override fun times(number: Number) =
-        Debt(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Debt(amount = this.amount * scalar,
              unit = this.unit)
 
-    override fun div(number: Number) =
-        Debt(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Debt(amount = this.amount / scalar,
              unit = this.unit)
 
     override fun to(unit: DebtUnit) =

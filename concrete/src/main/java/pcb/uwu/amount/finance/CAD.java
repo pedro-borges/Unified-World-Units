@@ -60,14 +60,14 @@ public class CAD extends Currency {
 
 	@NotNull
 	@Override
-	public CAD times(@NotNull Number number) {
-		return new CAD(UnitAmountUtils.times(this, number));
+	public CAD times(@NotNull Number scalar) {
+		return new CAD(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public CAD div(@NotNull Number number) {
-		return new CAD(dividedByScalar(this, number));
+	public CAD div(@NotNull Number scalar) {
+		return new CAD(dividedByScalar(this, scalar));
 	}
 
 	// endregion

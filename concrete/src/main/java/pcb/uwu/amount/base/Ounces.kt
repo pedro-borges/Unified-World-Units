@@ -26,11 +26,11 @@ class Ounces : Mass
     override fun minus(mass: UnitAmount<MassUnit>) =
         Ounces(this.amount - (mass to OUNCE).amount)
 
-    override fun times(number: Number) =
-        Ounces(this.amount * number)
+    override fun times(scalar: Number) =
+        Ounces(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Ounces(this.amount / number)
+    override fun div(scalar: Number) =
+        Ounces(this.amount / scalar)
 
     // endregion
 }

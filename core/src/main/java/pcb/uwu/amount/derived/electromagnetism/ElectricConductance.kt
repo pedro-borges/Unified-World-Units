@@ -33,12 +33,12 @@ open class ElectricConductance : CompositeUnitAmount<ElectricConductanceUnit>
         ElectricConductance(amount = this.amount - (electricConductance to this.unit).amount,
                             unit = this.unit)
 
-    override fun times(number: Number) =
-        ElectricConductance(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        ElectricConductance(amount = this.amount * scalar,
                             unit = this.unit)
 
-    override fun div(number: Number) =
-        ElectricConductance(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        ElectricConductance(amount = this.amount / scalar,
                             unit = this.unit)
 
     override fun to(unit: ElectricConductanceUnit) =

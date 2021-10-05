@@ -57,14 +57,14 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
         return CompositeUnitAmount(UnitAmountUtils.minusAmount(this, amount), unit)
     }
 
-    override fun times(number: Number): UnitAmount<U>
+    override fun times(scalar: Number): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.times(this, number), unit)
+        return CompositeUnitAmount(UnitAmountUtils.times(this, scalar), unit)
     }
 
-    override fun div(number: Number): UnitAmount<U>
+    override fun div(scalar: Number): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.dividedByScalar(this, number), unit)
+        return CompositeUnitAmount(UnitAmountUtils.dividedByScalar(this, scalar), unit)
     }
 
     override fun times(amount: UnitAmount<out Unit>): UnitAmount<Unit>
@@ -77,7 +77,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
             if (resultUnitCount == EMPTY_BASE_UNIT_COUNT)
             {
                 // New unit type, no adaptation necessary
-                resultUnitCounter = resultUnitCounter.major(otherUnitCount.unit, otherUnitCount.count)
+                resultUnitCounter = resultUnitCounter.major(otherUnitCount.unit)
                 continue
             }
 
@@ -169,7 +169,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
             if (resultUnitCount == EMPTY_BASE_UNIT_COUNT)
             {
                 // New unit type, no adaptation necessary
-                resultUnitCounter = resultUnitCounter.minor(otherUnitCount.unit, otherUnitCount.count)
+                resultUnitCounter = resultUnitCounter.minor(otherUnitCount.unit)
                 continue
             }
 

@@ -60,14 +60,14 @@ public class GBP extends Currency {
 
 	@NotNull
 	@Override
-	public GBP times(@NotNull Number number) {
-		return new GBP(UnitAmountUtils.times(this, number));
+	public GBP times(@NotNull Number scalar) {
+		return new GBP(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public GBP div(@NotNull Number number) {
-		return new GBP(dividedByScalar(this, number));
+	public GBP div(@NotNull Number scalar) {
+		return new GBP(dividedByScalar(this, scalar));
 	}
 
 	// endregion

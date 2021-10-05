@@ -68,39 +68,33 @@ class UnitCounter
         return UnitCounter(result)
     }
 
-    fun major(unitCounter: UnitCounter): UnitCounter
-    {
-        val result = UnitCounter(this)
-        unitCounter.counts.forEach { (clazz, unitCount) ->
-            result.addMajor(clazz, unitCount)
-        }
-        return result
-    }
+    fun major(unit: CompositeUnit) =
+        UnitCounter(this)
+            .apply {
+                unit.unitCounter.counts.forEach { (clazz, unitCount) ->
+                    addMajor(clazz, unitCount)
+                }
+            }
 
-    @JvmOverloads
-    fun major(unit: BaseUnit, counts: Int = 1): UnitCounter
-    {
-        val result = UnitCounter(this)
-        result.addPower(unit.baseUnitType, unit, counts)
-        return result
-    }
+    fun minor(unit: CompositeUnit) =
+        UnitCounter(this)
+            .apply {
+                unit.unitCounter.counts.forEach { (clazz, unitCount) ->
+                    addMinor(clazz, unitCount)
+                }
+            }
 
-    fun minor(unitCounter: UnitCounter): UnitCounter
-    {
-        val result = UnitCounter(this)
-        unitCounter.counts.forEach { (clazz, unitCount) ->
-            result.addMinor(clazz, unitCount)
-        }
-        return result
-    }
+    fun major(unit: BaseUnit) =
+        UnitCounter(this)
+            .apply {
+                addPower(unit.baseUnitType, unit, 1)
+            }
 
-    @JvmOverloads
-    fun minor(unit: BaseUnit, counts: Int = 1): UnitCounter
-    {
-        val result = UnitCounter(this)
-        result.addPower(unit.baseUnitType, unit, -counts)
-        return result
-    }
+    fun minor(unit: BaseUnit) =
+        UnitCounter(this)
+            .apply {
+                addPower(unit.baseUnitType, unit, -1)
+            }
 
     operator fun get(unit: BaseUnit) =
         counts[unit.baseUnitType] ?: EMPTY_BASE_UNIT_COUNT

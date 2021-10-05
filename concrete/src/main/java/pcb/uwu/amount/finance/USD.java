@@ -60,14 +60,14 @@ public class USD extends Currency {
 
 	@NotNull
 	@Override
-	public USD times(@NotNull Number number) {
-		return new USD(UnitAmountUtils.times(this, number));
+	public USD times(@NotNull Number scalar) {
+		return new USD(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public USD div(@NotNull Number number) {
-		return new USD(dividedByScalar(this, number));
+	public USD div(@NotNull Number scalar) {
+		return new USD(dividedByScalar(this, scalar));
 	}
 
 	// endregion

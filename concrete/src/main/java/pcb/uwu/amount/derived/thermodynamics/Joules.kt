@@ -1,138 +1,84 @@
-package pcb.uwu.amount.derived.thermodynamics;
+package pcb.uwu.amount.derived.thermodynamics
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.Length;
-import pcb.uwu.amount.base.Meters;
-import pcb.uwu.amount.base.Seconds;
-import pcb.uwu.amount.base.Time;
-import pcb.uwu.amount.derived.electromagnetism.Coulombs;
-import pcb.uwu.amount.derived.electromagnetism.ElectricCharge;
-import pcb.uwu.amount.derived.electromagnetism.ElectricPotential;
-import pcb.uwu.amount.derived.electromagnetism.Volts;
-import pcb.uwu.amount.derived.fundamental.Volume;
-import pcb.uwu.amount.derived.mechanics.Force;
-import pcb.uwu.amount.derived.mechanics.Newtons;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.termodynamics.EnergyUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.Length
+import pcb.uwu.amount.base.Meters
+import pcb.uwu.amount.base.Seconds
+import pcb.uwu.amount.base.Time
+import pcb.uwu.amount.derived.electromagnetism.Coulombs
+import pcb.uwu.amount.derived.electromagnetism.ElectricCharge
+import pcb.uwu.amount.derived.electromagnetism.ElectricPotential
+import pcb.uwu.amount.derived.electromagnetism.Volts
+import pcb.uwu.amount.derived.fundamental.Volume
+import pcb.uwu.amount.derived.mechanics.Force
+import pcb.uwu.amount.derived.mechanics.Newtons
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.MeterUnit.METER
+import pcb.uwu.unit.base.SecondUnit.SECOND
+import pcb.uwu.unit.derived.electromagnetism.CoulombUnit.COULOMB
+import pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT
+import pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER
+import pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON
+import pcb.uwu.unit.derived.termodynamics.EnergyUnit
+import pcb.uwu.unit.derived.termodynamics.JouleUnit.JOULE
+import pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL
+import pcb.uwu.unit.derived.termodynamics.WattUnit
 
-import java.math.BigDecimal;
+class Joules : Energy
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, JOULE)
 
-import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.electromagnetism.CoulombUnit.COULOMB;
-import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
-import static pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER;
-import static pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON;
-import static pcb.uwu.unit.derived.termodynamics.JouleUnit.JOULE;
-import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
-import static pcb.uwu.unit.derived.termodynamics.WattUnit.WATT;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, JOULE)
 
-public class Joules extends Energy {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(energy: UnitAmount<EnergyUnit>) =
+        Joules(this.amount + (energy to JOULE).amount)
 
-	public Joules(Number value) {
-		super(value, JOULE);
-	}
+    override fun minus(energy: UnitAmount<EnergyUnit>) =
+        Joules(this.amount - (energy to JOULE).amount)
 
-	public Joules(Number value, Magnitude magnitude) {
-		super(value, magnitude, JOULE);
-	}
+    override fun times(scalar: Number) =
+        Joules(this.amount * scalar)
 
-	public Joules(String value) {
-		super(value, JOULE);
-	}
+    override fun div(scalar: Number) =
+        Joules(this.amount / scalar)
 
-	public Joules(String value, Magnitude magnitude) {
-		super(value, magnitude, JOULE);
-	}
+    // endregion
 
-	public Joules(BigDecimal value) {
-		super(value, JOULE);
-	}
+    // region composition
 
-	public Joules(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, JOULE);
-	}
+    override fun div(volume: Volume) =
+        Pascals(amount / (volume to CUBIC_METER).amount)
 
-	public Joules(BigDecimalAmount amount) {
-		super(amount, JOULE);
-	}
+    override fun div(pressure: Pressure) =
+        Volume(amount = this.amount / (pressure to PASCAL).amount,
+                      unit = CUBIC_METER)
 
-	public Joules(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, JOULE);
-	}
+    operator fun div(power: Power) =
+        Seconds(amount / (power to WattUnit.WATT).amount)
 
-	// endregion
+    override fun div(time: Time) =
+        Watts(amount / (time to SECOND).amount)
 
-	// region implement UnitAmount
+    override fun div(length: Length) =
+        Newtons(amount / (length to METER).amount)
 
-	@NotNull
-	@Override
-	public Joules plus(@NotNull UnitAmount<EnergyUnit> energy) {
-		return new Joules(plusAmount(this, energy));
-	}
+    operator fun div(force: Force) =
+        Meters(amount / (force to NEWTON).amount)
 
-	@NotNull
-	@Override
-	public Joules minus(@NotNull UnitAmount<EnergyUnit> energy) {
-		return new Joules(minusAmount(this, energy));
-	}
+    override fun div(electricCharge: ElectricCharge) =
+        Volts(amount / (electricCharge to COULOMB).amount)
 
-	@NotNull
-	@Override
-	public Joules times(@NotNull Number number) {
-		return new Joules(UnitAmountUtils.times(this, number));
-	}
+    override fun div(electricPotential: ElectricPotential) =
+        Coulombs(amount / (electricPotential to VOLT).amount)
 
-	@NotNull
-	@Override
-	public Joules div(@NotNull Number number) {
-		return new Joules(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Pascals div(Volume volume) {
-		return new Pascals(getAmount().div(getAmountIn(volume, CUBIC_METER)));
-	}
-
-	public Volume div(Pressure pressure) {
-		return new Volume(getAmount().div(getAmountIn(pressure, PASCAL)), CUBIC_METER);
-	}
-
-	public Seconds div(Power power) {
-		return new Seconds(getAmount().div(getAmountIn(power, WATT)));
-	}
-
-	public Watts div(Time time) {
-		return new Watts(getAmount().div(getAmountIn(time, SECOND)));
-	}
-
-	public Newtons div(Length length) {
-		return new Newtons(getAmount().div(getAmountIn(length, METER)));
-	}
-
-	public Meters div(Force force) {
-		return new Meters(getAmount().div(getAmountIn(force, NEWTON)));
-	}
-
-	public Volts div(ElectricCharge electricCharge) {
-		return new Volts(getAmount().div(getAmountIn(electricCharge, COULOMB)));
-	}
-
-	public Coulombs div(ElectricPotential electricPotential) {
-		return new Coulombs(getAmount().div(getAmountIn(electricPotential, VOLT)));
-	}
-
-	// endregion
+    // endregion
 }

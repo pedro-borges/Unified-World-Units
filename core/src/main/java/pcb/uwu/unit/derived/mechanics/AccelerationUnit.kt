@@ -11,11 +11,12 @@ class AccelerationUnit : CompositeUnit
                 timeUnit: TimeUnit)
             : super(UnitCounter()
                         .major(lengthUnit)
-                        .minor(timeUnit, 2))
+                        .minor(timeUnit)
+                        .minor(timeUnit))
 
     constructor(lengthUnit: SpeedUnit,
                 timeUnit: TimeUnit)
             : super(UnitCounter()
-                        .major(lengthUnit.unitCounter)
+                        .major(lengthUnit)
                         .minor(timeUnit))
 }

@@ -6,6 +6,7 @@ import pcb.uwu.unit.base.LengthUnit
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.unit.derived.fundamental.AreaUnit
+import pcb.uwu.unit.derived.fundamental.VolumeUnit
 import pcb.uwu.unit.derived.mechanics.ForceUnit
 
 open class PressureUnit : CompositeUnit
@@ -16,13 +17,18 @@ open class PressureUnit : CompositeUnit
             : super(UnitCounter()
                         .major(massUnit)
                         .minor(lengthUnit)
-                        .minor(timeUnit, 2))
-    {
-    }
+                        .minor(timeUnit)
+                        .minor(timeUnit))
 
     constructor(forceUnit: ForceUnit,
                 areaUnit: AreaUnit)
             : super(UnitCounter()
-                        .major(forceUnit.unitCounter)
-                        .minor(areaUnit.unitCounter))
+                        .major(forceUnit)
+                        .minor(areaUnit))
+
+    constructor(energyUnit: EnergyUnit,
+                volumeUnit: VolumeUnit)
+            : super(UnitCounter()
+                        .major(energyUnit)
+                        .minor(volumeUnit))
 }

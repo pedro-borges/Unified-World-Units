@@ -17,5 +17,5 @@ class RentUnit : CompositeUnit
                 interestRateUnit: FrequencyUnit)
             : super(UnitCounter()
                         .major(money)
-                        .major(interestRateUnit.unitCounter))
+                        .major(interestRateUnit))
 }

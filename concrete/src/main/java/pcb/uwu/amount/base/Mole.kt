@@ -23,15 +23,14 @@ class Mole : AmountOfSubstance
     override fun plus(amountOfSubstance: UnitAmount<AmountOfSubstanceUnit>) =
         Mole(this.amount + (amountOfSubstance to MOLE).amount)
 
-
     override fun minus(amountOfSubstance: UnitAmount<AmountOfSubstanceUnit>) =
         Mole(this.amount - (amountOfSubstance to MOLE).amount)
 
-    override fun times(number: Number) =
-        Mole(this.amount * number)
+    override fun times(scalar: Number) =
+        Mole(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Mole(this.amount / number)
+    override fun div(scalar: Number) =
+        Mole(this.amount / scalar)
 
     // endregion
 }

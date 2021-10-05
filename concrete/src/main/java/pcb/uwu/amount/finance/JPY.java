@@ -60,14 +60,14 @@ public class JPY extends Currency {
 
 	@NotNull
 	@Override
-	public JPY times(@NotNull Number number) {
-		return new JPY(UnitAmountUtils.times(this, number));
+	public JPY times(@NotNull Number scalar) {
+		return new JPY(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public JPY div(@NotNull Number number) {
-		return new JPY(dividedByScalar(this, number));
+	public JPY div(@NotNull Number scalar) {
+		return new JPY(dividedByScalar(this, scalar));
 	}
 
 	// endregion

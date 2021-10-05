@@ -26,11 +26,11 @@ class KiloGrams : Mass
     override fun minus(mass: UnitAmount<MassUnit>) =
         KiloGrams(this.amount - (mass to KILOGRAM).amount)
 
-    override fun times(number: Number) =
-        KiloGrams(this.amount * number)
+    override fun times(scalar: Number) =
+        KiloGrams(this.amount * scalar)
 
-    override fun div(number: Number) =
-        KiloGrams(this.amount / number)
+    override fun div(scalar: Number) =
+        KiloGrams(this.amount / scalar)
 
     // endregion
 }

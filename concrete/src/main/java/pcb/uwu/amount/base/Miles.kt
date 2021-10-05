@@ -26,11 +26,11 @@ class Miles : Length
     override fun minus(length: UnitAmount<LengthUnit>) =
         Miles(this.amount + (length to MILE).amount)
 
-    override fun times(number: Number) =
-        Miles(this.amount * number)
+    override fun times(scalar: Number) =
+        Miles(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Miles(this.amount / number)
+    override fun div(scalar: Number) =
+        Miles(this.amount / scalar)
 
     // endregion
 }

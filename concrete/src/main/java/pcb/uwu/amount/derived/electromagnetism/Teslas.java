@@ -71,14 +71,14 @@ public class Teslas extends MagneticField {
 
 	@NotNull
 	@Override
-	public Teslas times(@NotNull Number number) {
-		return new Teslas(UnitAmountUtils.times(this, number));
+	public Teslas times(@NotNull Number scalar) {
+		return new Teslas(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Teslas div(@NotNull Number number) {
-		return new Teslas(dividedByScalar(this, number));
+	public Teslas div(@NotNull Number scalar) {
+		return new Teslas(dividedByScalar(this, scalar));
 	}
 
 	@Override

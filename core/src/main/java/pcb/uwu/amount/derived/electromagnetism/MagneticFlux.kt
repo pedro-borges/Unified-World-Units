@@ -33,12 +33,12 @@ open class MagneticFlux : CompositeUnitAmount<MagneticFluxUnit>
         MagneticFlux(amount = this.amount - (magneticFlux to this.unit).amount,
                      unit = this.unit)
 
-    override fun times(number: Number) =
-        MagneticFlux(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        MagneticFlux(amount = this.amount * scalar,
                      unit = this.unit)
 
-    override fun div(number: Number) =
-        MagneticFlux(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        MagneticFlux(amount = this.amount / scalar,
                      unit = this.unit)
 
     override fun to(unit: MagneticFluxUnit) =

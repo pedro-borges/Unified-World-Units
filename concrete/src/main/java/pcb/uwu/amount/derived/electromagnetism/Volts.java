@@ -75,14 +75,14 @@ public class Volts extends ElectricPotential {
 
 	@NotNull
 	@Override
-	public Volts times(@NotNull Number number) {
-		return new Volts(UnitAmountUtils.times(this, number));
+	public Volts times(@NotNull Number scalar) {
+		return new Volts(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Volts div(@NotNull Number number) {
-		return new Volts(dividedByScalar(this, number));
+	public Volts div(@NotNull Number scalar) {
+		return new Volts(dividedByScalar(this, scalar));
 	}
 
 	@Override

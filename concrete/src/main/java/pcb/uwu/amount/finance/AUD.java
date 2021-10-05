@@ -60,14 +60,14 @@ public class AUD extends Currency {
 
 	@NotNull
 	@Override
-	public AUD times(@NotNull Number number) {
-		return new AUD(UnitAmountUtils.times(this, number));
+	public AUD times(@NotNull Number scalar) {
+		return new AUD(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public AUD div(@NotNull Number number) {
-		return new AUD(dividedByScalar(this, number));
+	public AUD div(@NotNull Number scalar) {
+		return new AUD(dividedByScalar(this, scalar));
 	}
 
 	// endregion

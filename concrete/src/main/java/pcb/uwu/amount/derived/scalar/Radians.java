@@ -68,14 +68,14 @@ public class Radians extends Angle {
 
 	@NotNull
 	@Override
-	public Radians times(@NotNull Number number) {
-		return new Radians(UnitAmountUtils.times(this, number));
+	public Radians times(@NotNull Number scalar) {
+		return new Radians(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Radians div(@NotNull Number number) {
-		return new Radians(dividedByScalar(this, number));
+	public Radians div(@NotNull Number scalar) {
+		return new Radians(dividedByScalar(this, scalar));
 	}
 
 	// endregion

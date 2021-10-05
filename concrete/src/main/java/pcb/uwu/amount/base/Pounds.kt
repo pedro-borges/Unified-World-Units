@@ -26,11 +26,11 @@ class Pounds : Mass
     override fun minus(mass: UnitAmount<MassUnit>) =
         Pounds(this.amount - (mass to POUND).amount)
 
-    override fun times(number: Number) =
-        Pounds(this.amount * number)
+    override fun times(scalar: Number) =
+        Pounds(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Pounds(this.amount / number)
+    override fun div(scalar: Number) =
+        Pounds(this.amount / scalar)
 
     // endregion
 }

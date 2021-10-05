@@ -81,14 +81,14 @@ public class Lumens extends LuminousFlux {
 
 	@NotNull
 	@Override
-	public Lumens times(@NotNull Number number) {
-		return new Lumens(UnitAmountUtils.times(this, number));
+	public Lumens times(@NotNull Number scalar) {
+		return new Lumens(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Lumens div(@NotNull Number number) {
-		return new Lumens(dividedByScalar(this, number));
+	public Lumens div(@NotNull Number scalar) {
+		return new Lumens(dividedByScalar(this, scalar));
 	}
 
 	// endregion

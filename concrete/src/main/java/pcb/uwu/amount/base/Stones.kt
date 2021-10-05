@@ -26,11 +26,11 @@ class Stones : Mass
     override fun minus(mass: UnitAmount<MassUnit>) =
         Stones(this.amount - (mass to STONE).amount)
 
-    override fun times(number: Number) =
-        Stones(this.amount * number)
+    override fun times(scalar: Number) =
+        Stones(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Stones(this.amount / number)
+    override fun div(scalar: Number) =
+        Stones(this.amount / scalar)
 
     // endregion
 }

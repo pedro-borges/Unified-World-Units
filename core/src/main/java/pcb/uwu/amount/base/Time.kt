@@ -57,12 +57,12 @@ open class Time : CompositeUnitAmount<TimeUnit>
         Time(amount = this.amount - (time to this.unit).amount,
              unit = this.unit)
 
-    override fun times(number: Number) =
-        Time(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Time(amount = this.amount * scalar,
              unit = this.unit)
 
-    override fun div(number: Number) =
-        Time(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Time(amount = this.amount / scalar,
              unit = this.unit)
 
     override fun to(unit: TimeUnit) =

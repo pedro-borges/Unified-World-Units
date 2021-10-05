@@ -33,12 +33,12 @@ open class ElectricCurrent : CompositeUnitAmount<ElectricCurrentUnit>
         ElectricCurrent(amount = this.amount - (electricCurrrent to this.unit).amount,
                         unit = this.unit)
 
-    override fun times(number: Number) =
-        ElectricCurrent(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        ElectricCurrent(amount = this.amount * scalar,
                         unit = this.unit)
 
-    override fun div(number: Number) =
-        ElectricCurrent(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        ElectricCurrent(amount = this.amount / scalar,
                         unit = this.unit)
 
     override fun to(unit: ElectricCurrentUnit) =

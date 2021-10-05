@@ -20,25 +20,17 @@ class Kelvins : Temperature
 
     // region UnitAmount
 
-    override fun plus(temperature: UnitAmount<TemperatureUnit>): Kelvins
-    {
-        return Kelvins(this.amount + (temperature to KELVIN).amount)
-    }
+    override fun plus(temperature: UnitAmount<TemperatureUnit>) =
+        Kelvins(this.amount + (temperature to KELVIN).amount)
 
-    override fun minus(temperature: UnitAmount<TemperatureUnit>): Kelvins
-    {
-        return Kelvins(this.amount - (temperature to KELVIN).amount)
-    }
+    override fun minus(temperature: UnitAmount<TemperatureUnit>) =
+        Kelvins(this.amount - (temperature to KELVIN).amount)
 
-    override fun times(number: Number): Kelvins
-    {
-        return Kelvins(this.amount * number)
-    }
+    override fun times(scalar: Number) =
+        Kelvins(this.amount * scalar)
 
-    override fun div(number: Number): Kelvins
-    {
-        return Kelvins(this.amount / number)
-    }
+    override fun div(scalar: Number) =
+        Kelvins(this.amount / scalar)
 
     // endregion
 }

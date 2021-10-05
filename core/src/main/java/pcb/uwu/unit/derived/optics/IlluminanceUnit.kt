@@ -13,13 +13,14 @@ open class IlluminanceUnit : CompositeUnit
                 solidAngleUnit: SolidAngleUnit,
                 lengthUnit: LengthUnit)
             : super(UnitCounter()
-                        .major(luminousIntensityUnit.unitCounter)
+                        .major(luminousIntensityUnit)
                         .major(solidAngleUnit)
-                        .minor(lengthUnit, 2))
+                        .minor(lengthUnit)
+                        .minor(lengthUnit))
 
     constructor(luminousFluxUnit: LuminousFluxUnit,
                 areaUnit: AreaUnit)
             : super(UnitCounter()
-                        .major(luminousFluxUnit.unitCounter)
-                        .minor(areaUnit.unitCounter))
+                        .major(luminousFluxUnit)
+                        .minor(areaUnit))
 }

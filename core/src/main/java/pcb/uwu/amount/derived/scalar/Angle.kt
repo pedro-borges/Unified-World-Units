@@ -33,12 +33,12 @@ open class Angle : CompositeUnitAmount<AngleUnit>
         Angle(amount = this.amount - (angle to this.unit).amount,
               unit = this.unit)
 
-    override fun times(number: Number) =
-        Angle(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Angle(amount = this.amount * scalar,
               unit = this.unit)
 
-    override fun div(number: Number) =
-        Angle(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Angle(amount = this.amount / scalar,
               unit = this.unit)
 
     override fun to(unit: AngleUnit) =

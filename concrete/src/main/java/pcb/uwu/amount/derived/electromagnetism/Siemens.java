@@ -71,14 +71,14 @@ public class Siemens extends ElectricConductance {
 
 	@NotNull
 	@Override
-	public Siemens times(@NotNull Number number) {
-		return new Siemens(UnitAmountUtils.times(this, number));
+	public Siemens times(@NotNull Number scalar) {
+		return new Siemens(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Siemens div(@NotNull Number number) {
-		return new Siemens(dividedByScalar(this, number));
+	public Siemens div(@NotNull Number scalar) {
+		return new Siemens(dividedByScalar(this, scalar));
 	}
 
 	@Override

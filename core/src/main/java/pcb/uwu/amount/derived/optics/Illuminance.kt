@@ -33,12 +33,12 @@ open class Illuminance : CompositeUnitAmount<IlluminanceUnit>
         Illuminance(amount = this.amount - (illuminance to this.unit).amount,
                     unit = this.unit)
 
-    override fun times(number: Number) =
-        Illuminance(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Illuminance(amount = this.amount * scalar,
                     unit = this.unit)
 
-    override fun div(number: Number) =
-        Illuminance(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Illuminance(amount = this.amount / scalar,
                     unit = this.unit)
 
     override fun to(unit: IlluminanceUnit) =

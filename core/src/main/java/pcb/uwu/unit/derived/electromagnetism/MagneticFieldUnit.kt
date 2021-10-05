@@ -17,21 +17,23 @@ open class MagneticFieldUnit : CompositeUnit
             : super(UnitCounter()
                         .major(massUnit)
                         .minor(electricCurrentUnit)
-                        .minor(timeUnit, 2))
+                        .minor(timeUnit)
+                        .minor(timeUnit))
 
     constructor(electricPotentialUnit: ElectricPotentialUnit,
                 timeUnit: TimeUnit,
                 lengthUnit: LengthUnit)
             : super(UnitCounter()
-                        .major(electricPotentialUnit.unitCounter)
+                        .major(electricPotentialUnit)
                         .major(timeUnit)
-                        .minor(lengthUnit, 2))
+                        .minor(lengthUnit)
+                        .minor(lengthUnit))
 
     constructor(forceUnit: ForceUnit,
                 electricCurrentUnit: ElectricCurrentUnit,
                 lengthUnit: LengthUnit)
             : super(UnitCounter()
-                        .major(forceUnit.unitCounter)
+                        .major(forceUnit)
                         .minor(electricCurrentUnit)
                         .minor(lengthUnit))
 
@@ -39,30 +41,33 @@ open class MagneticFieldUnit : CompositeUnit
                 electricCurrentUnit: ElectricCurrentUnit,
                 lengthUnit: LengthUnit)
             : super(UnitCounter()
-                        .major(energyUnit.unitCounter)
+                        .major(energyUnit)
                         .minor(electricCurrentUnit)
-                        .minor(lengthUnit, 2))
+                        .minor(lengthUnit)
+                        .minor(lengthUnit))
 
     constructor(electricInductanceUnit: ElectricInductanceUnit,
                 electricCurrentUnit: ElectricCurrentUnit,
                 lengthUnit: LengthUnit)
             : super(UnitCounter()
-                        .major(electricInductanceUnit.unitCounter)
+                        .major(electricInductanceUnit)
                         .major(electricCurrentUnit)
-                        .minor(lengthUnit, 2))
+                        .minor(lengthUnit)
+                        .minor(lengthUnit))
 
     constructor(magneticFluxUnit: MagneticFluxUnit,
                 lengthUnit: LengthUnit)
             : super(UnitCounter()
-                        .major(magneticFluxUnit.unitCounter)
-                        .minor(lengthUnit, 2))
+                        .major(magneticFluxUnit)
+                        .minor(lengthUnit)
+                        .minor(lengthUnit))
 
     constructor(massUnit: MassUnit,
                 electricChargeUnit: ElectricChargeUnit,
                 timeUnit: TimeUnit)
             : super(UnitCounter()
                         .major(massUnit)
-                        .minor(electricChargeUnit.unitCounter)
+                        .minor(electricChargeUnit)
                         .minor(timeUnit))
 
     constructor(forceUnit: ForceUnit,
@@ -70,8 +75,8 @@ open class MagneticFieldUnit : CompositeUnit
                 electricChargeUnit: ElectricChargeUnit,
                 lengthUnit: LengthUnit)
             : super(UnitCounter()
-                        .major(forceUnit.unitCounter)
+                        .major(forceUnit)
                         .major(timeUnit)
-                        .minor(electricChargeUnit.unitCounter)
+                        .minor(electricChargeUnit)
                         .minor(lengthUnit))
 }

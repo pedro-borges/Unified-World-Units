@@ -33,12 +33,12 @@ open class AmountOfSubstance : CompositeUnitAmount<AmountOfSubstanceUnit>
         AmountOfSubstance(amount = this.amount - (amountOfSubstance to this.unit).amount,
                           unit = this.unit)
 
-    override fun times(number: Number) =
-        AmountOfSubstance(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        AmountOfSubstance(amount = this.amount * scalar,
                           unit = this.unit)
 
-    override fun div(number: Number) =
-        AmountOfSubstance(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        AmountOfSubstance(amount = this.amount / scalar,
                           unit = this.unit)
 
     override fun to(unit: AmountOfSubstanceUnit) =

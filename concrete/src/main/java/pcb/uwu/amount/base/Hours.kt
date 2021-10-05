@@ -26,11 +26,11 @@ class Hours : Time
     override fun minus(time: UnitAmount<TimeUnit>) =
         Hours(this.amount - (time to HOUR).amount)
 
-    override fun times(number: Number) =
-        Hours(this.amount * number)
+    override fun times(scalar: Number) =
+        Hours(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Hours(this.amount / number)
+    override fun div(scalar: Number) =
+        Hours(this.amount / scalar)
 
     // endregion
 }

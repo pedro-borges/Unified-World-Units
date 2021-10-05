@@ -34,23 +34,23 @@ class Candelas : LuminousIntensity
     override fun minus(luminousIntensity: UnitAmount<LuminousIntensityUnit>) =
         Candelas(this.amount + (luminousIntensity to this.unit).amount)
 
-    override fun times(number: Number) =
-        Candelas(this.amount * number)
+    override fun times(scalar: Number) =
+        Candelas(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Candelas(this.amount / number)
+    override fun div(scalar: Number) =
+        Candelas(this.amount / scalar)
 
     // endregion
 
     // region composition
 
-    operator fun times(solidAngle: SolidAngle) =
+    override fun times(solidAngle: SolidAngle) =
         Lumens(this.amount * (solidAngle to STERADIAN).amount)
 
-    operator fun div(area: Area) =
+    override fun div(area: Area) =
         Nits(this.amount / (area to SQUARE_METER).amount)
 
-    operator fun div(luminance: Luminance) =
+    override fun div(luminance: Luminance) =
         SquareMeters(this.amount / (luminance to NIT).amount)
 
     // endregion

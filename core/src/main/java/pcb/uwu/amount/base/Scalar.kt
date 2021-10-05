@@ -32,11 +32,11 @@ class Scalar : CompositeUnitAmount<ScalarUnit>
     override fun minus(scalar: UnitAmount<ScalarUnit>) =
         Scalar(amount = this.amount - (scalar to this.unit).amount)
 
-    override fun times(number: Number) =
-        Scalar(amount = this.amount * number)
+    override fun times(scalar: Number) =
+        Scalar(amount = this.amount * scalar)
 
-    override fun div(number: Number) =
-        Scalar(amount = this.amount / number)
+    override fun div(scalar: Number) =
+        Scalar(amount = this.amount / scalar)
 
     override fun to(unit: ScalarUnit) =
         Scalar(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit))

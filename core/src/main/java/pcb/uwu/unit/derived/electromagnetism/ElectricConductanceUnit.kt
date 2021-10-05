@@ -14,12 +14,16 @@ open class ElectricConductanceUnit : CompositeUnit
                 electricCurrentUnit: ElectricCurrentUnit,
                 timeUnit: TimeUnit)
             : super(UnitCounter()
-                        .major(timeUnit, 3)
-                        .major(electricCurrentUnit, 2)
+                        .major(timeUnit)
+                        .major(timeUnit)
+                        .major(timeUnit)
+                        .major(electricCurrentUnit)
+                        .major(electricCurrentUnit)
                         .minor(massUnit)
-                        .minor(lengthUnit, 2))
+                        .minor(lengthUnit)
+                        .minor(lengthUnit))
 
     constructor(electricResistanceUnit: ElectricResistanceUnit)
             : super(UnitCounter()
-                        .minor(electricResistanceUnit.unitCounter))
+                        .minor(electricResistanceUnit))
 }

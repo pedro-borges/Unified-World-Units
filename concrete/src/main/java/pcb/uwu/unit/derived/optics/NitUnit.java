@@ -1,14 +1,14 @@
 package pcb.uwu.unit.derived.optics;
 
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
-import static pcb.uwu.unit.base.MeterUnit.METER;
+import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 
 public class NitUnit extends LuminanceUnit {
 
 	public static final NitUnit NIT = new NitUnit();
 
 	public NitUnit() {
-		super(CANDELA, METER);
+		super(CANDELA, SQUARE_METER);
 	}
 
 	@Override

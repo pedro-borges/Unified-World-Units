@@ -15,5 +15,5 @@ class PaceUnit : CompositeUnit
 
     constructor(speedUnit: SpeedUnit)
             : super(UnitCounter()
-                        .minor(speedUnit.unitCounter))
+                        .minor(speedUnit))
 }

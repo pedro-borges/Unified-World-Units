@@ -99,14 +99,14 @@ public class SquareMeters extends Area {
 
 	@NotNull
 	@Override
-	public SquareMeters times(@NotNull Number number) {
-		return new SquareMeters(UnitAmountUtils.times(this, number));
+	public SquareMeters times(@NotNull Number scalar) {
+		return new SquareMeters(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public SquareMeters div(@NotNull Number number) {
-		return new SquareMeters(dividedByScalar(this, number));
+	public SquareMeters div(@NotNull Number scalar) {
+		return new SquareMeters(dividedByScalar(this, scalar));
 	}
 
 	// endregion

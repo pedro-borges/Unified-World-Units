@@ -71,14 +71,14 @@ public class Ohms extends ElectricResistance {
 
 	@NotNull
 	@Override
-	public Ohms times(@NotNull Number number) {
-		return new Ohms(UnitAmountUtils.times(this, number));
+	public Ohms times(@NotNull Number scalar) {
+		return new Ohms(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Ohms div(@NotNull Number number) {
-		return new Ohms(dividedByScalar(this, number));
+	public Ohms div(@NotNull Number scalar) {
+		return new Ohms(dividedByScalar(this, scalar));
 	}
 
 	@Override

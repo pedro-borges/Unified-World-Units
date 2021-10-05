@@ -10,6 +10,6 @@ open class LuminousEnergyUnit : CompositeUnit
     constructor(luminousFluxUnit: LuminousFluxUnit,
                 timeUnit: TimeUnit)
             : super(UnitCounter()
-                        .major(luminousFluxUnit.unitCounter)
+                        .major(luminousFluxUnit)
                         .major(timeUnit))
 }

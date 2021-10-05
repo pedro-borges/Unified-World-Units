@@ -6,17 +6,33 @@ import pcb.uwu.unit.base.ElectricCurrentUnit
 import pcb.uwu.unit.base.LengthUnit
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.derived.termodynamics.EnergyUnit
+import pcb.uwu.unit.derived.termodynamics.PowerUnit
 
 open class ElectricPotentialUnit : CompositeUnit
 {
-    @Suppress("ConvertSecondaryConstructorToPrimary")
     constructor(massUnit: MassUnit,
                 lengthUnit: LengthUnit,
                 electricCurrentUnit: ElectricCurrentUnit,
                 timeUnit: TimeUnit)
             : super(UnitCounter()
                         .major(massUnit)
-                        .major(lengthUnit, 2)
+                        .major(lengthUnit)
+                        .major(lengthUnit)
                         .minor(electricCurrentUnit)
-                        .minor(timeUnit, 3))
+                        .minor(timeUnit)
+                        .minor(timeUnit)
+                        .minor(timeUnit))
+
+    constructor(energyUnit: EnergyUnit,
+                electricChargeUnit: ElectricChargeUnit)
+            : super(UnitCounter()
+                        .major(energyUnit)
+                        .minor(electricChargeUnit))
+
+    constructor(powerUnit: PowerUnit,
+                electricCurrentUnit: ElectricCurrentUnit)
+            : super(UnitCounter()
+                        .major(powerUnit)
+                        .minor(electricCurrentUnit))
 }

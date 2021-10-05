@@ -20,25 +20,17 @@ class Fahrenheits : Temperature
 
     // region UnitAmount
 
-    override fun plus(temperature: UnitAmount<TemperatureUnit>): Fahrenheits
-    {
-        return Fahrenheits(this.amount + (temperature to FAHRENHEIT).amount)
-    }
+    override fun plus(temperature: UnitAmount<TemperatureUnit>) =
+        Fahrenheits(this.amount + (temperature to FAHRENHEIT).amount)
 
-    override fun minus(temperature: UnitAmount<TemperatureUnit>): Fahrenheits
-    {
-        return Fahrenheits(this.amount - (temperature to FAHRENHEIT).amount)
-    }
+    override fun minus(temperature: UnitAmount<TemperatureUnit>) =
+        Fahrenheits(this.amount - (temperature to FAHRENHEIT).amount)
 
-    override fun times(number: Number): Fahrenheits
-    {
-        return Fahrenheits(this.amount * number)
-    }
+    override fun times(scalar: Number) =
+        Fahrenheits(this.amount * scalar)
 
-    override fun div(number: Number): Fahrenheits
-    {
-        return Fahrenheits(this.amount / number)
-    }
+    override fun div(scalar: Number) =
+        Fahrenheits(this.amount / scalar)
 
     // endregion
 }

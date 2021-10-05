@@ -36,12 +36,12 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
         InterestRate(amount = this.amount - (interestRate to this.unit).amount,
                      unit = this.unit)
 
-    override fun times(number: Number) =
-        InterestRate(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        InterestRate(amount = this.amount * scalar,
                      unit = this.unit)
 
-    override fun div(number: Number) =
-        InterestRate(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        InterestRate(amount = this.amount / scalar,
                      unit = this.unit)
 
     override fun to(unit: FrequencyUnit) =

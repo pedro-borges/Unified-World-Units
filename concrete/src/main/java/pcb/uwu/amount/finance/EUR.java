@@ -60,14 +60,14 @@ public class EUR extends Currency {
 
 	@NotNull
 	@Override
-	public EUR times(@NotNull Number number) {
-		return new EUR(UnitAmountUtils.times(this, number));
+	public EUR times(@NotNull Number scalar) {
+		return new EUR(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public EUR div(@NotNull Number number) {
-		return new EUR(dividedByScalar(this, number));
+	public EUR div(@NotNull Number scalar) {
+		return new EUR(dividedByScalar(this, scalar));
 	}
 
 	// endregion

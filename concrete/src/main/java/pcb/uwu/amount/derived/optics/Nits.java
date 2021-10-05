@@ -72,14 +72,14 @@ public class Nits extends Luminance {
 
 	@NotNull
 	@Override
-	public Nits times(@NotNull Number number) {
-		return new Nits(UnitAmountUtils.times(this, number));
+	public Nits times(@NotNull Number scalar) {
+		return new Nits(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Nits div(@NotNull Number number) {
-		return new Nits(dividedByScalar(this, number));
+	public Nits div(@NotNull Number scalar) {
+		return new Nits(dividedByScalar(this, scalar));
 	}
 
 	// endregion

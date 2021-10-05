@@ -26,11 +26,11 @@ class Yards : Length
     override fun minus(length: UnitAmount<LengthUnit>) =
         Yards(this.amount - (length to YARD).amount)
 
-    override fun times(number: Number) =
-        Yards(this.amount * number)
+    override fun times(scalar: Number) =
+        Yards(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Yards(this.amount / number)
+    override fun div(scalar: Number) =
+        Yards(this.amount / scalar)
 
     // endregion
 }

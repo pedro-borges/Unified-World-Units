@@ -81,14 +81,14 @@ public class Webbers extends MagneticFlux {
 
 	@NotNull
 	@Override
-	public Webbers times(@NotNull Number number) {
-		return new Webbers(UnitAmountUtils.times(this, number));
+	public Webbers times(@NotNull Number scalar) {
+		return new Webbers(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Webbers div(@NotNull Number number) {
-		return new Webbers(dividedByScalar(this, number));
+	public Webbers div(@NotNull Number scalar) {
+		return new Webbers(dividedByScalar(this, scalar));
 	}
 
 	@Override

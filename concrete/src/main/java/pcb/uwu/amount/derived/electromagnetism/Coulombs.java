@@ -78,14 +78,14 @@ public class Coulombs extends ElectricCharge {
 
 	@NotNull
 	@Override
-	public Coulombs times(@NotNull Number number) {
-		return new Coulombs(UnitAmountUtils.times(this, number));
+	public Coulombs times(@NotNull Number scalar) {
+		return new Coulombs(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Coulombs div(@NotNull Number number) {
-		return new Coulombs(dividedByScalar(this, number));
+	public Coulombs div(@NotNull Number scalar) {
+		return new Coulombs(dividedByScalar(this, scalar));
 	}
 
 	@Override

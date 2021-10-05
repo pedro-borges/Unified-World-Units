@@ -35,12 +35,12 @@ open class Area : CompositeUnitAmount<AreaUnit>
         Area(amount = this.amount - (area to this.unit).amount,
              unit = this.unit)
 
-    override fun times(number: Number) =
-        Area(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Area(amount = this.amount * scalar,
              unit = this.unit)
 
-    override fun div(number: Number) =
-        Area(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Area(amount = this.amount / scalar,
              unit = this.unit)
 
     override fun to(unit: AreaUnit) =

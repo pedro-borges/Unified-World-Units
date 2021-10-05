@@ -26,11 +26,11 @@ class Days : Time
     override fun minus(time: UnitAmount<TimeUnit>) =
         Days(this.amount - (time to DAY).amount)
 
-    override fun times(number: Number) =
-        Days(this.amount * number)
+    override fun times(scalar: Number) =
+        Days(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Days(this.amount / number)
+    override fun div(scalar: Number) =
+        Days(this.amount / scalar)
 
     // endregion
 }

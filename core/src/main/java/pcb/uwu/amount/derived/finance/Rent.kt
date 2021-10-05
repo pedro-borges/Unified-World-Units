@@ -36,12 +36,12 @@ class Rent : CompositeUnitAmount<RentUnit>
         Rent(amount = this.amount - (rent to this.unit).amount,
              unit = this.unit)
 
-    override fun times(number: Number) =
-        Rent(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Rent(amount = this.amount * scalar,
              unit = this.unit)
 
-    override fun div(number: Number) =
-        Rent(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Rent(amount = this.amount / scalar,
              unit = this.unit)
 
     override fun to(unit: RentUnit) =

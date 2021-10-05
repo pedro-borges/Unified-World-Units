@@ -33,12 +33,12 @@ open class LuminousFlux : CompositeUnitAmount<LuminousFluxUnit>
         LuminousFlux(amount = this.amount - (luminousFlux to this.unit).amount,
                      unit = this.unit)
 
-    override fun times(number: Number) =
-        LuminousFlux(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        LuminousFlux(amount = this.amount * scalar,
                      unit = this.unit)
 
-    override fun div(number: Number) =
-        LuminousFlux(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        LuminousFlux(amount = this.amount / scalar,
                      unit = this.unit)
 
     override fun to(unit: LuminousFluxUnit) =

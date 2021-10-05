@@ -1,100 +1,51 @@
-package pcb.uwu.amount.derived.thermodynamics;
+package pcb.uwu.amount.derived.thermodynamics
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.derived.fundamental.Area;
-import pcb.uwu.amount.derived.fundamental.Volume;
-import pcb.uwu.amount.derived.mechanics.Newtons;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.termodynamics.PressureUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.fundamental.Volume
+import pcb.uwu.amount.derived.mechanics.Newtons
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
+import pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER
+import pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL
+import pcb.uwu.unit.derived.termodynamics.PressureUnit
 
-import java.math.BigDecimal;
+class Pascals : Pressure
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, PASCAL)
 
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
-import static pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER;
-import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, PASCAL)
 
-public class Pascals extends Pressure {
+    // region implement UnitAmount
+    override fun plus(pressure: UnitAmount<PressureUnit>) =
+        Pascals(this.amount + (pressure to PASCAL).amount)
 
-	// region constructors
+    override fun minus(pressure: UnitAmount<PressureUnit>) =
+        Pascals(this.amount - (pressure to PASCAL).amount)
 
-	public Pascals(Number value) {
-		super(value, PASCAL);
-	}
 
-	public Pascals(Number value, Magnitude magnitude) {
-		super(value, magnitude, PASCAL);
-	}
+    override fun times(scalar: Number) =
+        Pascals(this.amount * scalar)
 
-	public Pascals(String value) {
-		super(value, PASCAL);
-	}
+    override fun div(scalar: Number) =
+        Pascals(this.amount / scalar)
 
-	public Pascals(String value, Magnitude magnitude) {
-		super(value, magnitude, PASCAL);
-	}
+    // endregion
 
-	public Pascals(BigDecimal value) {
-		super(value, PASCAL);
-	}
+    // region composition
 
-	public Pascals(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, PASCAL);
-	}
+    override fun times(volume: Volume) =
+        Joules(amount * (volume to CUBIC_METER).amount)
 
-	public Pascals(BigDecimalAmount amount) {
-		super(amount, PASCAL);
-	}
+    override fun times(area: Area) =
+        Newtons(amount * (area to SQUARE_METER).amount)
 
-	public Pascals(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, PASCAL);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Pascals plus(@NotNull UnitAmount<PressureUnit> pressure) {
-		return new Pascals(plusAmount(this, pressure));
-	}
-
-	@NotNull
-	@Override
-	public Pascals minus(@NotNull UnitAmount<PressureUnit> pressure) {
-		return new Pascals(minusAmount(this, pressure));
-	}
-
-	@NotNull
-	@Override
-	public Pascals times(@NotNull Number number) {
-		return new Pascals(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Pascals div(@NotNull Number number) {
-		return new Pascals(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Joules times(Volume volume) {
-		return new Joules(getAmount().times(getAmountIn(volume, CUBIC_METER)));
-	}
-
-	public Newtons times(Area area) {
-		return new Newtons(getAmount().times(getAmountIn(area, SQUARE_METER)));
-	}
-
-	// endregion
+    // endregion
 }

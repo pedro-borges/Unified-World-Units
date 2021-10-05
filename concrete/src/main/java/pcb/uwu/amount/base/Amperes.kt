@@ -34,11 +34,11 @@ class Amperes : ElectricCurrent
     override fun minus(electricCurrrent: UnitAmount<ElectricCurrentUnit>) =
         Amperes(this.amount - (electricCurrrent to AMPERE).amount)
 
-    override fun times(number: Number) =
-        Amperes(this.amount * number)
+    override fun times(scalar: Number) =
+        Amperes(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Amperes(this.amount / number)
+    override fun div(scalar: Number) =
+        Amperes(this.amount / scalar)
 
     // endregion
 

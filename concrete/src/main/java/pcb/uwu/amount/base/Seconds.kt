@@ -34,11 +34,11 @@ class Seconds : Time
     override fun minus(time: UnitAmount<TimeUnit>) =
         Seconds(this.amount - (time to SECOND).amount)
 
-    override fun times(number: Number) =
-        Seconds(this.amount * number)
+    override fun times(scalar: Number) =
+        Seconds(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Seconds(this.amount / number)
+    override fun div(scalar: Number) =
+        Seconds(this.amount / scalar)
 
     // endregion
 

@@ -71,14 +71,14 @@ public class Lux extends Illuminance {
 
 	@NotNull
 	@Override
-	public Lux times(@NotNull Number number) {
-		return new Lux(UnitAmountUtils.times(this, number));
+	public Lux times(@NotNull Number scalar) {
+		return new Lux(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Lux div(@NotNull Number number) {
-		return new Lux(dividedByScalar(this, number));
+	public Lux div(@NotNull Number scalar) {
+		return new Lux(dividedByScalar(this, scalar));
 	}
 
 	// endregion

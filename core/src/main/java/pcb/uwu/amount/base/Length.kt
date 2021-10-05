@@ -40,12 +40,12 @@ open class Length : CompositeUnitAmount<LengthUnit>
         Length(amount = this.amount - (length to this.unit).amount,
                unit = this.unit)
 
-    override fun times(number: Number) =
-        Length(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Length(amount = this.amount * scalar,
                unit = this.unit)
 
-    override fun div(number: Number) =
-        Length(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Length(amount = this.amount / scalar,
                unit = this.unit)
 
     fun div(other: UnitAmount<LengthUnit>) =

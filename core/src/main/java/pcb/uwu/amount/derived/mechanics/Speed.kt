@@ -39,12 +39,12 @@ open class Speed : CompositeUnitAmount<SpeedUnit>
         Speed(amount = this.amount - (speed to this.unit).amount,
               unit = this.unit)
 
-    override fun times(number: Number) =
-        Speed(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Speed(amount = this.amount * scalar,
               unit = this.unit)
 
-    override fun div(number: Number) =
-        Speed(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Speed(amount = this.amount / scalar,
               unit = this.unit)
 
     override fun to(unit: SpeedUnit) =

@@ -26,11 +26,11 @@ class Weeks : Time
     override fun minus(time: UnitAmount<TimeUnit>) =
         Weeks(this.amount - (time to WEEK).amount)
 
-    override fun times(number: Number) =
-        Weeks(this.amount * number)
+    override fun times(scalar: Number) =
+        Weeks(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Weeks(this.amount / number)
+    override fun div(scalar: Number) =
+        Weeks(this.amount / scalar)
 
     // endregion
 }

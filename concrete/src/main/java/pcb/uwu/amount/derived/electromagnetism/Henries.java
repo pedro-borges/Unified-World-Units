@@ -71,14 +71,14 @@ public class Henries extends ElectricInductance {
 
 	@NotNull
 	@Override
-	public Henries times(@NotNull Number number) {
-		return new Henries(UnitAmountUtils.times(this, number));
+	public Henries times(@NotNull Number scalar) {
+		return new Henries(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public Henries div(@NotNull Number number) {
-		return new Henries(dividedByScalar(this, number));
+	public Henries div(@NotNull Number scalar) {
+		return new Henries(dividedByScalar(this, scalar));
 	}
 
 	@Override

@@ -60,14 +60,14 @@ public class BTC extends Currency {
 
 	@NotNull
 	@Override
-	public BTC times(@NotNull Number number) {
-		return new BTC(UnitAmountUtils.times(this, number));
+	public BTC times(@NotNull Number scalar) {
+		return new BTC(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public BTC div(@NotNull Number number) {
-		return new BTC(dividedByScalar(this, number));
+	public BTC div(@NotNull Number scalar) {
+		return new BTC(dividedByScalar(this, scalar));
 	}
 
 	// endregion

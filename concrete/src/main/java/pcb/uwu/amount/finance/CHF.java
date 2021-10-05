@@ -60,14 +60,14 @@ public class CHF extends Currency {
 
 	@NotNull
 	@Override
-	public CHF times(@NotNull Number number) {
-		return new CHF(UnitAmountUtils.times(this, number));
+	public CHF times(@NotNull Number scalar) {
+		return new CHF(UnitAmountUtils.times(this, scalar));
 	}
 
 	@NotNull
 	@Override
-	public CHF div(@NotNull Number number) {
-		return new CHF(dividedByScalar(this, number));
+	public CHF div(@NotNull Number scalar) {
+		return new CHF(dividedByScalar(this, scalar));
 	}
 
 	// endregion

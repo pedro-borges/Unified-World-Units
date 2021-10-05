@@ -1,9 +1,14 @@
 package pcb.uwu.amount.derived.thermodynamics
 
+import pcb.uwu.amount.base.ElectricCurrent
+import pcb.uwu.amount.base.Time
+import pcb.uwu.amount.derived.electromagnetism.ElectricPotential
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit
+import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 import pcb.uwu.unit.derived.termodynamics.PowerUnit
 import pcb.uwu.utils.UnitAmountUtils
 
@@ -33,17 +38,29 @@ open class Power : CompositeUnitAmount<PowerUnit>
         Power(amount = this.amount - (power to this.unit).amount,
               unit = this.unit)
 
-    override fun times(number: Number) =
-        Power(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Power(amount = this.amount * scalar,
               unit = this.unit)
 
-    override fun div(number: Number) =
-        Power(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Power(amount = this.amount / scalar,
               unit = this.unit)
 
     override fun to(unit: PowerUnit) =
         Power(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
               unit = unit)
+
+    // endregion
+
+    // region composition
+
+    open operator fun times(time: Time) =
+        Energy(amount = this.amount * time.amount,
+               unit = EnergyUnit(this.unit, time.unit))
+
+    open operator fun div(electricCurrent: ElectricCurrent) =
+        ElectricPotential(amount = this.amount / electricCurrent.amount,
+                          unit = ElectricPotentialUnit(this.unit, electricCurrent.unit))
 
     // endregion
 }

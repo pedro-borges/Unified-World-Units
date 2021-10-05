@@ -26,11 +26,11 @@ class Feet : Length
     override fun minus(length: UnitAmount<LengthUnit>) =
         Feet(this.amount - (length to FOOT).amount)
 
-    override fun times(number: Number) =
-        Feet(this.amount * number)
+    override fun times(scalar: Number) =
+        Feet(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Feet(this.amount / number)
+    override fun div(scalar: Number) =
+        Feet(this.amount / scalar)
 
     // endregion
 }

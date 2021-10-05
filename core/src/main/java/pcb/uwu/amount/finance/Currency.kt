@@ -36,12 +36,12 @@ open class Currency :
         Currency(amount = this.amount - (currency to this.unit).amount,
                  unit = this.unit)
 
-    override fun times(number: Number) =
-        Currency(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        Currency(amount = this.amount * scalar,
                  unit = this.unit)
 
-    override fun div(number: Number) =
-        Currency(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        Currency(amount = this.amount / scalar,
                  unit = this.unit)
 
     override fun to(unit: CurrencyUnit) =

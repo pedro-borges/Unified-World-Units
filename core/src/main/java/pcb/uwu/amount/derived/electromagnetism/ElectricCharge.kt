@@ -33,12 +33,12 @@ open class ElectricCharge : CompositeUnitAmount<ElectricChargeUnit>
         ElectricCharge(amount = this.amount - (electricCharge to unit).amount,
                        unit = this.unit)
 
-    override fun times(number: Number) =
-        ElectricCharge(amount = this.amount * number,
+    override fun times(scalar: Number) =
+        ElectricCharge(amount = this.amount * scalar,
                        unit = this.unit)
 
-    override fun div(number: Number) =
-        ElectricCharge(amount = this.amount / number,
+    override fun div(scalar: Number) =
+        ElectricCharge(amount = this.amount / scalar,
                        unit = this.unit)
 
     override fun to(unit: ElectricChargeUnit) =

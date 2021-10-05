@@ -12,6 +12,6 @@ open class LuminousFluxUnit
     constructor(luminousIntensityUnit: LuminousIntensityUnit,
                 solidAngleUnit: SolidAngleUnit)
             : super(UnitCounter()
-                        .major(luminousIntensityUnit.unitCounter)
+                        .major(luminousIntensityUnit)
                         .major(solidAngleUnit))
 }

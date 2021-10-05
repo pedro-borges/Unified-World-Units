@@ -17,30 +17,32 @@ open class EnergyUnit : CompositeUnit
                 timeUnit: TimeUnit)
             : super(UnitCounter()
                         .major(massUnit)
-                        .major(lengthUnit, 2)
-                        .minor(timeUnit, 2))
+                        .major(lengthUnit)
+                        .major(lengthUnit)
+                        .minor(timeUnit)
+                        .minor(timeUnit))
 
     constructor(forceUnit: ForceUnit,
                 lengthUnit: LengthUnit)
             : super(UnitCounter()
-                        .major(forceUnit.unitCounter)
+                        .major(forceUnit)
                         .major(lengthUnit))
 
     constructor(pressureUnit: PressureUnit,
                 volumeUnit: VolumeUnit)
             : super(UnitCounter()
-                        .major(pressureUnit.unitCounter)
-                        .major(volumeUnit.unitCounter))
+                        .major(pressureUnit)
+                        .major(volumeUnit))
 
     constructor(powerUnit: PowerUnit,
                 timeUnit: TimeUnit)
             : super(UnitCounter()
-                        .major(powerUnit.unitCounter)
+                        .major(powerUnit)
                         .major(timeUnit))
 
     constructor(electricChargeUnit: ElectricChargeUnit,
                 electricPotentialUnit: ElectricPotentialUnit)
             : super(UnitCounter()
-                        .major(electricChargeUnit.unitCounter)
-                        .major(electricPotentialUnit.unitCounter))
+                        .major(electricChargeUnit)
+                        .major(electricPotentialUnit))
 }

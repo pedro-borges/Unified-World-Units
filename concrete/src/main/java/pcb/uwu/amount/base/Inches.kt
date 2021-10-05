@@ -26,11 +26,11 @@ class Inches : Length
     override fun minus(length: UnitAmount<LengthUnit>) =
         Inches(this.amount - (length to INCH).amount)
 
-    override fun times(number: Number) =
-        Inches(this.amount * number)
+    override fun times(scalar: Number) =
+        Inches(this.amount * scalar)
 
-    override fun div(number: Number) =
-        Inches(this.amount / number)
+    override fun div(scalar: Number) =
+        Inches(this.amount / scalar)
 
     // endregion
 }

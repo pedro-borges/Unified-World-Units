@@ -15,9 +15,14 @@ open class ElectricCapacitanceUnit : CompositeUnit
                 lengthUnit: LengthUnit,
                 massUnit: MassUnit)
             : super(UnitCounter()
-                        .major(electricCurrentUnit, 2)
-                        .major(timeUnit, 4)
-                        .minor(lengthUnit, 2)
+                        .major(electricCurrentUnit)
+                        .major(electricCurrentUnit)
+                        .major(timeUnit)
+                        .major(timeUnit)
+                        .major(timeUnit)
+                        .major(timeUnit)
+                        .minor(lengthUnit)
+                        .minor(lengthUnit)
                         .minor(massUnit))
 
     constructor(electricCurrentUnit: ElectricCurrentUnit,
@@ -26,25 +31,25 @@ open class ElectricCapacitanceUnit : CompositeUnit
             : super(UnitCounter()
                         .major(electricCurrentUnit)
                         .major(timeUnit)
-                        .minor(electricPotentialUnit.unitCounter))
+                        .minor(electricPotentialUnit))
 
     constructor(forceUnit: ForceUnit,
                 lengthUnit: LengthUnit,
                 electricPotentialUnit: ElectricPotentialUnit)
             : super(UnitCounter()
-                        .major(forceUnit.unitCounter)
+                        .major(forceUnit)
                         .major(lengthUnit)
-                        .minor(electricPotentialUnit.unitCounter))
+                        .minor(electricPotentialUnit))
 
     constructor(electricChargeUnit: ElectricChargeUnit,
                 electricPotentialUnit: ElectricPotentialUnit)
             : super(UnitCounter()
-                        .major(electricChargeUnit.unitCounter)
-                        .minor(electricPotentialUnit.unitCounter))
+                        .major(electricChargeUnit)
+                        .minor(electricPotentialUnit))
 
     constructor(timeUnit: TimeUnit,
                 electricResistanceUnit: ElectricResistanceUnit)
             : super(UnitCounter()
                         .major(timeUnit)
-                        .minor(electricResistanceUnit.unitCounter))
+                        .minor(electricResistanceUnit))
 }
