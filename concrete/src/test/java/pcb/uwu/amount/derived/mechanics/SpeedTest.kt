@@ -13,33 +13,32 @@ import java.math.BigDecimal.TEN
 
 class SpeedTest
 {
-
     @Test
     fun testPlusSpeed() =
-        assertEquals("10.254 s⁻¹⋅m",
+        assertEquals("10.254 m⋅s⁻¹",
                      (MetersPerSecond(10) + Length(amount = 10, unit = INCH)
                                                   .div(Time(amount = 1, unit = SECOND))).toString())
 
     @Test
     fun testMinusSpeed() =
-        assertEquals("9.746 s⁻¹⋅m",
+        assertEquals("9.746 m⋅s⁻¹",
                      (MetersPerSecond(10) - Length(amount = 10, unit = INCH)
                          .div(Time(amount = 1, unit = SECOND)))
                          .toString())
 
     @Test
     fun testtimes() =
-        assertEquals("100 s⁻¹⋅m",
+        assertEquals("100 m⋅s⁻¹",
                      MetersPerSecond(10).times(TEN).toString())
 
     @Test
     fun testdiv() =
-        assertEquals("1 s⁻¹⋅m",
+        assertEquals("1 m⋅s⁻¹",
                      MetersPerSecond(10).div(TEN).toString())
 
     @Test
     fun testDividedByTime() =
-        assertEquals("5 s⁻²⋅m",
+        assertEquals("5 m⋅s⁻²",
                      MetersPerSecond(10).div(Time(amount = 2, unit = SECOND)).toString())
 
     @Test
@@ -50,13 +49,13 @@ class SpeedTest
     @Test
     fun testInto()
     {
-        assertEquals("10 s⁻¹⋅m",
-                     MetersPerSecond(10).into(SpeedUnit(METER, SECOND)).toString())
-        assertEquals("600 min⁻¹⋅m",
-                     MetersPerSecond(10).into(SpeedUnit(METER, MINUTE)).toString())
-        assertEquals("23622.0472440944881889763779527559 min⁻¹⋅in",
-                     MetersPerSecond(10).into(SpeedUnit(INCH, MINUTE)).toString())
-        assertEquals("393.7007874015748031496062992125984 s⁻¹⋅in",
-                     MetersPerSecond(10).into(SpeedUnit(INCH, SECOND)).toString())
+        assertEquals("10 m⋅s⁻¹",
+                     (MetersPerSecond(10) to SpeedUnit(METER, SECOND)).toString())
+        assertEquals("600 m⋅min⁻¹",
+                     (MetersPerSecond(10) to SpeedUnit(METER, MINUTE)).toString())
+        assertEquals("23622.04724409448818897637795275591 in⋅min⁻¹",
+                     (MetersPerSecond(10) to SpeedUnit(INCH, MINUTE)).toString())
+        assertEquals("393.7007874015748031496062992125984 in⋅s⁻¹",
+                     (MetersPerSecond(10) to SpeedUnit(INCH, SECOND)).toString())
     }
 }

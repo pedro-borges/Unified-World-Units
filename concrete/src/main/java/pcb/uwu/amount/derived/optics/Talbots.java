@@ -61,26 +61,26 @@ public class Talbots extends LuminousEnergy {
 
 	@NotNull
 	@Override
-	public Talbots plus(@NotNull UnitAmount<LuminousEnergyUnit> other) {
-		return new Talbots(plusAmount(this, other));
+	public Talbots plus(@NotNull UnitAmount<LuminousEnergyUnit> amount) {
+		return new Talbots(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Talbots minus(@NotNull UnitAmount<LuminousEnergyUnit> other) {
-		return new Talbots(minusAmount(this, other));
+	public Talbots minus(@NotNull UnitAmount<LuminousEnergyUnit> amount) {
+		return new Talbots(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Talbots times(@NotNull Number other) {
-		return new Talbots(UnitAmountUtils.times(this, other));
+	public Talbots times(@NotNull Number number) {
+		return new Talbots(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Talbots div(@NotNull Number other) {
-		return new Talbots(dividedByScalar(this, other));
+	public Talbots div(@NotNull Number number) {
+		return new Talbots(dividedByScalar(this, number));
 	}
 
 	// endregion

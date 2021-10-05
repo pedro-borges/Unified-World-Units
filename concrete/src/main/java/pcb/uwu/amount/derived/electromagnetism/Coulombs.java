@@ -66,30 +66,30 @@ public class Coulombs extends ElectricCharge {
 
 	@NotNull
 	@Override
-	public Coulombs plus(@NotNull UnitAmount<ElectricChargeUnit> other) {
-		return new Coulombs(plusAmount(this, other));
+	public Coulombs plus(@NotNull UnitAmount<ElectricChargeUnit> amount) {
+		return new Coulombs(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Coulombs minus(@NotNull UnitAmount<ElectricChargeUnit> other) {
-		return new Coulombs(minusAmount(this, other));
+	public Coulombs minus(@NotNull UnitAmount<ElectricChargeUnit> amount) {
+		return new Coulombs(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Coulombs times(@NotNull Number other) {
-		return new Coulombs(UnitAmountUtils.times(this, other));
+	public Coulombs times(@NotNull Number number) {
+		return new Coulombs(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Coulombs div(@NotNull Number other) {
-		return new Coulombs(dividedByScalar(this, other));
+	public Coulombs div(@NotNull Number number) {
+		return new Coulombs(dividedByScalar(this, number));
 	}
 
 	@Override
-	public Coulombs into(ElectricChargeUnit unit) {
+	public Coulombs to(ElectricChargeUnit unit) {
 		return new Coulombs(getAmountIn(this, unit));
 	}
 

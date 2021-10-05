@@ -56,26 +56,26 @@ public class Feet extends Length {
 
 	@NotNull
 	@Override
-	public Feet plus(@NotNull UnitAmount<LengthUnit> other) {
-		return new Feet(plusAmount(this, other));
+	public Feet plus(@NotNull UnitAmount<LengthUnit> amount) {
+		return new Feet(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Feet minus(@NotNull UnitAmount<LengthUnit> other) {
-		return new Feet(minusAmount(this, other));
+	public Feet minus(@NotNull UnitAmount<LengthUnit> amount) {
+		return new Feet(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Feet times(@NotNull Number other) {
-		return new Feet(UnitAmountUtils.times(this, other));
+	public Feet times(@NotNull Number number) {
+		return new Feet(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Feet div(@NotNull Number other) {
-		return new Feet(dividedByScalar(this, other));
+	public Feet div(@NotNull Number number) {
+		return new Feet(dividedByScalar(this, number));
 	}
 
 	// endregion

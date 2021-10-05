@@ -56,26 +56,26 @@ public class Fahrenheits extends Temperature {
 
 	@NotNull
 	@Override
-	public Fahrenheits plus(@NotNull UnitAmount<TemperatureUnit> other) {
-		return new Fahrenheits(plusAmount(this, other));
+	public Fahrenheits plus(@NotNull UnitAmount<TemperatureUnit> amount) {
+		return new Fahrenheits(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Fahrenheits minus(@NotNull UnitAmount<TemperatureUnit> other) {
-		return new Fahrenheits(minusAmount(this, other));
+	public Fahrenheits minus(@NotNull UnitAmount<TemperatureUnit> amount) {
+		return new Fahrenheits(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Fahrenheits times(@NotNull Number other) {
-		return new Fahrenheits(UnitAmountUtils.times(this, other));
+	public Fahrenheits times(@NotNull Number number) {
+		return new Fahrenheits(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Fahrenheits div(@NotNull Number other) {
-		return new Fahrenheits(dividedByScalar(this, other));
+	public Fahrenheits div(@NotNull Number number) {
+		return new Fahrenheits(dividedByScalar(this, number));
 	}
 
 	// endregion

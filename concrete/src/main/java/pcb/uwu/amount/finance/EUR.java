@@ -48,26 +48,26 @@ public class EUR extends Money {
 
 	@NotNull
 	@Override
-	public EUR plus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new EUR(plusAmount(this, other));
+	public EUR plus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new EUR(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Money minus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new AUD(minusAmount(this, other));
+	public Money minus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new AUD(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public EUR times(@NotNull Number other) {
-		return new EUR(UnitAmountUtils.times(this, other));
+	public EUR times(@NotNull Number number) {
+		return new EUR(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public EUR div(@NotNull Number other) {
-		return new EUR(dividedByScalar(this, other));
+	public EUR div(@NotNull Number number) {
+		return new EUR(dividedByScalar(this, number));
 	}
 
 	// endregion

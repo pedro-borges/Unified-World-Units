@@ -26,23 +26,23 @@ open class Money :
 
     //region UnitAmount
 
-    override operator fun plus(other: UnitAmount<CurrencyUnit>) =
-        Money(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<CurrencyUnit>) =
+        Money(amount = this.amount + (amount to this.unit).amount,
               unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<CurrencyUnit>) =
-        Money(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<CurrencyUnit>) =
+        Money(amount = this.amount - (amount to this.unit).amount,
               unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Money(amount = this.amount * other,
+    override fun times(number: Number) =
+        Money(amount = this.amount * number,
               unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Money(amount = this.amount / other,
+    override fun div(number: Number) =
+        Money(amount = this.amount / number,
               unit = this.unit)
 
-    override fun into(unit: CurrencyUnit) =
+    override fun to(unit: CurrencyUnit) =
         Money(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
               unit = this.unit)
 

@@ -56,26 +56,26 @@ public class Minutes extends Time {
 
 	@NotNull
 	@Override
-	public Minutes plus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Minutes(plusAmount(this, other));
+	public Minutes plus(@NotNull UnitAmount<TimeUnit> amount) {
+		return new Minutes(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Minutes minus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Minutes(minusAmount(this, other));
+	public Minutes minus(@NotNull UnitAmount<TimeUnit> amount) {
+		return new Minutes(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Minutes times(@NotNull Number other) {
-		return new Minutes(UnitAmountUtils.times(this, other));
+	public Minutes times(@NotNull Number number) {
+		return new Minutes(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Minutes div(@NotNull Number other) {
-		return new Minutes(dividedByScalar(this, other));
+	public Minutes div(@NotNull Number number) {
+		return new Minutes(dividedByScalar(this, number));
 	}
 
 	// endregion

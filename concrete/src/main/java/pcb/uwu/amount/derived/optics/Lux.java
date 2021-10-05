@@ -59,26 +59,26 @@ public class Lux extends Illuminance {
 
 	@NotNull
 	@Override
-	public Lux plus(@NotNull UnitAmount<IlluminanceUnit> other) {
-		return new Lux(plusAmount(this, other));
+	public Lux plus(@NotNull UnitAmount<IlluminanceUnit> amount) {
+		return new Lux(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Lux minus(@NotNull UnitAmount<IlluminanceUnit> other) {
-		return new Lux(minusAmount(this, other));
+	public Lux minus(@NotNull UnitAmount<IlluminanceUnit> amount) {
+		return new Lux(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Lux times(@NotNull Number other) {
-		return new Lux(UnitAmountUtils.times(this, other));
+	public Lux times(@NotNull Number number) {
+		return new Lux(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Lux div(@NotNull Number other) {
-		return new Lux(dividedByScalar(this, other));
+	public Lux div(@NotNull Number number) {
+		return new Lux(dividedByScalar(this, number));
 	}
 
 	// endregion

@@ -73,26 +73,26 @@ public class Amperes extends ElectricCurrent {
 
 	@NotNull
 	@Override
-	public Amperes plus(@NotNull UnitAmount<ElectricCurrentUnit> other) {
-		return new Amperes(plusAmount(this, other));
+	public Amperes plus(@NotNull UnitAmount<ElectricCurrentUnit> amount) {
+		return new Amperes(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Amperes minus(@NotNull UnitAmount<ElectricCurrentUnit> other) {
-		return new Amperes(minusAmount(this, other));
+	public Amperes minus(@NotNull UnitAmount<ElectricCurrentUnit> amount) {
+		return new Amperes(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Amperes times(@NotNull Number other) {
-		return new Amperes(UnitAmountUtils.times(this, other));
+	public Amperes times(@NotNull Number number) {
+		return new Amperes(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Amperes div(@NotNull Number other) {
-		return new Amperes(dividedByScalar(this, other));
+	public Amperes div(@NotNull Number number) {
+		return new Amperes(dividedByScalar(this, number));
 	}
 
 	// endregion

@@ -24,19 +24,19 @@ class Scalar : CompositeUnitAmount<ScalarUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<ScalarUnit>) =
-        Scalar(amount = this.amount + other.into(this.unit).amount)
+    override fun plus(amount: UnitAmount<ScalarUnit>) =
+        Scalar(amount = this.amount + (amount to this.unit).amount)
 
-    override operator fun minus(other: UnitAmount<ScalarUnit>) =
-        Scalar(amount = amount - other.into(this.unit).amount)
+    override fun minus(amount: UnitAmount<ScalarUnit>) =
+        Scalar(amount = this.amount - (amount to this.unit).amount)
 
-    override operator fun times(other: Number) =
-        Scalar(amount = this.amount * other)
+    override fun times(number: Number) =
+        Scalar(amount = this.amount * number)
 
-    override operator fun div(other: Number) =
-        Scalar(amount = this.amount / other)
+    override fun div(number: Number) =
+        Scalar(amount = this.amount / number)
 
-    override fun into(unit: ScalarUnit) =
+    override fun to(unit: ScalarUnit) =
         Scalar(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit))
 
     // endregion

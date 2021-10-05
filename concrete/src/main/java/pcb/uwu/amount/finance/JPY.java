@@ -48,26 +48,26 @@ public class JPY extends Money {
 
 	@NotNull
 	@Override
-	public JPY plus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new JPY(plusAmount(this, other));
+	public JPY plus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new JPY(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public JPY minus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new JPY(minusAmount(this, other));
+	public JPY minus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new JPY(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public JPY times(@NotNull Number other) {
-		return new JPY(UnitAmountUtils.times(this, other));
+	public JPY times(@NotNull Number number) {
+		return new JPY(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public JPY div(@NotNull Number other) {
-		return new JPY(dividedByScalar(this, other));
+	public JPY div(@NotNull Number number) {
+		return new JPY(dividedByScalar(this, number));
 	}
 
 	// endregion

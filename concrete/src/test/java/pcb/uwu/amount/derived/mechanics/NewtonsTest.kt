@@ -20,7 +20,7 @@ class NewtonsTest
 
     @Test
     fun dividedByMass() =
-        assertEquals("3 s⁻²⋅m",
+        assertEquals("3 m⋅s⁻²",
                      Newtons(12).div(KiloGrams(4)).toString())
 
     @Test
@@ -37,5 +37,4 @@ class NewtonsTest
     fun dividedByArea() =
         assertEquals("3 Pa",
                      Newtons(12).div(Area(amount = 4, unit = SQUARE_METER)).toString())
-
 }

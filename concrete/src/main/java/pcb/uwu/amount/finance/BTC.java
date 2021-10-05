@@ -48,26 +48,26 @@ public class BTC extends Money {
 
 	@NotNull
 	@Override
-	public BTC plus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new BTC(plusAmount(this, other));
+	public BTC plus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new BTC(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public BTC minus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new BTC(minusAmount(this, other));
+	public BTC minus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new BTC(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public BTC times(@NotNull Number other) {
-		return new BTC(UnitAmountUtils.times(this, other));
+	public BTC times(@NotNull Number number) {
+		return new BTC(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public BTC div(@NotNull Number other) {
-		return new BTC(dividedByScalar(this, other));
+	public BTC div(@NotNull Number number) {
+		return new BTC(dividedByScalar(this, number));
 	}
 
 	// endregion

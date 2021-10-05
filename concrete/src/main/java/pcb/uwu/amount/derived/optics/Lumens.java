@@ -69,26 +69,26 @@ public class Lumens extends LuminousFlux {
 
 	@NotNull
 	@Override
-	public Lumens plus(@NotNull UnitAmount<LuminousFluxUnit> other) {
-		return new Lumens(plusAmount(this, other));
+	public Lumens plus(@NotNull UnitAmount<LuminousFluxUnit> amount) {
+		return new Lumens(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Lumens minus(@NotNull UnitAmount<LuminousFluxUnit> other) {
-		return new Lumens(minusAmount(this, other));
+	public Lumens minus(@NotNull UnitAmount<LuminousFluxUnit> amount) {
+		return new Lumens(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Lumens times(@NotNull Number other) {
-		return new Lumens(UnitAmountUtils.times(this, other));
+	public Lumens times(@NotNull Number number) {
+		return new Lumens(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Lumens div(@NotNull Number other) {
-		return new Lumens(dividedByScalar(this, other));
+	public Lumens div(@NotNull Number number) {
+		return new Lumens(dividedByScalar(this, number));
 	}
 
 	// endregion

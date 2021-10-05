@@ -48,26 +48,26 @@ public class CAD extends Money {
 
 	@NotNull
 	@Override
-	public CAD plus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new CAD(plusAmount(this, other));
+	public CAD plus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new CAD(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public CAD minus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new CAD(minusAmount(this, other));
+	public CAD minus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new CAD(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public CAD times(@NotNull Number other) {
-		return new CAD(UnitAmountUtils.times(this, other));
+	public CAD times(@NotNull Number number) {
+		return new CAD(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public CAD div(@NotNull Number other) {
-		return new CAD(dividedByScalar(this, other));
+	public CAD div(@NotNull Number number) {
+		return new CAD(dividedByScalar(this, number));
 	}
 
 	// endregion

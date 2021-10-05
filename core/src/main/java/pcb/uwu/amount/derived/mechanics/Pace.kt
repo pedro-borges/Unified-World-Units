@@ -27,23 +27,23 @@ class Pace : CompositeUnitAmount<PaceUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<PaceUnit>) =
-        Pace(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<PaceUnit>) =
+        Pace(amount = this.amount + (amount to this.unit).amount,
              unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<PaceUnit>) =
-        Pace(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<PaceUnit>) =
+        Pace(amount = this.amount - (amount to this.unit).amount,
              unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Pace(amount = this.amount * other,
+    override fun times(number: Number) =
+        Pace(amount = this.amount * number,
              unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Pace(amount = this.amount / other,
+    override fun div(number: Number) =
+        Pace(amount = this.amount / number,
              unit = this.unit)
 
-    override fun into(unit: PaceUnit) =
+    override fun to(unit: PaceUnit) =
         Pace(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
              unit = unit)
 

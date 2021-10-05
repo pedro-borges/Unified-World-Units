@@ -48,26 +48,26 @@ public class GBP extends Money {
 
 	@NotNull
 	@Override
-	public GBP plus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new GBP(plusAmount(this, other));
+	public GBP plus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new GBP(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Money minus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new GBP(minusAmount(this, other));
+	public Money minus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new GBP(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public GBP times(@NotNull Number other) {
-		return new GBP(UnitAmountUtils.times(this, other));
+	public GBP times(@NotNull Number number) {
+		return new GBP(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public GBP div(@NotNull Number other) {
-		return new GBP(dividedByScalar(this, other));
+	public GBP div(@NotNull Number number) {
+		return new GBP(dividedByScalar(this, number));
 	}
 
 	// endregion

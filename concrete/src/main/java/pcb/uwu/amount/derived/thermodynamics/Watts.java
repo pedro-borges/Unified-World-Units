@@ -65,26 +65,26 @@ public class Watts extends Power {
 
 	@NotNull
 	@Override
-	public Watts plus(@NotNull UnitAmount<PowerUnit> other) {
-		return new Watts(plusAmount(this, other));
+	public Watts plus(@NotNull UnitAmount<PowerUnit> amount) {
+		return new Watts(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Watts minus(@NotNull UnitAmount<PowerUnit> other) {
-		return new Watts(minusAmount(this, other));
+	public Watts minus(@NotNull UnitAmount<PowerUnit> amount) {
+		return new Watts(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Watts times(@NotNull Number other) {
-		return new Watts(UnitAmountUtils.times(this, other));
+	public Watts times(@NotNull Number number) {
+		return new Watts(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Watts div(@NotNull Number other) {
-		return new Watts(dividedByScalar(this, other));
+	public Watts div(@NotNull Number number) {
+		return new Watts(dividedByScalar(this, number));
 	}
 
 	// endregion

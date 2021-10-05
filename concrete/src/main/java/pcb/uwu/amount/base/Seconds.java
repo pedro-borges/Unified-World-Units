@@ -65,26 +65,26 @@ public class Seconds extends Time {
 
 	@NotNull
 	@Override
-	public Seconds plus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Seconds(plusAmount(this, other));
+	public Seconds plus(@NotNull UnitAmount<TimeUnit> amount) {
+		return new Seconds(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Seconds minus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Seconds(minusAmount(this, other));
+	public Seconds minus(@NotNull UnitAmount<TimeUnit> amount) {
+		return new Seconds(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Seconds times(@NotNull Number other) {
-		return new Seconds(UnitAmountUtils.times(this, other));
+	public Seconds times(@NotNull Number number) {
+		return new Seconds(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Seconds div(@NotNull Number other) {
-		return new Seconds(dividedByScalar(this, other));
+	public Seconds div(@NotNull Number number) {
+		return new Seconds(dividedByScalar(this, number));
 	}
 
 	// endregion

@@ -56,26 +56,26 @@ public class Hertz extends Frequency {
 
 	@NotNull
 	@Override
-	public Hertz plus(@NotNull UnitAmount<FrequencyUnit> other) {
-		return new Hertz(plusAmount(this, other));
+	public Hertz plus(@NotNull UnitAmount<FrequencyUnit> amount) {
+		return new Hertz(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Hertz minus(@NotNull UnitAmount<FrequencyUnit> other) {
-		return new Hertz(minusAmount(this, other));
+	public Hertz minus(@NotNull UnitAmount<FrequencyUnit> amount) {
+		return new Hertz(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Hertz times(@NotNull Number other) {
-		return new Hertz(UnitAmountUtils.times(this, other));
+	public Hertz times(@NotNull Number number) {
+		return new Hertz(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Hertz div(@NotNull Number other) {
-		return new Hertz(dividedByScalar(this, other));
+	public Hertz div(@NotNull Number number) {
+		return new Hertz(dividedByScalar(this, number));
 	}
 
 	// endregion

@@ -48,26 +48,26 @@ public class AUD extends Money {
 
 	@NotNull
 	@Override
-	public AUD plus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new AUD(plusAmount(this, other));
+	public AUD plus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new AUD(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public AUD minus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new AUD(minusAmount(this, other));
+	public AUD minus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new AUD(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public AUD times(@NotNull Number other) {
-		return new AUD(UnitAmountUtils.times(this, other));
+	public AUD times(@NotNull Number number) {
+		return new AUD(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public AUD div(@NotNull Number other) {
-		return new AUD(dividedByScalar(this, other));
+	public AUD div(@NotNull Number number) {
+		return new AUD(dividedByScalar(this, number));
 	}
 
 	// endregion

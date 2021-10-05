@@ -56,26 +56,26 @@ public class Inches extends Length {
 
 	@NotNull
 	@Override
-	public Inches plus(@NotNull UnitAmount<LengthUnit> other) {
-		return new Inches(plusAmount(this, other));
+	public Inches plus(@NotNull UnitAmount<LengthUnit> amount) {
+		return new Inches(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Inches minus(@NotNull UnitAmount<LengthUnit> other) {
-		return new Inches(minusAmount(this, other));
+	public Inches minus(@NotNull UnitAmount<LengthUnit> amount) {
+		return new Inches(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Inches times(@NotNull Number other) {
-		return new Inches(UnitAmountUtils.times(this, other));
+	public Inches times(@NotNull Number number) {
+		return new Inches(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Inches div(@NotNull Number other) {
-		return new Inches(dividedByScalar(this, other));
+	public Inches div(@NotNull Number number) {
+		return new Inches(dividedByScalar(this, number));
 	}
 
 	// endregion

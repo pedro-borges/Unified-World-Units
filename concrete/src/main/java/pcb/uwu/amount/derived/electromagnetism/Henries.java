@@ -59,30 +59,30 @@ public class Henries extends ElectricInductance {
 
 	@NotNull
 	@Override
-	public Henries plus(@NotNull UnitAmount<ElectricInductanceUnit> other) {
-		return new Henries(plusAmount(this, other));
+	public Henries plus(@NotNull UnitAmount<ElectricInductanceUnit> amount) {
+		return new Henries(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Henries minus(@NotNull UnitAmount<ElectricInductanceUnit> other) {
-		return new Henries(minusAmount(this, other));
+	public Henries minus(@NotNull UnitAmount<ElectricInductanceUnit> amount) {
+		return new Henries(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Henries times(@NotNull Number other) {
-		return new Henries(UnitAmountUtils.times(this, other));
+	public Henries times(@NotNull Number number) {
+		return new Henries(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Henries div(@NotNull Number other) {
-		return new Henries(dividedByScalar(this, other));
+	public Henries div(@NotNull Number number) {
+		return new Henries(dividedByScalar(this, number));
 	}
 
 	@Override
-	public Henries into(ElectricInductanceUnit unit) {
+	public Henries to(ElectricInductanceUnit unit) {
 		return new Henries(getAmountIn(this, unit));
 	}
 

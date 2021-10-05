@@ -59,30 +59,30 @@ public class Ohms extends ElectricResistance {
 
 	@NotNull
 	@Override
-	public Ohms plus(@NotNull UnitAmount<ElectricResistanceUnit> other) {
-		return new Ohms(plusAmount(this, other));
+	public Ohms plus(@NotNull UnitAmount<ElectricResistanceUnit> amount) {
+		return new Ohms(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Ohms minus(@NotNull UnitAmount<ElectricResistanceUnit> other) {
-		return new Ohms(minusAmount(this, other));
+	public Ohms minus(@NotNull UnitAmount<ElectricResistanceUnit> amount) {
+		return new Ohms(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Ohms times(@NotNull Number other) {
-		return new Ohms(UnitAmountUtils.times(this, other));
+	public Ohms times(@NotNull Number number) {
+		return new Ohms(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Ohms div(@NotNull Number other) {
-		return new Ohms(dividedByScalar(this, other));
+	public Ohms div(@NotNull Number number) {
+		return new Ohms(dividedByScalar(this, number));
 	}
 
 	@Override
-	public Ohms into(ElectricResistanceUnit unit) {
+	public Ohms to(ElectricResistanceUnit unit) {
 		return new Ohms(getAmountIn(this, unit));
 	}
 

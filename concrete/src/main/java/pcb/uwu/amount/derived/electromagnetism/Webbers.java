@@ -69,30 +69,30 @@ public class Webbers extends MagneticFlux {
 
 	@NotNull
 	@Override
-	public Webbers plus(@NotNull UnitAmount<MagneticFluxUnit> other) {
-		return new Webbers(plusAmount(this, other));
+	public Webbers plus(@NotNull UnitAmount<MagneticFluxUnit> amount) {
+		return new Webbers(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Webbers minus(@NotNull UnitAmount<MagneticFluxUnit> other) {
-		return new Webbers(minusAmount(this, other));
+	public Webbers minus(@NotNull UnitAmount<MagneticFluxUnit> amount) {
+		return new Webbers(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Webbers times(@NotNull Number other) {
-		return new Webbers(UnitAmountUtils.times(this, other));
+	public Webbers times(@NotNull Number number) {
+		return new Webbers(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Webbers div(@NotNull Number other) {
-		return new Webbers(dividedByScalar(this, other));
+	public Webbers div(@NotNull Number number) {
+		return new Webbers(dividedByScalar(this, number));
 	}
 
 	@Override
-	public Webbers into(MagneticFluxUnit unit) {
+	public Webbers to(MagneticFluxUnit unit) {
 		return new Webbers(getAmountIn(this, unit));
 	}
 

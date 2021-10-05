@@ -26,23 +26,23 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<FrequencyUnit>) =
-        InterestRate(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<FrequencyUnit>) =
+        InterestRate(amount = this.amount + (amount to this.unit).amount,
                      unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<FrequencyUnit>) =
-        InterestRate(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<FrequencyUnit>) =
+        InterestRate(amount = this.amount - (amount to this.unit).amount,
                      unit = this.unit)
 
-    override operator fun times(other: Number) =
-        InterestRate(amount = this.amount * other,
+    override fun times(number: Number) =
+        InterestRate(amount = this.amount * number,
                      unit = this.unit)
 
-    override operator fun div(other: Number) =
-        InterestRate(amount = this.amount / other,
+    override fun div(number: Number) =
+        InterestRate(amount = this.amount / number,
                      unit = this.unit)
 
-    override fun into(unit: FrequencyUnit) =
+    override fun to(unit: FrequencyUnit) =
         InterestRate(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                      unit = unit)
 

@@ -39,23 +39,23 @@ open class Time : CompositeUnitAmount<TimeUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<TimeUnit>) =
-        Time(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<TimeUnit>) =
+        Time(amount = this.amount + (amount to this.unit).amount,
              unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<TimeUnit>) =
-        Time(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<TimeUnit>) =
+        Time(amount = this.amount - (amount to this.unit).amount,
              unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Time(amount = this.amount * other,
+    override fun times(number: Number) =
+        Time(amount = this.amount * number,
              unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Time(amount = this.amount / other,
+    override fun div(number: Number) =
+        Time(amount = this.amount / number,
              unit = this.unit)
 
-    override fun into(unit: TimeUnit) =
+    override fun to(unit: TimeUnit) =
         Time(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
              unit = unit)
 

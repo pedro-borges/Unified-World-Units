@@ -63,30 +63,30 @@ public class Volts extends ElectricPotential {
 
 	@NotNull
 	@Override
-	public Volts plus(@NotNull UnitAmount<ElectricPotentialUnit> other) {
-		return new Volts(plusAmount(this, other));
+	public Volts plus(@NotNull UnitAmount<ElectricPotentialUnit> amount) {
+		return new Volts(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Volts minus(@NotNull UnitAmount<ElectricPotentialUnit> other) {
-		return new Volts(minusAmount(this, other));
+	public Volts minus(@NotNull UnitAmount<ElectricPotentialUnit> amount) {
+		return new Volts(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Volts times(@NotNull Number other) {
-		return new Volts(UnitAmountUtils.times(this, other));
+	public Volts times(@NotNull Number number) {
+		return new Volts(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Volts div(@NotNull Number other) {
-		return new Volts(dividedByScalar(this, other));
+	public Volts div(@NotNull Number number) {
+		return new Volts(dividedByScalar(this, number));
 	}
 
 	@Override
-	public Volts into(ElectricPotentialUnit unit) {
+	public Volts to(ElectricPotentialUnit unit) {
 		return new Volts(getAmountIn(this, unit));
 	}
 

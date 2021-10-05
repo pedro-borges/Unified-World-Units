@@ -59,30 +59,30 @@ public class Teslas extends MagneticField {
 
 	@NotNull
 	@Override
-	public Teslas plus(@NotNull UnitAmount<MagneticFieldUnit> other) {
-		return new Teslas(plusAmount(this, other));
+	public Teslas plus(@NotNull UnitAmount<MagneticFieldUnit> amount) {
+		return new Teslas(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Teslas minus(@NotNull UnitAmount<MagneticFieldUnit> other) {
-		return new Teslas(minusAmount(this, other));
+	public Teslas minus(@NotNull UnitAmount<MagneticFieldUnit> amount) {
+		return new Teslas(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Teslas times(@NotNull Number other) {
-		return new Teslas(UnitAmountUtils.times(this, other));
+	public Teslas times(@NotNull Number number) {
+		return new Teslas(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Teslas div(@NotNull Number other) {
-		return new Teslas(dividedByScalar(this, other));
+	public Teslas div(@NotNull Number number) {
+		return new Teslas(dividedByScalar(this, number));
 	}
 
 	@Override
-	public Teslas into(MagneticFieldUnit unit) {
+	public Teslas to(MagneticFieldUnit unit) {
 		return new Teslas(getAmountIn(this, unit));
 	}
 

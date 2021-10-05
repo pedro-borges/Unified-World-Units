@@ -29,23 +29,23 @@ open class Speed : CompositeUnitAmount<SpeedUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<SpeedUnit>) =
-        Speed(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<SpeedUnit>) =
+        Speed(amount = this.amount + (amount to this.unit).amount,
               unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<SpeedUnit>) =
-        Speed(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<SpeedUnit>) =
+        Speed(amount = this.amount - (amount to this.unit).amount,
               unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Speed(amount = this.amount * other,
+    override fun times(number: Number) =
+        Speed(amount = this.amount * number,
               unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Speed(amount = this.amount / other,
+    override fun div(number: Number) =
+        Speed(amount = this.amount / number,
               unit = this.unit)
 
-    override fun into(unit: SpeedUnit) =
+    override fun to(unit: SpeedUnit) =
         Speed(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
               unit = unit)
 

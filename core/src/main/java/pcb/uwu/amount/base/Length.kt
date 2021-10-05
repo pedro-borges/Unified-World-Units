@@ -30,26 +30,26 @@ open class Length : CompositeUnitAmount<LengthUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<LengthUnit>) =
-        Length(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<LengthUnit>) =
+        Length(amount = this.amount + (amount to this.unit).amount,
                unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<LengthUnit>) =
-        Length(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<LengthUnit>) =
+        Length(amount = this.amount - (amount to this.unit).amount,
                unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Length(amount = this.amount * other,
+    override fun times(number: Number) =
+        Length(amount = this.amount * number,
                unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Length(amount = this.amount / other,
+    override fun div(number: Number) =
+        Length(amount = this.amount / number,
                unit = this.unit)
 
     fun div(other: UnitAmount<LengthUnit>) =
         Scalar(super.div(other).amount)
 
-    override fun into(unit: LengthUnit) =
+    override fun to(unit: LengthUnit) =
         Length(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                unit = unit)
 
@@ -57,12 +57,12 @@ open class Length : CompositeUnitAmount<LengthUnit>
 
     // region composition
 
-    fun div(time: Time): Speed =
+    open operator fun div(time: Time): Speed =
         Speed(amount = this.amount / time.amount,
               unit = SpeedUnit(this.unit, time.unit))
 
-    fun div(speed: Speed) =
-        Time(amount = (this / speed).amount,
+    open operator fun div(speed: Speed) =
+        Time(amount = super.div(speed).amount,
              unit = speed.unit.unitCounter.findUnit(TimeUnit::class.java)!!)
 
     open operator fun times(length: Length) =

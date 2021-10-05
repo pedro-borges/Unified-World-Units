@@ -56,26 +56,26 @@ public class Hours extends Time {
 
 	@NotNull
 	@Override
-	public Hours plus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Hours(plusAmount(this, other));
+	public Hours plus(@NotNull UnitAmount<TimeUnit> amount) {
+		return new Hours(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Hours minus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Hours(minusAmount(this, other));
+	public Hours minus(@NotNull UnitAmount<TimeUnit> amount) {
+		return new Hours(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Hours times(@NotNull Number other) {
-		return new Hours(UnitAmountUtils.times(this, other));
+	public Hours times(@NotNull Number number) {
+		return new Hours(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Hours div(@NotNull Number other) {
-		return new Hours(dividedByScalar(this, other));
+	public Hours div(@NotNull Number number) {
+		return new Hours(dividedByScalar(this, number));
 	}
 
 	// endregion

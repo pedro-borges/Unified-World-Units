@@ -23,23 +23,23 @@ open class Pressure : CompositeUnitAmount<PressureUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<PressureUnit>) =
-        Pressure(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<PressureUnit>) =
+        Pressure(amount = this.amount + (amount to this.unit).amount,
                  unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<PressureUnit>) =
-        Pressure(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<PressureUnit>) =
+        Pressure(amount = this.amount - (amount to this.unit).amount,
                  unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Pressure(amount = this.amount * other,
+    override fun times(number: Number) =
+        Pressure(amount = this.amount * number,
                  unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Pressure(amount = this.amount / other,
+    override fun div(number: Number) =
+        Pressure(amount = this.amount / number,
                  unit = this.unit)
 
-    override fun into(unit: PressureUnit) =
+    override fun to(unit: PressureUnit) =
         Pressure(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                  unit = unit)
 

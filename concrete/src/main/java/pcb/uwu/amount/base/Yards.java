@@ -56,26 +56,26 @@ public class Yards extends Length {
 
 	@NotNull
 	@Override
-	public Yards plus(@NotNull UnitAmount<LengthUnit> other) {
-		return new Yards(plusAmount(this, other));
+	public Yards plus(@NotNull UnitAmount<LengthUnit> amount) {
+		return new Yards(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Yards minus(@NotNull UnitAmount<LengthUnit> other) {
-		return new Yards(minusAmount(this, other));
+	public Yards minus(@NotNull UnitAmount<LengthUnit> amount) {
+		return new Yards(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Yards times(@NotNull Number other) {
-		return new Yards(UnitAmountUtils.times(this, other));
+	public Yards times(@NotNull Number number) {
+		return new Yards(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Yards div(@NotNull Number other) {
-		return new Yards(dividedByScalar(this, other));
+	public Yards div(@NotNull Number number) {
+		return new Yards(dividedByScalar(this, number));
 	}
 
 	// endregion

@@ -60,26 +60,26 @@ public class Nits extends Luminance {
 
 	@NotNull
 	@Override
-	public Nits plus(@NotNull UnitAmount<LuminanceUnit> other) {
-		return new Nits(plusAmount(this, other));
+	public Nits plus(@NotNull UnitAmount<LuminanceUnit> amount) {
+		return new Nits(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Nits minus(@NotNull UnitAmount<LuminanceUnit> other) {
-		return new Nits(minusAmount(this, other));
+	public Nits minus(@NotNull UnitAmount<LuminanceUnit> amount) {
+		return new Nits(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Nits times(@NotNull Number other) {
-		return new Nits(UnitAmountUtils.times(this, other));
+	public Nits times(@NotNull Number number) {
+		return new Nits(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Nits div(@NotNull Number other) {
-		return new Nits(dividedByScalar(this, other));
+	public Nits div(@NotNull Number number) {
+		return new Nits(dividedByScalar(this, number));
 	}
 
 	// endregion

@@ -56,26 +56,26 @@ public class Mole extends AmountOfSubstance {
 
 	@NotNull
 	@Override
-	public Mole plus(@NotNull UnitAmount<AmountOfSubstanceUnit> other) {
-		return new Mole(plusAmount(this, other));
+	public Mole plus(@NotNull UnitAmount<AmountOfSubstanceUnit> amount) {
+		return new Mole(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Mole minus(@NotNull UnitAmount<AmountOfSubstanceUnit> other) {
-		return new Mole(minusAmount(this, other));
+	public Mole minus(@NotNull UnitAmount<AmountOfSubstanceUnit> amount) {
+		return new Mole(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Mole times(@NotNull Number other) {
-		return new Mole(UnitAmountUtils.times(this, other));
+	public Mole times(@NotNull Number number) {
+		return new Mole(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Mole div(@NotNull Number other) {
-		return new Mole(dividedByScalar(this, other));
+	public Mole div(@NotNull Number number) {
+		return new Mole(dividedByScalar(this, number));
 	}
 
 	// endregion

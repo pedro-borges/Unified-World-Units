@@ -1,86 +1,36 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.DayUnit.DAY
+import pcb.uwu.unit.base.TimeUnit
 
-import java.math.BigDecimal;
+class Days : Time
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, DAY)
 
-import static pcb.uwu.unit.base.DayUnit.DAY;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(value: String,
+                magnitude: Magnitude = NATURAL)
+            : super(value, magnitude, DAY)
 
-public class Days extends Time {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(amount: UnitAmount<TimeUnit>) =
+        Days(this.amount + (amount to DAY).amount)
 
-	public Days(Number value) {
-		super(value, DAY);
-	}
+    override fun minus(amount: UnitAmount<TimeUnit>) =
+        Days(this.amount - (amount to DAY).amount)
 
-	public Days(Number value, Magnitude magnitude) {
-		super(value, magnitude, DAY);
-	}
+    override fun times(number: Number) =
+        Days(this.amount * number)
 
-	public Days(String value) {
-		super(value, DAY);
-	}
+    override fun div(number: Number) =
+        Days(this.amount / number)
 
-	public Days(String value, Magnitude magnitude) {
-		super(value, magnitude, DAY);
-	}
-
-	public Days(BigDecimal value) {
-		super(value, DAY);
-	}
-
-	public Days(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, DAY);
-	}
-
-	public Days(BigDecimalAmount amount) {
-		super(amount, DAY);
-	}
-
-	public Days(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, DAY);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Days plus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Days(plusAmount(this, other));
-	}
-
-	@NotNull
-	@Override
-	public Days minus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Days(minusAmount(this, other));
-	}
-
-	@NotNull
-	@Override
-	public Days times(@NotNull Number other) {
-		return new Days(UnitAmountUtils.times(this, other));
-	}
-
-	@NotNull
-	@Override
-	public Days div(@NotNull Number other) {
-		return new Days(dividedByScalar(this, other));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }

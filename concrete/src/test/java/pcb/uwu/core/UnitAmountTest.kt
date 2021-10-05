@@ -9,7 +9,7 @@ class UnitAmountTest
 {
     @Test
     fun testMajorMajor() =
-        assertEquals("100 A²⋅m",
+        assertEquals("100 m⋅A²",
                      Meters(1)
                          .times(Amperes(10))
                          .times(Amperes(10))

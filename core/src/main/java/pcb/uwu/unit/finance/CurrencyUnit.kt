@@ -8,7 +8,7 @@ import java.util.Currency
 import java.util.function.Function
 
 class CurrencyUnit(val currency: Currency)
-    : BaseUnit(100,
+    : BaseUnit(0,
                currency.symbol,
                currency.displayName,
                currency.displayName,

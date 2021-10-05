@@ -87,26 +87,26 @@ public class SquareMeters extends Area {
 
 	@NotNull
 	@Override
-	public SquareMeters plus(@NotNull UnitAmount<AreaUnit> other) {
-		return new SquareMeters(plusAmount(this, other));
+	public SquareMeters plus(@NotNull UnitAmount<AreaUnit> amount) {
+		return new SquareMeters(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public SquareMeters minus(@NotNull UnitAmount<AreaUnit> other) {
-		return new SquareMeters(minusAmount(this, other));
+	public SquareMeters minus(@NotNull UnitAmount<AreaUnit> amount) {
+		return new SquareMeters(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public SquareMeters times(@NotNull Number other) {
-		return new SquareMeters(UnitAmountUtils.times(this, other));
+	public SquareMeters times(@NotNull Number number) {
+		return new SquareMeters(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public SquareMeters div(@NotNull Number other) {
-		return new SquareMeters(dividedByScalar(this, other));
+	public SquareMeters div(@NotNull Number number) {
+		return new SquareMeters(dividedByScalar(this, number));
 	}
 
 	// endregion

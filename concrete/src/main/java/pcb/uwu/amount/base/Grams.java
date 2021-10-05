@@ -56,26 +56,26 @@ public class Grams extends Mass {
 
 	@NotNull
 	@Override
-	public Grams plus(@NotNull UnitAmount<MassUnit> other) {
-		return new Grams(plusAmount(this, other));
+	public Grams plus(@NotNull UnitAmount<MassUnit> amount) {
+		return new Grams(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Grams minus(@NotNull UnitAmount<MassUnit> other) {
-		return new Grams(minusAmount(this, other));
+	public Grams minus(@NotNull UnitAmount<MassUnit> amount) {
+		return new Grams(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Grams times(@NotNull Number other) {
-		return new Grams(UnitAmountUtils.times(this, other));
+	public Grams times(@NotNull Number number) {
+		return new Grams(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Grams div(@NotNull Number other) {
-		return new Grams(dividedByScalar(this, other));
+	public Grams div(@NotNull Number number) {
+		return new Grams(dividedByScalar(this, number));
 	}
 
 	// endregion

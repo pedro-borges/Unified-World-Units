@@ -6,21 +6,21 @@ interface UnitAmount<U : Unit> : Comparable<UnitAmount<U>>
 
     val unit: U
 
-    operator fun plus(other: UnitAmount<U>): UnitAmount<U>
+    operator fun plus(amount: UnitAmount<U>): UnitAmount<U>
 
-    operator fun minus(other: UnitAmount<U>): UnitAmount<U>
+    operator fun minus(amount: UnitAmount<U>): UnitAmount<U>
 
-    operator fun times(other: UnitAmount<out Unit>): UnitAmount<out Unit>
+    operator fun times(amount: UnitAmount<out Unit>): UnitAmount<out Unit>
 
-    operator fun div(other: UnitAmount<out Unit>): UnitAmount<out Unit>
+    operator fun div(amount: UnitAmount<out Unit>): UnitAmount<out Unit>
 
-    operator fun times(other: Number): UnitAmount<U>
+    operator fun times(number: Number): UnitAmount<U>
 
-    operator fun div(other: Number): UnitAmount<U>
+    operator fun div(number: Number): UnitAmount<U>
 
     fun invert(): UnitAmount<out Unit>
 
-    fun into(unit: U): UnitAmount<U>
+    infix fun to(unit: U): UnitAmount<U>
 
     fun isEquivalentTo(unitAmount: UnitAmount<*>): Boolean
 }

@@ -23,23 +23,23 @@ open class ElectricInductance : CompositeUnitAmount<ElectricInductanceUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<ElectricInductanceUnit>) =
-        ElectricInductance(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<ElectricInductanceUnit>) =
+        ElectricInductance(amount = this.amount + (amount to this.unit).amount,
                            unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<ElectricInductanceUnit>) =
-        ElectricInductance(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<ElectricInductanceUnit>) =
+        ElectricInductance(amount = this.amount - (amount to this.unit).amount,
                            unit = this.unit)
 
-    override operator fun times(other: Number) =
-        ElectricInductance(amount = this.amount * other,
+    override fun times(number: Number) =
+        ElectricInductance(amount = this.amount * number,
                            unit = this.unit)
 
-    override operator fun div(other: Number) =
-        ElectricInductance(amount = this.amount / other,
+    override fun div(number: Number) =
+        ElectricInductance(amount = this.amount / number,
                            unit = this.unit)
 
-    override fun into(unit: ElectricInductanceUnit) =
+    override fun to(unit: ElectricInductanceUnit) =
         ElectricInductance(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                            unit = unit)
 

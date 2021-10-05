@@ -23,23 +23,23 @@ open class ElectricPotential : CompositeUnitAmount<ElectricPotentialUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<ElectricPotentialUnit>) =
-        ElectricPotential(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<ElectricPotentialUnit>) =
+        ElectricPotential(amount = this.amount + (amount to this.unit).amount,
                           unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<ElectricPotentialUnit>) =
-        ElectricPotential(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<ElectricPotentialUnit>) =
+        ElectricPotential(amount = this.amount - (amount to this.unit).amount,
                           unit = this.unit)
 
-    override operator fun times(other: Number): ElectricPotential =
-        ElectricPotential(amount = this.amount * other,
+    override fun times(number: Number): ElectricPotential =
+        ElectricPotential(amount = this.amount * number,
                           unit = this.unit)
 
-    override operator fun div(other: Number) =
-        ElectricPotential(amount = this.amount / other,
+    override fun div(number: Number) =
+        ElectricPotential(amount = this.amount / number,
                           unit = this.unit)
 
-    override fun into(unit: ElectricPotentialUnit) =
+    override fun to(unit: ElectricPotentialUnit) =
         ElectricPotential(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                           unit = unit)
 

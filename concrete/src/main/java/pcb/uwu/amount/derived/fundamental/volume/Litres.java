@@ -82,26 +82,26 @@ public class Litres extends Volume {
 
 	@NotNull
 	@Override
-	public Litres plus(@NotNull UnitAmount<VolumeUnit> other) {
-		return new Litres(plusAmount(this, other));
+	public Litres plus(@NotNull UnitAmount<VolumeUnit> amount) {
+		return new Litres(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Litres minus(@NotNull UnitAmount<VolumeUnit> other) {
-		return new Litres(minusAmount(this, other));
+	public Litres minus(@NotNull UnitAmount<VolumeUnit> amount) {
+		return new Litres(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Litres times(@NotNull Number other) {
-		return new Litres(UnitAmountUtils.times(this, other));
+	public Litres times(@NotNull Number number) {
+		return new Litres(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Litres div(@NotNull Number other) {
-		return new Litres(dividedByScalar(this, other));
+	public Litres div(@NotNull Number number) {
+		return new Litres(dividedByScalar(this, number));
 	}
 
 	// endregion

@@ -29,23 +29,23 @@ class Acceleration : CompositeUnitAmount<AccelerationUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<AccelerationUnit>) =
-        Acceleration(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<AccelerationUnit>) =
+        Acceleration(amount = this.amount + (amount to this.unit).amount,
                      unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<AccelerationUnit>) =
-        Acceleration(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<AccelerationUnit>) =
+        Acceleration(amount = this.amount - (amount to this.unit).amount,
                      unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Acceleration(amount = this.amount * other,
+    override fun times(number: Number) =
+        Acceleration(amount = this.amount * number,
                      unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Acceleration(amount = this.amount / other,
+    override fun div(number: Number) =
+        Acceleration(amount = this.amount / number,
                      unit = this.unit)
 
-    override fun into(unit: AccelerationUnit) =
+    override fun to(unit: AccelerationUnit) =
         Acceleration(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                      unit = unit)
 

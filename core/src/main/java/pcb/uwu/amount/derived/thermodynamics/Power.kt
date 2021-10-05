@@ -23,23 +23,23 @@ open class Power : CompositeUnitAmount<PowerUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<PowerUnit>) =
-        Power(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<PowerUnit>) =
+        Power(amount = this.amount + (amount to this.unit).amount,
               unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<PowerUnit>) =
-        Power(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<PowerUnit>) =
+        Power(amount = this.amount - (amount to this.unit).amount,
               unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Power(amount = this.amount * other,
+    override fun times(number: Number) =
+        Power(amount = this.amount * number,
               unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Power(amount = this.amount / other,
+    override fun div(number: Number) =
+        Power(amount = this.amount / number,
               unit = this.unit)
 
-    override fun into(unit: PowerUnit) =
+    override fun to(unit: PowerUnit) =
         Power(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
               unit = unit)
 

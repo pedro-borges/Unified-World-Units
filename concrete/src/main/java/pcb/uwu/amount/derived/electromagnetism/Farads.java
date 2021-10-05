@@ -60,30 +60,30 @@ public class Farads extends ElectricCapacitance {
 
 	@NotNull
 	@Override
-	public Farads plus(@NotNull UnitAmount<ElectricCapacitanceUnit> other) {
-		return new Farads(plusAmount(this, other));
+	public Farads plus(@NotNull UnitAmount<ElectricCapacitanceUnit> amount) {
+		return new Farads(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Farads minus(@NotNull UnitAmount<ElectricCapacitanceUnit> other) {
-		return new Farads(minusAmount(this, other));
+	public Farads minus(@NotNull UnitAmount<ElectricCapacitanceUnit> amount) {
+		return new Farads(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Farads times(@NotNull Number other) {
-		return new Farads(UnitAmountUtils.times(this, other));
+	public Farads times(@NotNull Number number) {
+		return new Farads(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Farads div(@NotNull Number other) {
-		return new Farads(dividedByScalar(this, other));
+	public Farads div(@NotNull Number number) {
+		return new Farads(dividedByScalar(this, number));
 	}
 
 	@Override
-	public Farads into(ElectricCapacitanceUnit unit) {
+	public Farads to(ElectricCapacitanceUnit unit) {
 		return new Farads(getAmountIn(this, unit));
 	}
 

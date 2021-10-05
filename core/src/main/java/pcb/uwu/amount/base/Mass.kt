@@ -26,23 +26,23 @@ open class Mass : CompositeUnitAmount<MassUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<MassUnit>) =
-        Mass(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<MassUnit>) =
+        Mass(amount = this.amount + (amount to this.unit).amount,
              unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<MassUnit>) =
-        Mass(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<MassUnit>) =
+        Mass(amount = this.amount - (amount to this.unit).amount,
              unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Mass(amount = this.amount * other,
+    override fun times(number: Number) =
+        Mass(amount = this.amount * number,
              unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Mass(amount = this.amount / other,
+    override fun div(number: Number) =
+        Mass(amount = this.amount / number,
              unit = this.unit)
 
-    override fun into(unit: MassUnit) =
+    override fun to(unit: MassUnit) =
         Mass(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
              unit = unit)
 

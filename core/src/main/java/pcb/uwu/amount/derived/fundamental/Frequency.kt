@@ -25,23 +25,23 @@ open class Frequency : CompositeUnitAmount<FrequencyUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<FrequencyUnit>) =
-        Frequency(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<FrequencyUnit>) =
+        Frequency(amount = this.amount + (amount to this.unit).amount,
                   unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<FrequencyUnit>) =
-        Frequency(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<FrequencyUnit>) =
+        Frequency(amount = this.amount - (amount to this.unit).amount,
                   unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Frequency(amount = this.amount * other,
+    override fun times(number: Number) =
+        Frequency(amount = this.amount * number,
                   unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Frequency(amount = this.amount / other,
+    override fun div(number: Number) =
+        Frequency(amount = this.amount / number,
                   unit = this.unit)
 
-    override fun into(unit: FrequencyUnit) =
+    override fun to(unit: FrequencyUnit) =
         Frequency(amount = getAmountIn(unitAmount = this, newUnit = unit),
                   unit = unit)
 

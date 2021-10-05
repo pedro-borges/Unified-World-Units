@@ -17,11 +17,11 @@ open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCount
 
     // region Unit
 
-    override val symbol = unitCounter.asString(Unit::symbol, Unit::symbol, "/")
+    override val symbol = unitCounter.asString(Unit::symbol, Unit::symbol)
 
-    override val singularName = unitCounter.asString(Unit::singularName, Unit::singularName, " per ")
+    override val singularName = unitCounter.asString(Unit::singularName, Unit::singularName)
 
-    override val pluralName = unitCounter.asString(Unit::pluralName, Unit::singularName, " per ")
+    override val pluralName = unitCounter.asString(Unit::pluralName, Unit::singularName)
 
     override val translationToCanonical: Function<BigDecimalAmount, BigDecimalAmount>
         get()

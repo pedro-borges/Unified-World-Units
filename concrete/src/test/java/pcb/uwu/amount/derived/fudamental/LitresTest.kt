@@ -18,9 +18,9 @@ class LitresTest
         assertEquals("1 l",
                      Litres(1).toString())
         assertEquals("0.001 m³",
-                     Litres(1).into(VolumeUnit(METER, METER, METER)).toString())
+                     (Litres(1) to VolumeUnit(METER, METER, METER)).toString())
         assertEquals("3030 l",
-                     Volume(amount = "3.03", unit = VolumeUnit(METER, METER, METER)).into(LITRE).toString())
+                     (Volume(amount = "3.03", unit = VolumeUnit(METER, METER, METER)) to LITRE).toString())
     }
 
     @Test

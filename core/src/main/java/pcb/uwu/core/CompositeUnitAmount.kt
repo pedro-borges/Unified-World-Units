@@ -47,31 +47,31 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<U>): UnitAmount<U>
+    override fun plus(amount: UnitAmount<U>): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.plusAmount(this, other), unit)
+        return CompositeUnitAmount(UnitAmountUtils.plusAmount(this, amount), unit)
     }
 
-    override operator fun minus(other: UnitAmount<U>): UnitAmount<U>
+    override fun minus(amount: UnitAmount<U>): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.minusAmount(this, other), unit)
+        return CompositeUnitAmount(UnitAmountUtils.minusAmount(this, amount), unit)
     }
 
-    override operator fun times(other: Number): UnitAmount<U>
+    override fun times(number: Number): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.times(this, other), unit)
+        return CompositeUnitAmount(UnitAmountUtils.times(this, number), unit)
     }
 
-    override operator fun div(other: Number): UnitAmount<U>
+    override fun div(number: Number): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.dividedByScalar(this, other), unit)
+        return CompositeUnitAmount(UnitAmountUtils.dividedByScalar(this, number), unit)
     }
 
-    override operator fun times(other: UnitAmount<out Unit>): UnitAmount<out Unit>
+    override fun times(amount: UnitAmount<out Unit>): UnitAmount<Unit>
     {
         var resultUnitCounter = UnitCounter(unit.unitCounter)
         var transformation = identity<BigDecimalAmount>()
-        for (otherUnitCount in other.unit.unitCounter.baseUnits)
+        for (otherUnitCount in amount.unit.unitCounter.baseUnits)
         {
             val resultUnitCount = resultUnitCounter[otherUnitCount.unit]
             if (resultUnitCount == EMPTY_BASE_UNIT_COUNT)
@@ -155,15 +155,15 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
                 otherMagnitude++
             }
         }
-        val resultAmount = transformation.apply(amount.times(other.amount))
+        val resultAmount = transformation.apply(this.amount.times(amount.amount))
         return CompositeUnitAmount(resultAmount, CompositeUnit(resultUnitCounter))
     }
 
-    override operator fun div(other: UnitAmount<out Unit>): UnitAmount<out Unit>
+    override fun div(amount: UnitAmount<out Unit>): UnitAmount<Unit>
     {
         var resultUnitCounter = UnitCounter(unit.unitCounter)
         var transformation = identity<BigDecimalAmount>()
-        for (otherUnitCount in other.unit.unitCounter.baseUnits)
+        for (otherUnitCount in amount.unit.unitCounter.baseUnits)
         {
             val resultUnitCount = resultUnitCounter[otherUnitCount.unit]
             if (resultUnitCount == EMPTY_BASE_UNIT_COUNT)
@@ -247,7 +247,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
                 otherMagnitude++
             }
         }
-        val resultAmount = transformation.apply(amount.div(other.amount))
+        val resultAmount = transformation.apply(this.amount.div(amount.amount))
         return CompositeUnitAmount(resultAmount, CompositeUnit(resultUnitCounter))
     }
 
@@ -258,7 +258,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
                 CompositeUnit(unit.unitCounter.invert()))
     }
 
-    override fun into(unit: U): UnitAmount<U>
+    override fun to(unit: U): UnitAmount<U>
     {
         return CompositeUnitAmount(UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit), unit)
     }

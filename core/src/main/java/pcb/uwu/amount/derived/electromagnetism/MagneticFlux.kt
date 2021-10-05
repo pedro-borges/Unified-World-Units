@@ -23,23 +23,23 @@ open class MagneticFlux : CompositeUnitAmount<MagneticFluxUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<MagneticFluxUnit>) =
-        MagneticFlux(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<MagneticFluxUnit>) =
+        MagneticFlux(amount = this.amount + (amount to this.unit).amount,
                      unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<MagneticFluxUnit>) =
-        MagneticFlux(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<MagneticFluxUnit>) =
+        MagneticFlux(amount = this.amount - (amount to this.unit).amount,
                      unit = this.unit)
 
-    override operator fun times(other: Number) =
-        MagneticFlux(amount = this.amount * other,
+    override fun times(number: Number) =
+        MagneticFlux(amount = this.amount * number,
                      unit = this.unit)
 
-    override operator fun div(other: Number) =
-        MagneticFlux(amount = this.amount / other,
+    override fun div(number: Number) =
+        MagneticFlux(amount = this.amount / number,
                      unit = this.unit)
 
-    override fun into(unit: MagneticFluxUnit) =
+    override fun to(unit: MagneticFluxUnit) =
         MagneticFlux(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                      unit = unit)
 

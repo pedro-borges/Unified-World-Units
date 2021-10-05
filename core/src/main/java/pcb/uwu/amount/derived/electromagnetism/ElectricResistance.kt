@@ -23,23 +23,23 @@ open class ElectricResistance : CompositeUnitAmount<ElectricResistanceUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<ElectricResistanceUnit>) =
-        ElectricResistance(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<ElectricResistanceUnit>) =
+        ElectricResistance(amount = this.amount + (amount to this.unit).amount,
                            unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<ElectricResistanceUnit>) =
-        ElectricResistance(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<ElectricResistanceUnit>) =
+        ElectricResistance(amount = this.amount - (amount to this.unit).amount,
                            unit = this.unit)
 
-    override operator fun times(other: Number) =
-        ElectricResistance(amount = this.amount * other,
+    override fun times(number: Number) =
+        ElectricResistance(amount = this.amount * number,
                            unit = this.unit)
 
-    override operator fun div(other: Number) =
-        ElectricResistance(amount = this.amount / other,
+    override fun div(number: Number) =
+        ElectricResistance(amount = this.amount / number,
                            unit = this.unit)
 
-    override fun into(unit: ElectricResistanceUnit) =
+    override fun to(unit: ElectricResistanceUnit) =
         ElectricResistance(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                            unit = unit)
 

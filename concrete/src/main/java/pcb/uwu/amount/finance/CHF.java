@@ -48,26 +48,26 @@ public class CHF extends Money {
 
 	@NotNull
 	@Override
-	public CHF plus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new CHF(plusAmount(this, other));
+	public CHF plus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new CHF(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public CHF minus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new CHF(minusAmount(this, other));
+	public CHF minus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new CHF(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public CHF times(@NotNull Number other) {
-		return new CHF(UnitAmountUtils.times(this, other));
+	public CHF times(@NotNull Number number) {
+		return new CHF(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public CHF div(@NotNull Number other) {
-		return new CHF(dividedByScalar(this, other));
+	public CHF div(@NotNull Number number) {
+		return new CHF(dividedByScalar(this, number));
 	}
 
 	// endregion

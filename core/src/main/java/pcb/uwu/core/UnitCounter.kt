@@ -109,8 +109,8 @@ class UnitCounter
         get() = counts.values
 
     fun asString(majorString: Function<Unit, String>,
-                 minorString: Function<Unit, String>,
-                 separator: String): String
+                 minorString: Function<Unit, String>)
+            : String
     {
         val result = StringBuilder()
         val baseUnits = counts.values.asSequence()
@@ -139,24 +139,24 @@ class UnitCounter
 
     private fun buildPower(power: Int): String
     {
-        var power = power
+        var mutablePower = power
         val result = StringBuilder()
-        val negative = power < 0
+        val negative = mutablePower < 0
 
         // Omit neutral power of 1
-        if (power == 1)
+        if (mutablePower == 1)
         {
             return result.toString()
         }
-        if (power == 0)
+        if (mutablePower == 0)
         {
             return POWERS[0].toString()
         }
-        power = abs(power)
-        while (power > 0)
+        mutablePower = abs(mutablePower)
+        while (mutablePower > 0)
         {
-            result.insert(0, POWERS[power % 10])
-            power /= 10
+            result.insert(0, POWERS[mutablePower % 10])
+            mutablePower /= 10
         }
         return if (negative)
         {

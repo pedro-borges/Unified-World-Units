@@ -26,23 +26,23 @@ class Rent : CompositeUnitAmount<RentUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<RentUnit>) =
-        Rent(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<RentUnit>) =
+        Rent(amount = this.amount + (amount to this.unit).amount,
              unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<RentUnit>) =
-        Rent(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<RentUnit>) =
+        Rent(amount = this.amount - (amount to this.unit).amount,
              unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Rent(amount = this.amount * other,
+    override fun times(number: Number) =
+        Rent(amount = this.amount * number,
              unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Rent(amount = this.amount / other,
+    override fun div(number: Number) =
+        Rent(amount = this.amount / number,
              unit = this.unit)
 
-    override fun into(unit: RentUnit) =
+    override fun to(unit: RentUnit) =
         Rent(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
              unit = unit)
 
@@ -50,8 +50,8 @@ class Rent : CompositeUnitAmount<RentUnit>
 
     // region composition
 
-    fun times(time: Time) =
-        Money(amount = (this * time).amount,
+    operator fun times(time: Time) =
+        Money(amount = super.times(time).amount,
               unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
     // endregion

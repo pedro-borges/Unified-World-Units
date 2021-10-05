@@ -56,26 +56,26 @@ public class Celsius extends Temperature {
 
 	@NotNull
 	@Override
-	public Celsius plus(@NotNull UnitAmount<TemperatureUnit> other) {
-		return new Celsius(plusAmount(this, other));
+	public Celsius plus(@NotNull UnitAmount<TemperatureUnit> amount) {
+		return new Celsius(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Celsius minus(@NotNull UnitAmount<TemperatureUnit> other) {
-		return new Celsius(minusAmount(this, other));
+	public Celsius minus(@NotNull UnitAmount<TemperatureUnit> amount) {
+		return new Celsius(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Celsius times(@NotNull Number other) {
-		return new Celsius(UnitAmountUtils.times(this, other));
+	public Celsius times(@NotNull Number number) {
+		return new Celsius(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Celsius div(@NotNull Number other) {
-		return new Celsius(dividedByScalar(this, other));
+	public Celsius div(@NotNull Number number) {
+		return new Celsius(dividedByScalar(this, number));
 	}
 
 	// endregion

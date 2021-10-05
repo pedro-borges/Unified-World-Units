@@ -56,26 +56,26 @@ public class KiloGrams extends Mass {
 
 	@NotNull
 	@Override
-	public KiloGrams plus(@NotNull UnitAmount<MassUnit> other) {
-		return new KiloGrams(plusAmount(this, other));
+	public KiloGrams plus(@NotNull UnitAmount<MassUnit> amount) {
+		return new KiloGrams(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public KiloGrams minus(@NotNull UnitAmount<MassUnit> other) {
-		return new KiloGrams(minusAmount(this, other));
+	public KiloGrams minus(@NotNull UnitAmount<MassUnit> amount) {
+		return new KiloGrams(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public KiloGrams times(@NotNull Number other) {
-		return new KiloGrams(UnitAmountUtils.times(this, other));
+	public KiloGrams times(@NotNull Number number) {
+		return new KiloGrams(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public KiloGrams div(@NotNull Number other) {
-		return new KiloGrams(dividedByScalar(this, other));
+	public KiloGrams div(@NotNull Number number) {
+		return new KiloGrams(dividedByScalar(this, number));
 	}
 
 	// endregion

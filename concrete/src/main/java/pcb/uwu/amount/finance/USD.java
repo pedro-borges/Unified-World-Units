@@ -48,26 +48,26 @@ public class USD extends Money {
 
 	@NotNull
 	@Override
-	public USD plus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new USD(plusAmount(this, other));
+	public USD plus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new USD(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public USD minus(@NotNull UnitAmount<CurrencyUnit> other) {
-		return new USD(minusAmount(this, other));
+	public USD minus(@NotNull UnitAmount<CurrencyUnit> amount) {
+		return new USD(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public USD times(@NotNull Number other) {
-		return new USD(UnitAmountUtils.times(this, other));
+	public USD times(@NotNull Number number) {
+		return new USD(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public USD div(@NotNull Number other) {
-		return new USD(dividedByScalar(this, other));
+	public USD div(@NotNull Number number) {
+		return new USD(dividedByScalar(this, number));
 	}
 
 	// endregion

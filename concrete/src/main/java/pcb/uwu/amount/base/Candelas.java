@@ -66,26 +66,26 @@ public class Candelas extends LuminousIntensity {
 
 	@NotNull
 	@Override
-	public Candelas plus(@NotNull UnitAmount<LuminousIntensityUnit> other) {
-		return new Candelas(plusAmount(this, other));
+	public Candelas plus(@NotNull UnitAmount<LuminousIntensityUnit> amount) {
+		return new Candelas(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Candelas minus(@NotNull UnitAmount<LuminousIntensityUnit> other) {
-		return new Candelas(minusAmount(this, other));
+	public Candelas minus(@NotNull UnitAmount<LuminousIntensityUnit> amount) {
+		return new Candelas(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Candelas times(@NotNull Number other) {
-		return new Candelas(UnitAmountUtils.times(this, other));
+	public Candelas times(@NotNull Number number) {
+		return new Candelas(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Candelas div(@NotNull Number other) {
-		return new Candelas(dividedByScalar(this, other));
+	public Candelas div(@NotNull Number number) {
+		return new Candelas(dividedByScalar(this, number));
 	}
 
 	// endregion

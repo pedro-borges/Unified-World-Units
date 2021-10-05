@@ -56,26 +56,26 @@ public class Weeks extends Time {
 
 	@NotNull
 	@Override
-	public Weeks plus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Weeks(plusAmount(this, other));
+	public Weeks plus(@NotNull UnitAmount<TimeUnit> amount) {
+		return new Weeks(plusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Weeks minus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Weeks(minusAmount(this, other));
+	public Weeks minus(@NotNull UnitAmount<TimeUnit> amount) {
+		return new Weeks(minusAmount(this, amount));
 	}
 
 	@NotNull
 	@Override
-	public Weeks times(@NotNull Number other) {
-		return new Weeks(UnitAmountUtils.times(this, other));
+	public Weeks times(@NotNull Number number) {
+		return new Weeks(UnitAmountUtils.times(this, number));
 	}
 
 	@NotNull
 	@Override
-	public Weeks div(@NotNull Number other) {
-		return new Weeks(dividedByScalar(this, other));
+	public Weeks div(@NotNull Number number) {
+		return new Weeks(dividedByScalar(this, number));
 	}
 
 	// endregion

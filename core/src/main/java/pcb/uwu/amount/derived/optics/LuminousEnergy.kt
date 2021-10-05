@@ -23,23 +23,23 @@ open class LuminousEnergy : CompositeUnitAmount<LuminousEnergyUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<LuminousEnergyUnit>) =
-        LuminousEnergy(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<LuminousEnergyUnit>) =
+        LuminousEnergy(amount = this.amount + (amount to this.unit).amount,
                        unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<LuminousEnergyUnit>) =
-        LuminousEnergy(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<LuminousEnergyUnit>) =
+        LuminousEnergy(amount = this.amount - (amount to this.unit).amount,
                        unit = this.unit)
 
-    override operator fun times(other: Number) =
-        LuminousEnergy(amount = this.amount * other,
+    override fun times(number: Number) =
+        LuminousEnergy(amount = this.amount * number,
                        unit = this.unit)
 
-    override operator fun div(other: Number) =
-        LuminousEnergy(amount = this.amount / other,
+    override fun div(number: Number) =
+        LuminousEnergy(amount = this.amount / number,
                        unit = this.unit)
 
-    override fun into(unit: LuminousEnergyUnit) =
+    override fun to(unit: LuminousEnergyUnit) =
         LuminousEnergy(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                        unit = unit)
 

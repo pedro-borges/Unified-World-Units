@@ -24,27 +24,27 @@ class Meters : Length
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<LengthUnit>) =
-        Meters(this.amount + other.into(METER).amount)
+    override fun plus(amount: UnitAmount<LengthUnit>) =
+        Meters(this.amount + (amount to METER).amount)
 
-    override operator fun minus(other: UnitAmount<LengthUnit>) =
-        Meters(this.amount - other.into(METER).amount)
+    override fun minus(amount: UnitAmount<LengthUnit>) =
+        Meters(this.amount - (amount to METER).amount)
 
-    override operator fun times(other: Number) =
-        Meters(this.amount * other)
+    override fun times(number: Number) =
+        Meters(this.amount * number)
 
-    override operator fun div(other: Number) =
-        Meters(this.amount / other)
+    override fun div(number: Number) =
+        Meters(this.amount / number)
 
     // endregion
 
     // region composition
 
-    override operator fun times(length: Length) =
-        SquareMeters(this.amount * length.into(METER).amount)
+    override fun times(length: Length) =
+        SquareMeters(this.amount * (length to METER).amount)
 
-    override operator fun times(force: Force) =
-        Joules(this.amount * force.into(NEWTON).amount)
+    override fun times(force: Force) =
+        Joules(this.amount * (force to NEWTON).amount)
 
     // endregion
 }

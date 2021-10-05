@@ -23,23 +23,23 @@ open class Volume : CompositeUnitAmount<VolumeUnit>
 
     // region UnitAmount
 
-    override operator fun plus(other: UnitAmount<VolumeUnit>) =
-        Volume(amount = this.amount + other.into(this.unit).amount,
+    override fun plus(amount: UnitAmount<VolumeUnit>) =
+        Volume(amount = this.amount + (amount to this.unit).amount,
                unit = this.unit)
 
-    override operator fun minus(other: UnitAmount<VolumeUnit>) =
-        Volume(amount = this.amount - other.into(this.unit).amount,
+    override fun minus(amount: UnitAmount<VolumeUnit>) =
+        Volume(amount = this.amount - (amount to this.unit).amount,
                unit = this.unit)
 
-    override operator fun times(other: Number) =
-        Volume(amount = this.amount * other,
+    override fun times(number: Number) =
+        Volume(amount = this.amount * number,
                unit = this.unit)
 
-    override operator fun div(other: Number) =
-        Volume(amount = this.amount / other,
+    override fun div(number: Number) =
+        Volume(amount = this.amount / number,
                unit = this.unit)
 
-    override fun into(unit: VolumeUnit) =
+    override fun to(unit: VolumeUnit) =
         Volume(amount = getAmountIn(unitAmount = this, newUnit = unit),
                unit = unit)
 

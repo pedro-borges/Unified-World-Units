@@ -25,7 +25,7 @@ abstract class BaseUnit(private val precedence: Int,
 
     override fun compareTo(other: BaseUnit): Int
     {
-        return other.precedence - precedence
+        return this.precedence - other.precedence
     }
 
     //endregion
