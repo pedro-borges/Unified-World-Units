@@ -171,7 +171,7 @@ class Amount(val amount: BigDecimal) : Number(), Comparable<Amount>
     {
         if (this === other) return true
         if (other !is Amount) return false
-        return amount == other.amount
+        return amount.stripTrailingZeros() == other.amount.stripTrailingZeros()
     }
 
     override fun hashCode(): Int

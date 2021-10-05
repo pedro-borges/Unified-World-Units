@@ -14,6 +14,6 @@ class RunningCostTest
     {
         val duration = Meters(70, KILO) / (Meters(13, KILO) / Hours(1))
         val cost = GBP(18) / Hours(1)
-        assertEquals("96.92 £", (cost * duration).toString())
+        assertEquals(GBP(96.92), cost * duration)
     }
 }

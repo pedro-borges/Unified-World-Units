@@ -9,7 +9,7 @@ class SteradiansTest
 {
     @Test
     fun multipliedByLuminousIntensity() =
-        assertEquals(Lumens(39),
-                     Steradians(13).times(Candelas(3)))
+        assertEquals(expected = Lumens(39),
+                     actual = Steradians(13) * Candelas(3))
 
 }

@@ -1,7 +1,9 @@
 package pcb.uwu.amount.derived.area
 
+import pcb.uwu.amount.base.Candelas
 import pcb.uwu.amount.base.Meters
 import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.optics.Lumens
 import pcb.uwu.amount.derived.optics.Lux
 import pcb.uwu.amount.derived.optics.Nits
 import pcb.uwu.core.Magnitude.DECI
@@ -15,33 +17,33 @@ class SquareMetersTest
     @Test
     fun circleFactory()
     {
-        assertEquals(expected = "0.03141592653589793115997963468544185 m²",
-                     actual = SquareMeters.FOR.circle(Meters(1, DECI)).toString())
-        assertEquals(expected = "3.141592653589793115997963468544185 m²",
-                     actual = SquareMeters.FOR.circle(Meters(1)).toString())
-        assertEquals(expected = "314.1592653589793115997963468544185 m²",
-                     actual = SquareMeters.FOR.circle(Meters(1, DEKA)).toString())
+        assertEquals(expected = SquareMeters("0.03141592653589793115997963468544185"),
+                     actual = SquareMeters.FOR.circle(Meters(1, DECI)))
+        assertEquals(expected = SquareMeters("3.141592653589793115997963468544185"),
+                     actual = SquareMeters.FOR.circle(Meters(1)))
+        assertEquals(expected = SquareMeters("314.1592653589793115997963468544185"),
+                     actual = SquareMeters.FOR.circle(Meters(1, DEKA)))
     }
 
     @Test
     fun squareFactory()
     {
-        assertEquals(expected = "0.01 m²",
-                     actual = SquareMeters.FOR.square(Meters(1, DECI)).toString())
-        assertEquals(expected = "1 m²",
-                     actual = SquareMeters.FOR.square(Meters(1)).toString())
-        assertEquals(expected = "100 m²",
-                     actual = SquareMeters.FOR.square(Meters(1, DEKA)).toString())
+        assertEquals(expected = SquareMeters(0.01),
+                     actual = SquareMeters.FOR.square(Meters(1, DECI)))
+        assertEquals(expected = SquareMeters(1),
+                     actual = SquareMeters.FOR.square(Meters(1)))
+        assertEquals(expected = SquareMeters(100),
+                     actual = SquareMeters.FOR.square(Meters(1, DEKA)))
     }
 
     @Test
     fun multipliedByLuminance() =
-        assertEquals(expected = "2 cd",
-                     actual = (SquareMeters(500, MILLI) * Nits(4)).toString())
+        assertEquals(expected = Candelas(2),
+                     actual = SquareMeters(500, MILLI) * Nits(4))
 
     @Test
     fun multipliedByIlluminance() =
-        assertEquals(expected = "2 lm",
-                     actual = (SquareMeters(500, MILLI) * Lux(4)).toString())
+        assertEquals(expected = Lumens(2),
+                     actual = SquareMeters(500, MILLI) * Lux(4))
 
 }

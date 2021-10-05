@@ -1,6 +1,7 @@
 package pcb.uwu.amount.base
 
 import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.optics.Lumens
 import pcb.uwu.amount.derived.optics.Nits
 import pcb.uwu.amount.derived.scalar.Steradians
 import kotlin.test.Test
@@ -10,16 +11,16 @@ class CandelasTest
 {
     @Test
     fun multipliedBySolidAngle() =
-        assertEquals(expected = "54 lm",
-                     actual = (Candelas(18) * Steradians(3)).toString())
+        assertEquals(expected = Lumens(54),
+                     actual = Candelas(18) * Steradians(3))
 
     @Test
     fun dividedByArea() =
-        assertEquals(expected = "6 nit",
-                     actual = (Candelas(18) / SquareMeters(3)).toString())
+        assertEquals(expected = Nits(6),
+                     actual = Candelas(18) / SquareMeters(3))
 
     @Test
     fun dividedByLuminance() =
-        assertEquals(expected = "3 m²",
-                     actual = (Candelas(18) / Nits(6)).toString())
+        assertEquals(expected = SquareMeters(3),
+                     actual = Candelas(18) / Nits(6))
 }

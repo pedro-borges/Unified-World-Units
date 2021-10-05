@@ -11,27 +11,27 @@ class LumensTest
 {
     @Test
     fun dividedBySolidAngle() =
-        assertEquals("11 cd",
-                     Lumens(22).div(Steradians(2)).toString())
+        assertEquals(expected = Candelas(11),
+                     actual = Lumens(22) / Steradians(2))
 
     @Test
     fun dividedByLuminousIntensity() =
-        assertEquals("2 sr",
-                     Lumens(22).div(Candelas(11)).toString())
+        assertEquals(expected = Steradians(2),
+                     actual = Lumens(22) / Candelas(11))
 
     @Test
     fun dividedByArea() =
-        assertEquals("2 lx",
-                     Lumens(22).div(SquareMeters(11)).toString())
+        assertEquals(expected = Lux(2),
+                     actual = Lumens(22) / SquareMeters(11))
 
     @Test
     fun dividedByIlluminance() =
-        assertEquals("11 m²",
-                     Lumens(22).div(Lux(2)).toString())
+        assertEquals(expected = SquareMeters(11),
+                     actual = Lumens(22) / Lux(2))
 
     @Test
     fun multipliedByTime() =
-        assertEquals("66 T",
-                     Lumens(22).times(Seconds(3)).toString())
+        assertEquals(expected = Talbots(66),
+                     actual = Lumens(22) * Seconds(3))
 
 }

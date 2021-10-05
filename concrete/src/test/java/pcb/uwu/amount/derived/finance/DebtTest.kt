@@ -13,21 +13,18 @@ class DebtTest
 {
     @Test
     fun multipliedByInterestRate() =
-        assertEquals("84 US$",
-                     Debt(amount = 60,
-                          unit = DebtUnit(USD, WeekUnit)).times(InterestRate(amount = "0.2", unit = PerDayUnit))
-                         .toString())
+        assertEquals(expected = USD(amount = 84),
+                     actual = Debt(amount = 60, unit = DebtUnit(USD, WeekUnit)) * InterestRate(amount = 0.2,
+                                                                                               unit = PerDayUnit))
 
     @Test
     fun dividedByTime() =
-        assertEquals("30 US$",
-                     Debt(amount = 60,
-                          unit = DebtUnit(USD, WeekUnit)).div(Weeks(2)).toString())
+        assertEquals(expected = USD(30),
+                     actual = Debt(amount = 60, unit = DebtUnit(USD, WeekUnit)) / Weeks(2))
 
     @Test
     fun dividedByMoney() =
-        assertEquals("3 wk",
-                     Debt(amount = 60,
-                          unit = DebtUnit(USD, WeekUnit)).div(USD(20)).toString())
+        assertEquals(expected = Weeks(3),
+                     actual = Debt(amount = 60, unit = DebtUnit(USD, WeekUnit)) / USD(20))
 
 }

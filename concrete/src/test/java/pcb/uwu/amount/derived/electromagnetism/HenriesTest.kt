@@ -8,14 +8,8 @@ import kotlin.test.assertEquals
 class HenriesTest
 {
     @Test
-    fun multipliedByElectricCurrent()
-    {
-        assertEquals(expected = "0.035 Wb",
-                     actual = (henries * Amperes(7, MILLI)).toString())
-    }
+    fun multipliedByElectricCurrent() =
+        assertEquals(expected = Webbers(0.035),
+                     actual = Henries(5) * Amperes(7, MILLI))
 
-    companion object
-    {
-        private val henries = Henries(5)
-    }
 }

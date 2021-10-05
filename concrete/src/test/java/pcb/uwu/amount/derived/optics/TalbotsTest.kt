@@ -8,12 +8,12 @@ class TalbotsTest
 {
     @Test
     fun dividedByLuminousFlux() =
-        assertEquals("10 s",
-                     Talbots(50).div(Lumens(5)).toString())
+        assertEquals(Seconds(10),
+                     Talbots(50) / Lumens(5))
 
     @Test
     fun dividedByTime() =
-        assertEquals("5 lm",
-                     Talbots(50).div(Seconds(10)).toString())
+        assertEquals(Lumens(5),
+                     Talbots(50) / Seconds(10))
 
 }

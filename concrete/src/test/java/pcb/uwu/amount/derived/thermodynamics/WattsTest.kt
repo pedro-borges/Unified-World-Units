@@ -11,16 +11,16 @@ class WattsTest
 {
     @Test
     fun multipliedByTime() =
-        assertEquals("300 J",
-                     Watts(20).times(Seconds(15)).toString())
+        assertEquals(Joules(300),
+                     Watts(20) * Seconds(15))
 
     @Test
     fun dividedByElectricCurrent() =
-        assertEquals("200 V",
-                     Watts(20).div(Amperes(100, MILLI)).toString())
+        assertEquals(Volts(200),
+                     Watts(20) / Amperes(100, MILLI))
 
     @Test
     fun dividedByElectricPotential() =
-        assertEquals("0.1 A",
-                     Watts(20).div(Volts(200)).toString())
+        assertEquals(Amperes(0.1),
+                     Watts(20) / Volts(200))
 }

@@ -9,7 +9,7 @@ class TeslasTest
 {
     @Test
     fun multipliedByArea() =
-        assertEquals(expected = "4 Wb",
-                     actual = (Teslas(2) * Area(amount = 2, unit = SquareMeterUnit)).toString())
+        assertEquals(expected = Webbers(4),
+                     actual = Teslas(2) * Area(amount = 2, unit = SquareMeterUnit))
 
 }

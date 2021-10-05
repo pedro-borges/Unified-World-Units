@@ -59,17 +59,17 @@ open class Speed : CompositeUnitAmount<SpeedUnit>
 
     // region composition
 
-    fun div(time: Time) =
+    open operator fun div(time: Time) =
         Acceleration(amount = this.amount / time.amount,
                      unit = AccelerationUnit(lengthUnit = this.unit,
                                              timeUnit = time.unit))
 
-    open fun div(acceleration: Acceleration) =
-        Time(amount = (this / acceleration).amount,
+    open operator fun div(acceleration: Acceleration) =
+        Time(amount = super.div(acceleration).amount,
              unit = this.unit.unitCounter.findUnit(TimeUnit::class)!!)
 
-    open fun times(time: Time) =
-        Length(amount = (this * time).amount,
+    open operator fun times(time: Time) =
+        Length(amount = super.times(time).amount,
                unit = this.unit.unitCounter.findUnit(LengthUnit::class)!!)
 
     // endregion

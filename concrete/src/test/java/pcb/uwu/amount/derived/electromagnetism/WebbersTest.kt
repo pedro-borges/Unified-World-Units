@@ -3,6 +3,8 @@ package pcb.uwu.amount.derived.electromagnetism
 import pcb.uwu.amount.base.Amperes
 import pcb.uwu.amount.base.Seconds
 import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.thermodynamics.Joules
 import pcb.uwu.core.Magnitude.KILO
 import pcb.uwu.core.Magnitude.MILLI
 import pcb.uwu.unit.derived.area.SquareMeterUnit
@@ -13,37 +15,37 @@ class WebbersTest
 {
     @Test
     fun dividedByTime() =
-        assertEquals("2 V",
-                     Webbers(12).div(Seconds(6)).toString())
+        assertEquals(expected = Volts(2),
+                     actual = Webbers(12) / Seconds(6))
 
     @Test
     fun dividedByElectricPotential() =
-        assertEquals("6 s",
-                     Webbers(12).div(Volts(2)).toString())
+        assertEquals(expected = Seconds(6),
+                     actual = Webbers(12) / Volts(2))
 
     @Test
     fun dividedByElectricCurrent() =
-        assertEquals("2000 H",
-                     Webbers(12).div(Amperes(6, MILLI)).toString())
+        assertEquals(expected = Henries(2000),
+                     actual = Webbers(12) / Amperes(6, MILLI))
 
     @Test
     fun dividedByElectricInductance() =
-        assertEquals("0.006 A",
-                     Webbers(12).div(Henries(2, KILO)).toString())
+        assertEquals(expected = Amperes(0.006),
+                     actual = Webbers(12) / Henries(2, KILO))
 
     @Test
     fun dividedByMagneticField() =
-        assertEquals("2 m²",
-                     Webbers(12).div(Teslas(6)).toString())
+        assertEquals(expected = SquareMeters(2),
+                     actual = Webbers(12) / Teslas(6))
 
     @Test
     fun dividedByArea() =
-        assertEquals("6 T",
-                     Webbers(12).div(Area(amount = 2, unit = SquareMeterUnit)).toString())
+        assertEquals(expected = Teslas(6),
+                     actual = Webbers(12) / Area(amount = 2, unit = SquareMeterUnit))
 
     @Test
     fun multiplyByElectricCurrent() =
-        assertEquals("0.6 J",
-                     Webbers(12).times(Amperes(50, MILLI)).toString())
+        assertEquals(expected = Joules(0.6),
+                     actual = Webbers(12) * Amperes(50, MILLI))
 
 }

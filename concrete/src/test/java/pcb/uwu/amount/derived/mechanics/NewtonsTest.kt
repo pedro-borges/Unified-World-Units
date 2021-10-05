@@ -2,12 +2,9 @@ package pcb.uwu.amount.derived.mechanics
 
 import pcb.uwu.amount.base.KiloGrams
 import pcb.uwu.amount.base.Meters
-import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.thermodynamics.Joules
 import pcb.uwu.amount.derived.thermodynamics.Pascals
-import pcb.uwu.unit.base.MeterUnit
-import pcb.uwu.unit.base.SecondUnit
-import pcb.uwu.unit.derived.area.SquareMeterUnit
-import pcb.uwu.unit.derived.mechanics.AccelerationUnit
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -15,27 +12,26 @@ class NewtonsTest
 {
     @Test
     fun dividedByAcceleration() =
-        assertEquals("4 Kg",
-                     Newtons(12).div(Acceleration(amount = 3, unit = AccelerationUnit(MeterUnit, SecondUnit)))
-                         .toString())
+        assertEquals(expected = KiloGrams(amount = 4),
+                     actual = Newtons(12) / MetersPerSquareSecond(3))
 
     @Test
     fun dividedByMass() =
-        assertEquals("3 m⋅s⁻²",
-                     Newtons(12).div(KiloGrams(4)).toString())
+        assertEquals(expected = MetersPerSquareSecond(3),
+                     actual = Newtons(12) / KiloGrams(4))
 
     @Test
     fun multipliedByLength() =
-        assertEquals("60 J",
-                     Newtons(12).times(Meters(5)).toString())
+        assertEquals(expected = Joules(60),
+                     actual = Newtons(12) * Meters(5))
 
     @Test
     fun dividedByPressure() =
-        assertEquals("4 m²",
-                     Newtons(12).div(Pascals(3)).toString())
+        assertEquals(expected = SquareMeters(4),
+                     actual = Newtons(12) / Pascals(3))
 
     @Test
     fun dividedByArea() =
-        assertEquals("3 Pa",
-                     Newtons(12).div(Area(amount = 4, unit = SquareMeterUnit)).toString())
+        assertEquals(expected = Pascals(3),
+                     actual = Newtons(12) / SquareMeters(4))
 }

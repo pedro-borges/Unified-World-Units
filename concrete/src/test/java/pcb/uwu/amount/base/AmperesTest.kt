@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base
 
+import pcb.uwu.amount.derived.electromagnetism.Coulombs
 import pcb.uwu.amount.derived.electromagnetism.Ohms
 import pcb.uwu.amount.derived.electromagnetism.Siemens
 import pcb.uwu.amount.derived.electromagnetism.Volts
@@ -12,21 +13,21 @@ class AmperesTest
 {
     @Test
     fun multipliedByTime() =
-        assertEquals(expected = "0.24 C",
-                     actual = (Amperes(2, MILLI) * Minutes(2)).toString())
+        assertEquals(expected = Coulombs(0.24),
+                     actual = Amperes(2, MILLI) * Minutes(2))
 
     @Test
     fun multipliedByElectricResistance() =
-        assertEquals(expected = "4 V",
-                     actual = (Amperes(2, MILLI) * Ohms(2, KILO)).toString())
+        assertEquals(expected = Volts(4),
+                     actual = Amperes(2, MILLI) * Ohms(2, KILO))
 
     @Test
     fun dividedByElectricalPotential() =
-        assertEquals(expected = "2 S",
-                     actual = (Amperes(2, MILLI) / Volts(1, MILLI)).toString())
+        assertEquals(expected = Siemens(2),
+                     actual = Amperes(2, MILLI) / Volts(1, MILLI))
 
     @Test
     fun dividedByElectricalConductance() =
-        assertEquals(expected = "0.001 V",
-                     actual = (Amperes(2, MILLI) / Siemens(2)).toString())
+        assertEquals(expected = Volts("0.001"),
+                     actual = Amperes(2, MILLI) / Siemens(2))
 }

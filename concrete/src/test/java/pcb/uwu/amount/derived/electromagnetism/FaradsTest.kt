@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism
 
+import pcb.uwu.amount.base.Seconds
 import pcb.uwu.core.Magnitude.KILO
 import pcb.uwu.core.Magnitude.MICRO
 import kotlin.test.Test
@@ -9,11 +10,11 @@ class FaradsTest
 {
     @Test
     fun multipliedByElectricPotential() =
-        assertEquals(expected = "0.002 C",
-                     actual = (Farads(100, MICRO) * Volts(20)).toString())
+        assertEquals(expected = Coulombs(0.002),
+                     actual = Farads(100, MICRO) * Volts(20))
 
     @Test
     fun multipliedByElectricResistance() =
-        assertEquals(expected = "0.2 s",
-                     actual = (Farads(100, MICRO) * Ohms(2, KILO)).toString())
+        assertEquals(expected = Seconds(0.2),
+                     actual = Farads(100, MICRO) * Ohms(2, KILO))
 }

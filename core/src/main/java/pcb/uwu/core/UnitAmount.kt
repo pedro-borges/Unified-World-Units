@@ -10,9 +10,9 @@ interface UnitAmount<U : Unit> : Comparable<UnitAmount<U>>
 
     operator fun minus(amount: UnitAmount<U>): UnitAmount<U>
 
-    operator fun times(amount: UnitAmount<out Unit>): UnitAmount<Unit>
+    operator fun times(amount: UnitAmount<out Unit>): UnitAmount<out Unit>
 
-    operator fun div(amount: UnitAmount<out Unit>): UnitAmount<Unit>
+    operator fun div(amount: UnitAmount<out Unit>): UnitAmount<out Unit>
 
     operator fun times(scalar: Number): UnitAmount<U>
 

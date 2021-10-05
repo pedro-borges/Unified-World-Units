@@ -11,7 +11,7 @@ import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.unit.derived.finance.DebtUnit
 import pcb.uwu.util.UnitAmountUtils
 
-class Debt : CompositeUnitAmount<DebtUnit>
+open class Debt : CompositeUnitAmount<DebtUnit>
 {
     @JvmOverloads
     constructor(amount: Number,
@@ -53,16 +53,16 @@ class Debt : CompositeUnitAmount<DebtUnit>
 
     // region composition
 
-    fun times(interestRate: InterestRate) =
-        Currency(amount = (this * interestRate).amount,
+    open operator fun times(interestRate: InterestRate) =
+        Currency(amount = super.times(interestRate).amount,
                  unit = this.unit.unitCounter.findUnit(CurrencyUnit::class)!!)
 
-    fun div(time: Time) =
-        Currency(amount = (this / time).amount,
+    open operator fun div(time: Time) =
+        Currency(amount = super.div(time).amount,
                  unit = this.unit.unitCounter.findUnit(CurrencyUnit::class)!!)
 
-    fun div(currency: Currency) =
-        Time(amount = (this / currency).amount,
+    open operator fun div(currency: Currency) =
+        Time(amount = super.div(currency).amount,
              unit = this.unit.unitCounter.findUnit(TimeUnit::class)!!)
 
     // endregion

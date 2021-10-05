@@ -1,9 +1,7 @@
 package pcb.uwu.amount.base
 
 import pcb.uwu.core.Amount
-import pcb.uwu.exception.InvalidCurrencyException
 import pcb.uwu.unit.base.CurrencyUnit.Companion.GBP
-import pcb.uwu.unit.base.CurrencyUnit.Companion.USD
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -23,20 +21,8 @@ class CurrencyTest
         assertEquals(Currency(amount = 11, unit = GBP),
                      Currency(amount = 1, unit = GBP) + Currency(amount = 10, unit = GBP))
 
-    @Test(expected = InvalidCurrencyException::class)
-    fun testPlusDifferentCurrency()
-    {
-        Currency(amount = 1, unit = GBP) + Currency(amount = 10, unit = USD)
-    }
-
     @Test
     fun testMinusSameCurrency() =
         assertEquals(Currency(amount = -9, unit = GBP),
                      Currency(amount = 1, unit = GBP) - Currency(amount = 10, unit = GBP))
-
-    @Test(expected = InvalidCurrencyException::class)
-    fun testMinusDifferentCurrency()
-    {
-        Currency(amount = 1, unit = GBP) - Currency(amount = 10, unit = USD)
-    }
 }

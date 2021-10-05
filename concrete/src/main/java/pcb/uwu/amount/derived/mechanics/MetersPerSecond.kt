@@ -44,6 +44,9 @@ class MetersPerSecond : Speed
     override fun times(time: Time) =
         Meters(this.amount * (time to SecondUnit).amount)
 
+    override fun div(time: Time) =
+        MetersPerSquareSecond(this.amount / (time to SecondUnit).amount)
+
     override fun div(acceleration: Acceleration) =
         Seconds(this.amount / (acceleration to AccelerationUnit(MeterPerSecondUnit, SecondUnit)).amount)
 

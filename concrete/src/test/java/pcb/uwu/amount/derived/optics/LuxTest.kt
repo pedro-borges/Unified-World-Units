@@ -9,7 +9,7 @@ class LuxTest
 {
     @Test
     fun multipliedByArea() =
-        assertEquals(expected = "200 lm",
-                     actual = Lux(2000).times(SquareMeters(100, MILLI)).toString())
+        assertEquals(expected = Lumens(200),
+                     actual = Lux(2000) * SquareMeters(100, MILLI))
 
 }

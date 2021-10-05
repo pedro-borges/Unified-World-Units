@@ -6,14 +6,15 @@ import pcb.uwu.unit.base.LengthUnit
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.base.TimeUnit
 
-class AccelerationUnit : CompositeUnit
+open class AccelerationUnit : CompositeUnit
 {
     constructor(lengthUnit: LengthUnit,
-                timeUnit: TimeUnit)
+                timeUnit1: TimeUnit,
+                timeUnit2: TimeUnit)
             : super(UnitCounter()
                         .major(lengthUnit)
-                        .minor(timeUnit)
-                        .minor(timeUnit))
+                        .minor(timeUnit1)
+                        .minor(timeUnit2))
 
     constructor(lengthUnit: SpeedUnit,
                 timeUnit: TimeUnit)

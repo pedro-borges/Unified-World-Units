@@ -6,7 +6,6 @@ import pcb.uwu.util.UnitAmountUtils
 import pcb.uwu.util.andThen
 import pcb.uwu.util.hash
 import pcb.uwu.util.identity
-import java.math.BigDecimal
 
 open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 {
@@ -19,28 +18,19 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL,
                 unit: U)
-            : this(amount.toString(), magnitude, unit)
+            : this(Amount(amount), magnitude, unit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL,
                 unit: U)
-            : this(BigDecimal(amount), magnitude, unit)
-
-    @JvmOverloads
-    constructor(amount: BigDecimal,
-                magnitude: Magnitude = NATURAL,
-                unit: U)
             : this(Amount(amount), magnitude, unit)
 
-    constructor(amount: Amount,
-                magnitude: Magnitude = NATURAL,
-                unit: U)
-            : this(amount.times(magnitude.amount), unit)
-
-    constructor(amount: Amount, unit: U)
+    internal constructor(amount: Amount,
+                        magnitude: Magnitude = NATURAL,
+                        unit: U)
     {
-        this.amount = amount
+        this.amount = amount.times(magnitude.amount)
         this.unit = unit
     }
 
@@ -50,22 +40,26 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 
     override fun plus(amount: UnitAmount<U>): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.plusAmount(this, amount), unit)
+        return CompositeUnitAmount(amount = UnitAmountUtils.plusAmount(this, amount),
+                                   unit = unit)
     }
 
     override fun minus(amount: UnitAmount<U>): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.minusAmount(this, amount), unit)
+        return CompositeUnitAmount(amount = UnitAmountUtils.minusAmount(this, amount),
+                                   unit = unit)
     }
 
     override fun times(scalar: Number): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.times(this, scalar), unit)
+        return CompositeUnitAmount(amount = UnitAmountUtils.times(this, scalar),
+                                   unit = unit)
     }
 
     override fun div(scalar: Number): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.dividedByScalar(this, scalar), unit)
+        return CompositeUnitAmount(amount = UnitAmountUtils.dividedByScalar(this, scalar),
+                                   unit = unit)
     }
 
     override fun times(amount: UnitAmount<out Unit>): UnitAmount<Unit>
@@ -156,8 +150,9 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
                 otherMagnitude++
             }
         }
-        val resultAmount = transformation(this.amount.times(amount.amount))
-        return CompositeUnitAmount(resultAmount, CompositeUnit(resultUnitCounter))
+
+        return CompositeUnitAmount(amount = transformation(this.amount.times(amount.amount)),
+                                   unit = CompositeUnit(resultUnitCounter))
     }
 
     override fun div(amount: UnitAmount<out Unit>): UnitAmount<Unit>
@@ -248,20 +243,21 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
                 otherMagnitude++
             }
         }
-        val resultAmount = transformation(this.amount.div(amount.amount))
-        return CompositeUnitAmount(resultAmount, CompositeUnit(resultUnitCounter))
+
+        return CompositeUnitAmount(amount = transformation(this.amount.div(amount.amount)),
+                                   unit = CompositeUnit(resultUnitCounter))
     }
 
     override fun invert(): UnitAmount<out Unit>
     {
-        return CompositeUnitAmount(
-                amount.invert(),
-                CompositeUnit(unit.unitCounter.invert()))
+        return CompositeUnitAmount(amount = amount.invert(),
+                                   unit = CompositeUnit(unit.unitCounter.invert()))
     }
 
     override fun to(unit: U): UnitAmount<U>
     {
-        return CompositeUnitAmount(UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit), unit)
+        return CompositeUnitAmount(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
+                                   unit = unit)
     }
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
@@ -290,8 +286,8 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
     {
         if (this === that) return true
         if (that !is UnitAmount<*>) return false
-        return amount == that.amount &&
-                unit == that.unit
+        return this.unit.unitCounter == that.unit.unitCounter &&
+                this.unit.toCanonical(this.amount) == that.unit.toCanonical(that.amount)
     }
 
     override fun hashCode(): Int

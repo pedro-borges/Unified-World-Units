@@ -2,6 +2,7 @@ package pcb.uwu.sandbox
 
 import pcb.uwu.amount.base.Length
 import pcb.uwu.amount.base.Time
+import pcb.uwu.amount.derived.mechanics.MetersPerSecond
 import pcb.uwu.unit.base.MeterUnit
 import pcb.uwu.unit.base.MileUnit
 import pcb.uwu.unit.base.MinuteUnit
@@ -21,9 +22,9 @@ class MitchGoesRunning
         val wifeTime = Time(amount = 11, unit = MinuteUnit)
         val wifeSpeed = wifeDistance.div(wifeTime)
 
-        assertEquals(expected = "2.777777777777777777777777777777778 m⋅s⁻¹",
-                     actual = (mitchSpeed to MeterPerSecondUnit).toString())
-        assertEquals(expected = "2.4384 m⋅s⁻¹",
-                     actual = (wifeSpeed to MeterPerSecondUnit).toString())
+        assertEquals(expected = MetersPerSecond("2.777777777777777777777777777777778"),
+                     actual = mitchSpeed to MeterPerSecondUnit)
+        assertEquals(expected = MetersPerSecond(2.4384),
+                     actual = (wifeSpeed to MeterPerSecondUnit))
     }
 }

@@ -9,7 +9,7 @@ class OhmsTest
 {
     @Test
     fun multipliedByElectricCurrent() =
-        assertEquals(expected = "75 V",
-                     actual = (Ohms(1500) * Amperes(50, MILLI)).toString())
+        assertEquals(expected = Volts(75),
+                     actual = Ohms(1500) * Amperes(50, MILLI))
 
 }

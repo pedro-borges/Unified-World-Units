@@ -13,7 +13,7 @@ import pcb.uwu.unit.derived.mechanics.ForceUnit
 import pcb.uwu.unit.derived.mechanics.SpeedUnit
 import pcb.uwu.util.UnitAmountUtils
 
-class Acceleration : CompositeUnitAmount<AccelerationUnit>
+open class Acceleration : CompositeUnitAmount<AccelerationUnit>
 {
     @JvmOverloads
     constructor(amount: Number,
@@ -55,15 +55,19 @@ class Acceleration : CompositeUnitAmount<AccelerationUnit>
 
     // region composition
 
-    fun times(mass: Mass) =
+    open operator fun times(mass: Mass) =
         Force(amount = this.amount * mass.amount,
               unit = ForceUnit(accelerationUnit = this.unit,
                                massUnit = mass.unit))
 
-    fun times(time: Time) =
-        Speed(amount = (this * time).amount,
+    open operator fun times(time: Time) =
+        Speed(amount = super.times(time).amount,
               unit = SpeedUnit(this.unit.unitCounter.findUnit(LengthUnit::class)!!,
                                this.unit.unitCounter.findUnit(TimeUnit::class)!!))
+
+    open operator fun times(speed: Speed) =
+        Time(amount = super.times(speed).amount,
+             unit = this.unit.unitCounter.findUnit(TimeUnit::class)!!)
 
     // endregion
 }

@@ -8,7 +8,6 @@ import pcb.uwu.amount.derived.optics.LuminousEnergy
 import pcb.uwu.amount.derived.optics.LuminousFlux
 import pcb.uwu.amount.derived.thermodynamics.Energy
 import pcb.uwu.amount.derived.thermodynamics.Power
-import pcb.uwu.core.Amount
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
@@ -21,8 +20,6 @@ import pcb.uwu.unit.derived.mechanics.PaceUnit
 import pcb.uwu.unit.derived.optics.LuminousEnergyUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 import pcb.uwu.util.UnitAmountUtils
-import java.math.BigDecimal
-import java.time.Duration
 
 open class Time : CompositeUnitAmount<TimeUnit>
 {
@@ -37,11 +34,6 @@ open class Time : CompositeUnitAmount<TimeUnit>
                 magnitude: Magnitude = NATURAL,
                 unit: TimeUnit)
             : super(amount, magnitude, unit)
-
-    constructor(duration: Duration,
-                unit: TimeUnit)
-            : super(unit.translationFromCanonical(Amount(duration.toNanos())) / BigDecimal(1000000000), unit)
-
 
     // region UnitAmount
 

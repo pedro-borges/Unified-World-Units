@@ -1,5 +1,6 @@
 package pcb.uwu.core
 
+import pcb.uwu.core.Amount.Companion.ONE
 import pcb.uwu.util.andThen
 import pcb.uwu.util.identity
 import kotlin.reflect.KClass
@@ -92,8 +93,8 @@ open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCount
         if (this === that) return true
         if (that !is Unit) return false
         return unitCounter == that.unitCounter &&
-                translationFromCanonical(Amount.ONE) == that.translationFromCanonical(Amount.ONE) &&
-                translationToCanonical(Amount.ONE) == that.translationToCanonical(Amount.ONE)
+                translationFromCanonical(ONE) == that.translationFromCanonical(ONE) &&
+                translationToCanonical(ONE) == that.translationToCanonical(ONE)
     }
 
     override fun hashCode() =
