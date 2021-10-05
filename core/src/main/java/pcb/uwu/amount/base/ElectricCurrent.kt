@@ -1,87 +1,62 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.ElectricCurrentUnit;
+import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.ElectricCurrentUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+open class ElectricCurrent : CompositeUnitAmount<ElectricCurrentUnit>
+{
+    @JvmOverloads
+    constructor(value: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: ElectricCurrentUnit)
+            : super(value, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(value: String,
+                magnitude: Magnitude = NATURAL,
+                unit: ElectricCurrentUnit)
+            : super(value, magnitude, unit)
 
-public class ElectricCurrent extends CompositeUnitAmount<ElectricCurrentUnit> {
+    @JvmOverloads
+    constructor(value: BigDecimal,
+                magnitude: Magnitude = NATURAL,
+                unit: ElectricCurrentUnit)
+            : super(value, magnitude, unit)
 
-	// region constructors
+    @JvmOverloads
+    constructor(amount: BigDecimalAmount,
+                magnitude: Magnitude = NATURAL,
+                unit: ElectricCurrentUnit)
+            : super(amount, magnitude, unit)
 
-	public ElectricCurrent(Number value, ElectricCurrentUnit unit) {
-		super(value, unit);
-	}
+    // region UnitAmount
 
-	public ElectricCurrent(Number value, Magnitude magnitude, ElectricCurrentUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override operator fun plus(other: UnitAmount<ElectricCurrentUnit>) =
+        ElectricCurrent(value = amount + other.into(unit).amount,
+                        unit = unit)
 
-	public ElectricCurrent(String value, ElectricCurrentUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<ElectricCurrentUnit>) =
+        ElectricCurrent(value = amount - other.into(unit).amount,
+                        unit = unit)
 
-	public ElectricCurrent(String value, Magnitude magnitude, ElectricCurrentUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+        ElectricCurrent(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+                        unit = unit)
 
-	public ElectricCurrent(BigDecimal value, ElectricCurrentUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        ElectricCurrent(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+                        unit = unit)
 
-	public ElectricCurrent(BigDecimal value, Magnitude magnitude, ElectricCurrentUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: ElectricCurrentUnit) =
+        ElectricCurrent(value = UnitAmountUtils.getAmountIn(this, unit),
+                        unit = unit)
 
-	public ElectricCurrent(BigDecimalAmount amount, ElectricCurrentUnit unit) {
-		super(amount, unit);
-	}
-
-	public ElectricCurrent(BigDecimalAmount amount, Magnitude magnitude, ElectricCurrentUnit unit) {
-		super(amount, magnitude, unit);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public ElectricCurrent plus(@NotNull UnitAmount<ElectricCurrentUnit> other) {
-		return new ElectricCurrent(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public ElectricCurrent minus(@NotNull UnitAmount<ElectricCurrentUnit> other) {
-		return new ElectricCurrent(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public ElectricCurrent multiply(BigDecimal other, MathContext mathContext) {
-		return new ElectricCurrent(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public ElectricCurrent div(BigDecimal other, MathContext mathContext) {
-		return new ElectricCurrent(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public ElectricCurrent into(ElectricCurrentUnit unit) {
-		return new ElectricCurrent(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
+    // endregion
 }

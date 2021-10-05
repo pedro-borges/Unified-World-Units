@@ -50,30 +50,12 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
     operator fun plus(other: BigDecimal) =
         BigDecimalAmount(value.add(other))
 
-    /**
-     * Sum amount.
-     *
-     * @param other       the `BigDecimalAmount` to add
-     * @return a new `BigDecimalAmount` representing this + other
-     */
     operator fun plus(other: BigDecimalAmount) =
         BigDecimalAmount(value.add(other.value))
 
-    /**
-     * Subtract amount.
-     *
-     * @param other the `BigDecimalAmount` to subtract
-     * @return a new `BigDecimalAmount` representing this - other
-     */
     operator fun minus(other: BigDecimal) =
         BigDecimalAmount(value.subtract(other))
 
-    /**
-     * Subtract amount.
-     *
-     * @param other       the `BigDecimalAmount` to subtract
-     * @return a new `BigDecimalAmount` representing this - other
-     */
     operator fun minus(other: BigDecimalAmount) =
         BigDecimalAmount(value.subtract(other.value))
 

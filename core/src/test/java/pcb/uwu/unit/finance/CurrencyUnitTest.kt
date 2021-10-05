@@ -4,7 +4,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import pcb.uwu.core.BigDecimalAmount.Companion.ZERO
 import pcb.uwu.exception.InvalidCurrencyException
-import pcb.uwu.unit.finance.CurrencyUnit.GBP
+import pcb.uwu.unit.finance.CurrencyUnit.Companion.GBP
 import java.util.Currency
 
 class CurrencyUnitTest

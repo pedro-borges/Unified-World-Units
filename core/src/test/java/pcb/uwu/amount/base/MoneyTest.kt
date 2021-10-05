@@ -5,8 +5,8 @@ import org.junit.Test
 import pcb.uwu.amount.finance.Money
 import pcb.uwu.core.BigDecimalAmount
 import pcb.uwu.exception.InvalidCurrencyException
-import pcb.uwu.unit.finance.CurrencyUnit.GBP
-import pcb.uwu.unit.finance.CurrencyUnit.USD
+import pcb.uwu.unit.finance.CurrencyUnit.Companion.GBP
+import pcb.uwu.unit.finance.CurrencyUnit.Companion.USD
 
 class MoneyTest
 {

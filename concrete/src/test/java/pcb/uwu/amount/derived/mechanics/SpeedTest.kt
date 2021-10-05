@@ -18,13 +18,14 @@ class SpeedTest
     @Test
     fun testPlusSpeed() =
         assertEquals("10.254 s⁻¹⋅m",
-                     (MetersPerSecond(10) + Length(10, INCH)
-                                                  .dividedBy(Time(1, SECOND), DECIMAL64)).toString())
+                     (MetersPerSecond(10) + Length(value = 10, unit = INCH)
+                                                  .dividedBy(Time(value = 1, unit = SECOND), DECIMAL64)).toString())
 
     @Test
     fun testMinusSpeed() =
         assertEquals("9.746 s⁻¹⋅m",
-                     (MetersPerSecond(10) - Length(10, INCH).dividedBy(Time(1, SECOND), DECIMAL64))
+                     (MetersPerSecond(10) - Length(value = 10, unit = INCH)
+                         .dividedBy(Time(value = 1, unit = SECOND), DECIMAL64))
                          .toString())
 
     @Test
@@ -40,12 +41,12 @@ class SpeedTest
     @Test
     fun testDividedByTime() =
         assertEquals("5 s⁻²⋅m",
-                     MetersPerSecond(10).dividedBy(Time(2, SECOND), DECIMAL64).toString())
+                     MetersPerSecond(10).dividedBy(Time(value = 2, unit = SECOND), DECIMAL64).toString())
 
     @Test
     fun testMultipliedByTime() =
         assertEquals("1200 m",
-                     MetersPerSecond(10).multipliedBy(Time(2, MINUTE), DECIMAL64).toString())
+                     MetersPerSecond(10).multipliedBy(Time(value = 2, unit = MINUTE), DECIMAL64).toString())
 
     @Test
     fun testIn()

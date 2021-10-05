@@ -1,103 +1,74 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.derived.mechanics.Acceleration;
-import pcb.uwu.amount.derived.mechanics.Force;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.MassUnit;
-import pcb.uwu.unit.derived.mechanics.ForceUnit;
+import pcb.uwu.amount.derived.mechanics.Acceleration
+import pcb.uwu.amount.derived.mechanics.Force
+import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.MassUnit
+import pcb.uwu.unit.derived.mechanics.ForceUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+open class Mass : CompositeUnitAmount<MassUnit>
+{
+    @JvmOverloads
+    constructor(value: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: MassUnit)
+            : super(value, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(value: String,
+                magnitude: Magnitude = NATURAL,
+                unit: MassUnit)
+            : super(value, magnitude, unit)
 
-public class Mass extends CompositeUnitAmount<MassUnit> {
+    @JvmOverloads
+    constructor(value: BigDecimal,
+                magnitude: Magnitude = NATURAL,
+                unit: MassUnit)
+            : super(value, magnitude, unit)
 
-	// region constructors
+    @JvmOverloads
+    constructor(amount: BigDecimalAmount,
+                magnitude: Magnitude = NATURAL,
+                unit: MassUnit)
+            : super(amount, magnitude, unit)
 
-	public Mass(Number value, MassUnit unit) {
-		super(value, unit);
-	}
+    // region UnitAmount
 
-	public Mass(Number value, Magnitude magnitude, MassUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override operator fun plus(other: UnitAmount<MassUnit>) =
+        Mass(value = amount + other.into(unit).amount,
+             unit = unit)
 
-	public Mass(String value, MassUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<MassUnit>) =
+        Mass(value = amount - other.into(unit).amount,
+             unit = unit)
 
-	public Mass(String value, Magnitude magnitude, MassUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+        Mass(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+             unit = unit)
 
-	public Mass(BigDecimal value, MassUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        Mass(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+             unit = unit)
 
-	public Mass(BigDecimal value, Magnitude magnitude, MassUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: MassUnit) =
+        Mass(value = UnitAmountUtils.getAmountIn(this, unit),
+                    unit = unit)
 
-	public Mass(BigDecimalAmount amount, MassUnit unit) {
-		super(amount, unit);
-	}
+    // endregion
 
-	public Mass(BigDecimalAmount amount, Magnitude magnitude, MassUnit unit) {
-		super(amount, magnitude, unit);
-	}
+    // region composition
 
+    fun multipliedBy(acceleration: Acceleration, mathContext: MathContext): Force
+    {
+        return Force(this.amount.times(acceleration.amount.value, mathContext), ForceUnit(this.unit, acceleration.unit))
+    }
 
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Mass plus(@NotNull UnitAmount<MassUnit> other) {
-		return new Mass(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public Mass minus(@NotNull UnitAmount<MassUnit> other) {
-		return new Mass(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public Mass multiply(BigDecimal other, MathContext mathContext) {
-		return new Mass(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Mass div(BigDecimal other, MathContext mathContext) {
-		return new Mass(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Mass into(MassUnit unit) {
-		return new Mass(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
-
-	// region composition
-
-	public Force multipliedBy(Acceleration acceleration, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount()
-				.times(acceleration.getAmount().getValue(), mathContext);
-		ForceUnit unit = new ForceUnit(getUnit(), acceleration.getUnit());
-
-		return new Force(amount, unit);
-	}
-
-	// endregion
+    // endregion
 }

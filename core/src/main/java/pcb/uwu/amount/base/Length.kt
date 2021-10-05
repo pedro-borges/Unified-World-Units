@@ -1,115 +1,81 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.derived.fundamental.Area;
-import pcb.uwu.amount.derived.mechanics.Speed;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.LengthUnit;
-import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.unit.derived.fundamental.AreaUnit;
-import pcb.uwu.unit.derived.mechanics.SpeedUnit;
+import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.mechanics.Speed
+import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.LengthUnit
+import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.derived.fundamental.AreaUnit
+import pcb.uwu.unit.derived.mechanics.SpeedUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+open class Length : CompositeUnitAmount<LengthUnit>
+{
+    @JvmOverloads
+    constructor(value: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: LengthUnit) : super(value, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(value: String,
+                magnitude: Magnitude = NATURAL,
+                unit: LengthUnit)
+            : super(value, magnitude, unit)
 
-public class Length extends CompositeUnitAmount<LengthUnit> {
+    @JvmOverloads
+    constructor(value: BigDecimal,
+                magnitude: Magnitude = NATURAL,
+                unit: LengthUnit)
+            : super(value, magnitude, unit)
 
-	// region constructors
+    @JvmOverloads
+    constructor(amount: BigDecimalAmount,
+                magnitude: Magnitude = NATURAL,
+                unit: LengthUnit)
+            : super(amount, magnitude, unit)
 
-	public Length(Number value, LengthUnit unit) {
-		super(value, unit);
-	}
+    // region UnitAmount
 
-	public Length(Number value, Magnitude magnitude, LengthUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override operator fun plus(other: UnitAmount<LengthUnit>) =
+        Length(value = amount + other.into(unit).amount,
+               unit = unit)
 
-	public Length(String value, LengthUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<LengthUnit>) =
+        Length(value = amount - other.into(unit).amount,
+               unit = unit)
 
-	public Length(String value, Magnitude magnitude, LengthUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+        Length(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+               unit = unit)
 
-	public Length(BigDecimal value, LengthUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        Length(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+               unit = unit)
 
-	public Length(BigDecimal value, Magnitude magnitude, LengthUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: LengthUnit) =
+        Length(value = UnitAmountUtils.getAmountIn(this, unit),
+               unit = unit)
 
-	public Length(BigDecimalAmount amount, LengthUnit unit) {
-		super(amount, unit);
-	}
+    // endregion
 
-	public Length(BigDecimalAmount amount, Magnitude magnitude, LengthUnit unit) {
-		super(amount, magnitude, unit);
-	}
+    // region composition
 
-	// endregion
+    fun dividedBy(time: Time, mathContext: MathContext): Speed =
+        Speed(this.amount.div(time.amount.value, mathContext), SpeedUnit(this.unit, time.unit))
 
-	// region implement UnitAmount
+    fun dividedBy(speed: Speed, mathContext: MathContext) =
+        Time(value = super.div(speed, mathContext).amount,
+             unit = speed.unit.unitCounter.findUnit(TimeUnit::class.java)!!)
 
-	@NotNull
-	@Override
-	public Length plus(@NotNull UnitAmount<LengthUnit> other) {
-		return new Length(plusAmount(this, other), getUnit());
-	}
+    fun multipliedBy(length: Length, mathContext: MathContext) =
+        Area(amount.times(length.amount, mathContext),
+             AreaUnit(unit, length.unit))
 
-	@NotNull
-	@Override
-	public Length minus(@NotNull UnitAmount<LengthUnit> other) {
-		return new Length(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public Length multiply(BigDecimal other, MathContext mathContext) {
-		return new Length(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Length div(BigDecimal other, MathContext mathContext) {
-		return new Length(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Length into(LengthUnit unit) {
-		return new Length(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
-
-	// region composition
-
-	public Speed dividedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount().div(time.getAmount().getValue(), mathContext);
-		SpeedUnit unit = new SpeedUnit(getUnit(), time.getUnit());
-
-		return new Speed(amount, unit);
-	}
-
-	public Time dividedBy(Speed speed, MathContext mathContext) {
-		TimeUnit timeUnit = speed.getUnit().getUnitCounter().findUnit(TimeUnit.class);
-
-		return new Time(super.div(speed, mathContext).getAmount(), timeUnit);
-	}
-
-	public Area multipliedBy(Length length, MathContext mathContext) {
-		return new Area(
-				getAmount().times(length.getAmount(), mathContext),
-				new AreaUnit(getUnit(), length.getUnit()));
-	}
-
-	// endregion
+    // endregion
 }

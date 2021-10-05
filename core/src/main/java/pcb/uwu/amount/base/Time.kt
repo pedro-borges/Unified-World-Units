@@ -1,123 +1,90 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.derived.finance.Debt;
-import pcb.uwu.amount.derived.fundamental.Frequency;
-import pcb.uwu.amount.derived.mechanics.Pace;
-import pcb.uwu.amount.finance.Money;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.unit.derived.finance.DebtUnit;
-import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
-import pcb.uwu.unit.derived.mechanics.PaceUnit;
+import pcb.uwu.amount.derived.finance.Debt
+import pcb.uwu.amount.derived.fundamental.Frequency
+import pcb.uwu.amount.derived.mechanics.Pace
+import pcb.uwu.amount.finance.Money
+import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.derived.finance.DebtUnit
+import pcb.uwu.unit.derived.fundamental.FrequencyUnit
+import pcb.uwu.unit.derived.mechanics.PaceUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
+import java.time.Duration
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.time.Duration;
+open class Time : CompositeUnitAmount<TimeUnit>
+{
+    @JvmOverloads
+    constructor(value: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: TimeUnit)
+            : super(value, magnitude, unit)
 
-import static java.math.MathContext.UNLIMITED;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(value: String,
+                magnitude: Magnitude = NATURAL,
+                unit: TimeUnit)
+            : super(value, magnitude, unit)
 
-public class Time extends CompositeUnitAmount<TimeUnit> {
+    @JvmOverloads
+    constructor(value: BigDecimal,
+                magnitude: Magnitude = NATURAL,
+                unit: TimeUnit)
+            : super(value, magnitude, unit)
 
-	// region constructors
+    @JvmOverloads
+    constructor(amount: BigDecimalAmount,
+                magnitude: Magnitude = NATURAL,
+                unit: TimeUnit)
+            : super(amount, magnitude, unit)
 
-	public Time(Number value, TimeUnit unit) {
-		super(value, unit);
-	}
+    constructor(duration: Duration,
+                unit: TimeUnit)
+            : super(unit.translationFromCanonical.apply(BigDecimalAmount(duration.toNanos()))
+                        .div(BigDecimal(1000000000), MathContext.UNLIMITED), unit)
 
-	public Time(Number value, Magnitude magnitude, TimeUnit unit) {
-		super(value, magnitude, unit);
-	}
 
-	public Time(String value, TimeUnit unit) {
-		super(value, unit);
-	}
+    // region UnitAmount
 
-	public Time(String value, Magnitude magnitude, TimeUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override operator fun plus(other: UnitAmount<TimeUnit>) =
+        Time(value = amount + other.into(unit).amount,
+             unit = unit)
 
-	public Time(BigDecimal value, TimeUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<TimeUnit>) =
+        Time(value = amount - other.into(unit).amount,
+             unit = unit)
 
-	public Time(BigDecimal value, Magnitude magnitude, TimeUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+        Time(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+             unit = unit)
 
-	public Time(BigDecimalAmount amount, TimeUnit unit) {
-		super(amount, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        Time(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+             unit = unit)
 
-	public Time(BigDecimalAmount amount, Magnitude magnitude, TimeUnit unit) {
-		super(amount, magnitude, unit);
-	}
+    override fun into(unit: TimeUnit) =
+        Time(value = UnitAmountUtils.getAmountIn(this, unit),
+             unit = unit)
 
-	public Time(Duration duration, TimeUnit unit) {
-		super(unit.getTranslationFromCanonical().apply(new BigDecimalAmount(duration.toNanos())).div(new BigDecimal(1000000000), UNLIMITED), unit);
-	}
+    override fun invert(mathContext: MathContext) =
+        Frequency(amount.invert(mathContext), FrequencyUnit(unit))
 
-	// endregion
+    // endregion
 
-	// region implement UnitAmount
+    // region composition
 
-	@NotNull
-	@Override
-	public Time plus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Time(plusAmount(this, other), getUnit());
-	}
+    fun multipliedBy(money: Money, mathContext: MathContext) =
+        Debt(UnitAmountUtils.multipliedByScalar(this, money.amount.value, mathContext),
+             DebtUnit(money.unit, this.unit))
 
-	@NotNull
-	@Override
-	public Time minus(@NotNull UnitAmount<TimeUnit> other) {
-		return new Time(minusAmount(this, other), getUnit());
-	}
+    fun dividedBy(length: Length, mathContext: MathContext) =
+        Pace(this.amount.div(length.amount.value, mathContext), PaceUnit(this.unit, length.unit))
 
-	@Override
-	public Time multiply(BigDecimal other, MathContext mathContext) {
-		return new Time(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Time div(BigDecimal other, MathContext mathContext) {
-		return new Time(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Time into(TimeUnit unit) {
-		return new Time(getAmountIn(this, unit), unit);
-	}
-
-	@Override
-	public Frequency invert(MathContext mathContext) {
-		return new Frequency(getAmount().invert(mathContext), new FrequencyUnit(getUnit()));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Debt multipliedBy(Money money, MathContext mathContext) {
-		BigDecimalAmount amount = multipliedByScalar(this, money.getAmount().getValue(), mathContext);
-		DebtUnit unit = new DebtUnit(money.getUnit(), getUnit());
-
-		return new Debt(amount, unit);
-	}
-
-	public Pace dividedBy(Length length, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount().div(length.getAmount().getValue(), mathContext);
-		PaceUnit unit = new PaceUnit(getUnit(), length.getUnit());
-
-		return new Pace(amount, unit);
-	}
-
-	// endregion
+    // endregion
 }

@@ -16,7 +16,7 @@ class RentTest
     fun testFromMoneyAndTime()
     {
         assertEquals("2 £⋅d⁻¹",
-                     GBP(6).dividedBy(Time(3, DAY), DECIMAL64).toString())
+                     GBP(6).dividedBy(Time(value = 3, unit = DAY), DECIMAL64).toString())
         assertEquals("1.2 £⋅wk⁻¹",
                      GBP(6).multipliedBy(InterestRate(0.2, FrequencyUnit(WEEK)), DECIMAL64).toString())
     }
