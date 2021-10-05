@@ -5,6 +5,9 @@ import pcb.uwu.core.UnitCounter.UnitCount;
 import java.util.Objects;
 import java.util.function.Function;
 
+import static pcb.uwu.core.BigDecimalAmount.ONE;
+import static pcb.uwu.core.BigDecimalAmount.ZERO;
+
 public class CompositeUnit implements Unit {
 
 	// region private fields
@@ -137,12 +140,12 @@ public class CompositeUnit implements Unit {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof CompositeUnit) {
-			CompositeUnit that = (CompositeUnit) obj;
+		if (obj instanceof Unit) {
+			Unit that = (Unit) obj;
 
-			return Objects.equals(this.unitCounter, that.unitCounter)
-					&& Objects.equals(this.getTranslationFromCanonical(), that.getTranslationFromCanonical())
-					&& Objects.equals(this.getTranslationToCanonical(), that.getTranslationToCanonical());
+			return Objects.equals(this.unitCounter, that.getUnitCounter())
+					&& Objects.equals(this.getTranslationFromCanonical().apply(ONE), that.getTranslationFromCanonical().apply(ONE))
+					&& Objects.equals(this.getTranslationToCanonical().apply(ONE), that.getTranslationToCanonical().apply(ONE));
 		}
 
 		return false;

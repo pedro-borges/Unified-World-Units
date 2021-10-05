@@ -104,13 +104,13 @@ public abstract class BaseUnit implements Unit, Comparable<BaseUnit> {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Unit) {
-			BaseUnit that = (BaseUnit) obj;
+			Unit that = (Unit) obj;
 
-			return Objects.equals(this.symbol, that.symbol) &&
-					Objects.equals(this.singularName, that.singularName) &&
-					Objects.equals(this.pluralName, that.pluralName) &&
-					Objects.equals(this.translationToCanonical, that.translationToCanonical) &&
-					Objects.equals(this.translationFromCanonical, that.translationFromCanonical);
+			return Objects.equals(this.symbol, that.getSymbol()) &&
+					Objects.equals(this.singularName, that.getSingularName()) &&
+					Objects.equals(this.pluralName, that.getPluralName()) &&
+					Objects.equals(this.translationToCanonical, that.getTranslationToCanonical()) &&
+					Objects.equals(this.translationFromCanonical, that.getTranslationFromCanonical());
 		}
 
 		return false;

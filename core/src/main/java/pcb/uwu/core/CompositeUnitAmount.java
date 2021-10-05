@@ -220,10 +220,10 @@ public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof UnitAmount) {
-			CompositeUnitAmount<?> that = (CompositeUnitAmount<?>) obj;
+			UnitAmount<?> that = (UnitAmount<?>) obj;
 
-			return Objects.equals(this.amount, that.amount) &&
-					Objects.equals(this.unit, that.unit);
+			return Objects.equals(this.amount, that.getAmount()) &&
+					Objects.equals(this.unit, that.getUnit());
 		}
 
 		return false;
