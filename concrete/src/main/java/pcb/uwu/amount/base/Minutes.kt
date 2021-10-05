@@ -1,86 +1,37 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.MinuteUnit.MINUTE
+import pcb.uwu.unit.base.TimeUnit
 
-import java.math.BigDecimal;
+class Minutes : Time
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, MINUTE)
 
-import static pcb.uwu.unit.base.MinuteUnit.MINUTE;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, MINUTE)
 
-public class Minutes extends Time {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(time: UnitAmount<TimeUnit>): Minutes =
+        Minutes(this.amount + (time to MINUTE).amount)
 
-	public Minutes(Number value) {
-		super(value, MINUTE);
-	}
+    override fun minus(time: UnitAmount<TimeUnit>): Minutes =
+        Minutes(this.amount + (time to MINUTE).amount)
 
-	public Minutes(Number value, Magnitude magnitude) {
-		super(value, magnitude, MINUTE);
-	}
 
-	public Minutes(String value) {
-		super(value, MINUTE);
-	}
+    override fun times(number: Number): Minutes =
+        Minutes(this.amount * number)
 
-	public Minutes(String value, Magnitude magnitude) {
-		super(value, magnitude, MINUTE);
-	}
+    override fun div(number: Number): Minutes =
+        Minutes(this.amount / number)
 
-	public Minutes(BigDecimal value) {
-		super(value, MINUTE);
-	}
-
-	public Minutes(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, MINUTE);
-	}
-
-	public Minutes(BigDecimalAmount amount) {
-		super(amount, MINUTE);
-	}
-
-	public Minutes(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, MINUTE);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Minutes plus(@NotNull UnitAmount<TimeUnit> time) {
-		return new Minutes(plusAmount(this, time));
-	}
-
-	@NotNull
-	@Override
-	public Minutes minus(@NotNull UnitAmount<TimeUnit> time) {
-		return new Minutes(minusAmount(this, time));
-	}
-
-	@NotNull
-	@Override
-	public Minutes times(@NotNull Number number) {
-		return new Minutes(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Minutes div(@NotNull Number number) {
-		return new Minutes(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }

@@ -1,86 +1,37 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.AmountOfSubstanceUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.AmountOfSubstanceUnit
+import pcb.uwu.unit.base.MoleUnit.MOLE
 
-import java.math.BigDecimal;
+class Mole : AmountOfSubstance
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, MOLE)
 
-import static pcb.uwu.unit.base.MoleUnit.MOLE;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, MOLE)
 
-public class Mole extends AmountOfSubstance {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(amountOfSubstance: UnitAmount<AmountOfSubstanceUnit>) =
+        Mole(this.amount + (amountOfSubstance to MOLE).amount)
 
-	public Mole(Number value) {
-		super(value, MOLE);
-	}
 
-	public Mole(Number value, Magnitude magnitude) {
-		super(value, magnitude, MOLE);
-	}
+    override fun minus(amountOfSubstance: UnitAmount<AmountOfSubstanceUnit>) =
+        Mole(this.amount - (amountOfSubstance to MOLE).amount)
 
-	public Mole(String value) {
-		super(value, MOLE);
-	}
+    override fun times(number: Number) =
+        Mole(this.amount * number)
 
-	public Mole(String value, Magnitude magnitude) {
-		super(value, magnitude, MOLE);
-	}
+    override fun div(number: Number) =
+        Mole(this.amount / number)
 
-	public Mole(BigDecimal value) {
-		super(value, MOLE);
-	}
-
-	public Mole(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, MOLE);
-	}
-
-	public Mole(BigDecimalAmount amount) {
-		super(amount, MOLE);
-	}
-
-	public Mole(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, MOLE);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Mole plus(@NotNull UnitAmount<AmountOfSubstanceUnit> amountOfSubstance) {
-		return new Mole(plusAmount(this, amountOfSubstance));
-	}
-
-	@NotNull
-	@Override
-	public Mole minus(@NotNull UnitAmount<AmountOfSubstanceUnit> amountOfSubstance) {
-		return new Mole(minusAmount(this, amountOfSubstance));
-	}
-
-	@NotNull
-	@Override
-	public Mole times(@NotNull Number number) {
-		return new Mole(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Mole div(@NotNull Number number) {
-		return new Mole(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }

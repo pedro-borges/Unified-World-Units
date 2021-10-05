@@ -1,86 +1,36 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.MassUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.MassUnit
+import pcb.uwu.unit.base.PoundUnit.POUND
 
-import java.math.BigDecimal;
+class Pounds : Mass
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, POUND)
 
-import static pcb.uwu.unit.base.PoundUnit.POUND;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, POUND)
 
-public class Pounds extends Mass {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(mass: UnitAmount<MassUnit>) =
+        Pounds(this.amount + (mass to POUND).amount)
 
-	public Pounds(Number value) {
-		super(value, POUND);
-	}
+    override fun minus(mass: UnitAmount<MassUnit>) =
+        Pounds(this.amount - (mass to POUND).amount)
 
-	public Pounds(Number value, Magnitude magnitude) {
-		super(value, magnitude, POUND);
-	}
+    override fun times(number: Number) =
+        Pounds(this.amount * number)
 
-	public Pounds(String value) {
-		super(value, POUND);
-	}
+    override fun div(number: Number) =
+        Pounds(this.amount / number)
 
-	public Pounds(String value, Magnitude magnitude) {
-		super(value, magnitude, POUND);
-	}
-
-	public Pounds(BigDecimal value) {
-		super(value, POUND);
-	}
-
-	public Pounds(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, POUND);
-	}
-
-	public Pounds(BigDecimalAmount amount) {
-		super(amount, POUND);
-	}
-
-	public Pounds(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, POUND);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Pounds plus(@NotNull UnitAmount<MassUnit> mass) {
-		return new Pounds(plusAmount(this, mass));
-	}
-
-	@NotNull
-	@Override
-	public Pounds minus(@NotNull UnitAmount<MassUnit> mass) {
-		return new Pounds(minusAmount(this, mass));
-	}
-
-	@NotNull
-	@Override
-	public Pounds times(@NotNull Number number) {
-		return new Pounds(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Pounds div(@NotNull Number number) {
-		return new Pounds(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }

@@ -1,86 +1,38 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.LengthUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.LengthUnit
+import pcb.uwu.unit.base.NauticalMileUnit.NAUTICAL_MILE
 
-import java.math.BigDecimal;
+class NauticalMiles : Length
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, NAUTICAL_MILE)
 
-import static pcb.uwu.unit.base.NauticalMileUnit.NAUTICAL_MILE;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, NAUTICAL_MILE)
 
-public class NauticalMiles extends Length {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(length: UnitAmount<LengthUnit>) =
+        NauticalMiles(this.amount + (length to NAUTICAL_MILE).amount)
 
-	public NauticalMiles(Number value) {
-		super(value, NAUTICAL_MILE);
-	}
 
-	public NauticalMiles(Number value, Magnitude magnitude) {
-		super(value, magnitude, NAUTICAL_MILE);
-	}
+    override fun minus(length: UnitAmount<LengthUnit>) =
+        NauticalMiles(this.amount - (length to NAUTICAL_MILE).amount)
 
-	public NauticalMiles(String value) {
-		super(value, NAUTICAL_MILE);
-	}
 
-	public NauticalMiles(String value, Magnitude magnitude) {
-		super(value, magnitude, NAUTICAL_MILE);
-	}
+    override fun times(number: Number) =
+        NauticalMiles(this.amount * number)
 
-	public NauticalMiles(BigDecimal value) {
-		super(value, NAUTICAL_MILE);
-	}
+    override fun div(number: Number) =
+        NauticalMiles(this.amount / number)
 
-	public NauticalMiles(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, NAUTICAL_MILE);
-	}
-
-	public NauticalMiles(BigDecimalAmount amount) {
-		super(amount, NAUTICAL_MILE);
-	}
-
-	public NauticalMiles(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, NAUTICAL_MILE);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public NauticalMiles plus(@NotNull UnitAmount<LengthUnit> length) {
-		return new NauticalMiles(plusAmount(this, length));
-	}
-
-	@NotNull
-	@Override
-	public NauticalMiles minus(@NotNull UnitAmount<LengthUnit> length) {
-		return new NauticalMiles(minusAmount(this, length));
-	}
-
-	@NotNull
-	@Override
-	public NauticalMiles times(@NotNull Number number) {
-		return new NauticalMiles(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public NauticalMiles div(@NotNull Number number) {
-		return new NauticalMiles(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }

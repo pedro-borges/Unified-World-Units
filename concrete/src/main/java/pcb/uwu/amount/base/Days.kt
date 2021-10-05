@@ -14,9 +14,9 @@ class Days : Time
             : super(amount, magnitude, DAY)
 
     @JvmOverloads
-    constructor(value: String,
+    constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(value, magnitude, DAY)
+            : super(amount, magnitude, DAY)
 
     // region UnitAmount
 

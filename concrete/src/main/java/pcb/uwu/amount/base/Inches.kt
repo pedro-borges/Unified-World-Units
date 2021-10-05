@@ -1,86 +1,36 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.LengthUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.InchUnit.INCH
+import pcb.uwu.unit.base.LengthUnit
 
-import java.math.BigDecimal;
+class Inches : Length
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, INCH)
 
-import static pcb.uwu.unit.base.InchUnit.INCH;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, INCH)
 
-public class Inches extends Length {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(length: UnitAmount<LengthUnit>) =
+        Inches(this.amount + (length to INCH).amount)
 
-	public Inches(Number value) {
-		super(value, INCH);
-	}
+    override fun minus(length: UnitAmount<LengthUnit>) =
+        Inches(this.amount - (length to INCH).amount)
 
-	public Inches(Number value, Magnitude magnitude) {
-		super(value, magnitude, INCH);
-	}
+    override fun times(number: Number) =
+        Inches(this.amount * number)
 
-	public Inches(String value) {
-		super(value, INCH);
-	}
+    override fun div(number: Number) =
+        Inches(this.amount / number)
 
-	public Inches(String value, Magnitude magnitude) {
-		super(value, magnitude, INCH);
-	}
-
-	public Inches(BigDecimal value) {
-		super(value, INCH);
-	}
-
-	public Inches(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, INCH);
-	}
-
-	public Inches(BigDecimalAmount amount) {
-		super(amount, INCH);
-	}
-
-	public Inches(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, INCH);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Inches plus(@NotNull UnitAmount<LengthUnit> length) {
-		return new Inches(plusAmount(this, length));
-	}
-
-	@NotNull
-	@Override
-	public Inches minus(@NotNull UnitAmount<LengthUnit> length) {
-		return new Inches(minusAmount(this, length));
-	}
-
-	@NotNull
-	@Override
-	public Inches times(@NotNull Number number) {
-		return new Inches(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Inches div(@NotNull Number number) {
-		return new Inches(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }

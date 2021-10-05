@@ -1,86 +1,36 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.MassUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.MassUnit
+import pcb.uwu.unit.base.StoneUnit.STONE
 
-import java.math.BigDecimal;
+class Stones : Mass
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, STONE)
 
-import static pcb.uwu.unit.base.StoneUnit.STONE;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, STONE)
 
-public class Stones extends Mass {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(mass: UnitAmount<MassUnit>) =
+        Stones(this.amount + (mass to STONE).amount)
 
-	public Stones(Number value) {
-		super(value, STONE);
-	}
+    override fun minus(mass: UnitAmount<MassUnit>) =
+        Stones(this.amount - (mass to STONE).amount)
 
-	public Stones(Number value, Magnitude magnitude) {
-		super(value, magnitude, STONE);
-	}
+    override fun times(number: Number) =
+        Stones(this.amount * number)
 
-	public Stones(String value) {
-		super(value, STONE);
-	}
+    override fun div(number: Number) =
+        Stones(this.amount / number)
 
-	public Stones(String value, Magnitude magnitude) {
-		super(value, magnitude, STONE);
-	}
-
-	public Stones(BigDecimal value) {
-		super(value, STONE);
-	}
-
-	public Stones(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, STONE);
-	}
-
-	public Stones(BigDecimalAmount amount) {
-		super(amount, STONE);
-	}
-
-	public Stones(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, STONE);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Stones plus(@NotNull UnitAmount<MassUnit> mass) {
-		return new Stones(plusAmount(this, mass));
-	}
-
-	@NotNull
-	@Override
-	public Stones minus(@NotNull UnitAmount<MassUnit> mass) {
-		return new Stones(minusAmount(this, mass));
-	}
-
-	@NotNull
-	@Override
-	public Stones times(@NotNull Number number) {
-		return new Stones(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Stones div(@NotNull Number number) {
-		return new Stones(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }

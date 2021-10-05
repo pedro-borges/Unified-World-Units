@@ -1,86 +1,36 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.MassUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.GramUnit.GRAM
+import pcb.uwu.unit.base.MassUnit
 
-import java.math.BigDecimal;
+class Grams : Mass
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, GRAM)
 
-import static pcb.uwu.unit.base.GramUnit.GRAM;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, GRAM)
 
-public class Grams extends Mass {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(mass: UnitAmount<MassUnit>) =
+        Grams(this.amount + (mass to GRAM).amount)
 
-	public Grams(Number value) {
-		super(value, GRAM);
-	}
+    override fun minus(mass: UnitAmount<MassUnit>) =
+        Grams(this.amount - (mass to GRAM).amount)
 
-	public Grams(Number value, Magnitude magnitude) {
-		super(value, magnitude, GRAM);
-	}
+    override fun times(number: Number) =
+        Grams(this.amount * number)
 
-	public Grams(String value) {
-		super(value, GRAM);
-	}
+    override fun div(number: Number) =
+        Grams(this.amount / number)
 
-	public Grams(String value, Magnitude magnitude) {
-		super(value, magnitude, GRAM);
-	}
-
-	public Grams(BigDecimal value) {
-		super(value, GRAM);
-	}
-
-	public Grams(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, GRAM);
-	}
-
-	public Grams(BigDecimalAmount amount) {
-		super(amount, GRAM);
-	}
-
-	public Grams(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, GRAM);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Grams plus(@NotNull UnitAmount<MassUnit> mass) {
-		return new Grams(plusAmount(this, mass));
-	}
-
-	@NotNull
-	@Override
-	public Grams minus(@NotNull UnitAmount<MassUnit> mass) {
-		return new Grams(minusAmount(this, mass));
-	}
-
-	@NotNull
-	@Override
-	public Grams times(@NotNull Number number) {
-		return new Grams(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Grams div(@NotNull Number number) {
-		return new Grams(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }

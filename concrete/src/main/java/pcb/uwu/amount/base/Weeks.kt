@@ -1,82 +1,36 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.base.WeekUnit.WEEK
 
-import java.math.BigDecimal;
+class Weeks : Time
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, WEEK)
 
-import static pcb.uwu.unit.base.WeekUnit.WEEK;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, WEEK)
 
-public class Weeks extends Time {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(time: UnitAmount<TimeUnit>) =
+        Weeks(this.amount + (time to WEEK).amount)
 
-	public Weeks(Number value) {
-		super(value, WEEK);
-	}
+    override fun minus(time: UnitAmount<TimeUnit>) =
+        Weeks(this.amount - (time to WEEK).amount)
 
-	public Weeks(Number value, Magnitude magnitude) {
-		super(value, magnitude, WEEK);
-	}
+    override fun times(number: Number) =
+        Weeks(this.amount * number)
 
-	public Weeks(String value) {
-		super(value, WEEK);
-	}
+    override fun div(number: Number) =
+        Weeks(this.amount / number)
 
-	public Weeks(String value, Magnitude magnitude) {
-		super(value, magnitude, WEEK);
-	}
-
-	public Weeks(BigDecimal value) {
-		super(value, WEEK);
-	}
-
-	public Weeks(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, WEEK);
-	}
-
-	public Weeks(BigDecimalAmount amount) {
-		super(amount, WEEK);
-	}
-
-	public Weeks(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, WEEK);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Weeks plus(@NotNull UnitAmount<TimeUnit> time) {
-		return new Weeks(plusAmount(this, time));
-	}
-
-	@NotNull
-	@Override
-	public Weeks minus(@NotNull UnitAmount<TimeUnit> time) {
-		return new Weeks(minusAmount(this, time));
-	}
-
-	@NotNull
-	@Override
-	public Weeks times(@NotNull Number number) {
-		return new Weeks(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Weeks div(@NotNull Number number) {
-		return new Weeks(dividedByScalar(this, number));
-	}
-
-	// endregion
+    // endregion
 }

@@ -1,86 +1,44 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.TemperatureUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.KelvinUnit.KELVIN
+import pcb.uwu.unit.base.TemperatureUnit
 
-import java.math.BigDecimal;
+class Kelvins : Temperature
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, KELVIN)
 
-import static pcb.uwu.unit.base.KelvinUnit.KELVIN;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, KELVIN)
 
-public class Kelvins extends Temperature {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(temperature: UnitAmount<TemperatureUnit>): Kelvins
+    {
+        return Kelvins(this.amount + (temperature to KELVIN).amount)
+    }
 
-	public Kelvins(Number value) {
-		super(value, KELVIN);
-	}
+    override fun minus(temperature: UnitAmount<TemperatureUnit>): Kelvins
+    {
+        return Kelvins(this.amount - (temperature to KELVIN).amount)
+    }
 
-	public Kelvins(Number value, Magnitude magnitude) {
-		super(value, magnitude, KELVIN);
-	}
+    override fun times(number: Number): Kelvins
+    {
+        return Kelvins(this.amount * number)
+    }
 
-	public Kelvins(String value) {
-		super(value, KELVIN);
-	}
+    override fun div(number: Number): Kelvins
+    {
+        return Kelvins(this.amount / number)
+    }
 
-	public Kelvins(String value, Magnitude magnitude) {
-		super(value, magnitude, KELVIN);
-	}
-
-	public Kelvins(BigDecimal value) {
-		super(value, KELVIN);
-	}
-
-	public Kelvins(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, KELVIN);
-	}
-
-	public Kelvins(BigDecimalAmount amount) {
-		super(amount, KELVIN);
-	}
-
-	public Kelvins(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, KELVIN);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Kelvins plus(@NotNull UnitAmount<TemperatureUnit> temperature) {
-		return new Kelvins(plusAmount(this, temperature));
-	}
-
-	@NotNull
-	@Override
-	public Kelvins minus(@NotNull UnitAmount<TemperatureUnit> temperature) {
-		return new Kelvins(minusAmount(this, temperature));
-	}
-
-	@NotNull
-	@Override
-	public Kelvins times(@NotNull Number number) {
-		return new Kelvins(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Kelvins div(@NotNull Number number) {
-		return new Kelvins(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }

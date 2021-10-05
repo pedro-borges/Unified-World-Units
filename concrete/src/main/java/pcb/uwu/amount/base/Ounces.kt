@@ -1,86 +1,36 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.MassUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.MassUnit
+import pcb.uwu.unit.base.OunceUnit.OUNCE
 
-import java.math.BigDecimal;
+class Ounces : Mass
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, OUNCE)
 
-import static pcb.uwu.unit.base.OunceUnit.OUNCE;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, OUNCE)
 
-public class Ounces extends Mass {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(mass: UnitAmount<MassUnit>) =
+        Ounces(this.amount + (mass to OUNCE).amount)
 
-	public Ounces(Number value) {
-		super(value, OUNCE);
-	}
+    override fun minus(mass: UnitAmount<MassUnit>) =
+        Ounces(this.amount - (mass to OUNCE).amount)
 
-	public Ounces(Number value, Magnitude magnitude) {
-		super(value, magnitude, OUNCE);
-	}
+    override fun times(number: Number) =
+        Ounces(this.amount * number)
 
-	public Ounces(String value) {
-		super(value, OUNCE);
-	}
+    override fun div(number: Number) =
+        Ounces(this.amount / number)
 
-	public Ounces(String value, Magnitude magnitude) {
-		super(value, magnitude, OUNCE);
-	}
-
-	public Ounces(BigDecimal value) {
-		super(value, OUNCE);
-	}
-
-	public Ounces(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, OUNCE);
-	}
-
-	public Ounces(BigDecimalAmount amount) {
-		super(amount, OUNCE);
-	}
-
-	public Ounces(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, OUNCE);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Ounces plus(@NotNull UnitAmount<MassUnit> mass) {
-		return new Ounces(plusAmount(this, mass));
-	}
-
-	@NotNull
-	@Override
-	public Ounces minus(@NotNull UnitAmount<MassUnit> mass) {
-		return new Ounces(minusAmount(this, mass));
-	}
-
-	@NotNull
-	@Override
-	public Ounces times(@NotNull Number number) {
-		return new Ounces(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Ounces div(@NotNull Number number) {
-		return new Ounces(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }

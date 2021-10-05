@@ -1,86 +1,36 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.TemperatureUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.CelsiusUnit.CELSIUS
+import pcb.uwu.unit.base.TemperatureUnit
 
-import java.math.BigDecimal;
+class Celsius : Temperature
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, CELSIUS)
 
-import static pcb.uwu.unit.base.CelsiusUnit.CELSIUS;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, CELSIUS)
 
-public class Celsius extends Temperature {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(temperature: UnitAmount<TemperatureUnit>) =
+        Celsius(this.amount + (temperature to CELSIUS).amount)
 
-	public Celsius(Number value) {
-		super(value, CELSIUS);
-	}
+    override fun minus(temperature: UnitAmount<TemperatureUnit>) =
+        Celsius(this.amount + (temperature to CELSIUS).amount)
 
-	public Celsius(Number value, Magnitude magnitude) {
-		super(value, magnitude, CELSIUS);
-	}
+    override fun times(number: Number) =
+        Celsius(this.amount * number)
 
-	public Celsius(String value) {
-		super(value, CELSIUS);
-	}
+    override fun div(number: Number) =
+        Celsius(this.amount / number)
 
-	public Celsius(String value, Magnitude magnitude) {
-		super(value, magnitude, CELSIUS);
-	}
-
-	public Celsius(BigDecimal value) {
-		super(value, CELSIUS);
-	}
-
-	public Celsius(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, CELSIUS);
-	}
-
-	public Celsius(BigDecimalAmount amount) {
-		super(amount, CELSIUS);
-	}
-
-	public Celsius(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, CELSIUS);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Celsius plus(@NotNull UnitAmount<TemperatureUnit> temperature) {
-		return new Celsius(plusAmount(this, temperature));
-	}
-
-	@NotNull
-	@Override
-	public Celsius minus(@NotNull UnitAmount<TemperatureUnit> temperature) {
-		return new Celsius(minusAmount(this, temperature));
-	}
-
-	@NotNull
-	@Override
-	public Celsius times(@NotNull Number number) {
-		return new Celsius(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Celsius div(@NotNull Number number) {
-		return new Celsius(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }

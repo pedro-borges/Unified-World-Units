@@ -1,127 +1,70 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.derived.electromagnetism.Coulombs;
-import pcb.uwu.amount.derived.electromagnetism.ElectricConductance;
-import pcb.uwu.amount.derived.electromagnetism.ElectricInductance;
-import pcb.uwu.amount.derived.electromagnetism.ElectricPotential;
-import pcb.uwu.amount.derived.electromagnetism.ElectricResistance;
-import pcb.uwu.amount.derived.electromagnetism.MagneticFlux;
-import pcb.uwu.amount.derived.electromagnetism.Siemens;
-import pcb.uwu.amount.derived.electromagnetism.Volts;
-import pcb.uwu.amount.derived.electromagnetism.Webbers;
-import pcb.uwu.amount.derived.thermodynamics.Joules;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.ElectricCurrentUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.derived.electromagnetism.*
+import pcb.uwu.amount.derived.thermodynamics.Joules
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.AmpereUnit.AMPERE
+import pcb.uwu.unit.base.ElectricCurrentUnit
+import pcb.uwu.unit.base.SecondUnit.SECOND
+import pcb.uwu.unit.derived.electromagnetism.HenryUnit.HENRY
+import pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM
+import pcb.uwu.unit.derived.electromagnetism.SiemensUnit.SIEMENS
+import pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT
+import pcb.uwu.unit.derived.electromagnetism.WebberUnit.WEBBER
 
-import java.math.BigDecimal;
+class Amperes : ElectricCurrent
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, AMPERE)
 
-import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.electromagnetism.HenryUnit.HENRY;
-import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
-import static pcb.uwu.unit.derived.electromagnetism.SiemensUnit.SIEMENS;
-import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
-import static pcb.uwu.unit.derived.electromagnetism.WebberUnit.WEBBER;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, AMPERE)
 
-public class Amperes extends ElectricCurrent {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(electricCurrrent: UnitAmount<ElectricCurrentUnit>) =
+        Amperes(this.amount + (electricCurrrent to AMPERE).amount)
 
-	public Amperes(Number value) {
-		super(value, AMPERE);
-	}
+    override fun minus(electricCurrrent: UnitAmount<ElectricCurrentUnit>) =
+        Amperes(this.amount - (electricCurrrent to AMPERE).amount)
 
-	public Amperes(Number value, Magnitude magnitude) {
-		super(value, magnitude, AMPERE);
-	}
+    override fun times(number: Number) =
+        Amperes(this.amount * number)
 
-	public Amperes(String value) {
-		super(value, AMPERE);
-	}
+    override fun div(number: Number) =
+        Amperes(this.amount / number)
 
-	public Amperes(String value, Magnitude magnitude) {
-		super(value, magnitude, AMPERE);
-	}
+    // endregion
 
-	public Amperes(BigDecimal value) {
-		super(value, AMPERE);
-	}
+    // region composition
 
-	public Amperes(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, AMPERE);
-	}
+    operator fun times(time: Time) =
+        Coulombs(this.amount * (time to SECOND).amount)
 
-	public Amperes(BigDecimalAmount amount) {
-		super(amount, AMPERE);
-	}
+    operator fun times(electricResistance: ElectricResistance) =
+        Volts(this.amount * (electricResistance to OHM).amount)
 
-	public Amperes(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, AMPERE);
-	}
+    operator fun times(electricInductance: ElectricInductance) =
+        Webbers(this.amount * (electricInductance to HENRY).amount)
 
-	// endregion
+    operator fun times(magneticFlux: MagneticFlux) =
+        Joules(this.amount * (magneticFlux to WEBBER).amount)
 
-	// region implement UnitAmount
+    operator fun div(electricPotential: ElectricPotential): Siemens
+    {
+        return Siemens(this.amount / (electricPotential to VOLT).amount)
+    }
 
-	@NotNull
-	@Override
-	public Amperes plus(@NotNull UnitAmount<ElectricCurrentUnit> electricCurrrent) {
-		return new Amperes(plusAmount(this, electricCurrrent));
-	}
+    operator fun div(electricConductance: ElectricConductance): Volts
+    {
+        return Volts(amount / (electricConductance to SIEMENS).amount)
+    }
 
-	@NotNull
-	@Override
-	public Amperes minus(@NotNull UnitAmount<ElectricCurrentUnit> electricCurrrent) {
-		return new Amperes(minusAmount(this, electricCurrrent));
-	}
-
-	@NotNull
-	@Override
-	public Amperes times(@NotNull Number number) {
-		return new Amperes(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Amperes div(@NotNull Number number) {
-		return new Amperes(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Coulombs times(Time time) {
-		return new Coulombs(getAmount().times(getAmountIn(time, SECOND)));
-	}
-
-	public Volts times(ElectricResistance electricResistance) {
-		return new Volts(getAmount().times(getAmountIn(electricResistance, OHM)));
-	}
-
-	public Webbers times(ElectricInductance electricInductance) {
-		return new Webbers(getAmount().times(getAmountIn(electricInductance, HENRY)));
-	}
-
-	public Joules times(MagneticFlux magneticFlux) {
-		return new Joules(getAmount().times(getAmountIn(magneticFlux, WEBBER)));
-	}
-
-	public Siemens div(ElectricPotential electricPotential) {
-		return new Siemens(getAmount().div(getAmountIn(electricPotential, VOLT)));
-	}
-
-	public Volts div(ElectricConductance electricConductance) {
-		return new Volts(getAmount().div(getAmountIn(electricConductance, SIEMENS)));
-	}
-
-	// endregion
+    // endregion
 }

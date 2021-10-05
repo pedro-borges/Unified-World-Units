@@ -1,86 +1,36 @@
-package pcb.uwu.amount.base;
+package pcb.uwu.amount.base
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.LengthUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.LengthUnit
+import pcb.uwu.unit.base.MileUnit.MILE
 
-import java.math.BigDecimal;
+class Miles : Length
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, MILE)
 
-import static pcb.uwu.unit.base.MileUnit.MILE;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, MILE)
 
-public class Miles extends Length {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(length: UnitAmount<LengthUnit>) =
+        Miles(this.amount + (length to MILE).amount)
 
-	public Miles(Number value) {
-		super(value, MILE);
-	}
+    override fun minus(length: UnitAmount<LengthUnit>) =
+        Miles(this.amount + (length to MILE).amount)
 
-	public Miles(Number value, Magnitude magnitude) {
-		super(value, magnitude, MILE);
-	}
+    override fun times(number: Number) =
+        Miles(this.amount * number)
 
-	public Miles(String value) {
-		super(value, MILE);
-	}
+    override fun div(number: Number) =
+        Miles(this.amount / number)
 
-	public Miles(String value, Magnitude magnitude) {
-		super(value, magnitude, MILE);
-	}
-
-	public Miles(BigDecimal value) {
-		super(value, MILE);
-	}
-
-	public Miles(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, MILE);
-	}
-
-	public Miles(BigDecimalAmount amount) {
-		super(amount, MILE);
-	}
-
-	public Miles(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, MILE);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Miles plus(@NotNull UnitAmount<LengthUnit> length) {
-		return new Miles(plusAmount(this, length));
-	}
-
-	@NotNull
-	@Override
-	public Miles minus(@NotNull UnitAmount<LengthUnit> length) {
-		return new Miles(minusAmount(this, length));
-	}
-
-	@NotNull
-	@Override
-	public Miles times(@NotNull Number number) {
-		return new Miles(UnitAmountUtils.times(this, number));
-	}
-
-	@NotNull
-	@Override
-	public Miles div(@NotNull Number number) {
-		return new Miles(dividedByScalar(this, number));
-	}
-
-	// endregion
-
-	// region composition
-
-	// endregion
+    // endregion
 }
