@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.fundamental;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Hertz extends Frequency {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Hertz plus(UnitAmount<FrequencyUnit> other, MathContext mathContext) {
-		return new Hertz(plusAmount(this, other, mathContext));
+	public Hertz plus(@NotNull UnitAmount<FrequencyUnit> other) {
+		return new Hertz(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Hertz minus(@NotNull UnitAmount<FrequencyUnit> other) {
+		return new Hertz(minusAmount(this, other));
 	}
 
 	@Override
-	public Hertz minus(UnitAmount<FrequencyUnit> other, MathContext mathContext) {
-		return new Hertz(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Hertz multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Hertz multiply(BigDecimal other, MathContext mathContext) {
 		return new Hertz(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Hertz dividedBy(BigDecimal other, MathContext mathContext) {
+	public Hertz div(BigDecimal other, MathContext mathContext) {
 		return new Hertz(dividedByScalar(this, other, mathContext));
 	}
 

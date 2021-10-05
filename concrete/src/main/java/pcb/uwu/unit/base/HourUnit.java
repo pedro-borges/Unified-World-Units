@@ -12,7 +12,7 @@ public class HourUnit extends TimeUnit {
 
 	private HourUnit() {
 		super("h", "hour", "hours",
-				value -> value.multipliedBy(SECONDS_PER_HOUR, DECIMAL64),
-				value -> value.dividedBy(SECONDS_PER_HOUR, DECIMAL64));
+				value -> value.times(SECONDS_PER_HOUR, DECIMAL64),
+				value -> value.div(SECONDS_PER_HOUR, DECIMAL64));
 	}
 }

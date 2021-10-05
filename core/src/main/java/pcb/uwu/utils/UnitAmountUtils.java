@@ -35,29 +35,29 @@ public class UnitAmountUtils {
 
 		if (unit.equals(newUnit))
 		{
-			return amount.dividedBy(magnitude.getValue(), UNLIMITED);
+			return amount.div(magnitude.getValue(), UNLIMITED);
 		}
 
 		Function<BigDecimalAmount, BigDecimalAmount> translation = unit
 				.getTranslationToCanonical()
 				.andThen(newUnit.getTranslationFromCanonical());
 
-		return amount.transformed(translation).dividedBy(magnitude.getValue(), UNLIMITED);
+		return amount.transformed(translation).div(magnitude.getValue(), UNLIMITED);
 	}
 
-	public static <U extends Unit> BigDecimalAmount plusAmount(UnitAmount<U> unitAmount, UnitAmount<U> other, MathContext mathContext) {
-		return unitAmount.getAmount().plus(getAmountIn(other, unitAmount.getUnit()), mathContext);
+	public static <U extends Unit> BigDecimalAmount plusAmount(UnitAmount<U> unitAmount, UnitAmount<U> other) {
+		return unitAmount.getAmount().plus(getAmountIn(other, unitAmount.getUnit()));
 	}
 
-	public static <U extends Unit> BigDecimalAmount minusAmount(UnitAmount<U> unitAmount, UnitAmount<U> other, MathContext mathContext) {
-		return unitAmount.getAmount().minus(getAmountIn(other, unitAmount.getUnit()), mathContext);
+	public static <U extends Unit> BigDecimalAmount minusAmount(UnitAmount<U> unitAmount, UnitAmount<U> other) {
+		return unitAmount.getAmount().minus(getAmountIn(other, unitAmount.getUnit()));
 	}
 
 	public static <U extends Unit> BigDecimalAmount multipliedByScalar(UnitAmount<U> unitAmount, BigDecimal other, MathContext mathContext) {
-		return unitAmount.getAmount().multipliedBy(other, mathContext);
+		return unitAmount.getAmount().times(other, mathContext);
 	}
 
 	public static <U extends Unit> BigDecimalAmount dividedByScalar(UnitAmount<U> unitAmount, BigDecimal other, MathContext mathContext) {
-		return unitAmount.getAmount().dividedBy(other, mathContext);
+		return unitAmount.getAmount().div(other, mathContext);
 	}
 }

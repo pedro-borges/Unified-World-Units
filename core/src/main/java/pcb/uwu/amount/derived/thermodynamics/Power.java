@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.thermodynamics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class Power extends CompositeUnitAmount<PowerUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Power plus(UnitAmount<PowerUnit> other, MathContext mathContext) {
-		return new Power(plusAmount(this, other, mathContext), getUnit());
+	public Power plus(@NotNull UnitAmount<PowerUnit> other) {
+		return new Power(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Power minus(@NotNull UnitAmount<PowerUnit> other) {
+		return new Power(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Power minus(UnitAmount<PowerUnit> other, MathContext mathContext) {
-		return new Power(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Power multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Power multiply(BigDecimal other, MathContext mathContext) {
 		return new Power(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Power dividedBy(BigDecimal other, MathContext mathContext) {
+	public Power div(BigDecimal other, MathContext mathContext) {
 		return new Power(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Power in(PowerUnit unit) {
+	public Power into(PowerUnit unit) {
 		return new Power(getAmountIn(this, unit), unit);
 	}
 

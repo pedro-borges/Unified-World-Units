@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Kelvins extends Temperature {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Kelvins plus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Kelvins(plusAmount(this, other, mathContext));
+	public Kelvins plus(@NotNull UnitAmount<TemperatureUnit> other) {
+		return new Kelvins(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Kelvins minus(@NotNull UnitAmount<TemperatureUnit> other) {
+		return new Kelvins(minusAmount(this, other));
 	}
 
 	@Override
-	public Kelvins minus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Kelvins(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Kelvins multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Kelvins multiply(BigDecimal other, MathContext mathContext) {
 		return new Kelvins(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Kelvins dividedBy(BigDecimal other, MathContext mathContext) {
+	public Kelvins div(BigDecimal other, MathContext mathContext) {
 		return new Kelvins(dividedByScalar(this, other, mathContext));
 	}
 

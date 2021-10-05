@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.derived.finance.InterestRate;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
@@ -61,28 +62,30 @@ public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Scalar plus(UnitAmount<ScalarUnit> other, MathContext mathContext) {
-		return new Scalar(plusAmount(this, other, mathContext));
+	public Scalar plus(@NotNull UnitAmount<ScalarUnit> other) {
+		return new Scalar(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Scalar minus(@NotNull UnitAmount<ScalarUnit> other) {
+		return new Scalar(minusAmount(this, other));
 	}
 
 	@Override
-	public Scalar minus(UnitAmount<ScalarUnit> other, MathContext mathContext) {
-		return new Scalar(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Scalar multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Scalar multiply(BigDecimal other, MathContext mathContext) {
 		return new Scalar(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Scalar dividedBy(BigDecimal other, MathContext mathContext) {
+	public Scalar div(BigDecimal other, MathContext mathContext) {
 		return new Scalar(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Scalar in(ScalarUnit unit) {
+	public Scalar into(ScalarUnit unit) {
 		return new Scalar(getAmountIn(this, unit));
 	}
 
@@ -92,7 +95,7 @@ public class Scalar extends CompositeUnitAmount<ScalarUnit> {
 
 	public InterestRate dividedBy(Time time, MathContext mathContext) {
 		BigDecimalAmount amount = getAmount()
-				.dividedBy(time.getAmount().getValue(), mathContext);
+				.div(time.getAmount().getValue(), mathContext);
 		FrequencyUnit unit = new FrequencyUnit(time.getUnit());
 
 		return new InterestRate(amount, unit);

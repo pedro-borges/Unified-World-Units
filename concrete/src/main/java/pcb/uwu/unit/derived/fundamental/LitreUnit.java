@@ -31,13 +31,13 @@ public class LitreUnit extends VolumeUnit {
 		@Override
 		public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
 			return super.getTranslationToCanonical()
-					.andThen(amount -> amount.dividedBy(ONE_THOUSAND, UNLIMITED));
+					.andThen(amount -> amount.div(ONE_THOUSAND, UNLIMITED));
 		}
 
 		@Override
 		public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
 			return super.getTranslationFromCanonical()
-					.andThen(amount -> amount.multipliedBy(ONE_THOUSAND, UNLIMITED));
+					.andThen(amount -> amount.times(ONE_THOUSAND, UNLIMITED));
 		}
 	};
 

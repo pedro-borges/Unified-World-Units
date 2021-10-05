@@ -1,51 +1,38 @@
-package pcb.uwu.core;
+package pcb.uwu.core
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
+import java.math.BigDecimal
 
-import static java.math.BigDecimal.ONE;
+enum class Magnitude(order: Int, val symbol: String)
+{
+    PICO(-12, "p"),
+    NANO(-9, "n"),
+    MICRO(-6, "μ"),
+    MILLI(-3, "m"),
+    CENTI(-2, "c"),
+    DECI(-1, "d"),
+    NATURAL(0, ""),
+    DEKA(1, "D"),
+    HECTA(2, "H"),
+    KILO(3, "K"),
+    MEGA(6, "M"),
+    GIGA(9, "G"),
+    TERA(12, "T");
 
-public enum Magnitude {
-	PICO(-12, "p"),
-	NANO(-9, "n"),
-	MICRO(-6, "μ"),
-	MILLI(-3, "m"),
-	CENTI(-2, "c"),
-	DECI(-1, "d"),
-	NATURAL(0, ""),
-	DEKA(1, "D"),
-	HECTA(2, "H"),
-	KILO(3, "K"),
-	MEGA(6, "M"),
-	GIGA(9, "G"),
-	TERA(12, "T"),
-	;
+    val value: BigDecimal
 
-	public static final List<Magnitude> ALL_MAGNITUDES = Arrays
-			.asList(PICO, NANO, MICRO, MILLI, CENTI, DECI, NATURAL, DEKA, HECTA, KILO, MEGA, GIGA, TERA);
-	public static final List<Magnitude> MAJOR_MAGNITUDES = Arrays
-			.asList(PICO, NANO, MICRO, MILLI, NATURAL, KILO, MEGA, GIGA, TERA);
+    fun symbol(): String
+    {
+        return symbol
+    }
 
-	private final int order;
-	private final String symbol;
-	private final BigDecimal value;
+    companion object
+    {
+        val ALL_MAGNITUDES = listOf(PICO, NANO, MICRO, MILLI, CENTI, DECI, NATURAL, DEKA, HECTA, KILO, MEGA, GIGA, TERA)
+        val MAJOR_MAGNITUDES = listOf(PICO, NANO, MICRO, MILLI, NATURAL, KILO, MEGA, GIGA, TERA)
+    }
 
-	Magnitude(int order, String symbol) {
-		this.order = order;
-		this.symbol = symbol;
-		this.value = ONE.movePointRight(order);
-	}
-
-	public int order() {
-		return order;
-	}
-
-	public String symbol() {
-		return symbol;
-	}
-
-	public BigDecimal getValue() {
-		return value;
-	}
+    init
+    {
+        value = BigDecimal.ONE.movePointRight(order)
+    }
 }

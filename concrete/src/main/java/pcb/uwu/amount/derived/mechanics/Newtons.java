@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.mechanics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.KiloGrams;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.base.Mass;
@@ -67,23 +68,25 @@ public class Newtons extends Force {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Newtons plus(UnitAmount<ForceUnit> other, MathContext mathContext) {
-		return new Newtons(plusAmount(this, other, mathContext));
+	public Newtons plus(@NotNull UnitAmount<ForceUnit> other) {
+		return new Newtons(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Newtons minus(@NotNull UnitAmount<ForceUnit> other) {
+		return new Newtons(minusAmount(this, other));
 	}
 
 	@Override
-	public Newtons minus(UnitAmount<ForceUnit> other, MathContext mathContext) {
-		return new Newtons(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Newtons multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Newtons multiply(BigDecimal other, MathContext mathContext) {
 		return new Newtons(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Newtons dividedBy(BigDecimal other, MathContext mathContext) {
+	public Newtons div(BigDecimal other, MathContext mathContext) {
 		return new Newtons(dividedByScalar(this, other, mathContext));
 	}
 
@@ -92,25 +95,25 @@ public class Newtons extends Force {
 	// region composition
 
 	public KiloGrams dividedBy(Acceleration acceleration, MathContext mathContext) {
-		return new KiloGrams(super.dividedBy(acceleration, mathContext).getAmount());
+		return new KiloGrams(super.div(acceleration, mathContext).getAmount());
 	}
 
 	public Acceleration dividedBy(Mass mass, MathContext mathContext) {
 		return new Acceleration(
-				super.dividedBy(mass, mathContext).getAmount(),
+				super.div(mass, mathContext).getAmount(),
 				new AccelerationUnit(METER, SECOND));
 	}
 
 	public Joules multipliedBy(Length length, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(getAmountIn(length, METER), mathContext));
+		return new Joules(getAmount().times(getAmountIn(length, METER), mathContext));
 	}
 
 	public Area dividedBy(Pressure pressure, MathContext mathContext) {
-		return new Area(getAmount().dividedBy(getAmountIn(pressure, PASCAL), mathContext), SQUARE_METER);
+		return new Area(getAmount().div(getAmountIn(pressure, PASCAL), mathContext), SQUARE_METER);
 	}
 
 	public Pascals dividedBy(Area area, MathContext mathContext) {
-		return new Pascals(getAmount().dividedBy(getAmountIn(area, SQUARE_METER), mathContext));
+		return new Pascals(getAmount().div(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
 	// endregion

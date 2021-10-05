@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Weeks extends Time {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Weeks plus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Weeks(plusAmount(this, other, mathContext));
+	public Weeks plus(@NotNull UnitAmount<TimeUnit> other) {
+		return new Weeks(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Weeks minus(@NotNull UnitAmount<TimeUnit> other) {
+		return new Weeks(minusAmount(this, other));
 	}
 
 	@Override
-	public Weeks minus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Weeks(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Weeks multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Weeks multiply(BigDecimal other, MathContext mathContext) {
 		return new Weeks(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Weeks dividedBy(BigDecimal other, MathContext mathContext) {
+	public Weeks div(BigDecimal other, MathContext mathContext) {
 		return new Weeks(dividedByScalar(this, other, mathContext));
 	}
 

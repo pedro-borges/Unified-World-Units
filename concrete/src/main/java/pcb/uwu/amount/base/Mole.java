@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Mole extends AmountOfSubstance {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Mole plus(UnitAmount<AmountOfSubstanceUnit> other, MathContext mathContext) {
-		return new Mole(plusAmount(this, other, mathContext));
+	public Mole plus(@NotNull UnitAmount<AmountOfSubstanceUnit> other) {
+		return new Mole(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Mole minus(@NotNull UnitAmount<AmountOfSubstanceUnit> other) {
+		return new Mole(minusAmount(this, other));
 	}
 
 	@Override
-	public Mole minus(UnitAmount<AmountOfSubstanceUnit> other, MathContext mathContext) {
-		return new Mole(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Mole multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Mole multiply(BigDecimal other, MathContext mathContext) {
 		return new Mole(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Mole dividedBy(BigDecimal other, MathContext mathContext) {
+	public Mole div(BigDecimal other, MathContext mathContext) {
 		return new Mole(dividedByScalar(this, other, mathContext));
 	}
 

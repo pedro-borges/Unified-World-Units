@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Ounces extends Mass {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Ounces plus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Ounces(plusAmount(this, other, mathContext));
+	public Ounces plus(@NotNull UnitAmount<MassUnit> other) {
+		return new Ounces(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Ounces minus(@NotNull UnitAmount<MassUnit> other) {
+		return new Ounces(minusAmount(this, other));
 	}
 
 	@Override
-	public Ounces minus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Ounces(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Ounces multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Ounces multiply(BigDecimal other, MathContext mathContext) {
 		return new Ounces(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Ounces dividedBy(BigDecimal other, MathContext mathContext) {
+	public Ounces div(BigDecimal other, MathContext mathContext) {
 		return new Ounces(dividedByScalar(this, other, mathContext));
 	}
 

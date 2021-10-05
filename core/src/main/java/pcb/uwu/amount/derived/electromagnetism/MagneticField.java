@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class MagneticField extends CompositeUnitAmount<MagneticFieldUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public MagneticField plus(UnitAmount<MagneticFieldUnit> other, MathContext mathContext) {
-		return new MagneticField(plusAmount(this, other, mathContext), getUnit());
+	public MagneticField plus(@NotNull UnitAmount<MagneticFieldUnit> other) {
+		return new MagneticField(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public MagneticField minus(@NotNull UnitAmount<MagneticFieldUnit> other) {
+		return new MagneticField(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public MagneticField minus(UnitAmount<MagneticFieldUnit> other, MathContext mathContext) {
-		return new MagneticField(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public MagneticField multipliedBy(BigDecimal other, MathContext mathContext) {
+	public MagneticField multiply(BigDecimal other, MathContext mathContext) {
 		return new MagneticField(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public MagneticField dividedBy(BigDecimal other, MathContext mathContext) {
+	public MagneticField div(BigDecimal other, MathContext mathContext) {
 		return new MagneticField(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public MagneticField in(MagneticFieldUnit unit) {
+	public MagneticField into(MagneticFieldUnit unit) {
 		return new MagneticField(getAmountIn(this, unit), unit);
 	}
 

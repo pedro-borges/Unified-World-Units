@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.optics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class LuminousFlux extends CompositeUnitAmount<LuminousFluxUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public LuminousFlux plus(UnitAmount<LuminousFluxUnit> other, MathContext mathContext) {
-		return new LuminousFlux(plusAmount(this, other, mathContext), getUnit());
+	public LuminousFlux plus(@NotNull UnitAmount<LuminousFluxUnit> other) {
+		return new LuminousFlux(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public LuminousFlux minus(@NotNull UnitAmount<LuminousFluxUnit> other) {
+		return new LuminousFlux(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public LuminousFlux minus(UnitAmount<LuminousFluxUnit> other, MathContext mathContext) {
-		return new LuminousFlux(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public LuminousFlux multipliedBy(BigDecimal other, MathContext mathContext) {
+	public LuminousFlux multiply(BigDecimal other, MathContext mathContext) {
 		return new LuminousFlux(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public LuminousFlux dividedBy(BigDecimal other, MathContext mathContext) {
+	public LuminousFlux div(BigDecimal other, MathContext mathContext) {
 		return new LuminousFlux(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public LuminousFlux in(LuminousFluxUnit unit) {
+	public LuminousFlux into(LuminousFluxUnit unit) {
 		return new LuminousFlux(getAmountIn(this, unit), unit);
 	}
 

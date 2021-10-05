@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Feet extends Length {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Feet plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Feet(plusAmount(this, other, mathContext));
+	public Feet plus(@NotNull UnitAmount<LengthUnit> other) {
+		return new Feet(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Feet minus(@NotNull UnitAmount<LengthUnit> other) {
+		return new Feet(minusAmount(this, other));
 	}
 
 	@Override
-	public Feet minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Feet(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Feet multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Feet multiply(BigDecimal other, MathContext mathContext) {
 		return new Feet(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Feet dividedBy(BigDecimal other, MathContext mathContext) {
+	public Feet div(BigDecimal other, MathContext mathContext) {
 		return new Feet(dividedByScalar(this, other, mathContext));
 	}
 

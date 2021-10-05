@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.thermodynamics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.amount.derived.fundamental.Volume;
 import pcb.uwu.amount.derived.mechanics.Newtons;
@@ -60,23 +61,25 @@ public class Pascals extends Pressure {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Pascals plus(UnitAmount<PressureUnit> other, MathContext mathContext) {
-		return new Pascals(plusAmount(this, other, mathContext));
+	public Pascals plus(@NotNull UnitAmount<PressureUnit> other) {
+		return new Pascals(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Pascals minus(@NotNull UnitAmount<PressureUnit> other) {
+		return new Pascals(minusAmount(this, other));
 	}
 
 	@Override
-	public Pascals minus(UnitAmount<PressureUnit> other, MathContext mathContext) {
-		return new Pascals(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Pascals multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Pascals multiply(BigDecimal other, MathContext mathContext) {
 		return new Pascals(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Pascals dividedBy(BigDecimal other, MathContext mathContext) {
+	public Pascals div(BigDecimal other, MathContext mathContext) {
 		return new Pascals(dividedByScalar(this, other, mathContext));
 	}
 
@@ -85,11 +88,11 @@ public class Pascals extends Pressure {
 	// region composition
 
 	public Joules multipliedBy(Volume volume, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(getAmountIn(volume, CUBIC_METER), mathContext));
+		return new Joules(getAmount().times(getAmountIn(volume, CUBIC_METER), mathContext));
 	}
 
 	public Newtons multipliedBy(Area area, MathContext mathContext) {
-		return new Newtons(getAmount().multipliedBy(getAmountIn(area, SQUARE_METER), mathContext));
+		return new Newtons(getAmount().times(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
 	// endregion

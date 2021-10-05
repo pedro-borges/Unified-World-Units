@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.mechanics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.core.BigDecimalAmount;
@@ -61,28 +62,30 @@ public class Speed extends CompositeUnitAmount<SpeedUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Speed plus(UnitAmount<SpeedUnit> other, MathContext mathContext) {
-		return new Speed(plusAmount(this, other, mathContext), getUnit());
+	public Speed plus(@NotNull UnitAmount<SpeedUnit> other) {
+		return new Speed(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Speed minus(@NotNull UnitAmount<SpeedUnit> other) {
+		return new Speed(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Speed minus(UnitAmount<SpeedUnit> other, MathContext mathContext) {
-		return new Speed(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Speed multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Speed multiply(BigDecimal other, MathContext mathContext) {
 		return new Speed(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Speed dividedBy(BigDecimal other, MathContext mathContext) {
+	public Speed div(BigDecimal other, MathContext mathContext) {
 		return new Speed(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Speed in(SpeedUnit unit) {
+	public Speed into(SpeedUnit unit) {
 		return new Speed(getAmountIn(this, unit), unit);
 	}
 
@@ -96,21 +99,21 @@ public class Speed extends CompositeUnitAmount<SpeedUnit> {
 	// region composition
 
 	public Acceleration dividedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount().dividedBy(time.getAmount().getValue(), mathContext);
+		BigDecimalAmount amount = getAmount().div(time.getAmount().getValue(), mathContext);
 		AccelerationUnit unit = new AccelerationUnit(getUnit(), time.getUnit());
 
 		return new Acceleration(amount, unit);
 	}
 
 	public Time dividedBy(Acceleration acceleration, MathContext mathContext) {
-		BigDecimalAmount amount = super.dividedBy(acceleration, mathContext).getAmount();
+		BigDecimalAmount amount = super.div(acceleration, mathContext).getAmount();
 		TimeUnit unit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
 
 		return new Time(amount, unit);
 	}
 
 	public Length multipliedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = super.multipliedBy(time, mathContext).getAmount();
+		BigDecimalAmount amount = super.multiply(time, mathContext).getAmount();
 		LengthUnit unit = getUnit().getUnitCounter().findUnit(LengthUnit.class);
 
 		return new Length(amount, unit);

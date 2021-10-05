@@ -12,7 +12,7 @@ public class DayUnit extends TimeUnit {
 
 	private DayUnit() {
 		super("d", "day", "days",
-				value -> value.multipliedBy(SECONDS_PER_DAY, DECIMAL64),
-				value -> value.dividedBy(SECONDS_PER_DAY, DECIMAL64));
+				value -> value.times(SECONDS_PER_DAY, DECIMAL64),
+				value -> value.div(SECONDS_PER_DAY, DECIMAL64));
 	}
 }

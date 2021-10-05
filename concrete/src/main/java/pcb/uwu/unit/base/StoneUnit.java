@@ -12,7 +12,7 @@ public class StoneUnit extends MassUnit {
 
 	private StoneUnit() {
 		super("st", "stone", "stones",
-				value -> value.multipliedBy(KILOGRAMS_PER_STONE, DECIMAL64),
-				value -> value.dividedBy(KILOGRAMS_PER_STONE, DECIMAL64));
+				value -> value.times(KILOGRAMS_PER_STONE, DECIMAL64),
+				value -> value.div(KILOGRAMS_PER_STONE, DECIMAL64));
 	}
 }

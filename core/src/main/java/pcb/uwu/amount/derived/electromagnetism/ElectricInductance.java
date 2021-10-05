@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class ElectricInductance extends CompositeUnitAmount<ElectricInductanceUn
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public ElectricInductance plus(UnitAmount<ElectricInductanceUnit> other, MathContext mathContext) {
-		return new ElectricInductance(plusAmount(this, other, mathContext), getUnit());
+	public ElectricInductance plus(@NotNull UnitAmount<ElectricInductanceUnit> other) {
+		return new ElectricInductance(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public ElectricInductance minus(@NotNull UnitAmount<ElectricInductanceUnit> other) {
+		return new ElectricInductance(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public ElectricInductance minus(UnitAmount<ElectricInductanceUnit> other, MathContext mathContext) {
-		return new ElectricInductance(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public ElectricInductance multipliedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricInductance multiply(BigDecimal other, MathContext mathContext) {
 		return new ElectricInductance(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public ElectricInductance dividedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricInductance div(BigDecimal other, MathContext mathContext) {
 		return new ElectricInductance(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public ElectricInductance in(ElectricInductanceUnit unit) {
+	public ElectricInductance into(ElectricInductanceUnit unit) {
 		return new ElectricInductance(getAmountIn(this, unit), unit);
 	}
 

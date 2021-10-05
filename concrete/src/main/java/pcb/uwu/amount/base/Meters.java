@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.derived.mechanics.Force;
 import pcb.uwu.amount.derived.thermodynamics.Joules;
 import pcb.uwu.core.BigDecimalAmount;
@@ -58,23 +59,25 @@ public class Meters extends Length {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Meters plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Meters(plusAmount(this, other, mathContext));
+	public Meters plus(@NotNull UnitAmount<LengthUnit> other) {
+		return new Meters(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Meters minus(@NotNull UnitAmount<LengthUnit> other) {
+		return new Meters(minusAmount(this, other));
 	}
 
 	@Override
-	public Meters minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Meters(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Meters multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Meters multiply(BigDecimal other, MathContext mathContext) {
 		return new Meters(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Meters dividedBy(BigDecimal other, MathContext mathContext) {
+	public Meters div(BigDecimal other, MathContext mathContext) {
 		return new Meters(dividedByScalar(this, other, mathContext));
 	}
 
@@ -83,7 +86,7 @@ public class Meters extends Length {
 	// region composition
 
 	public Joules multipliedBy(Force force, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(getAmountIn(force, NEWTON), mathContext));
+		return new Joules(getAmount().times(getAmountIn(force, NEWTON), mathContext));
 	}
 
 	// endregion

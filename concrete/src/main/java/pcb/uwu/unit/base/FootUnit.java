@@ -12,7 +12,7 @@ public class FootUnit extends LengthUnit {
 
 	private FootUnit() {
 		super("ft", "foot", "feet",
-				value -> value.multipliedBy(METERS_PER_FOOT, DECIMAL64),
-				value -> value.dividedBy(METERS_PER_FOOT, DECIMAL64));
+				value -> value.times(METERS_PER_FOOT, DECIMAL64),
+				value -> value.div(METERS_PER_FOOT, DECIMAL64));
 	}
 }

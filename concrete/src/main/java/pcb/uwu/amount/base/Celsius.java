@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Celsius extends Temperature {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Celsius plus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Celsius(plusAmount(this, other, mathContext));
+	public Celsius plus(@NotNull UnitAmount<TemperatureUnit> other) {
+		return new Celsius(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Celsius minus(@NotNull UnitAmount<TemperatureUnit> other) {
+		return new Celsius(minusAmount(this, other));
 	}
 
 	@Override
-	public Celsius minus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Celsius(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Celsius multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Celsius multiply(BigDecimal other, MathContext mathContext) {
 		return new Celsius(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Celsius dividedBy(BigDecimal other, MathContext mathContext) {
+	public Celsius div(BigDecimal other, MathContext mathContext) {
 		return new Celsius(dividedByScalar(this, other, mathContext));
 	}
 

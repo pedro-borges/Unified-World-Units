@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class MagneticFlux extends CompositeUnitAmount<MagneticFluxUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public MagneticFlux plus(UnitAmount<MagneticFluxUnit> other, MathContext mathContext) {
-		return new MagneticFlux(plusAmount(this, other, mathContext), getUnit());
+	public MagneticFlux plus(@NotNull UnitAmount<MagneticFluxUnit> other) {
+		return new MagneticFlux(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public MagneticFlux minus(@NotNull UnitAmount<MagneticFluxUnit> other) {
+		return new MagneticFlux(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public MagneticFlux minus(UnitAmount<MagneticFluxUnit> other, MathContext mathContext) {
-		return new MagneticFlux(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public MagneticFlux multipliedBy(BigDecimal other, MathContext mathContext) {
+	public MagneticFlux multiply(BigDecimal other, MathContext mathContext) {
 		return new MagneticFlux(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public MagneticFlux dividedBy(BigDecimal other, MathContext mathContext) {
+	public MagneticFlux div(BigDecimal other, MathContext mathContext) {
 		return new MagneticFlux(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public MagneticFlux in(MagneticFluxUnit unit) {
+	public MagneticFlux into(MagneticFluxUnit unit) {
 		return new MagneticFlux(getAmountIn(this, unit), unit);
 	}
 

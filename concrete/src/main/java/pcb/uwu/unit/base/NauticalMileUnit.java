@@ -12,7 +12,7 @@ public class NauticalMileUnit extends LengthUnit {
 
 	private NauticalMileUnit() {
 		super("mile", "mile", "miles",
-				value -> value.multipliedBy(METERS_PER_NAUTICAL_MILE, DECIMAL64),
-				value -> value.dividedBy(METERS_PER_NAUTICAL_MILE, DECIMAL64));
+				value -> value.times(METERS_PER_NAUTICAL_MILE, DECIMAL64),
+				value -> value.div(METERS_PER_NAUTICAL_MILE, DECIMAL64));
 	}
 }

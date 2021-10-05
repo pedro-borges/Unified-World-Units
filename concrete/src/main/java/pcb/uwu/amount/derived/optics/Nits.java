@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.optics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Candelas;
 import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.core.BigDecimalAmount;
@@ -58,23 +59,25 @@ public class Nits extends Luminance {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Nits plus(UnitAmount<LuminanceUnit> other, MathContext mathContext) {
-		return new Nits(plusAmount(this, other, mathContext));
+	public Nits plus(@NotNull UnitAmount<LuminanceUnit> other) {
+		return new Nits(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Nits minus(@NotNull UnitAmount<LuminanceUnit> other) {
+		return new Nits(minusAmount(this, other));
 	}
 
 	@Override
-	public Nits minus(UnitAmount<LuminanceUnit> other, MathContext mathContext) {
-		return new Nits(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Nits multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Nits multiply(BigDecimal other, MathContext mathContext) {
 		return new Nits(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Nits dividedBy(BigDecimal other, MathContext mathContext) {
+	public Nits div(BigDecimal other, MathContext mathContext) {
 		return new Nits(dividedByScalar(this, other, mathContext));
 	}
 
@@ -83,7 +86,7 @@ public class Nits extends Luminance {
 	// region composition
 
 	public Candelas multipliedBy(Area area, MathContext mathContext) {
-		return new Candelas(getAmount().multipliedBy(getAmountIn(area, SQUARE_METER), mathContext));
+		return new Candelas(getAmount().times(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
 	// endregion

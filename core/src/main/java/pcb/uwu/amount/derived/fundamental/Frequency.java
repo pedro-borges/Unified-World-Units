@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.fundamental;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
@@ -57,28 +58,30 @@ public class Frequency extends CompositeUnitAmount<FrequencyUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Frequency plus(UnitAmount<FrequencyUnit> other, MathContext mathContext) {
-		return new Frequency(plusAmount(this, other, mathContext), getUnit());
+	public Frequency plus(@NotNull UnitAmount<FrequencyUnit> other) {
+		return new Frequency(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Frequency minus(@NotNull UnitAmount<FrequencyUnit> other) {
+		return new Frequency(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Frequency minus(UnitAmount<FrequencyUnit> other, MathContext mathContext) {
-		return new Frequency(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Frequency multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Frequency multiply(BigDecimal other, MathContext mathContext) {
 		return new Frequency(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Frequency dividedBy(BigDecimal other, MathContext mathContext) {
+	public Frequency div(BigDecimal other, MathContext mathContext) {
 		return new Frequency(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Frequency in(FrequencyUnit unit) {
+	public Frequency into(FrequencyUnit unit) {
 		return new Frequency(getAmountIn(this, unit), unit);
 	}
 

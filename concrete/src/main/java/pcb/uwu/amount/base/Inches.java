@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Inches extends Length {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Inches plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Inches(plusAmount(this, other, mathContext));
+	public Inches plus(@NotNull UnitAmount<LengthUnit> other) {
+		return new Inches(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Inches minus(@NotNull UnitAmount<LengthUnit> other) {
+		return new Inches(minusAmount(this, other));
 	}
 
 	@Override
-	public Inches minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Inches(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Inches multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Inches multiply(BigDecimal other, MathContext mathContext) {
 		return new Inches(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Inches dividedBy(BigDecimal other, MathContext mathContext) {
+	public Inches div(BigDecimal other, MathContext mathContext) {
 		return new Inches(dividedByScalar(this, other, mathContext));
 	}
 

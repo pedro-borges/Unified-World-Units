@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.finance;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.amount.finance.Money;
 import pcb.uwu.core.BigDecimalAmount;
@@ -59,28 +60,30 @@ public class Debt extends CompositeUnitAmount<DebtUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Debt plus(UnitAmount<DebtUnit> other, MathContext mathContext) {
-		return new Debt(plusAmount(this, other, mathContext), getUnit());
+	public Debt plus(@NotNull UnitAmount<DebtUnit> other) {
+		return new Debt(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Debt minus(@NotNull UnitAmount<DebtUnit> other) {
+		return new Debt(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Debt minus(UnitAmount<DebtUnit> other, MathContext mathContext) {
-		return new Debt(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Debt multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Debt multiply(BigDecimal other, MathContext mathContext) {
 		return new Debt(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Debt dividedBy(BigDecimal other, MathContext mathContext) {
+	public Debt div(BigDecimal other, MathContext mathContext) {
 		return new Debt(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Debt in(DebtUnit unit) {
+	public Debt into(DebtUnit unit) {
 		return new Debt(getAmountIn(this, unit), unit);
 	}
 
@@ -89,21 +92,21 @@ public class Debt extends CompositeUnitAmount<DebtUnit> {
 	// region composition
 
 	public Money multipliedBy(InterestRate interestRate, MathContext mathContext) {
-		BigDecimalAmount amount = super.multipliedBy(interestRate, mathContext).getAmount();
+		BigDecimalAmount amount = super.multiply(interestRate, mathContext).getAmount();
 		CurrencyUnit unit = getUnit().getUnitCounter().findUnit(CurrencyUnit.class);
 
 		return new Money(amount, unit);
 	}
 
 	public Money dividedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = super.dividedBy(time, mathContext).getAmount();
+		BigDecimalAmount amount = super.div(time, mathContext).getAmount();
 		CurrencyUnit unit = getUnit().getUnitCounter().findUnit(CurrencyUnit.class);
 
 		return new Money(amount, unit);
 	}
 
 	public Time dividedBy(Money money, MathContext mathContext) {
-		BigDecimalAmount amount = super.dividedBy(money, mathContext).getAmount();
+		BigDecimalAmount amount = super.div(money, mathContext).getAmount();
 		TimeUnit unit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
 
 		return new Time(amount, unit);

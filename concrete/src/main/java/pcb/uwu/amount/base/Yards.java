@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Yards extends Length {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Yards plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Yards(plusAmount(this, other, mathContext));
+	public Yards plus(@NotNull UnitAmount<LengthUnit> other) {
+		return new Yards(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Yards minus(@NotNull UnitAmount<LengthUnit> other) {
+		return new Yards(minusAmount(this, other));
 	}
 
 	@Override
-	public Yards minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Yards(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Yards multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Yards multiply(BigDecimal other, MathContext mathContext) {
 		return new Yards(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Yards dividedBy(BigDecimal other, MathContext mathContext) {
+	public Yards div(BigDecimal other, MathContext mathContext) {
 		return new Yards(dividedByScalar(this, other, mathContext));
 	}
 

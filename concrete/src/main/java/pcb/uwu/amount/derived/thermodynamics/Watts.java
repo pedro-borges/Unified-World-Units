@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.thermodynamics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Amperes;
 import pcb.uwu.amount.base.ElectricCurrent;
 import pcb.uwu.amount.base.Time;
@@ -63,23 +64,25 @@ public class Watts extends Power {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Watts plus(UnitAmount<PowerUnit> other, MathContext mathContext) {
-		return new Watts(plusAmount(this, other, mathContext));
+	public Watts plus(@NotNull UnitAmount<PowerUnit> other) {
+		return new Watts(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Watts minus(@NotNull UnitAmount<PowerUnit> other) {
+		return new Watts(minusAmount(this, other));
 	}
 
 	@Override
-	public Watts minus(UnitAmount<PowerUnit> other, MathContext mathContext) {
-		return new Watts(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Watts multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Watts multiply(BigDecimal other, MathContext mathContext) {
 		return new Watts(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Watts dividedBy(BigDecimal other, MathContext mathContext) {
+	public Watts div(BigDecimal other, MathContext mathContext) {
 		return new Watts(dividedByScalar(this, other, mathContext));
 	}
 
@@ -88,15 +91,15 @@ public class Watts extends Power {
 	// region composition
 
 	public Joules multipliedBy(Time time, MathContext mathContext) {
-		return new Joules(getAmount().multipliedBy(getAmountIn(time, SECOND), mathContext));
+		return new Joules(getAmount().times(getAmountIn(time, SECOND), mathContext));
 	}
 
 	public Volts dividedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Volts(getAmount().dividedBy(getAmountIn(electricCurrent, AMPERE), mathContext));
+		return new Volts(getAmount().div(getAmountIn(electricCurrent, AMPERE), mathContext));
 	}
 
 	public Amperes dividedBy(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Amperes(getAmount().dividedBy(getAmountIn(electricPotential, VOLT), mathContext));
+		return new Amperes(getAmount().div(getAmountIn(electricPotential, VOLT), mathContext));
 	}
 
 	// endregion

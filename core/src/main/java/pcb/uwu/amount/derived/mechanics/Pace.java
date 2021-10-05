@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.mechanics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.core.BigDecimalAmount;
@@ -59,28 +60,30 @@ public class Pace extends CompositeUnitAmount<PaceUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Pace plus(UnitAmount<PaceUnit> other, MathContext mathContext) {
-		return new Pace(plusAmount(this, other, mathContext), getUnit());
+	public Pace plus(@NotNull UnitAmount<PaceUnit> other) {
+		return new Pace(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Pace minus(@NotNull UnitAmount<PaceUnit> other) {
+		return new Pace(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Pace minus(UnitAmount<PaceUnit> other, MathContext mathContext) {
-		return new Pace(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Pace multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Pace multiply(BigDecimal other, MathContext mathContext) {
 		return new Pace(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Pace dividedBy(BigDecimal other, MathContext mathContext) {
+	public Pace div(BigDecimal other, MathContext mathContext) {
 		return new Pace(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Pace in(PaceUnit unit) {
+	public Pace into(PaceUnit unit) {
 		return new Pace(getAmountIn(this, unit), unit);
 	}
 
@@ -96,7 +99,7 @@ public class Pace extends CompositeUnitAmount<PaceUnit> {
 	public Time multipliedBy(Length length, MathContext mathContext) {
 		TimeUnit timeUnit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
 
-		return new Time(super.multipliedBy(length, mathContext).getAmount(), timeUnit);
+		return new Time(super.multiply(length, mathContext).getAmount(), timeUnit);
 	}
 
 	// endregion

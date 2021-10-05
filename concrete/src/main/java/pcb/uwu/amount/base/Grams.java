@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Grams extends Mass {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Grams plus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Grams(plusAmount(this, other, mathContext));
+	public Grams plus(@NotNull UnitAmount<MassUnit> other) {
+		return new Grams(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Grams minus(@NotNull UnitAmount<MassUnit> other) {
+		return new Grams(minusAmount(this, other));
 	}
 
 	@Override
-	public Grams minus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Grams(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Grams multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Grams multiply(BigDecimal other, MathContext mathContext) {
 		return new Grams(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Grams dividedBy(BigDecimal other, MathContext mathContext) {
+	public Grams div(BigDecimal other, MathContext mathContext) {
 		return new Grams(dividedByScalar(this, other, mathContext));
 	}
 

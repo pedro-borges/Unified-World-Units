@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.fundamental.area;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Candelas;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.derived.fundamental.Area;
@@ -83,23 +84,25 @@ public class SquareMeters extends Area {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public SquareMeters plus(UnitAmount<AreaUnit> other, MathContext mathContext) {
-		return new SquareMeters(plusAmount(this, other, mathContext));
+	public SquareMeters plus(@NotNull UnitAmount<AreaUnit> other) {
+		return new SquareMeters(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public SquareMeters minus(@NotNull UnitAmount<AreaUnit> other) {
+		return new SquareMeters(minusAmount(this, other));
 	}
 
 	@Override
-	public SquareMeters minus(UnitAmount<AreaUnit> other, MathContext mathContext) {
-		return new SquareMeters(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public SquareMeters multipliedBy(BigDecimal other, MathContext mathContext) {
+	public SquareMeters multiply(BigDecimal other, MathContext mathContext) {
 		return new SquareMeters(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public SquareMeters dividedBy(BigDecimal other, MathContext mathContext) {
+	public SquareMeters div(BigDecimal other, MathContext mathContext) {
 		return new SquareMeters(dividedByScalar(this, other, mathContext));
 	}
 
@@ -108,11 +111,11 @@ public class SquareMeters extends Area {
 	// region composition
 
 	public Candelas multipliedBy(Luminance luminance, MathContext mathContext) {
-		return new Candelas(getAmount().multipliedBy(getAmountIn(luminance, NIT), mathContext));
+		return new Candelas(getAmount().times(getAmountIn(luminance, NIT), mathContext));
 	}
 
 	public Lumens multipliedBy(Illuminance illuminance, MathContext mathContext) {
-		return new Lumens(getAmount().multipliedBy(getAmountIn(illuminance, LUX), mathContext));
+		return new Lumens(getAmount().times(getAmountIn(illuminance, LUX), mathContext));
 	}
 
 	// endregion

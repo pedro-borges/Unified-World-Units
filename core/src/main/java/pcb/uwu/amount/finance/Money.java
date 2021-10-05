@@ -1,5 +1,6 @@
 package pcb.uwu.amount.finance;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.amount.derived.finance.Debt;
 import pcb.uwu.amount.derived.finance.InterestRate;
@@ -45,28 +46,30 @@ public class Money extends CompositeUnitAmount<CurrencyUnit> {
 
 	//region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Money plus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new Money(plusAmount(this, other, mathContext), getUnit());
+	public Money plus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new Money(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Money minus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new Money(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Money minus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new Money(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Money multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Money multiply(BigDecimal other, MathContext mathContext) {
 		return new Money(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Money dividedBy(BigDecimal other, MathContext mathContext) {
+	public Money div(BigDecimal other, MathContext mathContext) {
 		return new Money(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Money in(CurrencyUnit unit) {
+	public Money into(CurrencyUnit unit) {
 		return new Money(getAmountIn(this, unit), unit);
 	}
 
@@ -75,14 +78,14 @@ public class Money extends CompositeUnitAmount<CurrencyUnit> {
 	// region composition
 
 	public Rent dividedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount().dividedBy(time.getAmount().getValue(), mathContext);
+		BigDecimalAmount amount = getAmount().div(time.getAmount().getValue(), mathContext);
 		RentUnit unit = new RentUnit(getUnit(), time.getUnit());
 
 		return new Rent(amount, unit);
 	}
 
 	public Rent multipliedBy(InterestRate interestRate, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount().multipliedBy(interestRate.getAmount().getValue(), mathContext);
+		BigDecimalAmount amount = getAmount().times(interestRate.getAmount().getValue(), mathContext);
 		RentUnit unit = new RentUnit(getUnit(), interestRate.getUnit());
 
 		return new Rent(amount, unit);

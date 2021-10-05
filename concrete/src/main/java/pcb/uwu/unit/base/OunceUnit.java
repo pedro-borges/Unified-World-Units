@@ -12,7 +12,7 @@ public class OunceUnit extends MassUnit {
 
 	private OunceUnit() {
 		super("oz", "ounce", "ounces",
-				value -> value.multipliedBy(KILOGRAMS_PER_OUNCE, DECIMAL64),
-				value -> value.dividedBy(KILOGRAMS_PER_OUNCE, DECIMAL64));
+				value -> value.times(KILOGRAMS_PER_OUNCE, DECIMAL64),
+				value -> value.div(KILOGRAMS_PER_OUNCE, DECIMAL64));
 	}
 }

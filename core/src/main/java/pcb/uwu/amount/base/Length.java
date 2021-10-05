@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.amount.derived.mechanics.Speed;
 import pcb.uwu.core.BigDecimalAmount;
@@ -60,28 +61,30 @@ public class Length extends CompositeUnitAmount<LengthUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Length plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Length(plusAmount(this, other, mathContext), getUnit());
+	public Length plus(@NotNull UnitAmount<LengthUnit> other) {
+		return new Length(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Length minus(@NotNull UnitAmount<LengthUnit> other) {
+		return new Length(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Length minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new Length(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Length multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Length multiply(BigDecimal other, MathContext mathContext) {
 		return new Length(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Length dividedBy(BigDecimal other, MathContext mathContext) {
+	public Length div(BigDecimal other, MathContext mathContext) {
 		return new Length(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Length in(LengthUnit unit) {
+	public Length into(LengthUnit unit) {
 		return new Length(getAmountIn(this, unit), unit);
 	}
 
@@ -90,7 +93,7 @@ public class Length extends CompositeUnitAmount<LengthUnit> {
 	// region composition
 
 	public Speed dividedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount().dividedBy(time.getAmount().getValue(), mathContext);
+		BigDecimalAmount amount = getAmount().div(time.getAmount().getValue(), mathContext);
 		SpeedUnit unit = new SpeedUnit(getUnit(), time.getUnit());
 
 		return new Speed(amount, unit);
@@ -99,12 +102,12 @@ public class Length extends CompositeUnitAmount<LengthUnit> {
 	public Time dividedBy(Speed speed, MathContext mathContext) {
 		TimeUnit timeUnit = speed.getUnit().getUnitCounter().findUnit(TimeUnit.class);
 
-		return new Time(super.dividedBy(speed, mathContext).getAmount(), timeUnit);
+		return new Time(super.div(speed, mathContext).getAmount(), timeUnit);
 	}
 
 	public Area multipliedBy(Length length, MathContext mathContext) {
 		return new Area(
-				getAmount().multipliedBy(length.getAmount(), mathContext),
+				getAmount().times(length.getAmount(), mathContext),
 				new AreaUnit(getUnit(), length.getUnit()));
 	}
 

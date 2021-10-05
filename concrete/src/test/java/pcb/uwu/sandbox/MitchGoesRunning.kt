@@ -21,7 +21,7 @@ class MitchGoesRunning
         val wifeDistance = Length(1, MileUnit.MILE)
         val wifeTime = Time(11, MinuteUnit.MINUTE)
         val wifeSpeed = wifeDistance.dividedBy(wifeTime, MathContext.DECIMAL64)
-        Assert.assertEquals("2.777777777777778 s⁻¹⋅m", mitchSpeed.`in`(MeterPerSecondUnit.METER_PER_SECOND).toString())
-        Assert.assertEquals("2.4384 s⁻¹⋅m", wifeSpeed.`in`(MeterPerSecondUnit.METER_PER_SECOND).toString())
+        Assert.assertEquals("2.777777777777778 s⁻¹⋅m", mitchSpeed.into(MeterPerSecondUnit.METER_PER_SECOND).toString())
+        Assert.assertEquals("2.4384 s⁻¹⋅m", wifeSpeed.into(MeterPerSecondUnit.METER_PER_SECOND).toString())
     }
 }

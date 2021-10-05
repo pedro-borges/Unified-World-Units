@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.scalar;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -56,28 +57,30 @@ public class Angle extends CompositeUnitAmount<AngleUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Angle plus(UnitAmount<AngleUnit> other, MathContext mathContext) {
-		return new Angle(plusAmount(this, other, mathContext), getUnit());
+	public Angle plus(@NotNull UnitAmount<AngleUnit> other) {
+		return new Angle(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Angle minus(@NotNull UnitAmount<AngleUnit> other) {
+		return new Angle(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Angle minus(UnitAmount<AngleUnit> other, MathContext mathContext) {
-		return new Angle(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Angle multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Angle multiply(BigDecimal other, MathContext mathContext) {
 		return new Angle(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Angle dividedBy(BigDecimal other, MathContext mathContext) {
+	public Angle div(BigDecimal other, MathContext mathContext) {
 		return new Angle(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Angle in(AngleUnit unit) {
+	public Angle into(AngleUnit unit) {
 		return new Angle(getAmountIn(this, unit), unit);
 	}
 

@@ -1,5 +1,6 @@
 package pcb.uwu.amount.finance;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.finance.CurrencyUnit;
@@ -46,23 +47,25 @@ public class AUD extends Money {
 		return new AUD(getAmount().minus(other.getAmount().getValue()));
 	}
 
+	@NotNull
 	@Override
-	public AUD plus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new AUD(plusAmount(this, other, mathContext));
+	public AUD plus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new AUD(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public AUD minus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new AUD(minusAmount(this, other));
 	}
 
 	@Override
-	public AUD minus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new AUD(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public AUD multipliedBy(BigDecimal other, MathContext mathContext) {
+	public AUD multiply(BigDecimal other, MathContext mathContext) {
 		return new AUD(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public AUD dividedBy(BigDecimal other, MathContext mathContext) {
+	public AUD div(BigDecimal other, MathContext mathContext) {
 		return new AUD(dividedByScalar(this, other, mathContext));
 	}
 

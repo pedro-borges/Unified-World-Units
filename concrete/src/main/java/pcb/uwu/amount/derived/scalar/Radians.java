@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.scalar;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Radians extends Angle {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Radians plus(UnitAmount<AngleUnit> other, MathContext mathContext) {
-		return new Radians(plusAmount(this, other, mathContext));
+	public Radians plus(@NotNull UnitAmount<AngleUnit> other) {
+		return new Radians(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Radians minus(@NotNull UnitAmount<AngleUnit> other) {
+		return new Radians(minusAmount(this, other));
 	}
 
 	@Override
-	public Radians minus(UnitAmount<AngleUnit> other, MathContext mathContext) {
-		return new Radians(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Radians multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Radians multiply(BigDecimal other, MathContext mathContext) {
 		return new Radians(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Radians dividedBy(BigDecimal other, MathContext mathContext) {
+	public Radians div(BigDecimal other, MathContext mathContext) {
 		return new Radians(dividedByScalar(this, other, mathContext));
 	}
 

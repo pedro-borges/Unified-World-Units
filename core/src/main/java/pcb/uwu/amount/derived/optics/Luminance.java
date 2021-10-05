@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.optics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class Luminance extends CompositeUnitAmount<LuminanceUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Luminance plus(UnitAmount<LuminanceUnit> other, MathContext mathContext) {
-		return new Luminance(plusAmount(this, other, mathContext), getUnit());
+	public Luminance plus(@NotNull UnitAmount<LuminanceUnit> other) {
+		return new Luminance(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Luminance minus(@NotNull UnitAmount<LuminanceUnit> other) {
+		return new Luminance(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Luminance minus(UnitAmount<LuminanceUnit> other, MathContext mathContext) {
-		return new Luminance(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Luminance multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Luminance multiply(BigDecimal other, MathContext mathContext) {
 		return new Luminance(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Luminance dividedBy(BigDecimal other, MathContext mathContext) {
+	public Luminance div(BigDecimal other, MathContext mathContext) {
 		return new Luminance(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Luminance in(LuminanceUnit unit) {
+	public Luminance into(LuminanceUnit unit) {
 		return new Luminance(getAmountIn(this, unit), unit);
 	}
 

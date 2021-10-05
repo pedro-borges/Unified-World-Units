@@ -1,43 +1,46 @@
-package pcb.uwu.core;
+package pcb.uwu.core
 
-import java.util.function.Function;
+import java.util.function.Function
 
 /**
  * Represents a unit, either basic or complex.
  */
-public interface Unit {
-	/**
-	 * @return the international symbol representation of this Unit
-	 */
-	String getSymbol();
+interface Unit
+{
+    /**
+     * @return the international symbol representation of this Unit
+     */
+    val symbol: String
 
-	/**
-	 * @return the international singular name of this Unit
-	 */
-	String getSingularName();
+    /**
+     * @return the international singular name of this Unit
+     */
+    val singularName: String
 
-	/**
-	 * @return the international plural name of this Unit
-	 */
-	String getPluralName();
+    /**
+     * @return the international plural name of this Unit
+     */
+    val pluralName: String
 
-	/**
-	 * @return a scalar function that converts this unit to the respective canonical
-	 */
-	Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical();
+    /**
+     * @return a scalar function that converts this unit to the respective canonical
+     */
+    val translationToCanonical: Function<BigDecimalAmount, BigDecimalAmount>
 
-	/**
-	 * @return a scalar function that converts this unit from the respective canonical
-	 */
-	Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical();
+    fun toCanonical(amount: BigDecimalAmount) = translationToCanonical.apply(amount)
 
-	/**
-	 * Assert if the unit is a scalar.
-	 * @return true if this unit is a scalar, false otherwise
-	 */
-	boolean isScalar();
+    /**
+     * @return a scalar function that converts this unit from the respective canonical
+     */
+    val translationFromCanonical: Function<BigDecimalAmount, BigDecimalAmount>
 
-	Class<? extends BaseUnit> getBaseUnitType();
+    fun fromCanonical(amount: BigDecimalAmount) = translationFromCanonical.apply(amount)
 
-	UnitCounter getUnitCounter();
+    /**
+     * Assert if the unit is a scalar.
+     * @return true if this unit is a scalar, false otherwise
+     */
+    val isScalar: Boolean
+    val baseUnitType: Class<out BaseUnit>
+    val unitCounter: UnitCounter
 }

@@ -12,7 +12,7 @@ public class MinuteUnit extends TimeUnit {
 
 	private MinuteUnit() {
 		super("min", "minute", "minutes",
-				value -> value.multipliedBy(SECONDS_PER_MINUTE, DECIMAL64),
-				value -> value.dividedBy(SECONDS_PER_MINUTE, DECIMAL64));
+				value -> value.times(SECONDS_PER_MINUTE, DECIMAL64),
+				value -> value.div(SECONDS_PER_MINUTE, DECIMAL64));
 	}
 }

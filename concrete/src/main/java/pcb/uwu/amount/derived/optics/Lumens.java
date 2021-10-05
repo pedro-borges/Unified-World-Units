@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.optics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Candelas;
 import pcb.uwu.amount.base.LuminousIntensity;
 import pcb.uwu.amount.base.Time;
@@ -67,23 +68,25 @@ public class Lumens extends LuminousFlux {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Lumens plus(UnitAmount<LuminousFluxUnit> other, MathContext mathContext) {
-		return new Lumens(plusAmount(this, other, mathContext));
+	public Lumens plus(@NotNull UnitAmount<LuminousFluxUnit> other) {
+		return new Lumens(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Lumens minus(@NotNull UnitAmount<LuminousFluxUnit> other) {
+		return new Lumens(minusAmount(this, other));
 	}
 
 	@Override
-	public Lumens minus(UnitAmount<LuminousFluxUnit> other, MathContext mathContext) {
-		return new Lumens(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Lumens multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Lumens multiply(BigDecimal other, MathContext mathContext) {
 		return new Lumens(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Lumens dividedBy(BigDecimal other, MathContext mathContext) {
+	public Lumens div(BigDecimal other, MathContext mathContext) {
 		return new Lumens(dividedByScalar(this, other, mathContext));
 	}
 
@@ -92,23 +95,23 @@ public class Lumens extends LuminousFlux {
 	// region composition
 
 	public Candelas dividedBy(SolidAngle solidAngle, MathContext mathContext) {
-		return new Candelas(getAmount().dividedBy(getAmountIn(solidAngle, STERADIAN), mathContext));
+		return new Candelas(getAmount().div(getAmountIn(solidAngle, STERADIAN), mathContext));
 	}
 
 	public Steradians dividedBy(LuminousIntensity luminousIntensity, MathContext mathContext) {
-		return new Steradians(getAmount().dividedBy(getAmountIn(luminousIntensity, CANDELA), mathContext));
+		return new Steradians(getAmount().div(getAmountIn(luminousIntensity, CANDELA), mathContext));
 	}
 
 	public Talbots multipliedBy(Time time, MathContext mathContext) {
-		return new Talbots(getAmount().multipliedBy(getAmountIn(time, SECOND), mathContext));
+		return new Talbots(getAmount().times(getAmountIn(time, SECOND), mathContext));
 	}
 
 	public Lux dividedBy(Area area, MathContext mathContext) {
-		return new Lux(getAmount().dividedBy(getAmountIn(area, SQUARE_METER), mathContext));
+		return new Lux(getAmount().div(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
 	public SquareMeters dividedBy(Illuminance illuminance, MathContext mathContext) {
-		return new SquareMeters(getAmount().dividedBy(getAmountIn(illuminance, LUX), mathContext));
+		return new SquareMeters(getAmount().div(getAmountIn(illuminance, LUX), mathContext));
 	}
 
 	// endregion

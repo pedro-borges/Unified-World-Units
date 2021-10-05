@@ -12,7 +12,7 @@ public class GramUnit extends MassUnit {
 
 	private GramUnit() {
 		super("g", "gram", "grams",
-				amount -> amount.dividedBy(GRAMS_PER_KILOGRAM, UNLIMITED),
-				amount -> amount.multipliedBy(GRAMS_PER_KILOGRAM, UNLIMITED));
+				amount -> amount.div(GRAMS_PER_KILOGRAM, UNLIMITED),
+				amount -> amount.times(GRAMS_PER_KILOGRAM, UNLIMITED));
 	}
 }

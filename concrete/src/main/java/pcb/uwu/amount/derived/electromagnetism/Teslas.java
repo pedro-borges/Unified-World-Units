@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
@@ -57,28 +58,30 @@ public class Teslas extends MagneticField {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Teslas plus(UnitAmount<MagneticFieldUnit> other, MathContext mathContext) {
-		return new Teslas(plusAmount(this, other, mathContext));
+	public Teslas plus(@NotNull UnitAmount<MagneticFieldUnit> other) {
+		return new Teslas(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Teslas minus(@NotNull UnitAmount<MagneticFieldUnit> other) {
+		return new Teslas(minusAmount(this, other));
 	}
 
 	@Override
-	public Teslas minus(UnitAmount<MagneticFieldUnit> other, MathContext mathContext) {
-		return new Teslas(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Teslas multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Teslas multiply(BigDecimal other, MathContext mathContext) {
 		return new Teslas(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Teslas dividedBy(BigDecimal other, MathContext mathContext) {
+	public Teslas div(BigDecimal other, MathContext mathContext) {
 		return new Teslas(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Teslas in(MagneticFieldUnit unit) {
+	public Teslas into(MagneticFieldUnit unit) {
 		return new Teslas(getAmountIn(this, unit));
 	}
 
@@ -87,7 +90,7 @@ public class Teslas extends MagneticField {
 	// region composition
 
 	public Webbers multipliedBy(Area area, MathContext mathContext) {
-		return new Webbers(getAmount().multipliedBy(getAmountIn(area, SQUARE_METER), mathContext));
+		return new Webbers(getAmount().times(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 	
 	// endregion

@@ -1,5 +1,6 @@
 package pcb.uwu.amount.finance;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.finance.CurrencyUnit;
@@ -46,23 +47,25 @@ public class BTC extends Money {
 		return new BTC(getAmount().minus(other.getAmount().getValue()));
 	}
 
+	@NotNull
 	@Override
-	public BTC plus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new BTC(plusAmount(this, other, mathContext));
+	public BTC plus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new BTC(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public BTC minus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new BTC(minusAmount(this, other));
 	}
 
 	@Override
-	public BTC minus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new BTC(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public BTC multipliedBy(BigDecimal other, MathContext mathContext) {
+	public BTC multiply(BigDecimal other, MathContext mathContext) {
 		return new BTC(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public BTC dividedBy(BigDecimal other, MathContext mathContext) {
+	public BTC div(BigDecimal other, MathContext mathContext) {
 		return new BTC(dividedByScalar(this, other, mathContext));
 	}
 

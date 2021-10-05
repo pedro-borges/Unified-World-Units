@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.mechanics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Mass;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.core.BigDecimalAmount;
@@ -61,28 +62,30 @@ public class Acceleration extends CompositeUnitAmount<AccelerationUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Acceleration plus(UnitAmount<AccelerationUnit> other, MathContext mathContext) {
-		return new Acceleration(plusAmount(this, other, mathContext), getUnit());
+	public Acceleration plus(@NotNull UnitAmount<AccelerationUnit> other) {
+		return new Acceleration(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Acceleration minus(@NotNull UnitAmount<AccelerationUnit> other) {
+		return new Acceleration(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Acceleration minus(UnitAmount<AccelerationUnit> other, MathContext mathContext) {
-		return new Acceleration(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Acceleration multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Acceleration multiply(BigDecimal other, MathContext mathContext) {
 		return new Acceleration(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Acceleration dividedBy(BigDecimal other, MathContext mathContext) {
+	public Acceleration div(BigDecimal other, MathContext mathContext) {
 		return new Acceleration(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Acceleration in(AccelerationUnit unit) {
+	public Acceleration into(AccelerationUnit unit) {
 		return new Acceleration(getAmountIn(this, unit), unit);
 	}
 
@@ -92,7 +95,7 @@ public class Acceleration extends CompositeUnitAmount<AccelerationUnit> {
 
 	public Force multipliedBy(Mass mass, MathContext mathContext) {
 		BigDecimalAmount amount = getAmount()
-				.multipliedBy(mass.getAmount().getValue(), mathContext);
+				.times(mass.getAmount().getValue(), mathContext);
 		ForceUnit unit = new ForceUnit(mass.getUnit(), getUnit());
 
 		return new Force(amount, unit);
@@ -102,7 +105,7 @@ public class Acceleration extends CompositeUnitAmount<AccelerationUnit> {
 		LengthUnit lengthUnit = getUnit().getUnitCounter().findUnit(LengthUnit.class);
 		TimeUnit timeUnit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
 
-		return new Speed(super.multipliedBy(time, mathContext).getAmount(), new SpeedUnit(lengthUnit, timeUnit));
+		return new Speed(super.multiply(time, mathContext).getAmount(), new SpeedUnit(lengthUnit, timeUnit));
 	}
 
 	// endregion

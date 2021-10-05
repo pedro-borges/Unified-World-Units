@@ -12,7 +12,7 @@ public class WeekUnit extends TimeUnit {
 
 	private WeekUnit() {
 		super("wk", "week", "weeks",
-				value -> value.multipliedBy(SECONDS_PER_WEEK, DECIMAL64),
-				value -> value.dividedBy(SECONDS_PER_WEEK, DECIMAL64));
+				value -> value.times(SECONDS_PER_WEEK, DECIMAL64),
+				value -> value.div(SECONDS_PER_WEEK, DECIMAL64));
 	}
 }

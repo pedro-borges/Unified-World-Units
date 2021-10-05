@@ -1,5 +1,6 @@
 package pcb.uwu.amount.finance;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.finance.CurrencyUnit;
@@ -46,23 +47,25 @@ public class GBP extends Money {
 		return new GBP(getAmount().minus(other.getAmount().getValue()));
 	}
 
+	@NotNull
 	@Override
-	public GBP plus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new GBP(plusAmount(this, other, mathContext));
+	public GBP plus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new GBP(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Money minus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new GBP(minusAmount(this, other));
 	}
 
 	@Override
-	public Money minus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new GBP(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public GBP multipliedBy(BigDecimal other, MathContext mathContext) {
+	public GBP multiply(BigDecimal other, MathContext mathContext) {
 		return new GBP(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public GBP dividedBy(BigDecimal other, MathContext mathContext) {
+	public GBP div(BigDecimal other, MathContext mathContext) {
 		return new GBP(dividedByScalar(this, other, mathContext));
 	}
 

@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.derived.finance.Debt;
 import pcb.uwu.amount.derived.fundamental.Frequency;
 import pcb.uwu.amount.derived.mechanics.Pace;
@@ -61,35 +62,37 @@ public class Time extends CompositeUnitAmount<TimeUnit> {
 	}
 
 	public Time(Duration duration, TimeUnit unit) {
-		super(unit.getTranslationFromCanonical().apply(new BigDecimalAmount(duration.toNanos())).dividedBy(new BigDecimal(1000000000), UNLIMITED), unit);
+		super(unit.getTranslationFromCanonical().apply(new BigDecimalAmount(duration.toNanos())).div(new BigDecimal(1000000000), UNLIMITED), unit);
 	}
 
 	// endregion
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Time plus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Time(plusAmount(this, other, mathContext), getUnit());
+	public Time plus(@NotNull UnitAmount<TimeUnit> other) {
+		return new Time(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Time minus(@NotNull UnitAmount<TimeUnit> other) {
+		return new Time(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Time minus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Time(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Time multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Time multiply(BigDecimal other, MathContext mathContext) {
 		return new Time(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Time dividedBy(BigDecimal other, MathContext mathContext) {
+	public Time div(BigDecimal other, MathContext mathContext) {
 		return new Time(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Time in(TimeUnit unit) {
+	public Time into(TimeUnit unit) {
 		return new Time(getAmountIn(this, unit), unit);
 	}
 
@@ -110,7 +113,7 @@ public class Time extends CompositeUnitAmount<TimeUnit> {
 	}
 
 	public Pace dividedBy(Length length, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount().dividedBy(length.getAmount().getValue(), mathContext);
+		BigDecimalAmount amount = getAmount().div(length.getAmount().getValue(), mathContext);
 		PaceUnit unit = new PaceUnit(getUnit(), length.getUnit());
 
 		return new Pace(amount, unit);

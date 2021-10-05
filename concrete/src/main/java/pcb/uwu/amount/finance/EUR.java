@@ -1,5 +1,6 @@
 package pcb.uwu.amount.finance;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.finance.CurrencyUnit;
@@ -46,23 +47,25 @@ public class EUR extends Money {
 		return new EUR(getAmount().minus(other.getAmount().getValue()));
 	}
 
+	@NotNull
 	@Override
-	public EUR plus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new EUR(plusAmount(this, other, mathContext));
+	public EUR plus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new EUR(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Money minus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new AUD(minusAmount(this, other));
 	}
 
 	@Override
-	public Money minus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new AUD(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public EUR multipliedBy(BigDecimal other, MathContext mathContext) {
+	public EUR multiply(BigDecimal other, MathContext mathContext) {
 		return new EUR(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public EUR dividedBy(BigDecimal other, MathContext mathContext) {
+	public EUR div(BigDecimal other, MathContext mathContext) {
 		return new EUR(dividedByScalar(this, other, mathContext));
 	}
 

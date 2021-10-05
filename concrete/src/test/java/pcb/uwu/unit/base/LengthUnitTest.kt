@@ -20,7 +20,7 @@ class LengthUnitTest(private val length: Length)
         for (unitAmount in testData())
         {
             assertEquals(BigDecimalAmount.ONE.withScale(6, HALF_EVEN),
-                         length.dividedBy(unitAmount, DECIMAL64).amount.withScale(6, HALF_EVEN))
+                         length.div(unitAmount, DECIMAL64).amount.withScale(6, HALF_EVEN))
         }
     }
 

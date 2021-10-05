@@ -12,7 +12,7 @@ public class YardUnit extends LengthUnit {
 
 	private YardUnit() {
 		super("yd", "yard", "yards",
-				value -> value.multipliedBy(METERS_PER_YARD, DECIMAL64),
-				value -> value.dividedBy(METERS_PER_YARD, DECIMAL64));
+				value -> value.times(METERS_PER_YARD, DECIMAL64),
+				value -> value.div(METERS_PER_YARD, DECIMAL64));
 	}
 }

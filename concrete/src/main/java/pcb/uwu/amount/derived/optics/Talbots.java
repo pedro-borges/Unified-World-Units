@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.optics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Seconds;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.core.BigDecimalAmount;
@@ -59,23 +60,25 @@ public class Talbots extends LuminousEnergy {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Talbots plus(UnitAmount<LuminousEnergyUnit> other, MathContext mathContext) {
-		return new Talbots(plusAmount(this, other, mathContext));
+	public Talbots plus(@NotNull UnitAmount<LuminousEnergyUnit> other) {
+		return new Talbots(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Talbots minus(@NotNull UnitAmount<LuminousEnergyUnit> other) {
+		return new Talbots(minusAmount(this, other));
 	}
 
 	@Override
-	public Talbots minus(UnitAmount<LuminousEnergyUnit> other, MathContext mathContext) {
-		return new Talbots(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Talbots multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Talbots multiply(BigDecimal other, MathContext mathContext) {
 		return new Talbots(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Talbots dividedBy(BigDecimal other, MathContext mathContext) {
+	public Talbots div(BigDecimal other, MathContext mathContext) {
 		return new Talbots(dividedByScalar(this, other, mathContext));
 	}
 
@@ -84,11 +87,11 @@ public class Talbots extends LuminousEnergy {
 	// region composition
 
 	public Lumens dividedBy(Time time, MathContext mathContext) {
-		return new Lumens(getAmount().dividedBy(getAmountIn(time, SECOND), mathContext));
+		return new Lumens(getAmount().div(getAmountIn(time, SECOND), mathContext));
 	}
 
 	public Seconds dividedBy(LuminousFlux luminousFlux, MathContext mathContext) {
-		return new Seconds(getAmount().dividedBy(getAmountIn(luminousFlux, LUMEN), mathContext));
+		return new Seconds(getAmount().div(getAmountIn(luminousFlux, LUMEN), mathContext));
 	}
 
 	// endregion

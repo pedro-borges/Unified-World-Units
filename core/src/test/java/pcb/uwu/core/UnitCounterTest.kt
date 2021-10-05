@@ -5,6 +5,7 @@ import org.junit.Test
 import pcb.uwu.unit.base.ElectricCurrentUnit
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.base.TimeUnit
+import java.util.function.Function.identity
 
 class UnitCounterTest
 {
@@ -34,8 +35,8 @@ class UnitCounterTest
 
     companion object
     {
-        val SECOND: BaseUnit = TimeUnit("s", "", "", null, null)
-        val AMPERE: BaseUnit = ElectricCurrentUnit("A", "", "", null, null)
-        val KILOGRAM: BaseUnit = MassUnit("Kg", "", "", null, null)
+        val SECOND: BaseUnit = TimeUnit("s", "", "", identity(), identity())
+        val AMPERE: BaseUnit = ElectricCurrentUnit("A", "", "", identity(), identity())
+        val KILOGRAM: BaseUnit = MassUnit("Kg", "", "", identity(), identity())
     }
 }

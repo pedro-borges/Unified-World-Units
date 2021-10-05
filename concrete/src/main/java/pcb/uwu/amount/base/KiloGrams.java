@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class KiloGrams extends Mass {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public KiloGrams plus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new KiloGrams(plusAmount(this, other, mathContext));
+	public KiloGrams plus(@NotNull UnitAmount<MassUnit> other) {
+		return new KiloGrams(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public KiloGrams minus(@NotNull UnitAmount<MassUnit> other) {
+		return new KiloGrams(minusAmount(this, other));
 	}
 
 	@Override
-	public KiloGrams minus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new KiloGrams(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public KiloGrams multipliedBy(BigDecimal other, MathContext mathContext) {
+	public KiloGrams multiply(BigDecimal other, MathContext mathContext) {
 		return new KiloGrams(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public KiloGrams dividedBy(BigDecimal other, MathContext mathContext) {
+	public KiloGrams div(BigDecimal other, MathContext mathContext) {
 		return new KiloGrams(dividedByScalar(this, other, mathContext));
 	}
 

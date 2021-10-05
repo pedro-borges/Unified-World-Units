@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.mechanics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class Force extends CompositeUnitAmount<ForceUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Force plus(UnitAmount<ForceUnit> other, MathContext mathContext) {
-		return new Force(plusAmount(this, other, mathContext), getUnit());
+	public Force plus(@NotNull UnitAmount<ForceUnit> other) {
+		return new Force(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Force minus(@NotNull UnitAmount<ForceUnit> other) {
+		return new Force(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Force minus(UnitAmount<ForceUnit> other, MathContext mathContext) {
-		return new Force(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Force multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Force multiply(BigDecimal other, MathContext mathContext) {
 		return new Force(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Force dividedBy(BigDecimal other, MathContext mathContext) {
+	public Force div(BigDecimal other, MathContext mathContext) {
 		return new Force(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Force in(ForceUnit unit) {
+	public Force into(ForceUnit unit) {
 		return new Force(getAmountIn(this, unit), unit);
 	}
 

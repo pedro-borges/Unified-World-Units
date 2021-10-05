@@ -12,7 +12,7 @@ public class InchUnit extends LengthUnit {
 
 	private InchUnit() {
 		super("in", "inch", "inches",
-				value -> value.multipliedBy(METERS_PER_INCH, DECIMAL64),
-				value -> value.dividedBy(METERS_PER_INCH, DECIMAL64));
+				value -> value.times(METERS_PER_INCH, DECIMAL64),
+				value -> value.div(METERS_PER_INCH, DECIMAL64));
 	}
 }

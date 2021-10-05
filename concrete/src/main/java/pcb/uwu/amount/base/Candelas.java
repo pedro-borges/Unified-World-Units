@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.amount.derived.fundamental.area.SquareMeters;
 import pcb.uwu.amount.derived.optics.Lumens;
@@ -64,23 +65,25 @@ public class Candelas extends LuminousIntensity {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Candelas plus(UnitAmount<LuminousIntensityUnit> other, MathContext mathContext) {
-		return new Candelas(plusAmount(this, other, mathContext));
+	public Candelas plus(@NotNull UnitAmount<LuminousIntensityUnit> other) {
+		return new Candelas(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Candelas minus(@NotNull UnitAmount<LuminousIntensityUnit> other) {
+		return new Candelas(minusAmount(this, other));
 	}
 
 	@Override
-	public Candelas minus(UnitAmount<LuminousIntensityUnit> other, MathContext mathContext) {
-		return new Candelas(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Candelas multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Candelas multiply(BigDecimal other, MathContext mathContext) {
 		return new Candelas(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Candelas dividedBy(BigDecimal other, MathContext mathContext) {
+	public Candelas div(BigDecimal other, MathContext mathContext) {
 		return new Candelas(dividedByScalar(this, other, mathContext));
 	}
 
@@ -89,15 +92,15 @@ public class Candelas extends LuminousIntensity {
 	// region composition
 
 	public Lumens multipliedBy(SolidAngle solidAngle, MathContext mathContext) {
-		return new Lumens(getAmount().multipliedBy(getAmountIn(solidAngle, STERADIAN), mathContext));
+		return new Lumens(getAmount().times(getAmountIn(solidAngle, STERADIAN), mathContext));
 	}
 
 	public Nits dividedBy(Area area, MathContext mathContext) {
-		return new Nits(getAmount().dividedBy(getAmountIn(area, SQUARE_METER), mathContext));
+		return new Nits(getAmount().div(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
 	public SquareMeters dividedBy(Luminance luminance, MathContext mathContext) {
-		return new SquareMeters(getAmount().dividedBy(getAmountIn(luminance, NIT), mathContext));
+		return new SquareMeters(getAmount().div(getAmountIn(luminance, NIT), mathContext));
 	}
 
 	// endregion

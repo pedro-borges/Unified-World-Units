@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.derived.mechanics.Acceleration;
 import pcb.uwu.amount.derived.mechanics.Force;
 import pcb.uwu.core.BigDecimalAmount;
@@ -59,28 +60,30 @@ public class Mass extends CompositeUnitAmount<MassUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Mass plus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Mass(plusAmount(this, other, mathContext), getUnit());
+	public Mass plus(@NotNull UnitAmount<MassUnit> other) {
+		return new Mass(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Mass minus(@NotNull UnitAmount<MassUnit> other) {
+		return new Mass(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Mass minus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Mass(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Mass multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Mass multiply(BigDecimal other, MathContext mathContext) {
 		return new Mass(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Mass dividedBy(BigDecimal other, MathContext mathContext) {
+	public Mass div(BigDecimal other, MathContext mathContext) {
 		return new Mass(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Mass in(MassUnit unit) {
+	public Mass into(MassUnit unit) {
 		return new Mass(getAmountIn(this, unit), unit);
 	}
 
@@ -90,7 +93,7 @@ public class Mass extends CompositeUnitAmount<MassUnit> {
 
 	public Force multipliedBy(Acceleration acceleration, MathContext mathContext) {
 		BigDecimalAmount amount = getAmount()
-				.multipliedBy(acceleration.getAmount().getValue(), mathContext);
+				.times(acceleration.getAmount().getValue(), mathContext);
 		ForceUnit unit = new ForceUnit(getUnit(), acceleration.getUnit());
 
 		return new Force(amount, unit);

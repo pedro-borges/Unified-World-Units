@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.scalar;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -56,28 +57,30 @@ public class SolidAngle extends CompositeUnitAmount<SolidAngleUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public SolidAngle plus(UnitAmount<SolidAngleUnit> other, MathContext mathContext) {
-		return new SolidAngle(plusAmount(this, other, mathContext), getUnit());
+	public SolidAngle plus(@NotNull UnitAmount<SolidAngleUnit> other) {
+		return new SolidAngle(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public SolidAngle minus(@NotNull UnitAmount<SolidAngleUnit> other) {
+		return new SolidAngle(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public SolidAngle minus(UnitAmount<SolidAngleUnit> other, MathContext mathContext) {
-		return new SolidAngle(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public SolidAngle multipliedBy(BigDecimal other, MathContext mathContext) {
+	public SolidAngle multiply(BigDecimal other, MathContext mathContext) {
 		return new SolidAngle(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public SolidAngle dividedBy(BigDecimal other, MathContext mathContext) {
+	public SolidAngle div(BigDecimal other, MathContext mathContext) {
 		return new SolidAngle(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public SolidAngle in(SolidAngleUnit unit) {
+	public SolidAngle into(SolidAngleUnit unit) {
 		return new SolidAngle(getAmountIn(this, unit), unit);
 	}
 

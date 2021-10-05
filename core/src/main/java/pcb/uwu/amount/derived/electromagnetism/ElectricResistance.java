@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class ElectricResistance extends CompositeUnitAmount<ElectricResistanceUn
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public ElectricResistance plus(UnitAmount<ElectricResistanceUnit> other, MathContext mathContext) {
-		return new ElectricResistance(plusAmount(this, other, mathContext), getUnit());
+	public ElectricResistance plus(@NotNull UnitAmount<ElectricResistanceUnit> other) {
+		return new ElectricResistance(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public ElectricResistance minus(@NotNull UnitAmount<ElectricResistanceUnit> other) {
+		return new ElectricResistance(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public ElectricResistance minus(UnitAmount<ElectricResistanceUnit> other, MathContext mathContext) {
-		return new ElectricResistance(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public ElectricResistance multipliedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricResistance multiply(BigDecimal other, MathContext mathContext) {
 		return new ElectricResistance(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public ElectricResistance dividedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricResistance div(BigDecimal other, MathContext mathContext) {
 		return new ElectricResistance(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public ElectricResistance in(ElectricResistanceUnit unit) {
+	public ElectricResistance into(ElectricResistanceUnit unit) {
 		return new ElectricResistance(getAmountIn(this, unit), unit);
 	}
 

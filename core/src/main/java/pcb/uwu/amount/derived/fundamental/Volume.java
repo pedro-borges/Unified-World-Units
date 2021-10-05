@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.fundamental;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
@@ -28,9 +29,9 @@ public class Volume extends CompositeUnitAmount<VolumeUnit> {
 		public static final BiFunction<BigDecimalAmount, MathContext, BigDecimalAmount> SPHERE_FUNCTION =
 				(radius, mathContext) -> radius
 						.pow(3, mathContext)
-						.multipliedBy(4)
-						.dividedBy(3, mathContext)
-						.multipliedBy(PI, mathContext);
+						.times(4)
+						.div(3, mathContext)
+						.times(PI, mathContext);
 
 		public static final BiFunction<BigDecimalAmount, MathContext, BigDecimalAmount> CUBE_FUNCTION =
 				(side, mathContext) -> side.pow(3, mathContext);
@@ -86,28 +87,30 @@ public class Volume extends CompositeUnitAmount<VolumeUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Volume plus(UnitAmount<VolumeUnit> other, MathContext mathContext) {
-		return new Volume(plusAmount(this, other, mathContext), getUnit());
+	public Volume plus(@NotNull UnitAmount<VolumeUnit> other) {
+		return new Volume(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Volume minus(@NotNull UnitAmount<VolumeUnit> other) {
+		return new Volume(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Volume minus(UnitAmount<VolumeUnit> other, MathContext mathContext) {
-		return new Volume(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Volume multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Volume multiply(BigDecimal other, MathContext mathContext) {
 		return new Volume(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Volume dividedBy(BigDecimal other, MathContext mathContext) {
+	public Volume div(BigDecimal other, MathContext mathContext) {
 		return new Volume(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Volume in(VolumeUnit unit) {
+	public Volume into(VolumeUnit unit) {
 		return new Volume(getAmountIn(this, unit), unit);
 	}
 

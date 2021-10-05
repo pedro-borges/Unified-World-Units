@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class ElectricCurrent extends CompositeUnitAmount<ElectricCurrentUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public ElectricCurrent plus(UnitAmount<ElectricCurrentUnit> other, MathContext mathContext) {
-		return new ElectricCurrent(plusAmount(this, other, mathContext), getUnit());
+	public ElectricCurrent plus(@NotNull UnitAmount<ElectricCurrentUnit> other) {
+		return new ElectricCurrent(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public ElectricCurrent minus(@NotNull UnitAmount<ElectricCurrentUnit> other) {
+		return new ElectricCurrent(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public ElectricCurrent minus(UnitAmount<ElectricCurrentUnit> other, MathContext mathContext) {
-		return new ElectricCurrent(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public ElectricCurrent multipliedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricCurrent multiply(BigDecimal other, MathContext mathContext) {
 		return new ElectricCurrent(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public ElectricCurrent dividedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricCurrent div(BigDecimal other, MathContext mathContext) {
 		return new ElectricCurrent(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public ElectricCurrent in(ElectricCurrentUnit unit) {
+	public ElectricCurrent into(ElectricCurrentUnit unit) {
 		return new ElectricCurrent(getAmountIn(this, unit), unit);
 	}
 

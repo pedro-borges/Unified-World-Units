@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Stones extends Mass {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Stones plus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Stones(plusAmount(this, other, mathContext));
+	public Stones plus(@NotNull UnitAmount<MassUnit> other) {
+		return new Stones(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Stones minus(@NotNull UnitAmount<MassUnit> other) {
+		return new Stones(minusAmount(this, other));
 	}
 
 	@Override
-	public Stones minus(UnitAmount<MassUnit> other, MathContext mathContext) {
-		return new Stones(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Stones multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Stones multiply(BigDecimal other, MathContext mathContext) {
 		return new Stones(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Stones dividedBy(BigDecimal other, MathContext mathContext) {
+	public Stones div(BigDecimal other, MathContext mathContext) {
 		return new Stones(dividedByScalar(this, other, mathContext));
 	}
 

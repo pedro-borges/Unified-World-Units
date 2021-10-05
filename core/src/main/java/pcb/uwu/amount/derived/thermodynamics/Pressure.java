@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.thermodynamics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class Pressure extends CompositeUnitAmount<PressureUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Pressure plus(UnitAmount<PressureUnit> other, MathContext mathContext) {
-		return new Pressure(plusAmount(this, other, mathContext), getUnit());
+	public Pressure plus(@NotNull UnitAmount<PressureUnit> other) {
+		return new Pressure(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Pressure minus(@NotNull UnitAmount<PressureUnit> other) {
+		return new Pressure(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Pressure minus(UnitAmount<PressureUnit> other, MathContext mathContext) {
-		return new Pressure(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Pressure multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Pressure multiply(BigDecimal other, MathContext mathContext) {
 		return new Pressure(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Pressure dividedBy(BigDecimal other, MathContext mathContext) {
+	public Pressure div(BigDecimal other, MathContext mathContext) {
 		return new Pressure(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Pressure in(PressureUnit unit) {
+	public Pressure into(PressureUnit unit) {
 		return new Pressure(getAmountIn(this, unit), unit);
 	}
 

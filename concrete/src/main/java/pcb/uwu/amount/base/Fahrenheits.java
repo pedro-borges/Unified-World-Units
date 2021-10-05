@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Fahrenheits extends Temperature {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Fahrenheits plus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Fahrenheits(plusAmount(this, other, mathContext));
+	public Fahrenheits plus(@NotNull UnitAmount<TemperatureUnit> other) {
+		return new Fahrenheits(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Fahrenheits minus(@NotNull UnitAmount<TemperatureUnit> other) {
+		return new Fahrenheits(minusAmount(this, other));
 	}
 
 	@Override
-	public Fahrenheits minus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Fahrenheits(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Fahrenheits multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Fahrenheits multiply(BigDecimal other, MathContext mathContext) {
 		return new Fahrenheits(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Fahrenheits dividedBy(BigDecimal other, MathContext mathContext) {
+	public Fahrenheits div(BigDecimal other, MathContext mathContext) {
 		return new Fahrenheits(dividedByScalar(this, other, mathContext));
 	}
 

@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.finance;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.finance.Money;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
@@ -58,28 +59,30 @@ public class InterestRate extends CompositeUnitAmount<FrequencyUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public InterestRate plus(UnitAmount<FrequencyUnit> other, MathContext mathContext) {
-		return new InterestRate(plusAmount(this, other, mathContext), getUnit());
+	public InterestRate plus(@NotNull UnitAmount<FrequencyUnit> other) {
+		return new InterestRate(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public InterestRate minus(@NotNull UnitAmount<FrequencyUnit> other) {
+		return new InterestRate(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public InterestRate minus(UnitAmount<FrequencyUnit> other, MathContext mathContext) {
-		return new InterestRate(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public InterestRate multipliedBy(BigDecimal other, MathContext mathContext) {
+	public InterestRate multiply(BigDecimal other, MathContext mathContext) {
 		return new InterestRate(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public InterestRate dividedBy(BigDecimal other, MathContext mathContext) {
+	public InterestRate div(BigDecimal other, MathContext mathContext) {
 		return new InterestRate(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public InterestRate in(FrequencyUnit unit) {
+	public InterestRate into(FrequencyUnit unit) {
 		return new InterestRate(getAmountIn(this, unit), unit);
 	}
 
@@ -95,7 +98,7 @@ public class InterestRate extends CompositeUnitAmount<FrequencyUnit> {
 	}
 
 	public Money multipliedBy(Debt debt, MathContext mathContext) {
-		BigDecimalAmount amount = super.multipliedBy(debt, mathContext).getAmount();
+		BigDecimalAmount amount = super.multiply(debt, mathContext).getAmount();
 		CurrencyUnit unit = getUnit().getUnitCounter().findUnit(CurrencyUnit.class);
 
 		return new Money(amount, unit);

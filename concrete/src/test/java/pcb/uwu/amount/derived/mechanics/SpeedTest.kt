@@ -18,24 +18,24 @@ class SpeedTest
     @Test
     fun testPlusSpeed() =
         assertEquals("10.254 s⁻¹⋅m",
-                     MetersPerSecond(10).plus(Length(10, INCH)
-                                                  .dividedBy(Time(1, SECOND), DECIMAL64), DECIMAL64).toString())
+                     (MetersPerSecond(10) + Length(10, INCH)
+                                                  .dividedBy(Time(1, SECOND), DECIMAL64)).toString())
 
     @Test
     fun testMinusSpeed() =
         assertEquals("9.746 s⁻¹⋅m",
-                     MetersPerSecond(10).minus(Length(10, INCH).dividedBy(Time(1, SECOND), DECIMAL64), DECIMAL64)
+                     (MetersPerSecond(10) - Length(10, INCH).dividedBy(Time(1, SECOND), DECIMAL64))
                          .toString())
 
     @Test
     fun testMultipliedBy() =
         assertEquals("100 s⁻¹⋅m",
-                     MetersPerSecond(10).multipliedBy(TEN, DECIMAL64).toString())
+                     MetersPerSecond(10).multiply(TEN, DECIMAL64).toString())
 
     @Test
     fun testDividedBy() =
         assertEquals("1 s⁻¹⋅m",
-                     MetersPerSecond(10).dividedBy(TEN, DECIMAL64).toString())
+                     MetersPerSecond(10).div(TEN, DECIMAL64).toString())
 
     @Test
     fun testDividedByTime() =
@@ -51,12 +51,12 @@ class SpeedTest
     fun testIn()
     {
         assertEquals("10 s⁻¹⋅m",
-                     MetersPerSecond(10).`in`(SpeedUnit(METER, SECOND)).toString())
+                     MetersPerSecond(10).into(SpeedUnit(METER, SECOND)).toString())
         assertEquals("600 min⁻¹⋅m",
-                     MetersPerSecond(10).`in`(SpeedUnit(METER, MINUTE)).toString())
+                     MetersPerSecond(10).into(SpeedUnit(METER, MINUTE)).toString())
         assertEquals("23622.04724409449 min⁻¹⋅in",
-                     MetersPerSecond(10).`in`(SpeedUnit(INCH, MINUTE)).toString())
+                     MetersPerSecond(10).into(SpeedUnit(INCH, MINUTE)).toString())
         assertEquals("393.7007874015748 s⁻¹⋅in",
-                     MetersPerSecond(10).`in`(SpeedUnit(INCH, SECOND)).toString())
+                     MetersPerSecond(10).into(SpeedUnit(INCH, SECOND)).toString())
     }
 }

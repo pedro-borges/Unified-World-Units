@@ -12,7 +12,7 @@ public class PoundUnit extends MassUnit {
 
 	private PoundUnit() {
 		super("lb", "pound", "pounds",
-				value -> value.multipliedBy(KILOGRAMS_PER_POUND, DECIMAL64),
-				value -> value.dividedBy(KILOGRAMS_PER_POUND, DECIMAL64));
+				value -> value.times(KILOGRAMS_PER_POUND, DECIMAL64),
+				value -> value.div(KILOGRAMS_PER_POUND, DECIMAL64));
 	}
 }

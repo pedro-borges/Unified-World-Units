@@ -1,15 +1,13 @@
 package pcb.uwu.amount.derived.fundamental;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Length;
-import pcb.uwu.amount.base.Time;
-import pcb.uwu.amount.derived.mechanics.Speed;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.fundamental.AreaUnit;
 import pcb.uwu.unit.derived.fundamental.VolumeUnit;
-import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -33,7 +31,7 @@ public class Area extends CompositeUnitAmount<AreaUnit> {
 		public static final BiFunction<BigDecimalAmount, MathContext, BigDecimalAmount> CIRCLE_FUNCTION =
 				(radius, mathContext) -> radius
 						.pow(2, mathContext)
-						.multipliedBy(PI, mathContext);
+						.times(PI, mathContext);
 
 		public static final BiFunction<BigDecimalAmount, MathContext, BigDecimalAmount> SQUARE_FUNCTION =
 				(side, mathContext) -> side
@@ -90,28 +88,30 @@ public class Area extends CompositeUnitAmount<AreaUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Area plus(UnitAmount<AreaUnit> other, MathContext mathContext) {
-		return new Area(plusAmount(this, other, mathContext), getUnit());
+	public Area plus(@NotNull UnitAmount<AreaUnit> other) {
+		return new Area(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Area minus(@NotNull UnitAmount<AreaUnit> other) {
+		return new Area(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Area minus(UnitAmount<AreaUnit> other, MathContext mathContext) {
-		return new Area(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Area multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Area multiply(BigDecimal other, MathContext mathContext) {
 		return new Area(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Area dividedBy(BigDecimal other, MathContext mathContext) {
+	public Area div(BigDecimal other, MathContext mathContext) {
 		return new Area(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Area in(AreaUnit unit) {
+	public Area into(AreaUnit unit) {
 		return new Area(getAmountIn(this, unit), unit);
 	}
 
@@ -123,7 +123,7 @@ public class Area extends CompositeUnitAmount<AreaUnit> {
 
 	public Volume multipliedBy(Length length, MathContext mathContext) {
 		return new Volume(
-				getAmount().multipliedBy(length.getAmount(), mathContext),
+				getAmount().times(length.getAmount(), mathContext),
 				new VolumeUnit(getUnit(), length.getUnit()));
 	}
 

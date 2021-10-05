@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Seconds;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
@@ -58,28 +59,30 @@ public class Farads extends ElectricCapacitance {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Farads plus(UnitAmount<ElectricCapacitanceUnit> other, MathContext mathContext) {
-		return new Farads(plusAmount(this, other, mathContext));
+	public Farads plus(@NotNull UnitAmount<ElectricCapacitanceUnit> other) {
+		return new Farads(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Farads minus(@NotNull UnitAmount<ElectricCapacitanceUnit> other) {
+		return new Farads(minusAmount(this, other));
 	}
 
 	@Override
-	public Farads minus(UnitAmount<ElectricCapacitanceUnit> other, MathContext mathContext) {
-		return new Farads(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Farads multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Farads multiply(BigDecimal other, MathContext mathContext) {
 		return new Farads(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Farads dividedBy(BigDecimal other, MathContext mathContext) {
+	public Farads div(BigDecimal other, MathContext mathContext) {
 		return new Farads(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Farads in(ElectricCapacitanceUnit unit) {
+	public Farads into(ElectricCapacitanceUnit unit) {
 		return new Farads(getAmountIn(this, unit));
 	}
 
@@ -88,11 +91,11 @@ public class Farads extends ElectricCapacitance {
 	// region composition
 
 	public Coulombs multipliedBy(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Coulombs(getAmount().multipliedBy(getAmountIn(electricPotential, VOLT), mathContext));
+		return new Coulombs(getAmount().times(getAmountIn(electricPotential, VOLT), mathContext));
 	}
 
 	public Seconds multipliedBy(ElectricResistance electricResistance, MathContext mathContext) {
-		return new Seconds(getAmount().multipliedBy(getAmountIn(electricResistance, OHM), mathContext));
+		return new Seconds(getAmount().times(getAmountIn(electricResistance, OHM), mathContext));
 	}
 
 	// endregion

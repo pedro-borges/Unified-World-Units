@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class ElectricCharge extends CompositeUnitAmount<ElectricChargeUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public ElectricCharge plus(UnitAmount<ElectricChargeUnit> other, MathContext mathContext) {
-		return new ElectricCharge(plusAmount(this, other, mathContext), getUnit());
+	public ElectricCharge plus(@NotNull UnitAmount<ElectricChargeUnit> other) {
+		return new ElectricCharge(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public ElectricCharge minus(@NotNull UnitAmount<ElectricChargeUnit> other) {
+		return new ElectricCharge(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public ElectricCharge minus(UnitAmount<ElectricChargeUnit> other, MathContext mathContext) {
-		return new ElectricCharge(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public ElectricCharge multipliedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricCharge multiply(BigDecimal other, MathContext mathContext) {
 		return new ElectricCharge(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public ElectricCharge dividedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricCharge div(BigDecimal other, MathContext mathContext) {
 		return new ElectricCharge(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public ElectricCharge in(ElectricChargeUnit unit) {
+	public ElectricCharge into(ElectricChargeUnit unit) {
 		return new ElectricCharge(getAmountIn(this, unit), unit);
 	}
 

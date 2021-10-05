@@ -1,135 +1,55 @@
-package pcb.uwu.core;
+package pcb.uwu.core
 
-import pcb.uwu.unit.base.ScalarUnit;
+import pcb.uwu.core.BigDecimalAmount.Companion.ONE
+import pcb.uwu.unit.base.ScalarUnit
+import java.util.Objects
+import java.util.function.Function
 
-import java.util.Objects;
-import java.util.function.Function;
-
-import static pcb.uwu.core.BigDecimalAmount.ONE;
-
-public abstract class BaseUnit implements Unit, Comparable<BaseUnit> {
-
-    // region private fields
-
-    private final int precedence;
-    private final String symbol;
-    private final String singularName;
-    private final String pluralName;
-    private final Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical;
-    private final Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical;
-
-    // endregion
-
-    // region constructors
-
-    protected BaseUnit(
-            int precedence,
-            String symbol,
-            String singularName,
-            String pluralName,
-            Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
-            Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
-
-        this.precedence = precedence;
-        this.symbol = symbol;
-        this.singularName = singularName;
-        this.pluralName = pluralName;
-        this.translationToCanonical = translationToCanonical;
-        this.translationFromCanonical = translationFromCanonical;
-    }
-
-    // endregion
-
-    // region implement Unit
-
+abstract class BaseUnit(private val precedence: Int,
+                        override val symbol: String,
+                        override val singularName: String,
+                        override val pluralName: String,
+                        override val translationToCanonical: Function<BigDecimalAmount, BigDecimalAmount>,
+                        override val translationFromCanonical: Function<BigDecimalAmount, BigDecimalAmount>)
+    : Unit,
+      Comparable<BaseUnit>
+{
     /**
      * {@inheritDoc}
      */
-    @Override
-    public String getSymbol() {
-        return symbol;
-    }
+    override val isScalar: Boolean
+        get() = this is ScalarUnit
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getSingularName() {
-        return singularName;
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getPluralName() {
-        return pluralName;
-    }
+    // region Comparable
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
-        return translationToCanonical;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
-        return translationFromCanonical;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isScalar() {
-        return this instanceof ScalarUnit;
-    }
-
-    // endregion
-
-    // region implement Comparable
-
-    @Override
-    public int compareTo(BaseUnit other) {
-        return other.precedence - this.precedence;
+    override fun compareTo(other: BaseUnit): Int
+    {
+        return other.precedence - precedence
     }
 
     //endregion
 
-    // region override Object
+    // region Object
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Unit)) return false;
-
-        Unit that = (Unit) obj;
-
-        return Objects.equals(this.symbol, that.getSymbol()) &&
-                Objects.equals(this.singularName, that.getSingularName()) &&
-                Objects.equals(this.pluralName, that.getPluralName()) &&
-                Objects.equals(
-                		this.getTranslationToCanonical().apply(ONE),
-						that.getTranslationToCanonical().apply(ONE)) &&
-                Objects.equals(
-                		this.getTranslationFromCanonical().apply(ONE),
-						that.getTranslationFromCanonical().apply(ONE));
+    override fun equals(other: Any?): Boolean
+    {
+        if (this === other) return true
+        if (other !is Unit) return false
+        return symbol == other.symbol &&
+                singularName == other.singularName &&
+                pluralName == other.pluralName &&
+                translationToCanonical.apply(ONE) == other.translationToCanonical.apply(ONE) &&
+                translationFromCanonical.apply(ONE) == other.translationFromCanonical.apply(ONE)
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
+    override fun hashCode(): Int
+    {
+        return Objects.hash(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical)
     }
 
-    @Override
-    public String toString() {
-        return symbol;
+    override fun toString(): String
+    {
+        return symbol
     }
-
-    // endregion
 }

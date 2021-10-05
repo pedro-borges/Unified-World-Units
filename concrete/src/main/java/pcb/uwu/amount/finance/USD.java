@@ -1,5 +1,6 @@
 package pcb.uwu.amount.finance;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.finance.CurrencyUnit;
@@ -46,23 +47,25 @@ public class USD extends Money {
 		return new USD(getAmount().minus(other.getAmount().getValue()));
 	}
 
+	@NotNull
 	@Override
-	public USD plus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new USD(plusAmount(this, other, mathContext));
+	public USD plus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new USD(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public USD minus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new USD(minusAmount(this, other));
 	}
 
 	@Override
-	public USD minus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new USD(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public USD multipliedBy(BigDecimal other, MathContext mathContext) {
+	public USD multiply(BigDecimal other, MathContext mathContext) {
 		return new USD(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public USD dividedBy(BigDecimal other, MathContext mathContext) {
+	public USD div(BigDecimal other, MathContext mathContext) {
 		return new USD(dividedByScalar(this, other, mathContext));
 	}
 

@@ -1,252 +1,198 @@
-package pcb.uwu.core;
+package pcb.uwu.core
 
-import pcb.uwu.core.UnitCounter.UnitCount;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.core.UnitCounter.UnitCount.Companion.EMPTY_BASE_UNIT_COUNT
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
+import java.util.Objects
+import java.util.function.Function
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.util.Objects;
-import java.util.function.Function;
-
-import static java.math.MathContext.UNLIMITED;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-
-public class CompositeUnitAmount<U extends Unit> implements UnitAmount<U> {
-
-    // region private fields
-
-    private final BigDecimalAmount amount;
-    private final U unit;
-
-    // endregion
+open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
+{
+    final override val amount: BigDecimalAmount
+    final override val unit: U
 
     // region constructors
 
-    public CompositeUnitAmount(Number value, U unit) {
-        this(value.toString(), unit);
-    }
-
-    public CompositeUnitAmount(Number value, Magnitude magnitude, U unit) {
-        this(value.toString(), magnitude, unit);
-    }
-
-    public CompositeUnitAmount(String value, U unit) {
-        this(new BigDecimal(value), unit);
-    }
-
-    public CompositeUnitAmount(String value, Magnitude magnitude, U unit) {
-        this(new BigDecimal(value), magnitude, unit);
-    }
-
-    public CompositeUnitAmount(BigDecimal value, U unit) {
-        this(new BigDecimalAmount(value), unit);
-    }
-
-    public CompositeUnitAmount(BigDecimal value, Magnitude magnitude, U unit) {
-        this(new BigDecimalAmount(value), magnitude, unit);
-    }
-
-    public CompositeUnitAmount(BigDecimalAmount amount, U unit) {
-        this.amount = amount;
-        this.unit = unit;
-    }
-
-    public CompositeUnitAmount(BigDecimalAmount amount, Magnitude magnitude, U unit) {
-        this.amount = amount.multipliedBy(magnitude.getValue(), UNLIMITED);
-        this.unit = unit;
+    constructor(value: Number, unit: U) : this(value.toString(), unit)
+    constructor(value: Number, magnitude: Magnitude, unit: U) : this(value.toString(), magnitude, unit)
+    constructor(value: String, unit: U) : this(BigDecimal(value), unit)
+    constructor(value: String, magnitude: Magnitude, unit: U) : this(BigDecimal(value), magnitude, unit)
+    constructor(value: BigDecimal, unit: U) : this(BigDecimalAmount(value), unit)
+    constructor(value: BigDecimal, magnitude: Magnitude, unit: U) : this(BigDecimalAmount(value), magnitude, unit)
+    constructor(amount: BigDecimalAmount, magnitude: Magnitude, unit: U) : this(amount.times(magnitude.value, MathContext.UNLIMITED), unit)
+    constructor(amount: BigDecimalAmount, unit: U)
+    {
+        this.amount = amount
+        this.unit = unit
     }
 
     // endregion
 
-    // region implement Comparable
+    // region UnitAmount
 
-    @Override
-    public int compareTo(UnitAmount<U> other) {
-        BigDecimalAmount thisCanonical = this.getUnit().getTranslationToCanonical().apply(this.getAmount());
-        BigDecimalAmount otherCanonical = other.getUnit().getTranslationToCanonical().apply(other.getAmount());
-
-        return thisCanonical.getValue().compareTo(otherCanonical.getValue());
+    override operator fun plus(other: UnitAmount<U>): UnitAmount<U>
+    {
+        return CompositeUnitAmount(UnitAmountUtils.plusAmount(this, other), unit)
     }
 
-    // endregion
-
-    // region implement UnitAmount
-
-    @Override
-    public BigDecimalAmount getAmount() {
-        return amount;
+    override operator fun minus(other: UnitAmount<U>): UnitAmount<U>
+    {
+        return CompositeUnitAmount(UnitAmountUtils.minusAmount(this, other), unit)
     }
 
-    @Override
-    public U getUnit() {
-        return unit;
+    override fun multiply(other: BigDecimal, mathContext: MathContext): UnitAmount<U>
+    {
+        return CompositeUnitAmount(UnitAmountUtils.multipliedByScalar(this, other, mathContext), unit)
     }
 
-    @Override
-    public UnitAmount<U> plus(UnitAmount<U> other, MathContext mathContext) {
-        return new CompositeUnitAmount<>(UnitAmountUtils.plusAmount(this, other, mathContext), unit);
+    override fun div(other: BigDecimal, mathContext: MathContext): UnitAmount<U>
+    {
+        return CompositeUnitAmount(UnitAmountUtils.dividedByScalar(this, other, mathContext), unit)
     }
 
-    @Override
-    public UnitAmount<U> minus(UnitAmount<U> other, MathContext mathContext) {
-        return new CompositeUnitAmount<>(UnitAmountUtils.minusAmount(this, other, mathContext), unit);
-    }
-
-    @Override
-    public UnitAmount<U> multipliedBy(BigDecimal other, MathContext mathContext) {
-        return new CompositeUnitAmount<>(UnitAmountUtils.multipliedByScalar(this, other, mathContext), unit);
-    }
-
-    @Override
-    public UnitAmount<U> dividedBy(BigDecimal other, MathContext mathContext) {
-        return new CompositeUnitAmount<>(UnitAmountUtils.dividedByScalar(this, other, mathContext), unit);
-    }
-
-    @Override
-    public UnitAmount<? extends Unit> multipliedBy(UnitAmount<? extends Unit> other, MathContext mathContext) {
-        UnitCounter resultUnitCounter = new UnitCounter(getUnit().getUnitCounter());
-        Function<BigDecimalAmount, BigDecimalAmount> transformation = Function.identity();
-
-        for (UnitCount otherUnitCount : other.getUnit().getUnitCounter().getBaseUnits()) {
-            UnitCount resultUnitCount = resultUnitCounter.get(otherUnitCount.getUnit());
-
-            if (resultUnitCount == null) {
+    override fun multiply(other: UnitAmount<out Unit>, mathContext: MathContext): UnitAmount<out Unit>
+    {
+        var resultUnitCounter = UnitCounter(unit.unitCounter)
+        var transformation = Function.identity<BigDecimalAmount>()
+        for (otherUnitCount in other.unit.unitCounter.baseUnits)
+        {
+            val resultUnitCount = resultUnitCounter[otherUnitCount.unit]
+            if (EMPTY_BASE_UNIT_COUNT == resultUnitCount)
+            {
                 // New unit type, no adaptation necessary
-                resultUnitCounter.major(otherUnitCount.getUnit(), otherUnitCount.getCount());
-                continue;
+                resultUnitCounter.major(otherUnitCount.unit, otherUnitCount.count)
+                continue
             }
 
             // Existing unit type, adaptation is necessary
-            int resultMagnitude = resultUnitCount.getCount();
-            int otherMagnitude = otherUnitCount.getCount();
+            var resultMagnitude = resultUnitCount.count
+            var otherMagnitude = otherUnitCount.count
 
             // other is major and this is major
-            while (otherMagnitude > 0 && resultMagnitude > 0) {
-                if (!otherUnitCount.getUnit().equals(resultUnitCount.getUnit())) {
+            while (otherMagnitude > 0 && resultMagnitude > 0)
+            {
+                if (!otherUnitCount.unit.equals(resultUnitCount.unit))
+                {
                     transformation = transformation
-                            .andThen(otherUnitCount.getUnit().getTranslationToCanonical())
-                            .andThen(resultUnitCount.getUnit().getTranslationFromCanonical());
+                        .andThen(otherUnitCount.unit.translationToCanonical)
+                        .andThen(resultUnitCount.unit.translationFromCanonical)
                 }
-
-                resultUnitCounter = resultUnitCounter.major(resultUnitCount.getUnit());
-
-                resultMagnitude++;
-                otherMagnitude--;
+                resultUnitCounter = resultUnitCounter.major(resultUnitCount.unit)
+                resultMagnitude++
+                otherMagnitude--
             }
 
             // other is minor and this is minor
-            while (otherMagnitude < 0 && resultMagnitude < 0) {
-                if (!otherUnitCount.getUnit().equals(resultUnitCount.getUnit())) {
+            while (otherMagnitude < 0 && resultMagnitude < 0)
+            {
+                if (!otherUnitCount.unit.equals(resultUnitCount.unit))
+                {
                     transformation = transformation
-                            .andThen(otherUnitCount.getUnit().getTranslationFromCanonical())
-                            .andThen(resultUnitCount.getUnit().getTranslationToCanonical());
+                        .andThen(otherUnitCount.unit.translationFromCanonical)
+                        .andThen(resultUnitCount.unit.translationToCanonical)
                 }
-
-                resultUnitCounter = resultUnitCounter.minor(resultUnitCount.getUnit());
-
-                resultMagnitude--;
-                otherMagnitude++;
+                resultUnitCounter = resultUnitCounter.minor(resultUnitCount.unit)
+                resultMagnitude--
+                otherMagnitude++
             }
 
             // other is major and this is minor
-            while (otherMagnitude > 0 && resultMagnitude < 0) {
-                if (!otherUnitCount.getUnit().equals(resultUnitCount.getUnit())) {
+            while (otherMagnitude > 0 && resultMagnitude < 0)
+            {
+                if (!otherUnitCount.unit.equals(resultUnitCount.unit))
+                {
                     transformation = transformation
-                            .andThen(otherUnitCount.getUnit().getTranslationToCanonical())
-                            .andThen(resultUnitCount.getUnit().getTranslationFromCanonical());
+                        .andThen(otherUnitCount.unit.translationToCanonical)
+                        .andThen(resultUnitCount.unit.translationFromCanonical)
                 }
-
-                resultUnitCounter = resultUnitCounter.major(resultUnitCount.getUnit());
-
-                resultMagnitude++;
-                otherMagnitude--;
+                resultUnitCounter = resultUnitCounter.major(resultUnitCount.unit)
+                resultMagnitude++
+                otherMagnitude--
             }
 
             // other is minor and this is major
-            while (otherMagnitude < 0 && resultMagnitude > 0) {
-                if (!otherUnitCount.getUnit().equals(resultUnitCount.getUnit())) {
+            while (otherMagnitude < 0 && resultMagnitude > 0)
+            {
+                if (!otherUnitCount.unit.equals(resultUnitCount.unit))
+                {
                     transformation = transformation
-                            .andThen(otherUnitCount.getUnit().getTranslationFromCanonical())
-                            .andThen(resultUnitCount.getUnit().getTranslationToCanonical());
+                        .andThen(otherUnitCount.unit.translationFromCanonical)
+                        .andThen(resultUnitCount.unit.translationToCanonical)
                 }
-
-                resultUnitCounter = resultUnitCounter.minor(resultUnitCount.getUnit());
-
-                resultMagnitude--;
-                otherMagnitude++;
+                resultUnitCounter = resultUnitCounter.minor(resultUnitCount.unit)
+                resultMagnitude--
+                otherMagnitude++
             }
 
             // other still exists and this is exhausted
-            while (otherMagnitude > 0) {
-                resultUnitCounter = resultUnitCounter.major(otherUnitCount.getUnit());
-
-                otherMagnitude--;
+            while (otherMagnitude > 0)
+            {
+                resultUnitCounter = resultUnitCounter.major(otherUnitCount.unit)
+                otherMagnitude--
             }
 
             // other still exists and this is exhausted
-            while (otherMagnitude < 0) {
-                resultUnitCounter = resultUnitCounter.minor(otherUnitCount.getUnit());
-
-                otherMagnitude++;
+            while (otherMagnitude < 0)
+            {
+                resultUnitCounter = resultUnitCounter.minor(otherUnitCount.unit)
+                otherMagnitude++
             }
         }
-
-        BigDecimalAmount resultAmount = transformation.apply(getAmount().multipliedBy(other.getAmount(), mathContext));
-
-        return new CompositeUnitAmount<>(resultAmount, new CompositeUnit(resultUnitCounter));
+        val resultAmount = transformation.apply(amount.times(other.amount, mathContext))
+        return CompositeUnitAmount(resultAmount, CompositeUnit(resultUnitCounter))
     }
 
-    @Override
-    public UnitAmount<? extends Unit> dividedBy(UnitAmount<? extends Unit> other, MathContext mathContext) {
-        return multipliedBy(other.invert(mathContext), mathContext);
+    override fun div(other: UnitAmount<out Unit>, mathContext: MathContext): UnitAmount<out Unit>
+    {
+        return multiply(other.invert(mathContext), mathContext)
     }
 
-    @Override
-    public UnitAmount<? extends Unit> invert(MathContext mathContext) {
-        return new CompositeUnitAmount<>(
-                getAmount().invert(mathContext),
-                new CompositeUnit(getUnit().getUnitCounter().invert()));
+    override fun invert(mathContext: MathContext): UnitAmount<out Unit>
+    {
+        return CompositeUnitAmount(
+                amount.invert(mathContext),
+                CompositeUnit(unit.unitCounter.invert()))
     }
 
-    @Override
-    public UnitAmount<U> in(U unit) {
-        return new CompositeUnitAmount<>(getAmountIn(this, unit), unit);
+    override fun into(unit: U): UnitAmount<U>
+    {
+        return CompositeUnitAmount(UnitAmountUtils.getAmountIn(this, unit), unit)
     }
 
-    // endregion
-
-    // region override Object
-
-	@Override
-	public boolean equivalentTo(UnitAmount<?> that) {
-		if (this == that) return true;
-
-		return Objects.equals(this.unit.getBaseUnitType(), that.getUnit().getBaseUnitType()) &&
-				Objects.equals(
-						this.getUnit().getTranslationToCanonical().apply(this.getAmount()),
-						that.getUnit().getTranslationToCanonical().apply(that.getAmount()));
-	}
-
-	@Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof UnitAmount)) return false;
-
-        UnitAmount<?> that = (UnitAmount<?>) obj;
-
-        return Objects.equals(this.getAmount(), that.getAmount()) &&
-                Objects.equals(this.getUnit(), that.getUnit());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(amount, unit);
-    }
-
-    @Override
-    public String toString() {
-        return amount.toString() + (unit.isScalar() ? "" : " " + unit.toString());
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun equivalentTo(that: UnitAmount<*>): Boolean
+    {
+        return if (this === that) true
+        else unit.baseUnitType == that.unit.baseUnitType &&
+                unit.translationToCanonical.apply(amount) == that.unit.translationToCanonical.apply(that.amount)
     }
 
     // endregion
+
+    // region Comparable
+
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun compareTo(that: UnitAmount<U>) =
+        unit.toCanonical(amount).value.compareTo(that.unit.fromCanonical(that.amount).value)
+
+    // endregion
+
+    // region Object
+
+    override fun equals(other: Any?): Boolean
+    {
+        if (this === other) return true
+        if (other !is UnitAmount<*>) return false
+        return amount == other.amount &&
+                unit == other.unit
+    }
+
+    override fun hashCode(): Int
+    {
+        return Objects.hash(amount, unit)
+    }
+
+    override fun toString() =
+        "$amount${if (unit.isScalar) "" else " $unit"}"
 }

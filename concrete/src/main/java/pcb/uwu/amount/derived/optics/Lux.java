@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.optics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
@@ -57,23 +58,25 @@ public class Lux extends Illuminance {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Lux plus(UnitAmount<IlluminanceUnit> other, MathContext mathContext) {
-		return new Lux(plusAmount(this, other, mathContext));
+	public Lux plus(@NotNull UnitAmount<IlluminanceUnit> other) {
+		return new Lux(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Lux minus(@NotNull UnitAmount<IlluminanceUnit> other) {
+		return new Lux(minusAmount(this, other));
 	}
 
 	@Override
-	public Lux minus(UnitAmount<IlluminanceUnit> other, MathContext mathContext) {
-		return new Lux(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Lux multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Lux multiply(BigDecimal other, MathContext mathContext) {
 		return new Lux(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Lux dividedBy(BigDecimal other, MathContext mathContext) {
+	public Lux div(BigDecimal other, MathContext mathContext) {
 		return new Lux(dividedByScalar(this, other, mathContext));
 	}
 
@@ -82,7 +85,7 @@ public class Lux extends Illuminance {
 	// region composition
 
 	public Lumens multipliedBy(Area area, MathContext mathContext) {
-		return new Lumens(getAmount().multipliedBy(getAmountIn(area, SQUARE_METER), mathContext));
+		return new Lumens(getAmount().times(getAmountIn(area, SQUARE_METER), mathContext));
 	}
 
 	// endregion

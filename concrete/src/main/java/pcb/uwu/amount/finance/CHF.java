@@ -1,5 +1,6 @@
 package pcb.uwu.amount.finance;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.finance.CurrencyUnit;
@@ -46,23 +47,25 @@ public class CHF extends Money {
 		return new CHF(getAmount().minus(other.getAmount().getValue()));
 	}
 
+	@NotNull
 	@Override
-	public CHF plus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new CHF(plusAmount(this, other, mathContext));
+	public CHF plus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new CHF(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public CHF minus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new CHF(minusAmount(this, other));
 	}
 
 	@Override
-	public CHF minus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new CHF(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public CHF multipliedBy(BigDecimal other, MathContext mathContext) {
+	public CHF multiply(BigDecimal other, MathContext mathContext) {
 		return new CHF(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public CHF dividedBy(BigDecimal other, MathContext mathContext) {
+	public CHF div(BigDecimal other, MathContext mathContext) {
 		return new CHF(dividedByScalar(this, other, mathContext));
 	}
 

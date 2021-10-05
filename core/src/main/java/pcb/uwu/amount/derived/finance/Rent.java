@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.finance;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Time;
 import pcb.uwu.amount.finance.Money;
 import pcb.uwu.core.BigDecimalAmount;
@@ -58,28 +59,30 @@ public class Rent extends CompositeUnitAmount<RentUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Rent plus(UnitAmount<RentUnit> other, MathContext mathContext) {
-		return new Rent(plusAmount(this, other, mathContext), getUnit());
+	public Rent plus(@NotNull UnitAmount<RentUnit> other) {
+		return new Rent(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Rent minus(@NotNull UnitAmount<RentUnit> other) {
+		return new Rent(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Rent minus(UnitAmount<RentUnit> other, MathContext mathContext) {
-		return new Rent(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Rent multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Rent multiply(BigDecimal other, MathContext mathContext) {
 		return new Rent(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Rent dividedBy(BigDecimal other, MathContext mathContext) {
+	public Rent div(BigDecimal other, MathContext mathContext) {
 		return new Rent(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Rent in(RentUnit unit) {
+	public Rent into(RentUnit unit) {
 		return new Rent(getAmountIn(this, unit), unit);
 	}
 
@@ -88,7 +91,7 @@ public class Rent extends CompositeUnitAmount<RentUnit> {
 	// region composition
 
 	public Money multipliedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = super.multipliedBy(time, mathContext).getAmount();
+		BigDecimalAmount amount = super.multiply(time, mathContext).getAmount();
 		CurrencyUnit unit = getUnit().getUnitCounter().findUnit(CurrencyUnit.class);
 
 		return new Money(amount, unit);

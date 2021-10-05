@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.ElectricCurrent;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
@@ -57,28 +58,30 @@ public class Ohms extends ElectricResistance {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Ohms plus(UnitAmount<ElectricResistanceUnit> other, MathContext mathContext) {
-		return new Ohms(plusAmount(this, other, mathContext));
+	public Ohms plus(@NotNull UnitAmount<ElectricResistanceUnit> other) {
+		return new Ohms(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Ohms minus(@NotNull UnitAmount<ElectricResistanceUnit> other) {
+		return new Ohms(minusAmount(this, other));
 	}
 
 	@Override
-	public Ohms minus(UnitAmount<ElectricResistanceUnit> other, MathContext mathContext) {
-		return new Ohms(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Ohms multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Ohms multiply(BigDecimal other, MathContext mathContext) {
 		return new Ohms(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Ohms dividedBy(BigDecimal other, MathContext mathContext) {
+	public Ohms div(BigDecimal other, MathContext mathContext) {
 		return new Ohms(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Ohms in(ElectricResistanceUnit unit) {
+	public Ohms into(ElectricResistanceUnit unit) {
 		return new Ohms(getAmountIn(this, unit));
 	}
 
@@ -92,7 +95,7 @@ public class Ohms extends ElectricResistance {
 	// region composition
 
 	public Volts multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Volts(getAmount().multipliedBy(getAmountIn(electricCurrent, AMPERE), mathContext));
+		return new Volts(getAmount().times(getAmountIn(electricCurrent, AMPERE), mathContext));
 	}
 
 	// endregion

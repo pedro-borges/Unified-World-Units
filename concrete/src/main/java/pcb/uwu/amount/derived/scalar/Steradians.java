@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.scalar;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.LuminousIntensity;
 import pcb.uwu.amount.derived.optics.Lumens;
 import pcb.uwu.core.BigDecimalAmount;
@@ -58,23 +59,25 @@ public class Steradians extends SolidAngle {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Steradians plus(UnitAmount<SolidAngleUnit> other, MathContext mathContext) {
-		return new Steradians(plusAmount(this, other, mathContext));
+	public Steradians plus(@NotNull UnitAmount<SolidAngleUnit> other) {
+		return new Steradians(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Steradians minus(@NotNull UnitAmount<SolidAngleUnit> other) {
+		return new Steradians(minusAmount(this, other));
 	}
 
 	@Override
-	public Steradians minus(UnitAmount<SolidAngleUnit> other, MathContext mathContext) {
-		return new Steradians(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Steradians multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Steradians multiply(BigDecimal other, MathContext mathContext) {
 		return new Steradians(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Steradians dividedBy(BigDecimal other, MathContext mathContext) {
+	public Steradians div(BigDecimal other, MathContext mathContext) {
 		return new Steradians(dividedByScalar(this, other, mathContext));
 	}
 
@@ -83,7 +86,7 @@ public class Steradians extends SolidAngle {
 	// region composition
 
 	public Lumens multipliedBy(LuminousIntensity luminousIntensity, MathContext mathContext) {
-		return new Lumens(getAmount().multipliedBy(getAmountIn(luminousIntensity, CANDELA), mathContext));
+		return new Lumens(getAmount().times(getAmountIn(luminousIntensity, CANDELA), mathContext));
 	}
 
 	// endregion

@@ -7,7 +7,6 @@ import pcb.uwu.core.BigDecimalAmount
 import pcb.uwu.exception.InvalidCurrencyException
 import pcb.uwu.unit.finance.CurrencyUnit.GBP
 import pcb.uwu.unit.finance.CurrencyUnit.USD
-import java.math.MathContext.UNLIMITED
 
 class MoneyTest
 {
@@ -23,22 +22,22 @@ class MoneyTest
     @Test
     fun testPlusSameCurrency() =
         assertEquals(Money(11, GBP),
-                     Money(1, GBP).plus(Money(10, GBP), UNLIMITED))
+                     Money(1, GBP) + Money(10, GBP))
 
     @Test(expected = InvalidCurrencyException::class)
     fun testPlusDifferentCurrency()
     {
-        Money(1, GBP).plus(Money(10, USD), UNLIMITED)
+        Money(1, GBP) + Money(10, USD)
     }
 
     @Test
     fun testMinusSameCurrency() =
         assertEquals(Money(-9, GBP),
-                     Money(1, GBP).minus(Money(10, GBP), UNLIMITED))
+                     Money(1, GBP) - Money(10, GBP))
 
     @Test(expected = InvalidCurrencyException::class)
     fun testMinusDifferentCurrency()
     {
-        Money(1, GBP).minus(Money(10, USD), UNLIMITED)
+        Money(1, GBP) - Money(10, USD)
     }
 }

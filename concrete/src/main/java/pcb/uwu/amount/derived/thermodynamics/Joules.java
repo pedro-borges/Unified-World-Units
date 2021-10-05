@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.thermodynamics;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.base.Meters;
 import pcb.uwu.amount.base.Seconds;
@@ -74,23 +75,25 @@ public class Joules extends Energy {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Joules plus(UnitAmount<EnergyUnit> other, MathContext mathContext) {
-		return new Joules(plusAmount(this, other, mathContext));
+	public Joules plus(@NotNull UnitAmount<EnergyUnit> other) {
+		return new Joules(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Joules minus(@NotNull UnitAmount<EnergyUnit> other) {
+		return new Joules(minusAmount(this, other));
 	}
 
 	@Override
-	public Joules minus(UnitAmount<EnergyUnit> other, MathContext mathContext) {
-		return new Joules(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Joules multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Joules multiply(BigDecimal other, MathContext mathContext) {
 		return new Joules(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Joules dividedBy(BigDecimal other, MathContext mathContext) {
+	public Joules div(BigDecimal other, MathContext mathContext) {
 		return new Joules(dividedByScalar(this, other, mathContext));
 	}
 
@@ -99,35 +102,35 @@ public class Joules extends Energy {
 	// region composition
 
 	public Pascals dividedBy(Volume volume, MathContext mathContext) {
-		return new Pascals(getAmount().dividedBy(getAmountIn(volume, CUBIC_METER), mathContext));
+		return new Pascals(getAmount().div(getAmountIn(volume, CUBIC_METER), mathContext));
 	}
 
 	public Volume dividedBy(Pressure pressure, MathContext mathContext) {
-		return new Volume(getAmount().dividedBy(getAmountIn(pressure, PASCAL), mathContext), CUBIC_METER);
+		return new Volume(getAmount().div(getAmountIn(pressure, PASCAL), mathContext), CUBIC_METER);
 	}
 
 	public Seconds dividedBy(Power power, MathContext mathContext) {
-		return new Seconds(getAmount().dividedBy(getAmountIn(power, WATT), mathContext));
+		return new Seconds(getAmount().div(getAmountIn(power, WATT), mathContext));
 	}
 
 	public Watts dividedBy(Time time, MathContext mathContext) {
-		return new Watts(getAmount().dividedBy(getAmountIn(time, SECOND), mathContext));
+		return new Watts(getAmount().div(getAmountIn(time, SECOND), mathContext));
 	}
 
 	public Newtons dividedBy(Length length, MathContext mathContext) {
-		return new Newtons(getAmount().dividedBy(getAmountIn(length, METER), mathContext));
+		return new Newtons(getAmount().div(getAmountIn(length, METER), mathContext));
 	}
 
 	public Meters dividedBy(Force force, MathContext mathContext) {
-		return new Meters(getAmount().dividedBy(getAmountIn(force, NEWTON), mathContext));
+		return new Meters(getAmount().div(getAmountIn(force, NEWTON), mathContext));
 	}
 
 	public Volts dividedBy(ElectricCharge electricCharge, MathContext mathContext) {
-		return new Volts(getAmount().dividedBy(getAmountIn(electricCharge, COULOMB), mathContext));
+		return new Volts(getAmount().div(getAmountIn(electricCharge, COULOMB), mathContext));
 	}
 
 	public Coulombs dividedBy(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Coulombs(getAmount().dividedBy(getAmountIn(electricPotential, VOLT), mathContext));
+		return new Coulombs(getAmount().div(getAmountIn(electricPotential, VOLT), mathContext));
 	}
 
 	// endregion

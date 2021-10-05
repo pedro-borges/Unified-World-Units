@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.ElectricCurrent;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
@@ -57,28 +58,30 @@ public class Siemens extends ElectricConductance {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Siemens plus(UnitAmount<ElectricConductanceUnit> other, MathContext mathContext) {
-		return new Siemens(plusAmount(this, other, mathContext));
+	public Siemens plus(@NotNull UnitAmount<ElectricConductanceUnit> other) {
+		return new Siemens(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Siemens minus(@NotNull UnitAmount<ElectricConductanceUnit> other) {
+		return new Siemens(minusAmount(this, other));
 	}
 
 	@Override
-	public Siemens minus(UnitAmount<ElectricConductanceUnit> other, MathContext mathContext) {
-		return new Siemens(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Siemens multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Siemens multiply(BigDecimal other, MathContext mathContext) {
 		return new Siemens(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Siemens dividedBy(BigDecimal other, MathContext mathContext) {
+	public Siemens div(BigDecimal other, MathContext mathContext) {
 		return new Siemens(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Siemens in(ElectricConductanceUnit unit) {
+	public Siemens into(ElectricConductanceUnit unit) {
 		return new Siemens(getAmountIn(this, unit));
 	}
 
@@ -92,7 +95,7 @@ public class Siemens extends ElectricConductance {
 	// region composition
 
 	public Volts multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Volts(getAmount().multipliedBy(getAmountIn(electricCurrent, AMPERE), mathContext));
+		return new Volts(getAmount().times(getAmountIn(electricCurrent, AMPERE), mathContext));
 	}
 
 	// endregion

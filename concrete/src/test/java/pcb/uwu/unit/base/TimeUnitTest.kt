@@ -20,7 +20,7 @@ class TimeUnitTest(private val time: Time)
         for (unitAmount in testData())
         {
             assertEquals(BigDecimalAmount.ONE.withScale(6, HALF_EVEN),
-                         time.dividedBy(unitAmount, DECIMAL64).amount.withScale(6, HALF_EVEN))
+                         time.div(unitAmount, DECIMAL64).amount.withScale(6, HALF_EVEN))
         }
     }
 

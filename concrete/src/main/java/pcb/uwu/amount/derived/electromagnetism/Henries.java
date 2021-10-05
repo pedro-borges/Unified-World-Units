@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.ElectricCurrent;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
@@ -57,28 +58,30 @@ public class Henries extends ElectricInductance {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Henries plus(UnitAmount<ElectricInductanceUnit> other, MathContext mathContext) {
-		return new Henries(plusAmount(this, other, mathContext));
+	public Henries plus(@NotNull UnitAmount<ElectricInductanceUnit> other) {
+		return new Henries(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Henries minus(@NotNull UnitAmount<ElectricInductanceUnit> other) {
+		return new Henries(minusAmount(this, other));
 	}
 
 	@Override
-	public Henries minus(UnitAmount<ElectricInductanceUnit> other, MathContext mathContext) {
-		return new Henries(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Henries multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Henries multiply(BigDecimal other, MathContext mathContext) {
 		return new Henries(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Henries dividedBy(BigDecimal other, MathContext mathContext) {
+	public Henries div(BigDecimal other, MathContext mathContext) {
 		return new Henries(dividedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Henries in(ElectricInductanceUnit unit) {
+	public Henries into(ElectricInductanceUnit unit) {
 		return new Henries(getAmountIn(this, unit));
 	}
 
@@ -87,7 +90,7 @@ public class Henries extends ElectricInductance {
 	// region composition
 
 	public Webbers multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Webbers(getAmount().multipliedBy(getAmountIn(electricCurrent, AMPERE), mathContext));
+		return new Webbers(getAmount().times(getAmountIn(electricCurrent, AMPERE), mathContext));
 	}
 
 	// endregion

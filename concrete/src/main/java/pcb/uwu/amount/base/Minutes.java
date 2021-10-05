@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class Minutes extends Time {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Minutes plus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Minutes(plusAmount(this, other, mathContext));
+	public Minutes plus(@NotNull UnitAmount<TimeUnit> other) {
+		return new Minutes(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Minutes minus(@NotNull UnitAmount<TimeUnit> other) {
+		return new Minutes(minusAmount(this, other));
 	}
 
 	@Override
-	public Minutes minus(UnitAmount<TimeUnit> other, MathContext mathContext) {
-		return new Minutes(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Minutes multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Minutes multiply(BigDecimal other, MathContext mathContext) {
 		return new Minutes(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Minutes dividedBy(BigDecimal other, MathContext mathContext) {
+	public Minutes div(BigDecimal other, MathContext mathContext) {
 		return new Minutes(dividedByScalar(this, other, mathContext));
 	}
 

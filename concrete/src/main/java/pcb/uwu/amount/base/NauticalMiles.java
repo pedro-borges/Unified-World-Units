@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -54,23 +55,25 @@ public class NauticalMiles extends Length {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public NauticalMiles plus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new NauticalMiles(plusAmount(this, other, mathContext));
+	public NauticalMiles plus(@NotNull UnitAmount<LengthUnit> other) {
+		return new NauticalMiles(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public NauticalMiles minus(@NotNull UnitAmount<LengthUnit> other) {
+		return new NauticalMiles(minusAmount(this, other));
 	}
 
 	@Override
-	public NauticalMiles minus(UnitAmount<LengthUnit> other, MathContext mathContext) {
-		return new NauticalMiles(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public NauticalMiles multipliedBy(BigDecimal other, MathContext mathContext) {
+	public NauticalMiles multiply(BigDecimal other, MathContext mathContext) {
 		return new NauticalMiles(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public NauticalMiles dividedBy(BigDecimal other, MathContext mathContext) {
+	public NauticalMiles div(BigDecimal other, MathContext mathContext) {
 		return new NauticalMiles(dividedByScalar(this, other, mathContext));
 	}
 

@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -56,28 +57,30 @@ public class Temperature extends CompositeUnitAmount<TemperatureUnit> {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Temperature plus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Temperature(plusAmount(this, other, mathContext), getUnit());
+	public Temperature plus(@NotNull UnitAmount<TemperatureUnit> other) {
+		return new Temperature(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public Temperature minus(@NotNull UnitAmount<TemperatureUnit> other) {
+		return new Temperature(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public Temperature minus(UnitAmount<TemperatureUnit> other, MathContext mathContext) {
-		return new Temperature(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Temperature multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Temperature multiply(BigDecimal other, MathContext mathContext) {
 		return new Temperature(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Temperature dividedBy(BigDecimal other, MathContext mathContext) {
+	public Temperature div(BigDecimal other, MathContext mathContext) {
 		return new Temperature(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public Temperature in(TemperatureUnit unit) {
+	public Temperature into(TemperatureUnit unit) {
 		return new Temperature(getAmountIn(this, unit), unit);
 	}
 

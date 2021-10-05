@@ -2,10 +2,10 @@ package pcb.uwu.unit.finance
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import pcb.uwu.core.BigDecimalAmount.ZERO
+import pcb.uwu.core.BigDecimalAmount.Companion.ZERO
 import pcb.uwu.exception.InvalidCurrencyException
 import pcb.uwu.unit.finance.CurrencyUnit.GBP
-import java.util.*
+import java.util.Currency
 
 class CurrencyUnitTest
 {

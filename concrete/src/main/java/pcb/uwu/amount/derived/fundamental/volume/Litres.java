@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.fundamental.volume;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.derived.fundamental.Volume;
 import pcb.uwu.core.BigDecimalAmount;
@@ -77,23 +78,25 @@ public class Litres extends Volume {
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public Litres plus(UnitAmount<VolumeUnit> other, MathContext mathContext) {
-		return new Litres(plusAmount(this, other, mathContext));
+	public Litres plus(@NotNull UnitAmount<VolumeUnit> other) {
+		return new Litres(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public Litres minus(@NotNull UnitAmount<VolumeUnit> other) {
+		return new Litres(minusAmount(this, other));
 	}
 
 	@Override
-	public Litres minus(UnitAmount<VolumeUnit> other, MathContext mathContext) {
-		return new Litres(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public Litres multipliedBy(BigDecimal other, MathContext mathContext) {
+	public Litres multiply(BigDecimal other, MathContext mathContext) {
 		return new Litres(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public Litres dividedBy(BigDecimal other, MathContext mathContext) {
+	public Litres div(BigDecimal other, MathContext mathContext) {
 		return new Litres(dividedByScalar(this, other, mathContext));
 	}
 

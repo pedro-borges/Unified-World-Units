@@ -1,5 +1,6 @@
 package pcb.uwu.amount.derived.electromagnetism;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class ElectricPotential extends CompositeUnitAmount<ElectricPotentialUnit
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public ElectricPotential plus(UnitAmount<ElectricPotentialUnit> other, MathContext mathContext) {
-		return new ElectricPotential(plusAmount(this, other, mathContext), getUnit());
+	public ElectricPotential plus(@NotNull UnitAmount<ElectricPotentialUnit> other) {
+		return new ElectricPotential(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public ElectricPotential minus(@NotNull UnitAmount<ElectricPotentialUnit> other) {
+		return new ElectricPotential(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public ElectricPotential minus(UnitAmount<ElectricPotentialUnit> other, MathContext mathContext) {
-		return new ElectricPotential(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public ElectricPotential multipliedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricPotential multiply(BigDecimal other, MathContext mathContext) {
 		return new ElectricPotential(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public ElectricPotential dividedBy(BigDecimal other, MathContext mathContext) {
+	public ElectricPotential div(BigDecimal other, MathContext mathContext) {
 		return new ElectricPotential(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public ElectricPotential in(ElectricPotentialUnit unit) {
+	public ElectricPotential into(ElectricPotentialUnit unit) {
 		return new ElectricPotential(getAmountIn(this, unit), unit);
 	}
 

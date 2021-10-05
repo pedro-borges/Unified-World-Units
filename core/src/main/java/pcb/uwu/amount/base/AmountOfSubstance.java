@@ -1,5 +1,6 @@
 package pcb.uwu.amount.base;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
@@ -55,28 +56,30 @@ public class AmountOfSubstance extends CompositeUnitAmount<AmountOfSubstanceUnit
 
 	// region implement UnitAmount
 
+	@NotNull
 	@Override
-	public AmountOfSubstance plus(UnitAmount<AmountOfSubstanceUnit> other, MathContext mathContext) {
-		return new AmountOfSubstance(plusAmount(this, other, mathContext), getUnit());
+	public AmountOfSubstance plus(@NotNull UnitAmount<AmountOfSubstanceUnit> other) {
+		return new AmountOfSubstance(plusAmount(this, other), getUnit());
+	}
+
+	@NotNull
+	@Override
+	public AmountOfSubstance minus(@NotNull UnitAmount<AmountOfSubstanceUnit> other) {
+		return new AmountOfSubstance(minusAmount(this, other), getUnit());
 	}
 
 	@Override
-	public AmountOfSubstance minus(UnitAmount<AmountOfSubstanceUnit> other, MathContext mathContext) {
-		return new AmountOfSubstance(minusAmount(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public AmountOfSubstance multipliedBy(BigDecimal other, MathContext mathContext) {
+	public AmountOfSubstance multiply(BigDecimal other, MathContext mathContext) {
 		return new AmountOfSubstance(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public AmountOfSubstance dividedBy(BigDecimal other, MathContext mathContext) {
+	public AmountOfSubstance div(BigDecimal other, MathContext mathContext) {
 		return new AmountOfSubstance(dividedByScalar(this, other, mathContext), getUnit());
 	}
 
 	@Override
-	public AmountOfSubstance in(AmountOfSubstanceUnit unit) {
+	public AmountOfSubstance into(AmountOfSubstanceUnit unit) {
 		return new AmountOfSubstance(getAmountIn(this, unit), unit);
 	}
 

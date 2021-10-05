@@ -1,5 +1,6 @@
 package pcb.uwu.amount.finance;
 
+import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.finance.CurrencyUnit;
@@ -46,23 +47,25 @@ public class CAD extends Money {
 		return new CAD(getAmount().minus(other.getAmount().getValue()));
 	}
 
+	@NotNull
 	@Override
-	public CAD plus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new CAD(plusAmount(this, other, mathContext));
+	public CAD plus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new CAD(plusAmount(this, other));
+	}
+
+	@NotNull
+	@Override
+	public CAD minus(@NotNull UnitAmount<CurrencyUnit> other) {
+		return new CAD(minusAmount(this, other));
 	}
 
 	@Override
-	public CAD minus(UnitAmount<CurrencyUnit> other, MathContext mathContext) {
-		return new CAD(minusAmount(this, other, mathContext));
-	}
-
-	@Override
-	public CAD multipliedBy(BigDecimal other, MathContext mathContext) {
+	public CAD multiply(BigDecimal other, MathContext mathContext) {
 		return new CAD(multipliedByScalar(this, other, mathContext));
 	}
 
 	@Override
-	public CAD dividedBy(BigDecimal other, MathContext mathContext) {
+	public CAD div(BigDecimal other, MathContext mathContext) {
 		return new CAD(dividedByScalar(this, other, mathContext));
 	}
 
