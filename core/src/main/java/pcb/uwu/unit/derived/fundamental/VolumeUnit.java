@@ -12,4 +12,8 @@ public class VolumeUnit extends CompositeUnit {
 				.major(height)
 				.major(depth));
 	}
+
+	public VolumeUnit(AreaUnit areaUnit, LengthUnit length) {
+		super(areaUnit.getUnitCounter().major(length));
+	}
 }

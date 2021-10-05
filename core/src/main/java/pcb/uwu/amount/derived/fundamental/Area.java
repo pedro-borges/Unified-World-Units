@@ -1,11 +1,15 @@
 package pcb.uwu.amount.derived.fundamental;
 
 import pcb.uwu.amount.base.Length;
+import pcb.uwu.amount.base.Time;
+import pcb.uwu.amount.derived.mechanics.Speed;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.fundamental.AreaUnit;
+import pcb.uwu.unit.derived.fundamental.VolumeUnit;
+import pcb.uwu.unit.derived.mechanics.SpeedUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -109,6 +113,18 @@ public class Area extends CompositeUnitAmount<AreaUnit> {
 	@Override
 	public Area in(AreaUnit unit) {
 		return new Area(getAmountIn(this, unit), unit);
+	}
+
+	// endregion
+
+	// region composition
+
+	// region composition
+
+	public Volume multipliedBy(Length length, MathContext mathContext) {
+		return new Volume(
+				getAmount().multipliedBy(length.getAmount(), mathContext),
+				new VolumeUnit(getUnit(), length.getUnit()));
 	}
 
 	// endregion

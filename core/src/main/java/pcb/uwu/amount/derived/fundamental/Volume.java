@@ -82,7 +82,6 @@ public class Volume extends CompositeUnitAmount<VolumeUnit> {
 		super(amount, magnitude, unit);
 	}
 
-
 	// endregion
 
 	// region implement UnitAmount
