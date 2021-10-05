@@ -1,94 +1,49 @@
-package pcb.uwu.amount.derived.scalar;
+package pcb.uwu.amount.derived.scalar
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.scalar.SolidAngleUnit;
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.scalar.SolidAngleUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+open class SolidAngle : CompositeUnitAmount<SolidAngleUnit>
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: SolidAngleUnit)
+            : super(amount, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL,
+                unit: SolidAngleUnit)
+            : super(amount, magnitude, unit)
 
-public class SolidAngle extends CompositeUnitAmount<SolidAngleUnit> {
+    // region UnitAmount
 
-	// region constructors
+    override operator fun plus(other: UnitAmount<SolidAngleUnit>) =
+        SolidAngle(amount = this.amount + other.into(this.unit).amount,
+                   unit = this.unit)
 
-	public SolidAngle(Number value, SolidAngleUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<SolidAngleUnit>) =
+        SolidAngle(amount = this.amount - other.into(this.unit).amount,
+                   unit = this.unit)
 
-	public SolidAngle(Number value, Magnitude magnitude, SolidAngleUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun times(other: BigDecimal, mathContext: MathContext) =
+        SolidAngle(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+                   unit = this.unit)
 
-	public SolidAngle(String value, SolidAngleUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        SolidAngle(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+                   unit = this.unit)
 
-	public SolidAngle(String value, Magnitude magnitude, SolidAngleUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: SolidAngleUnit) =
+        SolidAngle(amount = UnitAmountUtils.getAmountIn(this, unit),
+                   unit = unit)
 
-	public SolidAngle(BigDecimal value, SolidAngleUnit unit) {
-		super(value, unit);
-	}
-
-	public SolidAngle(BigDecimal value, Magnitude magnitude, SolidAngleUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public SolidAngle(BigDecimalAmount amount, SolidAngleUnit unit) {
-		super(amount, unit);
-	}
-
-	public SolidAngle(BigDecimalAmount amount, Magnitude magnitude, SolidAngleUnit unit) {
-		super(amount, magnitude, unit);
-	}
-
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public SolidAngle plus(@NotNull UnitAmount<SolidAngleUnit> other) {
-		return new SolidAngle(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public SolidAngle minus(@NotNull UnitAmount<SolidAngleUnit> other) {
-		return new SolidAngle(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public SolidAngle times(BigDecimal other, MathContext mathContext) {
-		return new SolidAngle(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public SolidAngle div(BigDecimal other, MathContext mathContext) {
-		return new SolidAngle(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public SolidAngle into(SolidAngleUnit unit) {
-		return new SolidAngle(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
-
-	// region composition
-
-	
-	
-	// endregion
+    // endregion
 }
