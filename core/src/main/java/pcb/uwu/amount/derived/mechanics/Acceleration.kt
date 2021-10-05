@@ -49,7 +49,7 @@ class Acceleration : CompositeUnitAmount<AccelerationUnit>
 
     override fun into(unit: AccelerationUnit) =
         Acceleration(amount = UnitAmountUtils.getAmountIn(this, unit),
-                     unit = this.unit)
+                     unit = unit)
 
     // endregion
 

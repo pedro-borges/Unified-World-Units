@@ -43,7 +43,7 @@ open class MagneticFlux : CompositeUnitAmount<MagneticFluxUnit>
 
     override fun into(unit: MagneticFluxUnit) =
         MagneticFlux(amount = UnitAmountUtils.getAmountIn(this, unit),
-                     unit = this.unit)
+                     unit = unit)
 
     // endregion
 }

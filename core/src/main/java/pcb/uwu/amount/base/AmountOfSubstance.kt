@@ -43,7 +43,7 @@ open class AmountOfSubstance : CompositeUnitAmount<AmountOfSubstanceUnit>
 
     override fun into(unit: AmountOfSubstanceUnit) =
         AmountOfSubstance(amount = UnitAmountUtils.getAmountIn(this, unit),
-                          unit = this.unit)
+                          unit = unit)
 
     // endregion
 }

@@ -1,87 +1,49 @@
-package pcb.uwu.amount.derived.optics;
+package pcb.uwu.amount.derived.optics
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.optics.IlluminanceUnit;
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.optics.IlluminanceUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+open class Illuminance : CompositeUnitAmount<IlluminanceUnit>
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: IlluminanceUnit)
+            : super(amount, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL,
+                unit: IlluminanceUnit)
+            : super(amount, magnitude, unit)
 
-public class Illuminance extends CompositeUnitAmount<IlluminanceUnit> {
+    // region UnitAmount
 
-	// region constructors
+    override operator fun plus(other: UnitAmount<IlluminanceUnit>) =
+        Illuminance(amount = this.amount + other.into(this.unit).amount,
+                    unit = this.unit)
 
-	public Illuminance(Number value, IlluminanceUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<IlluminanceUnit>) =
+        Illuminance(amount = this.amount - other.into(this.unit).amount,
+                    unit = this.unit)
 
-	public Illuminance(Number value, Magnitude magnitude, IlluminanceUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun times(other: BigDecimal, mathContext: MathContext) =
+        Illuminance(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+                    unit = this.unit)
 
-	public Illuminance(String value, IlluminanceUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        Illuminance(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+                    unit = this.unit)
 
-	public Illuminance(String value, Magnitude magnitude, IlluminanceUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: IlluminanceUnit) =
+        Illuminance(amount = UnitAmountUtils.getAmountIn(this, unit),
+                    unit = unit)
 
-	public Illuminance(BigDecimal value, IlluminanceUnit unit) {
-		super(value, unit);
-	}
-
-	public Illuminance(BigDecimal value, Magnitude magnitude, IlluminanceUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public Illuminance(BigDecimalAmount amount, IlluminanceUnit unit) {
-		super(amount, unit);
-	}
-
-	public Illuminance(BigDecimalAmount amount, Magnitude magnitude, IlluminanceUnit unit) {
-		super(amount, magnitude, unit);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Illuminance plus(@NotNull UnitAmount<IlluminanceUnit> other) {
-		return new Illuminance(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public Illuminance minus(@NotNull UnitAmount<IlluminanceUnit> other) {
-		return new Illuminance(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public Illuminance times(BigDecimal other, MathContext mathContext) {
-		return new Illuminance(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Illuminance div(BigDecimal other, MathContext mathContext) {
-		return new Illuminance(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Illuminance into(IlluminanceUnit unit) {
-		return new Illuminance(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
+    // endregion
 }

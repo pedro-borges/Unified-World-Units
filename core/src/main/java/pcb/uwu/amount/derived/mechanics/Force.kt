@@ -43,7 +43,7 @@ open class Force : CompositeUnitAmount<ForceUnit>
 
     override fun into(unit: ForceUnit) =
         Force(amount = UnitAmountUtils.getAmountIn(this, unit),
-              unit = this.unit)
+              unit = unit)
 
     // endregion
 }

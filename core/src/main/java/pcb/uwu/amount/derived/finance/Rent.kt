@@ -46,7 +46,7 @@ class Rent : CompositeUnitAmount<RentUnit>
 
     override fun into(unit: RentUnit) =
         Rent(amount = UnitAmountUtils.getAmountIn(this, unit),
-             unit = this.unit)
+             unit = unit)
 
     // endregion
 

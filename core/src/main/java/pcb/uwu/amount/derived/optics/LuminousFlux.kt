@@ -1,87 +1,49 @@
-package pcb.uwu.amount.derived.optics;
+package pcb.uwu.amount.derived.optics
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.optics.LuminousFluxUnit;
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.optics.LuminousFluxUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+open class LuminousFlux : CompositeUnitAmount<LuminousFluxUnit>
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: LuminousFluxUnit)
+            : super(amount, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL,
+                unit: LuminousFluxUnit)
+            : super(amount, magnitude, unit)
 
-public class LuminousFlux extends CompositeUnitAmount<LuminousFluxUnit> {
+    // region UnitAmount
 
-	// region constructors
+    override operator fun plus(other: UnitAmount<LuminousFluxUnit>) =
+        LuminousFlux(amount = this.amount + other.into(this.unit).amount,
+                     unit = this.unit)
 
-	public LuminousFlux(Number value, LuminousFluxUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<LuminousFluxUnit>) =
+        LuminousFlux(amount = this.amount - other.into(this.unit).amount,
+                     unit = this.unit)
 
-	public LuminousFlux(Number value, Magnitude magnitude, LuminousFluxUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun times(other: BigDecimal, mathContext: MathContext) =
+        LuminousFlux(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+                     unit = this.unit)
 
-	public LuminousFlux(String value, LuminousFluxUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        LuminousFlux(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+                     unit = this.unit)
 
-	public LuminousFlux(String value, Magnitude magnitude, LuminousFluxUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: LuminousFluxUnit) =
+        LuminousFlux(amount = UnitAmountUtils.getAmountIn(this, unit),
+                     unit = unit)
 
-	public LuminousFlux(BigDecimal value, LuminousFluxUnit unit) {
-		super(value, unit);
-	}
-
-	public LuminousFlux(BigDecimal value, Magnitude magnitude, LuminousFluxUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public LuminousFlux(BigDecimalAmount amount, LuminousFluxUnit unit) {
-		super(amount, unit);
-	}
-
-	public LuminousFlux(BigDecimalAmount amount, Magnitude magnitude, LuminousFluxUnit unit) {
-		super(amount, magnitude, unit);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public LuminousFlux plus(@NotNull UnitAmount<LuminousFluxUnit> other) {
-		return new LuminousFlux(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public LuminousFlux minus(@NotNull UnitAmount<LuminousFluxUnit> other) {
-		return new LuminousFlux(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public LuminousFlux times(BigDecimal other, MathContext mathContext) {
-		return new LuminousFlux(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public LuminousFlux div(BigDecimal other, MathContext mathContext) {
-		return new LuminousFlux(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public LuminousFlux into(LuminousFluxUnit unit) {
-		return new LuminousFlux(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
+    // endregion
 }

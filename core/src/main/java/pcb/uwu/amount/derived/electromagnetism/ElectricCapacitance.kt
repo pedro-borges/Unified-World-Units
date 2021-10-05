@@ -43,7 +43,7 @@ open class ElectricCapacitance : CompositeUnitAmount<ElectricCapacitanceUnit>
 
     override fun into(unit: ElectricCapacitanceUnit) =
         ElectricCapacitance(amount = UnitAmountUtils.getAmountIn(this, unit),
-                            unit = this.unit)
+                            unit = unit)
 
     // endregion
 }

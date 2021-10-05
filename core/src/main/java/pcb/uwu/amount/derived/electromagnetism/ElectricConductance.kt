@@ -43,7 +43,7 @@ open class ElectricConductance : CompositeUnitAmount<ElectricConductanceUnit>
 
     override fun into(unit: ElectricConductanceUnit) =
         ElectricConductance(amount = UnitAmountUtils.getAmountIn(this, unit),
-                            unit = this.unit)
+                            unit = unit)
 
     // endregion
 }

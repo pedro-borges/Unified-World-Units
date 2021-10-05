@@ -47,7 +47,7 @@ class Debt : CompositeUnitAmount<DebtUnit>
 
     override fun into(unit: DebtUnit) =
         Debt(amount = UnitAmountUtils.getAmountIn(this, unit),
-             unit = this.unit)
+             unit = unit)
 
     // endregion
 
