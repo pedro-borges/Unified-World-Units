@@ -4,12 +4,12 @@ import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.scalar.AngleUnit;
+import pcb.uwu.unit.scalar.AngleUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-import static pcb.uwu.unit.derived.scalar.RadianUnit.RADIAN;
+import static pcb.uwu.unit.scalar.RadianUnit.RADIAN;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
 import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;

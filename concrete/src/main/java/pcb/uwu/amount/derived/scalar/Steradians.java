@@ -6,13 +6,13 @@ import pcb.uwu.amount.derived.optics.Lumens;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.scalar.SolidAngleUnit;
+import pcb.uwu.unit.scalar.SolidAngleUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
-import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
+import static pcb.uwu.unit.scalar.SteradianUnit.STERADIAN;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;

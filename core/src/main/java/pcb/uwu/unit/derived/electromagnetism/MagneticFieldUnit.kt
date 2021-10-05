@@ -1,79 +1,77 @@
-package pcb.uwu.unit.derived.electromagnetism;
+package pcb.uwu.unit.derived.electromagnetism
 
-import pcb.uwu.core.CompositeUnit;
-import pcb.uwu.core.UnitCounter;
-import pcb.uwu.unit.base.ElectricCurrentUnit;
-import pcb.uwu.unit.base.LengthUnit;
-import pcb.uwu.unit.base.MassUnit;
-import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.unit.derived.mechanics.ForceUnit;
-import pcb.uwu.unit.derived.termodynamics.EnergyUnit;
+import pcb.uwu.core.CompositeUnit
+import pcb.uwu.core.UnitCounter
+import pcb.uwu.unit.base.ElectricCurrentUnit
+import pcb.uwu.unit.base.LengthUnit
+import pcb.uwu.unit.base.MassUnit
+import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.derived.mechanics.ForceUnit
+import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 
-public class MagneticFieldUnit extends CompositeUnit {
+open class MagneticFieldUnit : CompositeUnit
+{
+    constructor(massUnit: MassUnit,
+                electricCurrentUnit: ElectricCurrentUnit,
+                timeUnit: TimeUnit)
+            : super(UnitCounter()
+                        .major(massUnit)
+                        .minor(electricCurrentUnit)
+                        .minor(timeUnit, 2))
 
-	// region base constructor
+    constructor(electricPotentialUnit: ElectricPotentialUnit,
+                timeUnit: TimeUnit,
+                lengthUnit: LengthUnit)
+            : super(UnitCounter()
+                        .major(electricPotentialUnit.unitCounter)
+                        .major(timeUnit)
+                        .minor(lengthUnit, 2))
 
-	public MagneticFieldUnit(MassUnit massUnit, ElectricCurrentUnit electricCurrentUnit, TimeUnit timeUnit) {
-		super(new UnitCounter()
-				.major(massUnit)
-				.minor(electricCurrentUnit)
-				.minor(timeUnit, 2));
-	}
+    constructor(forceUnit: ForceUnit,
+                electricCurrentUnit: ElectricCurrentUnit,
+                lengthUnit: LengthUnit)
+            : super(UnitCounter()
+                        .major(forceUnit.unitCounter)
+                        .minor(electricCurrentUnit)
+                        .minor(lengthUnit))
 
-	// endregion
+    constructor(energyUnit: EnergyUnit,
+                electricCurrentUnit: ElectricCurrentUnit,
+                lengthUnit: LengthUnit)
+            : super(UnitCounter()
+                        .major(energyUnit.unitCounter)
+                        .minor(electricCurrentUnit)
+                        .minor(lengthUnit, 2))
 
-	// region derived constructors
+    constructor(electricInductanceUnit: ElectricInductanceUnit,
+                electricCurrentUnit: ElectricCurrentUnit,
+                lengthUnit: LengthUnit)
+            : super(UnitCounter()
+                        .major(electricInductanceUnit.unitCounter)
+                        .major(electricCurrentUnit)
+                        .minor(lengthUnit, 2))
 
-	public MagneticFieldUnit(ElectricPotentialUnit electricPotentialUnit, TimeUnit timeUnit, LengthUnit lengthUnit) {
-		super(new UnitCounter()
-				.major(electricPotentialUnit.getUnitCounter())
-				.major(timeUnit)
-				.minor(lengthUnit, 2));
-	}
+    constructor(magneticFluxUnit: MagneticFluxUnit,
+                lengthUnit: LengthUnit)
+            : super(UnitCounter()
+                        .major(magneticFluxUnit.unitCounter)
+                        .minor(lengthUnit, 2))
 
-	public MagneticFieldUnit(ForceUnit forceUnit, ElectricCurrentUnit electricCurrentUnit, LengthUnit lengthUnit) {
-		super(new UnitCounter()
-				.major(forceUnit.getUnitCounter())
-				.minor(electricCurrentUnit)
-				.minor(lengthUnit));
-	}
+    constructor(massUnit: MassUnit,
+                electricChargeUnit: ElectricChargeUnit,
+                timeUnit: TimeUnit)
+            : super(UnitCounter()
+                        .major(massUnit)
+                        .minor(electricChargeUnit.unitCounter)
+                        .minor(timeUnit))
 
-	public MagneticFieldUnit(EnergyUnit energyUnit, ElectricCurrentUnit electricCurrentUnit, LengthUnit lengthUnit) {
-		super(new UnitCounter()
-				.major(energyUnit.getUnitCounter())
-				.minor(electricCurrentUnit)
-				.minor(lengthUnit, 2));
-	}
-
-	public MagneticFieldUnit(ElectricInductanceUnit electricInductanceUnit, ElectricCurrentUnit electricCurrentUnit, LengthUnit lengthUnit) {
-		super(new UnitCounter()
-				.major(electricInductanceUnit.getUnitCounter())
-				.major(electricCurrentUnit)
-				.minor(lengthUnit, 2));
-	}
-
-	public MagneticFieldUnit(MagneticFluxUnit magneticFluxUnit, LengthUnit lengthUnit) {
-		super(new UnitCounter()
-				.major(magneticFluxUnit.getUnitCounter())
-				.minor(lengthUnit, 2));
-	}
-
-	public MagneticFieldUnit(MassUnit massUnit, ElectricChargeUnit electricChargeUnit, TimeUnit timeUnit) {
-		super(new UnitCounter()
-				.major(massUnit)
-				.minor(electricChargeUnit.getUnitCounter())
-				.minor(timeUnit));
-	}
-
-	public MagneticFieldUnit(ForceUnit forceUnit, TimeUnit timeUnit, ElectricChargeUnit electricChargeUnit, LengthUnit lengthUnit) {
-		super(new UnitCounter()
-				.major(forceUnit.getUnitCounter())
-				.major(timeUnit)
-				.minor(electricChargeUnit.getUnitCounter())
-				.minor(lengthUnit));
-	}
-
-	// endregion
-
-
+    constructor(forceUnit: ForceUnit,
+                timeUnit: TimeUnit,
+                electricChargeUnit: ElectricChargeUnit,
+                lengthUnit: LengthUnit)
+            : super(UnitCounter()
+                        .major(forceUnit.unitCounter)
+                        .major(timeUnit)
+                        .minor(electricChargeUnit.unitCounter)
+                        .minor(lengthUnit))
 }

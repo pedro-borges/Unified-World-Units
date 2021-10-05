@@ -1,31 +1,18 @@
-package pcb.uwu.unit.base;
+package pcb.uwu.unit.base
 
-import pcb.uwu.core.BaseUnit;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.UnitCounter;
+import pcb.uwu.core.BaseUnit
+import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.core.UnitCounter
+import java.util.function.Function
 
-import java.util.function.Function;
-
-public class LengthUnit extends BaseUnit {
-
-	private final UnitCounter unitCounter;
-
-	public LengthUnit(String symbol, String singularName, String pluralName,
-			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
-			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
-
-		super(1, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
-
-		unitCounter = new UnitCounter(this);
-	}
-
-	@Override
-	public Class<? extends BaseUnit> getBaseUnitType() {
-		return LengthUnit.class;
-	}
-
-	@Override
-	public UnitCounter getUnitCounter() {
-		return unitCounter;
-	}
+open class LengthUnit(symbol: String,
+                      singularName: String,
+                      pluralName: String,
+                      translationToCanonical: Function<BigDecimalAmount, BigDecimalAmount>,
+                      translationFromCanonical: Function<BigDecimalAmount, BigDecimalAmount>) :
+    BaseUnit(1, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical)
+{
+    override val unitCounter
+        get() = UnitCounter(this)
+    override val baseUnitType = LengthUnit::class.java
 }

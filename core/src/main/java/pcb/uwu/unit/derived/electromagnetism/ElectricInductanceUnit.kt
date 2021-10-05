@@ -1,74 +1,67 @@
-package pcb.uwu.unit.derived.electromagnetism;
+package pcb.uwu.unit.derived.electromagnetism
 
-import pcb.uwu.core.CompositeUnit;
-import pcb.uwu.core.UnitCounter;
-import pcb.uwu.unit.base.ElectricCurrentUnit;
-import pcb.uwu.unit.base.LengthUnit;
-import pcb.uwu.unit.base.MassUnit;
-import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.unit.derived.termodynamics.EnergyUnit;
+import pcb.uwu.core.CompositeUnit
+import pcb.uwu.core.UnitCounter
+import pcb.uwu.unit.base.ElectricCurrentUnit
+import pcb.uwu.unit.base.LengthUnit
+import pcb.uwu.unit.base.MassUnit
+import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 
-public class ElectricInductanceUnit extends CompositeUnit {
+open class ElectricInductanceUnit : CompositeUnit
+{
+    constructor(massUnit: MassUnit,
+                lengthUnit: LengthUnit,
+                electricCurrentUnit: ElectricCurrentUnit,
+                timeUnit: TimeUnit)
+            : super(UnitCounter()
+                        .major(massUnit)
+                        .major(lengthUnit, 2)
+                        .minor(electricCurrentUnit, 2)
+                        .minor(timeUnit, 2))
 
-	// region base constructor
+    constructor(massUnit: MassUnit, lengthUnit: LengthUnit, electricChargeUnit: ElectricChargeUnit)
+            : super(UnitCounter()
+                        .major(massUnit)
+                        .major(lengthUnit, 2)
+                        .minor(electricChargeUnit.unitCounter))
 
-	public ElectricInductanceUnit(MassUnit massUnit, LengthUnit lengthUnit, ElectricCurrentUnit electricCurrentUnit, TimeUnit timeUnit) {
-		super(new UnitCounter()
-				.major(massUnit)
-				.major(lengthUnit, 2)
-				.minor(electricCurrentUnit, 2)
-				.minor(timeUnit, 2));
-	}
+    constructor(energyUnit: EnergyUnit,
+                electricCurrentUnit: ElectricCurrentUnit)
+            : super(UnitCounter()
+                        .major(energyUnit.unitCounter)
+                        .minor(electricCurrentUnit, 2))
 
-	// endregion
+    constructor(magneticFieldUnit: MagneticFieldUnit,
+                lengthUnit: LengthUnit,
+                electricCurrentUnit: ElectricCurrentUnit)
+            : super(UnitCounter()
+                        .major(magneticFieldUnit.unitCounter)
+                        .major(lengthUnit, 2)
+                        .minor(electricCurrentUnit))
 
-	// region derived constructors
+    constructor(magneticFluxUnit: MagneticFluxUnit,
+                electricCurrentUnit: ElectricCurrentUnit)
+            : super(UnitCounter()
+                        .major(magneticFluxUnit.unitCounter)
+                        .minor(electricCurrentUnit))
 
-	public ElectricInductanceUnit(MassUnit massUnit, LengthUnit lengthUnit, ElectricChargeUnit electricChargeUnit) {
-		super(new UnitCounter()
-				.major(massUnit)
-				.major(lengthUnit, 2)
-				.minor(electricChargeUnit.getUnitCounter()));
-	}
+    constructor(electricPotentialUnit: ElectricPotentialUnit,
+                timeUnit: TimeUnit,
+                electricCurrentUnit: ElectricCurrentUnit)
+            : super(UnitCounter()
+                        .major(electricPotentialUnit.unitCounter)
+                        .major(timeUnit)
+                        .minor(electricCurrentUnit))
 
-	public ElectricInductanceUnit(EnergyUnit energyUnit, ElectricCurrentUnit electricCurrentUnit) {
-		super(new UnitCounter()
-				.major(energyUnit.getUnitCounter())
-				.minor(electricCurrentUnit, 2));
-	}
+    constructor(timeUnit: TimeUnit, electricCapacitanceUnit: ElectricCapacitanceUnit)
+            : super(UnitCounter()
+                        .major(timeUnit, 2)
+                        .minor(electricCapacitanceUnit.unitCounter))
 
-	public ElectricInductanceUnit(MagneticFieldUnit magneticFieldUnit, LengthUnit lengthUnit, ElectricCurrentUnit electricCurrentUnit) {
-		super(new UnitCounter()
-				.major(magneticFieldUnit.getUnitCounter())
-				.major(lengthUnit, 2)
-				.minor(electricCurrentUnit));
-	}
-
-	public ElectricInductanceUnit(MagneticFluxUnit magneticFluxUnit, ElectricCurrentUnit electricCurrentUnit) {
-		super(new UnitCounter()
-				.major(magneticFluxUnit.getUnitCounter())
-				.minor(electricCurrentUnit));
-	}
-
-	public ElectricInductanceUnit(ElectricPotentialUnit electricPotentialUnit, TimeUnit timeUnit, ElectricCurrentUnit electricCurrentUnit) {
-		super(new UnitCounter()
-				.major(electricCurrentUnit.getUnitCounter())
-				.major(timeUnit)
-				.minor(electricCurrentUnit));
-	}
-
-	public ElectricInductanceUnit(TimeUnit timeUnit, ElectricCapacitanceUnit electricCapacitanceUnit) {
-		super(new UnitCounter()
-				.major(timeUnit, 2)
-				.minor(electricCapacitanceUnit.getUnitCounter()));
-	}
-
-	public ElectricInductanceUnit(ElectricResistanceUnit electricResistanceUnit, TimeUnit timeUnit) {
-		super(new UnitCounter()
-				.major(electricResistanceUnit.getUnitCounter())
-				.major(timeUnit));
-	}
-
-	// endregion
-
+    constructor(electricResistanceUnit: ElectricResistanceUnit,
+                timeUnit: TimeUnit)
+            : super(UnitCounter()
+                        .major(electricResistanceUnit.unitCounter)
+                        .major(timeUnit))
 }

@@ -21,7 +21,7 @@ import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.LumenUnit.LUMEN;
 import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
-import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
+import static pcb.uwu.unit.scalar.SteradianUnit.STERADIAN;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;

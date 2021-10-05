@@ -1,29 +1,20 @@
-package pcb.uwu.unit.base;
+package pcb.uwu.unit.base
 
-import pcb.uwu.core.BaseUnit;
-import pcb.uwu.core.UnitCounter;
+import pcb.uwu.core.BaseUnit
+import pcb.uwu.core.UnitCounter
+import pcb.uwu.unit.base.ScalarUnit
+import java.util.function.Function.identity
 
-import java.util.function.Function;
+class ScalarUnit private constructor()
+    : BaseUnit(0, "", "", "", identity(), identity())
+{
+    override val unitCounter
+        get() = UnitCounter()
+    override val baseUnitType = ScalarUnit::class.java
 
-public class ScalarUnit extends BaseUnit {
-
-	public static final ScalarUnit SCALAR = new ScalarUnit();
-
-	private final UnitCounter unitCounter;
-
-	private ScalarUnit() {
-		super(0, "", "", "", Function.identity(), Function.identity());
-
-		this.unitCounter = new UnitCounter();
-	}
-
-	@Override
-	public Class<? extends BaseUnit> getBaseUnitType() {
-		return null;
-	}
-
-	@Override
-	public UnitCounter getUnitCounter() {
-		return new UnitCounter();
-	}
+    companion object
+    {
+        @JvmField
+        val SCALAR = ScalarUnit()
+    }
 }

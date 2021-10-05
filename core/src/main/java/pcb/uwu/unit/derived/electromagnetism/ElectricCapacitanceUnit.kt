@@ -1,54 +1,50 @@
-package pcb.uwu.unit.derived.electromagnetism;
+package pcb.uwu.unit.derived.electromagnetism
 
-import pcb.uwu.core.CompositeUnit;
-import pcb.uwu.core.UnitCounter;
-import pcb.uwu.unit.base.ElectricCurrentUnit;
-import pcb.uwu.unit.base.LengthUnit;
-import pcb.uwu.unit.base.MassUnit;
-import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.unit.derived.mechanics.ForceUnit;
+import pcb.uwu.core.CompositeUnit
+import pcb.uwu.core.UnitCounter
+import pcb.uwu.unit.base.ElectricCurrentUnit
+import pcb.uwu.unit.base.LengthUnit
+import pcb.uwu.unit.base.MassUnit
+import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.derived.mechanics.ForceUnit
 
-public class ElectricCapacitanceUnit extends CompositeUnit {
+open class ElectricCapacitanceUnit : CompositeUnit
+{
+    constructor(electricCurrentUnit: ElectricCurrentUnit,
+                timeUnit: TimeUnit,
+                lengthUnit: LengthUnit,
+                massUnit: MassUnit)
+            : super(UnitCounter()
+                        .major(electricCurrentUnit, 2)
+                        .major(timeUnit, 4)
+                        .minor(lengthUnit, 2)
+                        .minor(massUnit))
 
-	// region base constructor
+    constructor(electricCurrentUnit: ElectricCurrentUnit,
+                timeUnit: TimeUnit,
+                electricPotentialUnit: ElectricPotentialUnit)
+            : super(UnitCounter()
+                        .major(electricCurrentUnit)
+                        .major(timeUnit)
+                        .minor(electricPotentialUnit.unitCounter))
 
-	public ElectricCapacitanceUnit(ElectricCurrentUnit electricCurrentUnit, TimeUnit timeUnit, LengthUnit lengthUnit, MassUnit massUnit) {
-		super(new UnitCounter()
-				.major(electricCurrentUnit, 2)
-				.major(timeUnit, 4)
-				.minor(lengthUnit, 2)
-				.minor(massUnit));
-	}
+    constructor(forceUnit: ForceUnit,
+                lengthUnit: LengthUnit,
+                electricPotentialUnit: ElectricPotentialUnit)
+            : super(UnitCounter()
+                        .major(forceUnit.unitCounter)
+                        .major(lengthUnit)
+                        .minor(electricPotentialUnit.unitCounter))
 
-	// endregion
+    constructor(electricChargeUnit: ElectricChargeUnit,
+                electricPotentialUnit: ElectricPotentialUnit)
+            : super(UnitCounter()
+                        .major(electricChargeUnit.unitCounter)
+                        .minor(electricPotentialUnit.unitCounter))
 
-	// region derived constructors
-
-	public ElectricCapacitanceUnit(ElectricCurrentUnit electricCurrentUnit, TimeUnit timeUnit, ElectricPotentialUnit electricPotentialUnit) {
-		super(new UnitCounter()
-				.major(electricCurrentUnit)
-				.major(timeUnit)
-				.minor(electricPotentialUnit.getUnitCounter()));
-	}
-
-	public ElectricCapacitanceUnit(ForceUnit forceUnit, LengthUnit lengthUnit, ElectricPotentialUnit electricPotentialUnit) {
-		super(new UnitCounter()
-				.major(forceUnit.getUnitCounter())
-				.major(lengthUnit)
-				.minor(electricPotentialUnit.getUnitCounter()));
-	}
-
-	public ElectricCapacitanceUnit(ElectricChargeUnit electricChargeUnit, ElectricPotentialUnit electricPotentialUnit) {
-		super(new UnitCounter()
-				.major(electricChargeUnit.getUnitCounter())
-				.minor(electricPotentialUnit.getUnitCounter()));
-	}
-
-	public ElectricCapacitanceUnit(TimeUnit timeUnit, ElectricResistanceUnit electricResistanceUnit) {
-		super(new UnitCounter()
-				.major(timeUnit)
-				.minor(electricResistanceUnit.getUnitCounter()));
-	}
-
-	// endregion
+    constructor(timeUnit: TimeUnit,
+                electricResistanceUnit: ElectricResistanceUnit)
+            : super(UnitCounter()
+                        .major(timeUnit)
+                        .minor(electricResistanceUnit.unitCounter))
 }

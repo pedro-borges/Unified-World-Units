@@ -18,7 +18,7 @@ import java.math.MathContext;
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
-import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
+import static pcb.uwu.unit.scalar.SteradianUnit.STERADIAN;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;

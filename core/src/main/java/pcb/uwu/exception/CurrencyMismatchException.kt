@@ -1,7 +1,3 @@
-package pcb.uwu.exception;
+package pcb.uwu.exception
 
-public class CurrencyMismatchException extends RuntimeException {
-	public CurrencyMismatchException(String message, Object... args) {
-		super(String.format(message, args));
-	}
-}
+class CurrencyMismatchException(message: String) : RuntimeException(message)

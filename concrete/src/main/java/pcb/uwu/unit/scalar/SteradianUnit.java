@@ -1,4 +1,4 @@
-package pcb.uwu.unit.derived.scalar;
+package pcb.uwu.unit.scalar;
 
 public class SteradianUnit extends SolidAngleUnit {
 

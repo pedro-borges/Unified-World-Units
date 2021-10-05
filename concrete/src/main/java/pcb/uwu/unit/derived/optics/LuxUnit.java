@@ -2,7 +2,7 @@ package pcb.uwu.unit.derived.optics;
 
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
 import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.derived.scalar.SteradianUnit.STERADIAN;
+import static pcb.uwu.unit.scalar.SteradianUnit.STERADIAN;
 
 public class LuxUnit extends IlluminanceUnit {
 

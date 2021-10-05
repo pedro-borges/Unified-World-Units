@@ -1,21 +1,21 @@
-package pcb.uwu.unit.finance;
+package pcb.uwu.unit.finance
 
-import pcb.uwu.core.CompositeUnit;
-import pcb.uwu.core.UnitCounter;
-import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
+import pcb.uwu.core.CompositeUnit
+import pcb.uwu.core.UnitCounter
+import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.derived.fundamental.FrequencyUnit
 
-public class RentUnit extends CompositeUnit {
+class RentUnit : CompositeUnit
+{
+    constructor(money: CurrencyUnit,
+                time: TimeUnit)
+            : super(UnitCounter()
+                        .major(money)
+                        .minor(time))
 
-	public RentUnit(CurrencyUnit money, TimeUnit time) {
-		super(new UnitCounter()
-				.major(money)
-				.minor(time));
-	}
-
-	public RentUnit(CurrencyUnit money, FrequencyUnit interestRateUnit) {
-		super(new UnitCounter()
-				.major(money)
-				.major(interestRateUnit.getUnitCounter()));
-	}
+    constructor(money: CurrencyUnit,
+                interestRateUnit: FrequencyUnit)
+            : super(UnitCounter()
+                        .major(money)
+                        .major(interestRateUnit.unitCounter))
 }

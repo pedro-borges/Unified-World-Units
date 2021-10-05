@@ -1,31 +1,18 @@
-package pcb.uwu.unit.base;
+package pcb.uwu.unit.base
 
-import pcb.uwu.core.BaseUnit;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.UnitCounter;
+import pcb.uwu.core.BaseUnit
+import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.core.UnitCounter
+import java.util.function.Function
 
-import java.util.function.Function;
-
-public class LuminousIntensityUnit extends BaseUnit {
-
-	private final UnitCounter unitCounter;
-
-	public LuminousIntensityUnit(String symbol, String singularName, String pluralName,
-			Function<BigDecimalAmount, BigDecimalAmount> translationToCanonical,
-			Function<BigDecimalAmount, BigDecimalAmount> translationFromCanonical) {
-
-		super(6, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical);
-
-		unitCounter = new UnitCounter(this);
-	}
-
-	@Override
-	public Class<? extends BaseUnit> getBaseUnitType() {
-		return LuminousIntensityUnit.class;
-	}
-
-	@Override
-	public UnitCounter getUnitCounter() {
-		return unitCounter;
-	}
+open class LuminousIntensityUnit(symbol: String,
+                                 singularName: String,
+                                 pluralName: String,
+                                 translationToCanonical: Function<BigDecimalAmount, BigDecimalAmount>,
+                                 translationFromCanonical: Function<BigDecimalAmount, BigDecimalAmount>) :
+    BaseUnit(6, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical)
+{
+    override val unitCounter
+        get() = UnitCounter(this)
+    override val baseUnitType = LuminousIntensityUnit::class.java
 }

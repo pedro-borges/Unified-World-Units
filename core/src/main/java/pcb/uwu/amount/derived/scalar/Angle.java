@@ -5,7 +5,7 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.CompositeUnitAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.scalar.AngleUnit;
+import pcb.uwu.unit.scalar.AngleUnit;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
