@@ -11,14 +11,14 @@ import pcb.uwu.unit.derived.termodynamics.PressureUnit
 
 open class ForceUnit : CompositeUnit
 {
-    constructor(mass: MassUnit,
-                length: LengthUnit,
-                time: TimeUnit)
+    constructor(massUnit: MassUnit,
+                lengthUnit: LengthUnit,
+                timeUnit: TimeUnit)
             : super(UnitCounter()
-                        .major(mass)
-                        .major(length)
-                        .minor(time)
-                        .minor(time))
+                        .major(massUnit)
+                        .major(lengthUnit)
+                        .minor(timeUnit)
+                        .minor(timeUnit))
 
     constructor(massUnit: MassUnit,
                 accelerationUnit: AccelerationUnit)

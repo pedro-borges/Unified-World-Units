@@ -20,7 +20,8 @@ open class Length : CompositeUnitAmount<LengthUnit>
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL,
-                unit: LengthUnit) : super(amount, magnitude, unit)
+                unit: LengthUnit)
+            : super(amount, magnitude, unit)
 
     @JvmOverloads
     constructor(amount: String,

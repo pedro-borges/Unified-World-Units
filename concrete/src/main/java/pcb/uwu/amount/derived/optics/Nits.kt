@@ -1,94 +1,48 @@
-package pcb.uwu.amount.derived.optics;
+package pcb.uwu.amount.derived.optics
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.Candelas;
-import pcb.uwu.amount.derived.fundamental.Area;
-import pcb.uwu.core.Amount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.optics.LuminanceUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.Candelas
+import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
+import pcb.uwu.unit.derived.optics.LuminanceUnit
+import pcb.uwu.unit.derived.optics.NitUnit.NIT
 
-import java.math.BigDecimal;
+class Nits : Luminance
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, NIT)
 
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
-import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, NIT)
 
-public class Nits extends Luminance {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(luminance: UnitAmount<LuminanceUnit>) =
+        Nits(this.amount + (luminance to NIT).amount)
 
-	public Nits(Number value) {
-		super(value, NIT);
-	}
+    override fun minus(luminance: UnitAmount<LuminanceUnit>) =
+        Nits(this.amount - (luminance to NIT).amount)
 
-	public Nits(Number value, Magnitude magnitude) {
-		super(value, magnitude, NIT);
-	}
+    override fun times(scalar: Number) =
+        Nits(this.amount * scalar)
 
-	public Nits(String value) {
-		super(value, NIT);
-	}
+    override fun div(scalar: Number) =
+        Nits(this.amount / scalar)
 
-	public Nits(String value, Magnitude magnitude) {
-		super(value, magnitude, NIT);
-	}
+    // endregion
 
-	public Nits(BigDecimal value) {
-		super(value, NIT);
-	}
+    // region composition
 
-	public Nits(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, NIT);
-	}
+    operator fun times(area: Area): Candelas
+    {
+        return Candelas(amount * (area to SQUARE_METER).amount)
+    }
 
-	public Nits(Amount amount) {
-		super(amount, NIT);
-	}
-
-	public Nits(Amount amount, Magnitude magnitude) {
-		super(amount, magnitude, NIT);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Nits plus(@NotNull UnitAmount<LuminanceUnit> luminance) {
-		return new Nits(plusAmount(this, luminance));
-	}
-
-	@NotNull
-	@Override
-	public Nits minus(@NotNull UnitAmount<LuminanceUnit> luminance) {
-		return new Nits(minusAmount(this, luminance));
-	}
-
-	@NotNull
-	@Override
-	public Nits times(@NotNull Number scalar) {
-		return new Nits(UnitAmountUtils.times(this, scalar));
-	}
-
-	@NotNull
-	@Override
-	public Nits div(@NotNull Number scalar) {
-		return new Nits(dividedByScalar(this, scalar));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Candelas times(Area area) {
-		return new Candelas(getAmount().times(getAmountIn(area, SQUARE_METER)));
-	}
-
-	// endregion
+    // endregion
 }

@@ -1,93 +1,45 @@
-package pcb.uwu.amount.derived.optics;
+package pcb.uwu.amount.derived.optics
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.derived.fundamental.Area;
-import pcb.uwu.core.Amount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.optics.IlluminanceUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
+import pcb.uwu.unit.derived.optics.IlluminanceUnit
+import pcb.uwu.unit.derived.optics.LuxUnit.LUX
 
-import java.math.BigDecimal;
+class Lux : Illuminance
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, LUX)
 
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
-import static pcb.uwu.unit.derived.optics.LuxUnit.LUX;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, LUX)
 
-public class Lux extends Illuminance {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(illuminance: UnitAmount<IlluminanceUnit>) =
+        Lux(this.amount + (illuminance to LUX).amount)
 
-	public Lux(Number value) {
-		super(value, LUX);
-	}
+    override fun minus(illuminance: UnitAmount<IlluminanceUnit>) =
+        Lux(this.amount - (illuminance to LUX).amount)
 
-	public Lux(Number value, Magnitude magnitude) {
-		super(value, magnitude, LUX);
-	}
+    override fun times(scalar: Number) =
+        Lux(this.amount * scalar)
 
-	public Lux(String value) {
-		super(value, LUX);
-	}
+    override fun div(scalar: Number) =
+        Lux(this.amount / scalar)
 
-	public Lux(String value, Magnitude magnitude) {
-		super(value, magnitude, LUX);
-	}
+    // endregion
 
-	public Lux(BigDecimal value) {
-		super(value, LUX);
-	}
+    // region composition
 
-	public Lux(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, LUX);
-	}
+    override fun times(area: Area) =
+        Lumens(amount * (area to SQUARE_METER).amount)
 
-	public Lux(Amount amount) {
-		super(amount, LUX);
-	}
-
-	public Lux(Amount amount, Magnitude magnitude) {
-		super(amount, magnitude, LUX);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Lux plus(@NotNull UnitAmount<IlluminanceUnit> illuminance) {
-		return new Lux(plusAmount(this, illuminance));
-	}
-
-	@NotNull
-	@Override
-	public Lux minus(@NotNull UnitAmount<IlluminanceUnit> illuminance) {
-		return new Lux(minusAmount(this, illuminance));
-	}
-
-	@NotNull
-	@Override
-	public Lux times(@NotNull Number scalar) {
-		return new Lux(UnitAmountUtils.times(this, scalar));
-	}
-
-	@NotNull
-	@Override
-	public Lux div(@NotNull Number scalar) {
-		return new Lux(dividedByScalar(this, scalar));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Lumens times(Area area) {
-		return new Lumens(getAmount().times(getAmountIn(area, SQUARE_METER)));
-	}
-
-	// endregion
+    // endregion
 }

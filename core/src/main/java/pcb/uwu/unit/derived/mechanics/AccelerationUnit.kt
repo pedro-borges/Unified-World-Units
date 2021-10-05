@@ -3,6 +3,7 @@ package pcb.uwu.unit.derived.mechanics
 import pcb.uwu.core.CompositeUnit
 import pcb.uwu.core.UnitCounter
 import pcb.uwu.unit.base.LengthUnit
+import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.base.TimeUnit
 
 class AccelerationUnit : CompositeUnit
@@ -19,4 +20,10 @@ class AccelerationUnit : CompositeUnit
             : super(UnitCounter()
                         .major(lengthUnit)
                         .minor(timeUnit))
+
+    constructor(forceUnit: ForceUnit,
+                massUnit: MassUnit)
+            : super(UnitCounter()
+                        .major(forceUnit)
+                        .minor(massUnit))
 }

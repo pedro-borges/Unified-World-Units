@@ -1,99 +1,50 @@
-package pcb.uwu.amount.derived.optics;
+package pcb.uwu.amount.derived.optics
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.Seconds;
-import pcb.uwu.amount.base.Time;
-import pcb.uwu.core.Amount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.optics.LuminousEnergyUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.Seconds
+import pcb.uwu.amount.base.Time
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.SecondUnit.SECOND
+import pcb.uwu.unit.derived.optics.LumenUnit.LUMEN
+import pcb.uwu.unit.derived.optics.LuminousEnergyUnit
+import pcb.uwu.unit.derived.optics.TalbotUnit.TALBOT
 
-import java.math.BigDecimal;
+class Talbots : LuminousEnergy
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, TALBOT)
 
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.optics.LumenUnit.LUMEN;
-import static pcb.uwu.unit.derived.optics.TalbotUnit.TALBOT;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, TALBOT)
 
-public class Talbots extends LuminousEnergy {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(luminousEnergy: UnitAmount<LuminousEnergyUnit>) =
+        Talbots(this.amount + (luminousEnergy to TALBOT).amount)
 
-	public Talbots(Number value) {
-		super(value, TALBOT);
-	}
+    override fun minus(luminousEnergy: UnitAmount<LuminousEnergyUnit>) =
+        Talbots(this.amount - (luminousEnergy to TALBOT).amount)
 
-	public Talbots(Number value, Magnitude magnitude) {
-		super(value, magnitude, TALBOT);
-	}
+    override fun times(scalar: Number) =
+        Talbots(this.amount * scalar)
 
-	public Talbots(String value) {
-		super(value, TALBOT);
-	}
+    override fun div(scalar: Number) =
+        Talbots(this.amount / scalar)
 
-	public Talbots(String value, Magnitude magnitude) {
-		super(value, magnitude, TALBOT);
-	}
+    // endregion
 
-	public Talbots(BigDecimal value) {
-		super(value, TALBOT);
-	}
+    // region composition
 
-	public Talbots(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, TALBOT);
-	}
+    operator fun div(luminousFlux: LuminousFlux) =
+        Seconds(this.amount / (luminousFlux to LUMEN).amount)
 
-	public Talbots(Amount amount) {
-		super(amount, TALBOT);
-	}
+    override fun div(time: Time) =
+        Lumens(this.amount / (time to SECOND).amount)
 
-	public Talbots(Amount amount, Magnitude magnitude) {
-		super(amount, magnitude, TALBOT);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Talbots plus(@NotNull UnitAmount<LuminousEnergyUnit> luminousEnergy) {
-		return new Talbots(plusAmount(this, luminousEnergy));
-	}
-
-	@NotNull
-	@Override
-	public Talbots minus(@NotNull UnitAmount<LuminousEnergyUnit> luminousEnergy) {
-		return new Talbots(minusAmount(this, luminousEnergy));
-	}
-
-	@NotNull
-	@Override
-	public Talbots times(@NotNull Number scalar) {
-		return new Talbots(UnitAmountUtils.times(this, scalar));
-	}
-
-	@NotNull
-	@Override
-	public Talbots div(@NotNull Number scalar) {
-		return new Talbots(dividedByScalar(this, scalar));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Lumens div(Time time) {
-		return new Lumens(getAmount().div(getAmountIn(time, SECOND)));
-	}
-
-	public Seconds div(LuminousFlux luminousFlux) {
-		return new Seconds(getAmount().div(getAmountIn(luminousFlux, LUMEN)));
-	}
-
-	// endregion
+    // endregion
 }

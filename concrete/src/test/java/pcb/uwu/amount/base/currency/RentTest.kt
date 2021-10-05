@@ -1,4 +1,4 @@
-package pcb.uwu.amount.finance
+package pcb.uwu.amount.base.currency
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

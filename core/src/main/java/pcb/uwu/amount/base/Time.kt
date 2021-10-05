@@ -8,7 +8,6 @@ import pcb.uwu.amount.derived.optics.LuminousEnergy
 import pcb.uwu.amount.derived.optics.LuminousFlux
 import pcb.uwu.amount.derived.thermodynamics.Energy
 import pcb.uwu.amount.derived.thermodynamics.Power
-import pcb.uwu.amount.finance.Currency
 import pcb.uwu.core.Amount
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude

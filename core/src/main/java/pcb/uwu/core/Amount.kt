@@ -10,8 +10,7 @@ import java.util.function.Function
  */
 class Amount(val value: BigDecimal) : Number(), Comparable<Amount>
 {
-    constructor(value: Int) : this(BigDecimal(value))
-    constructor(value: Long) : this(BigDecimal(value))
+    constructor(value: Number) : this(BigDecimal(value.toString()))
     constructor(value: String) : this(BigDecimal(value))
 
     // region public methods

@@ -1,12 +1,15 @@
 package pcb.uwu.amount.derived.fundamental
 
 import pcb.uwu.amount.base.Length
+import pcb.uwu.amount.derived.optics.Illuminance
+import pcb.uwu.amount.derived.optics.LuminousFlux
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.fundamental.AreaUnit
 import pcb.uwu.unit.derived.fundamental.VolumeUnit
+import pcb.uwu.unit.derived.optics.LuminousFluxUnit
 import pcb.uwu.utils.UnitAmountUtils.getAmountIn
 
 open class Area : CompositeUnitAmount<AreaUnit>
@@ -51,10 +54,15 @@ open class Area : CompositeUnitAmount<AreaUnit>
 
     // region composition
 
-    operator fun times(length: Length) =
+    open operator fun times(length: Length) =
         Volume(amount = this.amount * length.amount,
                unit = VolumeUnit(areaUnit = this.unit,
                                  sizeUnit = length.unit))
+
+    open operator fun times(illuminance: Illuminance) =
+        LuminousFlux(amount = this.amount * illuminance.amount,
+                     unit = LuminousFluxUnit(areaUnit = this.unit,
+                                             illuminanceUnit = illuminance.unit))
 
     // endregion
 }

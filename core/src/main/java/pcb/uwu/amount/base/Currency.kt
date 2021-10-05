@@ -1,14 +1,15 @@
-package pcb.uwu.amount.finance
+package pcb.uwu.amount.base
 
-import pcb.uwu.amount.base.Time
 import pcb.uwu.amount.derived.finance.Debt
 import pcb.uwu.amount.derived.finance.InterestRate
 import pcb.uwu.amount.derived.finance.Rent
 import pcb.uwu.core.Amount
 import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.CurrencyUnit
 import pcb.uwu.unit.derived.finance.DebtUnit
-import pcb.uwu.unit.finance.CurrencyUnit
 import pcb.uwu.unit.finance.RentUnit
 import pcb.uwu.utils.UnitAmountUtils
 import java.math.RoundingMode.HALF_EVEN
@@ -16,13 +17,17 @@ import java.math.RoundingMode.HALF_EVEN
 open class Currency :
     CompositeUnitAmount<CurrencyUnit>
 {
+    @JvmOverloads
     constructor(amount: Number,
+                magnitude: Magnitude = NATURAL,
                 unit: CurrencyUnit)
-            : super(Amount(amount.toString()).withScale(unit.defaultFractionDigits, HALF_EVEN), unit)
+            : super(Amount(amount).withScale(unit.defaultFractionDigits, HALF_EVEN), magnitude, unit)
 
+    @JvmOverloads
     constructor(amount: String,
+                magnitude: Magnitude = NATURAL,
                 unit: CurrencyUnit)
-            : super(Amount(amount).withScale(unit.defaultFractionDigits, HALF_EVEN), unit)
+            : super(Amount(amount).withScale(unit.defaultFractionDigits, HALF_EVEN), magnitude, unit)
 
     //region UnitAmount
 

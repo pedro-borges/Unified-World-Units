@@ -2,11 +2,10 @@ package pcb.uwu.amount.base
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import pcb.uwu.amount.finance.Currency
 import pcb.uwu.core.Amount
 import pcb.uwu.exception.InvalidCurrencyException
-import pcb.uwu.unit.finance.CurrencyUnit.Companion.GBP
-import pcb.uwu.unit.finance.CurrencyUnit.Companion.USD
+import pcb.uwu.unit.base.CurrencyUnit.Companion.GBP
+import pcb.uwu.unit.base.CurrencyUnit.Companion.USD
 
 class CurrencyTest
 {
@@ -14,30 +13,30 @@ class CurrencyTest
     @Test
     fun testConstructHonoursDefaultFractionDigits()
     {
-        assertEquals(Amount("1.00"), Currency("1.005", GBP).amount)
-        assertEquals(Amount("1.00"), Currency("0.995", GBP).amount)
+        assertEquals(Amount("1.00"), Currency(amount = "1.005", unit = GBP).amount)
+        assertEquals(Amount("1.00"), Currency(amount = "0.995", unit = GBP).amount)
     }
 
     // endregion
     @Test
     fun testPlusSameCurrency() =
-        assertEquals(Currency(11, GBP),
-                     Currency(1, GBP) + Currency(10, GBP))
+        assertEquals(Currency(amount = 11, unit = GBP),
+                     Currency(amount = 1, unit = GBP) + Currency(amount = 10, unit = GBP))
 
     @Test(expected = InvalidCurrencyException::class)
     fun testPlusDifferentCurrency()
     {
-        Currency(1, GBP) + Currency(10, USD)
+        Currency(amount = 1, unit = GBP) + Currency(amount = 10, unit = USD)
     }
 
     @Test
     fun testMinusSameCurrency() =
-        assertEquals(Currency(-9, GBP),
-                     Currency(1, GBP) - Currency(10, GBP))
+        assertEquals(Currency(amount = -9, unit = GBP),
+                     Currency(amount = 1, unit = GBP) - Currency(amount = 10, unit = GBP))
 
     @Test(expected = InvalidCurrencyException::class)
     fun testMinusDifferentCurrency()
     {
-        Currency(1, GBP) - Currency(10, USD)
+        Currency(amount = 1, unit = GBP) - Currency(amount = 10, unit = USD)
     }
 }

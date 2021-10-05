@@ -1,94 +1,46 @@
-package pcb.uwu.amount.derived.scalar;
+package pcb.uwu.amount.derived.scalar
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.LuminousIntensity;
-import pcb.uwu.amount.derived.optics.Lumens;
-import pcb.uwu.core.Amount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.scalar.SolidAngleUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.LuminousIntensity
+import pcb.uwu.amount.derived.optics.Lumens
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.CandelaUnit
+import pcb.uwu.unit.scalar.SolidAngleUnit
+import pcb.uwu.unit.scalar.SteradianUnit.STERADIAN
 
-import java.math.BigDecimal;
+class Steradians : SolidAngle
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, STERADIAN)
 
-import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
-import static pcb.uwu.unit.scalar.SteradianUnit.STERADIAN;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, STERADIAN)
 
-public class Steradians extends SolidAngle {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(solidAngle: UnitAmount<SolidAngleUnit>) =
+        Steradians(this.amount + (solidAngle to STERADIAN).amount)
 
-	public Steradians(Number value) {
-		super(value, STERADIAN);
-	}
+    override fun minus(solidAngle: UnitAmount<SolidAngleUnit>) =
+        Steradians(this.amount - (solidAngle to STERADIAN).amount)
 
-	public Steradians(Number value, Magnitude magnitude) {
-		super(value, magnitude, STERADIAN);
-	}
+    override fun times(scalar: Number) =
+        Steradians(this.amount * scalar)
 
-	public Steradians(String value) {
-		super(value, STERADIAN);
-	}
+    override fun div(scalar: Number) =
+        Steradians(this.amount / scalar)
 
-	public Steradians(String value, Magnitude magnitude) {
-		super(value, magnitude, STERADIAN);
-	}
+    // endregion
 
-	public Steradians(BigDecimal value) {
-		super(value, STERADIAN);
-	}
+    // region composition
 
-	public Steradians(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, STERADIAN);
-	}
+    override fun times(luminousIntensity: LuminousIntensity) =
+        Lumens(amount * (luminousIntensity to CandelaUnit.CANDELA).amount)
 
-	public Steradians(Amount amount) {
-		super(amount, STERADIAN);
-	}
-
-	public Steradians(Amount amount, Magnitude magnitude) {
-		super(amount, magnitude, STERADIAN);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Steradians plus(@NotNull UnitAmount<SolidAngleUnit> solidAngle) {
-		return new Steradians(plusAmount(this, solidAngle));
-	}
-
-	@NotNull
-	@Override
-	public Steradians minus(@NotNull UnitAmount<SolidAngleUnit> solidAngle) {
-		return new Steradians(minusAmount(this, solidAngle));
-	}
-
-	@NotNull
-	@Override
-	public Steradians times(@NotNull Number scalar) {
-		return new Steradians(UnitAmountUtils.times(this, scalar));
-	}
-
-	@NotNull
-	@Override
-	public Steradians div(@NotNull Number scalar) {
-		return new Steradians(dividedByScalar(this, scalar));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Lumens times(LuminousIntensity luminousIntensity) {
-		return new Lumens(getAmount().times(getAmountIn(luminousIntensity, CANDELA)));
-	}
-
-	// endregion
+    // endregion
 }

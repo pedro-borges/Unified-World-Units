@@ -1,4 +1,4 @@
-package pcb.uwu.unit.scalar;
+package pcb.uwu.unit.base;
 
 public class RadianUnit extends AngleUnit {
 

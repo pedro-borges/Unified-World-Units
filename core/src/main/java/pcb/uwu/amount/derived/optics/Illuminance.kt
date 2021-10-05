@@ -1,10 +1,12 @@
 package pcb.uwu.amount.derived.optics
 
+import pcb.uwu.amount.derived.fundamental.Area
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.optics.IlluminanceUnit
+import pcb.uwu.unit.derived.optics.LuminousFluxUnit
 import pcb.uwu.utils.UnitAmountUtils
 
 open class Illuminance : CompositeUnitAmount<IlluminanceUnit>
@@ -46,4 +48,14 @@ open class Illuminance : CompositeUnitAmount<IlluminanceUnit>
                     unit = unit)
 
     // endregion
+
+    // region composition
+
+    open operator fun times(area: Area) =
+        LuminousFlux(amount = this.amount * area.amount,
+                     unit = LuminousFluxUnit(illuminanceUnit = this.unit,
+                                             areaUnit = area.unit))
+
+    // endregion
+
 }

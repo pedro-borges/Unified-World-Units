@@ -1,10 +1,10 @@
-package pcb.uwu.amount.derived.scalar
+package pcb.uwu.amount.base
 
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.scalar.AngleUnit
+import pcb.uwu.unit.base.AngleUnit
 import pcb.uwu.utils.UnitAmountUtils
 
 open class Angle : CompositeUnitAmount<AngleUnit>

@@ -2,6 +2,7 @@ package pcb.uwu.unit.finance
 
 import pcb.uwu.core.CompositeUnit
 import pcb.uwu.core.UnitCounter
+import pcb.uwu.unit.base.CurrencyUnit
 import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.unit.derived.fundamental.FrequencyUnit
 

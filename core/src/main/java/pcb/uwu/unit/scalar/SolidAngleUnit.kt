@@ -1,13 +1,25 @@
 package pcb.uwu.unit.scalar
 
-import pcb.uwu.core.BaseUnit
+import pcb.uwu.core.CompositeUnit
 import pcb.uwu.core.UnitCounter
-import java.util.function.Function
+import pcb.uwu.unit.base.AngleUnit
+import pcb.uwu.unit.base.LuminousIntensityUnit
+import pcb.uwu.unit.derived.optics.LuminousFluxUnit
 
-open class SolidAngleUnit protected constructor() :
-    BaseUnit(0, "sr", "Steradian", "Steradians", Function.identity(), Function.identity())
+open class SolidAngleUnit
+    : CompositeUnit
 {
-    override val unitCounter: UnitCounter
-        get() = UnitCounter()
-    override val baseUnitType = SolidAngleUnit::class.java
+    @Suppress("ConvertSecondaryConstructorToPrimary")
+    constructor(angleUnit1: AngleUnit,
+                angleUnit2: AngleUnit)
+            : super(UnitCounter()
+                        .major(angleUnit1)
+                        .major(angleUnit2))
+
+    constructor(luminousFluxUnit: LuminousFluxUnit,
+                luminousIntensityUnit: LuminousIntensityUnit)
+            : super(UnitCounter()
+                        .major(luminousFluxUnit)
+                        .minor(luminousIntensityUnit))
+
 }

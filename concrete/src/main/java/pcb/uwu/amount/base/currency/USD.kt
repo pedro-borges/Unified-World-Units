@@ -5,31 +5,31 @@ import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.CurrencyUnit
-import pcb.uwu.unit.base.CurrencyUnit.Companion.AUD
+import pcb.uwu.unit.base.CurrencyUnit.Companion.USD
 
-class AUD : Currency
+class USD : Currency
 {
     @JvmOverloads
     constructor(amount: Number, magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, AUD)
+            : super(amount, magnitude, USD)
 
     @JvmOverloads
     constructor(value: String, magnitude: Magnitude = NATURAL)
-            : super(value, magnitude, AUD)
+            : super(value, magnitude, USD)
 
     // region UnitAmount
 
     override fun plus(currency: UnitAmount<CurrencyUnit>) =
-        AUD(this.amount + (currency to AUD).amount)
+        USD(this.amount + (currency to USD).amount)
 
     override fun minus(currency: UnitAmount<CurrencyUnit>) =
-        AUD(this.amount - (currency to AUD).amount)
+        USD(this.amount - (currency to USD).amount)
 
     override fun times(scalar: Number) =
-        AUD(this.amount * scalar)
+        USD(this.amount * scalar)
 
     override fun div(scalar: Number) =
-        AUD(this.amount / scalar)
+        USD(this.amount / scalar)
 
     // endregion
 }

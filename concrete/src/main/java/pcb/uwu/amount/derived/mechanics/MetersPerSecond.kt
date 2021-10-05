@@ -1,78 +1,57 @@
-package pcb.uwu.amount.derived.mechanics;
+package pcb.uwu.amount.derived.mechanics
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.Meters;
-import pcb.uwu.amount.base.Seconds;
-import pcb.uwu.amount.base.Time;
-import pcb.uwu.core.Amount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.Meters
+import pcb.uwu.amount.base.Seconds
+import pcb.uwu.amount.base.Time
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.SecondUnit.SECOND
+import pcb.uwu.unit.derived.mechanics.AccelerationUnit
+import pcb.uwu.unit.derived.mechanics.MeterPerSecondUnit.METER_PER_SECOND
+import pcb.uwu.unit.derived.mechanics.SpeedUnit
 
-import java.math.BigDecimal;
+class MetersPerSecond : Speed
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, METER_PER_SECOND)
 
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.mechanics.MeterPerSecondUnit.METER_PER_SECOND;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, METER_PER_SECOND)
 
-public class MetersPerSecond extends Speed {
+    // region UnitAmount
 
-	// region constants
+    override fun plus(speed: UnitAmount<SpeedUnit>) =
+        MetersPerSecond(this.amount + (speed to METER_PER_SECOND).amount)
 
-	public static final Speed SPEED_OF_LIGHT = new MetersPerSecond("299792458");
+    override fun minus(speed: UnitAmount<SpeedUnit>) =
+        MetersPerSecond(this.amount - (speed to METER_PER_SECOND).amount)
 
-	// endregion
+    override fun times(scalar: Number) =
+        MetersPerSecond(this.amount * scalar)
 
-	// region constructors
+    override fun div(scalar: Number) =
+        MetersPerSecond(this.amount / scalar)
 
-	public MetersPerSecond(Number value) {
-		super(value, METER_PER_SECOND);
-	}
+    // endregion
 
-	public MetersPerSecond(Number value, Magnitude magnitude) {
-		super(value, magnitude, METER_PER_SECOND);
-	}
+    // region composition
 
-	public MetersPerSecond(String value) {
-		super(value, METER_PER_SECOND);
-	}
+    override fun times(time: Time) =
+        Meters(this.amount * (time to SECOND).amount)
 
-	public MetersPerSecond(String value, Magnitude magnitude) {
-		super(value, magnitude, METER_PER_SECOND);
-	}
+    override fun div(acceleration: Acceleration) =
+        Seconds(this.amount / (acceleration to AccelerationUnit(METER_PER_SECOND, SECOND)).amount)
 
-	public MetersPerSecond(BigDecimal value) {
-		super(value, METER_PER_SECOND);
-	}
+    // endregion
 
-	public MetersPerSecond(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, METER_PER_SECOND);
-	}
-
-	public MetersPerSecond(Amount amount) {
-		super(amount, METER_PER_SECOND);
-	}
-
-	public MetersPerSecond(Amount amount, Magnitude magnitude) {
-		super(amount, magnitude, METER_PER_SECOND);
-	}
-
-	// endregion
-
-	// region composition
-
-	@NotNull
-	@Override
-	public Meters times(@NotNull Time time) {
-		return new Meters(UnitAmountUtils.times(this, getAmountIn(time, SECOND).getValue()));
-	}
-
-	@NotNull
-	@Override
-	public Seconds div(@NotNull Acceleration acceleration) {
-		return new Seconds(dividedByScalar(this, getAmountIn(acceleration, new AccelerationUnit(METER_PER_SECOND, SECOND)).getValue()));
-	}
-
-	// endregion
+    companion object
+    {
+        // region constants
+        val SPEED_OF_LIGHT: Speed = MetersPerSecond("299792458")
+    }
 }

@@ -1,9 +1,12 @@
 package pcb.uwu.amount.derived.scalar
 
+import pcb.uwu.amount.base.LuminousIntensity
+import pcb.uwu.amount.derived.optics.LuminousFlux
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.optics.LuminousFluxUnit
 import pcb.uwu.unit.scalar.SolidAngleUnit
 import pcb.uwu.utils.UnitAmountUtils
 
@@ -44,6 +47,15 @@ open class SolidAngle : CompositeUnitAmount<SolidAngleUnit>
     override fun to(unit: SolidAngleUnit) =
         SolidAngle(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                    unit = unit)
+
+    // endregion
+
+    // region composition
+
+    open operator fun times(luminousIntensity: LuminousIntensity) =
+        LuminousFlux(amount = this.amount * luminousIntensity.amount,
+                     unit = LuminousFluxUnit(solidAngleUnit = this.unit,
+                                             luminousIntensityUnit = luminousIntensity.unit))
 
     // endregion
 }

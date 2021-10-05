@@ -1,121 +1,62 @@
-package pcb.uwu.amount.derived.mechanics;
+package pcb.uwu.amount.derived.mechanics
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.KiloGrams;
-import pcb.uwu.amount.base.Length;
-import pcb.uwu.amount.base.Mass;
-import pcb.uwu.amount.derived.fundamental.Area;
-import pcb.uwu.amount.derived.thermodynamics.Joules;
-import pcb.uwu.amount.derived.thermodynamics.Pascals;
-import pcb.uwu.amount.derived.thermodynamics.Pressure;
-import pcb.uwu.core.Amount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
-import pcb.uwu.unit.derived.mechanics.ForceUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.KiloGrams
+import pcb.uwu.amount.base.Length
+import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.thermodynamics.Joules
+import pcb.uwu.amount.derived.thermodynamics.Pascals
+import pcb.uwu.amount.derived.thermodynamics.Pressure
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.MeterUnit.METER
+import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
+import pcb.uwu.unit.derived.mechanics.ForceUnit
+import pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON
+import pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL
 
-import java.math.BigDecimal;
+class Newtons : Force
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, NEWTON)
 
-import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
-import static pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON;
-import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, NEWTON)
 
-public class Newtons extends Force {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(force: UnitAmount<ForceUnit>) =
+        Newtons(this.amount + (force to NEWTON).amount)
 
-	public Newtons(Number value) {
-		super(value, NEWTON);
-	}
+    override fun minus(force: UnitAmount<ForceUnit>) =
+        Newtons(this.amount - (force to NEWTON).amount)
 
-	public Newtons(Number value, Magnitude magnitude) {
-		super(value, magnitude, NEWTON);
-	}
+    override fun times(scalar: Number) =
+        Newtons(this.amount * scalar)
 
-	public Newtons(String value) {
-		super(value, NEWTON);
-	}
+    override fun div(scalar: Number) =
+        Newtons(this.amount / scalar)
 
-	public Newtons(String value, Magnitude magnitude) {
-		super(value, magnitude, NEWTON);
-	}
+    // endregion
 
-	public Newtons(BigDecimal value) {
-		super(value, NEWTON);
-	}
+    // region composition
 
-	public Newtons(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, NEWTON);
-	}
+    operator fun div(acceleration: Acceleration) =
+        KiloGrams(super.div(acceleration).amount)
 
-	public Newtons(Amount amount) {
-		super(amount, NEWTON);
-	}
+    override fun times(length: Length) =
+        Joules(this.amount * (length to METER).amount)
 
-	public Newtons(Amount amount, Magnitude magnitude) {
-		super(amount, magnitude, NEWTON);
-	}
+    override fun div(pressure: Pressure) =
+        SquareMeters(this.amount / (pressure to PASCAL).amount)
 
-	// endregion
+    override fun div(area: Area) =
+        Pascals(this.amount / (area to SQUARE_METER).amount)
 
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Newtons plus(@NotNull UnitAmount<ForceUnit> force) {
-		return new Newtons(plusAmount(this, force));
-	}
-
-	@NotNull
-	@Override
-	public Newtons minus(@NotNull UnitAmount<ForceUnit> force) {
-		return new Newtons(minusAmount(this, force));
-	}
-
-	@NotNull
-	@Override
-	public Newtons times(@NotNull Number scalar) {
-		return new Newtons(UnitAmountUtils.times(this, scalar));
-	}
-
-	@NotNull
-	@Override
-	public Newtons div(@NotNull Number scalar) {
-		return new Newtons(dividedByScalar(this, scalar));
-	}
-
-	// endregion
-
-	// region composition
-
-	public KiloGrams div(Acceleration acceleration) {
-		return new KiloGrams(super.div(acceleration).getAmount());
-	}
-
-	public Acceleration div(Mass mass) {
-		return new Acceleration(
-				super.div(mass).getAmount(),
-				new AccelerationUnit(METER, SECOND));
-	}
-
-	public Joules times(Length length) {
-		return new Joules(getAmount().times(getAmountIn(length, METER)));
-	}
-
-	public Area div(Pressure pressure) {
-		return new Area(getAmount().div(getAmountIn(pressure, PASCAL)), SQUARE_METER);
-	}
-
-	public Pascals div(Area area) {
-		return new Pascals(getAmount().div(getAmountIn(area, SQUARE_METER)));
-	}
-
-	// endregion
+    // endregion
 }
