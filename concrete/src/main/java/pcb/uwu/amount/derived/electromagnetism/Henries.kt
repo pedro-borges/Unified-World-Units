@@ -1,98 +1,47 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.ElectricCurrent;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.electromagnetism.ElectricInductanceUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.ElectricCurrent
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.AmpereUnit.AMPERE
+import pcb.uwu.unit.derived.electromagnetism.ElectricInductanceUnit
+import pcb.uwu.unit.derived.electromagnetism.HenryUnit.HENRY
 
-import java.math.BigDecimal;
+class Henries : ElectricInductance
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, HENRY)
 
-import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
-import static pcb.uwu.unit.derived.electromagnetism.HenryUnit.HENRY;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, HENRY)
 
-public class Henries extends ElectricInductance {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(electricInductance: UnitAmount<ElectricInductanceUnit>) =
+        Henries(this.amount + (electricInductance to HENRY).amount)
 
-	public Henries(Number value) {
-		super(value, HENRY);
-	}
+    override fun minus(electricInductance: UnitAmount<ElectricInductanceUnit>) =
+        Henries(this.amount - (electricInductance to HENRY).amount)
 
-	public Henries(Number value, Magnitude magnitude) {
-		super(value, magnitude, HENRY);
-	}
+    override fun times(scalar: Number) =
+        Henries(this.amount * scalar)
 
-	public Henries(String value) {
-		super(value, HENRY);
-	}
+    override fun div(scalar: Number) =
+        Henries(this.amount / scalar)
 
-	public Henries(String value, Magnitude magnitude) {
-		super(value, magnitude, HENRY);
-	}
+    // endregion
 
-	public Henries(BigDecimal value) {
-		super(value, HENRY);
-	}
+    // region composition
 
-	public Henries(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, HENRY);
-	}
+    override fun times(electricCurrent: ElectricCurrent): Webbers
+    {
+        return Webbers(this.amount * (electricCurrent to AMPERE).amount)
+    }
 
-	public Henries(BigDecimalAmount amount) {
-		super(amount, HENRY);
-	}
-
-	public Henries(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, HENRY);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Henries plus(@NotNull UnitAmount<ElectricInductanceUnit> electricInductance) {
-		return new Henries(plusAmount(this, electricInductance));
-	}
-
-	@NotNull
-	@Override
-	public Henries minus(@NotNull UnitAmount<ElectricInductanceUnit> electricInductance) {
-		return new Henries(minusAmount(this, electricInductance));
-	}
-
-	@NotNull
-	@Override
-	public Henries times(@NotNull Number scalar) {
-		return new Henries(UnitAmountUtils.times(this, scalar));
-	}
-
-	@NotNull
-	@Override
-	public Henries div(@NotNull Number scalar) {
-		return new Henries(dividedByScalar(this, scalar));
-	}
-
-	@Override
-	public Henries to(ElectricInductanceUnit unit) {
-		return new Henries(getAmountIn(this, unit));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Webbers times(ElectricCurrent electricCurrent) {
-		return new Webbers(getAmount().times(getAmountIn(electricCurrent, AMPERE)));
-	}
-
-	// endregion
+    // endregion
 }

@@ -1,104 +1,48 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.ElectricCurrent;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.electromagnetism.ElectricResistanceUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.ElectricCurrent
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.AmpereUnit.AMPERE
+import pcb.uwu.unit.derived.electromagnetism.ElectricResistanceUnit
+import pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM
 
-import java.math.BigDecimal;
+class Ohms : ElectricResistance
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, OHM)
 
-import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
-import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, OHM)
 
-public class Ohms extends ElectricResistance {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(electricResistance: UnitAmount<ElectricResistanceUnit>) =
+        Ohms(this.amount + (electricResistance to OHM).amount)
 
-	public Ohms(Number value) {
-		super(value, OHM);
-	}
+    override fun minus(electricResistance: UnitAmount<ElectricResistanceUnit>) =
+        Ohms(this.amount - (electricResistance to OHM).amount)
 
-	public Ohms(Number value, Magnitude magnitude) {
-		super(value, magnitude, OHM);
-	}
+    override fun times(scalar: Number) =
+        Ohms(this.amount * scalar)
 
-	public Ohms(String value) {
-		super(value, OHM);
-	}
+    override fun div(scalar: Number) =
+        Ohms(this.amount / scalar)
 
-	public Ohms(String value, Magnitude magnitude) {
-		super(value, magnitude, OHM);
-	}
+    override fun invert() =
+        Siemens(amount.invert())
 
-	public Ohms(BigDecimal value) {
-		super(value, OHM);
-	}
+    // endregion
 
-	public Ohms(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, OHM);
-	}
+    // region composition
 
-	public Ohms(BigDecimalAmount amount) {
-		super(amount, OHM);
-	}
+    override fun times(electricCurrent: ElectricCurrent) =
+        Volts(this.amount * (electricCurrent to AMPERE).amount)
 
-	public Ohms(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, OHM);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Ohms plus(@NotNull UnitAmount<ElectricResistanceUnit> electricResistance) {
-		return new Ohms(plusAmount(this, electricResistance));
-	}
-
-	@NotNull
-	@Override
-	public Ohms minus(@NotNull UnitAmount<ElectricResistanceUnit> electricResistance) {
-		return new Ohms(minusAmount(this, electricResistance));
-	}
-
-	@NotNull
-	@Override
-	public Ohms times(@NotNull Number scalar) {
-		return new Ohms(UnitAmountUtils.times(this, scalar));
-	}
-
-	@NotNull
-	@Override
-	public Ohms div(@NotNull Number scalar) {
-		return new Ohms(dividedByScalar(this, scalar));
-	}
-
-	@Override
-	public Ohms to(ElectricResistanceUnit unit) {
-		return new Ohms(getAmountIn(this, unit));
-	}
-
-	@NotNull
-	@Override
-	public Siemens invert() {
-		return new Siemens(getAmount().invert());
-	}
-
-	// endregion
-
-	// region composition
-
-	public Volts times(ElectricCurrent electricCurrent) {
-		return new Volts(getAmount().times(getAmountIn(electricCurrent, AMPERE)));
-	}
-
-	// endregion
+    // endregion
 }

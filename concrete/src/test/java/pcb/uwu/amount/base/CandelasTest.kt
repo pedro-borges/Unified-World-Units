@@ -11,15 +11,15 @@ class CandelasTest
     @Test
     fun multipliedBySolidAngle() =
         assertEquals("54 lm",
-                     Candelas(18).times(Steradians(3)).toString())
+                     (Candelas(18) * Steradians(3)).toString())
 
     @Test
     fun dividedByArea() =
         assertEquals("6 nit",
-                     Candelas(18).div(SquareMeters(3)).toString())
+                     (Candelas(18) / SquareMeters(3)).toString())
 
     @Test
     fun dividedByLuminance() =
         assertEquals("3 m²",
-                     Candelas(18).div(Nits(6)).toString())
+                     (Candelas(18) / Nits(6)).toString())
 }

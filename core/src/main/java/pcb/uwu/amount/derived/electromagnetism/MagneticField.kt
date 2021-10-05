@@ -1,10 +1,12 @@
 package pcb.uwu.amount.derived.electromagnetism
 
+import pcb.uwu.amount.derived.fundamental.Area
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.electromagnetism.MagneticFieldUnit
+import pcb.uwu.unit.derived.electromagnetism.MagneticFluxUnit
 import pcb.uwu.utils.UnitAmountUtils
 
 open class MagneticField : CompositeUnitAmount<MagneticFieldUnit>
@@ -44,6 +46,15 @@ open class MagneticField : CompositeUnitAmount<MagneticFieldUnit>
     override fun to(unit: MagneticFieldUnit) =
         MagneticField(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                       unit = unit)
+
+    // endregion
+
+    // region composition
+
+    open operator fun times(area: Area) =
+        MagneticFlux(amount = this.amount * area.amount,
+                     unit = MagneticFluxUnit(magneticFieldUnit = this.unit,
+                                             areaUnit = area.unit))
 
     // endregion
 }

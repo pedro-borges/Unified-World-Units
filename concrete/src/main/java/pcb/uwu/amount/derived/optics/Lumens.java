@@ -8,7 +8,7 @@ import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.amount.derived.fundamental.area.SquareMeters;
 import pcb.uwu.amount.derived.scalar.SolidAngle;
 import pcb.uwu.amount.derived.scalar.Steradians;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.optics.LuminousFluxUnit;
@@ -55,11 +55,11 @@ public class Lumens extends LuminousFlux {
 		super(value, magnitude, LUMEN);
 	}
 
-	public Lumens(BigDecimalAmount amount) {
+	public Lumens(Amount amount) {
 		super(amount, LUMEN);
 	}
 
-	public Lumens(BigDecimalAmount amount, Magnitude magnitude) {
+	public Lumens(Amount amount, Magnitude magnitude) {
 		super(amount, magnitude, LUMEN);
 	}
 

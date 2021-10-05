@@ -6,7 +6,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
 import pcb.uwu.amount.base.*
-import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.core.Amount
 import pcb.uwu.core.UnitAmount
 import java.math.RoundingMode.HALF_EVEN
 
@@ -18,7 +18,7 @@ class LengthUnitTest(private val length: Length)
     {
         for (unitAmount in testData())
         {
-            assertEquals(BigDecimalAmount.ONE.withScale(6, HALF_EVEN),
+            assertEquals(Amount.ONE.withScale(6, HALF_EVEN),
                          length.div(unitAmount).amount.withScale(6, HALF_EVEN))
         }
     }

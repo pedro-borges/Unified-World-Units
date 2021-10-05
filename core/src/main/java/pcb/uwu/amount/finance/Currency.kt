@@ -4,7 +4,7 @@ import pcb.uwu.amount.base.Time
 import pcb.uwu.amount.derived.finance.Debt
 import pcb.uwu.amount.derived.finance.InterestRate
 import pcb.uwu.amount.derived.finance.Rent
-import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.core.Amount
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.finance.DebtUnit
@@ -18,11 +18,11 @@ open class Currency :
 {
     constructor(amount: Number,
                 unit: CurrencyUnit)
-            : super(BigDecimalAmount(amount.toString()).withScale(unit.defaultFractionDigits, HALF_EVEN), unit)
+            : super(Amount(amount.toString()).withScale(unit.defaultFractionDigits, HALF_EVEN), unit)
 
     constructor(amount: String,
                 unit: CurrencyUnit)
-            : super(BigDecimalAmount(amount).withScale(unit.defaultFractionDigits, HALF_EVEN), unit)
+            : super(Amount(amount).withScale(unit.defaultFractionDigits, HALF_EVEN), unit)
 
     //region UnitAmount
 
@@ -54,15 +54,18 @@ open class Currency :
 
     operator fun div(time: Time) =
         Rent(amount = this.amount / time.amount,
-             unit = RentUnit(this.unit, time.unit))
+             unit = RentUnit(currency = this.unit,
+                             time = time.unit))
 
     operator fun times(interestRate: InterestRate) =
         Rent(amount = this.amount * interestRate.amount,
-             unit = RentUnit(this.unit, interestRate.unit))
+             unit = RentUnit(currency = this.unit,
+                             interestRateUnit = interestRate.unit))
 
     operator fun times(time: Time) =
         Debt(amount = this.amount * time.amount,
-             unit = DebtUnit(this.unit, time.unit))
+             unit = DebtUnit(currencyUnit = this.unit,
+                             timeUnit = time.unit))
 
     // endregion
 }

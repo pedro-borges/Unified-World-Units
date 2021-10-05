@@ -53,7 +53,8 @@ open class Area : CompositeUnitAmount<AreaUnit>
 
     operator fun times(length: Length) =
         Volume(amount = this.amount * length.amount,
-               unit = VolumeUnit(unit, length.unit))
+               unit = VolumeUnit(areaUnit = this.unit,
+                                 sizeUnit = length.unit))
 
     // endregion
 }

@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.derived.fundamental.Volume;
 import pcb.uwu.amount.derived.fundamental.VolumeFactory;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.fundamental.VolumeUnit;
@@ -68,11 +68,11 @@ public class Litres extends Volume {
 		super(value, magnitude, LITRE);
 	}
 
-	public Litres(BigDecimalAmount amount) {
+	public Litres(Amount amount) {
 		super(amount, LITRE);
 	}
 
-	public Litres(BigDecimalAmount amount, Magnitude magnitude) {
+	public Litres(Amount amount, Magnitude magnitude) {
 		super(amount, magnitude, LITRE);
 	}
 

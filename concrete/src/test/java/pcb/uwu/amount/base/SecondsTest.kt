@@ -10,15 +10,15 @@ class SecondsTest
     @Test
     fun multipliedByElectricCurrent() =
         assertEquals("35 C",
-                     Seconds(7).times(Amperes(5)).toString())
+                     (Seconds(7) * Amperes(5)).toString())
 
     @Test
     fun multipliedByPower() =
         assertEquals("35 J",
-                     Seconds(7).times(Watts(5)).toString())
+                     (Seconds(7) * Watts(5)).toString())
 
     @Test
     fun multipliedByLuminousFlux() =
         assertEquals("35 T",
-                     Seconds(7).times(Lumens(5)).toString())
+                     (Seconds(7) * Lumens(5)).toString())
 }

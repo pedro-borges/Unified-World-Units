@@ -57,7 +57,8 @@ class Acceleration : CompositeUnitAmount<AccelerationUnit>
 
     fun times(mass: Mass) =
         Force(amount = this.amount * mass.amount,
-              unit = ForceUnit(mass.unit, this.unit))
+              unit = ForceUnit(accelerationUnit = this.unit,
+                               massUnit = mass.unit))
 
     fun times(time: Time) =
         Speed(amount = (this * time).amount,

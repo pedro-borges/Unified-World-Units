@@ -8,7 +8,7 @@ import java.util.function.Function
 /**
  * An implementation of Amount for uni-dimensional values based on `java.lang.BigDecimal` representation.
  */
-class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalAmount>
+class Amount(val value: BigDecimal) : Number(), Comparable<Amount>
 {
     constructor(value: Int) : this(BigDecimal(value))
     constructor(value: Long) : this(BigDecimal(value))
@@ -32,13 +32,13 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
      * @return a new Amount with the new scale
      */
     fun withScale(scale: Int, roundingMode: RoundingMode) =
-        BigDecimalAmount(value.setScale(scale, roundingMode))
+        Amount(value.setScale(scale, roundingMode))
 
     fun invert() =
         ONE.div(this)
 
     operator fun unaryMinus() =
-        BigDecimalAmount(value.negate())
+        Amount(value.negate())
 
     /**
      * Sum amount.
@@ -47,16 +47,16 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
      * @return a new `BigDecimalAmount` representing this + other
      */
     operator fun plus(other: BigDecimal) =
-        BigDecimalAmount(value.add(other))
+        Amount(value.add(other))
 
-    operator fun plus(other: BigDecimalAmount) =
-        BigDecimalAmount(value.add(other.value))
+    operator fun plus(other: Amount) =
+        Amount(value.add(other.value))
 
     operator fun minus(other: BigDecimal) =
-        BigDecimalAmount(value.subtract(other))
+        Amount(value.subtract(other))
 
-    operator fun minus(other: BigDecimalAmount) =
-        BigDecimalAmount(value.subtract(other.value))
+    operator fun minus(other: Amount) =
+        Amount(value.subtract(other.value))
 
     /**
      * Multiply by a scalar.
@@ -65,7 +65,7 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
      * @return a new `BigDecimalAmount` representing this × other
      */
     operator fun times(other: Number) =
-        BigDecimalAmount(value.multiply(BigDecimal(other.toString()), DECIMAL128))
+        Amount(value.multiply(BigDecimal(other.toString()), DECIMAL128))
 
     /**
      * Divide by a scalar.
@@ -74,7 +74,7 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
      * @return a new `BigDecimalAmount` representing this ÷ other
      */
     operator fun div(other: Number) =
-        BigDecimalAmount(value.divide(BigDecimal(other.toString()), DECIMAL128))
+        Amount(value.divide(BigDecimal(other.toString()), DECIMAL128))
 
     /**
      * Elevate to power.
@@ -83,7 +83,7 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
      * @return a new `BigDecimalAmount` representing `this`ⁿ
      */
     fun pow(power: Int) =
-        BigDecimalAmount(value.pow(power, DECIMAL128))
+        Amount(value.pow(power, DECIMAL128))
 
     /**
      * translate with scalar function.
@@ -91,7 +91,7 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
      * @param transformation a function representing a generic transformation from scalar to scalar
      * @return a new `BigDecimalAmount` with the transformed value
      */
-    fun transformed(transformation: Function<BigDecimalAmount, BigDecimalAmount>) =
+    fun transformed(transformation: Function<Amount, Amount>) =
         transformation.apply(this)
 
     /**
@@ -164,7 +164,7 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
 
     // region implement Comparable
 
-    override fun compareTo(other: BigDecimalAmount) =
+    override fun compareTo(other: Amount) =
         value.compareTo(other.value)
 
     // endregion
@@ -172,7 +172,7 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
     override fun equals(other: Any?): Boolean
     {
         if (this === other) return true
-        if (other !is BigDecimalAmount) return false
+        if (other !is Amount) return false
         return value == other.value
     }
 
@@ -189,9 +189,9 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
     companion object
     {
         @JvmField
-        val ZERO = BigDecimalAmount(BigDecimal.ZERO)
+        val ZERO = Amount(BigDecimal.ZERO)
 
         @JvmField
-        val ONE = BigDecimalAmount(BigDecimal.ONE)
+        val ONE = Amount(BigDecimal.ONE)
     }
 }

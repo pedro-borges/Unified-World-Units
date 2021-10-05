@@ -1,121 +1,64 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.Amperes;
-import pcb.uwu.amount.base.ElectricCurrent;
-import pcb.uwu.amount.base.Seconds;
-import pcb.uwu.amount.base.Time;
-import pcb.uwu.amount.derived.thermodynamics.Joules;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.electromagnetism.ElectricChargeUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.Amperes
+import pcb.uwu.amount.base.ElectricCurrent
+import pcb.uwu.amount.base.Seconds
+import pcb.uwu.amount.base.Time
+import pcb.uwu.amount.derived.thermodynamics.Joules
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.AmpereUnit.AMPERE
+import pcb.uwu.unit.base.SecondUnit.SECOND
+import pcb.uwu.unit.derived.electromagnetism.CoulombUnit.COULOMB
+import pcb.uwu.unit.derived.electromagnetism.ElectricChargeUnit
+import pcb.uwu.unit.derived.electromagnetism.FaradUnit.FARAD
+import pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT
 
-import java.math.BigDecimal;
+class Coulombs : ElectricCharge
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, COULOMB)
 
-import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
-import static pcb.uwu.unit.derived.electromagnetism.CoulombUnit.COULOMB;
-import static pcb.uwu.unit.derived.electromagnetism.FaradUnit.FARAD;
-import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, COULOMB)
 
-public class Coulombs extends ElectricCharge {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(electricCharge: UnitAmount<ElectricChargeUnit>) =
+        Coulombs(this.amount + (electricCharge to COULOMB).amount)
 
-	public Coulombs(Number value) {
-		super(value, COULOMB);
-	}
+    override fun minus(electricCharge: UnitAmount<ElectricChargeUnit>) =
+        Coulombs(this.amount - (electricCharge to COULOMB).amount)
 
-	public Coulombs(Number value, Magnitude magnitude) {
-		super(value, magnitude, COULOMB);
-	}
+    override fun times(scalar: Number) =
+        Coulombs(this.amount * scalar)
 
-	public Coulombs(String value) {
-		super(value, COULOMB);
-	}
+    override fun div(scalar: Number) =
+        Coulombs(this.amount / scalar)
 
-	public Coulombs(String value, Magnitude magnitude) {
-		super(value, magnitude, COULOMB);
-	}
+    // endregion
 
-	public Coulombs(BigDecimal value) {
-		super(value, COULOMB);
-	}
+    // region composition
 
-	public Coulombs(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, COULOMB);
-	}
+    operator fun div(time: Time) =
+        Amperes(this.amount / (time to SECOND).amount)
 
-	public Coulombs(BigDecimalAmount amount) {
-		super(amount, COULOMB);
-	}
+    operator fun div(electricCurrent: ElectricCurrent) =
+        Seconds(this.amount / (electricCurrent to AMPERE).amount)
 
-	public Coulombs(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, COULOMB);
-	}
+    override fun div(electricCapacitance: ElectricCapacitance) =
+        Volts(this.amount / (electricCapacitance to FARAD).amount)
 
-	// endregion
+    override fun div(electricPotential: ElectricPotential) =
+        Farads(this.amount / (electricPotential to VOLT).amount)
 
-	// region implement UnitAmount
+    override fun times(electricPotential: ElectricPotential) =
+        Joules(this.amount * (electricPotential to VOLT).amount)
 
-	@NotNull
-	@Override
-	public Coulombs plus(@NotNull UnitAmount<ElectricChargeUnit> electricCharge) {
-		return new Coulombs(plusAmount(this, electricCharge));
-	}
-
-	@NotNull
-	@Override
-	public Coulombs minus(@NotNull UnitAmount<ElectricChargeUnit> electricCharge) {
-		return new Coulombs(minusAmount(this, electricCharge));
-	}
-
-	@NotNull
-	@Override
-	public Coulombs times(@NotNull Number scalar) {
-		return new Coulombs(UnitAmountUtils.times(this, scalar));
-	}
-
-	@NotNull
-	@Override
-	public Coulombs div(@NotNull Number scalar) {
-		return new Coulombs(dividedByScalar(this, scalar));
-	}
-
-	@Override
-	public Coulombs to(ElectricChargeUnit unit) {
-		return new Coulombs(getAmountIn(this, unit));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Amperes div(Time time) {
-		return new Amperes(getAmount().div(getAmountIn(time, SECOND)));
-	}
-
-	public Seconds div(ElectricCurrent electricCurrent) {
-		return new Seconds(getAmount().div(getAmountIn(electricCurrent, AMPERE)));
-	}
-
-	public Volts div(ElectricCapacitance electricCapacitance) {
-		return new Volts(getAmount().div(getAmountIn(electricCapacitance, FARAD)));
-	}
-
-	public Farads div(ElectricPotential electricPotential) {
-		return new Farads(getAmount().div(getAmountIn(electricPotential, VOLT)));
-	}
-
-	public Joules times(ElectricPotential electricPotential) {
-		return new Joules(getAmount().times(getAmountIn(electricPotential, VOLT)));
-	}
-
-	// endregion
+    // endregion
 }

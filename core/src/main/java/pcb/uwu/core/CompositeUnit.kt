@@ -23,10 +23,10 @@ open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCount
 
     override val pluralName = unitCounter.asString(Unit::pluralName, Unit::singularName)
 
-    override val translationToCanonical: Function<BigDecimalAmount, BigDecimalAmount>
+    override val translationToCanonical: Function<Amount, Amount>
         get()
         {
-            var result = Function.identity<BigDecimalAmount>()
+            var result = Function.identity<Amount>()
             for (unitCount in unitCounter.baseUnits)
             {
                 val unit = unitCount.unit
@@ -49,10 +49,10 @@ open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCount
             return result
         }
 
-    override val translationFromCanonical: Function<BigDecimalAmount, BigDecimalAmount>
+    override val translationFromCanonical: Function<Amount, Amount>
         get()
         {
-            var result = Function.identity<BigDecimalAmount>()
+            var result = Function.identity<Amount>()
             for (unitCount in unitCounter.baseUnits)
             {
                 val unit = unitCount.unit
@@ -90,9 +90,9 @@ open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCount
         if (this === that) return true
         if (that !is Unit) return false
         return unitCounter == that.unitCounter &&
-                translationFromCanonical.apply(BigDecimalAmount.ONE) == that.translationFromCanonical.apply(
-                BigDecimalAmount.ONE) &&
-                translationToCanonical.apply(BigDecimalAmount.ONE) == that.translationToCanonical.apply(BigDecimalAmount.ONE)
+                translationFromCanonical.apply(Amount.ONE) == that.translationFromCanonical.apply(
+                Amount.ONE) &&
+                translationToCanonical.apply(Amount.ONE) == that.translationToCanonical.apply(Amount.ONE)
     }
 
     override fun hashCode() = unitCounter.hashCode()

@@ -3,7 +3,7 @@ package pcb.uwu.amount.derived.optics;
 import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Candelas;
 import pcb.uwu.amount.derived.fundamental.Area;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.optics.LuminanceUnit;
@@ -46,11 +46,11 @@ public class Nits extends Luminance {
 		super(value, magnitude, NIT);
 	}
 
-	public Nits(BigDecimalAmount amount) {
+	public Nits(Amount amount) {
 		super(amount, NIT);
 	}
 
-	public Nits(BigDecimalAmount amount, Magnitude magnitude) {
+	public Nits(Amount amount, Magnitude magnitude) {
 		super(amount, magnitude, NIT);
 	}
 

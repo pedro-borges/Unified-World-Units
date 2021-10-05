@@ -61,7 +61,8 @@ open class Speed : CompositeUnitAmount<SpeedUnit>
 
     fun div(time: Time) =
         Acceleration(amount = this.amount / time.amount,
-                     unit = AccelerationUnit(this.unit, time.unit))
+                     unit = AccelerationUnit(lengthUnit = this.unit,
+                                             timeUnit = time.unit))
 
     open fun div(acceleration: Acceleration) =
         Time(amount = (this / acceleration).amount,

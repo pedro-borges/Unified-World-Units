@@ -1,6 +1,6 @@
 package pcb.uwu.unit.derived.fundamental;
 
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 
 import java.math.BigDecimal;
 import java.util.function.Function;
@@ -28,13 +28,13 @@ public class LitreUnit extends VolumeUnit {
 		}
 
 		@Override
-		public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
+		public Function<Amount, Amount> getTranslationToCanonical() {
 			return super.getTranslationToCanonical()
 					.andThen(amount -> amount.div(ONE_THOUSAND));
 		}
 
 		@Override
-		public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
+		public Function<Amount, Amount> getTranslationFromCanonical() {
 			return super.getTranslationFromCanonical()
 					.andThen(amount -> amount.times(ONE_THOUSAND));
 		}

@@ -2,7 +2,7 @@ package pcb.uwu.core
 
 interface UnitAmount<U : Unit> : Comparable<UnitAmount<U>>
 {
-    val amount: BigDecimalAmount
+    val amount: Amount
 
     val unit: U
 

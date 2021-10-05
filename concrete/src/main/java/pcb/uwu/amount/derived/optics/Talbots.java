@@ -3,7 +3,7 @@ package pcb.uwu.amount.derived.optics;
 import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Seconds;
 import pcb.uwu.amount.base.Time;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.optics.LuminousEnergyUnit;
@@ -47,11 +47,11 @@ public class Talbots extends LuminousEnergy {
 		super(value, magnitude, TALBOT);
 	}
 
-	public Talbots(BigDecimalAmount amount) {
+	public Talbots(Amount amount) {
 		super(amount, TALBOT);
 	}
 
-	public Talbots(BigDecimalAmount amount, Magnitude magnitude) {
+	public Talbots(Amount amount, Magnitude magnitude) {
 		super(amount, magnitude, TALBOT);
 	}
 

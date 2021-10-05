@@ -1,7 +1,7 @@
 package pcb.uwu.amount.finance;
 
 import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.finance.CurrencyUnit;
 import pcb.uwu.utils.UnitAmountUtils;
@@ -30,7 +30,7 @@ public class EUR extends Currency {
 		super(value, CURRENCY);
 	}
 
-	public EUR(BigDecimalAmount amount) {
+	public EUR(Amount amount) {
 		super(amount, CURRENCY);
 	}
 

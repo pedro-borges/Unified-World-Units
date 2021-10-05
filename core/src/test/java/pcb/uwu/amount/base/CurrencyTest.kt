@@ -3,7 +3,7 @@ package pcb.uwu.amount.base
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import pcb.uwu.amount.finance.Currency
-import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.core.Amount
 import pcb.uwu.exception.InvalidCurrencyException
 import pcb.uwu.unit.finance.CurrencyUnit.Companion.GBP
 import pcb.uwu.unit.finance.CurrencyUnit.Companion.USD
@@ -14,8 +14,8 @@ class CurrencyTest
     @Test
     fun testConstructHonoursDefaultFractionDigits()
     {
-        assertEquals(BigDecimalAmount("1.00"), Currency("1.005", GBP).amount)
-        assertEquals(BigDecimalAmount("1.00"), Currency("0.995", GBP).amount)
+        assertEquals(Amount("1.00"), Currency("1.005", GBP).amount)
+        assertEquals(Amount("1.00"), Currency("0.995", GBP).amount)
     }
 
     // endregion

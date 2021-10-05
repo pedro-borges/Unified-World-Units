@@ -1,15 +1,15 @@
 package pcb.uwu.unit.base
 
+import pcb.uwu.core.Amount
 import pcb.uwu.core.BaseUnit
-import pcb.uwu.core.BigDecimalAmount
 import pcb.uwu.core.UnitCounter
 import java.util.function.Function
 
 open class MassUnit(symbol: String,
                     singularName: String,
                     pluralName: String,
-                    translationToCanonical: Function<BigDecimalAmount, BigDecimalAmount>,
-                    translationFromCanonical: Function<BigDecimalAmount, BigDecimalAmount>) :
+                    translationToCanonical: Function<Amount, Amount>,
+                    translationFromCanonical: Function<Amount, Amount>) :
     BaseUnit(2, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical)
 {
     override val unitCounter

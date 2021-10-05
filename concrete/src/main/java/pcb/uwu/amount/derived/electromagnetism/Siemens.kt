@@ -1,104 +1,48 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.ElectricCurrent;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.electromagnetism.ElectricConductanceUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.ElectricCurrent
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.AmpereUnit.AMPERE
+import pcb.uwu.unit.derived.electromagnetism.ElectricConductanceUnit
+import pcb.uwu.unit.derived.electromagnetism.SiemensUnit.SIEMENS
 
-import java.math.BigDecimal;
+class Siemens : ElectricConductance
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, SIEMENS)
 
-import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
-import static pcb.uwu.unit.derived.electromagnetism.SiemensUnit.SIEMENS;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(value: String,
+                magnitude: Magnitude = NATURAL)
+            : super(value, magnitude, SIEMENS)
 
-public class Siemens extends ElectricConductance {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(electricConductance: UnitAmount<ElectricConductanceUnit>) =
+        Siemens(this.amount + (electricConductance to SIEMENS).amount)
 
-	public Siemens(Number value) {
-		super(value, SIEMENS);
-	}
+    override fun minus(electricConductance: UnitAmount<ElectricConductanceUnit>) =
+        Siemens(this.amount - (electricConductance to SIEMENS).amount)
 
-	public Siemens(Number value, Magnitude magnitude) {
-		super(value, magnitude, SIEMENS);
-	}
+    override fun times(scalar: Number) =
+        Siemens(this.amount * scalar)
 
-	public Siemens(String value) {
-		super(value, SIEMENS);
-	}
+    override fun div(scalar: Number) =
+        Siemens(this.amount / scalar)
 
-	public Siemens(String value, Magnitude magnitude) {
-		super(value, magnitude, SIEMENS);
-	}
+    override fun invert() =
+        Ohms(amount.invert())
 
-	public Siemens(BigDecimal value) {
-		super(value, SIEMENS);
-	}
+    // endregion
 
-	public Siemens(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, SIEMENS);
-	}
+    // region composition
 
-	public Siemens(BigDecimalAmount amount) {
-		super(amount, SIEMENS);
-	}
+    override fun times(electricCurrent: ElectricCurrent) =
+        Volts(this.amount * (electricCurrent to AMPERE).amount)
 
-	public Siemens(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, SIEMENS);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Siemens plus(@NotNull UnitAmount<ElectricConductanceUnit> electricConductance) {
-		return new Siemens(plusAmount(this, electricConductance));
-	}
-
-	@NotNull
-	@Override
-	public Siemens minus(@NotNull UnitAmount<ElectricConductanceUnit> electricConductance) {
-		return new Siemens(minusAmount(this, electricConductance));
-	}
-
-	@NotNull
-	@Override
-	public Siemens times(@NotNull Number scalar) {
-		return new Siemens(UnitAmountUtils.times(this, scalar));
-	}
-
-	@NotNull
-	@Override
-	public Siemens div(@NotNull Number scalar) {
-		return new Siemens(dividedByScalar(this, scalar));
-	}
-
-	@Override
-	public Siemens to(ElectricConductanceUnit unit) {
-		return new Siemens(getAmountIn(this, unit));
-	}
-
-	@NotNull
-	@Override
-	public Ohms invert() {
-		return new Ohms(getAmount().invert());
-	}
-
-	// endregion
-
-	// region composition
-
-	public Volts times(ElectricCurrent electricCurrent) {
-		return new Volts(getAmount().times(getAmountIn(electricCurrent, AMPERE)));
-	}
-
-	// endregion
+    // endregion
 }

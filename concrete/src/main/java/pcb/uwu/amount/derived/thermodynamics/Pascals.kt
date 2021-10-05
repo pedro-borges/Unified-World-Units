@@ -42,10 +42,10 @@ class Pascals : Pressure
     // region composition
 
     override fun times(volume: Volume) =
-        Joules(amount * (volume to CUBIC_METER).amount)
+        Joules(this.amount * (volume to CUBIC_METER).amount)
 
     override fun times(area: Area) =
-        Newtons(amount * (area to SQUARE_METER).amount)
+        Newtons(this.amount * (area to SQUARE_METER).amount)
 
     // endregion
 }

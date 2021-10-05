@@ -26,4 +26,10 @@ open class ElectricResistanceUnit : CompositeUnit
     constructor(electricConductanceUnit: ElectricConductanceUnit)
             : super(UnitCounter()
                         .minor(electricConductanceUnit))
+
+    constructor(electricPotentialUnit: ElectricPotentialUnit,
+                electricCurrentUnit: ElectricCurrentUnit)
+            : super(UnitCounter()
+                        .major(electricPotentialUnit)
+                        .major(electricCurrentUnit))
 }

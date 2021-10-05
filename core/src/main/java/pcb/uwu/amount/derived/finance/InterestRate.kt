@@ -54,7 +54,8 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
 
     fun times(currency: Currency) =
         Rent(amount = UnitAmountUtils.times(this, currency.amount.value),
-             unit = RentUnit(currency.unit, this.unit))
+             unit = RentUnit(interestRateUnit = this.unit,
+                             currency = currency.unit))
 
     fun times(debt: Debt) =
         Currency(amount = (this * debt).amount,

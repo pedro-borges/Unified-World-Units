@@ -1,103 +1,49 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.Seconds;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.electromagnetism.ElectricCapacitanceUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.Seconds
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.electromagnetism.ElectricCapacitanceUnit
+import pcb.uwu.unit.derived.electromagnetism.FaradUnit.FARAD
+import pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM
+import pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT
 
-import java.math.BigDecimal;
+class Farads : ElectricCapacitance
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, FARAD)
 
-import static pcb.uwu.unit.derived.electromagnetism.FaradUnit.FARAD;
-import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
-import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, FARAD)
 
-public class Farads extends ElectricCapacitance {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(electricCapacitance: UnitAmount<ElectricCapacitanceUnit>) =
+        Farads(this.amount + (electricCapacitance to FARAD).amount)
 
-	public Farads(Number value) {
-		super(value, FARAD);
-	}
+    override fun minus(electricCapacitance: UnitAmount<ElectricCapacitanceUnit>) =
+        Farads(this.amount - (electricCapacitance to FARAD).amount)
 
-	public Farads(Number value, Magnitude magnitude) {
-		super(value, magnitude, FARAD);
-	}
+    override fun times(scalar: Number) =
+        Farads(this.amount * scalar)
 
-	public Farads(String value) {
-		super(value, FARAD);
-	}
+    override fun div(scalar: Number) =
+        Farads(this.amount / scalar)
 
-	public Farads(String value, Magnitude magnitude) {
-		super(value, magnitude, FARAD);
-	}
+    // endregion
 
-	public Farads(BigDecimal value) {
-		super(value, FARAD);
-	}
+    // region composition
 
-	public Farads(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, FARAD);
-	}
+    operator fun times(electricPotential: ElectricPotential) =
+        Coulombs(this.amount * (electricPotential to VOLT).amount)
 
-	public Farads(BigDecimalAmount amount) {
-		super(amount, FARAD);
-	}
+    operator fun times(electricResistance: ElectricResistance) =
+        Seconds(this.amount * (electricResistance to OHM).amount)
 
-	public Farads(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, FARAD);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Farads plus(@NotNull UnitAmount<ElectricCapacitanceUnit> electricCapacitance) {
-		return new Farads(plusAmount(this, electricCapacitance));
-	}
-
-	@NotNull
-	@Override
-	public Farads minus(@NotNull UnitAmount<ElectricCapacitanceUnit> electricCapacitance) {
-		return new Farads(minusAmount(this, electricCapacitance));
-	}
-
-	@NotNull
-	@Override
-	public Farads times(@NotNull Number scalar) {
-		return new Farads(UnitAmountUtils.times(this, scalar));
-	}
-
-	@NotNull
-	@Override
-	public Farads div(@NotNull Number scalar) {
-		return new Farads(dividedByScalar(this, scalar));
-	}
-
-	@Override
-	public Farads to(ElectricCapacitanceUnit unit) {
-		return new Farads(getAmountIn(this, unit));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Coulombs times(ElectricPotential electricPotential) {
-		return new Coulombs(getAmount().times(getAmountIn(electricPotential, VOLT)));
-	}
-
-	public Seconds times(ElectricResistance electricResistance) {
-		return new Seconds(getAmount().times(getAmountIn(electricResistance, OHM)));
-	}
-
-	// endregion
+    // endregion
 }

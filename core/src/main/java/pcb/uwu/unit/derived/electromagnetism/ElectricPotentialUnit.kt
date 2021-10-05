@@ -35,4 +35,28 @@ open class ElectricPotentialUnit : CompositeUnit
             : super(UnitCounter()
                         .major(powerUnit)
                         .minor(electricCurrentUnit))
+
+    constructor(electricChargeUnit: ElectricChargeUnit,
+                electricCapacitanceUnit: ElectricCapacitanceUnit)
+            : super(UnitCounter()
+                        .major(electricChargeUnit)
+                        .minor(electricCapacitanceUnit))
+
+    constructor(magneticFluxUnit: MagneticFluxUnit,
+                timeUnit: TimeUnit)
+            : super(UnitCounter()
+                        .major(magneticFluxUnit)
+                        .minor(timeUnit))
+
+    constructor(electricResistanceUnit: ElectricResistanceUnit,
+                electricCurrentUnit: ElectricCurrentUnit)
+            : super(UnitCounter()
+                        .major(electricResistanceUnit)
+                        .major(electricCurrentUnit))
+
+    constructor(electricCurrentUnit: ElectricCurrentUnit,
+                electricConductanceUnit: ElectricConductanceUnit)
+            : super(UnitCounter()
+                        .major(electricCurrentUnit)
+                        .major(electricConductanceUnit))
 }

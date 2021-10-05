@@ -1,7 +1,7 @@
 package pcb.uwu.amount.derived.scalar;
 
 import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.scalar.AngleUnit;
@@ -42,11 +42,11 @@ public class Radians extends Angle {
 		super(value, magnitude, RADIAN);
 	}
 
-	public Radians(BigDecimalAmount amount) {
+	public Radians(Amount amount) {
 		super(amount, RADIAN);
 	}
 
-	public Radians(BigDecimalAmount amount, Magnitude magnitude) {
+	public Radians(Amount amount, Magnitude magnitude) {
 		super(amount, magnitude, RADIAN);
 	}
 

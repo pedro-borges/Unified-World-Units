@@ -49,13 +49,13 @@ class SpeedTest
     @Test
     fun testInto()
     {
-        assertEquals("10 m⋅s⁻¹",
-                     (MetersPerSecond(10) to SpeedUnit(METER, SECOND)).toString())
-        assertEquals("600 m⋅min⁻¹",
-                     (MetersPerSecond(10) to SpeedUnit(METER, MINUTE)).toString())
-        assertEquals("23622.04724409448818897637795275591 in⋅min⁻¹",
-                     (MetersPerSecond(10) to SpeedUnit(INCH, MINUTE)).toString())
-        assertEquals("393.7007874015748031496062992125984 in⋅s⁻¹",
-                     (MetersPerSecond(10) to SpeedUnit(INCH, SECOND)).toString())
+        assertEquals("1 m⋅s⁻¹",
+                     (MetersPerSecond(1) to SpeedUnit(METER, SECOND)).toString())
+        assertEquals("60 m⋅min⁻¹",
+                     (MetersPerSecond(1) to SpeedUnit(METER, MINUTE)).toString())
+        assertEquals("2362.20472440944881889763779527559 in⋅min⁻¹",
+                     (MetersPerSecond(1) to SpeedUnit(INCH, MINUTE)).toString())
+        assertEquals("39.37007874015748031496062992125984 in⋅s⁻¹",
+                     (MetersPerSecond(1) to SpeedUnit(INCH, SECOND)).toString())
     }
 }

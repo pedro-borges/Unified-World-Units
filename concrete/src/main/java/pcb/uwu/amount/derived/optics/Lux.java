@@ -2,7 +2,7 @@ package pcb.uwu.amount.derived.optics;
 
 import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.derived.fundamental.Area;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.optics.IlluminanceUnit;
@@ -45,11 +45,11 @@ public class Lux extends Illuminance {
 		super(value, magnitude, LUX);
 	}
 
-	public Lux(BigDecimalAmount amount) {
+	public Lux(Amount amount) {
 		super(amount, LUX);
 	}
 
-	public Lux(BigDecimalAmount amount, Magnitude magnitude) {
+	public Lux(Amount amount, Magnitude magnitude) {
 		super(amount, magnitude, LUX);
 	}
 

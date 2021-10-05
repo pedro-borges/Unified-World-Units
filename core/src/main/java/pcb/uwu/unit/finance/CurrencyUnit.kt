@@ -1,7 +1,7 @@
 package pcb.uwu.unit.finance
 
+import pcb.uwu.core.Amount
 import pcb.uwu.core.BaseUnit
-import pcb.uwu.core.BigDecimalAmount
 import pcb.uwu.core.UnitCounter
 import pcb.uwu.exception.InvalidCurrencyException
 import java.util.Currency
@@ -18,10 +18,10 @@ class CurrencyUnit(val currency: Currency)
     override val unitCounter: UnitCounter
         get() = UnitCounter(this)
 
-    override val translationToCanonical: Function<BigDecimalAmount, BigDecimalAmount>
+    override val translationToCanonical: Function<Amount, Amount>
         get() = throw InvalidCurrencyException("Dynamic currency conversion is not possible")
 
-    override val translationFromCanonical: Function<BigDecimalAmount, BigDecimalAmount>
+    override val translationFromCanonical: Function<Amount, Amount>
         get() = throw InvalidCurrencyException("Dynamic currency conversion is not possible")
 
     override val baseUnitType = CurrencyUnit::class.java

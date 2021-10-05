@@ -56,11 +56,13 @@ open class Power : CompositeUnitAmount<PowerUnit>
 
     open operator fun times(time: Time) =
         Energy(amount = this.amount * time.amount,
-               unit = EnergyUnit(this.unit, time.unit))
+               unit = EnergyUnit(powerUnit = this.unit,
+                                 timeUnit = time.unit))
 
     open operator fun div(electricCurrent: ElectricCurrent) =
         ElectricPotential(amount = this.amount / electricCurrent.amount,
-                          unit = ElectricPotentialUnit(this.unit, electricCurrent.unit))
+                          unit = ElectricPotentialUnit(powerUnit = this.unit,
+                                                       electricCurrentUnit = electricCurrent.unit))
 
     // endregion
 }

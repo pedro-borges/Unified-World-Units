@@ -56,29 +56,29 @@ class Joules : Energy
     // region composition
 
     override fun div(volume: Volume) =
-        Pascals(amount / (volume to CUBIC_METER).amount)
+        Pascals(this.amount / (volume to CUBIC_METER).amount)
 
     override fun div(pressure: Pressure) =
         Volume(amount = this.amount / (pressure to PASCAL).amount,
                       unit = CUBIC_METER)
 
     operator fun div(power: Power) =
-        Seconds(amount / (power to WattUnit.WATT).amount)
+        Seconds(this.amount / (power to WattUnit.WATT).amount)
 
     override fun div(time: Time) =
-        Watts(amount / (time to SECOND).amount)
+        Watts(this.amount / (time to SECOND).amount)
 
     override fun div(length: Length) =
-        Newtons(amount / (length to METER).amount)
+        Newtons(this.amount / (length to METER).amount)
 
     operator fun div(force: Force) =
-        Meters(amount / (force to NEWTON).amount)
+        Meters(this.amount / (force to NEWTON).amount)
 
     override fun div(electricCharge: ElectricCharge) =
-        Volts(amount / (electricCharge to COULOMB).amount)
+        Volts(this.amount / (electricCharge to COULOMB).amount)
 
     override fun div(electricPotential: ElectricPotential) =
-        Coulombs(amount / (electricPotential to VOLT).amount)
+        Coulombs(this.amount / (electricPotential to VOLT).amount)
 
     // endregion
 }

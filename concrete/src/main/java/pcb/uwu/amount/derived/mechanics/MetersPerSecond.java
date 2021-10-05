@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Meters;
 import pcb.uwu.amount.base.Seconds;
 import pcb.uwu.amount.base.Time;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
 import pcb.uwu.utils.UnitAmountUtils;
@@ -50,11 +50,11 @@ public class MetersPerSecond extends Speed {
 		super(value, magnitude, METER_PER_SECOND);
 	}
 
-	public MetersPerSecond(BigDecimalAmount amount) {
+	public MetersPerSecond(Amount amount) {
 		super(amount, METER_PER_SECOND);
 	}
 
-	public MetersPerSecond(BigDecimalAmount amount, Magnitude magnitude) {
+	public MetersPerSecond(Amount amount, Magnitude magnitude) {
 		super(amount, magnitude, METER_PER_SECOND);
 	}
 

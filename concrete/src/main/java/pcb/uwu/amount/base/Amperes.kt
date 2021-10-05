@@ -63,7 +63,7 @@ class Amperes : ElectricCurrent
 
     operator fun div(electricConductance: ElectricConductance): Volts
     {
-        return Volts(amount / (electricConductance to SIEMENS).amount)
+        return Volts(this.amount / (electricConductance to SIEMENS).amount)
     }
 
     // endregion

@@ -3,7 +3,7 @@ package pcb.uwu.amount.derived.scalar;
 import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.LuminousIntensity;
 import pcb.uwu.amount.derived.optics.Lumens;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.scalar.SolidAngleUnit;
@@ -46,11 +46,11 @@ public class Steradians extends SolidAngle {
 		super(value, magnitude, STERADIAN);
 	}
 
-	public Steradians(BigDecimalAmount amount) {
+	public Steradians(Amount amount) {
 		super(amount, STERADIAN);
 	}
 
-	public Steradians(BigDecimalAmount amount, Magnitude magnitude) {
+	public Steradians(Amount amount, Magnitude magnitude) {
 		super(amount, magnitude, STERADIAN);
 	}
 

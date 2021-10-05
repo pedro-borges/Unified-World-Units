@@ -8,7 +8,7 @@ import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.amount.derived.thermodynamics.Joules;
 import pcb.uwu.amount.derived.thermodynamics.Pascals;
 import pcb.uwu.amount.derived.thermodynamics.Pressure;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
@@ -55,11 +55,11 @@ public class Newtons extends Force {
 		super(value, magnitude, NEWTON);
 	}
 
-	public Newtons(BigDecimalAmount amount) {
+	public Newtons(Amount amount) {
 		super(amount, NEWTON);
 	}
 
-	public Newtons(BigDecimalAmount amount, Magnitude magnitude) {
+	public Newtons(Amount amount, Magnitude magnitude) {
 		super(amount, magnitude, NEWTON);
 	}
 

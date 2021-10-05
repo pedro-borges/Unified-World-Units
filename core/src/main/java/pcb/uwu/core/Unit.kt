@@ -25,16 +25,16 @@ interface Unit
     /**
      * @return a scalar function that converts this unit to the respective canonical
      */
-    val translationToCanonical: Function<BigDecimalAmount, BigDecimalAmount>
+    val translationToCanonical: Function<Amount, Amount>
 
-    fun toCanonical(amount: BigDecimalAmount) = translationToCanonical.apply(amount)
+    fun toCanonical(amount: Amount) = translationToCanonical.apply(amount)
 
     /**
      * @return a scalar function that converts this unit from the respective canonical
      */
-    val translationFromCanonical: Function<BigDecimalAmount, BigDecimalAmount>
+    val translationFromCanonical: Function<Amount, Amount>
 
-    fun fromCanonical(amount: BigDecimalAmount) = translationFromCanonical.apply(amount)
+    fun fromCanonical(amount: Amount) = translationFromCanonical.apply(amount)
 
     /**
      * Assert if the unit is a scalar.

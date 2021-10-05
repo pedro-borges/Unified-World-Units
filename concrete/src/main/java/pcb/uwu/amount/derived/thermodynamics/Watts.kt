@@ -45,13 +45,13 @@ class Watts : Power
     // region composition
 
     override fun times(time: Time) =
-        Joules(amount * (time to SECOND).amount)
+        Joules(this.amount * (time to SECOND).amount)
 
     override fun div(electricCurrent: ElectricCurrent) =
-        Volts(amount / (electricCurrent to AMPERE).amount)
+        Volts(this.amount / (electricCurrent to AMPERE).amount)
 
     operator fun div(electricPotential: ElectricPotential) =
-        Amperes(amount / (electricPotential to VOLT).amount)
+        Amperes(this.amount / (electricPotential to VOLT).amount)
 
     // endregion
 }

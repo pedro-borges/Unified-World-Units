@@ -9,7 +9,7 @@ import java.util.function.Function.identity
 
 open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 {
-    final override val amount: BigDecimalAmount
+    final override val amount: Amount
     final override val unit: U
 
     // region constructors
@@ -30,14 +30,14 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
     constructor(amount: BigDecimal,
                 magnitude: Magnitude = NATURAL,
                 unit: U)
-            : this(BigDecimalAmount(amount), magnitude, unit)
+            : this(Amount(amount), magnitude, unit)
 
-    constructor(amount: BigDecimalAmount,
+    constructor(amount: Amount,
                 magnitude: Magnitude = NATURAL,
                 unit: U)
             : this(amount.times(magnitude.value), unit)
 
-    constructor(amount: BigDecimalAmount, unit: U)
+    constructor(amount: Amount, unit: U)
     {
         this.amount = amount
         this.unit = unit
@@ -70,7 +70,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
     override fun times(amount: UnitAmount<out Unit>): UnitAmount<Unit>
     {
         var resultUnitCounter = UnitCounter(unit.unitCounter)
-        var transformation = identity<BigDecimalAmount>()
+        var transformation = identity<Amount>()
         for (otherUnitCount in amount.unit.unitCounter.baseUnits)
         {
             val resultUnitCount = resultUnitCounter[otherUnitCount.unit]
@@ -162,7 +162,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
     override fun div(amount: UnitAmount<out Unit>): UnitAmount<Unit>
     {
         var resultUnitCounter = UnitCounter(unit.unitCounter)
-        var transformation = identity<BigDecimalAmount>()
+        var transformation = identity<Amount>()
         for (otherUnitCount in amount.unit.unitCounter.baseUnits)
         {
             val resultUnitCount = resultUnitCounter[otherUnitCount.unit]

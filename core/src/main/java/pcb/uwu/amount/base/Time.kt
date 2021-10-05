@@ -9,7 +9,7 @@ import pcb.uwu.amount.derived.optics.LuminousFlux
 import pcb.uwu.amount.derived.thermodynamics.Energy
 import pcb.uwu.amount.derived.thermodynamics.Power
 import pcb.uwu.amount.finance.Currency
-import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.core.Amount
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
@@ -41,7 +41,7 @@ open class Time : CompositeUnitAmount<TimeUnit>
 
     constructor(duration: Duration,
                 unit: TimeUnit)
-            : super(unit.translationFromCanonical.apply(BigDecimalAmount(duration.toNanos()))
+            : super(unit.translationFromCanonical.apply(Amount(duration.toNanos()))
                         .div(BigDecimal(1000000000)), unit)
 
 
@@ -79,11 +79,13 @@ open class Time : CompositeUnitAmount<TimeUnit>
 
     open operator fun times(currency: Currency) =
         Debt(amount = this.amount * currency.amount,
-             unit = DebtUnit(currency.unit, this.unit))
+             unit = DebtUnit(currencyUnit = currency.unit,
+                             timeUnit = this.unit))
 
     open operator fun div(length: Length) =
         Pace(amount = this.amount / length.amount,
-             unit = PaceUnit(this.unit, length.unit))
+             unit = PaceUnit(timeUnit = this.unit,
+                             lengthUnit = length.unit))
 
 
     open operator fun times(electricCurrent: ElectricCurrent) =

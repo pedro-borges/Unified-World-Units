@@ -45,13 +45,13 @@ class Seconds : Time
     // region composition
 
     override fun times(electricCurrent: ElectricCurrent) =
-        Coulombs(amount * (electricCurrent to  AMPERE).amount)
+        Coulombs(this.amount * (electricCurrent to  AMPERE).amount)
 
     override fun times(power: Power) =
-        Joules(amount * (power to WATT).amount)
+        Joules(this.amount * (power to WATT).amount)
 
     override fun times(luminousFlux: LuminousFlux) =
-        Talbots(amount * (luminousFlux to LUMEN).amount)
+        Talbots(this.amount * (luminousFlux to LUMEN).amount)
 
     // endregion
 }

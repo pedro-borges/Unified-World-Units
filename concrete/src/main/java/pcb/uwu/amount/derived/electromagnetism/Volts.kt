@@ -1,110 +1,55 @@
-package pcb.uwu.amount.derived.electromagnetism;
+package pcb.uwu.amount.derived.electromagnetism
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.Amperes;
-import pcb.uwu.amount.base.ElectricCurrent;
-import pcb.uwu.amount.derived.thermodynamics.Joules;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit;
-import pcb.uwu.utils.UnitAmountUtils;
+import pcb.uwu.amount.base.Amperes
+import pcb.uwu.amount.base.ElectricCurrent
+import pcb.uwu.amount.derived.thermodynamics.Joules
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.AmpereUnit.AMPERE
+import pcb.uwu.unit.derived.electromagnetism.CoulombUnit.COULOMB
+import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit
+import pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM
+import pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT
 
-import java.math.BigDecimal;
+class Volts : ElectricPotential
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, VOLT)
 
-import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
-import static pcb.uwu.unit.derived.electromagnetism.CoulombUnit.COULOMB;
-import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
-import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL)
+            : super(amount, magnitude, VOLT)
 
-public class Volts extends ElectricPotential {
+    // region UnitAmount
 
-	// region constructors
+    override fun plus(electricPotential: UnitAmount<ElectricPotentialUnit>) =
+        Volts(this.amount + (electricPotential to VOLT).amount)
 
-	public Volts(Number value) {
-		super(value, VOLT);
-	}
+    override fun minus(electricPotential: UnitAmount<ElectricPotentialUnit>) =
+        Volts(this.amount - (electricPotential to VOLT).amount)
 
-	public Volts(Number value, Magnitude magnitude) {
-		super(value, magnitude, VOLT);
-	}
+    override fun times(scalar: Number) =
+        Volts(this.amount * scalar)
 
-	public Volts(String value) {
-		super(value, VOLT);
-	}
+    override fun div(scalar: Number) =
+        Volts(this.amount / scalar)
 
-	public Volts(String value, Magnitude magnitude) {
-		super(value, magnitude, VOLT);
-	}
+    // endregion
 
-	public Volts(BigDecimal value) {
-		super(value, VOLT);
-	}
+    // region composition
 
-	public Volts(BigDecimal value, Magnitude magnitude) {
-		super(value, magnitude, VOLT);
-	}
+    operator fun div(electricResistance: ElectricResistance) =
+        Amperes(this.amount / (electricResistance to OHM).amount)
 
-	public Volts(BigDecimalAmount amount) {
-		super(amount, VOLT);
-	}
+    override fun div(electricCurrent: ElectricCurrent) =
+        Ohms(this.amount / (electricCurrent to AMPERE).amount)
 
-	public Volts(BigDecimalAmount amount, Magnitude magnitude) {
-		super(amount, magnitude, VOLT);
-	}
+    override fun times(electricCharge: ElectricCharge) =
+        Joules(this.amount * (electricCharge to COULOMB).amount)
 
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Volts plus(@NotNull UnitAmount<ElectricPotentialUnit> electricPotential) {
-		return new Volts(plusAmount(this, electricPotential));
-	}
-
-	@NotNull
-	@Override
-	public Volts minus(@NotNull UnitAmount<ElectricPotentialUnit> electricPotential) {
-		return new Volts(minusAmount(this, electricPotential));
-	}
-
-	@NotNull
-	@Override
-	public Volts times(@NotNull Number scalar) {
-		return new Volts(UnitAmountUtils.times(this, scalar));
-	}
-
-	@NotNull
-	@Override
-	public Volts div(@NotNull Number scalar) {
-		return new Volts(dividedByScalar(this, scalar));
-	}
-
-	@Override
-	public Volts to(ElectricPotentialUnit unit) {
-		return new Volts(getAmountIn(this, unit));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Amperes div(ElectricResistance electricResistance) {
-		return new Amperes(getAmount().div(getAmountIn(electricResistance, OHM)));
-	}
-
-	public Ohms div(ElectricCurrent electricCurrent) {
-		return new Ohms(getAmount().div(getAmountIn(electricCurrent, AMPERE)));
-	}
-
-	public Joules times(ElectricCharge electricCharge) {
-		return new Joules(getAmount().times(getAmountIn(electricCharge, COULOMB)));
-	}
-
-	// endregion
+    // endregion
 }

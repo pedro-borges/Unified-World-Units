@@ -1,7 +1,7 @@
 package pcb.uwu.amount.derived.fundamental;
 
 import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
@@ -42,11 +42,11 @@ public class Hertz extends Frequency {
 		super(value, magnitude, HERTZ);
 	}
 
-	public Hertz(BigDecimalAmount amount) {
+	public Hertz(Amount amount) {
 		super(amount, HERTZ);
 	}
 
-	public Hertz(BigDecimalAmount amount, Magnitude magnitude) {
+	public Hertz(Amount amount, Magnitude magnitude) {
 		super(amount, magnitude, HERTZ);
 	}
 	

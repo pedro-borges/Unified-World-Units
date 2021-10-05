@@ -1,6 +1,6 @@
 package pcb.uwu.amount.base
 
-import pcb.uwu.core.BigDecimalAmount
+import pcb.uwu.core.Amount
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
@@ -30,7 +30,7 @@ open class Temperature : CompositeUnitAmount<TemperatureUnit>
             : super(value, magnitude, unit)
 
     @JvmOverloads
-    constructor(amount: BigDecimalAmount,
+    constructor(amount: Amount,
                 magnitude: Magnitude = NATURAL,
                 unit: TemperatureUnit)
             : super(amount, magnitude, unit)

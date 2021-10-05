@@ -1,10 +1,19 @@
 package pcb.uwu.amount.derived.electromagnetism
 
+import pcb.uwu.amount.base.ElectricCurrent
+import pcb.uwu.amount.base.Time
+import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.thermodynamics.Energy
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.electromagnetism.ElectricInductanceUnit
+import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit
+import pcb.uwu.unit.derived.electromagnetism.MagneticFieldUnit
 import pcb.uwu.unit.derived.electromagnetism.MagneticFluxUnit
+import pcb.uwu.unit.derived.fundamental.AreaUnit
+import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 import pcb.uwu.utils.UnitAmountUtils
 
 open class MagneticFlux : CompositeUnitAmount<MagneticFluxUnit>
@@ -44,6 +53,34 @@ open class MagneticFlux : CompositeUnitAmount<MagneticFluxUnit>
     override fun to(unit: MagneticFluxUnit) =
         MagneticFlux(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
                      unit = unit)
+
+    // endregion
+
+    // region composition
+    open operator fun div(time: Time) =
+        ElectricPotential(amount = this.amount / time.amount,
+                          unit = ElectricPotentialUnit(magneticFluxUnit = this.unit,
+                                                       timeUnit = time.unit))
+
+    open operator fun div(electricCurrent: ElectricCurrent) =
+        ElectricInductance(amount = this.amount / electricCurrent.amount,
+                           unit = ElectricInductanceUnit(magneticFluxUnit = this.unit,
+                                                         electricCurrentUnit = electricCurrent.unit))
+
+    open operator fun div(magneticField: MagneticField) =
+        Area(amount = this.amount / magneticField.amount,
+             unit = AreaUnit(magneticFluxUnit = this.unit,
+                             magneticFieldUnit = magneticField.unit))
+
+    open operator fun div(area: Area) =
+        MagneticField(amount = this.amount / area.amount,
+                      unit = MagneticFieldUnit(magneticFluxUnit = this.unit,
+                                               areaUnit = area.unit))
+
+    open operator fun times(electricCurrent: ElectricCurrent) =
+        Energy(amount = this.amount * electricCurrent.amount,
+               unit = EnergyUnit(magneticFluxUnit = this.unit,
+                                 electricCurrentUnit = electricCurrent.unit))
 
     // endregion
 }

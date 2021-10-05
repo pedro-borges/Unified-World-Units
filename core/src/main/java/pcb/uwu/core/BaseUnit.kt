@@ -1,6 +1,6 @@
 package pcb.uwu.core
 
-import pcb.uwu.core.BigDecimalAmount.Companion.ONE
+import pcb.uwu.core.Amount.Companion.ONE
 import pcb.uwu.unit.base.ScalarUnit
 import java.util.Objects
 import java.util.function.Function
@@ -9,8 +9,8 @@ abstract class BaseUnit(private val precedence: Int,
                         override val symbol: String,
                         override val singularName: String,
                         override val pluralName: String,
-                        override val translationToCanonical: Function<BigDecimalAmount, BigDecimalAmount>,
-                        override val translationFromCanonical: Function<BigDecimalAmount, BigDecimalAmount>)
+                        override val translationToCanonical: Function<Amount, Amount>,
+                        override val translationFromCanonical: Function<Amount, Amount>)
     : Unit,
       Comparable<BaseUnit>
 {

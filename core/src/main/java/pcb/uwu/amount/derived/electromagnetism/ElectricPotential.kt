@@ -1,10 +1,14 @@
 package pcb.uwu.amount.derived.electromagnetism
 
+import pcb.uwu.amount.base.ElectricCurrent
+import pcb.uwu.amount.derived.thermodynamics.Energy
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit
+import pcb.uwu.unit.derived.electromagnetism.ElectricResistanceUnit
+import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 import pcb.uwu.utils.UnitAmountUtils
 
 open class ElectricPotential : CompositeUnitAmount<ElectricPotentialUnit>
@@ -46,4 +50,19 @@ open class ElectricPotential : CompositeUnitAmount<ElectricPotentialUnit>
                           unit = unit)
 
     // endregion
+
+    // region composition
+
+    open operator fun div(electricCurrent: ElectricCurrent) =
+        ElectricResistance(amount = this.amount / electricCurrent.amount,
+                           unit = ElectricResistanceUnit(electricPotentialUnit = this.unit,
+                                                         electricCurrentUnit = electricCurrent.unit))
+
+    open operator fun times(electricCharge: ElectricCharge) =
+        Energy(amount = this.amount * electricCharge.amount,
+               unit = EnergyUnit(electricPotentialUnit = this.unit,
+                                 electricChargeUnit = electricCharge.unit))
+
+    // endregion
+
 }

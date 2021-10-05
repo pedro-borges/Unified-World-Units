@@ -9,7 +9,7 @@ import pcb.uwu.amount.derived.fundamental.AreaFactory;
 import pcb.uwu.amount.derived.optics.Illuminance;
 import pcb.uwu.amount.derived.optics.Lumens;
 import pcb.uwu.amount.derived.optics.Luminance;
-import pcb.uwu.core.BigDecimalAmount;
+import pcb.uwu.core.Amount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.fundamental.AreaUnit;
@@ -73,11 +73,11 @@ public class SquareMeters extends Area {
 		super(value, magnitude, SQUARE_METER);
 	}
 
-	public SquareMeters(BigDecimalAmount amount) {
+	public SquareMeters(Amount amount) {
 		super(amount, SQUARE_METER);
 	}
 
-	public SquareMeters(BigDecimalAmount amount, Magnitude magnitude) {
+	public SquareMeters(Amount amount, Magnitude magnitude) {
 		super(amount, magnitude, SQUARE_METER);
 	}
 

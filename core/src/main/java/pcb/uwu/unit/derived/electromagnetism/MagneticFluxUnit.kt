@@ -6,6 +6,7 @@ import pcb.uwu.unit.base.ElectricCurrentUnit
 import pcb.uwu.unit.base.LengthUnit
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.derived.fundamental.AreaUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 
 open class MagneticFluxUnit : CompositeUnit
@@ -35,11 +36,10 @@ open class MagneticFluxUnit : CompositeUnit
                         .major(electricCurrentUnit))
 
     constructor(magneticFieldUnit: MagneticFieldUnit,
-                lengthUnit: LengthUnit)
+                areaUnit: AreaUnit)
             : super(UnitCounter()
                         .major(magneticFieldUnit)
-                        .major(lengthUnit)
-                        .major(lengthUnit))
+                        .major(areaUnit))
 
     constructor(energyUnit: EnergyUnit,
                 electricCurrentUnit: ElectricCurrentUnit)

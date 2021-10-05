@@ -7,15 +7,15 @@ import pcb.uwu.unit.derived.fundamental.FrequencyUnit
 
 class RentUnit : CompositeUnit
 {
-    constructor(money: CurrencyUnit,
+    constructor(currency: CurrencyUnit,
                 time: TimeUnit)
             : super(UnitCounter()
-                        .major(money)
+                        .major(currency)
                         .minor(time))
 
-    constructor(money: CurrencyUnit,
+    constructor(currency: CurrencyUnit,
                 interestRateUnit: FrequencyUnit)
             : super(UnitCounter()
-                        .major(money)
+                        .major(currency)
                         .major(interestRateUnit))
 }
