@@ -1,108 +1,64 @@
-package pcb.uwu.amount.derived.finance;
+package pcb.uwu.amount.derived.finance
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.finance.Money;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
-import pcb.uwu.unit.finance.CurrencyUnit;
-import pcb.uwu.unit.finance.RentUnit;
+import pcb.uwu.amount.finance.Money
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.fundamental.FrequencyUnit
+import pcb.uwu.unit.finance.CurrencyUnit
+import pcb.uwu.unit.finance.RentUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+class InterestRate : CompositeUnitAmount<FrequencyUnit>
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: FrequencyUnit)
+            : super(amount, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL,
+                unit: FrequencyUnit)
+            : super(amount, magnitude, unit)
 
-public class InterestRate extends CompositeUnitAmount<FrequencyUnit> {
+    // region UnitAmount
 
-	// region constructors
+    override operator fun plus(other: UnitAmount<FrequencyUnit>) =
+        InterestRate(amount = this.amount + other.into(this.unit).amount,
+                     unit = this.unit)
 
-	public InterestRate(Number value, FrequencyUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<FrequencyUnit>) =
+        InterestRate(amount = this.amount - other.into(this.unit).amount,
+                     unit = this.unit)
 
-	public InterestRate(Number value, Magnitude magnitude, FrequencyUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+        InterestRate(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+                     unit = this.unit)
 
-	public InterestRate(String value, FrequencyUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        InterestRate(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+                     unit = this.unit)
 
-	public InterestRate(String value, Magnitude magnitude, FrequencyUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: FrequencyUnit) =
+        InterestRate(amount = UnitAmountUtils.getAmountIn(this, unit),
+                     unit = this.unit)
 
-	public InterestRate(BigDecimal value, FrequencyUnit unit) {
-		super(value, unit);
-	}
+    // endregion
 
-	public InterestRate(BigDecimal value, Magnitude magnitude, FrequencyUnit unit) {
-		super(value, magnitude, unit);
-	}
+    // region composition
 
-	public InterestRate(BigDecimalAmount amount, FrequencyUnit unit) {
-		super(amount, unit);
-	}
+    fun multiply(money: Money, mathContext: MathContext) =
+        Rent(amount = UnitAmountUtils.multipliedByScalar(this, money.amount.value, mathContext),
+             unit = RentUnit(money.unit, this.unit))
 
-	public InterestRate(BigDecimalAmount amount, Magnitude magnitude, FrequencyUnit unit) {
-		super(amount, magnitude, unit);
-	}
+    fun multiply(debt: Debt, mathContext: MathContext) =
+        Money(amount = super.multiply(debt, mathContext).amount,
+              unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public InterestRate plus(@NotNull UnitAmount<FrequencyUnit> other) {
-		return new InterestRate(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public InterestRate minus(@NotNull UnitAmount<FrequencyUnit> other) {
-		return new InterestRate(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public InterestRate multiply(BigDecimal other, MathContext mathContext) {
-		return new InterestRate(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public InterestRate div(BigDecimal other, MathContext mathContext) {
-		return new InterestRate(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public InterestRate into(FrequencyUnit unit) {
-		return new InterestRate(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
-
-	// region composition
-
-	public Rent multipliedBy(Money money, MathContext mathContext) {
-		BigDecimalAmount amount = multipliedByScalar(this, money.getAmount().getValue(), mathContext);
-		RentUnit unit = new RentUnit(money.getUnit(), getUnit());
-
-		return new Rent(amount, unit);
-	}
-
-	public Money multipliedBy(Debt debt, MathContext mathContext) {
-		BigDecimalAmount amount = super.multiply(debt, mathContext).getAmount();
-		CurrencyUnit unit = getUnit().getUnitCounter().findUnit(CurrencyUnit.class);
-
-		return new Money(amount, unit);
-	}
-
-	// endregion
+    // endregion
 }

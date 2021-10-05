@@ -1,101 +1,60 @@
-package pcb.uwu.amount.derived.finance;
+package pcb.uwu.amount.derived.finance
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.Time;
-import pcb.uwu.amount.finance.Money;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.finance.CurrencyUnit;
-import pcb.uwu.unit.finance.RentUnit;
+import pcb.uwu.amount.base.Time
+import pcb.uwu.amount.finance.Money
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.finance.CurrencyUnit
+import pcb.uwu.unit.finance.RentUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+class Rent : CompositeUnitAmount<RentUnit>
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: RentUnit)
+            : super(amount, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL,
+                unit: RentUnit)
+            : super(amount, magnitude, unit)
 
-public class Rent extends CompositeUnitAmount<RentUnit> {
+    // region UnitAmount
 
-	// region constructors
+    override operator fun plus(other: UnitAmount<RentUnit>) =
+        Rent(amount = this.amount + other.into(this.unit).amount,
+             unit = this.unit)
 
-	public Rent(Number value, RentUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<RentUnit>) =
+        Rent(amount = this.amount - other.into(this.unit).amount,
+             unit = this.unit)
 
-	public Rent(Number value, Magnitude magnitude, RentUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+        Rent(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+             unit = this.unit)
 
-	public Rent(String value, RentUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        Rent(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+             unit = this.unit)
 
-	public Rent(String value, Magnitude magnitude, RentUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: RentUnit) =
+        Rent(amount = UnitAmountUtils.getAmountIn(this, unit),
+             unit = this.unit)
 
-	public Rent(BigDecimal value, RentUnit unit) {
-		super(value, unit);
-	}
+    // endregion
 
-	public Rent(BigDecimal value, Magnitude magnitude, RentUnit unit) {
-		super(value, magnitude, unit);
-	}
+    // region composition
 
-	public Rent(BigDecimalAmount amount, RentUnit unit) {
-		super(amount, unit);
-	}
+    fun multipliedBy(time: Time, mathContext: MathContext) =
+        Money(amount = super.multiply(time, mathContext).amount,
+              unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
-	public Rent(BigDecimalAmount amount, Magnitude magnitude, RentUnit unit) {
-		super(amount, magnitude, unit);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Rent plus(@NotNull UnitAmount<RentUnit> other) {
-		return new Rent(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public Rent minus(@NotNull UnitAmount<RentUnit> other) {
-		return new Rent(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public Rent multiply(BigDecimal other, MathContext mathContext) {
-		return new Rent(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Rent div(BigDecimal other, MathContext mathContext) {
-		return new Rent(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Rent into(RentUnit unit) {
-		return new Rent(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
-
-	// region composition
-
-	public Money multipliedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = super.multiply(time, mathContext).getAmount();
-		CurrencyUnit unit = getUnit().getUnitCounter().findUnit(CurrencyUnit.class);
-
-		return new Money(amount, unit);
-	}
-
-	// endregion
+    // endregion
 }

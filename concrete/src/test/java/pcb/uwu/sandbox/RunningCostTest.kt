@@ -16,7 +16,7 @@ class RunningCostTest
     fun test()
     {
         val duration = Meters(70, KILO).dividedBy(Meters(13, KILO).dividedBy(Hours(1), UNLIMITED), DECIMAL64)
-        val price = Money(18, CurrencyUnit.of("GBP")).dividedBy(Hours(1), UNLIMITED).multipliedBy(duration, UNLIMITED)
+        val price = Money(18, CurrencyUnit.of("GBP")).div(Hours(1), UNLIMITED).multipliedBy(duration, UNLIMITED)
         assertEquals("96.92 £", price.toString())
     }
 }

@@ -12,37 +12,37 @@ import java.math.MathContext
 open class ElectricPotential : CompositeUnitAmount<ElectricPotentialUnit>
 {
     @JvmOverloads
-    constructor(value: Number,
+    constructor(amount: Number,
                 magnitude: Magnitude = NATURAL,
                 unit: ElectricPotentialUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     @JvmOverloads
-    constructor(value: String,
+    constructor(amount: String,
                 magnitude: Magnitude = NATURAL,
                 unit: ElectricPotentialUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<ElectricPotentialUnit>) =
-        ElectricPotential(value = this.amount + other.into(this.unit).amount,
+        ElectricPotential(amount = this.amount + other.into(this.unit).amount,
                           unit = this.unit)
 
     override operator fun minus(other: UnitAmount<ElectricPotentialUnit>) =
-        ElectricPotential(value = this.amount - other.into(this.unit).amount,
+        ElectricPotential(amount = this.amount - other.into(this.unit).amount,
                           unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext): ElectricPotential =
-        ElectricPotential(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+        ElectricPotential(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                           unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
-        ElectricPotential(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+        ElectricPotential(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
                           unit = this.unit)
 
     override fun into(unit: ElectricPotentialUnit) =
-        ElectricPotential(value = UnitAmountUtils.getAmountIn(this, unit),
+        ElectricPotential(amount = UnitAmountUtils.getAmountIn(this, unit),
                           unit = this.unit)
 
     // endregion

@@ -12,37 +12,37 @@ import java.math.MathContext
 open class ElectricCurrent : CompositeUnitAmount<ElectricCurrentUnit>
 {
     @JvmOverloads
-    constructor(value: Number,
+    constructor(amount: Number,
                 magnitude: Magnitude = NATURAL,
                 unit: ElectricCurrentUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     @JvmOverloads
-    constructor(value: String,
+    constructor(amount: String,
                 magnitude: Magnitude = NATURAL,
                 unit: ElectricCurrentUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<ElectricCurrentUnit>) =
-        ElectricCurrent(value = this.amount + other.into(this.unit).amount,
+        ElectricCurrent(amount = this.amount + other.into(this.unit).amount,
                         unit = this.unit)
 
     override operator fun minus(other: UnitAmount<ElectricCurrentUnit>) =
-        ElectricCurrent(value = this.amount - other.into(this.unit).amount,
+        ElectricCurrent(amount = this.amount - other.into(this.unit).amount,
                         unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
-        ElectricCurrent(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+        ElectricCurrent(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                         unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
-        ElectricCurrent(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+        ElectricCurrent(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
                         unit = this.unit)
 
     override fun into(unit: ElectricCurrentUnit) =
-        ElectricCurrent(value = UnitAmountUtils.getAmountIn(this, unit),
+        ElectricCurrent(amount = UnitAmountUtils.getAmountIn(this, unit),
                         unit = this.unit)
 
     // endregion

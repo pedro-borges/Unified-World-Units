@@ -12,37 +12,37 @@ import java.math.MathContext
 open class ElectricCharge : CompositeUnitAmount<ElectricChargeUnit>
 {
     @JvmOverloads
-    constructor(value: Number,
+    constructor(amount: Number,
                 magnitude: Magnitude = NATURAL,
                 unit: ElectricChargeUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     @JvmOverloads
-    constructor(value: String,
+    constructor(amount: String,
                 magnitude: Magnitude = NATURAL,
                 unit: ElectricChargeUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<ElectricChargeUnit>) =
-        ElectricCharge(value = this.amount + other.into(this.unit).amount,
+        ElectricCharge(amount = this.amount + other.into(this.unit).amount,
                        unit = this.unit)
 
     override operator fun minus(other: UnitAmount<ElectricChargeUnit>) =
-        ElectricCharge(value = amount - other.into(unit).amount,
+        ElectricCharge(amount = amount - other.into(unit).amount,
                        unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
-        ElectricCharge(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+        ElectricCharge(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                        unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
-        ElectricCharge(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+        ElectricCharge(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
                        unit = this.unit)
 
     override fun into(unit: ElectricChargeUnit) =
-        ElectricCharge(value = UnitAmountUtils.getAmountIn(this, unit),
+        ElectricCharge(amount = UnitAmountUtils.getAmountIn(this, unit),
                        unit = this.unit)
 
     // endregion

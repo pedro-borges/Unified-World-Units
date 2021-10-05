@@ -17,36 +17,36 @@ import java.math.MathContext
 open class Length : CompositeUnitAmount<LengthUnit>
 {
     @JvmOverloads
-    constructor(value: Number,
+    constructor(amount: Number,
                 magnitude: Magnitude = NATURAL,
-                unit: LengthUnit) : super(value, magnitude, unit)
+                unit: LengthUnit) : super(amount, magnitude, unit)
 
     @JvmOverloads
-    constructor(value: String,
+    constructor(amount: String,
                 magnitude: Magnitude = NATURAL,
                 unit: LengthUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<LengthUnit>) =
-        Length(value = this.amount + other.into(this.unit).amount,
+        Length(amount = this.amount + other.into(this.unit).amount,
                unit = this.unit)
 
     override operator fun minus(other: UnitAmount<LengthUnit>) =
-        Length(value = this.amount - other.into(this.unit).amount,
+        Length(amount = this.amount - other.into(this.unit).amount,
                unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
-        Length(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+        Length(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
-        Length(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+        Length(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
                unit = this.unit)
 
     override fun into(unit: LengthUnit) =
-        Length(value = UnitAmountUtils.getAmountIn(this, unit),
+        Length(amount = UnitAmountUtils.getAmountIn(this, unit),
                unit = this.unit)
 
     // endregion
@@ -57,7 +57,7 @@ open class Length : CompositeUnitAmount<LengthUnit>
         Speed(this.amount.div(time.amount.value, mathContext), SpeedUnit(this.unit, time.unit))
 
     fun dividedBy(speed: Speed, mathContext: MathContext) =
-        Time(value = super.div(speed, mathContext).amount,
+        Time(amount = super.div(speed, mathContext).amount,
              unit = speed.unit.unitCounter.findUnit(TimeUnit::class.java)!!)
 
     fun multipliedBy(length: Length, mathContext: MathContext) =

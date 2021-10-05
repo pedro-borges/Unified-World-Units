@@ -15,47 +15,54 @@ import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode.HALF_EVEN
 
-open class Money(amount: BigDecimalAmount, unit: CurrencyUnit) :
-    CompositeUnitAmount<CurrencyUnit>(amount.withScale(unit.defaultFractionDigits, HALF_EVEN), unit)
+open class Money :
+    CompositeUnitAmount<CurrencyUnit>
 {
-    constructor(value: Number, unit: CurrencyUnit) : this(value.toString(), unit)
-    constructor(value: String, unit: CurrencyUnit) : this(BigDecimal(value), unit)
-    constructor(value: BigDecimal, unit: CurrencyUnit) : this(BigDecimalAmount(value), unit)
+    constructor(amount: Number,
+                unit: CurrencyUnit)
+            : super(BigDecimalAmount(amount.toString()).withScale(unit.defaultFractionDigits, HALF_EVEN), unit)
+
+    constructor(amount: String,
+                unit: CurrencyUnit)
+            : super(BigDecimalAmount(amount).withScale(unit.defaultFractionDigits, HALF_EVEN), unit)
 
     //region UnitAmount
 
     override operator fun plus(other: UnitAmount<CurrencyUnit>) =
-        Money(amount + other.into(this.unit).amount, unit)
+        Money(amount = this.amount + other.into(this.unit).amount,
+              unit = this.unit)
 
     override operator fun minus(other: UnitAmount<CurrencyUnit>) =
-        Money(amount - other.into(this.unit).amount, unit)
+        Money(amount = this.amount - other.into(this.unit).amount,
+              unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
-        Money(UnitAmountUtils.multipliedByScalar(this, other, mathContext), unit)
+        Money(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+              unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
-        Money(UnitAmountUtils.dividedByScalar(this, other, mathContext), unit)
+        Money(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+              unit = this.unit)
 
     override fun into(unit: CurrencyUnit) =
-        Money(UnitAmountUtils.getAmountIn(this, unit), unit)
+        Money(amount = UnitAmountUtils.getAmountIn(this, unit),
+              unit = this.unit)
 
     // endregion
 
     // region composition
 
-    fun dividedBy(time: Time, mathContext: MathContext) =
-        Rent(amount.div(time.amount.value, mathContext),
-             RentUnit(this.unit, time.unit))
+    fun div(time: Time, mathContext: MathContext) =
+        Rent(amount = this.amount.div(time.amount.value, mathContext),
+             unit = RentUnit(this.unit, time.unit))
 
-    fun multipliedBy(interestRate: InterestRate, mathContext: MathContext) =
-        Rent(this.amount.times(interestRate.amount.value, mathContext),
-             RentUnit(this.unit, interestRate.unit))
+    fun multiply(interestRate: InterestRate, mathContext: MathContext) =
+        Rent(amount = this.amount.times(interestRate.amount.value, mathContext),
+             unit = RentUnit(this.unit, interestRate.unit))
 
-    fun multipliedBy(time: Time, mathContext: MathContext): Debt
-    {
-        return Debt(UnitAmountUtils.multipliedByScalar(this, time.amount.value, mathContext),
-                    DebtUnit(this.unit, time.unit))
-    }
+    fun multiply(time: Time, mathContext: MathContext) =
+        Debt(amount = UnitAmountUtils.multipliedByScalar(this, time.amount.value, mathContext),
+             unit = DebtUnit(this.unit, time.unit))
 
     // endregion
 }

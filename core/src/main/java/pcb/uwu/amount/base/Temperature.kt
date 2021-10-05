@@ -13,16 +13,16 @@ import java.math.MathContext
 open class Temperature : CompositeUnitAmount<TemperatureUnit>
 {
     @JvmOverloads
-    constructor(value: Number,
+    constructor(amount: Number,
                 magnitude: Magnitude = NATURAL,
                 unit: TemperatureUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     @JvmOverloads
-    constructor(value: String,
+    constructor(amount: String,
                 magnitude: Magnitude = NATURAL,
                 unit: TemperatureUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     @JvmOverloads
     constructor(value: BigDecimal,
@@ -39,23 +39,23 @@ open class Temperature : CompositeUnitAmount<TemperatureUnit>
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<TemperatureUnit>) =
-        Temperature(value = this.amount + other.into(this.unit).amount,
+        Temperature(amount = this.amount + other.into(this.unit).amount,
                     unit = this.unit)
 
     override operator fun minus(other: UnitAmount<TemperatureUnit>) =
-        Temperature(value = this.amount - other.into(this.unit).amount,
+        Temperature(amount = this.amount - other.into(this.unit).amount,
                     unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
-        Temperature(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+        Temperature(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                     unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
-        Temperature(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+        Temperature(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
                     unit = this.unit)
 
     override fun into(unit: TemperatureUnit) =
-        Temperature(value = UnitAmountUtils.getAmountIn(this, unit),
+        Temperature(amount = UnitAmountUtils.getAmountIn(this, unit),
                     unit = this.unit)
 
     // endregion

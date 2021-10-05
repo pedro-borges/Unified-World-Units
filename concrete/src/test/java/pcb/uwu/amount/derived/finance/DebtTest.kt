@@ -14,16 +14,19 @@ class DebtTest
     @Test
     fun multipliedByInterestRate() =
         assertEquals("84 US$",
-                     Debt(60, DebtUnit(USD.CURRENCY, WEEK)).multipliedBy(InterestRate("0.2", PER_DAY), DECIMAL64).toString())
+                     Debt(amount = 60,
+                          unit = DebtUnit(USD.CURRENCY, WEEK)).multiply(InterestRate(amount = "0.2", unit = PER_DAY), DECIMAL64).toString())
 
     @Test
     fun dividedByTime() =
         assertEquals("30 US$",
-                     Debt(60, DebtUnit(USD.CURRENCY, WEEK)).dividedBy(Weeks(2), DECIMAL64).toString())
+                     Debt(amount = 60,
+                          unit = DebtUnit(USD.CURRENCY, WEEK)).div(Weeks(2), DECIMAL64).toString())
 
     @Test
     fun dividedByMoney() =
         assertEquals("3 wk",
-                     Debt(60, DebtUnit(USD.CURRENCY, WEEK)).dividedBy(USD(20), DECIMAL64).toString())
+                     Debt(amount = 60,
+                          unit = DebtUnit(USD.CURRENCY, WEEK)).div(USD(20), DECIMAL64).toString())
 
 }

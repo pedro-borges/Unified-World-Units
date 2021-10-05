@@ -12,38 +12,38 @@ import java.math.MathContext
 open class LuminousIntensity : CompositeUnitAmount<LuminousIntensityUnit>
 {
     @JvmOverloads
-    constructor(value: Number,
+    constructor(amount: Number,
                 magnitude: Magnitude = NATURAL,
                 unit: LuminousIntensityUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     @JvmOverloads
-    constructor(value: String,
+    constructor(amount: String,
                 magnitude: Magnitude = NATURAL,
                 unit: LuminousIntensityUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<LuminousIntensityUnit>) =
-        LuminousIntensity(value = this.amount + other.into(this.unit).amount,
+        LuminousIntensity(amount = this.amount + other.into(this.unit).amount,
                           unit = this.unit)
 
     override operator fun minus(other: UnitAmount<LuminousIntensityUnit>) =
-        LuminousIntensity(value = this.amount - other.into(this.unit).amount,
+        LuminousIntensity(amount = this.amount - other.into(this.unit).amount,
                           unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
-        LuminousIntensity(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+        LuminousIntensity(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                           unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
-        LuminousIntensity(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+        LuminousIntensity(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
                           unit = this.unit)
 
     override fun into(unit: LuminousIntensityUnit) =
-        LuminousIntensity(value = UnitAmountUtils.getAmountIn(this, unit),
-                                 unit = this.unit)
+        LuminousIntensity(amount = UnitAmountUtils.getAmountIn(this, unit),
+                          unit = this.unit)
 
     // endregion
 }

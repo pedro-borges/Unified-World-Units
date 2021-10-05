@@ -12,37 +12,37 @@ import java.math.MathContext
 open class MagneticField : CompositeUnitAmount<MagneticFieldUnit>
 {
     @JvmOverloads
-    constructor(value: Number,
+    constructor(amount: Number,
                 magnitude: Magnitude = NATURAL,
                 unit: MagneticFieldUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     @JvmOverloads
-    constructor(value: String,
+    constructor(amount: String,
                 magnitude: Magnitude = NATURAL,
                 unit: MagneticFieldUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<MagneticFieldUnit>) =
-        MagneticField(value = this.amount + other.into(this.unit).amount,
+        MagneticField(amount = this.amount + other.into(this.unit).amount,
                       unit = this.unit)
 
     override operator fun minus(other: UnitAmount<MagneticFieldUnit>) =
-        MagneticField(value = this.amount - other.into(this.unit).amount,
+        MagneticField(amount = this.amount - other.into(this.unit).amount,
                       unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
-        MagneticField(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+        MagneticField(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                       unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
-        MagneticField(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+        MagneticField(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
                       unit = this.unit)
 
     override fun into(unit: MagneticFieldUnit) =
-        MagneticField(value = UnitAmountUtils.getAmountIn(this, unit),
+        MagneticField(amount = UnitAmountUtils.getAmountIn(this, unit),
                       unit = this.unit)
 
     // endregion

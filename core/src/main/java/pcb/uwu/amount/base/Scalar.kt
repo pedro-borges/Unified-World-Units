@@ -15,39 +15,39 @@ import java.math.MathContext
 class Scalar : CompositeUnitAmount<ScalarUnit>
 {
     @JvmOverloads
-    constructor(value: Number,
+    constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(value, magnitude, SCALAR)
+            : super(amount, magnitude, SCALAR)
 
     @JvmOverloads
-    constructor(value: String,
+    constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(value, magnitude, SCALAR)
+            : super(amount, magnitude, SCALAR)
 
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<ScalarUnit>) =
-        Scalar(amount + other.into(this.unit).amount)
+        Scalar(amount = this.amount + other.into(this.unit).amount)
 
     override operator fun minus(other: UnitAmount<ScalarUnit>) =
-        Scalar(amount - other.into(this.unit).amount)
+        Scalar(amount = amount - other.into(this.unit).amount)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
-        Scalar(UnitAmountUtils.multipliedByScalar(this, other, mathContext))
+        Scalar(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext))
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
-        Scalar(UnitAmountUtils.dividedByScalar(this, other, mathContext))
+        Scalar(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext))
 
     override fun into(unit: ScalarUnit) =
-        Scalar(UnitAmountUtils.getAmountIn(this, unit))
+        Scalar(amount = UnitAmountUtils.getAmountIn(this, unit))
 
     // endregion
 
     // region composition
 
     fun dividedBy(time: Time, mathContext: MathContext) =
-        InterestRate(this.amount.div(time.amount.value, mathContext),
-                     FrequencyUnit(time.unit))
+        InterestRate(amount = this.amount.div(time.amount.value, mathContext),
+                     unit = FrequencyUnit(time.unit))
 
     // endregion
 

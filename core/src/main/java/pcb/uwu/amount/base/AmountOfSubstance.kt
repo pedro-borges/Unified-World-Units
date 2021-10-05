@@ -12,37 +12,37 @@ import java.math.MathContext
 open class AmountOfSubstance : CompositeUnitAmount<AmountOfSubstanceUnit>
 {
     @JvmOverloads
-    constructor(value: Number,
+    constructor(amount: Number,
                 magnitude: Magnitude = NATURAL,
                 unit: AmountOfSubstanceUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     @JvmOverloads
-    constructor(value: String,
+    constructor(amount: String,
                 magnitude: Magnitude = NATURAL,
                 unit: AmountOfSubstanceUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<AmountOfSubstanceUnit>) =
-        AmountOfSubstance(value = this.amount + other.into(this.unit).amount,
+        AmountOfSubstance(amount = this.amount + other.into(this.unit).amount,
                           unit = this.unit)
 
     override operator fun minus(other: UnitAmount<AmountOfSubstanceUnit>) =
-        AmountOfSubstance(value = this.amount - other.into(this.unit).amount,
+        AmountOfSubstance(amount = this.amount - other.into(this.unit).amount,
                           unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
-        AmountOfSubstance(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+        AmountOfSubstance(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                           unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
-        AmountOfSubstance(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+        AmountOfSubstance(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
                           unit = this.unit)
 
     override fun into(unit: AmountOfSubstanceUnit) =
-        AmountOfSubstance(value = UnitAmountUtils.getAmountIn(this, unit),
+        AmountOfSubstance(amount = UnitAmountUtils.getAmountIn(this, unit),
                           unit = this.unit)
 
     // endregion

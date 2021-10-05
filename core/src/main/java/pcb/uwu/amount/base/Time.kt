@@ -21,16 +21,16 @@ import java.time.Duration
 open class Time : CompositeUnitAmount<TimeUnit>
 {
     @JvmOverloads
-    constructor(value: Number,
+    constructor(amount: Number,
                 magnitude: Magnitude = NATURAL,
                 unit: TimeUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     @JvmOverloads
-    constructor(value: String,
+    constructor(amount: String,
                 magnitude: Magnitude = NATURAL,
                 unit: TimeUnit)
-            : super(value, magnitude, unit)
+            : super(amount, magnitude, unit)
 
     constructor(duration: Duration,
                 unit: TimeUnit)
@@ -41,23 +41,23 @@ open class Time : CompositeUnitAmount<TimeUnit>
     // region UnitAmount
 
     override operator fun plus(other: UnitAmount<TimeUnit>) =
-        Time(value = this.amount + other.into(this.unit).amount,
+        Time(amount = this.amount + other.into(this.unit).amount,
              unit = this.unit)
 
     override operator fun minus(other: UnitAmount<TimeUnit>) =
-        Time(value = this.amount - other.into(this.unit).amount,
+        Time(amount = this.amount - other.into(this.unit).amount,
              unit = this.unit)
 
     override fun multiply(other: BigDecimal, mathContext: MathContext) =
-        Time(value = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+        Time(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
              unit = this.unit)
 
     override fun div(other: BigDecimal, mathContext: MathContext) =
-        Time(value = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+        Time(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
              unit = this.unit)
 
     override fun into(unit: TimeUnit) =
-        Time(value = UnitAmountUtils.getAmountIn(this, unit),
+        Time(amount = UnitAmountUtils.getAmountIn(this, unit),
              unit = this.unit)
 
     override fun invert(mathContext: MathContext) =
@@ -68,8 +68,8 @@ open class Time : CompositeUnitAmount<TimeUnit>
     // region composition
 
     fun multipliedBy(money: Money, mathContext: MathContext) =
-        Debt(UnitAmountUtils.multipliedByScalar(this, money.amount.value, mathContext),
-             DebtUnit(money.unit, this.unit))
+        Debt(amount = UnitAmountUtils.multipliedByScalar(this, money.amount.value, mathContext),
+             unit = DebtUnit(money.unit, this.unit))
 
     fun dividedBy(length: Length, mathContext: MathContext) =
         Pace(this.amount.div(length.amount.value, mathContext), PaceUnit(this.unit, length.unit))
