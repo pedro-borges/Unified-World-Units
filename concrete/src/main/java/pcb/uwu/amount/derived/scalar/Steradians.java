@@ -72,7 +72,7 @@ public class Steradians extends SolidAngle {
 	}
 
 	@Override
-	public Steradians multiply(BigDecimal other, MathContext mathContext) {
+	public Steradians times(BigDecimal other, MathContext mathContext) {
 		return new Steradians(multipliedByScalar(this, other, mathContext));
 	}
 

@@ -37,7 +37,7 @@ open class Length : CompositeUnitAmount<LengthUnit>
         Length(amount = this.amount - other.into(this.unit).amount,
                unit = this.unit)
 
-    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+    override fun times(other: BigDecimal, mathContext: MathContext) =
         Length(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                unit = this.unit)
 
@@ -54,7 +54,8 @@ open class Length : CompositeUnitAmount<LengthUnit>
     // region composition
 
     fun dividedBy(time: Time, mathContext: MathContext): Speed =
-        Speed(this.amount.div(time.amount.value, mathContext), SpeedUnit(this.unit, time.unit))
+        Speed(amount = this.amount.div(time.amount.value, mathContext),
+              unit = SpeedUnit(this.unit, time.unit))
 
     fun dividedBy(speed: Speed, mathContext: MathContext) =
         Time(amount = super.div(speed, mathContext).amount,

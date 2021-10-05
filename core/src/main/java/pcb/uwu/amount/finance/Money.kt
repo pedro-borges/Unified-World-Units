@@ -36,7 +36,7 @@ open class Money :
         Money(amount = this.amount - other.into(this.unit).amount,
               unit = this.unit)
 
-    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+    override fun times(other: BigDecimal, mathContext: MathContext) =
         Money(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
               unit = this.unit)
 
@@ -56,11 +56,11 @@ open class Money :
         Rent(amount = this.amount.div(time.amount.value, mathContext),
              unit = RentUnit(this.unit, time.unit))
 
-    fun multiply(interestRate: InterestRate, mathContext: MathContext) =
+    fun times(interestRate: InterestRate, mathContext: MathContext) =
         Rent(amount = this.amount.times(interestRate.amount.value, mathContext),
              unit = RentUnit(this.unit, interestRate.unit))
 
-    fun multiply(time: Time, mathContext: MathContext) =
+    fun times(time: Time, mathContext: MathContext) =
         Debt(amount = UnitAmountUtils.multipliedByScalar(this, time.amount.value, mathContext),
              unit = DebtUnit(this.unit, time.unit))
 

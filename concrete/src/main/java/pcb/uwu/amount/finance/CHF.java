@@ -60,7 +60,7 @@ public class CHF extends Money {
 	}
 
 	@Override
-	public CHF multiply(BigDecimal other, MathContext mathContext) {
+	public CHF times(BigDecimal other, MathContext mathContext) {
 		return new CHF(multipliedByScalar(this, other, mathContext));
 	}
 

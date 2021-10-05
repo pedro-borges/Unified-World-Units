@@ -77,7 +77,7 @@ public class Watts extends Power {
 	}
 
 	@Override
-	public Watts multiply(BigDecimal other, MathContext mathContext) {
+	public Watts times(BigDecimal other, MathContext mathContext) {
 		return new Watts(multipliedByScalar(this, other, mathContext));
 	}
 

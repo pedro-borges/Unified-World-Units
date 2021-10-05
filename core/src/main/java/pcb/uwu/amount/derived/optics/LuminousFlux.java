@@ -69,7 +69,7 @@ public class LuminousFlux extends CompositeUnitAmount<LuminousFluxUnit> {
 	}
 
 	@Override
-	public LuminousFlux multiply(BigDecimal other, MathContext mathContext) {
+	public LuminousFlux times(BigDecimal other, MathContext mathContext) {
 		return new LuminousFlux(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 

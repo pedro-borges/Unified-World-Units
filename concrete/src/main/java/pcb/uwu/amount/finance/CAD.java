@@ -60,7 +60,7 @@ public class CAD extends Money {
 	}
 
 	@Override
-	public CAD multiply(BigDecimal other, MathContext mathContext) {
+	public CAD times(BigDecimal other, MathContext mathContext) {
 		return new CAD(multipliedByScalar(this, other, mathContext));
 	}
 

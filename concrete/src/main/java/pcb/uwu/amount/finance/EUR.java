@@ -60,7 +60,7 @@ public class EUR extends Money {
 	}
 
 	@Override
-	public EUR multiply(BigDecimal other, MathContext mathContext) {
+	public EUR times(BigDecimal other, MathContext mathContext) {
 		return new EUR(multipliedByScalar(this, other, mathContext));
 	}
 

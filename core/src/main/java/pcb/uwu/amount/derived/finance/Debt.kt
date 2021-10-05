@@ -37,7 +37,7 @@ class Debt : CompositeUnitAmount<DebtUnit>
         Debt(amount = this.amount - other.into(this.unit).amount,
              unit = this.unit)
 
-    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+    override fun times(other: BigDecimal, mathContext: MathContext) =
         Debt(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
              unit = this.unit)
 
@@ -53,8 +53,8 @@ class Debt : CompositeUnitAmount<DebtUnit>
 
     // region composition
 
-    fun multiply(interestRate: InterestRate, mathContext: MathContext) =
-        Money(amount = super.multiply(interestRate, mathContext).amount,
+    fun times(interestRate: InterestRate, mathContext: MathContext) =
+        Money(amount = super.times(interestRate, mathContext).amount,
               unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
     fun div(time: Time, mathContext: MathContext) =

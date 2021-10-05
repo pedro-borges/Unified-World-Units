@@ -85,7 +85,7 @@ public class Amperes extends ElectricCurrent {
 	}
 
 	@Override
-	public Amperes multiply(BigDecimal other, MathContext mathContext) {
+	public Amperes times(BigDecimal other, MathContext mathContext) {
 		return new Amperes(multipliedByScalar(this, other, mathContext));
 	}
 
@@ -98,27 +98,27 @@ public class Amperes extends ElectricCurrent {
 
 	// region composition
 
-	public Coulombs multipliedBy(Time time, MathContext mathContext) {
+	public Coulombs times(Time time, MathContext mathContext) {
 		return new Coulombs(getAmount().times(getAmountIn(time, SECOND), mathContext));
 	}
 
-	public Volts multipliedBy(ElectricResistance electricResistance, MathContext mathContext) {
+	public Volts times(ElectricResistance electricResistance, MathContext mathContext) {
 		return new Volts(getAmount().times(getAmountIn(electricResistance, OHM), mathContext));
 	}
 
-	public Webbers multipliedBy(ElectricInductance electricInductance, MathContext mathContext) {
+	public Webbers times(ElectricInductance electricInductance, MathContext mathContext) {
 		return new Webbers(getAmount().times(getAmountIn(electricInductance, HENRY), mathContext));
 	}
 
-	public Joules multipliedBy(MagneticFlux magneticFlux, MathContext mathContext) {
+	public Joules times(MagneticFlux magneticFlux, MathContext mathContext) {
 		return new Joules(getAmount().times(getAmountIn(magneticFlux, WEBBER), mathContext));
 	}
 
-	public Siemens dividedBy(ElectricPotential electricPotential, MathContext mathContext) {
+	public Siemens div(ElectricPotential electricPotential, MathContext mathContext) {
 		return new Siemens(getAmount().div(getAmountIn(electricPotential, VOLT), mathContext));
 	}
 
-	public Volts dividedBy(ElectricConductance electricConductance, MathContext mathContext) {
+	public Volts div(ElectricConductance electricConductance, MathContext mathContext) {
 		return new Volts(getAmount().div(getAmountIn(electricConductance, SIEMENS), mathContext));
 	}
 

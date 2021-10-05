@@ -68,7 +68,7 @@ public class KiloGrams extends Mass {
 	}
 
 	@Override
-	public KiloGrams multiply(BigDecimal other, MathContext mathContext) {
+	public KiloGrams times(BigDecimal other, MathContext mathContext) {
 		return new KiloGrams(multipliedByScalar(this, other, mathContext));
 	}
 

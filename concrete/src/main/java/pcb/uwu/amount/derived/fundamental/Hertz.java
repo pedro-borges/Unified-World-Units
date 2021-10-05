@@ -68,7 +68,7 @@ public class Hertz extends Frequency {
 	}
 
 	@Override
-	public Hertz multiply(BigDecimal other, MathContext mathContext) {
+	public Hertz times(BigDecimal other, MathContext mathContext) {
 		return new Hertz(multipliedByScalar(this, other, mathContext));
 	}
 

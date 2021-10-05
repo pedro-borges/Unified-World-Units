@@ -14,19 +14,19 @@ class AmperesTest
     @Test
     fun multipliedByTime() =
         assertEquals("0.24 C",
-                     Amperes(2, MILLI).multipliedBy(Minutes(2), DECIMAL64).toString())
+                     Amperes(2, MILLI).times(Minutes(2), DECIMAL64).toString())
 
     @Test
     fun multipliedByElectricResistance() =
         assertEquals("4 V",
-                     Amperes(2, MILLI).multipliedBy(Ohms(2, KILO), DECIMAL64).toString())
+                     Amperes(2, MILLI).times(Ohms(2, KILO), DECIMAL64).toString())
 
     @Test
     fun dividedByElectricalPotential() =
         assertEquals("2 S",
-                     Amperes(2, MILLI).dividedBy(Volts(1, MILLI), DECIMAL64).toString())
+                     Amperes(2, MILLI).div(Volts(1, MILLI), DECIMAL64).toString())
 
     @Test
     fun dividedByElectricalConductance() =
-        assertEquals("0.001 V", Amperes(2, MILLI).dividedBy(Siemens(2), DECIMAL64).toString())
+        assertEquals("0.001 V", Amperes(2, MILLI).div(Siemens(2), DECIMAL64).toString())
 }

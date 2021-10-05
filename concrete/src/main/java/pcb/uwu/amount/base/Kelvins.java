@@ -68,7 +68,7 @@ public class Kelvins extends Temperature {
 	}
 
 	@Override
-	public Kelvins multiply(BigDecimal other, MathContext mathContext) {
+	public Kelvins times(BigDecimal other, MathContext mathContext) {
 		return new Kelvins(multipliedByScalar(this, other, mathContext));
 	}
 

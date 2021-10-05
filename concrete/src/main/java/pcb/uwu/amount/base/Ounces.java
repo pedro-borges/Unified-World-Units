@@ -68,7 +68,7 @@ public class Ounces extends Mass {
 	}
 
 	@Override
-	public Ounces multiply(BigDecimal other, MathContext mathContext) {
+	public Ounces times(BigDecimal other, MathContext mathContext) {
 		return new Ounces(multipliedByScalar(this, other, mathContext));
 	}
 

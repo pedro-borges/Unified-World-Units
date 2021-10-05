@@ -88,7 +88,7 @@ public class Joules extends Energy {
 	}
 
 	@Override
-	public Joules multiply(BigDecimal other, MathContext mathContext) {
+	public Joules times(BigDecimal other, MathContext mathContext) {
 		return new Joules(multipliedByScalar(this, other, mathContext));
 	}
 

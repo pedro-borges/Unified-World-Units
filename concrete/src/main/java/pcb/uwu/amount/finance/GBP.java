@@ -60,7 +60,7 @@ public class GBP extends Money {
 	}
 
 	@Override
-	public GBP multiply(BigDecimal other, MathContext mathContext) {
+	public GBP times(BigDecimal other, MathContext mathContext) {
 		return new GBP(multipliedByScalar(this, other, mathContext));
 	}
 

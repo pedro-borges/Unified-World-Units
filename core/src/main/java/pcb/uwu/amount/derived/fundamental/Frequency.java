@@ -71,7 +71,7 @@ public class Frequency extends CompositeUnitAmount<FrequencyUnit> {
 	}
 
 	@Override
-	public Frequency multiply(BigDecimal other, MathContext mathContext) {
+	public Frequency times(BigDecimal other, MathContext mathContext) {
 		return new Frequency(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 

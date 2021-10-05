@@ -68,7 +68,7 @@ public class Miles extends Length {
 	}
 
 	@Override
-	public Miles multiply(BigDecimal other, MathContext mathContext) {
+	public Miles times(BigDecimal other, MathContext mathContext) {
 		return new Miles(multipliedByScalar(this, other, mathContext));
 	}
 

@@ -36,7 +36,7 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
         InterestRate(amount = this.amount - other.into(this.unit).amount,
                      unit = this.unit)
 
-    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+    override fun times(other: BigDecimal, mathContext: MathContext) =
         InterestRate(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                      unit = this.unit)
 
@@ -52,12 +52,12 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
 
     // region composition
 
-    fun multiply(money: Money, mathContext: MathContext) =
+    fun times(money: Money, mathContext: MathContext) =
         Rent(amount = UnitAmountUtils.multipliedByScalar(this, money.amount.value, mathContext),
              unit = RentUnit(money.unit, this.unit))
 
-    fun multiply(debt: Debt, mathContext: MathContext) =
-        Money(amount = super.multiply(debt, mathContext).amount,
+    fun times(debt: Debt, mathContext: MathContext) =
+        Money(amount = super.times(debt, mathContext).amount,
               unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
     // endregion

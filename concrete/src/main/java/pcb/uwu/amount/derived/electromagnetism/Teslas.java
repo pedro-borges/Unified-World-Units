@@ -71,7 +71,7 @@ public class Teslas extends MagneticField {
 	}
 
 	@Override
-	public Teslas multiply(BigDecimal other, MathContext mathContext) {
+	public Teslas times(BigDecimal other, MathContext mathContext) {
 		return new Teslas(multipliedByScalar(this, other, mathContext));
 	}
 

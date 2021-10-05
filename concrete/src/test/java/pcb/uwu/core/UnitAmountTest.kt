@@ -12,7 +12,7 @@ class UnitAmountTest
     fun testMajorMajor()
     {
         assertEquals("13.37803776 m³",
-                     Meters(1).multiply(Yards(4).multipliedBy(Yards(4), DECIMAL64), DECIMAL64).toString())
+                     Meters(1).times(Yards(4).multipliedBy(Yards(4), DECIMAL64), DECIMAL64).toString())
         assertEquals("0.06835083114610674 yd⁻¹",
                      Meters(1).div(Yards(4).multipliedBy(Yards(4), DECIMAL64), DECIMAL64).toString())
     }
@@ -20,6 +20,6 @@ class UnitAmountTest
     @Test
     fun testMajorMinor() =
         assertEquals("0.06835083114610674 yd⁻¹",
-                     Meters(1).multiply(Yards(4).multipliedBy(Yards(4), DECIMAL64).invert(DECIMAL64), DECIMAL64)
+                     Meters(1).times(Yards(4).multipliedBy(Yards(4), DECIMAL64).invert(DECIMAL64), DECIMAL64)
                          .toString())
 }

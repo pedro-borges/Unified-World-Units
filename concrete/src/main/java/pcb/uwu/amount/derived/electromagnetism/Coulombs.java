@@ -78,7 +78,7 @@ public class Coulombs extends ElectricCharge {
 	}
 
 	@Override
-	public Coulombs multiply(BigDecimal other, MathContext mathContext) {
+	public Coulombs times(BigDecimal other, MathContext mathContext) {
 		return new Coulombs(multipliedByScalar(this, other, mathContext));
 	}
 

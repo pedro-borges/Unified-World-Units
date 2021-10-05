@@ -72,7 +72,7 @@ public class Nits extends Luminance {
 	}
 
 	@Override
-	public Nits multiply(BigDecimal other, MathContext mathContext) {
+	public Nits times(BigDecimal other, MathContext mathContext) {
 		return new Nits(multipliedByScalar(this, other, mathContext));
 	}
 

@@ -36,7 +36,7 @@ open class Mass : CompositeUnitAmount<MassUnit>
         Mass(amount = this.amount - other.into(this.unit).amount,
              unit = this.unit)
 
-    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+    override fun times(other: BigDecimal, mathContext: MathContext) =
         Mass(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
              unit = this.unit)
 
@@ -52,10 +52,9 @@ open class Mass : CompositeUnitAmount<MassUnit>
 
     // region composition
 
-    fun multipliedBy(acceleration: Acceleration, mathContext: MathContext): Force
-    {
-        return Force(this.amount.times(acceleration.amount.value, mathContext), ForceUnit(this.unit, acceleration.unit))
-    }
+    fun multipliedBy(acceleration: Acceleration, mathContext: MathContext) =
+        Force(amount = this.amount.times(acceleration.amount.value, mathContext),
+              unit = ForceUnit(this.unit, acceleration.unit))
 
     // endregion
 }

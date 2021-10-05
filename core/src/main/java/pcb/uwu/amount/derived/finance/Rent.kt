@@ -36,7 +36,7 @@ class Rent : CompositeUnitAmount<RentUnit>
         Rent(amount = this.amount - other.into(this.unit).amount,
              unit = this.unit)
 
-    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+    override fun times(other: BigDecimal, mathContext: MathContext) =
         Rent(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
              unit = this.unit)
 
@@ -53,7 +53,7 @@ class Rent : CompositeUnitAmount<RentUnit>
     // region composition
 
     fun multipliedBy(time: Time, mathContext: MathContext) =
-        Money(amount = super.multiply(time, mathContext).amount,
+        Money(amount = super.times(time, mathContext).amount,
               unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
     // endregion

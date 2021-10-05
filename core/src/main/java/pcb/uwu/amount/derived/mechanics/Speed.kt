@@ -1,124 +1,75 @@
-package pcb.uwu.amount.derived.mechanics;
+package pcb.uwu.amount.derived.mechanics
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.Length;
-import pcb.uwu.amount.base.Time;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.LengthUnit;
-import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.unit.derived.mechanics.AccelerationUnit;
-import pcb.uwu.unit.derived.mechanics.PaceUnit;
-import pcb.uwu.unit.derived.mechanics.SpeedUnit;
+import pcb.uwu.amount.base.Length
+import pcb.uwu.amount.base.Time
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.LengthUnit
+import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.derived.mechanics.AccelerationUnit
+import pcb.uwu.unit.derived.mechanics.PaceUnit
+import pcb.uwu.unit.derived.mechanics.SpeedUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+open class Speed : CompositeUnitAmount<SpeedUnit>
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: SpeedUnit)
+            : super(amount, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL,
+                unit: SpeedUnit)
+            : super(amount, magnitude, unit)
 
-public class Speed extends CompositeUnitAmount<SpeedUnit> {
+    // region UnitAmount
 
-	// region constructors
+    override operator fun plus(other: UnitAmount<SpeedUnit>) =
+        Speed(amount = this.amount + other.into(this.unit).amount,
+              unit = this.unit)
 
-	public Speed(Number value, SpeedUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<SpeedUnit>) =
+        Speed(amount = this.amount - other.into(this.unit).amount,
+              unit = this.unit)
 
-	public Speed(Number value, Magnitude magnitude, SpeedUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun times(other: BigDecimal, mathContext: MathContext) =
+        Speed(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+              unit = this.unit)
 
-	public Speed(String value, SpeedUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        Speed(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+              unit = this.unit)
 
-	public Speed(String value, Magnitude magnitude, SpeedUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: SpeedUnit) =
+        Speed(amount = UnitAmountUtils.getAmountIn(this, unit),
+              unit = unit)
 
-	public Speed(BigDecimal value, SpeedUnit unit) {
-		super(value, unit);
-	}
+    override fun invert(mathContext: MathContext) =
+        Pace(amount = this.amount.invert(mathContext),
+             unit = PaceUnit(this.unit))
 
-	public Speed(BigDecimal value, Magnitude magnitude, SpeedUnit unit) {
-		super(value, magnitude, unit);
-	}
+    // endregion
 
-	public Speed(BigDecimalAmount amount, SpeedUnit unit) {
-		super(amount, unit);
-	}
+    // region composition
 
-	public Speed(BigDecimalAmount amount, Magnitude magnitude, SpeedUnit unit) {
-		super(amount, magnitude, unit);
-	}
+    fun div(time: Time, mathContext: MathContext) =
+        Acceleration(amount = this.amount.div(time.amount.value, mathContext),
+                     unit = AccelerationUnit(this.unit, time.unit))
 
-	// endregion
+    open fun div(acceleration: Acceleration, mathContext: MathContext) =
+        Time(amount = super.div(acceleration, mathContext).amount,
+             unit = this.unit.unitCounter.findUnit(TimeUnit::class.java)!!)
 
-	// region implement UnitAmount
+    open fun times(time: Time, mathContext: MathContext) =
+        Length(amount = super.times(time, mathContext).amount,
+               unit = this.unit.unitCounter.findUnit(LengthUnit::class.java)!!)
 
-	@NotNull
-	@Override
-	public Speed plus(@NotNull UnitAmount<SpeedUnit> other) {
-		return new Speed(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public Speed minus(@NotNull UnitAmount<SpeedUnit> other) {
-		return new Speed(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public Speed multiply(BigDecimal other, MathContext mathContext) {
-		return new Speed(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Speed div(BigDecimal other, MathContext mathContext) {
-		return new Speed(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Speed into(SpeedUnit unit) {
-		return new Speed(getAmountIn(this, unit), unit);
-	}
-
-	@Override
-	public Pace invert(MathContext mathContext) {
-		return new Pace(getAmount().invert(mathContext), new PaceUnit(getUnit()));
-	}
-
-	// endregion
-
-	// region composition
-
-	public Acceleration dividedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = getAmount().div(time.getAmount().getValue(), mathContext);
-		AccelerationUnit unit = new AccelerationUnit(getUnit(), time.getUnit());
-
-		return new Acceleration(amount, unit);
-	}
-
-	public Time dividedBy(Acceleration acceleration, MathContext mathContext) {
-		BigDecimalAmount amount = super.div(acceleration, mathContext).getAmount();
-		TimeUnit unit = getUnit().getUnitCounter().findUnit(TimeUnit.class);
-
-		return new Time(amount, unit);
-	}
-
-	public Length multipliedBy(Time time, MathContext mathContext) {
-		BigDecimalAmount amount = super.multiply(time, mathContext).getAmount();
-		LengthUnit unit = getUnit().getUnitCounter().findUnit(LengthUnit.class);
-
-		return new Length(amount, unit);
-	}
-
-	// endregion
-
+    // endregion
 }

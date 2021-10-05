@@ -68,7 +68,7 @@ public class Days extends Time {
 	}
 
 	@Override
-	public Days multiply(BigDecimal other, MathContext mathContext) {
+	public Days times(BigDecimal other, MathContext mathContext) {
 		return new Days(multipliedByScalar(this, other, mathContext));
 	}
 

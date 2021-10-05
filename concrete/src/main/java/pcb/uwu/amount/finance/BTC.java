@@ -60,7 +60,7 @@ public class BTC extends Money {
 	}
 
 	@Override
-	public BTC multiply(BigDecimal other, MathContext mathContext) {
+	public BTC times(BigDecimal other, MathContext mathContext) {
 		return new BTC(multipliedByScalar(this, other, mathContext));
 	}
 

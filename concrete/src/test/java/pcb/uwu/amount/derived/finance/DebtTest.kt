@@ -15,7 +15,7 @@ class DebtTest
     fun multipliedByInterestRate() =
         assertEquals("84 US$",
                      Debt(amount = 60,
-                          unit = DebtUnit(USD.CURRENCY, WEEK)).multiply(InterestRate(amount = "0.2", unit = PER_DAY), DECIMAL64).toString())
+                          unit = DebtUnit(USD.CURRENCY, WEEK)).times(InterestRate(amount = "0.2", unit = PER_DAY), DECIMAL64).toString())
 
     @Test
     fun dividedByTime() =

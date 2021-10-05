@@ -68,7 +68,7 @@ public class Stones extends Mass {
 	}
 
 	@Override
-	public Stones multiply(BigDecimal other, MathContext mathContext) {
+	public Stones times(BigDecimal other, MathContext mathContext) {
 		return new Stones(multipliedByScalar(this, other, mathContext));
 	}
 

@@ -68,7 +68,7 @@ public class Fahrenheits extends Temperature {
 	}
 
 	@Override
-	public Fahrenheits multiply(BigDecimal other, MathContext mathContext) {
+	public Fahrenheits times(BigDecimal other, MathContext mathContext) {
 		return new Fahrenheits(multipliedByScalar(this, other, mathContext));
 	}
 

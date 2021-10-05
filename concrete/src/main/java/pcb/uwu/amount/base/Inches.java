@@ -68,7 +68,7 @@ public class Inches extends Length {
 	}
 
 	@Override
-	public Inches multiply(BigDecimal other, MathContext mathContext) {
+	public Inches times(BigDecimal other, MathContext mathContext) {
 		return new Inches(multipliedByScalar(this, other, mathContext));
 	}
 

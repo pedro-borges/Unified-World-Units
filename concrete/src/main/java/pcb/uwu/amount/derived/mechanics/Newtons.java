@@ -81,7 +81,7 @@ public class Newtons extends Force {
 	}
 
 	@Override
-	public Newtons multiply(BigDecimal other, MathContext mathContext) {
+	public Newtons times(BigDecimal other, MathContext mathContext) {
 		return new Newtons(multipliedByScalar(this, other, mathContext));
 	}
 

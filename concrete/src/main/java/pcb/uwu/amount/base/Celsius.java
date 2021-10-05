@@ -68,7 +68,7 @@ public class Celsius extends Temperature {
 	}
 
 	@Override
-	public Celsius multiply(BigDecimal other, MathContext mathContext) {
+	public Celsius times(BigDecimal other, MathContext mathContext) {
 		return new Celsius(multipliedByScalar(this, other, mathContext));
 	}
 

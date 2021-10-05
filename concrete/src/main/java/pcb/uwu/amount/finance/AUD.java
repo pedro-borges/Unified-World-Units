@@ -60,7 +60,7 @@ public class AUD extends Money {
 	}
 
 	@Override
-	public AUD multiply(BigDecimal other, MathContext mathContext) {
+	public AUD times(BigDecimal other, MathContext mathContext) {
 		return new AUD(multipliedByScalar(this, other, mathContext));
 	}
 

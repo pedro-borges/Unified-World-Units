@@ -68,7 +68,7 @@ public class Weeks extends Time {
 	}
 
 	@Override
-	public Weeks multiply(BigDecimal other, MathContext mathContext) {
+	public Weeks times(BigDecimal other, MathContext mathContext) {
 		return new Weeks(multipliedByScalar(this, other, mathContext));
 	}
 

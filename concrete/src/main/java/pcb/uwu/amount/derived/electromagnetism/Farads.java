@@ -72,7 +72,7 @@ public class Farads extends ElectricCapacitance {
 	}
 
 	@Override
-	public Farads multiply(BigDecimal other, MathContext mathContext) {
+	public Farads times(BigDecimal other, MathContext mathContext) {
 		return new Farads(multipliedByScalar(this, other, mathContext));
 	}
 

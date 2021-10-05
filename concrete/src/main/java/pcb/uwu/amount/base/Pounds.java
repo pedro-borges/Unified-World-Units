@@ -68,7 +68,7 @@ public class Pounds extends Mass {
 	}
 
 	@Override
-	public Pounds multiply(BigDecimal other, MathContext mathContext) {
+	public Pounds times(BigDecimal other, MathContext mathContext) {
 		return new Pounds(multipliedByScalar(this, other, mathContext));
 	}
 

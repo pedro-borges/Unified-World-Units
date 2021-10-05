@@ -100,7 +100,7 @@ public class Volume extends CompositeUnitAmount<VolumeUnit> {
 	}
 
 	@Override
-	public Volume multiply(BigDecimal other, MathContext mathContext) {
+	public Volume times(BigDecimal other, MathContext mathContext) {
 		return new Volume(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 

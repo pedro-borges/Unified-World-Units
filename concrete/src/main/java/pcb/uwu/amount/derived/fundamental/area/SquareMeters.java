@@ -97,7 +97,7 @@ public class SquareMeters extends Area {
 	}
 
 	@Override
-	public SquareMeters multiply(BigDecimal other, MathContext mathContext) {
+	public SquareMeters times(BigDecimal other, MathContext mathContext) {
 		return new SquareMeters(multipliedByScalar(this, other, mathContext));
 	}
 

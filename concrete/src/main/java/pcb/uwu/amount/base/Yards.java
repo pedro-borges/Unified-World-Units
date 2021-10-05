@@ -68,7 +68,7 @@ public class Yards extends Length {
 	}
 
 	@Override
-	public Yards multiply(BigDecimal other, MathContext mathContext) {
+	public Yards times(BigDecimal other, MathContext mathContext) {
 		return new Yards(multipliedByScalar(this, other, mathContext));
 	}
 

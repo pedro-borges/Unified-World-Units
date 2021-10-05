@@ -48,7 +48,7 @@ open class Time : CompositeUnitAmount<TimeUnit>
         Time(amount = this.amount - other.into(this.unit).amount,
              unit = this.unit)
 
-    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+    override fun times(other: BigDecimal, mathContext: MathContext) =
         Time(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
              unit = this.unit)
 
@@ -72,7 +72,8 @@ open class Time : CompositeUnitAmount<TimeUnit>
              unit = DebtUnit(money.unit, this.unit))
 
     fun dividedBy(length: Length, mathContext: MathContext) =
-        Pace(this.amount.div(length.amount.value, mathContext), PaceUnit(this.unit, length.unit))
+        Pace(amount = this.amount.div(length.amount.value, mathContext),
+             unit = PaceUnit(this.unit, length.unit))
 
     // endregion
 }

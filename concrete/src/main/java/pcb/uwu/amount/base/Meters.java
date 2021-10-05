@@ -72,7 +72,7 @@ public class Meters extends Length {
 	}
 
 	@Override
-	public Meters multiply(BigDecimal other, MathContext mathContext) {
+	public Meters times(BigDecimal other, MathContext mathContext) {
 		return new Meters(multipliedByScalar(this, other, mathContext));
 	}
 

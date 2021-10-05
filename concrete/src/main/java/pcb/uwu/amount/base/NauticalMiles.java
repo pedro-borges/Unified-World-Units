@@ -68,7 +68,7 @@ public class NauticalMiles extends Length {
 	}
 
 	@Override
-	public NauticalMiles multiply(BigDecimal other, MathContext mathContext) {
+	public NauticalMiles times(BigDecimal other, MathContext mathContext) {
 		return new NauticalMiles(multipliedByScalar(this, other, mathContext));
 	}
 

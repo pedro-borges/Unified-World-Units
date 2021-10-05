@@ -68,7 +68,7 @@ public class Radians extends Angle {
 	}
 
 	@Override
-	public Radians multiply(BigDecimal other, MathContext mathContext) {
+	public Radians times(BigDecimal other, MathContext mathContext) {
 		return new Radians(multipliedByScalar(this, other, mathContext));
 	}
 

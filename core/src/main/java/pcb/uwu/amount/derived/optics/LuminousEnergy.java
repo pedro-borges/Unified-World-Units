@@ -69,7 +69,7 @@ public class LuminousEnergy extends CompositeUnitAmount<LuminousEnergyUnit> {
 	}
 
 	@Override
-	public LuminousEnergy multiply(BigDecimal other, MathContext mathContext) {
+	public LuminousEnergy times(BigDecimal other, MathContext mathContext) {
 		return new LuminousEnergy(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 

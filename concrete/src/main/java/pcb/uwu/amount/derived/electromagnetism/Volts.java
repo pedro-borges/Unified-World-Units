@@ -75,7 +75,7 @@ public class Volts extends ElectricPotential {
 	}
 
 	@Override
-	public Volts multiply(BigDecimal other, MathContext mathContext) {
+	public Volts times(BigDecimal other, MathContext mathContext) {
 		return new Volts(multipliedByScalar(this, other, mathContext));
 	}
 

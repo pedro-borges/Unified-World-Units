@@ -78,7 +78,7 @@ public class Candelas extends LuminousIntensity {
 	}
 
 	@Override
-	public Candelas multiply(BigDecimal other, MathContext mathContext) {
+	public Candelas times(BigDecimal other, MathContext mathContext) {
 		return new Candelas(multipliedByScalar(this, other, mathContext));
 	}
 

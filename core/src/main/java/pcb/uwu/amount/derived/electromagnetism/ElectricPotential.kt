@@ -33,7 +33,7 @@ open class ElectricPotential : CompositeUnitAmount<ElectricPotentialUnit>
         ElectricPotential(amount = this.amount - other.into(this.unit).amount,
                           unit = this.unit)
 
-    override fun multiply(other: BigDecimal, mathContext: MathContext): ElectricPotential =
+    override fun times(other: BigDecimal, mathContext: MathContext): ElectricPotential =
         ElectricPotential(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                           unit = this.unit)
 

@@ -101,7 +101,7 @@ public class Area extends CompositeUnitAmount<AreaUnit> {
 	}
 
 	@Override
-	public Area multiply(BigDecimal other, MathContext mathContext) {
+	public Area times(BigDecimal other, MathContext mathContext) {
 		return new Area(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 

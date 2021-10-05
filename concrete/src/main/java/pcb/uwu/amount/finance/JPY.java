@@ -60,7 +60,7 @@ public class JPY extends Money {
 	}
 
 	@Override
-	public JPY multiply(BigDecimal other, MathContext mathContext) {
+	public JPY times(BigDecimal other, MathContext mathContext) {
 		return new JPY(multipliedByScalar(this, other, mathContext));
 	}
 

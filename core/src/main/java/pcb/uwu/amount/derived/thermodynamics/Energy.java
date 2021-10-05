@@ -69,7 +69,7 @@ public class Energy extends CompositeUnitAmount<EnergyUnit> {
 	}
 
 	@Override
-	public Energy multiply(BigDecimal other, MathContext mathContext) {
+	public Energy times(BigDecimal other, MathContext mathContext) {
 		return new Energy(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 

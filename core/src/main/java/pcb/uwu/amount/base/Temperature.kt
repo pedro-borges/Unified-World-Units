@@ -46,7 +46,7 @@ open class Temperature : CompositeUnitAmount<TemperatureUnit>
         Temperature(amount = this.amount - other.into(this.unit).amount,
                     unit = this.unit)
 
-    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+    override fun times(other: BigDecimal, mathContext: MathContext) =
         Temperature(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
                     unit = this.unit)
 

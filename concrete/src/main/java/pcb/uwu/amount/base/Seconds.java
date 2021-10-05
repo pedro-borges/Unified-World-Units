@@ -77,7 +77,7 @@ public class Seconds extends Time {
 	}
 
 	@Override
-	public Seconds multiply(BigDecimal other, MathContext mathContext) {
+	public Seconds times(BigDecimal other, MathContext mathContext) {
 		return new Seconds(multipliedByScalar(this, other, mathContext));
 	}
 

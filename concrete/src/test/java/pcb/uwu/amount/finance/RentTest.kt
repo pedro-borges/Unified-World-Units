@@ -17,6 +17,6 @@ class RentTest
         assertEquals("2 £⋅d⁻¹",
                      GBP(6).div(Time(amount = 3, unit = DAY), DECIMAL64).toString())
         assertEquals("1.2 £⋅wk⁻¹",
-                     GBP(6).multiply(InterestRate(amount = 0.2, unit = FrequencyUnit(WEEK)), DECIMAL64).toString())
+                     GBP(6).times(InterestRate(amount = 0.2, unit = FrequencyUnit(WEEK)), DECIMAL64).toString())
     }
 }

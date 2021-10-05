@@ -35,7 +35,7 @@ interface UnitAmount<U : Unit> : Comparable<UnitAmount<U>>
      * @param mathContext the maths context to consider
      * @return a new `AmountUnit` in this `Unit` representing this × other
      */
-    fun multiply(other: BigDecimal, mathContext: MathContext): UnitAmount<U>
+    fun times(other: BigDecimal, mathContext: MathContext): UnitAmount<U>
 
     /**
      * Divide this `UnitAmount` by a scalar value.
@@ -44,7 +44,7 @@ interface UnitAmount<U : Unit> : Comparable<UnitAmount<U>>
      * @return a new `AmountUnit` in this `Unit` representing this ÷ other
      */
     fun div(other: BigDecimal, mathContext: MathContext): UnitAmount<U>
-    fun multiply(other: UnitAmount<out Unit>, mathContext: MathContext): UnitAmount<out Unit>
+    fun times(other: UnitAmount<out Unit>, mathContext: MathContext): UnitAmount<out Unit>
     fun div(other: UnitAmount<out Unit>, mathContext: MathContext): UnitAmount<out Unit>
     fun invert(mathContext: MathContext): UnitAmount<out Unit>
 

@@ -71,7 +71,7 @@ public class Lux extends Illuminance {
 	}
 
 	@Override
-	public Lux multiply(BigDecimal other, MathContext mathContext) {
+	public Lux times(BigDecimal other, MathContext mathContext) {
 		return new Lux(multipliedByScalar(this, other, mathContext));
 	}
 

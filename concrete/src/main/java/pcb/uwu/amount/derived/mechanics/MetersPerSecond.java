@@ -63,12 +63,12 @@ public class MetersPerSecond extends Speed {
 	// region composition
 
 	@Override
-	public Meters multipliedBy(Time time, MathContext mathContext) {
+	public Meters times(Time time, MathContext mathContext) {
 		return new Meters(multipliedByScalar(this, getAmountIn(time, SECOND).getValue(), mathContext));
 	}
 
 	@Override
-	public Seconds dividedBy(Acceleration acceleration, MathContext mathContext) {
+	public Seconds div(Acceleration acceleration, MathContext mathContext) {
 		return new Seconds(dividedByScalar(this, getAmountIn(acceleration, new AccelerationUnit(METER_PER_SECOND, SECOND)).getValue(), mathContext));
 	}
 

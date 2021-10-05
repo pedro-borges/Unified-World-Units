@@ -71,7 +71,7 @@ public class Henries extends ElectricInductance {
 	}
 
 	@Override
-	public Henries multiply(BigDecimal other, MathContext mathContext) {
+	public Henries times(BigDecimal other, MathContext mathContext) {
 		return new Henries(multipliedByScalar(this, other, mathContext));
 	}
 

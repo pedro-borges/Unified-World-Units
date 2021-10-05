@@ -91,7 +91,7 @@ public class Litres extends Volume {
 	}
 
 	@Override
-	public Litres multiply(BigDecimal other, MathContext mathContext) {
+	public Litres times(BigDecimal other, MathContext mathContext) {
 		return new Litres(multipliedByScalar(this, other, mathContext));
 	}
 

@@ -71,7 +71,7 @@ public class Ohms extends ElectricResistance {
 	}
 
 	@Override
-	public Ohms multiply(BigDecimal other, MathContext mathContext) {
+	public Ohms times(BigDecimal other, MathContext mathContext) {
 		return new Ohms(multipliedByScalar(this, other, mathContext));
 	}
 

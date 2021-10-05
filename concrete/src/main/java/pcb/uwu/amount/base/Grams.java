@@ -68,7 +68,7 @@ public class Grams extends Mass {
 	}
 
 	@Override
-	public Grams multiply(BigDecimal other, MathContext mathContext) {
+	public Grams times(BigDecimal other, MathContext mathContext) {
 		return new Grams(multipliedByScalar(this, other, mathContext));
 	}
 

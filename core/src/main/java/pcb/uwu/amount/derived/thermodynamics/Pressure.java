@@ -69,7 +69,7 @@ public class Pressure extends CompositeUnitAmount<PressureUnit> {
 	}
 
 	@Override
-	public Pressure multiply(BigDecimal other, MathContext mathContext) {
+	public Pressure times(BigDecimal other, MathContext mathContext) {
 		return new Pressure(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 

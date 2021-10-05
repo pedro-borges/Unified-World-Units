@@ -69,7 +69,7 @@ public class Power extends CompositeUnitAmount<PowerUnit> {
 	}
 
 	@Override
-	public Power multiply(BigDecimal other, MathContext mathContext) {
+	public Power times(BigDecimal other, MathContext mathContext) {
 		return new Power(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 

@@ -60,7 +60,7 @@ public class USD extends Money {
 	}
 
 	@Override
-	public USD multiply(BigDecimal other, MathContext mathContext) {
+	public USD times(BigDecimal other, MathContext mathContext) {
 		return new USD(multipliedByScalar(this, other, mathContext));
 	}
 

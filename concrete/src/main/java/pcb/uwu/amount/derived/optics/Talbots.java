@@ -73,7 +73,7 @@ public class Talbots extends LuminousEnergy {
 	}
 
 	@Override
-	public Talbots multiply(BigDecimal other, MathContext mathContext) {
+	public Talbots times(BigDecimal other, MathContext mathContext) {
 		return new Talbots(multipliedByScalar(this, other, mathContext));
 	}
 

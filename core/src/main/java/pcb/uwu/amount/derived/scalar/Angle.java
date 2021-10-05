@@ -70,7 +70,7 @@ public class Angle extends CompositeUnitAmount<AngleUnit> {
 	}
 
 	@Override
-	public Angle multiply(BigDecimal other, MathContext mathContext) {
+	public Angle times(BigDecimal other, MathContext mathContext) {
 		return new Angle(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 

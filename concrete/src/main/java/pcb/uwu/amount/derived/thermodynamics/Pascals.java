@@ -74,7 +74,7 @@ public class Pascals extends Pressure {
 	}
 
 	@Override
-	public Pascals multiply(BigDecimal other, MathContext mathContext) {
+	public Pascals times(BigDecimal other, MathContext mathContext) {
 		return new Pascals(multipliedByScalar(this, other, mathContext));
 	}
 

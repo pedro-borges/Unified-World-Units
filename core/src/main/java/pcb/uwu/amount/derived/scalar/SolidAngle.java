@@ -70,7 +70,7 @@ public class SolidAngle extends CompositeUnitAmount<SolidAngleUnit> {
 	}
 
 	@Override
-	public SolidAngle multiply(BigDecimal other, MathContext mathContext) {
+	public SolidAngle times(BigDecimal other, MathContext mathContext) {
 		return new SolidAngle(multipliedByScalar(this, other, mathContext), getUnit());
 	}
 

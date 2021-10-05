@@ -17,7 +17,7 @@ class NewtonsTest
     @Test
     fun dividedByAcceleration() =
         assertEquals("4 Kg",
-                     Newtons(12).dividedBy(Acceleration(3, AccelerationUnit(METER, SECOND)), DECIMAL64).toString())
+                     Newtons(12).dividedBy(Acceleration(amount = 3, unit = AccelerationUnit(METER, SECOND)), DECIMAL64).toString())
 
     @Test
     fun dividedByMass() =

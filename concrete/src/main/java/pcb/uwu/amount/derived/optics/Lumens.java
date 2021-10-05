@@ -81,7 +81,7 @@ public class Lumens extends LuminousFlux {
 	}
 
 	@Override
-	public Lumens multiply(BigDecimal other, MathContext mathContext) {
+	public Lumens times(BigDecimal other, MathContext mathContext) {
 		return new Lumens(multipliedByScalar(this, other, mathContext));
 	}
 

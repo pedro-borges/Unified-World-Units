@@ -68,7 +68,7 @@ public class Mole extends AmountOfSubstance {
 	}
 
 	@Override
-	public Mole multiply(BigDecimal other, MathContext mathContext) {
+	public Mole times(BigDecimal other, MathContext mathContext) {
 		return new Mole(multipliedByScalar(this, other, mathContext));
 	}
 

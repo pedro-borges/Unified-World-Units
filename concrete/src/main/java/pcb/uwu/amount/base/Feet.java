@@ -68,7 +68,7 @@ public class Feet extends Length {
 	}
 
 	@Override
-	public Feet multiply(BigDecimal other, MathContext mathContext) {
+	public Feet times(BigDecimal other, MathContext mathContext) {
 		return new Feet(multipliedByScalar(this, other, mathContext));
 	}
 

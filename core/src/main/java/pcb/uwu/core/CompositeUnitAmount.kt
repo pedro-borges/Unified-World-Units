@@ -59,7 +59,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
         return CompositeUnitAmount(UnitAmountUtils.minusAmount(this, other), unit)
     }
 
-    override fun multiply(other: BigDecimal, mathContext: MathContext): UnitAmount<U>
+    override fun times(other: BigDecimal, mathContext: MathContext): UnitAmount<U>
     {
         return CompositeUnitAmount(UnitAmountUtils.multipliedByScalar(this, other, mathContext), unit)
     }
@@ -69,7 +69,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
         return CompositeUnitAmount(UnitAmountUtils.dividedByScalar(this, other, mathContext), unit)
     }
 
-    override fun multiply(other: UnitAmount<out Unit>, mathContext: MathContext): UnitAmount<out Unit>
+    override fun times(other: UnitAmount<out Unit>, mathContext: MathContext): UnitAmount<out Unit>
     {
         var resultUnitCounter = UnitCounter(unit.unitCounter)
         var transformation = Function.identity<BigDecimalAmount>()
@@ -163,7 +163,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 
     override fun div(other: UnitAmount<out Unit>, mathContext: MathContext): UnitAmount<out Unit>
     {
-        return multiply(other.invert(mathContext), mathContext)
+        return times(other.invert(mathContext), mathContext)
     }
 
     override fun invert(mathContext: MathContext): UnitAmount<out Unit>

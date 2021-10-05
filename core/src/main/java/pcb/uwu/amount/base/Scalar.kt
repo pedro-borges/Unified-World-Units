@@ -32,7 +32,7 @@ class Scalar : CompositeUnitAmount<ScalarUnit>
     override operator fun minus(other: UnitAmount<ScalarUnit>) =
         Scalar(amount = amount - other.into(this.unit).amount)
 
-    override fun multiply(other: BigDecimal, mathContext: MathContext) =
+    override fun times(other: BigDecimal, mathContext: MathContext) =
         Scalar(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext))
 
     override fun div(other: BigDecimal, mathContext: MathContext) =

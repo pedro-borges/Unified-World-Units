@@ -81,7 +81,7 @@ public class Webbers extends MagneticFlux {
 	}
 
 	@Override
-	public Webbers multiply(BigDecimal other, MathContext mathContext) {
+	public Webbers times(BigDecimal other, MathContext mathContext) {
 		return new Webbers(multipliedByScalar(this, other, mathContext));
 	}
 

@@ -71,7 +71,7 @@ public class Siemens extends ElectricConductance {
 	}
 
 	@Override
-	public Siemens multiply(BigDecimal other, MathContext mathContext) {
+	public Siemens times(BigDecimal other, MathContext mathContext) {
 		return new Siemens(multipliedByScalar(this, other, mathContext));
 	}
 
