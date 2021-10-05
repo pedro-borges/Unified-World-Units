@@ -1,6 +1,6 @@
 package pcb.uwu.amount.derived.optics
 
-import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.geometry.Area
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL

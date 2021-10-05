@@ -20,16 +20,16 @@ class Minutes : Time
 
     // region UnitAmount
 
-    override fun plus(time: UnitAmount<TimeUnit>): Minutes =
+    override fun plus(time: UnitAmount<TimeUnit>) =
         Minutes(this.amount + (time to MinuteUnit).amount)
 
-    override fun minus(time: UnitAmount<TimeUnit>): Minutes =
+    override fun minus(time: UnitAmount<TimeUnit>) =
         Minutes(this.amount + (time to MinuteUnit).amount)
 
-    override fun times(scalar: Number): Minutes =
+    override fun times(scalar: Number) =
         Minutes(this.amount * scalar)
 
-    override fun div(scalar: Number): Minutes =
+    override fun div(scalar: Number) =
         Minutes(this.amount / scalar)
 
     // endregion

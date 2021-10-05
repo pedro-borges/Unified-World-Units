@@ -1,7 +1,7 @@
 package pcb.uwu.unit.derived.optics
 
 import pcb.uwu.unit.base.CandelaUnit
-import pcb.uwu.unit.scalar.SteradianUnit
+import pcb.uwu.unit.derived.geometry.SteradianUnit
 
 object LumenUnit
     : LuminousFluxUnit(luminousIntensityUnit = CandelaUnit,

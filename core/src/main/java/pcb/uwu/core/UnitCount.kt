@@ -19,6 +19,6 @@ class UnitCount(val unit: BaseUnit, val count: Int)
 
     companion object
     {
-        val EMPTY_BASE_UNIT_COUNT = UnitCount(ScalarUnit, 0)
+        val EMPTY_BASE_UNIT_COUNT = UnitCount(ScalarUnit(), 0)
     }
 }

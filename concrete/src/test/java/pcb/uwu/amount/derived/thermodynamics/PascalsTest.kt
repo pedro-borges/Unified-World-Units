@@ -1,7 +1,7 @@
 package pcb.uwu.amount.derived.thermodynamics
 
-import pcb.uwu.amount.derived.fundamental.area.SquareMeters
-import pcb.uwu.amount.derived.fundamental.volume.CubicMeters
+import pcb.uwu.amount.derived.geometry.area.SquareMeters
+import pcb.uwu.amount.derived.geometry.volume.CubicMeters
 import pcb.uwu.amount.derived.mechanics.Newtons
 import kotlin.test.Test
 import kotlin.test.assertEquals

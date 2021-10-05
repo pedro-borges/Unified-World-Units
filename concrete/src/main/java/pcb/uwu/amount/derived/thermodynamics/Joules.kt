@@ -8,7 +8,7 @@ import pcb.uwu.amount.derived.electromagnetism.Coulombs
 import pcb.uwu.amount.derived.electromagnetism.ElectricCharge
 import pcb.uwu.amount.derived.electromagnetism.ElectricPotential
 import pcb.uwu.amount.derived.electromagnetism.Volts
-import pcb.uwu.amount.derived.fundamental.Volume
+import pcb.uwu.amount.derived.geometry.Volume
 import pcb.uwu.amount.derived.mechanics.Force
 import pcb.uwu.amount.derived.mechanics.Newtons
 import pcb.uwu.core.Magnitude
@@ -18,7 +18,7 @@ import pcb.uwu.unit.base.MeterUnit
 import pcb.uwu.unit.base.SecondUnit
 import pcb.uwu.unit.derived.electromagnetism.CoulombUnit
 import pcb.uwu.unit.derived.electromagnetism.VoltUnit
-import pcb.uwu.unit.derived.fundamental.CubicMeterUnit
+import pcb.uwu.unit.derived.geometry.CubicMeterUnit
 import pcb.uwu.unit.derived.mechanics.NewtonUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 import pcb.uwu.unit.derived.termodynamics.JouleUnit

@@ -1,7 +1,9 @@
 package pcb.uwu.core
 
+import pcb.uwu.amount.base.Scalar
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitCount.Companion.EMPTY_BASE_UNIT_COUNT
+import pcb.uwu.unit.base.ScalarUnit
 import pcb.uwu.util.UnitAmountUtils
 import pcb.uwu.util.andThen
 import pcb.uwu.util.hash
@@ -27,8 +29,8 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
             : this(Amount(amount), magnitude, unit)
 
     internal constructor(amount: Amount,
-                        magnitude: Magnitude = NATURAL,
-                        unit: U)
+                         magnitude: Magnitude = NATURAL,
+                         unit: U)
     {
         this.amount = amount.times(magnitude.amount)
         this.unit = unit
@@ -38,28 +40,26 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 
     // region UnitAmount
 
-    override fun plus(amount: UnitAmount<U>): UnitAmount<U>
-    {
-        return CompositeUnitAmount(amount = UnitAmountUtils.plusAmount(this, amount),
-                                   unit = unit)
-    }
+    override fun plus(amount: UnitAmount<U>) =
+        CompositeUnitAmount(amount = UnitAmountUtils.plusAmount(this, amount),
+                            unit = unit)
 
-    override fun minus(amount: UnitAmount<U>): UnitAmount<U>
-    {
-        return CompositeUnitAmount(amount = UnitAmountUtils.minusAmount(this, amount),
-                                   unit = unit)
-    }
+    override fun minus(amount: UnitAmount<U>) =
+        CompositeUnitAmount(amount = UnitAmountUtils.minusAmount(this, amount),
+                            unit = unit)
 
-    override fun times(scalar: Number): UnitAmount<U>
-    {
-        return CompositeUnitAmount(amount = UnitAmountUtils.times(this, scalar),
-                                   unit = unit)
-    }
+    override fun times(scalar: Number) =
+        CompositeUnitAmount(amount = UnitAmountUtils.times(this, scalar),
+                            unit = unit)
 
-    override fun div(scalar: Number): UnitAmount<U>
+    override fun div(scalar: Number) =
+        CompositeUnitAmount(amount = UnitAmountUtils.dividedByScalar(this, scalar),
+                            unit = unit)
+
+    override fun div(other: UnitAmount<U>): Scalar
     {
-        return CompositeUnitAmount(amount = UnitAmountUtils.dividedByScalar(this, scalar),
-                                   unit = unit)
+        return Scalar(amount = this.amount / (other to this.unit).amount,
+                      unit = ScalarUnit())
     }
 
     override fun times(amount: UnitAmount<out Unit>): UnitAmount<Unit>
@@ -296,5 +296,5 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
     }
 
     override fun toString() =
-        "$amount${if (unit.isScalar) "" else " $unit"}"
+        amount.toString()
 }

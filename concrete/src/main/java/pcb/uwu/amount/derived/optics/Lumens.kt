@@ -3,8 +3,8 @@ package pcb.uwu.amount.derived.optics
 import pcb.uwu.amount.base.Candelas
 import pcb.uwu.amount.base.LuminousIntensity
 import pcb.uwu.amount.base.Time
-import pcb.uwu.amount.derived.fundamental.Area
-import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.geometry.Area
+import pcb.uwu.amount.derived.geometry.area.SquareMeters
 import pcb.uwu.amount.derived.scalar.SolidAngle
 import pcb.uwu.amount.derived.scalar.Steradians
 import pcb.uwu.core.Magnitude
@@ -12,11 +12,11 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.CandelaUnit
 import pcb.uwu.unit.base.SecondUnit
-import pcb.uwu.unit.derived.area.SquareMeterUnit
+import pcb.uwu.unit.derived.geometry.SquareMeterUnit
+import pcb.uwu.unit.derived.geometry.SteradianUnit
 import pcb.uwu.unit.derived.optics.LumenUnit
 import pcb.uwu.unit.derived.optics.LuminousFluxUnit
 import pcb.uwu.unit.derived.optics.LuxUnit
-import pcb.uwu.unit.scalar.SteradianUnit
 
 class Lumens : LuminousFlux
 {

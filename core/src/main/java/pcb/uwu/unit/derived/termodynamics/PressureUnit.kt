@@ -5,8 +5,8 @@ import pcb.uwu.core.UnitCounter
 import pcb.uwu.unit.base.LengthUnit
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.base.TimeUnit
-import pcb.uwu.unit.derived.fundamental.AreaUnit
-import pcb.uwu.unit.derived.fundamental.VolumeUnit
+import pcb.uwu.unit.derived.geometry.AreaUnit
+import pcb.uwu.unit.derived.geometry.VolumeUnit
 import pcb.uwu.unit.derived.mechanics.ForceUnit
 
 open class PressureUnit : CompositeUnit

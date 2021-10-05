@@ -4,8 +4,8 @@ import pcb.uwu.core.CompositeUnit
 import pcb.uwu.core.UnitCounter
 import pcb.uwu.unit.base.LuminousIntensityUnit
 import pcb.uwu.unit.base.TimeUnit
-import pcb.uwu.unit.derived.fundamental.AreaUnit
-import pcb.uwu.unit.scalar.SolidAngleUnit
+import pcb.uwu.unit.derived.geometry.AreaUnit
+import pcb.uwu.unit.derived.geometry.SolidAngleUnit
 
 open class LuminousFluxUnit
     : CompositeUnit

@@ -1,6 +1,6 @@
 package pcb.uwu.amount.base
 
-import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.geometry.Area
 import pcb.uwu.amount.derived.optics.Luminance
 import pcb.uwu.amount.derived.optics.LuminousFlux
 import pcb.uwu.amount.derived.scalar.SolidAngle
@@ -9,7 +9,7 @@ import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.LuminousIntensityUnit
-import pcb.uwu.unit.derived.fundamental.AreaUnit
+import pcb.uwu.unit.derived.geometry.AreaUnit
 import pcb.uwu.unit.derived.optics.LuminanceUnit
 import pcb.uwu.unit.derived.optics.LuminousFluxUnit
 import pcb.uwu.util.UnitAmountUtils

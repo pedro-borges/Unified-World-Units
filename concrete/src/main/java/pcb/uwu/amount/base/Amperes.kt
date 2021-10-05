@@ -64,15 +64,11 @@ class Amperes : ElectricCurrent
     operator fun times(magneticFlux: MagneticFlux) =
         Joules(this.amount * (magneticFlux to WebberUnit).amount)
 
-    operator fun div(electricPotential: ElectricPotential): Siemens
-    {
-        return Siemens(this.amount / (electricPotential to VoltUnit).amount)
-    }
+    operator fun div(electricPotential: ElectricPotential) =
+        Siemens(this.amount / (electricPotential to VoltUnit).amount)
 
-    operator fun div(electricConductance: ElectricConductance): Volts
-    {
-        return Volts(this.amount / (electricConductance to SiemensUnit).amount)
-    }
+    operator fun div(electricConductance: ElectricConductance) =
+        Volts(this.amount / (electricConductance to SiemensUnit).amount)
 
     // endregion
 }

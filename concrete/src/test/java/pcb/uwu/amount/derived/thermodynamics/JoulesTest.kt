@@ -4,7 +4,7 @@ import pcb.uwu.amount.base.Meters
 import pcb.uwu.amount.base.Seconds
 import pcb.uwu.amount.derived.electromagnetism.Coulombs
 import pcb.uwu.amount.derived.electromagnetism.Volts
-import pcb.uwu.amount.derived.fundamental.volume.CubicMeters
+import pcb.uwu.amount.derived.geometry.volume.CubicMeters
 import pcb.uwu.amount.derived.mechanics.Newtons
 import kotlin.test.Test
 import kotlin.test.assertEquals

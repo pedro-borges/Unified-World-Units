@@ -1,13 +1,13 @@
 package pcb.uwu.amount.derived.thermodynamics
 
-import pcb.uwu.amount.derived.fundamental.Area
-import pcb.uwu.amount.derived.fundamental.Volume
+import pcb.uwu.amount.derived.geometry.Area
+import pcb.uwu.amount.derived.geometry.Volume
 import pcb.uwu.amount.derived.mechanics.Newtons
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.derived.area.SquareMeterUnit
-import pcb.uwu.unit.derived.fundamental.CubicMeterUnit
+import pcb.uwu.unit.derived.geometry.CubicMeterUnit
+import pcb.uwu.unit.derived.geometry.SquareMeterUnit
 import pcb.uwu.unit.derived.termodynamics.PascalUnit
 import pcb.uwu.unit.derived.termodynamics.PressureUnit
 

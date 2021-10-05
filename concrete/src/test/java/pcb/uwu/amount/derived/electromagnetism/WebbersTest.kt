@@ -2,12 +2,12 @@ package pcb.uwu.amount.derived.electromagnetism
 
 import pcb.uwu.amount.base.Amperes
 import pcb.uwu.amount.base.Seconds
-import pcb.uwu.amount.derived.fundamental.Area
-import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.geometry.Area
+import pcb.uwu.amount.derived.geometry.area.SquareMeters
 import pcb.uwu.amount.derived.thermodynamics.Joules
 import pcb.uwu.core.Magnitude.KILO
 import pcb.uwu.core.Magnitude.MILLI
-import pcb.uwu.unit.derived.area.SquareMeterUnit
+import pcb.uwu.unit.derived.geometry.SquareMeterUnit
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

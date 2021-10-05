@@ -1,7 +1,7 @@
 package pcb.uwu.amount.base
 
-import pcb.uwu.amount.derived.fundamental.Area
-import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.geometry.Area
+import pcb.uwu.amount.derived.geometry.area.SquareMeters
 import pcb.uwu.amount.derived.optics.Lumens
 import pcb.uwu.amount.derived.optics.Luminance
 import pcb.uwu.amount.derived.optics.Nits
@@ -11,9 +11,9 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.CandelaUnit
 import pcb.uwu.unit.base.LuminousIntensityUnit
-import pcb.uwu.unit.derived.area.SquareMeterUnit
+import pcb.uwu.unit.derived.geometry.SquareMeterUnit
+import pcb.uwu.unit.derived.geometry.SteradianUnit
 import pcb.uwu.unit.derived.optics.NitUnit
-import pcb.uwu.unit.scalar.SteradianUnit
 
 class Candelas : LuminousIntensity
 {

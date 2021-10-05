@@ -4,7 +4,7 @@ import pcb.uwu.amount.base.Length
 import pcb.uwu.amount.base.Time
 import pcb.uwu.amount.derived.electromagnetism.ElectricCharge
 import pcb.uwu.amount.derived.electromagnetism.ElectricPotential
-import pcb.uwu.amount.derived.fundamental.Volume
+import pcb.uwu.amount.derived.geometry.Volume
 import pcb.uwu.amount.derived.mechanics.Force
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
@@ -12,7 +12,7 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.electromagnetism.ElectricChargeUnit
 import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit
-import pcb.uwu.unit.derived.fundamental.VolumeUnit
+import pcb.uwu.unit.derived.geometry.VolumeUnit
 import pcb.uwu.unit.derived.mechanics.ForceUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 import pcb.uwu.unit.derived.termodynamics.PowerUnit

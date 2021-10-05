@@ -1,8 +1,9 @@
 package pcb.uwu.amount.base
 
+import pcb.uwu.amount.derived.acoustics.Frequency
+import pcb.uwu.amount.derived.economics.Currency
+import pcb.uwu.amount.derived.economics.Debt
 import pcb.uwu.amount.derived.electromagnetism.ElectricCharge
-import pcb.uwu.amount.derived.finance.Debt
-import pcb.uwu.amount.derived.fundamental.Frequency
 import pcb.uwu.amount.derived.mechanics.Pace
 import pcb.uwu.amount.derived.optics.LuminousEnergy
 import pcb.uwu.amount.derived.optics.LuminousFlux
@@ -13,9 +14,9 @@ import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.derived.acoustics.FrequencyUnit
+import pcb.uwu.unit.derived.economics.DebtUnit
 import pcb.uwu.unit.derived.electromagnetism.ElectricChargeUnit
-import pcb.uwu.unit.derived.finance.DebtUnit
-import pcb.uwu.unit.derived.fundamental.FrequencyUnit
 import pcb.uwu.unit.derived.mechanics.PaceUnit
 import pcb.uwu.unit.derived.optics.LuminousEnergyUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit

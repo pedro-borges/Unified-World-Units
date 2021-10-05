@@ -7,7 +7,7 @@ import pcb.uwu.util.identity
 import kotlin.reflect.KClass
 
 
-class ScalarUnit(symbol: String = "",
+open class ScalarUnit(symbol: String = "",
                  singularName: String = "",
                  pluralName: String = "",
                  translationToCanonical: (Amount) -> Amount = identity(),

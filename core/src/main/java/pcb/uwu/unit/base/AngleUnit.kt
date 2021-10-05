@@ -10,12 +10,11 @@ open class AngleUnit(symbol: String,
                      pluralName: String,
                      translationToCanonical: (Amount) -> Amount,
                      translationFromCanonical: (Amount) -> Amount)
-    : BaseUnit(precedence = 10,
-               symbol = symbol,
-               singularName = singularName,
-               pluralName = pluralName,
-               translationToCanonical = translationToCanonical,
-               translationFromCanonical = translationFromCanonical)
+    : ScalarUnit(symbol = symbol,
+                 singularName = singularName,
+                 pluralName = pluralName,
+                 translationToCanonical = translationToCanonical,
+                 translationFromCanonical = translationFromCanonical)
 {
     override val unitCounter: UnitCounter
         get() = UnitCounter()

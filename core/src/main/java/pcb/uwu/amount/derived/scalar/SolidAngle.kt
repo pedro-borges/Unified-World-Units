@@ -6,8 +6,8 @@ import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.geometry.SolidAngleUnit
 import pcb.uwu.unit.derived.optics.LuminousFluxUnit
-import pcb.uwu.unit.scalar.SolidAngleUnit
 import pcb.uwu.util.UnitAmountUtils
 
 open class SolidAngle : CompositeUnitAmount<SolidAngleUnit>

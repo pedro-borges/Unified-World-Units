@@ -1,7 +1,7 @@
 package pcb.uwu.amount.derived.thermodynamics
 
-import pcb.uwu.amount.derived.fundamental.Area
-import pcb.uwu.amount.derived.fundamental.Volume
+import pcb.uwu.amount.derived.geometry.Area
+import pcb.uwu.amount.derived.geometry.Volume
 import pcb.uwu.amount.derived.mechanics.Force
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude

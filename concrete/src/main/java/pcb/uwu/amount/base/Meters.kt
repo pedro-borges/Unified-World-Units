@@ -1,6 +1,6 @@
 package pcb.uwu.amount.base
 
-import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.geometry.area.SquareMeters
 import pcb.uwu.amount.derived.mechanics.Force
 import pcb.uwu.amount.derived.thermodynamics.Joules
 import pcb.uwu.core.Magnitude

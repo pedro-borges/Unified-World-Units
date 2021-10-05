@@ -1,10 +1,10 @@
 package pcb.uwu.amount.derived.optics
 
-import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.geometry.Area
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.derived.area.SquareMeterUnit
+import pcb.uwu.unit.derived.geometry.SquareMeterUnit
 import pcb.uwu.unit.derived.optics.IlluminanceUnit
 import pcb.uwu.unit.derived.optics.LuxUnit
 

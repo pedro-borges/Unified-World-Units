@@ -1,7 +1,7 @@
 package pcb.uwu.unit.derived.optics
 
 import pcb.uwu.unit.base.CandelaUnit
-import pcb.uwu.unit.derived.area.SquareMeterUnit
+import pcb.uwu.unit.derived.geometry.SquareMeterUnit
 
 object NitUnit
     : LuminanceUnit(luminousIntensityUnit = CandelaUnit,

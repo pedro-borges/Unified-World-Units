@@ -2,7 +2,7 @@ package pcb.uwu.amount.derived.electromagnetism
 
 import pcb.uwu.amount.base.ElectricCurrent
 import pcb.uwu.amount.base.Time
-import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.geometry.Area
 import pcb.uwu.amount.derived.thermodynamics.Energy
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
@@ -12,7 +12,7 @@ import pcb.uwu.unit.derived.electromagnetism.ElectricInductanceUnit
 import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit
 import pcb.uwu.unit.derived.electromagnetism.MagneticFieldUnit
 import pcb.uwu.unit.derived.electromagnetism.MagneticFluxUnit
-import pcb.uwu.unit.derived.fundamental.AreaUnit
+import pcb.uwu.unit.derived.geometry.AreaUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 import pcb.uwu.util.UnitAmountUtils
 

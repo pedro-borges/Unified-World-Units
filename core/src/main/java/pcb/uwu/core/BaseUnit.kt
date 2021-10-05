@@ -47,9 +47,4 @@ abstract class BaseUnit(private val precedence: Int,
     {
         return hash(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical)
     }
-
-    override fun toString(): String
-    {
-        return symbol
-    }
 }

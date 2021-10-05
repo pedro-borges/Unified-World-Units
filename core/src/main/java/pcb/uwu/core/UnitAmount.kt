@@ -1,5 +1,7 @@
 package pcb.uwu.core
 
+import pcb.uwu.amount.base.Scalar
+
 interface UnitAmount<U : Unit> : Comparable<UnitAmount<U>>
 {
     val amount: Amount
@@ -17,6 +19,8 @@ interface UnitAmount<U : Unit> : Comparable<UnitAmount<U>>
     operator fun times(scalar: Number): UnitAmount<U>
 
     operator fun div(scalar: Number): UnitAmount<U>
+
+    operator fun div(other: UnitAmount<U>): Scalar
 
     fun invert(): UnitAmount<out Unit>
 

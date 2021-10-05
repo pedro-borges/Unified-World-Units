@@ -3,9 +3,9 @@ package pcb.uwu.core
 import pcb.uwu.amount.base.Amperes
 import pcb.uwu.amount.base.Length
 import pcb.uwu.amount.base.Meters
-import pcb.uwu.amount.derived.fundamental.Volume
+import pcb.uwu.amount.derived.geometry.Volume
 import pcb.uwu.unit.base.MeterUnit
-import pcb.uwu.unit.derived.fundamental.CubicMeterUnit
+import pcb.uwu.unit.derived.geometry.CubicMeterUnit
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

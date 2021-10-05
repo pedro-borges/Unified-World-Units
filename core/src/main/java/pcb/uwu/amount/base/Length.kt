@@ -1,6 +1,6 @@
 package pcb.uwu.amount.base
 
-import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.geometry.Area
 import pcb.uwu.amount.derived.mechanics.Force
 import pcb.uwu.amount.derived.mechanics.Speed
 import pcb.uwu.amount.derived.thermodynamics.Energy
@@ -10,7 +10,7 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.LengthUnit
 import pcb.uwu.unit.base.TimeUnit
-import pcb.uwu.unit.derived.fundamental.AreaUnit
+import pcb.uwu.unit.derived.geometry.AreaUnit
 import pcb.uwu.unit.derived.mechanics.SpeedUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 import pcb.uwu.util.UnitAmountUtils
@@ -48,9 +48,6 @@ open class Length : CompositeUnitAmount<LengthUnit>
     override fun div(scalar: Number) =
         Length(amount = this.amount / scalar,
                unit = this.unit)
-
-    fun div(other: UnitAmount<LengthUnit>) =
-        Scalar(super.div(other).amount)
 
     override fun to(unit: LengthUnit) =
         Length(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),

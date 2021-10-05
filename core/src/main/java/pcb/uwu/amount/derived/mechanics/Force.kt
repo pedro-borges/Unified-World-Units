@@ -2,14 +2,14 @@ package pcb.uwu.amount.derived.mechanics
 
 import pcb.uwu.amount.base.Length
 import pcb.uwu.amount.base.Mass
-import pcb.uwu.amount.derived.fundamental.Area
+import pcb.uwu.amount.derived.geometry.Area
 import pcb.uwu.amount.derived.thermodynamics.Energy
 import pcb.uwu.amount.derived.thermodynamics.Pressure
 import pcb.uwu.core.CompositeUnitAmount
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.derived.fundamental.AreaUnit
+import pcb.uwu.unit.derived.geometry.AreaUnit
 import pcb.uwu.unit.derived.mechanics.AccelerationUnit
 import pcb.uwu.unit.derived.mechanics.ForceUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit

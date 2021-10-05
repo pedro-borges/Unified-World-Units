@@ -100,8 +100,5 @@ open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCount
     override fun hashCode() =
         unitCounter.hashCode()
 
-    override fun toString() =
-        symbol
-
     // endregion
 }

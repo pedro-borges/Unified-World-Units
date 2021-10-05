@@ -9,7 +9,7 @@ import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.unit.derived.electromagnetism.ElectricChargeUnit
 import pcb.uwu.unit.derived.electromagnetism.ElectricPotentialUnit
 import pcb.uwu.unit.derived.electromagnetism.MagneticFluxUnit
-import pcb.uwu.unit.derived.fundamental.VolumeUnit
+import pcb.uwu.unit.derived.geometry.VolumeUnit
 import pcb.uwu.unit.derived.mechanics.ForceUnit
 
 open class EnergyUnit : CompositeUnit

@@ -6,7 +6,7 @@ import pcb.uwu.unit.base.ElectricCurrentUnit
 import pcb.uwu.unit.base.LengthUnit
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.base.TimeUnit
-import pcb.uwu.unit.derived.fundamental.AreaUnit
+import pcb.uwu.unit.derived.geometry.AreaUnit
 import pcb.uwu.unit.derived.mechanics.ForceUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 

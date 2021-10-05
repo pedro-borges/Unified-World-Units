@@ -1,6 +1,6 @@
 package pcb.uwu.contract
 
-import pcb.uwu.unit.base.CurrencyUnit
+import pcb.uwu.unit.derived.economics.CurrencyUnit
 import java.math.BigDecimal
 
 fun interface CurrencyConversionProvider

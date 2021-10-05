@@ -2,7 +2,7 @@ package pcb.uwu.amount.derived.optics
 
 import pcb.uwu.amount.base.Candelas
 import pcb.uwu.amount.base.Seconds
-import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import pcb.uwu.amount.derived.geometry.area.SquareMeters
 import pcb.uwu.amount.derived.scalar.Steradians
 import kotlin.test.Test
 import kotlin.test.assertEquals
