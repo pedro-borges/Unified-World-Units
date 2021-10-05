@@ -1,118 +1,51 @@
-package pcb.uwu.amount.derived.fundamental;
+package pcb.uwu.amount.derived.fundamental
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.Length;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.fundamental.VolumeUnit;
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.fundamental.VolumeUnit
+import pcb.uwu.utils.UnitAmountUtils.dividedByScalar
+import pcb.uwu.utils.UnitAmountUtils.getAmountIn
+import pcb.uwu.utils.UnitAmountUtils.multipliedByScalar
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.util.function.BiFunction;
+open class Volume : CompositeUnitAmount<VolumeUnit>
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: VolumeUnit)
+            : super(amount, magnitude, unit)
 
-import static pcb.uwu.utils.MathUtils.PI;
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL,
+                unit: VolumeUnit)
+            : super(amount, magnitude, unit)
 
-public class Volume extends CompositeUnitAmount<VolumeUnit> {
+    // region UnitAmount
 
-	// region geometry factories
+    override operator fun plus(other: UnitAmount<VolumeUnit>) =
+        Volume(amount = this.amount + other.into(this.unit).amount,
+               unit = this.unit)
 
-	public static final VolumeFactory FOR = new VolumeFactory();
+    override operator fun minus(other: UnitAmount<VolumeUnit>) =
+        Volume(amount = this.amount - other.into(this.unit).amount,
+               unit = this.unit)
 
-	public static class VolumeFactory {
-		public static final BiFunction<BigDecimalAmount, MathContext, BigDecimalAmount> SPHERE_FUNCTION =
-				(radius, mathContext) -> radius
-						.pow(3, mathContext)
-						.times(4)
-						.div(3, mathContext)
-						.times(PI, mathContext);
+    override fun times(other: BigDecimal, mathContext: MathContext) =
+        Volume(amount = multipliedByScalar(this, other, mathContext),
+               unit = this.unit)
 
-		public static final BiFunction<BigDecimalAmount, MathContext, BigDecimalAmount> CUBE_FUNCTION =
-				(side, mathContext) -> side.pow(3, mathContext);
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        Volume(amount = dividedByScalar(this, other, mathContext),
+               unit = this.unit)
 
-		public Volume sphereWithRadius(Length radius, MathContext mathContext) {
-			return new Volume(SPHERE_FUNCTION.apply(radius.getAmount(), mathContext),
-					new VolumeUnit(radius.getUnit(), radius.getUnit(), radius.getUnit()));
-		}
+    override fun into(unit: VolumeUnit) =
+        Volume(amount = getAmountIn(unitAmount = this, newUnit = unit),
+               unit = unit)
 
-		public Volume cubeWithSide(Length side, MathContext mathContext) {
-			return new Volume(CUBE_FUNCTION.apply(side.getAmount(), mathContext),
-					new VolumeUnit(side.getUnit(), side.getUnit(), side.getUnit()));
-		}
-	}
-
-	// endregion
-
-	// region constructors
-
-	public Volume(Number value, VolumeUnit unit) {
-		super(value, unit);
-	}
-
-	public Volume(Number value, Magnitude magnitude, VolumeUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public Volume(String value, VolumeUnit unit) {
-		super(value, unit);
-	}
-
-	public Volume(String value, Magnitude magnitude, VolumeUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public Volume(BigDecimal value, VolumeUnit unit) {
-		super(value, unit);
-	}
-
-	public Volume(BigDecimal value, Magnitude magnitude, VolumeUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public Volume(BigDecimalAmount amount, VolumeUnit unit) {
-		super(amount, unit);
-	}
-
-	public Volume(BigDecimalAmount amount, Magnitude magnitude, VolumeUnit unit) {
-		super(amount, magnitude, unit);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Volume plus(@NotNull UnitAmount<VolumeUnit> other) {
-		return new Volume(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public Volume minus(@NotNull UnitAmount<VolumeUnit> other) {
-		return new Volume(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public Volume times(BigDecimal other, MathContext mathContext) {
-		return new Volume(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Volume div(BigDecimal other, MathContext mathContext) {
-		return new Volume(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Volume into(VolumeUnit unit) {
-		return new Volume(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
+    // endregion
 }

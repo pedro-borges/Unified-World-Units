@@ -13,11 +13,11 @@ class PascalsTest
     @Test
     fun multipliedByVolume() =
         assertEquals("27 J",
-                     Pascals(9).multipliedBy(Volume(3, CUBIC_METER), DECIMAL64).toString())
+                     Pascals(9).multipliedBy(Volume(amount = 3, unit = CUBIC_METER), DECIMAL64).toString())
 
     @Test
     fun multipliedByArea() =
         assertEquals("18 N",
-                     Pascals(9).multipliedBy(Area(2, SquareMeterUnit.SQUARE_METER), DECIMAL64).toString())
+                     Pascals(9).multipliedBy(Area(amount = 2, unit = SquareMeterUnit.SQUARE_METER), DECIMAL64).toString())
 
 }

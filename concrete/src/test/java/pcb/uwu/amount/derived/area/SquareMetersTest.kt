@@ -15,22 +15,22 @@ class SquareMetersTest
     fun circleFactory()
     {
         assertEquals("0.03141592653589793 m²",
-                     SquareMeters.FOR.circleWithRadius(Meters(1, DECI), DECIMAL64).toString())
+                     SquareMeters.FOR.circle(Meters(1, DECI), DECIMAL64).toString())
         assertEquals("3.141592653589793 m²",
-                     SquareMeters.FOR.circleWithRadius(Meters(1), DECIMAL64).toString())
+                     SquareMeters.FOR.circle(Meters(1), DECIMAL64).toString())
         assertEquals("314.1592653589793 m²",
-                     SquareMeters.FOR.circleWithRadius(Meters(1, DEKA), DECIMAL64).toString())
+                     SquareMeters.FOR.circle(Meters(1, DEKA), DECIMAL64).toString())
     }
 
     @Test
     fun squareFactory()
     {
         assertEquals("0.01 m²",
-                     SquareMeters.FOR.squareWithSide(Meters(1, DECI), DECIMAL64).toString())
+                     SquareMeters.FOR.square(Meters(1, DECI), DECIMAL64).toString())
         assertEquals("1 m²",
-                     SquareMeters.FOR.squareWithSide(Meters(1), DECIMAL64).toString())
+                     SquareMeters.FOR.square(Meters(1), DECIMAL64).toString())
         assertEquals("100 m²",
-                     SquareMeters.FOR.squareWithSide(Meters(1, DEKA), DECIMAL64).toString())
+                     SquareMeters.FOR.square(Meters(1, DEKA), DECIMAL64).toString())
     }
 
     @Test

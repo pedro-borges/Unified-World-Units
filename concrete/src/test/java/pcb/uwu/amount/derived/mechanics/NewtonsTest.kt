@@ -8,7 +8,7 @@ import pcb.uwu.amount.derived.fundamental.Area
 import pcb.uwu.amount.derived.thermodynamics.Pascals
 import pcb.uwu.unit.base.MeterUnit.METER
 import pcb.uwu.unit.base.SecondUnit.SECOND
-import pcb.uwu.unit.derived.area.SquareMeterUnit
+import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
 import pcb.uwu.unit.derived.mechanics.AccelerationUnit
 import java.math.MathContext.DECIMAL64
 
@@ -37,6 +37,6 @@ class NewtonsTest
     @Test
     fun dividedByArea() =
         assertEquals("3 Pa",
-                     Newtons(12).dividedBy(Area(4, SquareMeterUnit.SQUARE_METER), DECIMAL64).toString())
+                     Newtons(12).dividedBy(Area(amount = 4, unit = SQUARE_METER), DECIMAL64).toString())
 
 }

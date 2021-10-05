@@ -16,7 +16,7 @@ class JoulesTest
     @Test
     fun dividedByVolume() =
         assertEquals("40 Pa",
-                     Joules(200).dividedBy(Volume(5, CUBIC_METER), DECIMAL64).toString())
+                     Joules(200).dividedBy(Volume(amount = 5, unit = CUBIC_METER), DECIMAL64).toString())
 
     @Test
     fun dividedByPressure() =

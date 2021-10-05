@@ -11,6 +11,6 @@ class TeslasTest
     @Test
     fun multipliedByArea() =
         assertEquals("4 Wb",
-                     Teslas(2).multipliedBy(Area(2, SQUARE_METER), DECIMAL64).toString())
+                     Teslas(2).multipliedBy(Area(amount = 2, unit = SQUARE_METER), DECIMAL64).toString())
 
 }

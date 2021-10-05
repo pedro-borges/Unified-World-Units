@@ -62,8 +62,8 @@ open class Length : CompositeUnitAmount<LengthUnit>
              unit = speed.unit.unitCounter.findUnit(TimeUnit::class.java)!!)
 
     fun multipliedBy(length: Length, mathContext: MathContext) =
-        Area(amount.times(length.amount, mathContext),
-             AreaUnit(unit, length.unit))
+        Area(amount = amount.times(length.amount, mathContext),
+             unit = AreaUnit(unit, length.unit))
 
     // endregion
 }

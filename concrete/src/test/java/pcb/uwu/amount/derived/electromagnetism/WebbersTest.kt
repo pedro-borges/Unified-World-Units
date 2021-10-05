@@ -40,7 +40,7 @@ class WebbersTest
     @Test
     fun dividedByArea() =
         assertEquals("6 T",
-                     Webbers(12).dividedBy(Area(2, SQUARE_METER), DECIMAL64).toString())
+                     Webbers(12).dividedBy(Area(amount = 2, unit = SQUARE_METER), DECIMAL64).toString())
 
     @Test
     fun multiplyByElectricCurrent() =

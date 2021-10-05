@@ -1,94 +1,57 @@
-package pcb.uwu.amount.derived.fundamental;
+package pcb.uwu.amount.derived.fundamental
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.amount.base.Time;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.base.TimeUnit;
-import pcb.uwu.unit.derived.fundamental.FrequencyUnit;
+import pcb.uwu.amount.base.Time
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.base.TimeUnit
+import pcb.uwu.unit.derived.fundamental.FrequencyUnit
+import pcb.uwu.utils.UnitAmountUtils.dividedByScalar
+import pcb.uwu.utils.UnitAmountUtils.getAmountIn
+import pcb.uwu.utils.UnitAmountUtils.multipliedByScalar
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+open class Frequency : CompositeUnitAmount<FrequencyUnit>
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: FrequencyUnit)
+            : super(amount, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL,
+                unit: FrequencyUnit)
+            : super(amount, magnitude, unit)
 
-public class Frequency extends CompositeUnitAmount<FrequencyUnit> {
+    // region UnitAmount
 
-	// region constructors
+    override operator fun plus(other: UnitAmount<FrequencyUnit>) =
+        Frequency(amount = this.amount + other.into(this.unit).amount,
+                  unit = this.unit)
 
-	public Frequency(Number value, FrequencyUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<FrequencyUnit>) =
+        Frequency(amount = this.amount - other.into(this.unit).amount,
+                  unit = this.unit)
 
-	public Frequency(Number value, Magnitude magnitude, FrequencyUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun times(other: BigDecimal, mathContext: MathContext) =
+        Frequency(amount = multipliedByScalar(this, other, mathContext),
+                  unit = this.unit)
 
-	public Frequency(String value, FrequencyUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        Frequency(amount = dividedByScalar(this, other, mathContext),
+                  unit = this.unit)
 
-	public Frequency(String value, Magnitude magnitude, FrequencyUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: FrequencyUnit) =
+        Frequency(amount = getAmountIn(unitAmount = this, newUnit = unit),
+                  unit = unit)
 
-	public Frequency(BigDecimal value, FrequencyUnit unit) {
-		super(value, unit);
-	}
+    override fun invert(mathContext: MathContext) =
+        Time(amount = amount.invert(mathContext),
+             unit = unit.unitCounter.findUnit(TimeUnit::class.java)!!)
 
-	public Frequency(BigDecimal value, Magnitude magnitude, FrequencyUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public Frequency(BigDecimalAmount amount, FrequencyUnit unit) {
-		super(amount, unit);
-	}
-
-	public Frequency(BigDecimalAmount amount, Magnitude magnitude, FrequencyUnit unit) {
-		super(amount, magnitude, unit);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Frequency plus(@NotNull UnitAmount<FrequencyUnit> other) {
-		return new Frequency(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public Frequency minus(@NotNull UnitAmount<FrequencyUnit> other) {
-		return new Frequency(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public Frequency times(BigDecimal other, MathContext mathContext) {
-		return new Frequency(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Frequency div(BigDecimal other, MathContext mathContext) {
-		return new Frequency(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Frequency into(FrequencyUnit unit) {
-		return new Frequency(getAmountIn(this, unit), unit);
-	}
-
-	@Override
-	public Time invert(MathContext mathContext) {
-		return new Time(getAmount().invert(mathContext), getUnit().getUnitCounter().findUnit(TimeUnit.class));
-	}
-
-	// endregion
+    // endregion
 }

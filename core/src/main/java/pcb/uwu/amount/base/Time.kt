@@ -61,7 +61,8 @@ open class Time : CompositeUnitAmount<TimeUnit>
              unit = unit)
 
     override fun invert(mathContext: MathContext) =
-        Frequency(amount.invert(mathContext), FrequencyUnit(unit))
+        Frequency(amount = amount.invert(mathContext),
+                  unit = FrequencyUnit(unit))
 
     // endregion
 

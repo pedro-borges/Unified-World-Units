@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Candelas;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.derived.fundamental.Area;
+import pcb.uwu.amount.derived.fundamental.AreaFactory;
 import pcb.uwu.amount.derived.optics.Illuminance;
 import pcb.uwu.amount.derived.optics.Lumens;
 import pcb.uwu.amount.derived.optics.Luminance;
@@ -34,12 +35,12 @@ public class SquareMeters extends Area {
 	public static class SquareMetersFactory extends AreaFactory {
 
 		@Override
-		public SquareMeters circleWithRadius(Length radius, MathContext mathContext) {
+		public SquareMeters circle(Length radius, MathContext mathContext) {
 			return new SquareMeters(CIRCLE_FUNCTION.apply(getAmountIn(radius, METER), mathContext));
 		}
 
 		@Override
-		public SquareMeters squareWithSide(Length side, MathContext mathContext) {
+		public SquareMeters square(Length side, MathContext mathContext) {
 			return new SquareMeters(SQUARE_FUNCTION.apply(getAmountIn(side, METER), mathContext));
 		}
 	}

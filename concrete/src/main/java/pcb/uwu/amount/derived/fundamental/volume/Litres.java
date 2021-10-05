@@ -3,6 +3,7 @@ package pcb.uwu.amount.derived.fundamental.volume;
 import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Length;
 import pcb.uwu.amount.derived.fundamental.Volume;
+import pcb.uwu.amount.derived.fundamental.VolumeFactory;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
@@ -28,12 +29,12 @@ public class Litres extends Volume {
 
 	public static class LitresFactory extends VolumeFactory {
 		@Override
-		public Litres sphereWithRadius(Length radius, MathContext mathContext) {
+		public Litres sphere(Length radius, MathContext mathContext) {
 			return new Litres(SPHERE_FUNCTION.apply(getAmountIn(radius, DECI, METER), mathContext));
 		}
 
 		@Override
-		public Litres cubeWithSide(Length side, MathContext mathContext) {
+		public Litres cube(Length side, MathContext mathContext) {
 			return new Litres(CUBE_FUNCTION.apply(getAmountIn(side, DECI, METER), mathContext));
 		}
 	}
