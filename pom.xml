@@ -10,8 +10,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>core</module>
-        <module>concrete</module>
+        <module>dimension</module>
+        <module>implementation</module>
         <module>render</module>
     </modules>
 
