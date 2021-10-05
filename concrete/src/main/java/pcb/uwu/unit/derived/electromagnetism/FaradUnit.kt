@@ -1,30 +1,17 @@
-package pcb.uwu.unit.derived.electromagnetism;
+package pcb.uwu.unit.derived.electromagnetism
 
-import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
-import static pcb.uwu.unit.base.KiloGramUnit.KILOGRAM;
-import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import pcb.uwu.unit.base.AmpereUnit
+import pcb.uwu.unit.base.KiloGramUnit
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.base.SecondUnit
 
-public class FaradUnit extends ElectricCapacitanceUnit {
-
-	public static final FaradUnit FARAD = new FaradUnit();
-
-	public FaradUnit() {
-		super(AMPERE, SECOND, METER, KILOGRAM);
-	}
-
-	@Override
-	public String getSymbol() {
-		return "F";
-	}
-
-	@Override
-	public String getSingularName() {
-		return "farad";
-	}
-
-	@Override
-	public String getPluralName() {
-		return "farads";
-	}
+object FaradUnit
+    : ElectricCapacitanceUnit(electricCurrentUnit = AmpereUnit,
+                              timeUnit = SecondUnit,
+                              lengthUnit = MeterUnit,
+                              massUnit = KiloGramUnit)
+{
+    override val symbol = "F"
+    override val singularName = "farad"
+    override val pluralName = "farads"
 }

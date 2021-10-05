@@ -5,29 +5,29 @@ import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.electromagnetism.ElectricCapacitanceUnit
-import pcb.uwu.unit.derived.electromagnetism.FaradUnit.FARAD
-import pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM
-import pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT
+import pcb.uwu.unit.derived.electromagnetism.FaradUnit
+import pcb.uwu.unit.derived.electromagnetism.OhmUnit
+import pcb.uwu.unit.derived.electromagnetism.VoltUnit
 
 class Farads : ElectricCapacitance
 {
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, FARAD)
+            : super(amount, magnitude, FaradUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, FARAD)
+            : super(amount, magnitude, FaradUnit)
 
     // region UnitAmount
 
     override fun plus(electricCapacitance: UnitAmount<ElectricCapacitanceUnit>) =
-        Farads(this.amount + (electricCapacitance to FARAD).amount)
+        Farads(this.amount + (electricCapacitance to FaradUnit).amount)
 
     override fun minus(electricCapacitance: UnitAmount<ElectricCapacitanceUnit>) =
-        Farads(this.amount - (electricCapacitance to FARAD).amount)
+        Farads(this.amount - (electricCapacitance to FaradUnit).amount)
 
     override fun times(scalar: Number) =
         Farads(this.amount * scalar)
@@ -40,10 +40,10 @@ class Farads : ElectricCapacitance
     // region composition
 
     operator fun times(electricPotential: ElectricPotential) =
-        Coulombs(this.amount * (electricPotential to VOLT).amount)
+        Coulombs(this.amount * (electricPotential to VoltUnit).amount)
 
     operator fun times(electricResistance: ElectricResistance) =
-        Seconds(this.amount * (electricResistance to OHM).amount)
+        Seconds(this.amount * (electricResistance to OhmUnit).amount)
 
     // endregion
 }

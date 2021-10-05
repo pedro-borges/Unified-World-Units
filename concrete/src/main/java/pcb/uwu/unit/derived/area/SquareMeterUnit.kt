@@ -1,14 +1,8 @@
-package pcb.uwu.unit.derived.area;
+package pcb.uwu.unit.derived.area
 
-import pcb.uwu.unit.derived.fundamental.AreaUnit;
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.derived.fundamental.AreaUnit
 
-import static pcb.uwu.unit.base.MeterUnit.METER;
-
-public class SquareMeterUnit extends AreaUnit {
-
-	public static final SquareMeterUnit SQUARE_METER = new SquareMeterUnit();
-
-	public SquareMeterUnit() {
-		super(METER, METER);
-	}
-}
+object SquareMeterUnit
+    : AreaUnit(length = MeterUnit,
+               height = MeterUnit)

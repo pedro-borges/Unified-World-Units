@@ -1,16 +1,10 @@
-package pcb.uwu.unit.base;
+package pcb.uwu.unit.base
 
-import java.math.BigDecimal;
+import java.math.BigDecimal
 
-public class FootUnit extends LengthUnit {
-
-	private static final BigDecimal METERS_PER_FOOT = new BigDecimal("0.3048");
-
-	public static final FootUnit FOOT = new FootUnit();
-
-	private FootUnit() {
-		super("ft", "foot", "feet",
-				value -> value.times(METERS_PER_FOOT),
-				value -> value.div(METERS_PER_FOOT));
-	}
-}
+object FootUnit
+    : LengthUnit(symbol = "ft",
+                 singularName = "foot",
+                 pluralName = "feet",
+                 translationToCanonical = { it * BigDecimal("0.3048") },
+                 translationFromCanonical = { it / BigDecimal("0.3048") })

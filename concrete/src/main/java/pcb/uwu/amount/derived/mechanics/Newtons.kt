@@ -10,31 +10,31 @@ import pcb.uwu.amount.derived.thermodynamics.Pressure
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.base.MeterUnit.METER
-import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.derived.area.SquareMeterUnit
 import pcb.uwu.unit.derived.mechanics.ForceUnit
-import pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON
-import pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL
+import pcb.uwu.unit.derived.mechanics.NewtonUnit
+import pcb.uwu.unit.derived.termodynamics.PascalUnit
 
 class Newtons : Force
 {
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, NEWTON)
+            : super(amount, magnitude, NewtonUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, NEWTON)
+            : super(amount, magnitude, NewtonUnit)
 
     // region UnitAmount
 
     override fun plus(force: UnitAmount<ForceUnit>) =
-        Newtons(this.amount + (force to NEWTON).amount)
+        Newtons(this.amount + (force to NewtonUnit).amount)
 
     override fun minus(force: UnitAmount<ForceUnit>) =
-        Newtons(this.amount - (force to NEWTON).amount)
+        Newtons(this.amount - (force to NewtonUnit).amount)
 
     override fun times(scalar: Number) =
         Newtons(this.amount * scalar)
@@ -50,13 +50,13 @@ class Newtons : Force
         KiloGrams(super.div(acceleration).amount)
 
     override fun times(length: Length) =
-        Joules(this.amount * (length to METER).amount)
+        Joules(this.amount * (length to MeterUnit).amount)
 
     override fun div(pressure: Pressure) =
-        SquareMeters(this.amount / (pressure to PASCAL).amount)
+        SquareMeters(this.amount / (pressure to PascalUnit).amount)
 
     override fun div(area: Area) =
-        Pascals(this.amount / (area to SQUARE_METER).amount)
+        Pascals(this.amount / (area to SquareMeterUnit).amount)
 
     // endregion
 }

@@ -1,29 +1,15 @@
-package pcb.uwu.unit.derived.termodynamics;
+package pcb.uwu.unit.derived.termodynamics
 
-import static pcb.uwu.unit.base.KiloGramUnit.KILOGRAM;
-import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import pcb.uwu.unit.base.KiloGramUnit
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.base.SecondUnit
 
-public class PascalUnit extends PressureUnit {
-
-	public static final PascalUnit PASCAL = new PascalUnit();
-
-	public PascalUnit() {
-		super(METER, KILOGRAM, SECOND);
-	}
-
-	@Override
-	public String getSymbol() {
-		return "Pa";
-	}
-
-	@Override
-	public String getSingularName() {
-		return "pascal";
-	}
-
-	@Override
-	public String getPluralName() {
-		return "pascals";
-	}
+object PascalUnit
+    : PressureUnit(lengthUnit = MeterUnit,
+                   massUnit = KiloGramUnit,
+                   timeUnit = SecondUnit)
+{
+    override val symbol = "Pa"
+    override val singularName = "pascal"
+    override val pluralName = "pascals"
 }

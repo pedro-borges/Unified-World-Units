@@ -1,12 +1,6 @@
-package pcb.uwu.unit.derived.fundamental;
+package pcb.uwu.unit.derived.fundamental
 
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import pcb.uwu.unit.base.SecondUnit
 
-public class HertzUnit extends FrequencyUnit {
-
-	public static final HertzUnit HERTZ = new HertzUnit();
-
-	private HertzUnit() {
-		super(SECOND);
-	}
-}
+object HertzUnit
+    : FrequencyUnit(timeUnit = SecondUnit)

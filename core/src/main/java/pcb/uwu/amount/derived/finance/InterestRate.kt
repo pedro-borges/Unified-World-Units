@@ -53,7 +53,7 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
     // region composition
 
     fun times(currency: Currency) =
-        Rent(amount = UnitAmountUtils.times(this, currency.amount.value),
+        Rent(amount = UnitAmountUtils.times(this, currency.amount.amount),
              unit = RentUnit(interestRateUnit = this.unit,
                              currency = currency.unit))
 

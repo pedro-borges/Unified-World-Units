@@ -10,31 +10,31 @@ import pcb.uwu.amount.derived.optics.Luminance
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.base.MeterUnit.METER
-import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.derived.area.SquareMeterUnit
 import pcb.uwu.unit.derived.fundamental.AreaUnit
 import pcb.uwu.unit.derived.optics.LuxUnit
-import pcb.uwu.unit.derived.optics.NitUnit.NIT
+import pcb.uwu.unit.derived.optics.NitUnit
 
 class SquareMeters : Area
 {
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, SQUARE_METER)
+            : super(amount, magnitude, SquareMeterUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, SQUARE_METER)
+            : super(amount, magnitude, SquareMeterUnit)
 
     // region UnitAmount
 
     override fun plus(area: UnitAmount<AreaUnit>) =
-        SquareMeters(this.amount + (area to SQUARE_METER).amount)
+        SquareMeters(this.amount + (area to SquareMeterUnit).amount)
 
     override fun minus(area: UnitAmount<AreaUnit>) =
-        SquareMeters(this.amount - (area to SQUARE_METER).amount)
+        SquareMeters(this.amount - (area to SquareMeterUnit).amount)
 
     override fun times(scalar: Number) =
         SquareMeters(this.amount * scalar)
@@ -47,13 +47,13 @@ class SquareMeters : Area
     // region composition
 
     operator fun times(luminance: Luminance) =
-        Candelas(amount * (luminance to NIT).amount)
+        Candelas(amount * (luminance to NitUnit).amount)
 
     override fun times(illuminance: Illuminance) =
-        Lumens(amount * (illuminance to LuxUnit.LUX).amount)
+        Lumens(amount * (illuminance to LuxUnit).amount)
 
     operator fun div(length: Length) =
-        Meters(amount / (length to METER).amount)
+        Meters(amount / (length to MeterUnit).amount)
 
     // endregion
 

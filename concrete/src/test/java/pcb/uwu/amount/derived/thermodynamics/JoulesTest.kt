@@ -8,14 +8,14 @@ import pcb.uwu.amount.derived.electromagnetism.Coulombs
 import pcb.uwu.amount.derived.electromagnetism.Volts
 import pcb.uwu.amount.derived.fundamental.Volume
 import pcb.uwu.amount.derived.mechanics.Newtons
-import pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER
+import pcb.uwu.unit.derived.fundamental.CubicMeterUnit
 
 class JoulesTest
 {
     @Test
     fun dividedByVolume() =
         assertEquals("40 Pa",
-                     Joules(200).div(Volume(amount = 5, unit = CUBIC_METER)).toString())
+                     Joules(200).div(Volume(amount = 5, unit = CubicMeterUnit)).toString())
 
     @Test
     fun dividedByPressure() =

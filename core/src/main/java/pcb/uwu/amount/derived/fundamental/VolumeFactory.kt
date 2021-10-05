@@ -18,15 +18,9 @@ open class VolumeFactory
     companion object
     {
         @JvmField
-        val SPHERE_FUNCTION =
-            { radius: Amount ->
-                radius.pow(3) * 4 / 3 * PI
-            }
+        val SPHERE_FUNCTION = { radius: Amount -> radius.pow(3) * 4 / 3 * PI }
 
         @JvmField
-        val CUBE_FUNCTION =
-            { side: Amount ->
-                side.pow(3)
-            }
+        val CUBE_FUNCTION = { side: Amount -> side.pow(3) }
     }
 }

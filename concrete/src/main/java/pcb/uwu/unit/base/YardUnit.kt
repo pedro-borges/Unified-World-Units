@@ -1,16 +1,10 @@
-package pcb.uwu.unit.base;
+package pcb.uwu.unit.base
 
-import java.math.BigDecimal;
+import java.math.BigDecimal
 
-public class YardUnit extends LengthUnit {
-
-	private static final BigDecimal METERS_PER_YARD = new BigDecimal("0.9144");
-
-	public static final YardUnit YARD = new YardUnit();
-
-	private YardUnit() {
-		super("yd", "yard", "yards",
-				value -> value.times(METERS_PER_YARD),
-				value -> value.div(METERS_PER_YARD));
-	}
-}
+object YardUnit
+    : LengthUnit(symbol = "yd",
+                 singularName = "yard",
+                 pluralName = "yards",
+                 translationToCanonical = { it * BigDecimal("0.9144") },
+                 translationFromCanonical = { it / BigDecimal("0.9144") })

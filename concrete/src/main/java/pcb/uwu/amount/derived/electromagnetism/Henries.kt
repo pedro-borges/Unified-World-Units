@@ -4,29 +4,29 @@ import pcb.uwu.amount.base.ElectricCurrent
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.base.AmpereUnit.AMPERE
+import pcb.uwu.unit.base.AmpereUnit
 import pcb.uwu.unit.derived.electromagnetism.ElectricInductanceUnit
-import pcb.uwu.unit.derived.electromagnetism.HenryUnit.HENRY
+import pcb.uwu.unit.derived.electromagnetism.HenryUnit
 
 class Henries : ElectricInductance
 {
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, HENRY)
+            : super(amount, magnitude, HenryUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, HENRY)
+            : super(amount, magnitude, HenryUnit)
 
     // region UnitAmount
 
     override fun plus(electricInductance: UnitAmount<ElectricInductanceUnit>) =
-        Henries(this.amount + (electricInductance to HENRY).amount)
+        Henries(this.amount + (electricInductance to HenryUnit).amount)
 
     override fun minus(electricInductance: UnitAmount<ElectricInductanceUnit>) =
-        Henries(this.amount - (electricInductance to HENRY).amount)
+        Henries(this.amount - (electricInductance to HenryUnit).amount)
 
     override fun times(scalar: Number) =
         Henries(this.amount * scalar)
@@ -40,7 +40,7 @@ class Henries : ElectricInductance
 
     override fun times(electricCurrent: ElectricCurrent): Webbers
     {
-        return Webbers(this.amount * (electricCurrent to AMPERE).amount)
+        return Webbers(this.amount * (electricCurrent to AmpereUnit).amount)
     }
 
     // endregion

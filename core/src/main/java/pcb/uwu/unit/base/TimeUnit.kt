@@ -9,8 +9,13 @@ open class TimeUnit(symbol: String,
                     singularName: String,
                     pluralName: String,
                     translationToCanonical: Function<Amount, Amount>,
-                    translationFromCanonical: Function<Amount, Amount>) :
-    BaseUnit(3, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical)
+                    translationFromCanonical: Function<Amount, Amount>)
+    : BaseUnit(precedence = 3,
+               symbol = symbol,
+               singularName = singularName,
+               pluralName = pluralName,
+               translationToCanonical = translationToCanonical,
+               translationFromCanonical = translationFromCanonical)
 {
     override val unitCounter
         get() = UnitCounter(this)

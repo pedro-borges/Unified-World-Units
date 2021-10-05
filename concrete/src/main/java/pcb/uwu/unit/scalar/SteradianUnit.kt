@@ -1,27 +1,12 @@
-package pcb.uwu.unit.scalar;
+package pcb.uwu.unit.scalar
 
-import static pcb.uwu.unit.base.RadianUnit.RADIAN;
+import pcb.uwu.unit.base.RadianUnit
 
-public class SteradianUnit extends SolidAngleUnit {
-
-	public static final SteradianUnit STERADIAN = new SteradianUnit();
-
-	public SteradianUnit() {
-		super(RADIAN, RADIAN);
-	}
-
-	@Override
-	public String getSymbol() {
-		return "sr";
-	}
-
-	@Override
-	public String getSingularName() {
-		return "steradian";
-	}
-
-	@Override
-	public String getPluralName() {
-		return "steradians";
-	}
+object SteradianUnit
+    : SolidAngleUnit(angleUnit1 = RadianUnit,
+                     angleUnit2 = RadianUnit)
+{
+    override val symbol= "sr"
+    override val singularName= "steradian"
+    override val pluralName = "steradians"
 }

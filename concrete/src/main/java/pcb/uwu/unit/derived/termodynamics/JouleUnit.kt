@@ -1,29 +1,15 @@
-package pcb.uwu.unit.derived.termodynamics;
+package pcb.uwu.unit.derived.termodynamics
 
-import static pcb.uwu.unit.base.KiloGramUnit.KILOGRAM;
-import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import pcb.uwu.unit.base.KiloGramUnit
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.base.SecondUnit
 
-public class JouleUnit extends EnergyUnit {
-
-	public static final JouleUnit JOULE = new JouleUnit();
-
-	public JouleUnit() {
-		super(METER, KILOGRAM, SECOND);
-	}
-
-	@Override
-	public String getSymbol() {
-		return "J";
-	}
-
-	@Override
-	public String getSingularName() {
-		return "joule";
-	}
-
-	@Override
-	public String getPluralName() {
-		return "joules";
-	}
+object JouleUnit
+    : EnergyUnit(lengthUnit = MeterUnit,
+                 massUnit = KiloGramUnit,
+                 timeUnit = SecondUnit)
+{
+    override val symbol = "J"
+    override val singularName = "joule"
+    override val pluralName = "joules"
 }

@@ -11,12 +11,12 @@ class CurrencyUnit(val code: String,
                    singleName: String,
                    pluralName: String,
                    val defaultFractionDigits: Int)
-    : BaseUnit(0,
-               symbol,
-               singleName,
-               pluralName,
-               Function { throw InvalidCurrencyException("Cannot convert currencies") },
-               Function { throw InvalidCurrencyException("Cannot convert currencies") })
+    : BaseUnit(precedence = 0,
+               symbol = symbol,
+               singularName = singleName,
+               pluralName = pluralName,
+               translationToCanonical = Function { throw InvalidCurrencyException("Cannot convert currencies") },
+               translationFromCanonical = Function { throw InvalidCurrencyException("Cannot convert currencies") })
 {
     override val unitCounter: UnitCounter
         get() = UnitCounter(this)

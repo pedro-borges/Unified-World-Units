@@ -8,31 +8,31 @@ import pcb.uwu.amount.derived.thermodynamics.Power
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.base.AmpereUnit.AMPERE
-import pcb.uwu.unit.base.SecondUnit.SECOND
+import pcb.uwu.unit.base.AmpereUnit
+import pcb.uwu.unit.base.SecondUnit
 import pcb.uwu.unit.base.TimeUnit
-import pcb.uwu.unit.derived.optics.LumenUnit.LUMEN
-import pcb.uwu.unit.derived.termodynamics.WattUnit.WATT
+import pcb.uwu.unit.derived.optics.LumenUnit
+import pcb.uwu.unit.derived.termodynamics.WattUnit
 
 class Seconds : Time
 {
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, SECOND)
+            : super(amount, magnitude, SecondUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, SECOND)
+            : super(amount, magnitude, SecondUnit)
 
     // region UnitAmount
 
     override fun plus(time: UnitAmount<TimeUnit>) =
-        Seconds(this.amount + (time to SECOND).amount)
+        Seconds(this.amount + (time to SecondUnit).amount)
 
     override fun minus(time: UnitAmount<TimeUnit>) =
-        Seconds(this.amount - (time to SECOND).amount)
+        Seconds(this.amount - (time to SecondUnit).amount)
 
     override fun times(scalar: Number) =
         Seconds(this.amount * scalar)
@@ -45,13 +45,13 @@ class Seconds : Time
     // region composition
 
     override fun times(electricCurrent: ElectricCurrent) =
-        Coulombs(this.amount * (electricCurrent to  AMPERE).amount)
+        Coulombs(this.amount * (electricCurrent to AmpereUnit).amount)
 
     override fun times(power: Power) =
-        Joules(this.amount * (power to WATT).amount)
+        Joules(this.amount * (power to WattUnit).amount)
 
     override fun times(luminousFlux: LuminousFlux) =
-        Talbots(this.amount * (luminousFlux to LUMEN).amount)
+        Talbots(this.amount * (luminousFlux to LumenUnit).amount)
 
     // endregion
 }

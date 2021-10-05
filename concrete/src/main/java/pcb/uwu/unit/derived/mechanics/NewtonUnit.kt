@@ -1,29 +1,15 @@
-package pcb.uwu.unit.derived.mechanics;
+package pcb.uwu.unit.derived.mechanics
 
-import static pcb.uwu.unit.base.KiloGramUnit.KILOGRAM;
-import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import pcb.uwu.unit.base.KiloGramUnit
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.base.SecondUnit
 
-public class NewtonUnit extends ForceUnit {
-
-	public static final NewtonUnit NEWTON = new NewtonUnit();
-
-	public NewtonUnit() {
-		super(KILOGRAM, METER, SECOND);
-	}
-
-	@Override
-	public String getSymbol() {
-		return "N";
-	}
-
-	@Override
-	public String getSingularName() {
-		return "newton";
-	}
-
-	@Override
-	public String getPluralName() {
-		return "newtons";
-	}
+object NewtonUnit
+    : ForceUnit(massUnit = KiloGramUnit,
+                lengthUnit = MeterUnit,
+                timeUnit = SecondUnit)
+{
+    override val symbol = "N"
+    override val singularName = "newton"
+    override val pluralName = "newtons"
 }

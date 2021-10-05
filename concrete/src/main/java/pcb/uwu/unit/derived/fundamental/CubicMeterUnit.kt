@@ -1,12 +1,8 @@
-package pcb.uwu.unit.derived.fundamental;
+package pcb.uwu.unit.derived.fundamental
 
-import static pcb.uwu.unit.base.MeterUnit.METER;
+import pcb.uwu.unit.base.MeterUnit
 
-public class CubicMeterUnit extends VolumeUnit {
-
-	public static final CubicMeterUnit CUBIC_METER = new CubicMeterUnit();
-
-	public CubicMeterUnit() {
-		super(METER, METER, METER);
-	}
-}
+object CubicMeterUnit
+    : VolumeUnit(lengthUnit = MeterUnit,
+                 heightUnit = MeterUnit,
+                 depthUnit = MeterUnit)

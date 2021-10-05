@@ -1,30 +1,17 @@
-package pcb.uwu.unit.derived.electromagnetism;
+package pcb.uwu.unit.derived.electromagnetism
 
-import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
-import static pcb.uwu.unit.base.KiloGramUnit.KILOGRAM;
-import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import pcb.uwu.unit.base.AmpereUnit
+import pcb.uwu.unit.base.KiloGramUnit
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.base.SecondUnit
 
-public class VoltUnit extends ElectricPotentialUnit {
-
-	public static final VoltUnit VOLT = new VoltUnit();
-
-	public VoltUnit() {
-		super(KILOGRAM, METER, AMPERE, SECOND);
-	}
-
-	@Override
-	public String getSymbol() {
-		return "V";
-	}
-
-	@Override
-	public String getSingularName() {
-		return "volt";
-	}
-
-	@Override
-	public String getPluralName() {
-		return "volts";
-	}
+object VoltUnit
+    : ElectricPotentialUnit(massUnit = KiloGramUnit,
+                            lengthUnit = MeterUnit,
+                            electricCurrentUnit = AmpereUnit,
+                            timeUnit = SecondUnit)
+{
+    override val symbol = "V"
+    override val singularName = "volt"
+    override val pluralName = "volts"
 }

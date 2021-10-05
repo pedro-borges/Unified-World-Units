@@ -1,11 +1,21 @@
 package pcb.uwu.unit.base
 
+import pcb.uwu.core.Amount
 import pcb.uwu.core.BaseUnit
 import pcb.uwu.core.UnitCounter
-import java.util.function.Function.identity
+import java.util.function.Function
 
-open class AngleUnit
-    : BaseUnit(0, "rad", "Radian", "Radians", identity(), identity())
+open class AngleUnit(symbol: String,
+                     singularName: String,
+                     pluralName: String,
+                     translationToCanonical: Function<Amount, Amount>,
+                     translationFromCanonical: Function<Amount, Amount>)
+    : BaseUnit(precedence = 10,
+               symbol = symbol,
+               singularName = singularName,
+               pluralName = pluralName,
+               translationToCanonical = translationToCanonical,
+               translationFromCanonical = translationFromCanonical)
 {
     override val unitCounter: UnitCounter
         get() = UnitCounter()

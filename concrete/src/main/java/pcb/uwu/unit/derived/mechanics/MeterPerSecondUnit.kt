@@ -1,13 +1,8 @@
-package pcb.uwu.unit.derived.mechanics;
+package pcb.uwu.unit.derived.mechanics
 
-import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.base.SecondUnit
 
-public class MeterPerSecondUnit extends SpeedUnit {
-
-	public static final MeterPerSecondUnit METER_PER_SECOND = new MeterPerSecondUnit();
-
-	public MeterPerSecondUnit() {
-		super(METER, SECOND);
-	}
-}
+object MeterPerSecondUnit
+    : SpeedUnit(lengthUnit = MeterUnit,
+                timeUnit = SecondUnit)

@@ -5,18 +5,18 @@ import org.junit.Test
 import pcb.uwu.amount.derived.fundamental.Area
 import pcb.uwu.amount.derived.fundamental.Volume
 import pcb.uwu.unit.derived.area.SquareMeterUnit
-import pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER
+import pcb.uwu.unit.derived.fundamental.CubicMeterUnit
 
 class PascalsTest
 {
     @Test
     fun multipliedByVolume() =
         assertEquals("27 J",
-                     Pascals(9).times(Volume(amount = 3, unit = CUBIC_METER)).toString())
+                     Pascals(9).times(Volume(amount = 3, unit = CubicMeterUnit)).toString())
 
     @Test
     fun multipliedByArea() =
         assertEquals("18 N",
-                     Pascals(9).times(Area(amount = 2, unit = SquareMeterUnit.SQUARE_METER)).toString())
+                     Pascals(9).times(Area(amount = 2, unit = SquareMeterUnit)).toString())
 
 }

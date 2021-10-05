@@ -1,14 +1,10 @@
-package pcb.uwu.unit.base;
+package pcb.uwu.unit.base
 
-import java.util.function.Function;
+import java.util.function.Function.identity
 
-public class AmpereUnit extends ElectricCurrentUnit {
-
-	public static final AmpereUnit AMPERE = new AmpereUnit();
-
-	private AmpereUnit() {
-		super("A", "ampere", "amperes",
-				Function.identity(),
-				Function.identity());
-	}
-}
+object AmpereUnit
+    : ElectricCurrentUnit(symbol = "A",
+                          singularName = "ampere",
+                          pluralName = "amperes",
+                          translationToCanonical = identity(),
+                          translationFromCanonical = identity())

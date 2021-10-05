@@ -9,30 +9,30 @@ import pcb.uwu.amount.derived.scalar.SolidAngle
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.base.CandelaUnit.CANDELA
+import pcb.uwu.unit.base.CandelaUnit
 import pcb.uwu.unit.base.LuminousIntensityUnit
-import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
-import pcb.uwu.unit.derived.optics.NitUnit.NIT
-import pcb.uwu.unit.scalar.SteradianUnit.STERADIAN
+import pcb.uwu.unit.derived.area.SquareMeterUnit
+import pcb.uwu.unit.derived.optics.NitUnit
+import pcb.uwu.unit.scalar.SteradianUnit
 
 class Candelas : LuminousIntensity
 {
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, CANDELA)
+            : super(amount, magnitude, CandelaUnit)
 
     @JvmOverloads
     constructor(amount: String, magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, CANDELA)
+            : super(amount, magnitude, CandelaUnit)
 
     // region UnitAmount
 
     override fun plus(luminousIntensity: UnitAmount<LuminousIntensityUnit>) =
-        Candelas(this.amount + (luminousIntensity to this.unit).amount)
+        Candelas(this.amount + (luminousIntensity to CandelaUnit).amount)
 
     override fun minus(luminousIntensity: UnitAmount<LuminousIntensityUnit>) =
-        Candelas(this.amount + (luminousIntensity to this.unit).amount)
+        Candelas(this.amount + (luminousIntensity to CandelaUnit).amount)
 
     override fun times(scalar: Number) =
         Candelas(this.amount * scalar)
@@ -45,13 +45,13 @@ class Candelas : LuminousIntensity
     // region composition
 
     override fun times(solidAngle: SolidAngle) =
-        Lumens(this.amount * (solidAngle to STERADIAN).amount)
+        Lumens(this.amount * (solidAngle to SteradianUnit).amount)
 
     override fun div(area: Area) =
-        Nits(this.amount / (area to SQUARE_METER).amount)
+        Nits(this.amount / (area to SquareMeterUnit).amount)
 
     override fun div(luminance: Luminance) =
-        SquareMeters(this.amount / (luminance to NIT).amount)
+        SquareMeters(this.amount / (luminance to NitUnit).amount)
 
     // endregion
 }

@@ -1,14 +1,10 @@
-package pcb.uwu.unit.base;
+package pcb.uwu.unit.base
 
-import java.util.function.Function;
+import java.util.function.Function.identity
 
-public class MeterUnit extends LengthUnit {
-
-	public static final MeterUnit METER = new MeterUnit();
-
-	private MeterUnit() {
-		super("m", "meter", "meters",
-				Function.identity(),
-				Function.identity());
-	}
-}
+object MeterUnit
+    : LengthUnit(symbol = "m",
+                 singularName = "meter",
+                 pluralName = "meters",
+                 translationToCanonical = identity(),
+                 translationFromCanonical = identity())

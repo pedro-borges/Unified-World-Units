@@ -8,7 +8,7 @@ import java.util.function.Function
 /**
  * An implementation of Amount for uni-dimensional values based on `java.lang.BigDecimal` representation.
  */
-class Amount(val value: BigDecimal) : Number(), Comparable<Amount>
+class Amount(val amount: BigDecimal) : Number(), Comparable<Amount>
 {
     constructor(value: Number) : this(BigDecimal(value.toString()))
     constructor(value: String) : this(BigDecimal(value))
@@ -21,7 +21,7 @@ class Amount(val value: BigDecimal) : Number(), Comparable<Amount>
      * @return the scale of the `BigDecimalAmount`
      */
     val scale: Int
-        get() = value.scale()
+        get() = amount.scale()
 
     /**
      * Set the scale of the `BigDecimalAmount`.
@@ -31,13 +31,13 @@ class Amount(val value: BigDecimal) : Number(), Comparable<Amount>
      * @return a new Amount with the new scale
      */
     fun withScale(scale: Int, roundingMode: RoundingMode) =
-        Amount(value.setScale(scale, roundingMode))
+        Amount(amount.setScale(scale, roundingMode))
 
     fun invert() =
         ONE.div(this)
 
     operator fun unaryMinus() =
-        Amount(value.negate())
+        Amount(-amount)
 
     /**
      * Sum amount.
@@ -46,16 +46,16 @@ class Amount(val value: BigDecimal) : Number(), Comparable<Amount>
      * @return a new `BigDecimalAmount` representing this + other
      */
     operator fun plus(other: BigDecimal) =
-        Amount(value.add(other))
+        Amount(this.amount + other)
 
     operator fun plus(other: Amount) =
-        Amount(value.add(other.value))
+        Amount(this.amount + other.amount)
 
     operator fun minus(other: BigDecimal) =
-        Amount(value.subtract(other))
+        Amount(amount - other)
 
     operator fun minus(other: Amount) =
-        Amount(value.subtract(other.value))
+        Amount(amount - other.amount)
 
     /**
      * Multiply by a scalar.
@@ -64,7 +64,7 @@ class Amount(val value: BigDecimal) : Number(), Comparable<Amount>
      * @return a new `BigDecimalAmount` representing this × other
      */
     operator fun times(other: Number) =
-        Amount(value.multiply(BigDecimal(other.toString()), DECIMAL128))
+        Amount(amount.multiply(BigDecimal(other.toString()), DECIMAL128))
 
     /**
      * Divide by a scalar.
@@ -73,7 +73,7 @@ class Amount(val value: BigDecimal) : Number(), Comparable<Amount>
      * @return a new `BigDecimalAmount` representing this ÷ other
      */
     operator fun div(other: Number) =
-        Amount(value.divide(BigDecimal(other.toString()), DECIMAL128))
+        Amount(amount.divide(BigDecimal(other.toString()), DECIMAL128))
 
     /**
      * Elevate to power.
@@ -82,7 +82,7 @@ class Amount(val value: BigDecimal) : Number(), Comparable<Amount>
      * @return a new `BigDecimalAmount` representing `this`ⁿ
      */
     fun pow(power: Int) =
-        Amount(value.pow(power, DECIMAL128))
+        Amount(amount.pow(power, DECIMAL128))
 
     /**
      * translate with scalar function.
@@ -121,50 +121,50 @@ class Amount(val value: BigDecimal) : Number(), Comparable<Amount>
      * {@inheritDoc}
      */
     override fun toInt() =
-        value.toInt()
+        amount.toInt()
 
     /**
      * {@inheritDoc}
      */
     override fun toLong() =
-        value.toLong()
+        amount.toLong()
 
     /**
      * {@inheritDoc}
      */
     override fun toFloat() =
-        value.toFloat()
+        amount.toFloat()
 
     /**
      * {@inheritDoc}
      */
     override fun toDouble() =
-        value.toDouble()
+        amount.toDouble()
 
     /**
      * {@inheritDoc}
      */
     override fun toByte() =
-        value.toByte()
+        amount.toByte()
 
     /**
      * {@inheritDoc}
      */
     override fun toShort() =
-        value.toShort()
+        amount.toShort()
 
     /**
      * {@inheritDoc}
      */
     override fun toChar() =
-        value.toChar()
+        amount.toChar()
 
     // endregion
 
     // region implement Comparable
 
     override fun compareTo(other: Amount) =
-        value.compareTo(other.value)
+        amount.compareTo(other.amount)
 
     // endregion
     // region override Object
@@ -172,16 +172,16 @@ class Amount(val value: BigDecimal) : Number(), Comparable<Amount>
     {
         if (this === other) return true
         if (other !is Amount) return false
-        return value == other.value
+        return amount == other.amount
     }
 
     override fun hashCode(): Int
     {
-        return value.hashCode()
+        return amount.hashCode()
     }
 
     override fun toString(): String =
-        value.stripTrailingZeros().toPlainString()
+        amount.stripTrailingZeros().toPlainString()
 
     // endregion
 

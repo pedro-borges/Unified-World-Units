@@ -1,30 +1,17 @@
-package pcb.uwu.unit.derived.electromagnetism;
+package pcb.uwu.unit.derived.electromagnetism
 
-import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
-import static pcb.uwu.unit.base.KiloGramUnit.KILOGRAM;
-import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import pcb.uwu.unit.base.AmpereUnit
+import pcb.uwu.unit.base.KiloGramUnit
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.base.SecondUnit
 
-public class WebberUnit extends MagneticFluxUnit {
-
-	public static final WebberUnit WEBBER = new WebberUnit();
-
-	public WebberUnit() {
-		super(KILOGRAM, METER, AMPERE, SECOND);
-	}
-
-	@Override
-	public String getSymbol() {
-		return "Wb";
-	}
-
-	@Override
-	public String getSingularName() {
-		return "webber";
-	}
-
-	@Override
-	public String getPluralName() {
-		return "webbers";
-	}
+object WebberUnit
+    : MagneticFluxUnit(massUnit = KiloGramUnit,
+                       lengthUnit = MeterUnit,
+                       electricCurrentUnit = AmpereUnit,
+                       timeUnit = SecondUnit)
+{
+    override val symbol = "Wb"
+    override val singularName = "webber"
+    override val pluralName = "webbers"
 }

@@ -1,14 +1,10 @@
-package pcb.uwu.unit.base;
+package pcb.uwu.unit.base
 
-import java.util.function.Function;
+import java.util.function.Function.identity
 
-public class KelvinUnit extends TemperatureUnit {
-
-	public static final KelvinUnit KELVIN = new KelvinUnit();
-
-	private KelvinUnit() {
-		super("K", "kelvin", "kelvins",
-				Function.identity(),
-				Function.identity());
-	}
-}
+object KelvinUnit
+    : TemperatureUnit(symbol = "K",
+                      singularName = "kelvin",
+                      pluralName = "kelvins",
+                      translationToCanonical = identity(),
+                      translationFromCanonical = identity())

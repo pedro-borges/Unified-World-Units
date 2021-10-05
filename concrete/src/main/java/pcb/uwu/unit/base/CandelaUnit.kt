@@ -1,14 +1,10 @@
-package pcb.uwu.unit.base;
+package pcb.uwu.unit.base
 
-import java.util.function.Function;
+import java.util.function.Function.identity
 
-public class CandelaUnit extends LuminousIntensityUnit {
-
-	public static final CandelaUnit CANDELA = new CandelaUnit();
-
-	private CandelaUnit() {
-		super("cd", "candela", "candelas",
-				Function.identity(),
-				Function.identity());
-	}
-}
+object CandelaUnit
+    : LuminousIntensityUnit(symbol = "cd",
+                            singularName = "candela",
+                            pluralName = "candelas",
+                            translationToCanonical = identity(),
+                            translationFromCanonical = identity())

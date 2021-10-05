@@ -7,6 +7,6 @@ import pcb.uwu.unit.base.TimeUnit
 open class FrequencyUnit : CompositeUnit
 {
     @Suppress("ConvertSecondaryConstructorToPrimary")
-    constructor(time: TimeUnit)
-            : super(UnitCounter().minor(time))
+    constructor(timeUnit: TimeUnit)
+            : super(UnitCounter().minor(timeUnit))
 }

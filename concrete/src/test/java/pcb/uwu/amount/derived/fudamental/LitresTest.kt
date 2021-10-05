@@ -6,9 +6,8 @@ import pcb.uwu.amount.base.Meters
 import pcb.uwu.amount.derived.fundamental.Volume
 import pcb.uwu.amount.derived.fundamental.volume.Litres
 import pcb.uwu.core.Magnitude.*
-import pcb.uwu.unit.base.MeterUnit.METER
-import pcb.uwu.unit.derived.fundamental.LitreUnit.LITRE
-import pcb.uwu.unit.derived.fundamental.VolumeUnit
+import pcb.uwu.unit.derived.fundamental.CubicMeterUnit
+import pcb.uwu.unit.derived.fundamental.LitreUnit
 
 class LitresTest
 {
@@ -18,9 +17,9 @@ class LitresTest
         assertEquals("1 l",
                      Litres(1).toString())
         assertEquals("0.001 m³",
-                     (Litres(1) to VolumeUnit(METER, METER, METER)).toString())
+                     (Litres(1) to CubicMeterUnit).toString())
         assertEquals("3030 l",
-                     (Volume(amount = "3.03", unit = VolumeUnit(METER, METER, METER)) to LITRE).toString())
+                     (Volume(amount = "3.03", unit = CubicMeterUnit) to LitreUnit).toString())
     }
 
     @Test

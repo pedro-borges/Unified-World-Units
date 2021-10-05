@@ -10,7 +10,12 @@ open class ElectricCurrentUnit(symbol: String,
                                pluralName: String,
                                translationToCanonical: Function<Amount, Amount>,
                                translationFromCanonical: Function<Amount, Amount>)
-    : BaseUnit(4, symbol, singularName, pluralName, translationToCanonical, translationFromCanonical)
+    : BaseUnit(precedence = 4,
+               symbol = symbol,
+               singularName = singularName,
+               pluralName = pluralName,
+               translationToCanonical = translationToCanonical,
+               translationFromCanonical = translationFromCanonical)
 {
     override val unitCounter
         get() = UnitCounter(this)

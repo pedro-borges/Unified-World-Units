@@ -277,7 +277,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun compareTo(that: UnitAmount<U>) =
-        this.unit.toCanonical(amount).value.compareTo(that.unit.fromCanonical(that.amount).value)
+        this.unit.toCanonical(amount).amount.compareTo(that.unit.fromCanonical(that.amount).amount)
 
     // endregion
 

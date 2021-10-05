@@ -5,29 +5,29 @@ import pcb.uwu.amount.derived.fundamental.Area
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
+import pcb.uwu.unit.derived.area.SquareMeterUnit
 import pcb.uwu.unit.derived.optics.LuminanceUnit
-import pcb.uwu.unit.derived.optics.NitUnit.NIT
+import pcb.uwu.unit.derived.optics.NitUnit
 
 class Nits : Luminance
 {
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, NIT)
+            : super(amount, magnitude, NitUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, NIT)
+            : super(amount, magnitude, NitUnit)
 
     // region UnitAmount
 
     override fun plus(luminance: UnitAmount<LuminanceUnit>) =
-        Nits(this.amount + (luminance to NIT).amount)
+        Nits(this.amount + (luminance to NitUnit).amount)
 
     override fun minus(luminance: UnitAmount<LuminanceUnit>) =
-        Nits(this.amount - (luminance to NIT).amount)
+        Nits(this.amount - (luminance to NitUnit).amount)
 
     override fun times(scalar: Number) =
         Nits(this.amount * scalar)
@@ -41,7 +41,7 @@ class Nits : Luminance
 
     operator fun times(area: Area): Candelas
     {
-        return Candelas(amount * (area to SQUARE_METER).amount)
+        return Candelas(amount * (area to SquareMeterUnit).amount)
     }
 
     // endregion

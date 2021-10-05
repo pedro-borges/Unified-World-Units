@@ -1,25 +1,10 @@
-package pcb.uwu.unit.base;
+package pcb.uwu.unit.base
 
-public class RadianUnit extends AngleUnit {
+import java.util.function.Function.identity
 
-	public static final RadianUnit RADIAN = new RadianUnit();
-
-	public RadianUnit() {
-		super();
-	}
-
-	@Override
-	public String getSymbol() {
-		return "rad";
-	}
-
-	@Override
-	public String getSingularName() {
-		return "radian";
-	}
-
-	@Override
-	public String getPluralName() {
-		return "radians";
-	}
-}
+object RadianUnit
+    : AngleUnit(symbol = "rad",
+                singularName = "Radian",
+                pluralName = "Radians",
+                translationToCanonical = identity(),
+                translationFromCanonical = identity())

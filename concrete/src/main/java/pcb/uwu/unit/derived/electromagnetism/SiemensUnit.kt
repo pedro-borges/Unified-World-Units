@@ -1,30 +1,17 @@
-package pcb.uwu.unit.derived.electromagnetism;
+package pcb.uwu.unit.derived.electromagnetism
 
-import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
-import static pcb.uwu.unit.base.KiloGramUnit.KILOGRAM;
-import static pcb.uwu.unit.base.MeterUnit.METER;
-import static pcb.uwu.unit.base.SecondUnit.SECOND;
+import pcb.uwu.unit.base.AmpereUnit
+import pcb.uwu.unit.base.KiloGramUnit
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.base.SecondUnit
 
-public class SiemensUnit extends ElectricConductanceUnit {
-
-	public static final SiemensUnit SIEMENS = new SiemensUnit();
-
-	public SiemensUnit() {
-		super(KILOGRAM, METER, AMPERE, SECOND);
-	}
-
-	@Override
-	public String getSymbol() {
-		return "S";
-	}
-
-	@Override
-	public String getSingularName() {
-		return "siemens";
-	}
-
-	@Override
-	public String getPluralName() {
-		return "siemens";
-	}
+object SiemensUnit
+    : ElectricConductanceUnit(massUnit = KiloGramUnit,
+                              lengthUnit = MeterUnit,
+                              electricCurrentUnit = AmpereUnit,
+                              timeUnit = SecondUnit)
+{
+    override val symbol = "S"
+    override val singularName = "siemens"
+    override val pluralName = "siemens"
 }

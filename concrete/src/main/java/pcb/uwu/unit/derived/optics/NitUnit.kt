@@ -1,28 +1,12 @@
-package pcb.uwu.unit.derived.optics;
+package pcb.uwu.unit.derived.optics
 
-import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
-import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
+import pcb.uwu.unit.base.CandelaUnit
+import pcb.uwu.unit.derived.area.SquareMeterUnit
 
-public class NitUnit extends LuminanceUnit {
-
-	public static final NitUnit NIT = new NitUnit();
-
-	public NitUnit() {
-		super(CANDELA, SQUARE_METER);
-	}
-
-	@Override
-	public String getSymbol() {
-		return "nit";
-	}
-
-	@Override
-	public String getSingularName() {
-		return "nit";
-	}
-
-	@Override
-	public String getPluralName() {
-		return "nits";
-	}
+object NitUnit
+    : LuminanceUnit(CandelaUnit, SquareMeterUnit)
+{
+    override val symbol = "nit"
+    override val singularName = "nit"
+    override val pluralName = "nits"
 }

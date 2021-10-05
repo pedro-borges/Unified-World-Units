@@ -6,7 +6,12 @@ import pcb.uwu.unit.base.ScalarUnit
 import java.util.function.Function.identity
 
 class ScalarUnit private constructor()
-    : BaseUnit(0, "", "", "", identity(), identity())
+    : BaseUnit(precedence = 0,
+               symbol = "",
+               singularName = "",
+               pluralName = "",
+               translationToCanonical = identity(),
+               translationFromCanonical = identity())
 {
     override val unitCounter
         get() = UnitCounter()

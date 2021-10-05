@@ -7,27 +7,27 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.CandelaUnit
 import pcb.uwu.unit.scalar.SolidAngleUnit
-import pcb.uwu.unit.scalar.SteradianUnit.STERADIAN
+import pcb.uwu.unit.scalar.SteradianUnit
 
 class Steradians : SolidAngle
 {
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, STERADIAN)
+            : super(amount, magnitude, SteradianUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, STERADIAN)
+            : super(amount, magnitude, SteradianUnit)
 
     // region UnitAmount
 
     override fun plus(solidAngle: UnitAmount<SolidAngleUnit>) =
-        Steradians(this.amount + (solidAngle to STERADIAN).amount)
+        Steradians(this.amount + (solidAngle to SteradianUnit).amount)
 
     override fun minus(solidAngle: UnitAmount<SolidAngleUnit>) =
-        Steradians(this.amount - (solidAngle to STERADIAN).amount)
+        Steradians(this.amount - (solidAngle to SteradianUnit).amount)
 
     override fun times(scalar: Number) =
         Steradians(this.amount * scalar)
@@ -40,7 +40,7 @@ class Steradians : SolidAngle
     // region composition
 
     override fun times(luminousIntensity: LuminousIntensity) =
-        Lumens(amount * (luminousIntensity to CandelaUnit.CANDELA).amount)
+        Lumens(amount * (luminousIntensity to CandelaUnit).amount)
 
     // endregion
 }

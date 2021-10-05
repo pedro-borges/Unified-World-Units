@@ -7,7 +7,7 @@ import pcb.uwu.amount.base.Seconds
 import pcb.uwu.amount.derived.fundamental.Area
 import pcb.uwu.core.Magnitude.KILO
 import pcb.uwu.core.Magnitude.MILLI
-import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
+import pcb.uwu.unit.derived.area.SquareMeterUnit
 
 class WebbersTest
 {
@@ -39,7 +39,7 @@ class WebbersTest
     @Test
     fun dividedByArea() =
         assertEquals("6 T",
-                     Webbers(12).div(Area(amount = 2, unit = SQUARE_METER)).toString())
+                     Webbers(12).div(Area(amount = 2, unit = SquareMeterUnit)).toString())
 
     @Test
     fun multiplyByElectricCurrent() =

@@ -10,14 +10,10 @@ import pcb.uwu.amount.derived.thermodynamics.Joules
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.base.AmpereUnit.AMPERE
-import pcb.uwu.unit.base.SecondUnit.SECOND
-import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
-import pcb.uwu.unit.derived.electromagnetism.HenryUnit
-import pcb.uwu.unit.derived.electromagnetism.MagneticFluxUnit
-import pcb.uwu.unit.derived.electromagnetism.TeslaUnit.TESLA
-import pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT
-import pcb.uwu.unit.derived.electromagnetism.WebberUnit.WEBBER
+import pcb.uwu.unit.base.AmpereUnit
+import pcb.uwu.unit.base.SecondUnit
+import pcb.uwu.unit.derived.area.SquareMeterUnit
+import pcb.uwu.unit.derived.electromagnetism.*
 import pcb.uwu.utils.UnitAmountUtils.getAmountIn
 
 class Webbers : MagneticFlux
@@ -25,20 +21,20 @@ class Webbers : MagneticFlux
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, WEBBER)
+            : super(amount, magnitude, WebberUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, WEBBER)
+            : super(amount, magnitude, WebberUnit)
 
     // region UnitAmount
 
     override fun plus(magneticFlux: UnitAmount<MagneticFluxUnit>) =
-        Webbers(this.amount + (magneticFlux to WEBBER).amount)
+        Webbers(this.amount + (magneticFlux to WebberUnit).amount)
 
     override fun minus(magneticFlux: UnitAmount<MagneticFluxUnit>) =
-        Webbers(this.amount - (magneticFlux to WEBBER).amount)
+        Webbers(this.amount - (magneticFlux to WebberUnit).amount)
 
     override fun times(scalar: Number) =
         Webbers(this.amount * scalar)
@@ -54,25 +50,25 @@ class Webbers : MagneticFlux
     // region composition
 
     operator fun div(electricPotential: ElectricPotential) =
-        Seconds(this.amount / (electricPotential to VOLT).amount)
+        Seconds(this.amount / (electricPotential to VoltUnit).amount)
 
     operator fun div(electricInductance: ElectricInductance) =
-        Amperes(this.amount / (electricInductance to HenryUnit.HENRY).amount)
+        Amperes(this.amount / (electricInductance to HenryUnit).amount)
 
     override fun div(time: Time) =
-        Volts(this.amount / (time to SECOND).amount)
+        Volts(this.amount / (time to SecondUnit).amount)
 
     override fun div(electricCurrent: ElectricCurrent) =
-        Henries(this.amount / (electricCurrent to AMPERE).amount)
+        Henries(this.amount / (electricCurrent to AmpereUnit).amount)
 
     override fun div(magneticField: MagneticField) =
-        SquareMeters(this.amount / (magneticField to TESLA).amount)
+        SquareMeters(this.amount / (magneticField to TeslaUnit).amount)
 
     override fun div(area: Area) =
-        Teslas(this.amount / (area to SQUARE_METER).amount)
+        Teslas(this.amount / (area to SquareMeterUnit).amount)
 
     override fun times(electricCurrent: ElectricCurrent) =
-        Joules(this.amount * (electricCurrent to AMPERE).amount)
+        Joules(this.amount * (electricCurrent to AmpereUnit).amount)
 
     // endregion
 }

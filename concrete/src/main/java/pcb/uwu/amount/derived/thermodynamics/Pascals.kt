@@ -6,9 +6,9 @@ import pcb.uwu.amount.derived.mechanics.Newtons
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER
-import pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER
-import pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL
+import pcb.uwu.unit.derived.area.SquareMeterUnit
+import pcb.uwu.unit.derived.fundamental.CubicMeterUnit
+import pcb.uwu.unit.derived.termodynamics.PascalUnit
 import pcb.uwu.unit.derived.termodynamics.PressureUnit
 
 class Pascals : Pressure
@@ -16,19 +16,19 @@ class Pascals : Pressure
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, PASCAL)
+            : super(amount, magnitude, PascalUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, PASCAL)
+            : super(amount, magnitude, PascalUnit)
 
     // region implement UnitAmount
     override fun plus(pressure: UnitAmount<PressureUnit>) =
-        Pascals(this.amount + (pressure to PASCAL).amount)
+        Pascals(this.amount + (pressure to PascalUnit).amount)
 
     override fun minus(pressure: UnitAmount<PressureUnit>) =
-        Pascals(this.amount - (pressure to PASCAL).amount)
+        Pascals(this.amount - (pressure to PascalUnit).amount)
 
 
     override fun times(scalar: Number) =
@@ -42,10 +42,10 @@ class Pascals : Pressure
     // region composition
 
     override fun times(volume: Volume) =
-        Joules(this.amount * (volume to CUBIC_METER).amount)
+        Joules(this.amount * (volume to CubicMeterUnit).amount)
 
     override fun times(area: Area) =
-        Newtons(this.amount * (area to SQUARE_METER).amount)
+        Newtons(this.amount * (area to SquareMeterUnit).amount)
 
     // endregion
 }

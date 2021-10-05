@@ -8,31 +8,31 @@ import pcb.uwu.amount.derived.electromagnetism.Volts
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.base.AmpereUnit.AMPERE
-import pcb.uwu.unit.base.SecondUnit.SECOND
-import pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT
+import pcb.uwu.unit.base.AmpereUnit
+import pcb.uwu.unit.base.SecondUnit
+import pcb.uwu.unit.derived.electromagnetism.VoltUnit
 import pcb.uwu.unit.derived.termodynamics.PowerUnit
-import pcb.uwu.unit.derived.termodynamics.WattUnit.WATT
+import pcb.uwu.unit.derived.termodynamics.WattUnit
 
 class Watts : Power
 {
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, WATT)
+            : super(amount, magnitude, WattUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, WATT)
+            : super(amount, magnitude, WattUnit)
 
     // region UnitAmount
 
     override fun plus(power: UnitAmount<PowerUnit>) =
-        Watts(this.amount + (power to WATT).amount)
+        Watts(this.amount + (power to WattUnit).amount)
 
     override fun minus(power: UnitAmount<PowerUnit>) =
-        Watts(this.amount - (power to WATT).amount)
+        Watts(this.amount - (power to WattUnit).amount)
 
     override fun times(scalar: Number) =
         Watts(this.amount * scalar)
@@ -45,13 +45,13 @@ class Watts : Power
     // region composition
 
     override fun times(time: Time) =
-        Joules(this.amount * (time to SECOND).amount)
+        Joules(this.amount * (time to SecondUnit).amount)
 
     override fun div(electricCurrent: ElectricCurrent) =
-        Volts(this.amount / (electricCurrent to AMPERE).amount)
+        Volts(this.amount / (electricCurrent to AmpereUnit).amount)
 
     operator fun div(electricPotential: ElectricPotential) =
-        Amperes(this.amount / (electricPotential to VOLT).amount)
+        Amperes(this.amount / (electricPotential to VoltUnit).amount)
 
     // endregion
 }

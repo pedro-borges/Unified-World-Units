@@ -14,15 +14,15 @@ import pcb.uwu.amount.derived.mechanics.Newtons
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
-import pcb.uwu.unit.base.MeterUnit.METER
-import pcb.uwu.unit.base.SecondUnit.SECOND
-import pcb.uwu.unit.derived.electromagnetism.CoulombUnit.COULOMB
-import pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT
-import pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER
-import pcb.uwu.unit.derived.mechanics.NewtonUnit.NEWTON
+import pcb.uwu.unit.base.MeterUnit
+import pcb.uwu.unit.base.SecondUnit
+import pcb.uwu.unit.derived.electromagnetism.CoulombUnit
+import pcb.uwu.unit.derived.electromagnetism.VoltUnit
+import pcb.uwu.unit.derived.fundamental.CubicMeterUnit
+import pcb.uwu.unit.derived.mechanics.NewtonUnit
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
-import pcb.uwu.unit.derived.termodynamics.JouleUnit.JOULE
-import pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL
+import pcb.uwu.unit.derived.termodynamics.JouleUnit
+import pcb.uwu.unit.derived.termodynamics.PascalUnit
 import pcb.uwu.unit.derived.termodynamics.WattUnit
 
 class Joules : Energy
@@ -30,20 +30,20 @@ class Joules : Energy
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, JOULE)
+            : super(amount, magnitude, JouleUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, JOULE)
+            : super(amount, magnitude, JouleUnit)
 
     // region UnitAmount
 
     override fun plus(energy: UnitAmount<EnergyUnit>) =
-        Joules(this.amount + (energy to JOULE).amount)
+        Joules(this.amount + (energy to JouleUnit).amount)
 
     override fun minus(energy: UnitAmount<EnergyUnit>) =
-        Joules(this.amount - (energy to JOULE).amount)
+        Joules(this.amount - (energy to JouleUnit).amount)
 
     override fun times(scalar: Number) =
         Joules(this.amount * scalar)
@@ -56,29 +56,29 @@ class Joules : Energy
     // region composition
 
     override fun div(volume: Volume) =
-        Pascals(this.amount / (volume to CUBIC_METER).amount)
+        Pascals(this.amount / (volume to CubicMeterUnit).amount)
 
     override fun div(pressure: Pressure) =
-        Volume(amount = this.amount / (pressure to PASCAL).amount,
-                      unit = CUBIC_METER)
+        Volume(amount = this.amount / (pressure to PascalUnit).amount,
+               unit = CubicMeterUnit)
 
     operator fun div(power: Power) =
-        Seconds(this.amount / (power to WattUnit.WATT).amount)
+        Seconds(this.amount / (power to WattUnit).amount)
 
     override fun div(time: Time) =
-        Watts(this.amount / (time to SECOND).amount)
+        Watts(this.amount / (time to SecondUnit).amount)
 
     override fun div(length: Length) =
-        Newtons(this.amount / (length to METER).amount)
+        Newtons(this.amount / (length to MeterUnit).amount)
 
     operator fun div(force: Force) =
-        Meters(this.amount / (force to NEWTON).amount)
+        Meters(this.amount / (force to NewtonUnit).amount)
 
     override fun div(electricCharge: ElectricCharge) =
-        Volts(this.amount / (electricCharge to COULOMB).amount)
+        Volts(this.amount / (electricCharge to CoulombUnit).amount)
 
     override fun div(electricPotential: ElectricPotential) =
-        Coulombs(this.amount / (electricPotential to VOLT).amount)
+        Coulombs(this.amount / (electricPotential to VoltUnit).amount)
 
     // endregion
 }
