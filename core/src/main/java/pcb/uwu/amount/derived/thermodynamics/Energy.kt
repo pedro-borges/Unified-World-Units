@@ -1,87 +1,49 @@
-package pcb.uwu.amount.derived.thermodynamics;
+package pcb.uwu.amount.derived.thermodynamics
 
-import org.jetbrains.annotations.NotNull;
-import pcb.uwu.core.BigDecimalAmount;
-import pcb.uwu.core.CompositeUnitAmount;
-import pcb.uwu.core.Magnitude;
-import pcb.uwu.core.UnitAmount;
-import pcb.uwu.unit.derived.termodynamics.EnergyUnit;
+import pcb.uwu.core.CompositeUnitAmount
+import pcb.uwu.core.Magnitude
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.UnitAmount
+import pcb.uwu.unit.derived.termodynamics.EnergyUnit
+import pcb.uwu.utils.UnitAmountUtils
+import java.math.BigDecimal
+import java.math.MathContext
 
-import java.math.BigDecimal;
-import java.math.MathContext;
+open class Energy : CompositeUnitAmount<EnergyUnit>
+{
+    @JvmOverloads
+    constructor(amount: Number,
+                magnitude: Magnitude = NATURAL,
+                unit: EnergyUnit)
+            : super(amount, magnitude, unit)
 
-import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
-import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
-import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
+    @JvmOverloads
+    constructor(amount: String,
+                magnitude: Magnitude = NATURAL,
+                unit: EnergyUnit)
+            : super(amount, magnitude, unit)
 
-public class Energy extends CompositeUnitAmount<EnergyUnit> {
+    // region UnitAmount
 
-	// region constructors
+    override operator fun plus(other: UnitAmount<EnergyUnit>) =
+        Energy(amount = this.amount + other.into(this.unit).amount,
+               unit = this.unit)
 
-	public Energy(Number value, EnergyUnit unit) {
-		super(value, unit);
-	}
+    override operator fun minus(other: UnitAmount<EnergyUnit>) =
+        Energy(amount = this.amount - other.into(this.unit).amount,
+               unit = this.unit)
 
-	public Energy(Number value, Magnitude magnitude, EnergyUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun times(other: BigDecimal, mathContext: MathContext) =
+        Energy(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+               unit = this.unit)
 
-	public Energy(String value, EnergyUnit unit) {
-		super(value, unit);
-	}
+    override fun div(other: BigDecimal, mathContext: MathContext) =
+        Energy(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+               unit = this.unit)
 
-	public Energy(String value, Magnitude magnitude, EnergyUnit unit) {
-		super(value, magnitude, unit);
-	}
+    override fun into(unit: EnergyUnit) =
+        Energy(amount = UnitAmountUtils.getAmountIn(this, unit),
+               unit = unit)
 
-	public Energy(BigDecimal value, EnergyUnit unit) {
-		super(value, unit);
-	}
-
-	public Energy(BigDecimal value, Magnitude magnitude, EnergyUnit unit) {
-		super(value, magnitude, unit);
-	}
-
-	public Energy(BigDecimalAmount amount, EnergyUnit unit) {
-		super(amount, unit);
-	}
-
-	public Energy(BigDecimalAmount amount, Magnitude magnitude, EnergyUnit unit) {
-		super(amount, magnitude, unit);
-	}
-
-	// endregion
-
-	// region implement UnitAmount
-
-	@NotNull
-	@Override
-	public Energy plus(@NotNull UnitAmount<EnergyUnit> other) {
-		return new Energy(plusAmount(this, other), getUnit());
-	}
-
-	@NotNull
-	@Override
-	public Energy minus(@NotNull UnitAmount<EnergyUnit> other) {
-		return new Energy(minusAmount(this, other), getUnit());
-	}
-
-	@Override
-	public Energy times(BigDecimal other, MathContext mathContext) {
-		return new Energy(multipliedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Energy div(BigDecimal other, MathContext mathContext) {
-		return new Energy(dividedByScalar(this, other, mathContext), getUnit());
-	}
-
-	@Override
-	public Energy into(EnergyUnit unit) {
-		return new Energy(getAmountIn(this, unit), unit);
-	}
-
-	// endregion
+    // endregion
 }
