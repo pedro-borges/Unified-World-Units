@@ -3,9 +3,10 @@ package pcb.uwu.core
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitCounter.UnitCount.Companion.EMPTY_BASE_UNIT_COUNT
 import pcb.uwu.utils.UnitAmountUtils
+import pcb.uwu.utils.andThen
+import pcb.uwu.utils.identity
 import java.math.BigDecimal
 import java.util.Objects
-import java.util.function.Function.identity
 
 open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 {
@@ -35,7 +36,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
     constructor(amount: Amount,
                 magnitude: Magnitude = NATURAL,
                 unit: U)
-            : this(amount.times(magnitude.value), unit)
+            : this(amount.times(magnitude.amount), unit)
 
     constructor(amount: Amount, unit: U)
     {
@@ -155,7 +156,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
                 otherMagnitude++
             }
         }
-        val resultAmount = transformation.apply(this.amount.times(amount.amount))
+        val resultAmount = transformation(this.amount.times(amount.amount))
         return CompositeUnitAmount(resultAmount, CompositeUnit(resultUnitCounter))
     }
 
@@ -247,7 +248,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
                 otherMagnitude++
             }
         }
-        val resultAmount = transformation.apply(this.amount.div(amount.amount))
+        val resultAmount = transformation(this.amount.div(amount.amount))
         return CompositeUnitAmount(resultAmount, CompositeUnit(resultUnitCounter))
     }
 
@@ -267,8 +268,9 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
     override fun isEquivalentTo(that: UnitAmount<*>): Boolean
     {
         return if (this === that) true
-        else unit.baseUnitType == that.unit.baseUnitType &&
-                unit.translationToCanonical.apply(amount) == that.unit.translationToCanonical.apply(that.amount)
+        else this.unit.baseUnitType == that.unit.baseUnitType &&
+                this.unit.toCanonical(amount) == that.unit.toCanonical(that.amount) &&
+                this.unit.fromCanonical(amount) == that.unit.fromCanonical(that.amount)
     }
 
     // endregion

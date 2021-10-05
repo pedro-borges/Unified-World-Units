@@ -1,6 +1,6 @@
 package pcb.uwu.unit.base
 
-import java.util.function.Function.identity
+import pcb.uwu.utils.identity
 
 object KiloGramUnit
     : MassUnit(symbol = "Kg",

@@ -9,12 +9,12 @@ import pcb.uwu.utils.UnitAmountUtils.getAmountIn
 class LitresFactory : VolumeFactory()
 {
     override fun sphere(radius: Length) =
-        Litres(SPHERE_FUNCTION.invoke(getAmountIn(unitAmount = radius,
-                                                  magnitude = DECI,
-                                                  newUnit = MeterUnit)))
+        Litres(SPHERE_FUNCTION(getAmountIn(unitAmount = radius,
+                                           magnitude = DECI,
+                                           newUnit = MeterUnit)))
 
     override fun cube(side: Length) =
-        Litres(CUBE_FUNCTION.invoke(getAmountIn(unitAmount = side,
-                                                magnitude = DECI,
-                                                newUnit = MeterUnit)))
+        Litres(CUBE_FUNCTION(getAmountIn(unitAmount = side,
+                                         magnitude = DECI,
+                                         newUnit = MeterUnit)))
 }

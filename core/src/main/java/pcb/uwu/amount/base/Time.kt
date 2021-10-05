@@ -40,8 +40,7 @@ open class Time : CompositeUnitAmount<TimeUnit>
 
     constructor(duration: Duration,
                 unit: TimeUnit)
-            : super(unit.translationFromCanonical.apply(Amount(duration.toNanos()))
-                        .div(BigDecimal(1000000000)), unit)
+            : super(unit.translationFromCanonical(Amount(duration.toNanos())) / BigDecimal(1000000000), unit)
 
 
     // region UnitAmount

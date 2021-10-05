@@ -18,12 +18,18 @@ enum class Magnitude(order: Int, val symbol: String)
     GIGA(9, "G"),
     TERA(12, "T");
 
-    val value: BigDecimal
+    val amount: BigDecimal
 
     fun symbol(): String
     {
         return symbol
     }
+
+    fun translationFrom() =
+        { amount: Amount -> amount / this.amount }
+
+    fun translationTo() =
+        { amount: Amount -> amount * this.amount }
 
     companion object
     {
@@ -33,6 +39,6 @@ enum class Magnitude(order: Int, val symbol: String)
 
     init
     {
-        value = BigDecimal.ONE.movePointRight(order)
+        amount = BigDecimal.ONE.movePointRight(order)
     }
 }

@@ -3,7 +3,6 @@ package pcb.uwu.core
 import java.math.BigDecimal
 import java.math.MathContext.DECIMAL128
 import java.math.RoundingMode
-import java.util.function.Function
 
 /**
  * An implementation of Amount for uni-dimensional values based on `java.lang.BigDecimal` representation.
@@ -90,8 +89,8 @@ class Amount(val amount: BigDecimal) : Number(), Comparable<Amount>
      * @param transformation a function representing a generic transformation from scalar to scalar
      * @return a new `BigDecimalAmount` with the transformed value
      */
-    fun transformed(transformation: Function<Amount, Amount>) =
-        transformation.apply(this)
+    fun transformed(transformation: (Amount) -> Amount) =
+        transformation(this)
 
     /**
      * Check if this `BigDecimalAmount` is zero.

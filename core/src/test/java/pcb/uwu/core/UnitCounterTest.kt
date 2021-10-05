@@ -5,7 +5,8 @@ import org.junit.Test
 import pcb.uwu.unit.base.ElectricCurrentUnit
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.base.TimeUnit
-import java.util.function.Function.identity
+import pcb.uwu.utils.identity
+
 
 class UnitCounterTest
 {

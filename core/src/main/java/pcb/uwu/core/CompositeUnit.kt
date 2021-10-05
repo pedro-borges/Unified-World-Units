@@ -1,6 +1,7 @@
 package pcb.uwu.core
 
-import java.util.function.Function
+import pcb.uwu.utils.andThen
+import pcb.uwu.utils.identity
 
 open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCounter())
     : Unit
@@ -23,10 +24,10 @@ open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCount
 
     override val pluralName = unitCounter.asString(Unit::pluralName, Unit::singularName)
 
-    override val translationToCanonical: Function<Amount, Amount>
+    override val translationToCanonical: (Amount) -> Amount
         get()
         {
-            var result = Function.identity<Amount>()
+            var result = identity<Amount>()
             for (unitCount in unitCounter.baseUnits)
             {
                 val unit = unitCount.unit
@@ -49,10 +50,10 @@ open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCount
             return result
         }
 
-    override val translationFromCanonical: Function<Amount, Amount>
+    override val translationFromCanonical: (Amount) -> Amount
         get()
         {
-            var result = Function.identity<Amount>()
+            var result = identity<Amount>()
             for (unitCount in unitCounter.baseUnits)
             {
                 val unit = unitCount.unit
@@ -90,9 +91,8 @@ open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCount
         if (this === that) return true
         if (that !is Unit) return false
         return unitCounter == that.unitCounter &&
-                translationFromCanonical.apply(Amount.ONE) == that.translationFromCanonical.apply(
-                Amount.ONE) &&
-                translationToCanonical.apply(Amount.ONE) == that.translationToCanonical.apply(Amount.ONE)
+                translationFromCanonical(Amount.ONE) == that.translationFromCanonical(Amount.ONE) &&
+                translationToCanonical(Amount.ONE) == that.translationToCanonical(Amount.ONE)
     }
 
     override fun hashCode() = unitCounter.hashCode()

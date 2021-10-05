@@ -29,7 +29,7 @@ class UnitCounter
 
         companion object
         {
-            val EMPTY_BASE_UNIT_COUNT = UnitCount(ScalarUnit.SCALAR, 0)
+            val EMPTY_BASE_UNIT_COUNT = UnitCount(ScalarUnit, 0)
         }
     }
 

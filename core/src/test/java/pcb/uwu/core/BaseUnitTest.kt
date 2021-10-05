@@ -4,7 +4,8 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import pcb.uwu.unit.base.LengthUnit
 import pcb.uwu.unit.base.MassUnit
-import java.util.function.Function.identity
+import pcb.uwu.utils.identity
+
 
 class BaseUnitTest
 {

@@ -2,10 +2,10 @@ package pcb.uwu.unit.base
 
 import pcb.uwu.core.BaseUnit
 import pcb.uwu.core.UnitCounter
-import pcb.uwu.unit.base.ScalarUnit
-import java.util.function.Function.identity
+import pcb.uwu.utils.identity
 
-class ScalarUnit private constructor()
+
+object ScalarUnit
     : BaseUnit(precedence = 0,
                symbol = "",
                singularName = "",
@@ -16,10 +16,4 @@ class ScalarUnit private constructor()
     override val unitCounter
         get() = UnitCounter()
     override val baseUnitType = ScalarUnit::class.java
-
-    companion object
-    {
-        @JvmField
-        val SCALAR = ScalarUnit()
-    }
 }

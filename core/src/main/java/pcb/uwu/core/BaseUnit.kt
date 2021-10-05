@@ -1,16 +1,17 @@
 package pcb.uwu.core
 
 import pcb.uwu.core.Amount.Companion.ONE
+import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.unit.base.ScalarUnit
 import java.util.Objects
-import java.util.function.Function
 
 abstract class BaseUnit(private val precedence: Int,
                         override val symbol: String,
                         override val singularName: String,
                         override val pluralName: String,
-                        override val translationToCanonical: Function<Amount, Amount>,
-                        override val translationFromCanonical: Function<Amount, Amount>)
+                        override val translationToCanonical: (Amount) -> Amount,
+                        override val translationFromCanonical: (Amount) -> Amount,
+                        val magnitude: Magnitude = NATURAL)
     : Unit,
       Comparable<BaseUnit>
 {
@@ -19,7 +20,6 @@ abstract class BaseUnit(private val precedence: Int,
      */
     override val isScalar: Boolean
         get() = this is ScalarUnit
-
 
     // region Comparable
 
@@ -39,8 +39,8 @@ abstract class BaseUnit(private val precedence: Int,
         return symbol == other.symbol &&
                 singularName == other.singularName &&
                 pluralName == other.pluralName &&
-                translationToCanonical.apply(ONE) == other.translationToCanonical.apply(ONE) &&
-                translationFromCanonical.apply(ONE) == other.translationFromCanonical.apply(ONE)
+                toCanonical(ONE) == other.toCanonical(ONE) &&
+                fromCanonical(ONE) == other.fromCanonical(ONE)
     }
 
     override fun hashCode(): Int

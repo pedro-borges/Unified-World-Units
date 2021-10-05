@@ -1,7 +1,7 @@
 package pcb.uwu.unit.base
 
+import pcb.uwu.utils.identity
 import java.math.BigDecimal
-import java.util.function.Function.identity
 
 object MoleUnit
     : AmountOfSubstanceUnit(symbol = "mol",

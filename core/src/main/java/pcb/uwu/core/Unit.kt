@@ -1,7 +1,5 @@
 package pcb.uwu.core
 
-import java.util.function.Function
-
 /**
  * Represents a unit, either basic or complex.
  */
@@ -23,18 +21,18 @@ interface Unit
     val pluralName: String
 
     /**
-     * @return a scalar function that converts this unit to the respective canonical
+     * @return a function that converts this unit to the respective canonical
      */
-    val translationToCanonical: Function<Amount, Amount>
+    val translationToCanonical: (Amount) -> Amount
 
-    fun toCanonical(amount: Amount) = translationToCanonical.apply(amount)
+    fun toCanonical(amount: Amount) = translationToCanonical.invoke(amount)
 
     /**
-     * @return a scalar function that converts this unit from the respective canonical
+     * @return a function that converts this unit from the respective canonical
      */
-    val translationFromCanonical: Function<Amount, Amount>
+    val translationFromCanonical: (Amount) -> Amount
 
-    fun fromCanonical(amount: Amount) = translationFromCanonical.apply(amount)
+    fun fromCanonical(amount: Amount) = translationFromCanonical.invoke(amount)
 
     /**
      * Assert if the unit is a scalar.

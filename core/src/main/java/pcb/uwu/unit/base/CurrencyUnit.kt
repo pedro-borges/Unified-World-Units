@@ -4,7 +4,6 @@ import pcb.uwu.core.Amount
 import pcb.uwu.core.BaseUnit
 import pcb.uwu.core.UnitCounter
 import pcb.uwu.exception.InvalidCurrencyException
-import java.util.function.Function
 
 class CurrencyUnit(val code: String,
                    symbol: String,
@@ -15,16 +14,16 @@ class CurrencyUnit(val code: String,
                symbol = symbol,
                singularName = singleName,
                pluralName = pluralName,
-               translationToCanonical = Function { throw InvalidCurrencyException("Cannot convert currencies") },
-               translationFromCanonical = Function { throw InvalidCurrencyException("Cannot convert currencies") })
+               translationToCanonical = { throw InvalidCurrencyException("Cannot convert currencies") },
+               translationFromCanonical = { throw InvalidCurrencyException("Cannot convert currencies") })
 {
     override val unitCounter: UnitCounter
         get() = UnitCounter(this)
 
-    override val translationToCanonical: Function<Amount, Amount>
+    override val translationToCanonical: (Amount) -> Amount
         get() = throw InvalidCurrencyException("Dynamic currency conversion is not possible")
 
-    override val translationFromCanonical: Function<Amount, Amount>
+    override val translationFromCanonical: (Amount) -> Amount
         get() = throw InvalidCurrencyException("Dynamic currency conversion is not possible")
 
     override val baseUnitType = CurrencyUnit::class.java

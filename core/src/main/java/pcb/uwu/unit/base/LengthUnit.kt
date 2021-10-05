@@ -3,13 +3,12 @@ package pcb.uwu.unit.base
 import pcb.uwu.core.Amount
 import pcb.uwu.core.BaseUnit
 import pcb.uwu.core.UnitCounter
-import java.util.function.Function
 
 open class LengthUnit(symbol: String,
                       singularName: String,
                       pluralName: String,
-                      translationToCanonical: Function<Amount, Amount>,
-                      translationFromCanonical: Function<Amount, Amount>)
+                      translationToCanonical: (Amount) -> Amount,
+                      translationFromCanonical: (Amount) -> Amount)
     : BaseUnit(precedence = 1,
                symbol = symbol,
                singularName = singularName,

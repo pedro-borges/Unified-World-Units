@@ -10,10 +10,9 @@ object UnitAmountUtils
     @JvmStatic
     @JvmOverloads
     fun <U : Unit> getAmountIn(unitAmount: UnitAmount<U>, magnitude: Magnitude = NATURAL, newUnit: U) =
-        if (unitAmount.unit == newUnit) unitAmount.amount.div(magnitude.value)
-        else unitAmount.amount
-            .transformed(unitAmount.unit.translationToCanonical.andThen(newUnit.translationFromCanonical))
-            .div(magnitude.value)
+        if (unitAmount.unit == newUnit) unitAmount.amount.div(magnitude.amount)
+        else unitAmount.unit.translationToCanonical.andThen(newUnit.translationFromCanonical)(unitAmount.amount)
+            .div(magnitude.amount)
 
     @JvmStatic
     fun <U : Unit> plusAmount(unitAmount: UnitAmount<U>, other: UnitAmount<U>) =

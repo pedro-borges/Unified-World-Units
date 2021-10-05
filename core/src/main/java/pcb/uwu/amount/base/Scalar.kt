@@ -6,7 +6,6 @@ import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.ScalarUnit
-import pcb.uwu.unit.base.ScalarUnit.Companion.SCALAR
 import pcb.uwu.unit.derived.fundamental.FrequencyUnit
 import pcb.uwu.utils.UnitAmountUtils
 
@@ -15,12 +14,12 @@ class Scalar : CompositeUnitAmount<ScalarUnit>
     @JvmOverloads
     constructor(amount: Number,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, SCALAR)
+            : super(amount, magnitude, ScalarUnit)
 
     @JvmOverloads
     constructor(amount: String,
                 magnitude: Magnitude = NATURAL)
-            : super(amount, magnitude, SCALAR)
+            : super(amount, magnitude, ScalarUnit)
 
     // region UnitAmount
 
@@ -50,10 +49,4 @@ class Scalar : CompositeUnitAmount<ScalarUnit>
                      unit = FrequencyUnit(time.unit))
 
     // endregion
-
-    companion object
-    {
-        val ZERO = Scalar(0)
-        val ONE = Scalar(1)
-    }
 }

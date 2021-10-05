@@ -8,10 +8,10 @@ object MathUtils
 	val PI = BigDecimal(Math.PI)
 
     @SafeVarargs
-    fun <T : Comparable<T>> max(first: T, vararg others: T) =
-        others.maxOrNull() ?: first
+    fun <T : Comparable<T>> max(vararg element: T) =
+        element.maxOrNull()
 
     @SafeVarargs
-    fun <T : Comparable<T>> min(first: T, vararg others: T) =
-        others.minOrNull() ?: first
+    fun <T : Comparable<T>> min(vararg element: T) =
+        element.minOrNull()
 }
