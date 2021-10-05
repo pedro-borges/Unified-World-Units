@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.TimeUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.MinuteUnit.MINUTE;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Minutes extends Time {
@@ -67,14 +66,16 @@ public class Minutes extends Time {
 		return new Minutes(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Minutes times(BigDecimal other, MathContext mathContext) {
-		return new Minutes(multipliedByScalar(this, other, mathContext));
+	public Minutes times(@NotNull Number other) {
+		return new Minutes(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Minutes div(BigDecimal other, MathContext mathContext) {
-		return new Minutes(dividedByScalar(this, other, mathContext));
+	public Minutes div(@NotNull Number other) {
+		return new Minutes(dividedByScalar(this, other));
 	}
 
 	// endregion

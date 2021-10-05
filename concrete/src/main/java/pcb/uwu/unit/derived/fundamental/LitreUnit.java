@@ -5,7 +5,6 @@ import pcb.uwu.core.BigDecimalAmount;
 import java.math.BigDecimal;
 import java.util.function.Function;
 
-import static java.math.MathContext.UNLIMITED;
 import static pcb.uwu.unit.base.MeterUnit.METER;
 
 public class LitreUnit extends VolumeUnit {
@@ -31,13 +30,13 @@ public class LitreUnit extends VolumeUnit {
 		@Override
 		public Function<BigDecimalAmount, BigDecimalAmount> getTranslationToCanonical() {
 			return super.getTranslationToCanonical()
-					.andThen(amount -> amount.div(ONE_THOUSAND, UNLIMITED));
+					.andThen(amount -> amount.div(ONE_THOUSAND));
 		}
 
 		@Override
 		public Function<BigDecimalAmount, BigDecimalAmount> getTranslationFromCanonical() {
 			return super.getTranslationFromCanonical()
-					.andThen(amount -> amount.times(ONE_THOUSAND, UNLIMITED));
+					.andThen(amount -> amount.times(ONE_THOUSAND));
 		}
 	};
 

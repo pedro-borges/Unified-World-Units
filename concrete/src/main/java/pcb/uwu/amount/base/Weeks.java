@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.TimeUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.WeekUnit.WEEK;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Weeks extends Time {
@@ -67,19 +66,17 @@ public class Weeks extends Time {
 		return new Weeks(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Weeks times(BigDecimal other, MathContext mathContext) {
-		return new Weeks(multipliedByScalar(this, other, mathContext));
+	public Weeks times(@NotNull Number other) {
+		return new Weeks(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Weeks div(BigDecimal other, MathContext mathContext) {
-		return new Weeks(dividedByScalar(this, other, mathContext));
+	public Weeks div(@NotNull Number other) {
+		return new Weeks(dividedByScalar(this, other));
 	}
-
-	// endregion
-
-	// region composition
 
 	// endregion
 }

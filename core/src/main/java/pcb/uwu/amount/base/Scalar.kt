@@ -9,8 +9,6 @@ import pcb.uwu.unit.base.ScalarUnit
 import pcb.uwu.unit.base.ScalarUnit.Companion.SCALAR
 import pcb.uwu.unit.derived.fundamental.FrequencyUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 class Scalar : CompositeUnitAmount<ScalarUnit>
 {
@@ -32,11 +30,11 @@ class Scalar : CompositeUnitAmount<ScalarUnit>
     override operator fun minus(other: UnitAmount<ScalarUnit>) =
         Scalar(amount = amount - other.into(this.unit).amount)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Scalar(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext))
+    override operator fun times(other: Number) =
+        Scalar(amount = this.amount * other)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Scalar(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext))
+    override operator fun div(other: Number) =
+        Scalar(amount = this.amount / other)
 
     override fun into(unit: ScalarUnit) =
         Scalar(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit))
@@ -45,8 +43,8 @@ class Scalar : CompositeUnitAmount<ScalarUnit>
 
     // region composition
 
-    fun dividedBy(time: Time, mathContext: MathContext) =
-        InterestRate(amount = this.amount.div(time.amount.value, mathContext),
+    fun div(time: Time) =
+        InterestRate(amount = this.amount / time.amount,
                      unit = FrequencyUnit(time.unit))
 
     // endregion

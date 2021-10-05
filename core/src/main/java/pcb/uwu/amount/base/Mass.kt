@@ -9,8 +9,6 @@ import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.derived.mechanics.ForceUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 open class Mass : CompositeUnitAmount<MassUnit>
 {
@@ -36,12 +34,12 @@ open class Mass : CompositeUnitAmount<MassUnit>
         Mass(amount = this.amount - other.into(this.unit).amount,
              unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Mass(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Mass(amount = this.amount * other,
              unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Mass(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Mass(amount = this.amount / other,
              unit = this.unit)
 
     override fun into(unit: MassUnit) =
@@ -52,8 +50,8 @@ open class Mass : CompositeUnitAmount<MassUnit>
 
     // region composition
 
-    fun multipliedBy(acceleration: Acceleration, mathContext: MathContext) =
-        Force(amount = this.amount.times(acceleration.amount.value, mathContext),
+    operator fun times(acceleration: Acceleration) =
+        Force(amount = this.amount * acceleration.amount,
               unit = ForceUnit(this.unit, acceleration.unit))
 
     // endregion

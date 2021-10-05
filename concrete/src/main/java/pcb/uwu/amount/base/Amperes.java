@@ -15,9 +15,9 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.ElectricCurrentUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
@@ -29,7 +29,6 @@ import static pcb.uwu.unit.derived.electromagnetism.WebberUnit.WEBBER;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Amperes extends ElectricCurrent {
@@ -84,42 +83,44 @@ public class Amperes extends ElectricCurrent {
 		return new Amperes(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Amperes times(BigDecimal other, MathContext mathContext) {
-		return new Amperes(multipliedByScalar(this, other, mathContext));
+	public Amperes times(@NotNull Number other) {
+		return new Amperes(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Amperes div(BigDecimal other, MathContext mathContext) {
-		return new Amperes(dividedByScalar(this, other, mathContext));
+	public Amperes div(@NotNull Number other) {
+		return new Amperes(dividedByScalar(this, other));
 	}
 
 	// endregion
 
 	// region composition
 
-	public Coulombs times(Time time, MathContext mathContext) {
-		return new Coulombs(getAmount().times(getAmountIn(time, SECOND), mathContext));
+	public Coulombs times(Time time) {
+		return new Coulombs(getAmount().times(getAmountIn(time, SECOND)));
 	}
 
-	public Volts times(ElectricResistance electricResistance, MathContext mathContext) {
-		return new Volts(getAmount().times(getAmountIn(electricResistance, OHM), mathContext));
+	public Volts times(ElectricResistance electricResistance) {
+		return new Volts(getAmount().times(getAmountIn(electricResistance, OHM)));
 	}
 
-	public Webbers times(ElectricInductance electricInductance, MathContext mathContext) {
-		return new Webbers(getAmount().times(getAmountIn(electricInductance, HENRY), mathContext));
+	public Webbers times(ElectricInductance electricInductance) {
+		return new Webbers(getAmount().times(getAmountIn(electricInductance, HENRY)));
 	}
 
-	public Joules times(MagneticFlux magneticFlux, MathContext mathContext) {
-		return new Joules(getAmount().times(getAmountIn(magneticFlux, WEBBER), mathContext));
+	public Joules times(MagneticFlux magneticFlux) {
+		return new Joules(getAmount().times(getAmountIn(magneticFlux, WEBBER)));
 	}
 
-	public Siemens div(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Siemens(getAmount().div(getAmountIn(electricPotential, VOLT), mathContext));
+	public Siemens div(ElectricPotential electricPotential) {
+		return new Siemens(getAmount().div(getAmountIn(electricPotential, VOLT)));
 	}
 
-	public Volts div(ElectricConductance electricConductance, MathContext mathContext) {
-		return new Volts(getAmount().div(getAmountIn(electricConductance, SIEMENS), mathContext));
+	public Volts div(ElectricConductance electricConductance) {
+		return new Volts(getAmount().div(getAmountIn(electricConductance, SIEMENS)));
 	}
 
 	// endregion

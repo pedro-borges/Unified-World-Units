@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.AmountOfSubstanceUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.MoleUnit.MOLE;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Mole extends AmountOfSubstance {
@@ -67,14 +66,16 @@ public class Mole extends AmountOfSubstance {
 		return new Mole(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Mole times(BigDecimal other, MathContext mathContext) {
-		return new Mole(multipliedByScalar(this, other, mathContext));
+	public Mole times(@NotNull Number other) {
+		return new Mole(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Mole div(BigDecimal other, MathContext mathContext) {
-		return new Mole(dividedByScalar(this, other, mathContext));
+	public Mole div(@NotNull Number other) {
+		return new Mole(dividedByScalar(this, other));
 	}
 
 	// endregion

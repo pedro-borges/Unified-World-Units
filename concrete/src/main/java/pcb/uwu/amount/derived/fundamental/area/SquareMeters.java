@@ -3,6 +3,7 @@ package pcb.uwu.amount.derived.fundamental.area;
 import org.jetbrains.annotations.NotNull;
 import pcb.uwu.amount.base.Candelas;
 import pcb.uwu.amount.base.Length;
+import pcb.uwu.amount.base.Meters;
 import pcb.uwu.amount.derived.fundamental.Area;
 import pcb.uwu.amount.derived.fundamental.AreaFactory;
 import pcb.uwu.amount.derived.optics.Illuminance;
@@ -12,9 +13,9 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.fundamental.AreaUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.MeterUnit.METER;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
@@ -23,7 +24,6 @@ import static pcb.uwu.unit.derived.optics.NitUnit.NIT;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class SquareMeters extends Area {
@@ -35,13 +35,13 @@ public class SquareMeters extends Area {
 	public static class SquareMetersFactory extends AreaFactory {
 
 		@Override
-		public SquareMeters circle(Length radius, MathContext mathContext) {
-			return new SquareMeters(CIRCLE_FUNCTION.apply(getAmountIn(radius, METER), mathContext));
+		public SquareMeters circle(@NotNull Length radius) {
+			return new SquareMeters(CIRCLE_FUNCTION.invoke(getAmountIn(radius, METER)));
 		}
 
 		@Override
-		public SquareMeters square(Length side, MathContext mathContext) {
-			return new SquareMeters(SQUARE_FUNCTION.apply(getAmountIn(side, METER), mathContext));
+		public SquareMeters square(@NotNull Length side) {
+			return new SquareMeters(SQUARE_FUNCTION.invoke(getAmountIn(side, METER)));
 		}
 	}
 
@@ -97,26 +97,32 @@ public class SquareMeters extends Area {
 		return new SquareMeters(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public SquareMeters times(BigDecimal other, MathContext mathContext) {
-		return new SquareMeters(multipliedByScalar(this, other, mathContext));
+	public SquareMeters times(@NotNull Number other) {
+		return new SquareMeters(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public SquareMeters div(BigDecimal other, MathContext mathContext) {
-		return new SquareMeters(dividedByScalar(this, other, mathContext));
+	public SquareMeters div(@NotNull Number other) {
+		return new SquareMeters(dividedByScalar(this, other));
 	}
 
 	// endregion
 
 	// region composition
 
-	public Candelas multipliedBy(Luminance luminance, MathContext mathContext) {
-		return new Candelas(getAmount().times(getAmountIn(luminance, NIT), mathContext));
+	public Candelas times(Luminance luminance) {
+		return new Candelas(getAmount().times(getAmountIn(luminance, NIT)));
 	}
 
-	public Lumens multipliedBy(Illuminance illuminance, MathContext mathContext) {
-		return new Lumens(getAmount().times(getAmountIn(illuminance, LUX), mathContext));
+	public Lumens times(Illuminance illuminance) {
+		return new Lumens(getAmount().times(getAmountIn(illuminance, LUX)));
+	}
+
+	public Meters div(Length length) {
+		return new Meters(getAmount().div(getAmountIn(length, METER)));
 	}
 
 	// endregion

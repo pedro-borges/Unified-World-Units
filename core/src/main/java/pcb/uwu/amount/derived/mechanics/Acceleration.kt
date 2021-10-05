@@ -12,8 +12,6 @@ import pcb.uwu.unit.derived.mechanics.AccelerationUnit
 import pcb.uwu.unit.derived.mechanics.ForceUnit
 import pcb.uwu.unit.derived.mechanics.SpeedUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 class Acceleration : CompositeUnitAmount<AccelerationUnit>
 {
@@ -39,12 +37,12 @@ class Acceleration : CompositeUnitAmount<AccelerationUnit>
         Acceleration(amount = this.amount - other.into(this.unit).amount,
                      unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Acceleration(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Acceleration(amount = this.amount * other,
                      unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Acceleration(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Acceleration(amount = this.amount / other,
                      unit = this.unit)
 
     override fun into(unit: AccelerationUnit) =
@@ -55,12 +53,12 @@ class Acceleration : CompositeUnitAmount<AccelerationUnit>
 
     // region composition
 
-    fun times(mass: Mass, mathContext: MathContext) =
-        Force(amount = this.amount.times(mass.amount.value, mathContext),
+    fun times(mass: Mass) =
+        Force(amount = this.amount * mass.amount,
               unit = ForceUnit(mass.unit, this.unit))
 
-    fun times(time: Time, mathContext: MathContext) =
-        Speed(amount = super.times(time, mathContext).amount,
+    fun times(time: Time) =
+        Speed(amount = (this * time).amount,
               unit = SpeedUnit(this.unit.unitCounter.findUnit(LengthUnit::class.java)!!,
                                this.unit.unitCounter.findUnit(TimeUnit::class.java)!!))
 

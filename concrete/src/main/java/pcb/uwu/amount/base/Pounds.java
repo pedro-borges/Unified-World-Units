@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.MassUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.PoundUnit.POUND;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Pounds extends Mass {
@@ -67,14 +66,16 @@ public class Pounds extends Mass {
 		return new Pounds(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Pounds times(BigDecimal other, MathContext mathContext) {
-		return new Pounds(multipliedByScalar(this, other, mathContext));
+	public Pounds times(@NotNull Number other) {
+		return new Pounds(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Pounds div(BigDecimal other, MathContext mathContext) {
-		return new Pounds(dividedByScalar(this, other, mathContext));
+	public Pounds div(@NotNull Number other) {
+		return new Pounds(dividedByScalar(this, other));
 	}
 
 	// endregion

@@ -7,9 +7,9 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.optics.LuminousEnergyUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
 import static pcb.uwu.unit.derived.optics.LumenUnit.LUMEN;
@@ -17,7 +17,6 @@ import static pcb.uwu.unit.derived.optics.TalbotUnit.TALBOT;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Talbots extends LuminousEnergy {
@@ -72,26 +71,28 @@ public class Talbots extends LuminousEnergy {
 		return new Talbots(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Talbots times(BigDecimal other, MathContext mathContext) {
-		return new Talbots(multipliedByScalar(this, other, mathContext));
+	public Talbots times(@NotNull Number other) {
+		return new Talbots(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Talbots div(BigDecimal other, MathContext mathContext) {
-		return new Talbots(dividedByScalar(this, other, mathContext));
+	public Talbots div(@NotNull Number other) {
+		return new Talbots(dividedByScalar(this, other));
 	}
 
 	// endregion
 
 	// region composition
 
-	public Lumens dividedBy(Time time, MathContext mathContext) {
-		return new Lumens(getAmount().div(getAmountIn(time, SECOND), mathContext));
+	public Lumens div(Time time) {
+		return new Lumens(getAmount().div(getAmountIn(time, SECOND)));
 	}
 
-	public Seconds dividedBy(LuminousFlux luminousFlux, MathContext mathContext) {
-		return new Seconds(getAmount().div(getAmountIn(luminousFlux, LUMEN), mathContext));
+	public Seconds div(LuminousFlux luminousFlux) {
+		return new Seconds(getAmount().div(getAmountIn(luminousFlux, LUMEN)));
 	}
 
 	// endregion

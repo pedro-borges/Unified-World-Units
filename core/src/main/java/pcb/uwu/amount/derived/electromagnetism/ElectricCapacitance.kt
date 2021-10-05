@@ -6,8 +6,6 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.electromagnetism.ElectricCapacitanceUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 open class ElectricCapacitance : CompositeUnitAmount<ElectricCapacitanceUnit>
 {
@@ -33,12 +31,12 @@ open class ElectricCapacitance : CompositeUnitAmount<ElectricCapacitanceUnit>
         ElectricCapacitance(amount = this.amount - other.into(this.unit).amount,
                             unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        ElectricCapacitance(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        ElectricCapacitance(amount = this.amount * other,
                             unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        ElectricCapacitance(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        ElectricCapacitance(amount = this.amount / other,
                             unit = this.unit)
 
     override fun into(unit: ElectricCapacitanceUnit) =

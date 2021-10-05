@@ -9,8 +9,6 @@ import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.finance.CurrencyUnit
 import pcb.uwu.unit.finance.RentUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 class Rent : CompositeUnitAmount<RentUnit>
 {
@@ -36,12 +34,12 @@ class Rent : CompositeUnitAmount<RentUnit>
         Rent(amount = this.amount - other.into(this.unit).amount,
              unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Rent(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Rent(amount = this.amount * other,
              unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Rent(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Rent(amount = this.amount / other,
              unit = this.unit)
 
     override fun into(unit: RentUnit) =
@@ -52,8 +50,8 @@ class Rent : CompositeUnitAmount<RentUnit>
 
     // region composition
 
-    fun multipliedBy(time: Time, mathContext: MathContext) =
-        Money(amount = super.times(time, mathContext).amount,
+    fun times(time: Time) =
+        Money(amount = (this * time).amount,
               unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
     // endregion

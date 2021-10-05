@@ -8,7 +8,6 @@ import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.TemperatureUnit
 import pcb.uwu.utils.UnitAmountUtils
 import java.math.BigDecimal
-import java.math.MathContext
 
 open class Temperature : CompositeUnitAmount<TemperatureUnit>
 {
@@ -46,12 +45,12 @@ open class Temperature : CompositeUnitAmount<TemperatureUnit>
         Temperature(amount = this.amount - other.into(this.unit).amount,
                     unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Temperature(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Temperature(amount = this.amount * other,
                     unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Temperature(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Temperature(amount = this.amount / other,
                     unit = this.unit)
 
     override fun into(unit: TemperatureUnit) =

@@ -8,7 +8,6 @@ import org.junit.runners.Parameterized.Parameters
 import pcb.uwu.amount.base.*
 import pcb.uwu.core.BigDecimalAmount
 import pcb.uwu.core.UnitAmount
-import java.math.MathContext.DECIMAL64
 import java.math.RoundingMode.HALF_EVEN
 
 @RunWith(Parameterized::class)
@@ -20,7 +19,7 @@ class TimeUnitTest(private val time: Time)
         for (unitAmount in testData())
         {
             assertEquals(BigDecimalAmount.ONE.withScale(6, HALF_EVEN),
-                         time.div(unitAmount, DECIMAL64).amount.withScale(6, HALF_EVEN))
+                         time.div(unitAmount).amount.withScale(6, HALF_EVEN))
         }
     }
 

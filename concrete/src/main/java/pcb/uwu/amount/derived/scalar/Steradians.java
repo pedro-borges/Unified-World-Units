@@ -7,16 +7,15 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.scalar.SolidAngleUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
 import static pcb.uwu.unit.scalar.SteradianUnit.STERADIAN;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Steradians extends SolidAngle {
@@ -71,22 +70,24 @@ public class Steradians extends SolidAngle {
 		return new Steradians(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Steradians times(BigDecimal other, MathContext mathContext) {
-		return new Steradians(multipliedByScalar(this, other, mathContext));
+	public Steradians times(@NotNull Number other) {
+		return new Steradians(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Steradians div(BigDecimal other, MathContext mathContext) {
-		return new Steradians(dividedByScalar(this, other, mathContext));
+	public Steradians div(@NotNull Number other) {
+		return new Steradians(dividedByScalar(this, other));
 	}
 
 	// endregion
 
 	// region composition
 
-	public Lumens multipliedBy(LuminousIntensity luminousIntensity, MathContext mathContext) {
-		return new Lumens(getAmount().times(getAmountIn(luminousIntensity, CANDELA), mathContext));
+	public Lumens times(LuminousIntensity luminousIntensity) {
+		return new Lumens(getAmount().times(getAmountIn(luminousIntensity, CANDELA)));
 	}
 
 	// endregion

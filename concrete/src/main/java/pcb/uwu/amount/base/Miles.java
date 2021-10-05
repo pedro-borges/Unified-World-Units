@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.LengthUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.MileUnit.MILE;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Miles extends Length {
@@ -67,14 +66,16 @@ public class Miles extends Length {
 		return new Miles(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Miles times(BigDecimal other, MathContext mathContext) {
-		return new Miles(multipliedByScalar(this, other, mathContext));
+	public Miles times(@NotNull Number other) {
+		return new Miles(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Miles div(BigDecimal other, MathContext mathContext) {
-		return new Miles(dividedByScalar(this, other, mathContext));
+	public Miles div(@NotNull Number other) {
+		return new Miles(dividedByScalar(this, other));
 	}
 
 	// endregion

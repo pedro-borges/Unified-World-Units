@@ -2,8 +2,6 @@ package pcb.uwu.unit.base;
 
 import java.math.BigDecimal;
 
-import static java.math.MathContext.DECIMAL64;
-
 public class WeekUnit extends TimeUnit {
 
 	private static final BigDecimal SECONDS_PER_WEEK = new BigDecimal(604_800);
@@ -12,7 +10,7 @@ public class WeekUnit extends TimeUnit {
 
 	private WeekUnit() {
 		super("wk", "week", "weeks",
-				value -> value.times(SECONDS_PER_WEEK, DECIMAL64),
-				value -> value.div(SECONDS_PER_WEEK, DECIMAL64));
+				value -> value.times(SECONDS_PER_WEEK),
+				value -> value.div(SECONDS_PER_WEEK));
 	}
 }

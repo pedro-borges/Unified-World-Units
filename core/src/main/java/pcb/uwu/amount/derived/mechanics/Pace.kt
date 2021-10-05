@@ -10,8 +10,6 @@ import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.unit.derived.mechanics.PaceUnit
 import pcb.uwu.unit.derived.mechanics.SpeedUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 class Pace : CompositeUnitAmount<PaceUnit>
 {
@@ -37,28 +35,28 @@ class Pace : CompositeUnitAmount<PaceUnit>
         Pace(amount = this.amount - other.into(this.unit).amount,
              unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Pace(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Pace(amount = this.amount * other,
              unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Pace(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Pace(amount = this.amount / other,
              unit = this.unit)
 
     override fun into(unit: PaceUnit) =
         Pace(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
              unit = unit)
 
-    override fun invert(mathContext: MathContext) =
-        Speed(amount = amount.invert(mathContext),
+    override fun invert() =
+        Speed(amount = amount.invert(),
               unit = SpeedUnit(unit))
 
     // endregion
 
     // region composition
 
-    fun times(length: Length, mathContext: MathContext) =
-        Time(amount = super.times(length, mathContext).amount,
+    fun times(length: Length) =
+        Time(amount = (this * length).amount,
              unit = unit.unitCounter.findUnit(TimeUnit::class.java)!!)
 
     // endregion

@@ -6,8 +6,6 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.termodynamics.PowerUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 open class Power : CompositeUnitAmount<PowerUnit>
 {
@@ -33,12 +31,12 @@ open class Power : CompositeUnitAmount<PowerUnit>
         Power(amount = this.amount - other.into(this.unit).amount,
               unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Power(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Power(amount = this.amount * other,
               unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Power(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Power(amount = this.amount / other,
               unit = this.unit)
 
     override fun into(unit: PowerUnit) =

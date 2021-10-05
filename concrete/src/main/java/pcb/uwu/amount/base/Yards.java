@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.LengthUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.YardUnit.YARD;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Yards extends Length {
@@ -67,19 +66,17 @@ public class Yards extends Length {
 		return new Yards(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Yards times(BigDecimal other, MathContext mathContext) {
-		return new Yards(multipliedByScalar(this, other, mathContext));
+	public Yards times(@NotNull Number other) {
+		return new Yards(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Yards div(BigDecimal other, MathContext mathContext) {
-		return new Yards(dividedByScalar(this, other, mathContext));
+	public Yards div(@NotNull Number other) {
+		return new Yards(dividedByScalar(this, other));
 	}
-
-	// endregion
-
-	// region composition
 
 	// endregion
 }

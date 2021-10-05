@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.TemperatureUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.KelvinUnit.KELVIN;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Kelvins extends Temperature {
@@ -67,14 +66,16 @@ public class Kelvins extends Temperature {
 		return new Kelvins(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Kelvins times(BigDecimal other, MathContext mathContext) {
-		return new Kelvins(multipliedByScalar(this, other, mathContext));
+	public Kelvins times(@NotNull Number other) {
+		return new Kelvins(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Kelvins div(BigDecimal other, MathContext mathContext) {
-		return new Kelvins(dividedByScalar(this, other, mathContext));
+	public Kelvins div(@NotNull Number other) {
+		return new Kelvins(dividedByScalar(this, other));
 	}
 
 	// endregion

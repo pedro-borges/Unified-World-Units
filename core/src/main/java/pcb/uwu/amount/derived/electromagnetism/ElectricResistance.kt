@@ -6,8 +6,6 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.electromagnetism.ElectricResistanceUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 open class ElectricResistance : CompositeUnitAmount<ElectricResistanceUnit>
 {
@@ -33,12 +31,12 @@ open class ElectricResistance : CompositeUnitAmount<ElectricResistanceUnit>
         ElectricResistance(amount = this.amount - other.into(this.unit).amount,
                            unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        ElectricResistance(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        ElectricResistance(amount = this.amount * other,
                            unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        ElectricResistance(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        ElectricResistance(amount = this.amount / other,
                            unit = this.unit)
 
     override fun into(unit: ElectricResistanceUnit) =

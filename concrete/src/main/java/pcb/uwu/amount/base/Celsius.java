@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.TemperatureUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.CelsiusUnit.CELSIUS;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Celsius extends Temperature {
@@ -67,14 +66,16 @@ public class Celsius extends Temperature {
 		return new Celsius(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Celsius times(BigDecimal other, MathContext mathContext) {
-		return new Celsius(multipliedByScalar(this, other, mathContext));
+	public Celsius times(@NotNull Number other) {
+		return new Celsius(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Celsius div(BigDecimal other, MathContext mathContext) {
-		return new Celsius(dividedByScalar(this, other, mathContext));
+	public Celsius div(@NotNull Number other) {
+		return new Celsius(dividedByScalar(this, other));
 	}
 
 	// endregion

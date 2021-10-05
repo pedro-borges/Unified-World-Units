@@ -2,8 +2,6 @@ package pcb.uwu.unit.base;
 
 import java.math.BigDecimal;
 
-import static java.math.MathContext.DECIMAL64;
-
 public class NauticalMileUnit extends LengthUnit {
 
 	private static final BigDecimal METERS_PER_NAUTICAL_MILE = new BigDecimal("1852");
@@ -12,7 +10,7 @@ public class NauticalMileUnit extends LengthUnit {
 
 	private NauticalMileUnit() {
 		super("mile", "mile", "miles",
-				value -> value.times(METERS_PER_NAUTICAL_MILE, DECIMAL64),
-				value -> value.div(METERS_PER_NAUTICAL_MILE, DECIMAL64));
+				value -> value.times(METERS_PER_NAUTICAL_MILE),
+				value -> value.div(METERS_PER_NAUTICAL_MILE));
 	}
 }

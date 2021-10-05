@@ -6,8 +6,6 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.termodynamics.EnergyUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 open class Energy : CompositeUnitAmount<EnergyUnit>
 {
@@ -33,12 +31,12 @@ open class Energy : CompositeUnitAmount<EnergyUnit>
         Energy(amount = this.amount - other.into(this.unit).amount,
                unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Energy(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Energy(amount = this.amount * other,
                unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Energy(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Energy(amount = this.amount / other,
                unit = this.unit)
 
     override fun into(unit: EnergyUnit) =

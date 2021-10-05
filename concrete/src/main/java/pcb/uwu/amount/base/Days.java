@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.TimeUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.DayUnit.DAY;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Days extends Time {
@@ -67,14 +66,16 @@ public class Days extends Time {
 		return new Days(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Days times(BigDecimal other, MathContext mathContext) {
-		return new Days(multipliedByScalar(this, other, mathContext));
+	public Days times(@NotNull Number other) {
+		return new Days(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Days div(BigDecimal other, MathContext mathContext) {
-		return new Days(dividedByScalar(this, other, mathContext));
+	public Days div(@NotNull Number other) {
+		return new Days(dividedByScalar(this, other));
 	}
 
 	// endregion

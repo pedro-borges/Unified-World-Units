@@ -12,8 +12,6 @@ import pcb.uwu.unit.derived.mechanics.AccelerationUnit
 import pcb.uwu.unit.derived.mechanics.PaceUnit
 import pcb.uwu.unit.derived.mechanics.SpeedUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 open class Speed : CompositeUnitAmount<SpeedUnit>
 {
@@ -39,36 +37,36 @@ open class Speed : CompositeUnitAmount<SpeedUnit>
         Speed(amount = this.amount - other.into(this.unit).amount,
               unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Speed(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Speed(amount = this.amount * other,
               unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Speed(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Speed(amount = this.amount / other,
               unit = this.unit)
 
     override fun into(unit: SpeedUnit) =
         Speed(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
               unit = unit)
 
-    override fun invert(mathContext: MathContext) =
-        Pace(amount = this.amount.invert(mathContext),
+    override fun invert() =
+        Pace(amount = this.amount.invert(),
              unit = PaceUnit(this.unit))
 
     // endregion
 
     // region composition
 
-    fun div(time: Time, mathContext: MathContext) =
-        Acceleration(amount = this.amount.div(time.amount.value, mathContext),
+    fun div(time: Time) =
+        Acceleration(amount = this.amount / time.amount,
                      unit = AccelerationUnit(this.unit, time.unit))
 
-    open fun div(acceleration: Acceleration, mathContext: MathContext) =
-        Time(amount = super.div(acceleration, mathContext).amount,
+    open fun div(acceleration: Acceleration) =
+        Time(amount = (this / acceleration).amount,
              unit = this.unit.unitCounter.findUnit(TimeUnit::class.java)!!)
 
-    open fun times(time: Time, mathContext: MathContext) =
-        Length(amount = super.times(time, mathContext).amount,
+    open fun times(time: Time) =
+        Length(amount = (this * time).amount,
                unit = this.unit.unitCounter.findUnit(LengthUnit::class.java)!!)
 
     // endregion

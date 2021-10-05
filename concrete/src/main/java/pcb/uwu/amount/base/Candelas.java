@@ -11,9 +11,9 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.LuminousIntensityUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.CandelaUnit.CANDELA;
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
@@ -22,7 +22,6 @@ import static pcb.uwu.unit.scalar.SteradianUnit.STERADIAN;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Candelas extends LuminousIntensity {
@@ -77,30 +76,32 @@ public class Candelas extends LuminousIntensity {
 		return new Candelas(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Candelas times(BigDecimal other, MathContext mathContext) {
-		return new Candelas(multipliedByScalar(this, other, mathContext));
+	public Candelas times(@NotNull Number other) {
+		return new Candelas(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Candelas div(BigDecimal other, MathContext mathContext) {
-		return new Candelas(dividedByScalar(this, other, mathContext));
+	public Candelas div(@NotNull Number other) {
+		return new Candelas(dividedByScalar(this, other));
 	}
 
 	// endregion
 
 	// region composition
 
-	public Lumens multipliedBy(SolidAngle solidAngle, MathContext mathContext) {
-		return new Lumens(getAmount().times(getAmountIn(solidAngle, STERADIAN), mathContext));
+	public Lumens times(SolidAngle solidAngle) {
+		return new Lumens(getAmount().times(getAmountIn(solidAngle, STERADIAN)));
 	}
 
-	public Nits dividedBy(Area area, MathContext mathContext) {
-		return new Nits(getAmount().div(getAmountIn(area, SQUARE_METER), mathContext));
+	public Nits div(Area area) {
+		return new Nits(getAmount().div(getAmountIn(area, SQUARE_METER)));
 	}
 
-	public SquareMeters dividedBy(Luminance luminance, MathContext mathContext) {
-		return new SquareMeters(getAmount().div(getAmountIn(luminance, NIT), mathContext));
+	public SquareMeters div(Luminance luminance) {
+		return new SquareMeters(getAmount().div(getAmountIn(luminance, NIT)));
 	}
 
 	// endregion

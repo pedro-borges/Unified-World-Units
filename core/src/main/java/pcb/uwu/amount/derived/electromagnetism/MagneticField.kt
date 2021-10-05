@@ -6,8 +6,6 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.electromagnetism.MagneticFieldUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 open class MagneticField : CompositeUnitAmount<MagneticFieldUnit>
 {
@@ -33,12 +31,12 @@ open class MagneticField : CompositeUnitAmount<MagneticFieldUnit>
         MagneticField(amount = this.amount - other.into(this.unit).amount,
                       unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        MagneticField(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        MagneticField(amount = this.amount * other,
                       unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        MagneticField(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        MagneticField(amount = this.amount / other,
                       unit = this.unit)
 
     override fun into(unit: MagneticFieldUnit) =

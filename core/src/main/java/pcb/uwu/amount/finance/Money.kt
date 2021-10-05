@@ -11,8 +11,6 @@ import pcb.uwu.unit.derived.finance.DebtUnit
 import pcb.uwu.unit.finance.CurrencyUnit
 import pcb.uwu.unit.finance.RentUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 import java.math.RoundingMode.HALF_EVEN
 
 open class Money :
@@ -36,12 +34,12 @@ open class Money :
         Money(amount = this.amount - other.into(this.unit).amount,
               unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Money(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Money(amount = this.amount * other,
               unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Money(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Money(amount = this.amount / other,
               unit = this.unit)
 
     override fun into(unit: CurrencyUnit) =
@@ -52,16 +50,16 @@ open class Money :
 
     // region composition
 
-    fun div(time: Time, mathContext: MathContext) =
-        Rent(amount = this.amount.div(time.amount.value, mathContext),
+    operator fun div(time: Time) =
+        Rent(amount = this.amount / time.amount,
              unit = RentUnit(this.unit, time.unit))
 
-    fun times(interestRate: InterestRate, mathContext: MathContext) =
-        Rent(amount = this.amount.times(interestRate.amount.value, mathContext),
+    operator fun times(interestRate: InterestRate) =
+        Rent(amount = this.amount * interestRate.amount,
              unit = RentUnit(this.unit, interestRate.unit))
 
-    fun times(time: Time, mathContext: MathContext) =
-        Debt(amount = UnitAmountUtils.multipliedByScalar(this, time.amount.value, mathContext),
+    operator fun times(time: Time) =
+        Debt(amount = this.amount * time.amount,
              unit = DebtUnit(this.unit, time.unit))
 
     // endregion

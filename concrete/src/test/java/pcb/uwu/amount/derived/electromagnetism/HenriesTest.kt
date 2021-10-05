@@ -4,7 +4,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import pcb.uwu.amount.base.Amperes
 import pcb.uwu.core.Magnitude.MILLI
-import java.math.MathContext.DECIMAL64
 
 class HenriesTest
 {
@@ -12,7 +11,7 @@ class HenriesTest
     fun multipliedByElectricCurrent()
     {
         assertEquals("0.035 Wb",
-                     henries.multipliedBy(Amperes(7, MILLI), DECIMAL64).toString())
+                     henries.times(Amperes(7, MILLI)).toString())
     }
 
     companion object

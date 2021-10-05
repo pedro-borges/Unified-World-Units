@@ -15,7 +15,6 @@ import pcb.uwu.unit.derived.fundamental.FrequencyUnit
 import pcb.uwu.unit.derived.mechanics.PaceUnit
 import pcb.uwu.utils.UnitAmountUtils
 import java.math.BigDecimal
-import java.math.MathContext
 import java.time.Duration
 
 open class Time : CompositeUnitAmount<TimeUnit>
@@ -35,7 +34,7 @@ open class Time : CompositeUnitAmount<TimeUnit>
     constructor(duration: Duration,
                 unit: TimeUnit)
             : super(unit.translationFromCanonical.apply(BigDecimalAmount(duration.toNanos()))
-                        .div(BigDecimal(1000000000), MathContext.UNLIMITED), unit)
+                        .div(BigDecimal(1000000000)), unit)
 
 
     // region UnitAmount
@@ -48,32 +47,32 @@ open class Time : CompositeUnitAmount<TimeUnit>
         Time(amount = this.amount - other.into(this.unit).amount,
              unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Time(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Time(amount = this.amount * other,
              unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Time(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Time(amount = this.amount / other,
              unit = this.unit)
 
     override fun into(unit: TimeUnit) =
         Time(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
              unit = unit)
 
-    override fun invert(mathContext: MathContext) =
-        Frequency(amount = amount.invert(mathContext),
+    override fun invert() =
+        Frequency(amount = amount.invert(),
                   unit = FrequencyUnit(unit))
 
     // endregion
 
     // region composition
 
-    fun multipliedBy(money: Money, mathContext: MathContext) =
-        Debt(amount = UnitAmountUtils.multipliedByScalar(this, money.amount.value, mathContext),
+    fun times(money: Money) =
+        Debt(amount = this.amount * money.amount,
              unit = DebtUnit(money.unit, this.unit))
 
-    fun dividedBy(length: Length, mathContext: MathContext) =
-        Pace(amount = this.amount.div(length.amount.value, mathContext),
+    fun div(length: Length) =
+        Pace(amount = this.amount / length.amount,
              unit = PaceUnit(this.unit, length.unit))
 
     // endregion

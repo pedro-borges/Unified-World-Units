@@ -7,7 +7,6 @@ import pcb.uwu.amount.finance.USD
 import pcb.uwu.unit.base.WeekUnit.WEEK
 import pcb.uwu.unit.derived.finance.DebtUnit
 import pcb.uwu.unit.derived.fundamental.PerDayUnit.PER_DAY
-import java.math.MathContext.DECIMAL64
 
 class DebtTest
 {
@@ -15,18 +14,18 @@ class DebtTest
     fun multipliedByInterestRate() =
         assertEquals("84 US$",
                      Debt(amount = 60,
-                          unit = DebtUnit(USD.CURRENCY, WEEK)).times(InterestRate(amount = "0.2", unit = PER_DAY), DECIMAL64).toString())
+                          unit = DebtUnit(USD.CURRENCY, WEEK)).times(InterestRate(amount = "0.2", unit = PER_DAY)).toString())
 
     @Test
     fun dividedByTime() =
         assertEquals("30 US$",
                      Debt(amount = 60,
-                          unit = DebtUnit(USD.CURRENCY, WEEK)).div(Weeks(2), DECIMAL64).toString())
+                          unit = DebtUnit(USD.CURRENCY, WEEK)).div(Weeks(2)).toString())
 
     @Test
     fun dividedByMoney() =
         assertEquals("3 wk",
                      Debt(amount = 60,
-                          unit = DebtUnit(USD.CURRENCY, WEEK)).div(USD(20), DECIMAL64).toString())
+                          unit = DebtUnit(USD.CURRENCY, WEEK)).div(USD(20)).toString())
 
 }

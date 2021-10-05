@@ -6,16 +6,15 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.electromagnetism.ElectricConductanceUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.derived.electromagnetism.SiemensUnit.SIEMENS;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Siemens extends ElectricConductance {
@@ -70,14 +69,16 @@ public class Siemens extends ElectricConductance {
 		return new Siemens(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Siemens times(BigDecimal other, MathContext mathContext) {
-		return new Siemens(multipliedByScalar(this, other, mathContext));
+	public Siemens times(@NotNull Number other) {
+		return new Siemens(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Siemens div(BigDecimal other, MathContext mathContext) {
-		return new Siemens(dividedByScalar(this, other, mathContext));
+	public Siemens div(@NotNull Number other) {
+		return new Siemens(dividedByScalar(this, other));
 	}
 
 	@Override
@@ -85,17 +86,18 @@ public class Siemens extends ElectricConductance {
 		return new Siemens(getAmountIn(this, unit));
 	}
 
+	@NotNull
 	@Override
-	public Ohms invert(MathContext mathContext) {
-		return new Ohms(getAmount().invert(mathContext));
+	public Ohms invert() {
+		return new Ohms(getAmount().invert());
 	}
 
 	// endregion
 
 	// region composition
 
-	public Volts multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Volts(getAmount().times(getAmountIn(electricCurrent, AMPERE), mathContext));
+	public Volts times(ElectricCurrent electricCurrent) {
+		return new Volts(getAmount().times(getAmountIn(electricCurrent, AMPERE)));
 	}
 
 	// endregion

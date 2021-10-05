@@ -10,8 +10,6 @@ import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.unit.derived.finance.DebtUnit
 import pcb.uwu.unit.finance.CurrencyUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 class Debt : CompositeUnitAmount<DebtUnit>
 {
@@ -37,12 +35,12 @@ class Debt : CompositeUnitAmount<DebtUnit>
         Debt(amount = this.amount - other.into(this.unit).amount,
              unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Debt(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Debt(amount = this.amount * other,
              unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Debt(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Debt(amount = this.amount / other,
              unit = this.unit)
 
     override fun into(unit: DebtUnit) =
@@ -53,16 +51,16 @@ class Debt : CompositeUnitAmount<DebtUnit>
 
     // region composition
 
-    fun times(interestRate: InterestRate, mathContext: MathContext) =
-        Money(amount = super.times(interestRate, mathContext).amount,
+    fun times(interestRate: InterestRate) =
+        Money(amount = (this * interestRate).amount,
               unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
-    fun div(time: Time, mathContext: MathContext) =
-        Money(amount = super.div(time, mathContext).amount,
+    fun div(time: Time) =
+        Money(amount = (this / time).amount,
               unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
-    fun div(money: Money, mathContext: MathContext) =
-        Time(amount = super.div(money, mathContext).amount,
+    fun div(money: Money) =
+        Time(amount = (this / money).amount,
              unit = this.unit.unitCounter.findUnit(TimeUnit::class.java)!!)
 
     // endregion

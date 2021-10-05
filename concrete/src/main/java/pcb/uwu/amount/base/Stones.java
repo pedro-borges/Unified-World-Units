@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.MassUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.StoneUnit.STONE;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Stones extends Mass {
@@ -67,14 +66,16 @@ public class Stones extends Mass {
 		return new Stones(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Stones times(BigDecimal other, MathContext mathContext) {
-		return new Stones(multipliedByScalar(this, other, mathContext));
+	public Stones times(@NotNull Number other) {
+		return new Stones(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Stones div(BigDecimal other, MathContext mathContext) {
-		return new Stones(dividedByScalar(this, other, mathContext));
+	public Stones div(@NotNull Number other) {
+		return new Stones(dividedByScalar(this, other));
 	}
 
 	// endregion

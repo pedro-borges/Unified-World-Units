@@ -10,9 +10,9 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.electromagnetism.ElectricChargeUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
@@ -22,7 +22,6 @@ import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Coulombs extends ElectricCharge {
@@ -77,14 +76,16 @@ public class Coulombs extends ElectricCharge {
 		return new Coulombs(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Coulombs times(BigDecimal other, MathContext mathContext) {
-		return new Coulombs(multipliedByScalar(this, other, mathContext));
+	public Coulombs times(@NotNull Number other) {
+		return new Coulombs(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Coulombs div(BigDecimal other, MathContext mathContext) {
-		return new Coulombs(dividedByScalar(this, other, mathContext));
+	public Coulombs div(@NotNull Number other) {
+		return new Coulombs(dividedByScalar(this, other));
 	}
 
 	@Override
@@ -96,24 +97,24 @@ public class Coulombs extends ElectricCharge {
 
 	// region composition
 
-	public Amperes dividedBy(Time time, MathContext mathContext) {
-		return new Amperes(getAmount().div(getAmountIn(time, SECOND), mathContext));
+	public Amperes div(Time time) {
+		return new Amperes(getAmount().div(getAmountIn(time, SECOND)));
 	}
 
-	public Seconds dividedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Seconds(getAmount().div(getAmountIn(electricCurrent, AMPERE), mathContext));
+	public Seconds div(ElectricCurrent electricCurrent) {
+		return new Seconds(getAmount().div(getAmountIn(electricCurrent, AMPERE)));
 	}
 
-	public Volts dividedBy(ElectricCapacitance electricCapacitance, MathContext mathContext) {
-		return new Volts(getAmount().div(getAmountIn(electricCapacitance, FARAD), mathContext));
+	public Volts div(ElectricCapacitance electricCapacitance) {
+		return new Volts(getAmount().div(getAmountIn(electricCapacitance, FARAD)));
 	}
 
-	public Farads dividedBy(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Farads(getAmount().div(getAmountIn(electricPotential, VOLT), mathContext));
+	public Farads div(ElectricPotential electricPotential) {
+		return new Farads(getAmount().div(getAmountIn(electricPotential, VOLT)));
 	}
 
-	public Joules multipliedBy(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Joules(getAmount().times(getAmountIn(electricPotential, VOLT), mathContext));
+	public Joules times(ElectricPotential electricPotential) {
+		return new Joules(getAmount().times(getAmountIn(electricPotential, VOLT)));
 	}
 
 	// endregion

@@ -2,8 +2,6 @@ package pcb.uwu.unit.base;
 
 import java.math.BigDecimal;
 
-import static java.math.MathContext.DECIMAL64;
-
 public class FootUnit extends LengthUnit {
 
 	private static final BigDecimal METERS_PER_FOOT = new BigDecimal("0.3048");
@@ -12,7 +10,7 @@ public class FootUnit extends LengthUnit {
 
 	private FootUnit() {
 		super("ft", "foot", "feet",
-				value -> value.times(METERS_PER_FOOT, DECIMAL64),
-				value -> value.div(METERS_PER_FOOT, DECIMAL64));
+				value -> value.times(METERS_PER_FOOT),
+				value -> value.div(METERS_PER_FOOT));
 	}
 }

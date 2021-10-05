@@ -1,8 +1,7 @@
 package pcb.uwu.core
 
 import java.math.BigDecimal
-import java.math.MathContext
-import java.math.MathContext.UNLIMITED
+import java.math.MathContext.DECIMAL128
 import java.math.RoundingMode
 import java.util.function.Function
 
@@ -35,8 +34,8 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
     fun withScale(scale: Int, roundingMode: RoundingMode) =
         BigDecimalAmount(value.setScale(scale, roundingMode))
 
-    fun invert(mathContext: MathContext) =
-        ONE.div(this, mathContext)
+    fun invert() =
+        ONE.div(this)
 
     operator fun unaryMinus() =
         BigDecimalAmount(value.negate())
@@ -62,99 +61,29 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
     /**
      * Multiply by a scalar.
      *
-     * @param other the short value to multiply by
-     * @return a new `BigDecimalAmount` representing this × other
-     */
-    operator fun times(other: Short) =
-        times(other, UNLIMITED)
-
-    /**
-     * Multiply by a scalar.
-     *
-     * @param other the int value to multiply by
-     * @return a new `BigDecimalAmount` representing this × other
-     */
-    operator fun times(other: Int) =
-        times(other, UNLIMITED)
-
-    /**
-     * Multiply by a scalar.
-     *
-     * @param other the long value to multiply by
-     * @return a new `BigDecimalAmount` representing this × other
-     */
-    operator fun times(other: Long) =
-        times(other, UNLIMITED)
-
-    /**
-     * Multiply by a scalar.
-     *
      * @param other       the value to multiply by
-     * @param mathContext the maths context to consider
      * @return a new `BigDecimalAmount` representing this × other
      */
-    fun times(other: Number, mathContext: MathContext) =
-        times(BigDecimal(other.toString()), mathContext)
-
-    /**
-     * Multiply by a scalar.
-     *
-     * @param other       the value to multiply by
-     * @param mathContext the maths context to consider
-     * @return a new `BigDecimalAmount` representing this × other
-     */
-    fun times(other: BigDecimal, mathContext: MathContext) =
-        BigDecimalAmount(value.multiply(other, mathContext))
-
-    /**
-     * Multiply by a scalar.
-     *
-     * @param other       the `BigDecimalAmount` to multiply by
-     * @param mathContext the maths context to consider
-     * @return the scalar result of dividing this `BigDecimalAmount` but another.
-     */
-    fun times(other: BigDecimalAmount, mathContext: MathContext) =
-        times(other.value, mathContext)
+    operator fun times(other: Number) =
+        BigDecimalAmount(value.multiply(BigDecimal(other.toString()), DECIMAL128))
 
     /**
      * Divide by a scalar.
      *
      * @param other       the value to divide by
-     * @param mathContext the maths context to consider
      * @return a new `BigDecimalAmount` representing this ÷ other
      */
-    fun div(other: Number, mathContext: MathContext) =
-        div(BigDecimal(other.toString()), mathContext)
-
-    /**
-     * Divide by a scalar.
-     *
-     * @param other       the value to divide by
-     * @param mathContext the maths context to consider
-     * @return the scalar result of dividing this `BigDecimalAmount` but another.
-     */
-    fun div(other: BigDecimalAmount, mathContext: MathContext) =
-        div(other.value, mathContext)
-
-    /**
-     * Divide by a scalar.
-     *
-     * @param other       the value to divide by
-     * @param mathContext the maths context to consider
-     * @return a new `BigDecimalAmount` representing this ÷ other
-     */
-    fun div(other: BigDecimal, mathContext: MathContext) =
-        BigDecimalAmount(value.divide(other, mathContext))
+    operator fun div(other: Number) =
+        BigDecimalAmount(value.divide(BigDecimal(other.toString()), DECIMAL128))
 
     /**
      * Elevate to power.
      *
      * @param power       the exponential factor
-     * @param mathContext the maths context to consider
      * @return a new `BigDecimalAmount` representing `this`ⁿ
      */
-    fun pow(power: Int, mathContext: MathContext) =
-        BigDecimalAmount(value.pow(power, mathContext))
+    fun pow(power: Int) =
+        BigDecimalAmount(value.pow(power, DECIMAL128))
 
     /**
      * translate with scalar function.
@@ -261,6 +190,7 @@ class BigDecimalAmount(val value: BigDecimal) : Number(), Comparable<BigDecimalA
     {
         @JvmField
         val ZERO = BigDecimalAmount(BigDecimal.ZERO)
+
         @JvmField
         val ONE = BigDecimalAmount(BigDecimal.ONE)
     }

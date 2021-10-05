@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.scalar.AngleUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.scalar.RadianUnit.RADIAN;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Radians extends Angle {
@@ -67,14 +66,16 @@ public class Radians extends Angle {
 		return new Radians(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Radians times(BigDecimal other, MathContext mathContext) {
-		return new Radians(multipliedByScalar(this, other, mathContext));
+	public Radians times(@NotNull Number other) {
+		return new Radians(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Radians div(BigDecimal other, MathContext mathContext) {
-		return new Radians(dividedByScalar(this, other, mathContext));
+	public Radians div(@NotNull Number other) {
+		return new Radians(dividedByScalar(this, other));
 	}
 
 	// endregion

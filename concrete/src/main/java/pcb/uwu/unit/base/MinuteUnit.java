@@ -2,8 +2,6 @@ package pcb.uwu.unit.base;
 
 import java.math.BigDecimal;
 
-import static java.math.MathContext.DECIMAL64;
-
 public class MinuteUnit extends TimeUnit {
 
 	private static final BigDecimal SECONDS_PER_MINUTE = new BigDecimal(60);
@@ -12,7 +10,7 @@ public class MinuteUnit extends TimeUnit {
 
 	private MinuteUnit() {
 		super("min", "minute", "minutes",
-				value -> value.times(SECONDS_PER_MINUTE, DECIMAL64),
-				value -> value.div(SECONDS_PER_MINUTE, DECIMAL64));
+				value -> value.times(SECONDS_PER_MINUTE),
+				value -> value.div(SECONDS_PER_MINUTE));
 	}
 }

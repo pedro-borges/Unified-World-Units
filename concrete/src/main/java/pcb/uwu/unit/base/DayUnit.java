@@ -2,8 +2,6 @@ package pcb.uwu.unit.base;
 
 import java.math.BigDecimal;
 
-import static java.math.MathContext.DECIMAL64;
-
 public class DayUnit extends TimeUnit {
 
 	private static final BigDecimal SECONDS_PER_DAY = new BigDecimal(86_400);
@@ -12,7 +10,7 @@ public class DayUnit extends TimeUnit {
 
 	private DayUnit() {
 		super("d", "day", "days",
-				value -> value.times(SECONDS_PER_DAY, DECIMAL64),
-				value -> value.div(SECONDS_PER_DAY, DECIMAL64));
+				value -> value.times(SECONDS_PER_DAY),
+				value -> value.div(SECONDS_PER_DAY));
 	}
 }

@@ -8,9 +8,9 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.termodynamics.PressureUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.derived.area.SquareMeterUnit.SQUARE_METER;
 import static pcb.uwu.unit.derived.fundamental.CubicMeterUnit.CUBIC_METER;
@@ -18,7 +18,6 @@ import static pcb.uwu.unit.derived.termodynamics.PascalUnit.PASCAL;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Pascals extends Pressure {
@@ -73,26 +72,28 @@ public class Pascals extends Pressure {
 		return new Pascals(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Pascals times(BigDecimal other, MathContext mathContext) {
-		return new Pascals(multipliedByScalar(this, other, mathContext));
+	public Pascals times(@NotNull Number other) {
+		return new Pascals(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Pascals div(BigDecimal other, MathContext mathContext) {
-		return new Pascals(dividedByScalar(this, other, mathContext));
+	public Pascals div(@NotNull Number other) {
+		return new Pascals(dividedByScalar(this, other));
 	}
 
 	// endregion
 
 	// region composition
 
-	public Joules multipliedBy(Volume volume, MathContext mathContext) {
-		return new Joules(getAmount().times(getAmountIn(volume, CUBIC_METER), mathContext));
+	public Joules times(Volume volume) {
+		return new Joules(getAmount().times(getAmountIn(volume, CUBIC_METER)));
 	}
 
-	public Newtons multipliedBy(Area area, MathContext mathContext) {
-		return new Newtons(getAmount().times(getAmountIn(area, SQUARE_METER), mathContext));
+	public Newtons times(Area area) {
+		return new Newtons(getAmount().times(getAmountIn(area, SQUARE_METER)));
 	}
 
 	// endregion

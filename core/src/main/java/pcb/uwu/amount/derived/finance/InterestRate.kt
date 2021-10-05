@@ -9,8 +9,6 @@ import pcb.uwu.unit.derived.fundamental.FrequencyUnit
 import pcb.uwu.unit.finance.CurrencyUnit
 import pcb.uwu.unit.finance.RentUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 class InterestRate : CompositeUnitAmount<FrequencyUnit>
 {
@@ -36,12 +34,12 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
         InterestRate(amount = this.amount - other.into(this.unit).amount,
                      unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        InterestRate(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        InterestRate(amount = this.amount * other,
                      unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        InterestRate(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        InterestRate(amount = this.amount / other,
                      unit = this.unit)
 
     override fun into(unit: FrequencyUnit) =
@@ -52,12 +50,12 @@ class InterestRate : CompositeUnitAmount<FrequencyUnit>
 
     // region composition
 
-    fun times(money: Money, mathContext: MathContext) =
-        Rent(amount = UnitAmountUtils.multipliedByScalar(this, money.amount.value, mathContext),
+    fun times(money: Money) =
+        Rent(amount = UnitAmountUtils.times(this, money.amount.value),
              unit = RentUnit(money.unit, this.unit))
 
-    fun times(debt: Debt, mathContext: MathContext) =
-        Money(amount = super.times(debt, mathContext).amount,
+    fun times(debt: Debt) =
+        Money(amount = (this * debt).amount,
               unit = this.unit.unitCounter.findUnit(CurrencyUnit::class.java)!!)
 
     // endregion

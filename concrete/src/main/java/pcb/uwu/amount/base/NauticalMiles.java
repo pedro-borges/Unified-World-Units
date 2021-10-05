@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.LengthUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.NauticalMileUnit.NAUTICAL_MILE;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class NauticalMiles extends Length {
@@ -67,14 +66,16 @@ public class NauticalMiles extends Length {
 		return new NauticalMiles(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public NauticalMiles times(BigDecimal other, MathContext mathContext) {
-		return new NauticalMiles(multipliedByScalar(this, other, mathContext));
+	public NauticalMiles times(@NotNull Number other) {
+		return new NauticalMiles(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public NauticalMiles div(BigDecimal other, MathContext mathContext) {
-		return new NauticalMiles(dividedByScalar(this, other, mathContext));
+	public NauticalMiles div(@NotNull Number other) {
+		return new NauticalMiles(dividedByScalar(this, other));
 	}
 
 	// endregion

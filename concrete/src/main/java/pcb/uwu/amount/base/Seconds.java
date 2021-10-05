@@ -10,9 +10,9 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.TimeUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
@@ -21,7 +21,6 @@ import static pcb.uwu.unit.derived.termodynamics.WattUnit.WATT;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Seconds extends Time {
@@ -76,30 +75,32 @@ public class Seconds extends Time {
 		return new Seconds(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Seconds times(BigDecimal other, MathContext mathContext) {
-		return new Seconds(multipliedByScalar(this, other, mathContext));
+	public Seconds times(@NotNull Number other) {
+		return new Seconds(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Seconds div(BigDecimal other, MathContext mathContext) {
-		return new Seconds(dividedByScalar(this, other, mathContext));
+	public Seconds div(@NotNull Number other) {
+		return new Seconds(dividedByScalar(this, other));
 	}
 
 	// endregion
 
 	// region composition
 
-	public Coulombs multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Coulombs(getAmount().times(getAmountIn(electricCurrent, AMPERE), mathContext));
+	public Coulombs times(ElectricCurrent electricCurrent) {
+		return new Coulombs(getAmount().times(getAmountIn(electricCurrent, AMPERE)));
 	}
 
-	public Joules multipliedBy(Power power, MathContext mathContext) {
-		return new Joules(getAmount().times(getAmountIn(power, WATT), mathContext));
+	public Joules times(Power power) {
+		return new Joules(getAmount().times(getAmountIn(power, WATT)));
 	}
 
-	public Talbots multipliedBy(LuminousFlux luminousFlux, MathContext mathContext) {
-		return new Talbots(getAmount().times(getAmountIn(luminousFlux, LUMEN), mathContext));
+	public Talbots times(LuminousFlux luminousFlux) {
+		return new Talbots(getAmount().times(getAmountIn(luminousFlux, LUMEN)));
 	}
 
 	// endregion

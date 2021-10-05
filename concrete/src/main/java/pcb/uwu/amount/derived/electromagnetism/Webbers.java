@@ -11,9 +11,9 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.electromagnetism.MagneticFluxUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.base.SecondUnit.SECOND;
@@ -25,7 +25,6 @@ import static pcb.uwu.unit.derived.electromagnetism.WebberUnit.WEBBER;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Webbers extends MagneticFlux {
@@ -80,14 +79,16 @@ public class Webbers extends MagneticFlux {
 		return new Webbers(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Webbers times(BigDecimal other, MathContext mathContext) {
-		return new Webbers(multipliedByScalar(this, other, mathContext));
+	public Webbers times(@NotNull Number other) {
+		return new Webbers(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Webbers div(BigDecimal other, MathContext mathContext) {
-		return new Webbers(dividedByScalar(this, other, mathContext));
+	public Webbers div(@NotNull Number other) {
+		return new Webbers(dividedByScalar(this, other));
 	}
 
 	@Override
@@ -99,32 +100,32 @@ public class Webbers extends MagneticFlux {
 
 	// region composition
 
-	public Volts dividedBy(Time time, MathContext mathContext) {
-		return new Volts(getAmount().div(getAmountIn(time, SECOND), mathContext));
+	public Volts div(Time time) {
+		return new Volts(getAmount().div(getAmountIn(time, SECOND)));
 	}
 
-	public Seconds dividedBy(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Seconds(getAmount().div(getAmountIn(electricPotential, VOLT), mathContext));
+	public Seconds div(ElectricPotential electricPotential) {
+		return new Seconds(getAmount().div(getAmountIn(electricPotential, VOLT)));
 	}
 
-	public Henries dividedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Henries(getAmount().div(getAmountIn(electricCurrent, AMPERE), mathContext));
+	public Henries div(ElectricCurrent electricCurrent) {
+		return new Henries(getAmount().div(getAmountIn(electricCurrent, AMPERE)));
 	}
 
-	public Amperes dividedBy(ElectricInductance electricInductance, MathContext mathContext) {
-		return new Amperes(getAmount().div(getAmountIn(electricInductance, HENRY), mathContext));
+	public Amperes div(ElectricInductance electricInductance) {
+		return new Amperes(getAmount().div(getAmountIn(electricInductance, HENRY)));
 	}
 
-	public Area dividedBy(MagneticField magneticField, MathContext mathContext) {
-		return new Area(getAmount().div(getAmountIn(magneticField, TESLA), mathContext), SQUARE_METER);
+	public Area div(MagneticField magneticField) {
+		return new Area(getAmount().div(getAmountIn(magneticField, TESLA)), SQUARE_METER);
 	}
 
-	public Teslas dividedBy(Area area, MathContext mathContext) {
-		return new Teslas(getAmount().div(getAmountIn(area, SQUARE_METER), mathContext));
+	public Teslas div(Area area) {
+		return new Teslas(getAmount().div(getAmountIn(area, SQUARE_METER)));
 	}
 
-	public Joules multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Joules(getAmount().times(getAmountIn(electricCurrent, AMPERE), mathContext));
+	public Joules times(ElectricCurrent electricCurrent) {
+		return new Joules(getAmount().times(getAmountIn(electricCurrent, AMPERE)));
 	}
 
 	// endregion

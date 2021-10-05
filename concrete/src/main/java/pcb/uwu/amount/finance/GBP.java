@@ -4,13 +4,12 @@ import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.finance.CurrencyUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class GBP extends Money {
@@ -59,14 +58,16 @@ public class GBP extends Money {
 		return new GBP(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public GBP times(BigDecimal other, MathContext mathContext) {
-		return new GBP(multipliedByScalar(this, other, mathContext));
+	public GBP times(@NotNull Number other) {
+		return new GBP(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public GBP div(BigDecimal other, MathContext mathContext) {
-		return new GBP(dividedByScalar(this, other, mathContext));
+	public GBP div(@NotNull Number other) {
+		return new GBP(dividedByScalar(this, other));
 	}
 
 	// endregion

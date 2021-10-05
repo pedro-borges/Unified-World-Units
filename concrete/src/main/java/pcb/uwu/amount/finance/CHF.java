@@ -4,13 +4,12 @@ import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.finance.CurrencyUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class CHF extends Money {
@@ -59,14 +58,16 @@ public class CHF extends Money {
 		return new CHF(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public CHF times(BigDecimal other, MathContext mathContext) {
-		return new CHF(multipliedByScalar(this, other, mathContext));
+	public CHF times(@NotNull Number other) {
+		return new CHF(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public CHF div(BigDecimal other, MathContext mathContext) {
-		return new CHF(dividedByScalar(this, other, mathContext));
+	public CHF div(@NotNull Number other) {
+		return new CHF(dividedByScalar(this, other));
 	}
 
 	// endregion

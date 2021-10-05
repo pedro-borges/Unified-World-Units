@@ -6,9 +6,9 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.electromagnetism.ElectricCapacitanceUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.derived.electromagnetism.FaradUnit.FARAD;
 import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
@@ -16,7 +16,6 @@ import static pcb.uwu.unit.derived.electromagnetism.VoltUnit.VOLT;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Farads extends ElectricCapacitance {
@@ -71,14 +70,16 @@ public class Farads extends ElectricCapacitance {
 		return new Farads(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Farads times(BigDecimal other, MathContext mathContext) {
-		return new Farads(multipliedByScalar(this, other, mathContext));
+	public Farads times(@NotNull Number other) {
+		return new Farads(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Farads div(BigDecimal other, MathContext mathContext) {
-		return new Farads(dividedByScalar(this, other, mathContext));
+	public Farads div(@NotNull Number other) {
+		return new Farads(dividedByScalar(this, other));
 	}
 
 	@Override
@@ -90,12 +91,12 @@ public class Farads extends ElectricCapacitance {
 
 	// region composition
 
-	public Coulombs multipliedBy(ElectricPotential electricPotential, MathContext mathContext) {
-		return new Coulombs(getAmount().times(getAmountIn(electricPotential, VOLT), mathContext));
+	public Coulombs times(ElectricPotential electricPotential) {
+		return new Coulombs(getAmount().times(getAmountIn(electricPotential, VOLT)));
 	}
 
-	public Seconds multipliedBy(ElectricResistance electricResistance, MathContext mathContext) {
-		return new Seconds(getAmount().times(getAmountIn(electricResistance, OHM), mathContext));
+	public Seconds times(ElectricResistance electricResistance) {
+		return new Seconds(getAmount().times(getAmountIn(electricResistance, OHM)));
 	}
 
 	// endregion

@@ -7,11 +7,7 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.unit.derived.fundamental.FrequencyUnit
-import pcb.uwu.utils.UnitAmountUtils.dividedByScalar
 import pcb.uwu.utils.UnitAmountUtils.getAmountIn
-import pcb.uwu.utils.UnitAmountUtils.multipliedByScalar
-import java.math.BigDecimal
-import java.math.MathContext
 
 open class Frequency : CompositeUnitAmount<FrequencyUnit>
 {
@@ -37,20 +33,20 @@ open class Frequency : CompositeUnitAmount<FrequencyUnit>
         Frequency(amount = this.amount - other.into(this.unit).amount,
                   unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        Frequency(amount = multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        Frequency(amount = this.amount * other,
                   unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        Frequency(amount = dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        Frequency(amount = this.amount / other,
                   unit = this.unit)
 
     override fun into(unit: FrequencyUnit) =
         Frequency(amount = getAmountIn(unitAmount = this, newUnit = unit),
                   unit = unit)
 
-    override fun invert(mathContext: MathContext) =
-        Time(amount = amount.invert(mathContext),
+    override fun invert() =
+        Time(amount = amount.invert(),
              unit = unit.unitCounter.findUnit(TimeUnit::class.java)!!)
 
     // endregion

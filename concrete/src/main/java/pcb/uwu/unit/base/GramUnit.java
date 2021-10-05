@@ -2,8 +2,6 @@ package pcb.uwu.unit.base;
 
 import java.math.BigDecimal;
 
-import static java.math.MathContext.UNLIMITED;
-
 public class GramUnit extends MassUnit {
 
 	private static final BigDecimal GRAMS_PER_KILOGRAM = new BigDecimal(1_000);
@@ -12,7 +10,7 @@ public class GramUnit extends MassUnit {
 
 	private GramUnit() {
 		super("g", "gram", "grams",
-				amount -> amount.div(GRAMS_PER_KILOGRAM, UNLIMITED),
-				amount -> amount.times(GRAMS_PER_KILOGRAM, UNLIMITED));
+				amount -> amount.div(GRAMS_PER_KILOGRAM),
+				amount -> amount.times(GRAMS_PER_KILOGRAM));
 	}
 }

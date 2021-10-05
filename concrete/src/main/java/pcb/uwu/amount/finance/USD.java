@@ -4,13 +4,12 @@ import org.jetbrains.annotations.NotNull;
 import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.finance.CurrencyUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class USD extends Money {
@@ -59,14 +58,16 @@ public class USD extends Money {
 		return new USD(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public USD times(BigDecimal other, MathContext mathContext) {
-		return new USD(multipliedByScalar(this, other, mathContext));
+	public USD times(@NotNull Number other) {
+		return new USD(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public USD div(BigDecimal other, MathContext mathContext) {
-		return new USD(dividedByScalar(this, other, mathContext));
+	public USD div(@NotNull Number other) {
+		return new USD(dividedByScalar(this, other));
 	}
 
 	// endregion

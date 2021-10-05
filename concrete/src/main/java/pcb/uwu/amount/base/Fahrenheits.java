@@ -5,14 +5,13 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.base.TemperatureUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.FahrenheitUnit.FAHRENHEIT;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Fahrenheits extends Temperature {
@@ -67,14 +66,16 @@ public class Fahrenheits extends Temperature {
 		return new Fahrenheits(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Fahrenheits times(BigDecimal other, MathContext mathContext) {
-		return new Fahrenheits(multipliedByScalar(this, other, mathContext));
+	public Fahrenheits times(@NotNull Number other) {
+		return new Fahrenheits(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Fahrenheits div(BigDecimal other, MathContext mathContext) {
-		return new Fahrenheits(dividedByScalar(this, other, mathContext));
+	public Fahrenheits div(@NotNull Number other) {
+		return new Fahrenheits(dividedByScalar(this, other));
 	}
 
 	// endregion

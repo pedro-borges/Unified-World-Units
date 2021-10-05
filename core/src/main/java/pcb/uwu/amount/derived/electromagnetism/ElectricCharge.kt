@@ -6,8 +6,6 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.electromagnetism.ElectricChargeUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 open class ElectricCharge : CompositeUnitAmount<ElectricChargeUnit>
 {
@@ -33,12 +31,12 @@ open class ElectricCharge : CompositeUnitAmount<ElectricChargeUnit>
         ElectricCharge(amount = amount - other.into(unit).amount,
                        unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        ElectricCharge(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        ElectricCharge(amount = this.amount * other,
                        unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        ElectricCharge(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        ElectricCharge(amount = this.amount / other,
                        unit = this.unit)
 
     override fun into(unit: ElectricChargeUnit) =

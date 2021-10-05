@@ -6,16 +6,15 @@ import pcb.uwu.core.BigDecimalAmount;
 import pcb.uwu.core.Magnitude;
 import pcb.uwu.core.UnitAmount;
 import pcb.uwu.unit.derived.electromagnetism.ElectricResistanceUnit;
+import pcb.uwu.utils.UnitAmountUtils;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 import static pcb.uwu.unit.base.AmpereUnit.AMPERE;
 import static pcb.uwu.unit.derived.electromagnetism.OhmUnit.OHM;
 import static pcb.uwu.utils.UnitAmountUtils.dividedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.getAmountIn;
 import static pcb.uwu.utils.UnitAmountUtils.minusAmount;
-import static pcb.uwu.utils.UnitAmountUtils.multipliedByScalar;
 import static pcb.uwu.utils.UnitAmountUtils.plusAmount;
 
 public class Ohms extends ElectricResistance {
@@ -70,14 +69,16 @@ public class Ohms extends ElectricResistance {
 		return new Ohms(minusAmount(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Ohms times(BigDecimal other, MathContext mathContext) {
-		return new Ohms(multipliedByScalar(this, other, mathContext));
+	public Ohms times(@NotNull Number other) {
+		return new Ohms(UnitAmountUtils.times(this, other));
 	}
 
+	@NotNull
 	@Override
-	public Ohms div(BigDecimal other, MathContext mathContext) {
-		return new Ohms(dividedByScalar(this, other, mathContext));
+	public Ohms div(@NotNull Number other) {
+		return new Ohms(dividedByScalar(this, other));
 	}
 
 	@Override
@@ -85,17 +86,18 @@ public class Ohms extends ElectricResistance {
 		return new Ohms(getAmountIn(this, unit));
 	}
 
+	@NotNull
 	@Override
-	public Siemens invert(MathContext mathContext) {
-		return new Siemens(getAmount().invert(mathContext));
+	public Siemens invert() {
+		return new Siemens(getAmount().invert());
 	}
 
 	// endregion
 
 	// region composition
 
-	public Volts multipliedBy(ElectricCurrent electricCurrent, MathContext mathContext) {
-		return new Volts(getAmount().times(getAmountIn(electricCurrent, AMPERE), mathContext));
+	public Volts times(ElectricCurrent electricCurrent) {
+		return new Volts(getAmount().times(getAmountIn(electricCurrent, AMPERE)));
 	}
 
 	// endregion

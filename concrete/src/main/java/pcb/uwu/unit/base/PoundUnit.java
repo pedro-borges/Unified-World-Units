@@ -2,8 +2,6 @@ package pcb.uwu.unit.base;
 
 import java.math.BigDecimal;
 
-import static java.math.MathContext.DECIMAL64;
-
 public class PoundUnit extends MassUnit {
 
 	private static final BigDecimal KILOGRAMS_PER_POUND = new BigDecimal("0.45359237");
@@ -12,7 +10,7 @@ public class PoundUnit extends MassUnit {
 
 	private PoundUnit() {
 		super("lb", "pound", "pounds",
-				value -> value.times(KILOGRAMS_PER_POUND, DECIMAL64),
-				value -> value.div(KILOGRAMS_PER_POUND, DECIMAL64));
+				value -> value.times(KILOGRAMS_PER_POUND),
+				value -> value.div(KILOGRAMS_PER_POUND));
 	}
 }

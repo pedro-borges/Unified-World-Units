@@ -6,8 +6,6 @@ import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.derived.optics.LuminousEnergyUnit
 import pcb.uwu.utils.UnitAmountUtils
-import java.math.BigDecimal
-import java.math.MathContext
 
 open class LuminousEnergy : CompositeUnitAmount<LuminousEnergyUnit>
 {
@@ -33,12 +31,12 @@ open class LuminousEnergy : CompositeUnitAmount<LuminousEnergyUnit>
         LuminousEnergy(amount = this.amount - other.into(this.unit).amount,
                        unit = this.unit)
 
-    override fun times(other: BigDecimal, mathContext: MathContext) =
-        LuminousEnergy(amount = UnitAmountUtils.multipliedByScalar(this, other, mathContext),
+    override operator fun times(other: Number) =
+        LuminousEnergy(amount = this.amount * other,
                        unit = this.unit)
 
-    override fun div(other: BigDecimal, mathContext: MathContext) =
-        LuminousEnergy(amount = UnitAmountUtils.dividedByScalar(this, other, mathContext),
+    override operator fun div(other: Number) =
+        LuminousEnergy(amount = this.amount / other,
                        unit = this.unit)
 
     override fun into(unit: LuminousEnergyUnit) =

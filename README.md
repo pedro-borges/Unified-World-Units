@@ -10,8 +10,8 @@ Quick example:
 ```
 Length distance = new Meters(10, Magnitude.KILO);
 Time duration = new Hours(2);
-Speed speed = distance.dividedBy(duration, MathContext.UNLIMITED);
-Pace pace = duration.dividedBy(distance, MathContext.UNLIMITED);
+Speed speed = distance.div(duration, MathContext.UNLIMITED);
+Pace pace = duration.div(distance, MathContext.UNLIMITED);
 
 System.out.println(speed.getAmount() + " " + speed.getUnit());
 System.out.println(pace.getAmount() + " " + pace.getUnit());
@@ -25,8 +25,8 @@ Soon to be:
 ```
  Length distance = new Meters(10, Magnitude.KILO);
  Time duration = new Hours(2);
- Speed speed = distance.dividedBy(duration);
- Pace pace = duration.dividedBy(distance);
+ Speed speed = distance.div(duration);
+ Pace pace = duration.div(distance);
  
  System.out.println(speed.getAmount(MathContext.UNLIMITED) + " " + speed.getUnit());
  System.out.println(pace.getAmount(MathContext.UNLIMITED) + " " + pace.getUnit());
