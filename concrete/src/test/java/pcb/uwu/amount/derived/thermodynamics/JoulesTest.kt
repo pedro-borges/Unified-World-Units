@@ -1,7 +1,5 @@
 package pcb.uwu.amount.derived.thermodynamics
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.base.Meters
 import pcb.uwu.amount.base.Seconds
 import pcb.uwu.amount.derived.electromagnetism.Coulombs
@@ -9,6 +7,8 @@ import pcb.uwu.amount.derived.electromagnetism.Volts
 import pcb.uwu.amount.derived.fundamental.Volume
 import pcb.uwu.amount.derived.mechanics.Newtons
 import pcb.uwu.unit.derived.fundamental.CubicMeterUnit
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class JoulesTest
 {

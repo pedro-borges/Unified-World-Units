@@ -13,7 +13,11 @@ import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.AmpereUnit
 import pcb.uwu.unit.base.SecondUnit
 import pcb.uwu.unit.derived.area.SquareMeterUnit
-import pcb.uwu.unit.derived.electromagnetism.*
+import pcb.uwu.unit.derived.electromagnetism.HenryUnit
+import pcb.uwu.unit.derived.electromagnetism.MagneticFluxUnit
+import pcb.uwu.unit.derived.electromagnetism.TeslaUnit
+import pcb.uwu.unit.derived.electromagnetism.VoltUnit
+import pcb.uwu.unit.derived.electromagnetism.WebberUnit
 import pcb.uwu.util.UnitAmountUtils.getAmountIn
 
 class Webbers : MagneticFlux

@@ -1,13 +1,13 @@
 package pcb.uwu.amount.derived.electromagnetism
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.base.Amperes
 import pcb.uwu.amount.base.Seconds
 import pcb.uwu.amount.derived.fundamental.Area
 import pcb.uwu.core.Magnitude.KILO
 import pcb.uwu.core.Magnitude.MILLI
 import pcb.uwu.unit.derived.area.SquareMeterUnit
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class WebbersTest
 {

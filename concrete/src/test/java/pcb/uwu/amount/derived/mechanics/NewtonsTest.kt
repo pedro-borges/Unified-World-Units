@@ -1,7 +1,5 @@
 package pcb.uwu.amount.derived.mechanics
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.base.KiloGrams
 import pcb.uwu.amount.base.Meters
 import pcb.uwu.amount.derived.fundamental.Area
@@ -10,13 +8,16 @@ import pcb.uwu.unit.base.MeterUnit
 import pcb.uwu.unit.base.SecondUnit
 import pcb.uwu.unit.derived.area.SquareMeterUnit
 import pcb.uwu.unit.derived.mechanics.AccelerationUnit
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class NewtonsTest
 {
     @Test
     fun dividedByAcceleration() =
         assertEquals("4 Kg",
-                     Newtons(12).div(Acceleration(amount = 3, unit = AccelerationUnit(MeterUnit, SecondUnit))).toString())
+                     Newtons(12).div(Acceleration(amount = 3, unit = AccelerationUnit(MeterUnit, SecondUnit)))
+                         .toString())
 
     @Test
     fun dividedByMass() =

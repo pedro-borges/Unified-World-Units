@@ -1,34 +1,25 @@
 package pcb.uwu.core
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.base.Amperes
 import pcb.uwu.amount.base.Meters
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class UnitAmountTest
 {
     @Test
     fun testMajorMajor() =
-        assertEquals("100 m⋅A²",
-                     Meters(1)
-                         .times(Amperes(10))
-                         .times(Amperes(10))
-                         .toString())
+        assertEquals(expected = "100 m⋅A²",
+                     actual = (Meters(1) * Amperes(10) * Amperes(10)).toString())
 
     @Test
     fun testMinorMajor() =
-        assertEquals("1 m",
-                     Meters(1)
-                         .div(Amperes(10))
-                         .times(Amperes(10))
-                         .toString())
+        assertEquals(expected = "1 m",
+                     actual = (Meters(1) / Amperes(10) * Amperes(10)).toString())
 
 
     @Test
     fun testMajorMinor() =
-        assertEquals("1 m",
-                     Meters(1)
-                         .times(Amperes(10))
-                         .div(Amperes(10))
-                         .toString())
+        assertEquals(expected = "1 m",
+                     actual = (Meters(1) * Amperes(10) / Amperes(10)).toString())
 }

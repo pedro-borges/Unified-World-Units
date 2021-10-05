@@ -2,7 +2,10 @@ package pcb.uwu.unit.base
 
 import java.math.BigDecimal
 
-class ChemicalElement private constructor(val atomicNumber: Int, val name: String, val symbol: String, val atomicWeight: BigDecimal)
+class ChemicalElement private constructor(val atomicNumber: Int,
+                                          val name: String,
+                                          val symbol: String,
+                                          val atomicWeight: BigDecimal)
 {
     companion object
     {

@@ -1,6 +1,6 @@
 package pcb.uwu.util
 
-import org.junit.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class UtilsTest

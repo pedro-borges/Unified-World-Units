@@ -96,9 +96,11 @@ open class CompositeUnit(final override val unitCounter: UnitCounter = UnitCount
                 translationToCanonical(Amount.ONE) == that.translationToCanonical(Amount.ONE)
     }
 
-    override fun hashCode() = unitCounter.hashCode()
+    override fun hashCode() =
+        unitCounter.hashCode()
 
-    override fun toString() = symbol
+    override fun toString() =
+        symbol
 
     // endregion
 }

@@ -1,7 +1,5 @@
 package pcb.uwu.amount.derived.mechanics
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.base.Length
 import pcb.uwu.amount.base.Time
 import pcb.uwu.unit.base.InchUnit
@@ -10,6 +8,8 @@ import pcb.uwu.unit.base.MinuteUnit
 import pcb.uwu.unit.base.SecondUnit
 import pcb.uwu.unit.derived.mechanics.SpeedUnit
 import java.math.BigDecimal.TEN
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class SpeedTest
 {
@@ -17,7 +17,7 @@ class SpeedTest
     fun testPlusSpeed() =
         assertEquals("10.254 m⋅s⁻¹",
                      (MetersPerSecond(10) + Length(amount = 10, unit = InchUnit)
-                                                  .div(Time(amount = 1, unit = SecondUnit))).toString())
+                         .div(Time(amount = 1, unit = SecondUnit))).toString())
 
     @Test
     fun testMinusSpeed() =

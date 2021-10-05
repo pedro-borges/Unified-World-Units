@@ -1,9 +1,9 @@
 package pcb.uwu.amount.derived.scalar
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.base.Candelas
 import pcb.uwu.amount.derived.optics.Lumens
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class SteradiansTest
 {

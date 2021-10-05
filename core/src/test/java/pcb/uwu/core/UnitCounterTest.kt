@@ -1,11 +1,11 @@
 package pcb.uwu.core
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.unit.base.ElectricCurrentUnit
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.unit.base.TimeUnit
 import pcb.uwu.util.identity
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 
 class UnitCounterTest

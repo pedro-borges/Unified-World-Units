@@ -1,6 +1,14 @@
 package pcb.uwu.amount.base
 
-import pcb.uwu.amount.derived.electromagnetism.*
+import pcb.uwu.amount.derived.electromagnetism.Coulombs
+import pcb.uwu.amount.derived.electromagnetism.ElectricConductance
+import pcb.uwu.amount.derived.electromagnetism.ElectricInductance
+import pcb.uwu.amount.derived.electromagnetism.ElectricPotential
+import pcb.uwu.amount.derived.electromagnetism.ElectricResistance
+import pcb.uwu.amount.derived.electromagnetism.MagneticFlux
+import pcb.uwu.amount.derived.electromagnetism.Siemens
+import pcb.uwu.amount.derived.electromagnetism.Volts
+import pcb.uwu.amount.derived.electromagnetism.Webbers
 import pcb.uwu.amount.derived.thermodynamics.Joules
 import pcb.uwu.core.Magnitude
 import pcb.uwu.core.Magnitude.NATURAL
@@ -8,7 +16,11 @@ import pcb.uwu.core.UnitAmount
 import pcb.uwu.unit.base.AmpereUnit
 import pcb.uwu.unit.base.ElectricCurrentUnit
 import pcb.uwu.unit.base.SecondUnit
-import pcb.uwu.unit.derived.electromagnetism.*
+import pcb.uwu.unit.derived.electromagnetism.HenryUnit
+import pcb.uwu.unit.derived.electromagnetism.OhmUnit
+import pcb.uwu.unit.derived.electromagnetism.SiemensUnit
+import pcb.uwu.unit.derived.electromagnetism.VoltUnit
+import pcb.uwu.unit.derived.electromagnetism.WebberUnit
 
 class Amperes : ElectricCurrent
 {

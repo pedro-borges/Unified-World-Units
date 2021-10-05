@@ -3,7 +3,7 @@ package pcb.uwu.core
 import pcb.uwu.core.Amount.Companion.ONE
 import pcb.uwu.core.Magnitude.NATURAL
 import pcb.uwu.unit.base.ScalarUnit
-import java.util.Objects
+import pcb.uwu.util.hash
 
 abstract class BaseUnit(private val precedence: Int,
                         override val symbol: String,
@@ -45,7 +45,7 @@ abstract class BaseUnit(private val precedence: Int,
 
     override fun hashCode(): Int
     {
-        return Objects.hash(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical)
+        return hash(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical)
     }
 
     override fun toString(): String

@@ -1,14 +1,19 @@
 package pcb.uwu.unit.base
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
-import pcb.uwu.amount.base.*
+import pcb.uwu.amount.base.Days
+import pcb.uwu.amount.base.Hours
+import pcb.uwu.amount.base.Minutes
+import pcb.uwu.amount.base.Seconds
+import pcb.uwu.amount.base.Time
+import pcb.uwu.amount.base.Weeks
 import pcb.uwu.core.Amount
 import pcb.uwu.core.UnitAmount
 import java.math.RoundingMode.HALF_EVEN
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 @RunWith(Parameterized::class)
 class TimeUnitTest(private val time: Time)
@@ -18,8 +23,8 @@ class TimeUnitTest(private val time: Time)
     {
         for (unitAmount in testData())
         {
-            assertEquals(Amount.ONE.withScale(6, HALF_EVEN),
-                         time.div(unitAmount).amount.withScale(6, HALF_EVEN))
+            assertEquals(expected = Amount.ONE.withScale(6, HALF_EVEN),
+                         actual = (time / unitAmount).amount.withScale(6, HALF_EVEN))
         }
     }
 

@@ -1,10 +1,10 @@
 package pcb.uwu.core
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.unit.base.LengthUnit
 import pcb.uwu.unit.base.MassUnit
 import pcb.uwu.util.identity
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 
 class BaseUnitTest

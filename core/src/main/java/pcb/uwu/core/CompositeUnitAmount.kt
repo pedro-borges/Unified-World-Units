@@ -1,12 +1,12 @@
 package pcb.uwu.core
 
 import pcb.uwu.core.Magnitude.NATURAL
-import pcb.uwu.core.UnitCounter.UnitCount.Companion.EMPTY_BASE_UNIT_COUNT
+import pcb.uwu.core.UnitCount.Companion.EMPTY_BASE_UNIT_COUNT
 import pcb.uwu.util.UnitAmountUtils
 import pcb.uwu.util.andThen
+import pcb.uwu.util.hash
 import pcb.uwu.util.identity
 import java.math.BigDecimal
-import java.util.Objects
 
 open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 {
@@ -296,7 +296,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
 
     override fun hashCode(): Int
     {
-        return Objects.hash(amount, unit)
+        return hash(amount, unit)
     }
 
     override fun toString() =

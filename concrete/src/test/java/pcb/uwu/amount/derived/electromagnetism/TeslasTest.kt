@@ -1,15 +1,15 @@
 package pcb.uwu.amount.derived.electromagnetism
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.derived.fundamental.Area
 import pcb.uwu.unit.derived.area.SquareMeterUnit
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class TeslasTest
 {
     @Test
     fun multipliedByArea() =
-        assertEquals("4 Wb",
-                     Teslas(2).times(Area(amount = 2, unit = SquareMeterUnit)).toString())
+        assertEquals(expected = "4 Wb",
+                     actual = (Teslas(2) * Area(amount = 2, unit = SquareMeterUnit)).toString())
 
 }

@@ -1,13 +1,15 @@
 package pcb.uwu.amount.derived.fudamental
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.base.Meters
 import pcb.uwu.amount.derived.fundamental.Volume
 import pcb.uwu.amount.derived.fundamental.volume.Litres
-import pcb.uwu.core.Magnitude.*
+import pcb.uwu.core.Magnitude.CENTI
+import pcb.uwu.core.Magnitude.DECI
+import pcb.uwu.core.Magnitude.MILLI
 import pcb.uwu.unit.derived.fundamental.CubicMeterUnit
 import pcb.uwu.unit.derived.fundamental.LitreUnit
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class LitresTest
 {

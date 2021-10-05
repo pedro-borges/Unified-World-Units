@@ -1,9 +1,9 @@
 package pcb.uwu.contract
 
+import pcb.uwu.unit.base.CurrencyUnit
 import java.math.BigDecimal
-import java.util.Currency
 
 fun interface CurrencyConversionProvider
 {
-    fun getRatio(originalCurrency: Currency, destinationCurrency: Currency): BigDecimal
+    fun getRatio(originalCurrency: CurrencyUnit, destinationCurrency: CurrencyUnit): BigDecimal
 }

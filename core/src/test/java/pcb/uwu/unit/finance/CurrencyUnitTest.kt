@@ -1,7 +1,5 @@
 package pcb.uwu.unit.finance
 
-import org.junit.Assert.assertThrows
-import org.junit.Test
 import pcb.uwu.core.Amount.Companion.ZERO
 import pcb.uwu.exception.InvalidCurrencyException
 import pcb.uwu.unit.base.CurrencyUnit
@@ -13,6 +11,8 @@ import pcb.uwu.unit.base.CurrencyUnit.Companion.EUR
 import pcb.uwu.unit.base.CurrencyUnit.Companion.GBP
 import pcb.uwu.unit.base.CurrencyUnit.Companion.JPY
 import pcb.uwu.unit.base.CurrencyUnit.Companion.USD
+import kotlin.test.Test
+import kotlin.test.assertFailsWith
 
 class CurrencyUnitTest
 {
@@ -31,7 +31,7 @@ class CurrencyUnitTest
 
     private fun assertNoCanonical(currencyUnit: CurrencyUnit)
     {
-        assertThrows(InvalidCurrencyException::class.java) { currencyUnit.toCanonical(ZERO) }
-        assertThrows(InvalidCurrencyException::class.java) { currencyUnit.fromCanonical(ZERO) }
+        assertFailsWith(InvalidCurrencyException::class) { currencyUnit.toCanonical(ZERO) }
+        assertFailsWith(InvalidCurrencyException::class) { currencyUnit.fromCanonical(ZERO) }
     }
 }

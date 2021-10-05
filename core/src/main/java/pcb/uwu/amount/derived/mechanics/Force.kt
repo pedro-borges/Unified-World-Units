@@ -65,13 +65,13 @@ open class Force : CompositeUnitAmount<ForceUnit>
 
     open operator fun times(length: Length) =
         Energy(amount = this.amount * length.amount,
-              unit = EnergyUnit(forceUnit = this.unit,
-                                lengthUnit = length.unit))
+               unit = EnergyUnit(forceUnit = this.unit,
+                                 lengthUnit = length.unit))
 
     open operator fun div(pressure: Pressure) =
         Area(amount = this.amount / pressure.amount,
-                 unit = AreaUnit(forceUnit = this.unit,
-                                 pressureUnit = pressure.unit))
+             unit = AreaUnit(forceUnit = this.unit,
+                             pressureUnit = pressure.unit))
 
     open operator fun div(area: Area) =
         Pressure(amount = this.amount / area.amount,

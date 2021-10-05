@@ -1,6 +1,5 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Bug report about: Create a report to help us improve
 
 ---
 
@@ -8,7 +7,7 @@ about: Create a report to help us improve
 A clear and concise description of what the bug is.
 
 **To Reproduce**
-A jUnit test snippet that proves your point
+A test snippet that proves your point
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.

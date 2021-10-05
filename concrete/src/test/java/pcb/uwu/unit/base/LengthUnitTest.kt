@@ -1,14 +1,19 @@
 package pcb.uwu.unit.base
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
-import pcb.uwu.amount.base.*
+import pcb.uwu.amount.base.Feet
+import pcb.uwu.amount.base.Inches
+import pcb.uwu.amount.base.Length
+import pcb.uwu.amount.base.Meters
+import pcb.uwu.amount.base.Miles
+import pcb.uwu.amount.base.Yards
 import pcb.uwu.core.Amount
 import pcb.uwu.core.UnitAmount
 import java.math.RoundingMode.HALF_EVEN
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 @RunWith(Parameterized::class)
 class LengthUnitTest(private val length: Length)
@@ -18,8 +23,8 @@ class LengthUnitTest(private val length: Length)
     {
         for (unitAmount in testData())
         {
-            assertEquals(Amount.ONE.withScale(6, HALF_EVEN),
-                         length.div(unitAmount).amount.withScale(6, HALF_EVEN))
+            assertEquals(expected = Amount.ONE.withScale(6, HALF_EVEN),
+                         actual = (length / unitAmount).amount.withScale(6, HALF_EVEN))
         }
     }
 

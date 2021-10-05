@@ -1,9 +1,21 @@
 package pcb.uwu.core
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
-import pcb.uwu.core.Magnitude.*
+import pcb.uwu.core.Magnitude.CENTI
+import pcb.uwu.core.Magnitude.DECI
+import pcb.uwu.core.Magnitude.DEKA
+import pcb.uwu.core.Magnitude.GIGA
+import pcb.uwu.core.Magnitude.HECTA
+import pcb.uwu.core.Magnitude.KILO
+import pcb.uwu.core.Magnitude.MEGA
+import pcb.uwu.core.Magnitude.MICRO
+import pcb.uwu.core.Magnitude.MILLI
+import pcb.uwu.core.Magnitude.NANO
+import pcb.uwu.core.Magnitude.NATURAL
+import pcb.uwu.core.Magnitude.PICO
+import pcb.uwu.core.Magnitude.TERA
 import java.math.BigDecimal
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class MagnitudeTest
 {

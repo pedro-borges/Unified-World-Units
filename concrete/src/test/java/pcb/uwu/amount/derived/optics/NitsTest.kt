@@ -1,8 +1,8 @@
 package pcb.uwu.amount.derived.optics
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.derived.fundamental.area.SquareMeters
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class NitsTest
 {

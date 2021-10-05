@@ -1,11 +1,11 @@
 package pcb.uwu.amount.base
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.core.Amount
 import pcb.uwu.exception.InvalidCurrencyException
 import pcb.uwu.unit.base.CurrencyUnit.Companion.GBP
 import pcb.uwu.unit.base.CurrencyUnit.Companion.USD
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class CurrencyTest
 {

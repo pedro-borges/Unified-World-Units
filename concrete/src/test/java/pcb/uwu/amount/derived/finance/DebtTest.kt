@@ -1,13 +1,13 @@
 package pcb.uwu.amount.derived.finance
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.base.Weeks
 import pcb.uwu.amount.base.currency.USD
 import pcb.uwu.unit.base.CurrencyUnit.Companion.USD
 import pcb.uwu.unit.base.WeekUnit
 import pcb.uwu.unit.derived.finance.DebtUnit
 import pcb.uwu.unit.derived.fundamental.PerDayUnit
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class DebtTest
 {
@@ -15,7 +15,8 @@ class DebtTest
     fun multipliedByInterestRate() =
         assertEquals("84 US$",
                      Debt(amount = 60,
-                          unit = DebtUnit(USD, WeekUnit)).times(InterestRate(amount = "0.2", unit = PerDayUnit)).toString())
+                          unit = DebtUnit(USD, WeekUnit)).times(InterestRate(amount = "0.2", unit = PerDayUnit))
+                         .toString())
 
     @Test
     fun dividedByTime() =

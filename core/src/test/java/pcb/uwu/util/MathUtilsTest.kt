@@ -1,9 +1,9 @@
 package pcb.uwu.util
 
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
-import org.junit.Test
 import pcb.uwu.util.MathUtils.min
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class MathUtilsTest
 {

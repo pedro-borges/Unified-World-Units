@@ -6,7 +6,7 @@ object SteradianUnit
     : SolidAngleUnit(angleUnit1 = RadianUnit,
                      angleUnit2 = RadianUnit)
 {
-    override val symbol= "sr"
-    override val singularName= "steradian"
+    override val symbol = "sr"
+    override val singularName = "steradian"
     override val pluralName = "steradians"
 }

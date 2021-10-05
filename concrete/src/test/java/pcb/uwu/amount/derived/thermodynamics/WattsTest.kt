@@ -1,11 +1,11 @@
 package pcb.uwu.amount.derived.thermodynamics
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.base.Amperes
 import pcb.uwu.amount.base.Seconds
 import pcb.uwu.amount.derived.electromagnetism.Volts
 import pcb.uwu.core.Magnitude.MILLI
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class WattsTest
 {

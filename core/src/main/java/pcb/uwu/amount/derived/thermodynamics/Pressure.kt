@@ -62,8 +62,8 @@ open class Pressure : CompositeUnitAmount<PressureUnit>
 
     open operator fun times(area: Area) =
         Force(amount = this.amount * area.amount,
-             unit = ForceUnit(pressureUnit = this.unit,
-                              areaUnit = area.unit))
+              unit = ForceUnit(pressureUnit = this.unit,
+                               areaUnit = area.unit))
 
     // endregion
 }

@@ -27,14 +27,16 @@ interface Unit
      */
     val translationToCanonical: (Amount) -> Amount
 
-    fun toCanonical(amount: Amount) = translationToCanonical.invoke(amount)
+    fun toCanonical(amount: Amount) =
+        translationToCanonical.invoke(amount)
 
     /**
      * @return a function that converts this unit from the respective canonical
      */
     val translationFromCanonical: (Amount) -> Amount
 
-    fun fromCanonical(amount: Amount) = translationFromCanonical.invoke(amount)
+    fun fromCanonical(amount: Amount) =
+        translationFromCanonical.invoke(amount)
 
     /**
      * Assert if the unit is a scalar.

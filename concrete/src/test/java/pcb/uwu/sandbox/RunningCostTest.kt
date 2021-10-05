@@ -1,11 +1,11 @@
 package pcb.uwu.sandbox
 
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import pcb.uwu.amount.base.Hours
 import pcb.uwu.amount.base.Meters
 import pcb.uwu.amount.base.currency.GBP
 import pcb.uwu.core.Magnitude.KILO
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class RunningCostTest
 {

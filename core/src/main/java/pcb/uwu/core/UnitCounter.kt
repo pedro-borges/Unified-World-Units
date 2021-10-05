@@ -1,45 +1,14 @@
 package pcb.uwu.core
 
-import pcb.uwu.core.UnitCounter.UnitCount.Companion.EMPTY_BASE_UNIT_COUNT
+import pcb.uwu.core.UnitCount.Companion.EMPTY_BASE_UNIT_COUNT
 import pcb.uwu.exception.OffendingUnitException
-import pcb.uwu.unit.base.ScalarUnit
-import java.util.Objects
-import java.util.function.Function
 import kotlin.math.abs
 import kotlin.reflect.KClass
 import kotlin.reflect.full.isSuperclassOf
 
 class UnitCounter
 {
-    class UnitCount(val unit: BaseUnit, val count: Int)
-    {
-        @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-        override fun equals(that: Any?): Boolean
-        {
-            if (that is UnitCount)
-            {
-                return unit == that.unit &&
-                        count == that.count
-            }
-            return false
-        }
-
-        override fun hashCode(): Int
-        {
-            return Objects.hash(unit, count)
-        }
-
-        companion object
-        {
-            val EMPTY_BASE_UNIT_COUNT = UnitCount(ScalarUnit, 0)
-        }
-    }
-
-    // region private fields
-
     private val counts: MutableMap<KClass<out BaseUnit>, UnitCount>
-
-    // endregion
 
     // region constructors
 
@@ -58,6 +27,8 @@ class UnitCounter
     }
 
     // endregion
+
+    // region public methods
 
     fun invert(): UnitCounter
     {
@@ -104,8 +75,8 @@ class UnitCounter
     val baseUnits: Collection<UnitCount>
         get() = counts.values
 
-    fun asString(majorString: Function<Unit, String>,
-                 minorString: Function<Unit, String>)
+    fun asString(majorString: (Unit) -> String,
+                 minorString: (Unit) -> String)
             : String
     {
         val result = StringBuilder()
@@ -120,11 +91,11 @@ class UnitCounter
             val power = buildPower(get(unit).count)
             if (first)
             {
-                result.append(majorString.apply(unit)).append(power)
+                result.append(majorString(unit)).append(power)
             }
             else
             {
-                result.append('⋅').append(minorString.apply(unit)).append(power)
+                result.append('⋅').append(minorString(unit)).append(power)
             }
             first = false
         }

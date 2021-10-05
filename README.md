@@ -1,4 +1,5 @@
 # units
+
 A generic library of world units for type-safe calculation of amounts.
 
 Work in progress since Oct 2017. Fully functional but not ready for use in production.
@@ -16,9 +17,10 @@ Pace pace = duration.div(distance, MathContext.UNLIMITED);
 System.out.println(speed.getAmount() + " " + speed.getUnit());
 System.out.println(pace.getAmount() + " " + pace.getUnit());
 ```
->5000 h⁻¹⋅m
 
->0.0002 h⋅m⁻¹
+> 5000 h⁻¹⋅m
+
+> 0.0002 h⋅m⁻¹
 
 Soon to be:
 
