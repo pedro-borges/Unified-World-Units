@@ -64,6 +64,7 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
     {
         var resultUnitCounter = UnitCounter(unit.unitCounter)
         var transformation = identity<Amount>()
+
         for (otherUnitCount in amount.unit.unitCounter.baseUnits)
         {
             val resultUnitCount = resultUnitCounter[otherUnitCount.unit]

@@ -80,25 +80,20 @@ class UnitCounter
             : String
     {
         val result = StringBuilder()
-        val baseUnits = counts.values.asSequence()
-            .map { it.unit }
-            .sorted()
-            .toList()
+        val baseUnits = counts.values.asSequence().map { it.unit }.sorted().toList()
 
         var first = true
+
         for (unit in baseUnits)
         {
             val power = buildPower(get(unit).count)
-            if (first)
-            {
-                result.append(majorString(unit)).append(power)
-            }
-            else
-            {
-                result.append('⋅').append(minorString(unit)).append(power)
-            }
+
+            if (first) result.append(majorString(unit)).append(power)
+            else result.append('⋅').append(minorString(unit)).append(power)
+
             first = false
         }
+
         return result.toString()
     }
 
@@ -111,25 +106,19 @@ class UnitCounter
         val negative = mutablePower < 0
 
         // Omit neutral power of 1
-        if (mutablePower == 1)
-        {
-            return result.toString()
-        }
-        if (mutablePower == 0)
-        {
-            return POWERS[0].toString()
-        }
+        if (mutablePower == 1) return result.toString()
+
+        if (mutablePower == 0) return POWERS[0].toString()
+
         mutablePower = abs(mutablePower)
+
         while (mutablePower > 0)
         {
             result.insert(0, POWERS[mutablePower % 10])
             mutablePower /= 10
         }
-        return if (negative)
-        {
-            "$NEGATIVE$result"
-        }
-        else result.toString()
+
+        return if (negative) "$NEGATIVE$result" else result.toString()
     }
 
     private fun addMajor(kClass: KClass<out BaseUnit>, unitCount: UnitCount) =

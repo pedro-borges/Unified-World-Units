@@ -78,7 +78,6 @@ open class Time : CompositeUnitAmount<TimeUnit>
              unit = PaceUnit(timeUnit = this.unit,
                              lengthUnit = length.unit))
 
-
     open operator fun times(electricCurrent: ElectricCurrent) =
         ElectricCharge(amount = this.amount * electricCurrent.amount,
                        unit = ElectricChargeUnit(electricCurrentUnit = electricCurrent.unit,
