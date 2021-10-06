@@ -11,4 +11,3 @@ object InchUnit
 {
     const val CONVERT = 0.0254
 }
-

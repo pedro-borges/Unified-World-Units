@@ -11,4 +11,3 @@ object YardUnit
 {
     const val CONVERT = 0.9144
 }
-

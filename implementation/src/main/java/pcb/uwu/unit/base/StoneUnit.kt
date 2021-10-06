@@ -11,4 +11,3 @@ object StoneUnit
 {
     const val CONVERT = 6.35029318
 }
-

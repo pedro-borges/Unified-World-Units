@@ -11,4 +11,3 @@ object WeekUnit
 {
     const val CONVERT = 604800
 }
-

@@ -11,4 +11,3 @@ object GramUnit
 {
     const val CONVERT = 1000
 }
-

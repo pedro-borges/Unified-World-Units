@@ -10,4 +10,3 @@ object PercentageUnit : ScalarUnit(symbol = "%",
 {
     const val CONVERT = 100
 }
-

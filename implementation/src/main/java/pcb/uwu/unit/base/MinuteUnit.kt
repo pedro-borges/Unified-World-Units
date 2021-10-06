@@ -11,4 +11,3 @@ object MinuteUnit
 {
     const val CONVERT = 60
 }
-

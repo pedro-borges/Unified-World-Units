@@ -10,4 +10,3 @@ object PermillageUnit : ScalarUnit(symbol = "‰",
 {
     const val CONVERT = 1000
 }
-

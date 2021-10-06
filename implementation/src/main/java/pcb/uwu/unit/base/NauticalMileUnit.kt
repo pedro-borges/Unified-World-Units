@@ -11,4 +11,3 @@ object NauticalMileUnit
 {
     const val CONVERT = 1852
 }
-
