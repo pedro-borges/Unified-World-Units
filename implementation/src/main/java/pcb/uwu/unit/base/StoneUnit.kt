@@ -1,10 +1,14 @@
 package pcb.uwu.unit.base
 
-import java.math.BigDecimal
+import pcb.uwu.unit.base.StoneUnit.CONVERT
 
 object StoneUnit
     : MassUnit(symbol = "st",
                singularName = "stone",
                pluralName = "stones",
-               translationToCanonical = { it * BigDecimal("6.35029318") },
-               translationFromCanonical = { it / BigDecimal("6.35029318") })
+               translationToCanonical = { it * CONVERT },
+               translationFromCanonical = { it / CONVERT })
+{
+    const val CONVERT = 6.35029318
+}
+

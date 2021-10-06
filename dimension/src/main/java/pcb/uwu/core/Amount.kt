@@ -166,12 +166,15 @@ class Amount(val amount: BigDecimal) : Number(), Comparable<Amount>
         amount.compareTo(other.amount)
 
     // endregion
+
     // region override Object
-    override fun equals(other: Any?): Boolean
+
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun equals(that: Any?): Boolean
     {
-        if (this === other) return true
-        if (other !is Amount) return false
-        return amount.stripTrailingZeros() == other.amount.stripTrailingZeros()
+        if (this === that) return true
+        if (that !is Amount) return false
+        return this.amount.stripTrailingZeros() == that.amount.stripTrailingZeros()
     }
 
     override fun hashCode() =

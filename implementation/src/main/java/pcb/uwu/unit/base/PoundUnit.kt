@@ -1,10 +1,13 @@
 package pcb.uwu.unit.base
 
-import java.math.BigDecimal
+import pcb.uwu.unit.base.PoundUnit.CONVERT
 
 object PoundUnit
     : MassUnit(symbol = "lb",
                singularName = "pound",
                pluralName = "pounds",
-               translationToCanonical = { it * BigDecimal("0.45359237") },
-               translationFromCanonical = { it / BigDecimal("0.45359237") })
+               translationToCanonical = { it * CONVERT },
+               translationFromCanonical = { it / CONVERT })
+{
+    const val CONVERT = 0.45359237
+}

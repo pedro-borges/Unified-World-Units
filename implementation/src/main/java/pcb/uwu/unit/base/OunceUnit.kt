@@ -1,10 +1,14 @@
 package pcb.uwu.unit.base
 
-import java.math.BigDecimal
+import pcb.uwu.unit.base.OunceUnit.CONVERT
 
 object OunceUnit
     : MassUnit(symbol = "oz",
                singularName = "ounce",
                pluralName = "ounces",
-               translationToCanonical = { it * BigDecimal("28.349523125") },
-               translationFromCanonical = { it / BigDecimal("28.349523125") })
+               translationToCanonical = { it * CONVERT },
+               translationFromCanonical = { it / CONVERT })
+{
+    const val CONVERT = 28.349523125
+}
+

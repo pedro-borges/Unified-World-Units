@@ -1,10 +1,14 @@
 package pcb.uwu.unit.base
 
-import java.math.BigDecimal
+import pcb.uwu.unit.base.FootUnit.CONVERT
+
 
 object FootUnit
     : LengthUnit(symbol = "ft",
                  singularName = "foot",
                  pluralName = "feet",
-                 translationToCanonical = { it * BigDecimal("0.3048") },
-                 translationFromCanonical = { it / BigDecimal("0.3048") })
+                 translationToCanonical = { it * CONVERT },
+                 translationFromCanonical = { it / CONVERT })
+{
+    const val CONVERT = 0.3048
+}

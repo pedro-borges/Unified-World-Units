@@ -1,10 +1,14 @@
 package pcb.uwu.unit.base
 
-import java.math.BigDecimal
+import pcb.uwu.unit.base.NauticalMileUnit.CONVERT
 
 object NauticalMileUnit
     : LengthUnit(symbol = "mile",
                  singularName = "mile",
                  pluralName = "miles",
-                 translationToCanonical = { it * BigDecimal("1852") },
-                 translationFromCanonical = { it / BigDecimal("1852") })
+                 translationToCanonical = { it * CONVERT },
+                 translationFromCanonical = { it / CONVERT })
+{
+    const val CONVERT = 1852
+}
+
