@@ -39,10 +39,8 @@ class Nits : Luminance
 
     // region composition
 
-    operator fun times(area: Area): Candelas
-    {
-        return Candelas(amount * (area to SquareMeterUnit).amount)
-    }
+    operator fun times(area: Area) =
+        Candelas(amount * (area to SquareMeterUnit).amount)
 
     // endregion
 }

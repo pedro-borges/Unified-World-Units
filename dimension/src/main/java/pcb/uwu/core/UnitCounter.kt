@@ -132,15 +132,11 @@ class UnitCounter
         else result.toString()
     }
 
-    private fun addMajor(kClass: KClass<out BaseUnit>, unitCount: UnitCount)
-    {
+    private fun addMajor(kClass: KClass<out BaseUnit>, unitCount: UnitCount) =
         addPower(kClass, unitCount.unit, unitCount.count)
-    }
 
-    private fun addMinor(kClass: KClass<out BaseUnit>, unitCount: UnitCount)
-    {
+    private fun addMinor(kClass: KClass<out BaseUnit>, unitCount: UnitCount) =
         addPower(kClass, unitCount.unit, -unitCount.count)
-    }
 
     private fun addPower(kClazz: KClass<out BaseUnit>, unit: BaseUnit, count: Int)
     {
@@ -168,10 +164,8 @@ class UnitCounter
         }
     }
 
-    fun <U : BaseUnit> findUnit(unitClass: KClass<U>): U?
-    {
-        return getUnit(unitClass, baseUnits)
-    }
+    fun <U : BaseUnit> findUnit(unitClass: KClass<U>) =
+        getUnit(unitClass, baseUnits)
 
     @Suppress("UNCHECKED_CAST")
     private fun <U : BaseUnit> getUnit(unitClass: KClass<U>, units: Collection<UnitCount>): U?
@@ -201,10 +195,8 @@ class UnitCounter
         return false
     }
 
-    override fun hashCode(): Int
-    {
-        return counts.hashCode()
-    }
+    override fun hashCode() =
+        counts.hashCode()
 
     // endregion
 

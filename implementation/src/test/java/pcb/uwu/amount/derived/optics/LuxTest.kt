@@ -11,5 +11,4 @@ class LuxTest
     fun multipliedByArea() =
         assertEquals(expected = Lumens(200),
                      actual = Lux(2000) * SquareMeters(100, MILLI))
-
 }

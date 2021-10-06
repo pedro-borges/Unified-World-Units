@@ -174,12 +174,11 @@ class Amount(val amount: BigDecimal) : Number(), Comparable<Amount>
         return amount.stripTrailingZeros() == other.amount.stripTrailingZeros()
     }
 
-    override fun hashCode(): Int
-    {
-        return amount.hashCode()
-    }
+    override fun hashCode() =
+        amount.hashCode()
 
-    override fun toString(): String =
+    override fun toString()
+            : String =
         amount.stripTrailingZeros().toPlainString()
 
     // endregion

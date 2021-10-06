@@ -57,5 +57,4 @@ open class Illuminance : CompositeUnitAmount<IlluminanceUnit>
                                              areaUnit = area.unit))
 
     // endregion
-
 }

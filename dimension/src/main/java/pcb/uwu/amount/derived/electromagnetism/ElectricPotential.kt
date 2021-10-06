@@ -64,5 +64,4 @@ open class ElectricPotential : CompositeUnitAmount<ElectricPotentialUnit>
                                  electricChargeUnit = electricCharge.unit))
 
     // endregion
-
 }

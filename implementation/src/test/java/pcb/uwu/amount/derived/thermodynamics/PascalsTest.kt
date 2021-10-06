@@ -17,5 +17,4 @@ class PascalsTest
     fun multipliedByArea() =
         assertEquals(Newtons(18),
                      Pascals(9) * SquareMeters(2))
-
 }

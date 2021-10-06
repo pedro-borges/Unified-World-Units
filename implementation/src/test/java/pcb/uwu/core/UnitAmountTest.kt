@@ -21,11 +21,8 @@ class UnitAmountTest
         assertEquals(expected = Length(amount = 1, unit = MeterUnit),
                      actual = Meters(1) / Amperes(10) * Amperes(10))
 
-
     @Test
-    fun testMajorMinor()
-    {
+    fun testMajorMinor() =
         assertEquals(expected = Length(amount = 1, unit = MeterUnit),
                      actual = Meters(1) * Amperes(10) / Amperes(10))
-    }
 }

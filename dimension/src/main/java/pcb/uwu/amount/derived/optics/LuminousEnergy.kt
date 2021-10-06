@@ -56,5 +56,4 @@ open class LuminousEnergy : CompositeUnitAmount<LuminousEnergyUnit>
                      unit = LuminousFluxUnit(this.unit, time.unit))
 
     // endregion
-
 }

@@ -56,11 +56,9 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
         CompositeUnitAmount(amount = UnitAmountUtils.dividedByScalar(this, scalar),
                             unit = unit)
 
-    override fun div(other: UnitAmount<U>): Scalar
-    {
-        return Scalar(amount = this.amount / (other to this.unit).amount,
-                      unit = ScalarUnit())
-    }
+    override fun div(other: UnitAmount<U>) =
+        Scalar(amount = this.amount / (other to this.unit).amount,
+               unit = ScalarUnit())
 
     override fun times(amount: UnitAmount<out Unit>): UnitAmount<Unit>
     {
@@ -248,17 +246,13 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
                                    unit = CompositeUnit(resultUnitCounter))
     }
 
-    override fun invert(): UnitAmount<out Unit>
-    {
-        return CompositeUnitAmount(amount = amount.invert(),
-                                   unit = CompositeUnit(unit.unitCounter.invert()))
-    }
+    override fun invert(): UnitAmount<out Unit> =
+        CompositeUnitAmount(amount = amount.invert(),
+                            unit = CompositeUnit(unit.unitCounter.invert()))
 
-    override fun to(unit: U): UnitAmount<U>
-    {
-        return CompositeUnitAmount(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
-                                   unit = unit)
-    }
+    override fun to(unit: U) =
+        CompositeUnitAmount(amount = UnitAmountUtils.getAmountIn(unitAmount = this, newUnit = unit),
+                            unit = unit)
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun isEquivalentTo(that: UnitAmount<*>): Boolean
@@ -290,10 +284,8 @@ open class CompositeUnitAmount<U : Unit> : UnitAmount<U>
                 this.unit.toCanonical(this.amount) == that.unit.toCanonical(that.amount)
     }
 
-    override fun hashCode(): Int
-    {
-        return hash(amount, unit)
-    }
+    override fun hashCode() =
+        hash(amount, unit)
 
     override fun toString() =
         amount.toString()

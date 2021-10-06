@@ -23,10 +23,8 @@ abstract class BaseUnit(private val precedence: Int,
 
     // region Comparable
 
-    override fun compareTo(other: BaseUnit): Int
-    {
-        return this.precedence - other.precedence
-    }
+    override fun compareTo(other: BaseUnit) =
+        this.precedence - other.precedence
 
     //endregion
 
@@ -43,8 +41,6 @@ abstract class BaseUnit(private val precedence: Int,
                 fromCanonical(ONE) == other.fromCanonical(ONE)
     }
 
-    override fun hashCode(): Int
-    {
-        return hash(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical)
-    }
+    override fun hashCode() =
+        hash(symbol, singularName, pluralName, translationToCanonical, translationFromCanonical)
 }

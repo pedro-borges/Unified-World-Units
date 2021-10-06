@@ -50,5 +50,4 @@ class JoulesTest
     fun dividedByElectricPotential() =
         assertEquals(Coulombs(40),
                      Joules(200) / Volts(5))
-
 }

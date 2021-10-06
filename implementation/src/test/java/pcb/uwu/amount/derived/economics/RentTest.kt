@@ -12,12 +12,12 @@ import kotlin.test.assertEquals
 class RentTest
 {
     @Test
-    fun testFromMoneyAndTime()
-    {
+    fun testFromMoneyAndRent() =
         assertEquals(expected = Rent(amount = 2, unit = RentUnit(GBPUnit, DayUnit)),
                      actual = GBP(6) / Time(amount = 3, unit = DayUnit))
 
+    @Test
+    fun testFromMoneyAndInterestRate() =
         assertEquals(expected = Rent(amount = 1.2, unit = RentUnit(GBPUnit, WeekUnit)),
                      actual = GBP(6) * InterestRate(amount = 0.2, unit = FrequencyUnit(WeekUnit)))
-    }
 }

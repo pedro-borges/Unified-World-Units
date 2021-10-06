@@ -47,5 +47,4 @@ class WebbersTest
     fun multiplyByElectricCurrent() =
         assertEquals(expected = Joules(0.6),
                      actual = Webbers(12) * Amperes(50, MILLI))
-
 }

@@ -38,10 +38,8 @@ class Henries : ElectricInductance
 
     // region composition
 
-    override fun times(electricCurrent: ElectricCurrent): Webbers
-    {
-        return Webbers(this.amount * (electricCurrent to AmpereUnit).amount)
-    }
+    override fun times(electricCurrent: ElectricCurrent) =
+        Webbers(this.amount * (electricCurrent to AmpereUnit).amount)
 
     // endregion
 }

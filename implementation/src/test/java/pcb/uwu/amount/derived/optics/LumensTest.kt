@@ -33,5 +33,4 @@ class LumensTest
     fun multipliedByTime() =
         assertEquals(expected = Talbots(66),
                      actual = Lumens(22) * Seconds(3))
-
 }

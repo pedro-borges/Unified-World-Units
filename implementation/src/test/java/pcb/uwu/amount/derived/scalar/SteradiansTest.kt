@@ -11,5 +11,4 @@ class SteradiansTest
     fun multipliedByLuminousIntensity() =
         assertEquals(expected = Lumens(39),
                      actual = Steradians(13) * Candelas(3))
-
 }

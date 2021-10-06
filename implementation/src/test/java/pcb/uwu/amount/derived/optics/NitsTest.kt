@@ -11,5 +11,4 @@ class NitsTest
     fun multipliedByArea() =
         assertEquals(expected = Candelas(20),
                      actual = Nits(4) * SquareMeters(5))
-
 }

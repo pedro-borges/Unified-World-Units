@@ -45,5 +45,4 @@ class SquareMetersTest
     fun multipliedByIlluminance() =
         assertEquals(expected = Lumens(2),
                      actual = SquareMeters(500, MILLI) * Lux(4))
-
 }

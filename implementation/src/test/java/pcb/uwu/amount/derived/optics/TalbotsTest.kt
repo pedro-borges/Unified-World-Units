@@ -15,5 +15,4 @@ class TalbotsTest
     fun dividedByTime() =
         assertEquals(Lumens(5),
                      Talbots(50) / Seconds(10))
-
 }

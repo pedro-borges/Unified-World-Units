@@ -73,6 +73,5 @@ open class Length : CompositeUnitAmount<LengthUnit>
         Energy(amount = amount * force.amount,
                unit = EnergyUnit(lengthUnit = this.unit, forceUnit = force.unit))
 
-
     // endregion
 }
