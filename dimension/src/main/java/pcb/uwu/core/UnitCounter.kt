@@ -150,7 +150,10 @@ class UnitCounter
         {
             if (unitCount.unit != unit)
             {
-                throw OffendingUnitException("${unitCount.unit.singularName} and ${unit.singularName} are both ${unit.baseUnitType.simpleName}")
+                throw OffendingUnitException(
+                        "${unitCount.unit.singularName} " +
+                                "and ${unit.singularName} " +
+                                "are both ${unit.baseUnitType.simpleName}")
             }
             unitCount.count + count
         }
